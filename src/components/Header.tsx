@@ -80,7 +80,7 @@ export default function Header() {
 
           <li>
             <a
-              href="#case-studies"
+              href="/case-studies"
               className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Case Studies
@@ -89,7 +89,7 @@ export default function Header() {
 
           <li>
             <a
-              href="#insights"
+              href="/insights"
               className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Insights
