@@ -89,10 +89,19 @@ export default function Header() {
 
           <li>
             <a
-              href="/insights"
+              href="#how-it-works"
               className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
-              Insights
+              How It Works
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/case-studies"
+              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
+            >
+              Case Studies
             </a>
           </li>
 
@@ -101,7 +110,16 @@ export default function Header() {
               href="/about"
               className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
-              About
+              About Cres
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/insights"
+              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
+            >
+              Insights
             </a>
           </li>
 
@@ -115,9 +133,9 @@ export default function Header() {
           </li>
         </ul>
 
-        {/* CTA BUTTON: Build Free → Orange, rounded-xl, shadow */}
+        {/* CTA BUTTON: Book a Free Consultation → Orange, rounded-xl, shadow */}
         <a href="#book-session" className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-sm uppercase tracking-wide">
-          Build Free
+          Book a Free Consultation
         </a>
 
         {/* Mobile CTA Button */}
@@ -131,9 +149,11 @@ export default function Header() {
         <div className="md:hidden fixed top-20 left-0 w-full h-screen bg-[var(--cres-black)]/95 backdrop-blur-xl flex flex-col items-center justify-center space-y-8 pt-20">
           {[
             { name: 'Home', href: '/' },
-            { name: 'Work', href: '#work' },
-            { name: 'Case Studies', href: '#case-studies' },
-            { name: 'Insights', href: '#insights' },
+            { name: 'Solutions', href: '#solutions' },
+            { name: 'How It Works', href: '#how-it-works' },
+            { name: 'Case Studies', href: '/case-studies' },
+            { name: 'About Cres', href: '/about' },
+            { name: 'Insights', href: '/insights' },
             { name: 'Contact', href: '/contact' }
           ].map((item) => (
             <a
