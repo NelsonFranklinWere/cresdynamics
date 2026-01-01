@@ -8,11 +8,13 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-gradient-to-r from-[var(--cres-black)]/95 to-[var(--cres-dark)]/95 backdrop-blur-xl border-b border-[var(--cres-charcoal)]/50">
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* LOGO: Cres Dynamics - White, Bold, 24px, No underline */}
-        <div className="text-2xl font-black text-[var(--cres-white)] tracking-tight">
-          Cres<span className="text-[var(--cres-orange-primary)]">Dynamics</span>
-        </div>
+      <nav className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        {/* LOGO: Cres Dynamics */}
+        <img
+          src="/logo.png"
+          alt="Cres Dynamics Logo"
+          className="h-8 w-8 rounded-full object-cover"
+        />
 
         {/* Mobile Menu Button */}
         <button
@@ -24,8 +26,8 @@ export default function Header() {
           </svg>
         </button>
 
-        {/* NAV LINKS: Muted white → Orange hover, 16px Inter, uppercase */}
-        <ul className="hidden md:flex space-x-8">
+        {/* NAV LINKS: Muted white → Orange hover, compact spacing */}
+        <ul className="hidden md:flex space-x-4">
           <li>
             <a
               href="/"
@@ -134,8 +136,8 @@ export default function Header() {
         </ul>
 
         {/* CTA BUTTON: Book a Free Consultation → Orange, rounded-xl, shadow */}
-        <a href="#book-session" className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-sm uppercase tracking-wide">
-          Book a Free Consultation
+        <a href="#book-session" className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
+          Book Free Consultation
         </a>
 
         {/* Mobile CTA Button */}

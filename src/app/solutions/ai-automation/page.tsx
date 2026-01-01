@@ -9,7 +9,7 @@ export default function AIAutomationPage() {
       <Header />
 
       {/* 1️⃣ HERO SECTION (PAIN-DRIVEN) */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br bg-[url('/backround.png')] bg-repeat bg-cover bg-center from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -38,7 +38,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* 2️⃣ THE PROBLEM (MAKE IT UNCOMFORTABLE) */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] text-center mb-16">
             The Problem Most Businesses Ignore Until It's Too Late
@@ -85,7 +85,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* 3️⃣ WHY THIS KEEPS HAPPENING */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] mb-12">
             Why This Problem Persists
@@ -128,7 +128,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* 4️⃣ THE CRES SOLUTION (SYSTEM, NOT SERVICE) */}
-      <section className="py-20 bg-[var(--cres-deep-navy)]">
+      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-black text-white text-center mb-16">
             The System We Build to Fix This
@@ -157,7 +157,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* 5️⃣ WHAT MAKES THIS DIFFERENT */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] text-center mb-12">
             Why This Isn't Just Another Service
@@ -208,7 +208,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* 6️⃣ WHO THIS IS FOR (AND NOT FOR) */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] text-center mb-16">
             Is This Right for Your Business?
@@ -277,7 +277,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* 7️⃣ RESULTS & IMPACT (NO FAKE CLAIMS) */}
-      <section className="py-20 bg-[var(--cres-deep-navy)]">
+      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-4xl font-black text-white text-center mb-12">
             What Businesses Gain After Implementation
@@ -308,7 +308,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* 8️⃣ STRONG CTA (URGENCY) */}
-      <section className="py-20 bg-[var(--cres-electric-teal)]">
+      <section className="py-20 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black text-white mb-8">
             Every Week You Delay, You Lose

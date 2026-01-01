@@ -9,7 +9,7 @@ export default function FloristCaseStudyPage() {
       <Header />
 
       {/* SECTION 1: Quiet Authority Hero */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -28,7 +28,7 @@ export default function FloristCaseStudyPage() {
       </section>
 
       {/* SECTION 2: Pattern Recognition */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8">
             Different industries. The same hidden problems.
@@ -47,7 +47,7 @@ export default function FloristCaseStudyPage() {
       </section>
 
       {/* CASE STUDY CARD STRUCTURE */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-6">
 
           {/* Industry Label */}
@@ -151,7 +151,7 @@ export default function FloristCaseStudyPage() {
       </section>
 
       {/* FINAL SECTION: Silent Urgency Close */}
-      <section className="py-20 bg-[var(--cres-deep-navy)]">
+      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black text-white mb-8">
             Growth doesn't break businesses.<br />

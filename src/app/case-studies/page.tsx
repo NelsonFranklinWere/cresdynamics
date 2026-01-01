@@ -84,7 +84,7 @@ export default function CaseStudiesPage() {
       <Header />
 
       {/* 1️⃣ HERO SECTION – AUTHORITY FIRST */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -115,7 +115,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* 2️⃣ HOW TO READ OUR CASE STUDIES */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] mb-8">
             This Is Not a Portfolio. It's Proof of Thinking.
@@ -160,7 +160,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* 3️⃣ CASE STUDY GRID / LIST VIEW */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] text-center mb-12">
             Case Studies
@@ -203,7 +203,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* 6️⃣ FINAL CTA – STRATEGIC, NOT PUSHY */}
-      <section className="py-20 bg-[var(--cres-electric-teal)]">
+      <section className="py-20 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black text-white mb-8">
             Your Business Doesn't Need More Tools.

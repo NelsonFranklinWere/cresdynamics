@@ -127,7 +127,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              © 2025 CRES Dynamics. All rights reserved.
+              © 2026 CRES Dynamics. All rights reserved.
             </p>
             <p className="text-[var(--cres-electric-teal)] text-sm font-medium">
               Built for businesses that want growth — not guesswork.

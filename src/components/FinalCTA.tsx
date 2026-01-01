@@ -1,6 +1,6 @@
 export default function FinalCTA() {
   return (
-    <section className="py-32 bg-gradient-to-r from-[var(--cres-primary-bg)] via-[#0D1520] to-[var(--cres-primary-bg)]">
+    <section className="py-32 bg-gradient-to-r from-[var(--cres-primary-bg)] via-[#0D1520] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
       <div className="max-w-4xl mx-auto px-6 text-center">
         {/* Final Statement */}
         <div className="mb-12">

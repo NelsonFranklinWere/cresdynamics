@@ -1,6 +1,8 @@
 export default function HeroSection1() {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-gradient-bg)] via-black to-[var(--cres-dark)] relative overflow-hidden pt-20">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-gradient-bg)] via-black to-[var(--cres-dark)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden pt-20">
+      {/* BACKGROUND IMAGE OVERLAY FOR OPACITY */}
+      <div className="absolute inset-0 bg-black/40"></div>
       {/* CITY GLOW OVERLAYS */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[radial-gradient(circle_at_30%_70%,rgba(244,122,42,0.3)_0%,transparent_50%)] rounded-full blur-xl animate-pulse" />
@@ -10,7 +12,7 @@ export default function HeroSection1() {
       <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
         {/* H1: Turn Clicks Into Clients. Turn Chaos Into Growth. */}
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] leading-tight mb-8 animate-fade-in-up">
-          Turn Clicks Into Clients.{' '}
+          <span className="underline decoration-2 underline-offset-4">Turn Clicks Into Clients.</span>{' '}
           <span className="text-[var(--cres-orange-primary)]">Turn Chaos Into Growth.</span>
         </h1>
 
@@ -50,14 +52,14 @@ export default function HeroSection1() {
               text: 'Streamline processes & grow efficiently.'
             }
           ].map((card, i) => (
-            <div key={i} className="group p-8 rounded-xl bg-[var(--cres-card-bg)] backdrop-blur-xl border border-[var(--cres-divider)] hover:bg-[var(--cres-secondary-bg)]/80 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+            <div key={i} className="group p-8 rounded-xl bg-black border border-white/20 hover:bg-black/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="text-[var(--cres-orange-primary)] mb-6 group-hover:scale-110 transition-transform">
                 {card.icon}
               </div>
               <h3 className="text-xl font-bold text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">
                 {card.title}
               </h3>
-              <p className="text-[var(--cres-text-secondary)] leading-relaxed">
+              <p className="text-white leading-relaxed">
                 {card.text}
               </p>
             </div>

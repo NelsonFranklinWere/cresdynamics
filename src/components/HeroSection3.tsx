@@ -1,6 +1,6 @@
 export default function HeroSection3() {
   return (
-    <section className="py-32 bg-gradient-to-b from-[var(--cres-secondary-bg)] to-[var(--cres-primary-bg)]">
+    <section className="py-32 bg-gradient-to-b from-[var(--cres-secondary-bg)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
       <div className="max-w-7xl mx-auto px-6 text-center">
         {/* Without the Right System, Your Business is Stuck. */}
         <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-8">
@@ -31,10 +31,10 @@ export default function HeroSection3() {
               subtitle: 'You spend more to get less. Leads slip through cracks.'
             }
           ].map((card, i) => (
-            <div key={i} className="group p-10 rounded-xl bg-[var(--cres-card-bg)] backdrop-blur-xl border border-[var(--cres-divider)] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+            <div key={i} className="group p-10 rounded-xl bg-black border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="text-6xl mb-6 opacity-75 group-hover:scale-110 transition-transform">{card.icon}</div>
               <h4 className="text-xl font-black text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">{card.title}</h4>
-              <p className="text-[var(--cres-text-secondary)] leading-relaxed">{card.subtitle}</p>
+              <p className="text-white leading-relaxed">{card.subtitle}</p>
             </div>
           ))}
         </div>

@@ -1,6 +1,6 @@
 export default function HowCresWorks() {
   return (
-    <section className="py-32 bg-[var(--cres-primary-bg)]" id="how-it-works">
+    <section className="py-32 bg-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center" id="how-it-works">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           {/* Here's How CRES Transforms Frustration Into Growth. */}
@@ -41,12 +41,12 @@ export default function HowCresWorks() {
               }
             ].map((step, i) => (
               <div key={i} className="relative">
-                <div className="group p-8 rounded-xl bg-[var(--cres-card-bg)] backdrop-blur-xl border border-[var(--cres-divider)] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="group p-8 rounded-xl bg-black border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                   <div className="text-4xl mb-6">{step.number}</div>
                   <h3 className="text-xl font-bold text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-[var(--cres-text-secondary)] leading-relaxed">
+                  <p className="text-white leading-relaxed">
                     {step.text}
                   </p>
                 </div>
