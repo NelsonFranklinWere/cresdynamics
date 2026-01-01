@@ -16,13 +16,13 @@ export default function AIAutomationPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
             Your phone never stops ringing,
             <br />
             <span className="text-[var(--cres-electric-teal)]">but you're missing customers.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
             WhatsApp messages pile up. Calls go unanswered. Leads slip through the cracks. You're overwhelmed by communication but underperforming on sales.
           </p>
 

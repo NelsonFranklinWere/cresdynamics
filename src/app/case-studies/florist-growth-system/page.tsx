@@ -16,12 +16,12 @@ export default function FloristCaseStudyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
             Businesses don't fail from lack of effort<br />
             <span className="text-[var(--cres-electric-teal)]">— they fail from lack of systems.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
             These case studies show how growth stalls silently, and how the right infrastructure unlocks scale.
           </p>
         </div>

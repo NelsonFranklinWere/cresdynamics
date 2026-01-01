@@ -1,0 +1,386 @@
+'use client';
+
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+export default function AboutPage() {
+  return (
+    <div className="min-h-screen">
+      <Header />
+
+      {/* SECTION 1: OPENING STATEMENT (WHY WE EXIST) */}
+      <section className="py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
+          <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-12">
+            We Exist to Help Businesses Grow<br />
+            <span className="text-[var(--cres-electric-teal)]">With Clarity, Not Guesswork.</span>
+          </h1>
+
+          <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+            <p>
+              Most businesses don't fail because they lack effort.
+            </p>
+            <p>
+              They fail because they grow without systems, without visibility, and without a clear digital foundation.
+            </p>
+            <p>
+              CRES Dynamics was created to solve that exact problem.
+            </p>
+            <p>
+              We exist to help businesses be found, be trusted, and grow sustainably in a digital world that rewards clarity, speed, and consistency.
+            </p>
+            <p className="font-semibold text-[var(--cres-electric-teal)]">
+              We don't chase trends.<br />
+              We build foundations that compound.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 2: THE PROBLEM WE SAW (THE "WHY") */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 text-center">
+            The Gap Between Effort and Results
+          </h2>
+
+          <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+            <p>
+              We saw hardworking businesses doing everything right — yet struggling to scale.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 my-8">
+              <div className="flex items-center space-x-3">
+                <span className="text-[var(--cres-electric-teal)] text-2xl">•</span>
+                <span>Great services, but invisible online</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <span className="text-[var(--cres-electric-teal)] text-2xl">•</span>
+                <span>Loyal customers, but no predictable lead flow</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <span className="text-[var(--cres-electric-teal)] text-2xl">•</span>
+                <span>Marketing spend, but weak conversion</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <span className="text-[var(--cres-electric-teal)] text-2xl">•</span>
+                <span>Growth ambition, but no systems to support it</span>
+              </div>
+            </div>
+
+            <p>
+              The problem wasn't the business.
+            </p>
+            <p>
+              The problem was the lack of structure, automation, and strategy behind their growth.
+            </p>
+            <p className="font-semibold text-[var(--cres-deep-navy)]">
+              CRES Dynamics was born to close that gap.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: OUR PHILOSOPHY (HOW WE THINK) */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10">
+            Technology Should Simplify Growth, Not Complicate It
+          </h2>
+
+          <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+            <p>
+              We believe technology should:
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 my-8">
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Reduce friction</h3>
+                <p>Not add complexity</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Save time</h3>
+                <p>Not create more work</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Support decisions</h3>
+                <p>Not confuse them</p>
+              </div>
+            </div>
+
+            <p>
+              That's why our approach is simple:
+            </p>
+            <p>
+              We design systems that work together — websites, SEO, automation, and data — all aligned to one goal: business growth.
+            </p>
+
+            <div className="bg-[var(--cres-electric-teal)] text-white p-6 rounded-lg mt-8">
+              <p className="font-semibold">
+                No unnecessary tools.<br />
+                No bloated processes.<br />
+                No empty promises.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: WHAT MAKES US DIFFERENT */}
+      <section className="py-20 bg-[var(--cres-deep-navy)]">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-2xl font-black text-white mb-10 text-center">
+            We Build Systems, Not Just Deliverables
+          </h2>
+
+          <div className="space-y-8 text-gray-300 text-lg leading-relaxed">
+            <p>
+              Most agencies deliver assets.
+            </p>
+            <p>
+              We build operating systems for growth.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-4">Where others stop at:</h3>
+                <ul className="space-y-3">
+                  <li>• A website</li>
+                  <li>• A campaign</li>
+                  <li>• A tool</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-4">We go further:</h3>
+                <ul className="space-y-3">
+                  <li>• How will this convert?</li>
+                  <li>• How will this scale?</li>
+                  <li>• How will this perform in 6–12 months?</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-gray-800/50 p-6 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
+              <p className="text-lg">
+                Every solution we design answers one question:
+              </p>
+              <p className="text-xl font-bold text-[var(--cres-electric-teal)] mt-2">
+                Does this move the business forward?
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: OUR CULTURE (HOW WE OPERATE) */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 text-center">
+            Principle-Driven. Outcome-Focused. Built for the Long Term.
+          </h2>
+
+          <div className="space-y-8 text-gray-700 text-lg leading-relaxed">
+            <p>
+              Our culture is built on a few non-negotiables:
+            </p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Ownership</h3>
+                <p>We take responsibility for outcomes, not excuses</p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Clarity</h3>
+                <p>We communicate directly, honestly, and transparently</p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Discipline</h3>
+                <p>Systems beat shortcuts, always</p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Integrity</h3>
+                <p>Trust is earned through action</p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Growth</h3>
+                <p>For our clients, and for ourselves</p>
+              </div>
+            </div>
+
+            <div className="bg-gray-100 p-6 rounded-lg mt-8">
+              <p className="font-semibold text-[var(--cres-deep-navy)]">
+                We don't rush.<br />
+                We don't overpromise.<br />
+                We don't compromise quality.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: OUR LANGUAGE (HOW WE COMMUNICATE) */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10">
+            Clear. Professional. Grounded in Reality.
+          </h2>
+
+          <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+            <p>
+              We speak the language of business, not buzzwords.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-6 my-8">
+              <div className="bg-red-50 p-6 rounded-lg border border-red-200">
+                <h3 className="font-bold text-red-600 mb-3">You won't hear</h3>
+                <ul className="text-red-700 space-y-1 text-sm">
+                  <li>• Hype</li>
+                  <li>• Exaggeration</li>
+                  <li>• Jargon without purpose</li>
+                </ul>
+              </div>
+
+              <div className="bg-green-50 p-6 rounded-lg border border-green-200">
+                <h3 className="font-bold text-green-600 mb-3">You will hear</h3>
+                <ul className="text-green-700 space-y-1 text-sm">
+                  <li>• Business reality</li>
+                  <li>• Clear explanations</li>
+                  <li>• Actionable insights</li>
+                </ul>
+              </div>
+
+              <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                <h3 className="font-bold text-blue-600 mb-3">Our belief</h3>
+                <p className="text-blue-700 text-sm">
+                  Clarity builds confidence — and confidence builds trust.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7: THE IMPACT WE AIM FOR */}
+      <section className="py-20 bg-[var(--cres-deep-navy)]">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-2xl font-black text-white mb-10 text-center">
+            Growth That Is Measurable, Predictable, and Sustainable
+          </h2>
+
+          <div className="space-y-8 text-gray-300 text-lg leading-relaxed">
+            <p>
+              Our goal isn't short-term wins.
+            </p>
+            <p>
+              Our goal is long-term momentum.
+            </p>
+
+            <p>
+              We measure impact through:
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 my-8">
+              <div className="bg-gray-800/50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Increased visibility</h3>
+                <p>Customers find you when they search for your services</p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Better conversion</h3>
+                <p>More visitors become paying customers</p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Reduced manual effort</h3>
+                <p>Systems handle routine tasks automatically</p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Stronger brand authority</h3>
+                <p>Customers see you as the trusted expert</p>
+              </div>
+            </div>
+
+            <div className="bg-gray-800/50 p-6 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
+              <p className="text-lg">
+                When our clients grow, we know our work matters.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8: WHO WE WORK WITH */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10">
+            Built for Businesses That Want to Grow With Intention
+          </h2>
+
+          <div className="space-y-8 text-gray-700 text-lg leading-relaxed">
+            <p>
+              CRES Dynamics works with:
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 my-8">
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">SMEs ready to professionalize</h3>
+                <p>Their online presence</p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Growing businesses seeking</h3>
+                <p>Predictable lead flow</p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Organizations tired of</h3>
+                <p>Fragmented tools and guesswork</p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Leaders who value</h3>
+                <p>Systems, data, and long-term growth</p>
+              </div>
+            </div>
+
+            <div className="bg-[var(--cres-electric-teal)] text-white p-6 rounded-lg">
+              <p className="font-semibold">
+                If growth matters to you, we're aligned.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9: CLOSING STATEMENT (SUBTLE CTA) */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8">
+            Growth Favors the Prepared
+          </h2>
+
+          <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+            <p>
+              The digital landscape rewards businesses that are structured, visible, and intentional.
+            </p>
+            <p>
+              CRES Dynamics exists to help you get there — with systems that work today and scale tomorrow.
+            </p>
+            <p className="font-semibold text-[var(--cres-deep-navy)]">
+              When you're ready to build for growth, we're ready to help.
+            </p>
+          </div>
+
+          <div className="mt-12">
+            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+              Contact CRES Dynamics
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

@@ -5,33 +5,27 @@
 @tailwind utilities;
 
 :root {
-  /* Primary Branding (Dominant 60% - Black/Gradient Header) */
-  --cres-black: #0A0A0A;           /* Pure black header background */
-  --cres-dark: #1A1A1A;            /* Card backgrounds, subtle sections */
-  --cres-charcoal: #2A2A2A;        /* Secondary text, borders */
+  /* Primary Branding - New Color Palette */
+  --cres-primary-bg: #0B0F14;      /* Primary Background (near-black charcoal) */
+  --cres-secondary-bg: #121821;    /* Secondary Background / Overlays */
+  --cres-card-bg: rgba(18, 24, 33, 0.85); /* Card Background with blur */
+  --cres-orange-primary: #F47A2A;  /* Primary Accent (Orange) */
+  --cres-teal-secondary: #4FB3B8;  /* Secondary Accent (Teal) */
 
   /* Hero Gradient Background (Night city vibe) */
-  --cres-gradient-bg: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 50%, #2D2D2D 100%);
-  --cres-city-glow: radial-gradient(circle at 30% 70%, rgba(255,165,0,0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 30%, rgba(255,140,0,0.2) 0%, transparent 50%);
-
-  /* Primary Orange (30% - CTAs, Accents) */
-  --cres-orange-primary: #FF9500;  /* Main CTA buttons, stats highlights */
-  --cres-orange-hover: #FFB347;    /* Button hover, glow effects */
-  --cres-orange-glow: rgba(255,149,0,0.2); /* Shadows, borders */
-
-  /* Stats Cards Orange (10% - Critical accents) */
-  --cres-orange-stat: #FF6B00;     /* 90%, 60%, 10000s numbers */
-  --cres-orange-light: #FFD1A3;    /* Stat labels */
-
-  /* Contact Page Colors */
-  --cres-deep-navy: #0A1628;       /* Deep Navy Blue background */
-  --cres-electric-teal: #00D4AA;   /* Electric Teal for CTAs and accents */
+  --cres-gradient-bg: linear-gradient(135deg, #0B0F14 0%, #121821 50%, #1A1F2A 100%);
+  --cres-city-glow: radial-gradient(circle at 30% 70%, rgba(244,122,42,0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 30%, rgba(79,179,184,0.2) 0%, transparent 50%);
 
   /* Text Hierarchy */
-  --cres-white: #FFFFFF;           /* Primary headlines */
-  --cres-light: #F5F5F5;           /* Body text */
-  --cres-muted: #B0B0B0;           /* Secondary labels */
+  --cres-white: #FFFFFF;           /* Primary text */
+  --cres-text-secondary: #B5BDC9;  /* Secondary text */
+  --cres-divider: rgba(255,255,255,0.08); /* Divider lines */
+
+  /* Legacy Colors (for compatibility) */
+  --cres-black: #0B0F14;
+  --cres-dark: #121821;
+  --cres-charcoal: #1A1F2A;
 
   /* Modern Shadows (Exact from screenshots) */
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);

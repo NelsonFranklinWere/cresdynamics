@@ -16,10 +16,10 @@ export default function CarRentalCaseStudyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
             Car Rental Growth System
           </h1>
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-lg text-gray-300 mb-8">
             From fully booked to scalable expansion
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

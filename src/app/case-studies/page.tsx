@@ -162,7 +162,7 @@ export default function CaseStudiesPage() {
       {/* 3️⃣ CASE STUDY GRID / LIST VIEW */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] text-center mb-16">
+          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] text-center mb-12">
             Case Studies
           </h2>
 

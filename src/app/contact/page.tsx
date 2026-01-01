@@ -42,13 +42,13 @@ export default function ContactPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
             Your business has a problem.
             <br />
             <span className="text-[var(--cres-electric-teal)]">We help you fix it — fast.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
             If customers can't find you, trust you, or reach you online, you're losing money every day.
           </p>
 
@@ -67,8 +67,8 @@ export default function ContactPage() {
             {/* LEFT SIDE → Problem-Focused Copy */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-black text-white mb-6">Who should contact us:</h2>
-                <ul className="space-y-4 text-gray-300 text-lg">
+                <h2 className="text-2xl font-black text-white mb-6">Who should contact us:</h2>
+                <ul className="space-y-4 text-gray-300 text-base">
                   <li className="flex items-center space-x-3">
                     <span className="text-[var(--cres-electric-teal)]">✓</span>
                     <span>Businesses losing customers online</span>
@@ -116,10 +116,10 @@ export default function ContactPage() {
             {/* RIGHT SIDE → CONTACT FORM */}
             <div className="bg-gray-100 rounded-2xl p-8 shadow-2xl">
               <div className="mb-8">
-                <h3 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-2">
+                <h3 className="text-xl font-black text-[var(--cres-deep-navy)] mb-2">
                   Tell us what's breaking your growth
                 </h3>
-                <p className="text-gray-600">Serious businesses ready to fix real problems.</p>
+                <p className="text-gray-600 text-sm">Serious businesses ready to fix real problems.</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">

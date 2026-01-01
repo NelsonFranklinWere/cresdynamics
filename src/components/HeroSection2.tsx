@@ -3,7 +3,7 @@ export default function HeroSection2() {
     <section className="py-32 bg-[var(--cres-dark)]/50">
       <div className="max-w-7xl mx-auto px-6 text-center">
         {/* H1: Secondary hero */}
-        <h2 className="text-4xl md:text-6xl font-black text-[var(--cres-white)] mb-20">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-16">
           Turn Clicks Into Clients. Turn Chaos Into Growth.
         </h2>
 
@@ -16,8 +16,8 @@ export default function HeroSection2() {
           ].map((card, i) => (
             <div key={i} className="group p-12 rounded-3xl bg-gradient-to-br from-[var(--cres-dark)]/80 to-[var(--cres-charcoal)]/60 backdrop-blur-xl border border-[var(--cres-charcoal)]/30 shadow-xl hover:shadow-[var(--shadow-lg)] hover:-translate-y-4 transition-all duration-700 cursor-pointer">
               <div className="text-5xl mb-8 opacity-80 group-hover:scale-110 transition-transform">{card.icon}</div>
-              <h3 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">{card.title}</h3>
-              <p className="text-xl text-[var(--cres-light)] font-medium">{card.subtitle}</p>
+              <h3 className="text-2xl md:text-3xl font-black text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">{card.title}</h3>
+              <p className="text-lg text-[var(--cres-light)] font-medium">{card.subtitle}</p>
             </div>
           ))}
         </div>
@@ -30,7 +30,7 @@ export default function HeroSection2() {
         </div>
 
         {/* PROBLEM TEASER */}
-        <div className="mt-32 text-[var(--cres-light)] text-xl max-w-4xl mx-auto">
+        <div className="mt-32 text-[var(--cres-light)] text-lg max-w-4xl mx-auto">
           <p>Struggling With Leads & Wasting Money? Let's Fix That.</p>
         </div>
       </div>

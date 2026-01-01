@@ -8,8 +8,8 @@ export default function HeroSection1() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-        {/* H1: Massive, white, 4xl-7xl, hero font weight */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-[var(--cres-white)] leading-tight mb-12 animate-fade-in-up">
+        {/* H1: Large, white, readable hero font weight */}
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] leading-tight mb-12 animate-fade-in-up">
           Struggling to Grow Online?
         </h1>
 
@@ -21,8 +21,8 @@ export default function HeroSection1() {
             { num: '10000s', label: 'of hours wasted manual tasks', color: 'cres-orange-stat' }
           ].map((stat, i) => (
             <div key={i} className="group p-8 rounded-2xl bg-[var(--cres-dark)]/80 backdrop-blur-xl border border-[var(--cres-charcoal)]/50 hover:bg-[var(--cres-charcoal)]/50 shadow-2xl hover:shadow-[var(--shadow-lg)] transition-all duration-500 hover:-translate-y-2">
-              {/* STAT NUMBER: 3xl-5xl, orange, bold */}
-              <div className="text-3xl md:text-5xl font-black text-[var(--cres-orange-stat)] mb-4 group-hover:scale-110 transition-transform duration-300">
+              {/* STAT NUMBER: 2xl-4xl, orange, bold */}
+              <div className="text-2xl md:text-4xl font-black text-[var(--cres-orange-stat)] mb-4 group-hover:scale-110 transition-transform duration-300">
                 {stat.num}
               </div>
               {/* LABEL: muted, 16px, center */}
@@ -35,7 +35,7 @@ export default function HeroSection1() {
 
         {/* PRIMARY CTA: Largest, most prominent */}
         <div className="animate-bounce">
-          <a href="#book-session" className="cta-hero inline-block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-black text-xl px-12 py-6 rounded-2xl shadow-2xl hover:shadow-[var(--shadow-lg)] hover:-translate-y-2 transition-all duration-500 uppercase tracking-wider border-4 border-transparent hover:border-[var(--cres-orange-primary)]/50">
+          <a href="#book-session" className="cta-hero inline-block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-black text-lg px-10 py-5 rounded-2xl shadow-2xl hover:shadow-[var(--shadow-lg)] hover:-translate-y-2 transition-all duration-500 uppercase tracking-wider border-4 border-transparent hover:border-[var(--cres-orange-primary)]/50">
             Get Your Free Strategy Session
           </a>
         </div>

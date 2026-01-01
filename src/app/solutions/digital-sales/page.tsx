@@ -16,13 +16,13 @@ export default function DigitalSalesPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
             Traffic flows in but
             <br />
             <span className="text-[var(--cres-electric-teal)]">customers leak out everywhere.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
             You drive visitors to your site but they don't buy. Leads disappear into black holes. Your sales funnel has more holes than a fishing net. You're generating traffic but not revenue.
           </p>
 

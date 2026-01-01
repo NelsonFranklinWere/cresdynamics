@@ -16,7 +16,7 @@ export default function InsightsPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-8">
             What's Really Costing Your Business Money<br />
             <span className="text-orange-500">— And Why Most Owners Never See It.</span>
           </h1>
@@ -42,7 +42,7 @@ export default function InsightsPage() {
       {/* 2️⃣ THE PROBLEM SECTION — "THE SILENT LEAKS" */}
       <section id="silent-leaks" className="py-20 bg-gray-800">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-center mb-12">
+          <h2 className="text-3xl font-black text-center mb-10">
             The Silent Growth Killers Most Businesses Ignore
           </h2>
 
@@ -108,7 +108,7 @@ export default function InsightsPage() {
       {/* 3️⃣ INSIGHT CATEGORIES (CONTENT STRUCTURE) */}
       <section className="py-20 bg-gray-900">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-center mb-12">
+          <h2 className="text-3xl font-black text-center mb-10">
             What We See After Working With Real Businesses
           </h2>
 
@@ -149,7 +149,7 @@ export default function InsightsPage() {
       {/* 4️⃣ FEATURED INSIGHT CARDS (HIGH-IMPACT) */}
       <section className="py-20 bg-gray-800">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-center mb-12">Featured Insights</h2>
+          <h2 className="text-3xl font-black text-center mb-10">Featured Insights</h2>
 
           <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Card 1 */}
@@ -206,7 +206,7 @@ export default function InsightsPage() {
       {/* 5️⃣ REALITY CHECK SECTION (URGENCY CREATOR) */}
       <section className="py-20 bg-gray-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-black mb-12">
+          <h2 className="text-3xl font-black mb-10">
             If You Do Nothing, This Is What Happens
           </h2>
 
@@ -253,7 +253,7 @@ export default function InsightsPage() {
       {/* 6️⃣ THE OUTCOME SECTION — "WHAT CHANGES" */}
       <section className="py-20 bg-gray-800">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-center mb-12">
+          <h2 className="text-3xl font-black text-center mb-10">
             What Happens When You Fix the System
           </h2>
 

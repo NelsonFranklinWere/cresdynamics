@@ -16,13 +16,13 @@ export default function ConsultingStrategyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
             You're drowning in tools
             <br />
             <span className="text-[var(--cres-electric-teal)]">but starving for direction.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
             You have WhatsApp, a website, social media, ads, CRM, email — but no clear plan connecting them all. You're busy being busy but going nowhere. Confusion isn't a strategy, and hope isn't a plan.
           </p>
 

@@ -63,13 +63,13 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/case-studies" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
-                  Case Studies
+                <a href="/about" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
+                  About Us
                 </a>
               </li>
               <li>
-                <a href="/" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
-                  About Cres
+                <a href="/case-studies" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
+                  Case Studies
                 </a>
               </li>
               <li>

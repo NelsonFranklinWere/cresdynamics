@@ -2,7 +2,7 @@ export default function HeroSection3() {
   return (
     <section className="py-32 bg-gradient-to-b from-[var(--cres-dark)] to-[var(--cres-black)]">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h3 className="text-4xl md:text-5xl font-black text-[var(--cres-white)] mb-20">
+        <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-16">
           Without The Right System, Your Business Is Stuck.
         </h3>
 

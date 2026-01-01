@@ -16,7 +16,7 @@ export default function SaccoCaseStudyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
             When opportunity arrives after hours<br />
             <span className="text-[var(--cres-electric-teal)]">— and no one is there to receive it.</span>
           </h1>

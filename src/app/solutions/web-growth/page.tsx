@@ -16,13 +16,13 @@ export default function WebGrowthPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
             Your website exists but
             <br />
             <span className="text-[var(--cres-electric-teal)]">customers can't find you.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
             Every day your slow, outdated website loses you customers to competitors. Your digital storefront is broken, and it's costing you real money.
           </p>
 
@@ -40,7 +40,7 @@ export default function WebGrowthPage() {
       {/* 2️⃣ THE PROBLEM (MAKE IT UNCOMFORTABLE) */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] text-center mb-16">
+          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] text-center mb-12">
             The Problem Most Businesses Ignore Until It's Too Late
           </h2>
 
@@ -130,7 +130,7 @@ export default function WebGrowthPage() {
       {/* 4️⃣ THE CRES SOLUTION (SYSTEM, NOT SERVICE) */}
       <section className="py-20 bg-[var(--cres-deep-navy)]">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-white text-center mb-16">
+          <h2 className="text-3xl font-black text-white text-center mb-12">
             The System We Build to Fix This
           </h2>
 
@@ -159,7 +159,7 @@ export default function WebGrowthPage() {
       {/* 5️⃣ WHAT MAKES THIS DIFFERENT */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] text-center mb-12">
+          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] text-center mb-10">
             Why This Isn't Just Another Service
           </h2>
 
