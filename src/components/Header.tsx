@@ -8,13 +8,18 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-gradient-to-r from-[var(--cres-black)]/95 to-[var(--cres-dark)]/95 backdrop-blur-xl border-b border-[var(--cres-charcoal)]/50">
-      <nav className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-3 md:px-4 py-2 md:py-3 flex items-center justify-between">
         {/* LOGO: Cres Dynamics */}
-        <img
-          src="/logo.png"
-          alt="Cres Dynamics Logo"
-          className="h-8 w-8 rounded-full object-cover"
-        />
+        <div className="flex items-center space-x-1 md:space-x-2">
+          <img
+            src="/logo.png"
+            alt="Cres Dynamics Logo"
+            className="h-6 w-6 md:h-8 md:w-8 rounded-full object-cover"
+          />
+          <span className="text-[var(--cres-white)] font-bold text-xs md:text-sm uppercase tracking-wide">
+            <span className="font-black">CRES</span> Dynamics
+          </span>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -31,7 +36,7 @@ export default function Header() {
           <li>
             <a
               href="/"
-              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
+              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Home
             </a>
@@ -42,7 +47,7 @@ export default function Header() {
             <button
               onMouseEnter={() => setIsSolutionsDropdownOpen(true)}
               onMouseLeave={() => setIsSolutionsDropdownOpen(false)}
-              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 flex items-center space-x-1"
+              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 flex items-center space-x-1"
             >
               <span>Solutions</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,9 +74,8 @@ export default function Header() {
                     <a
                       key={solution.href}
                       href={solution.href}
-                      className="flex items-center space-x-3 px-4 py-3 text-[var(--cres-light)] hover:bg-[var(--cres-dark)] hover:text-[var(--cres-electric-teal)] transition-all duration-200"
+                      className="flex items-center px-4 py-3 text-[var(--cres-white)] hover:bg-[var(--cres-dark)] hover:text-[var(--cres-electric-teal)] transition-all duration-200"
                     >
-                      <span className="text-lg">{solution.icon}</span>
                       <span className="text-sm font-medium">{solution.name}</span>
                     </a>
                   ))}
@@ -83,25 +87,7 @@ export default function Header() {
           <li>
             <a
               href="/case-studies"
-              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
-            >
-              Case Studies
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#how-it-works"
-              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
-            >
-              How It Works
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="/case-studies"
-              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
+              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Case Studies
             </a>
@@ -110,16 +96,16 @@ export default function Header() {
           <li>
             <a
               href="/about"
-              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
+              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
-              About Cres
+              About
             </a>
           </li>
 
           <li>
             <a
               href="/insights"
-              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
+              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Insights
             </a>
@@ -128,7 +114,7 @@ export default function Header() {
           <li>
             <a
               href="/contact"
-              className="text-[var(--cres-muted)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
+              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Contact
             </a>
@@ -136,12 +122,12 @@ export default function Header() {
         </ul>
 
         {/* CTA BUTTON: Book a Free Consultation → Orange, rounded-xl, shadow */}
-        <a href="#book-session" className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
+        <a href="/contact" className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
           Book Free Consultation
         </a>
 
         {/* Mobile CTA Button */}
-        <a href="#book-session" className="md:hidden bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm uppercase tracking-wide">
+        <a href="/contact" className="md:hidden bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm uppercase tracking-wide">
           Free
         </a>
       </nav>
@@ -152,16 +138,15 @@ export default function Header() {
           {[
             { name: 'Home', href: '/' },
             { name: 'Solutions', href: '#solutions' },
-            { name: 'How It Works', href: '#how-it-works' },
             { name: 'Case Studies', href: '/case-studies' },
-            { name: 'About Cres', href: '/about' },
+            { name: 'About', href: '/about' },
             { name: 'Insights', href: '/insights' },
             { name: 'Contact', href: '/contact' }
           ].map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="text-[var(--cres-muted)] text-lg font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300"
+                  className="text-[var(--cres-white)] text-lg font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.name}

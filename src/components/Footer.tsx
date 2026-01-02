@@ -2,8 +2,8 @@ export default function Footer() {
   return (
     <footer className="bg-[var(--cres-deep-navy)] border-t border-[var(--cres-charcoal)]/50">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12">
 
           {/* COLUMN 1 — BRAND */}
           <div className="lg:col-span-1">
@@ -124,12 +124,12 @@ export default function Footer() {
 
       {/* FOOTER BOTTOM BAR */}
       <div className="border-t border-[var(--cres-charcoal)]/50">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+            <p className="text-gray-400 text-xs md:text-sm">
               © 2026 CRES Dynamics. All rights reserved.
             </p>
-            <p className="text-[var(--cres-electric-teal)] text-sm font-medium">
+            <p className="text-[var(--cres-electric-teal)] text-xs md:text-sm font-medium">
               Built for businesses that want growth — not guesswork.
             </p>
           </div>

@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "analyze": "next build --analyze",
+    "build:analyze": "ANALYZE=true next build",
+    "lighthouse": "lhci autorun",
+    "performance": "next build && next export",
+    "generate-favicons": "node generate-favicons.js"
   },
   "dependencies": {
     "@radix-ui/react-scroll-area": "^1.2.10",

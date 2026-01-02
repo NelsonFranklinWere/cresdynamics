@@ -4,12 +4,12 @@ export default function HowCresWorks() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           {/* Here's How CRES Transforms Frustration Into Growth. */}
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
             Here's How CRES Transforms <span className="text-[var(--cres-orange-primary)]">Frustration Into Growth.</span>
           </h2>
 
           {/* From attracting visitors to automating sales */}
-          <p className="text-xl md:text-2xl text-[var(--cres-text-secondary)] max-w-4xl mx-auto">
+          <p className="text-xl md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
             From attracting visitors to automating sales — we build systems that work while you work.
           </p>
         </div>
@@ -17,7 +17,7 @@ export default function HowCresWorks() {
         {/* PROCESS CARDS - Horizontal Flow */}
         <div className="relative">
           {/* Process Steps */}
-          <div className="grid md:grid-cols-4 gap-8 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-20">
             {[
               {
                 number: '1️⃣',
@@ -41,12 +41,14 @@ export default function HowCresWorks() {
               }
             ].map((step, i) => (
               <div key={i} className="relative">
-                <div className="group p-8 rounded-xl bg-black border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <div className="text-4xl mb-6">{step.number}</div>
-                  <h3 className="text-xl font-bold text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">
-                    {step.title}
-                  </h3>
-                  <p className="text-white leading-relaxed">
+                <div className="group p-6 rounded-xl bg-black/70 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col justify-center">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-2xl">{step.number}</div>
+                    <h3 className="text-lg font-bold text-[var(--cres-white)] group-hover:text-[var(--cres-orange-primary)] transition-colors">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className="text-white leading-relaxed text-sm">
                     {step.text}
                   </p>
                 </div>
@@ -64,17 +66,17 @@ export default function HowCresWorks() {
           </div>
 
           {/* STATEMENT BANNER */}
-          <div className="bg-gradient-to-r from-[var(--cres-orange-primary)]/20 to-[var(--cres-teal-secondary)]/20 p-12 rounded-xl shadow-lg border border-[var(--cres-orange-primary)]/20 text-center mb-16">
-            <p className="text-2xl md:text-3xl font-black text-[var(--cres-white)]">
+          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 md:p-12 rounded-xl shadow-lg text-center mb-16">
+            <p className="text-xl md:text-2xl lg:text-3xl font-black text-[var(--cres-white)]">
               With CRES, You're Not Buying Services.
               <br />
-              <span className="text-[var(--cres-orange-primary)]">You're Investing in Results.</span>
+              <span className="text-[var(--cres-orange-primary)] underline-custom">You're Investing in Results.</span>
             </p>
           </div>
 
           {/* CTA */}
-          <div className="text-center animate-bounce">
-            <a href="#book-session" className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-black)] font-bold text-lg px-12 py-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+          <div className="text-center">
+            <a href="/contact" className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-black)] font-bold text-lg px-12 py-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
               Get Your Free Strategy Session
             </a>
           </div>

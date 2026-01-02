@@ -8,13 +8,13 @@ export default function RetailSalesCaseStudyPage() {
     <div className="min-h-screen">
       <Header />
 
-      <section className="py-20 bg-gradient-to-br bg-[url('/backround.png')] bg-repeat bg-cover bg-center from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-gradient-to-br bg-[url('/backround.png')] bg-repeat bg-cover bg-center from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
           <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">
             Retail Sales System
           </h1>
@@ -22,41 +22,41 @@ export default function RetailSalesCaseStudyPage() {
             From high traffic to predictable sales growth
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-lg py-3 px-6 rounded-lg transition-all duration-300">
+            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
               Request a Growth Audit
             </a>
-            <a href="/case-studies" className="border border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-lg py-3 px-6 rounded-lg transition-all duration-300">
+            <a href="/case-studies" className="border border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
               ← Back to Case Studies
             </a>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8">The Business</h2>
-          <div className="space-y-6 text-gray-700">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Business</h2>
+          <div className="space-y-6 text-white">
             <div className="grid md:grid-cols-2 gap-8">
               <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Industry</h3><p>Retail store specializing in electronics</p></div>
               <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Business Size</h3><p>Single location with high foot traffic</p></div>
               <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Market Situation</h3><p>Competitive Nairobi electronics market</p></div>
               <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Growth Stage</h3><p>Traffic-heavy but conversion-challenged</p></div>
             </div>
-            <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+            <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
               <p className="text-lg">This retail store had excellent foot traffic but struggled to convert browsers into buyers, with no system to track or optimize the customer journey.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8">The Challenge</h2>
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Challenge</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <h3 className="text-lg font-bold text-[var(--cres-electric-teal)]">What Was Broken</h3>
-                <ul className="space-y-2 text-gray-700">
+                <ul className="space-y-2 text-white">
                   <li>• High foot traffic but low conversion rates</li>
                   <li>• No customer journey tracking or optimization</li>
                   <li>• Manual sales processes with no follow-up</li>
@@ -65,7 +65,7 @@ export default function RetailSalesCaseStudyPage() {
               </div>
               <div className="space-y-4">
                 <h3 className="text-lg font-bold text-[var(--cres-electric-teal)]">What Was Costing Growth</h3>
-                <ul className="space-y-2 text-gray-700">
+                <ul className="space-y-2 text-white">
                   <li>• Lost sales from undecided customers</li>
                   <li>• Inefficient sales staff allocation</li>
                   <li>• No way to nurture future purchases</li>
@@ -73,33 +73,33 @@ export default function RetailSalesCaseStudyPage() {
                 </ul>
               </div>
             </div>
-            <div className="mt-8 p-6 bg-white rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
+            <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
               <p className="font-semibold text-[var(--cres-deep-navy)] mb-2">The Root Issue</p>
-              <p className="text-gray-700">They had plenty of potential customers but no system to guide them through the buying process or track what worked.</p>
+              <p className="text-white">They had plenty of potential customers but no system to guide them through the buying process or track what worked.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8">Why Previous Solutions Didn't Work</h2>
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">Why Previous Solutions Didn't Work</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center p-6 bg-gray-50 rounded-lg">
+              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">📊</div>
                 <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Basic POS Systems</h3>
-                <p className="text-gray-600 text-sm">Handled transactions but provided no customer insights or sales optimization tools.</p>
+                <p className="text-white text-sm">Handled transactions but provided no customer insights or sales optimization tools.</p>
               </div>
-              <div className="text-center p-6 bg-gray-50 rounded-lg">
+              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">🎯</div>
                 <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Generic Sales Training</h3>
-                <p className="text-gray-600 text-sm">Staff training helped but didn't address systemic sales process problems.</p>
+                <p className="text-white text-sm">Staff training helped but didn't address systemic sales process problems.</p>
               </div>
-              <div className="text-center p-6 bg-gray-50 rounded-lg">
+              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">📱</div>
                 <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Standalone Apps</h3>
-                <p className="text-gray-600 text-sm">Individual apps for loyalty, inventory, and sales that didn't integrate or provide actionable insights.</p>
+                <p className="text-white text-sm">Individual apps for loyalty, inventory, and sales that didn't integrate or provide actionable insights.</p>
               </div>
             </div>
             <div className="mt-8 p-6 bg-red-50 rounded-lg border border-red-200">
@@ -111,8 +111,8 @@ export default function RetailSalesCaseStudyPage() {
       </section>
 
       <section className="py-16 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-white mb-8">Our Thinking & Strategy</h2>
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">Our Thinking & Strategy</h2>
           <div className="space-y-6 text-gray-300">
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -142,16 +142,16 @@ export default function RetailSalesCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8">The System We Implemented</h2>
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The System We Implemented</h2>
           <div className="space-y-8">
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">1</div>
               <div>
                 <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Customer Journey Mapping</h3>
-                <p className="text-gray-700 mb-3">Digital touchpoints that guide customers through their decision-making process.</p>
-                <ul className="text-gray-600 text-sm space-y-1">
+                <p className="text-white mb-3">Digital touchpoints that guide customers through their decision-making process.</p>
+                <ul className="text-white text-sm space-y-1">
                   <li>• In-store tablets for product research and comparisons</li>
                   <li>• WhatsApp integration for post-visit follow-up</li>
                   <li>• Email sequences for abandoned cart recovery</li>
@@ -163,8 +163,8 @@ export default function RetailSalesCaseStudyPage() {
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">2</div>
               <div>
                 <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Sales Performance Dashboard</h3>
-                <p className="text-gray-700 mb-3">Real-time insights into sales performance and customer behavior.</p>
-                <ul className="text-gray-600 text-sm space-y-1">
+                <p className="text-white mb-3">Real-time insights into sales performance and customer behavior.</p>
+                <ul className="text-white text-sm space-y-1">
                   <li>• Conversion rate tracking by product category</li>
                   <li>• Customer journey analytics</li>
                   <li>• Staff performance metrics</li>
@@ -176,8 +176,8 @@ export default function RetailSalesCaseStudyPage() {
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">3</div>
               <div>
                 <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Automated Nurture System</h3>
-                <p className="text-gray-700 mb-3">Intelligent follow-up that keeps customers engaged throughout their buying journey.</p>
-                <ul className="text-gray-600 text-sm space-y-1">
+                <p className="text-white mb-3">Intelligent follow-up that keeps customers engaged throughout their buying journey.</p>
+                <ul className="text-white text-sm space-y-1">
                   <li>• Personalized product recommendations</li>
                   <li>• Cart abandonment recovery</li>
                   <li>• Post-purchase engagement campaigns</li>
@@ -192,60 +192,60 @@ export default function RetailSalesCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8">The Impact</h2>
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Impact</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Predictable Sales Growth</h3>
-              <p className="text-gray-700">Established measurable sales targets and processes that consistently meet or exceed expectations.</p>
+              <p className="text-white">Established measurable sales targets and processes that consistently meet or exceed expectations.</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Customer Experience Optimization</h3>
-              <p className="text-gray-700">Streamlined purchase process that reduces friction and increases customer satisfaction.</p>
+              <p className="text-white">Streamlined purchase process that reduces friction and increases customer satisfaction.</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Data-Driven Decisions</h3>
-              <p className="text-gray-700">Real-time insights that inform inventory decisions, staffing, and marketing strategies.</p>
+              <p className="text-white">Real-time insights that inform inventory decisions, staffing, and marketing strategies.</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Scalable Operations</h3>
-              <p className="text-gray-700">Processes that work whether serving 50 customers/day or 500, with room for future expansion.</p>
+              <p className="text-white">Processes that work whether serving 50 customers/day or 500, with room for future expansion.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8">What This Case Teaches</h2>
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">What This Case Teaches</h2>
           <div className="space-y-4">
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">1</div>
               <div>
                 <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Traffic doesn't equal sales</h3>
-                <p className="text-gray-700">High foot traffic is meaningless without systems to convert visitors into customers.</p>
+                <p className="text-white">High foot traffic is meaningless without systems to convert visitors into customers.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">2</div>
               <div>
                 <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Customer journeys are complex</h3>
-                <p className="text-gray-700">Modern customers research, compare, and decide across multiple channels and touchpoints.</p>
+                <p className="text-white">Modern customers research, compare, and decide across multiple channels and touchpoints.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">3</div>
               <div>
                 <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Data enables optimization</h3>
-                <p className="text-gray-700">Without tracking customer behavior, businesses can't identify and fix conversion bottlenecks.</p>
+                <p className="text-white">Without tracking customer behavior, businesses can't identify and fix conversion bottlenecks.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">4</div>
               <div>
                 <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Systems create consistency</h3>
-                <p className="text-gray-700">Standardized processes ensure every customer receives the same high-quality experience.</p>
+                <p className="text-white">Standardized processes ensure every customer receives the same high-quality experience.</p>
               </div>
             </div>
           </div>
@@ -253,10 +253,10 @@ export default function RetailSalesCaseStudyPage() {
       </section>
 
       <section className="py-16 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-black text-white mb-8">Is This Similar to Your Business?</h2>
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">Is This Similar to Your Business?</h2>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white/10 p-6 rounded-lg">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20/10 p-6 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">This applies to you if:</h3>
               <ul className="text-white space-y-2 text-left">
                 <li>• You have good foot traffic but poor conversion</li>
@@ -266,7 +266,7 @@ export default function RetailSalesCaseStudyPage() {
                 <li>• You want predictable, measurable sales growth</li>
               </ul>
             </div>
-            <div className="bg-white/10 p-6 rounded-lg">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20/10 p-6 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">Let's discuss your situation:</h3>
               <ul className="text-white space-y-2 text-left">
                 <li>• Physical retail stores with conversion challenges</li>
@@ -278,10 +278,10 @@ export default function RetailSalesCaseStudyPage() {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-white text-[var(--cres-electric-teal)] hover:bg-gray-100 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+            <a href="/contact" className="bg-black/70 backdrop-blur-sm border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/70 backdrop-blur-sm border border-white/20 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Let's Map Your Growth System
             </a>
-            <a href="/case-studies" className="border-2 border-white text-white hover:bg-white hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/case-studies" className="border-2 border-white text-white hover:bg-black/70 backdrop-blur-sm border border-white/20 hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
               View More Case Studies
             </a>
           </div>

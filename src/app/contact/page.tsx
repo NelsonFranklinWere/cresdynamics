@@ -41,8 +41,8 @@ export default function ContactPage() {
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8 underline-custom">
             Your business has a problem.
             <br />
             <span className="text-[var(--cres-electric-teal)]">We help you fix it — fast.</span>
@@ -60,14 +60,14 @@ export default function ContactPage() {
       </section>
 
       {/* 2️⃣ CONTACT OPTIONS (Split Layout) */}
-      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
 
             {/* LEFT SIDE → Problem-Focused Copy */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-black text-white mb-6">Who should contact us:</h2>
+                <h2 className="text-2xl font-black text-white mb-6 underline-custom">Who should contact us:</h2>
                 <ul className="space-y-4 text-gray-300 text-base">
                   <li className="flex items-center space-x-3">
                     <span className="text-[var(--cres-electric-teal)]">✓</span>
@@ -114,7 +114,7 @@ export default function ContactPage() {
             </div>
 
             {/* RIGHT SIDE → CONTACT FORM */}
-            <div className="bg-gray-100 rounded-2xl p-8 shadow-2xl">
+            <div className="bg-[var(--cres-light-grey)] rounded-2xl p-8 shadow-2xl">
               <div className="mb-8">
                 <h3 className="text-xl font-black text-[var(--cres-deep-navy)] mb-2">
                   Tell us what's breaking your growth
@@ -243,35 +243,43 @@ export default function ContactPage() {
       </section>
 
       {/* 3️⃣ TRUST + AUTHORITY SECTION */}
-      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-black text-white mb-12">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-4xl font-black text-white mb-12 underline-custom">
             Why businesses choose CRES Dynamics
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl mb-4">🔧</div>
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-2">Systems, not templates</h3>
-              <p className="text-gray-300">Custom-built solutions that grow with you</p>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl">
+              <div className="flex items-center justify-center gap-1 mb-3">
+                <div className="text-xl">🔧</div>
+                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Systems, not templates</h3>
+              </div>
+              <p className="text-white text-center text-sm">Custom-built solutions that grow with you</p>
             </div>
 
-            <div className="text-center">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-2">Strategy before execution</h3>
-              <p className="text-gray-300">We plan your growth, then build it</p>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl">
+              <div className="flex items-center justify-center gap-1 mb-3">
+                <div className="text-xl">🎯</div>
+                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Strategy before execution</h3>
+              </div>
+              <p className="text-white text-center text-sm">We plan your growth, then build it</p>
             </div>
 
-            <div className="text-center">
-              <div className="text-4xl mb-4">📈</div>
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-2">Growth-focused, ROI-driven</h3>
-              <p className="text-gray-300">Every feature drives revenue</p>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl">
+              <div className="flex items-center justify-center gap-1 mb-3">
+                <div className="text-xl">📈</div>
+                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Growth-focused, ROI-driven</h3>
+              </div>
+              <p className="text-white text-center text-sm">Every feature drives revenue</p>
             </div>
 
-            <div className="text-center">
-              <div className="text-4xl mb-4">🌍</div>
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-2">Built for African businesses</h3>
-              <p className="text-gray-300">Understanding your market and customers</p>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl">
+              <div className="flex items-center justify-center gap-1 mb-3">
+                <div className="text-xl">🌍</div>
+                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Built for African businesses</h3>
+              </div>
+              <p className="text-white text-center text-sm">Understanding your market and customers</p>
             </div>
           </div>
 
@@ -285,8 +293,8 @@ export default function ContactPage() {
 
       {/* 4️⃣ DIRECT CONTACT (FOR FAST MOVERS) */}
       <section className="py-16 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-black text-white mb-8">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-3xl font-black text-white mb-8 underline-custom">
             🚀 FAST TRACK
           </h2>
           <p className="text-xl text-white font-semibold mb-8">
@@ -294,26 +302,26 @@ export default function ContactPage() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 text-white">
-            <div className="text-center">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl text-center">
               <div className="text-3xl mb-4">📞</div>
               <h3 className="font-bold mb-2">Call / WhatsApp</h3>
-              <p className="text-lg">+254 XXX XXX XXX</p>
+              <p className="text-lg">+254 708 805 496</p>
             </div>
 
-            <div className="text-center">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl text-center">
               <div className="text-3xl mb-4">🌐</div>
               <h3 className="font-bold mb-2">Website</h3>
               <p className="text-lg">www.cresdynamics.com</p>
             </div>
 
-            <div className="text-center">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl text-center">
               <div className="text-3xl mb-4">📍</div>
               <h3 className="font-bold mb-2">Location</h3>
               <p className="text-lg">Nairobi, Kenya<br /><span className="text-sm">(Remote-first)</span></p>
             </div>
           </div>
 
-          <div className="mt-8 p-6 bg-white/10 rounded-lg">
+          <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
             <p className="text-white font-semibold">
               Most clients contact us <span className="font-black">after</span> losing money.<br />
               The best ones contact us <span className="font-black">before</span>.
@@ -323,9 +331,9 @@ export default function ContactPage() {
       </section>
 
       {/* 5️⃣ FINAL PUSH (Bottom Section) */}
-      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-8">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-8 underline-custom">
             Your customers are already searching.
             <br />
             The only question is — <span className="text-[var(--cres-electric-teal)]">will they find you?</span>

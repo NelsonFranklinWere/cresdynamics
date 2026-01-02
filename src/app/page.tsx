@@ -1,10 +1,28 @@
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
+
+// Eager load above-the-fold content
 import HeroSection1 from '@/components/HeroSection1';
-import HeroSection2 from '@/components/HeroSection2';
-import HeroSection3 from '@/components/HeroSection3';
-import HowCresWorks from '@/components/HowCresWorks';
-import FinalCTA from '@/components/FinalCTA';
-import Footer from '@/components/Footer';
+
+// Lazy load below-the-fold content
+const HeroSection2 = dynamic(() => import('@/components/HeroSection2'), {
+  loading: () => <div className="h-96 bg-gray-900 animate-pulse"></div>
+});
+const HeroSection3 = dynamic(() => import('@/components/HeroSection3'), {
+  loading: () => <div className="h-96 bg-gray-900 animate-pulse"></div>
+});
+const WhyChooseCres = dynamic(() => import('@/components/WhyChooseCres'), {
+  loading: () => <div className="h-96 bg-gray-900 animate-pulse"></div>
+});
+const HowCresWorks = dynamic(() => import('@/components/HowCresWorks'), {
+  loading: () => <div className="h-96 bg-gray-900 animate-pulse"></div>
+});
+const FinalCTA = dynamic(() => import('@/components/FinalCTA'), {
+  loading: () => <div className="h-96 bg-gray-900 animate-pulse"></div>
+});
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: () => <div className="h-96 bg-gray-900 animate-pulse"></div>
+});
 
 export default function Home() {
   return (
@@ -14,6 +32,7 @@ export default function Home() {
         <HeroSection1 />
         <HeroSection2 />
         <HeroSection3 />
+        <WhyChooseCres />
         <HowCresWorks />
         <FinalCTA />
       </main>

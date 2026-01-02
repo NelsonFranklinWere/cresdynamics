@@ -5,7 +5,15 @@
 @tailwind utilities;
 
 :root {
-  /* Primary Branding - New Color Palette */
+  /* CRES Core Color Palette */
+  --cres-deep-navy: #0D1B2A;       /* Deep Navy – foundation */
+  --cres-electric-teal: #00B894;  /* Electric Teal – intelligence & motion */
+  --cres-light-grey: #F8F9FA;      /* Light Grey – clarity & balance */
+
+  /* Updated Core Colors for CRES Brand Alignment */
+  --cres-teal-secondary: #00B894;  /* Updated Electric Teal */
+
+  /* Primary Branding - Updated Color Palette */
   --cres-primary-bg: #0B0F14;      /* Primary Background (near-black charcoal) */
   --cres-secondary-bg: #121821;    /* Secondary Background / Overlays */
   --cres-card-bg: rgba(18, 24, 33, 0.85); /* Card Background with blur */
@@ -34,21 +42,75 @@
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    /* Performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
   body {
     background-color: var(--cres-black);
-    color: var(--cres-light);
-    font-family: 'Inter', ui-sans-serif, system-ui;
+    color: var(--cres-white);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 400;
     line-height: 1.5;
+    /* Performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer utilities {
-  .animate-fade-in-up { animation: fadeInUp 1s ease-out; }
+  /* Optimized animations with GPU acceleration */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+    will-change: transform, opacity;
+  }
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translate3d(0, 30px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Performance-optimized underline */
+  .underline-custom {
+    position: relative;
+    contain: layout;
+  }
+  .underline-custom::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(244, 122, 42, 0.8) 20%,
+      rgba(244, 122, 42, 1) 50%,
+      rgba(244, 122, 42, 0.8) 80%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+    border-radius: 1px;
+    will-change: transform;
+  }
+
+  /* Performance utilities */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .optimized-hover {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
 }
 

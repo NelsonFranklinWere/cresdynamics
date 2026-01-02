@@ -15,8 +15,8 @@ export default function WebGrowthPage() {
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
+          <h1 className="text-[0-9]xl md:text-[0-9]xl lg:text-[0-9]xl font-black underline-custom text-white leading-tight mb-8">
             Your website exists but
             <br />
             <span className="text-[var(--cres-electric-teal)]">customers can't find you.</span>
@@ -38,9 +38,9 @@ export default function WebGrowthPage() {
       </section>
 
       {/* 2️⃣ THE PROBLEM (MAKE IT UNCOMFORTABLE) */}
-      <section className="py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] text-center mb-12">
+      <section className="py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] text-center mb-12">
             The Problem Most Businesses Ignore Until It's Too Late
           </h2>
 
@@ -85,9 +85,9 @@ export default function WebGrowthPage() {
       </section>
 
       {/* 3️⃣ WHY THIS KEEPS HAPPENING */}
-      <section className="py-20 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] mb-12">
+      <section className="py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-12">
             Why This Problem Persists
           </h2>
 
@@ -128,9 +128,9 @@ export default function WebGrowthPage() {
       </section>
 
       {/* 4️⃣ THE CRES SOLUTION (SYSTEM, NOT SERVICE) */}
-      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-white text-center mb-12">
+      <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-white text-center mb-12">
             The System We Build to Fix This
           </h2>
 
@@ -157,9 +157,9 @@ export default function WebGrowthPage() {
       </section>
 
       {/* 5️⃣ WHAT MAKES THIS DIFFERENT */}
-      <section className="py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] text-center mb-10">
+      <section className="py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] text-center mb-10">
             Why This Isn't Just Another Service
           </h2>
 
@@ -208,9 +208,9 @@ export default function WebGrowthPage() {
       </section>
 
       {/* 6️⃣ WHO THIS IS FOR (AND NOT FOR) */}
-      <section className="py-20 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-[var(--cres-deep-navy)] text-center mb-16">
+      <section className="py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] text-center mb-16">
             Is This Right for Your Business?
           </h2>
 
@@ -277,9 +277,9 @@ export default function WebGrowthPage() {
       </section>
 
       {/* 7️⃣ RESULTS & IMPACT (NO FAKE CLAIMS) */}
-      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-white text-center mb-12">
+      <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
+          <h2 className="text-[0-9]xl font-black underline-custom text-white text-center mb-12">
             What Businesses Gain After Implementation
           </h2>
 
@@ -308,9 +308,9 @@ export default function WebGrowthPage() {
       </section>
 
       {/* 8️⃣ STRONG CTA (URGENCY) */}
-      <section className="py-20 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-black text-white mb-8">
+      <section className="py-12 md:py-20 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">
             Every Week You Delay, You Lose
           </h2>
 

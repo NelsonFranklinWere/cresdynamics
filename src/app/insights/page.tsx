@@ -15,8 +15,8 @@ export default function InsightsPage() {
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-orange-500 to-transparent"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-8">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-8 underline-custom">
             What's Really Costing Your Business Money<br />
             <span className="text-orange-500">— And Why Most Owners Never See It.</span>
           </h1>
@@ -40,9 +40,9 @@ export default function InsightsPage() {
       </section>
 
       {/* 2️⃣ THE PROBLEM SECTION — "THE SILENT LEAKS" */}
-      <section id="silent-leaks" className="py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-center mb-10">
+      <section id="silent-leaks" className="py-12 md:py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-3xl font-black text-center mb-10 underline-custom">
             The Silent Growth Killers Most Businesses Ignore
           </h2>
 
@@ -106,9 +106,9 @@ export default function InsightsPage() {
       </section>
 
       {/* 3️⃣ INSIGHT CATEGORIES (CONTENT STRUCTURE) */}
-      <section className="py-20 bg-gray-900 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-center mb-10">
+      <section className="py-12 md:py-20 bg-gray-900 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-3xl font-black text-center mb-10 underline-custom">
             What We See After Working With Real Businesses
           </h2>
 
@@ -147,9 +147,9 @@ export default function InsightsPage() {
       </section>
 
       {/* 4️⃣ FEATURED INSIGHT CARDS (HIGH-IMPACT) */}
-      <section className="py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-center mb-10">Featured Insights</h2>
+      <section className="py-12 md:py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-3xl font-black text-center mb-10 underline-custom">Featured Insights</h2>
 
           <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Card 1 */}
@@ -204,8 +204,8 @@ export default function InsightsPage() {
       </section>
 
       {/* 5️⃣ REALITY CHECK SECTION (URGENCY CREATOR) */}
-      <section className="py-20 bg-gray-900 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="py-12 md:py-20 bg-gray-900 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-3xl font-black mb-10">
             If You Do Nothing, This Is What Happens
           </h2>
@@ -251,9 +251,9 @@ export default function InsightsPage() {
       </section>
 
       {/* 6️⃣ THE OUTCOME SECTION — "WHAT CHANGES" */}
-      <section className="py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-center mb-10">
+      <section className="py-12 md:py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-3xl font-black text-center mb-10 underline-custom">
             What Happens When You Fix the System
           </h2>
 
@@ -314,8 +314,8 @@ export default function InsightsPage() {
       </section>
 
       {/* 7️⃣ AUTHORITY POSITIONING (WHY CRES) */}
-      <section className="py-20 bg-gray-900 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="py-12 md:py-20 bg-gray-900 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl font-black mb-8">
             Why These Insights Matter
           </h2>
@@ -354,8 +354,8 @@ export default function InsightsPage() {
       </section>
 
       {/* 8️⃣ SOFT CASE PROOF (WITHOUT NUMBERS) */}
-      <section className="py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="py-12 md:py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl font-black mb-12">
             What Businesses Discover After Working With Us
           </h2>
@@ -395,8 +395,8 @@ export default function InsightsPage() {
       </section>
 
       {/* 9️⃣ FINAL CTA (STRONG, CLEAN, CONFIDENT) */}
-      <section className="py-20 bg-orange-500 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="py-12 md:py-20 bg-orange-500 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl font-black text-white mb-8">
             Your Business Doesn't Need More Effort.<br />
             It Needs Better Systems.

@@ -9,32 +9,32 @@ export default function AboutPage() {
       <Header />
 
       {/* SECTION 1: OPENING STATEMENT (WHY WE EXIST) */}
-      <section className="py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
+      <section className="py-12 md:py-12 md:py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-12">
+        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center relative z-10">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-12 underline-custom">
             We Exist to Help Businesses Grow<br />
             <span className="text-[var(--cres-electric-teal)]">With Clarity, Not Guesswork.</span>
           </h1>
 
-          <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
-            <p>
+          <div className="space-y-6 text-white text-lg leading-relaxed">
+            <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
               Most businesses don't fail because they lack effort.
             </p>
-            <p>
+            <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
               They fail because they grow without systems, without visibility, and without a clear digital foundation.
             </p>
-            <p>
+            <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
               CRES Dynamics was created to solve that exact problem.
             </p>
-            <p>
+            <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
               We exist to help businesses be found, be trusted, and grow sustainably in a digital world that rewards clarity, speed, and consistency.
             </p>
-            <p className="font-semibold text-[var(--cres-electric-teal)]">
+            <p className="font-semibold text-[var(--cres-electric-teal)]" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
               We don't chase trends.<br />
               We build foundations that compound.
             </p>
@@ -43,9 +43,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 2: THE PROBLEM WE SAW (THE "WHY") */}
-      <section className="py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 text-center">
+      <section className="py-12 md:py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 text-center underline-custom">
             The Gap Between Effort and Results
           </h2>
 
@@ -87,9 +87,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 3: OUR PHILOSOPHY (HOW WE THINK) */}
-      <section className="py-20 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 underline-custom">
             Technology Should Simplify Growth, Not Complicate It
           </h2>
 
@@ -99,17 +99,17 @@ export default function AboutPage() {
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 my-8">
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Reduce friction</h3>
-                <p>Not add complexity</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+                <h3 className="font-bold text-white mb-3">Reduce friction</h3>
+                <p className="text-white">Not add complexity</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Save time</h3>
-                <p>Not create more work</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+                <h3 className="font-bold text-white mb-3">Save time</h3>
+                <p className="text-white">Not create more work</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Support decisions</h3>
-                <p>Not confuse them</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+                <h3 className="font-bold text-white mb-3">Support decisions</h3>
+                <p className="text-white">Not confuse them</p>
               </div>
             </div>
 
@@ -132,9 +132,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 4: WHAT MAKES US DIFFERENT */}
-      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl font-black text-white mb-10 text-center">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
+          <h2 className="text-2xl font-black text-white mb-10 text-center underline-custom">
             We Build Systems, Not Just Deliverables
           </h2>
 
@@ -179,9 +179,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 5: OUR CULTURE (HOW WE OPERATE) */}
-      <section className="py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 text-center">
+      <section className="py-12 md:py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 text-center underline-custom">
             Principle-Driven. Outcome-Focused. Built for the Long Term.
           </h2>
 
@@ -191,29 +191,29 @@ export default function AboutPage() {
             </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Ownership</h3>
-                <p>We take responsibility for outcomes, not excuses</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+                <h3 className="font-bold text-white mb-3">Ownership</h3>
+                <p className="text-white">We take responsibility for outcomes, not excuses</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Clarity</h3>
-                <p>We communicate directly, honestly, and transparently</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+                <h3 className="font-bold text-white mb-3">Clarity</h3>
+                <p className="text-white">We communicate directly, honestly, and transparently</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Discipline</h3>
-                <p>Systems beat shortcuts, always</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+                <h3 className="font-bold text-white mb-3">Discipline</h3>
+                <p className="text-white">Systems beat shortcuts, always</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Integrity</h3>
-                <p>Trust is earned through action</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+                <h3 className="font-bold text-white mb-3">Integrity</h3>
+                <p className="text-white">Trust is earned through action</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Growth</h3>
-                <p>For our clients, and for ourselves</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+                <h3 className="font-bold text-white mb-3">Growth</h3>
+                <p className="text-white">For our clients, and for ourselves</p>
               </div>
             </div>
 
-            <div className="bg-gray-100 p-6 rounded-lg mt-8">
+            <div className="bg-[var(--cres-light-grey)] border border-gray-200 p-6 rounded-lg mt-8">
               <p className="font-semibold text-[var(--cres-deep-navy)]">
                 We don't rush.<br />
                 We don't overpromise.<br />
@@ -225,9 +225,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 6: OUR LANGUAGE (HOW WE COMMUNICATE) */}
-      <section className="py-20 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 underline-custom">
             Clear. Professional. Grounded in Reality.
           </h2>
 
@@ -267,9 +267,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 7: THE IMPACT WE AIM FOR */}
-      <section className="py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl font-black text-white mb-10 text-center">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
+          <h2 className="text-2xl font-black text-white mb-10 text-center underline-custom">
             Growth That Is Measurable, Predictable, and Sustainable
           </h2>
 
@@ -314,9 +314,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 8: WHO WE WORK WITH */}
-      <section className="py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10">
+      <section className="py-12 md:py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
+          <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 underline-custom">
             Built for Businesses That Want to Grow With Intention
           </h2>
 
@@ -326,21 +326,21 @@ export default function AboutPage() {
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 my-8">
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">SMEs ready to professionalize</h3>
-                <p>Their online presence</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+                <h3 className="font-bold text-white mb-3">SMEs ready to professionalize</h3>
+                <p className="text-white">Their online presence</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Growing businesses seeking</h3>
-                <p>Predictable lead flow</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+                <h3 className="font-bold text-white mb-3">Growing businesses seeking</h3>
+                <p className="text-white">Predictable lead flow</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Organizations tired of</h3>
-                <p>Fragmented tools and guesswork</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+                <h3 className="font-bold text-white mb-3">Organizations tired of</h3>
+                <p className="text-white">Fragmented tools and guesswork</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] mb-3">Leaders who value</h3>
-                <p>Systems, data, and long-term growth</p>
+              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg">
+                <h3 className="font-bold text-white mb-3">Leaders who value</h3>
+                <p className="text-white">Systems, data, and long-term growth</p>
               </div>
             </div>
 
@@ -354,9 +354,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 9: CLOSING STATEMENT (SUBTLE CTA) */}
-      <section className="py-20 bg-gray-50 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
+          <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8 underline-custom">
             Growth Favors the Prepared
           </h2>
 
