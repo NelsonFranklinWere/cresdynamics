@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,12 +35,13 @@ export default function Header() {
         {/* NAV LINKS: Muted white → Orange hover, compact spacing */}
         <ul className="hidden md:flex space-x-4">
           <li>
-            <a
+            <Link
               href="/"
+              prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Home
-            </a>
+            </Link>
           </li>
 
           {/* Solutions Dropdown */}
@@ -71,13 +73,14 @@ export default function Header() {
                     { name: 'Content & Brand Authority', href: '/solutions/content-brand', icon: '📝' },
                     { name: 'Consulting & Strategy', href: '/solutions/consulting-strategy', icon: '🎯' }
                   ].map((solution) => (
-                    <a
+                    <Link
                       key={solution.href}
                       href={solution.href}
+                      prefetch={true}
                       className="flex items-center px-4 py-3 text-[var(--cres-white)] hover:bg-[var(--cres-dark)] hover:text-[var(--cres-electric-teal)] transition-all duration-200"
                     >
                       <span className="text-sm font-medium">{solution.name}</span>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -85,60 +88,65 @@ export default function Header() {
           </li>
 
           <li>
-            <a
+            <Link
               href="/#how-it-works"
+              prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               How It Works
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
+            <Link
               href="/case-studies"
+              prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Case Studies
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
+            <Link
               href="/about"
+              prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               About Cres
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
+            <Link
               href="/insights"
+              prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Insights
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
+            <Link
               href="/contact"
+              prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
 
         {/* CTA BUTTON: Book a Free Consultation → Orange, rounded-xl, shadow */}
-        <a href="/contact" className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-white)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
+        <Link href="/contact" prefetch={true} className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-white)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
           Book a Free Consultation
-        </a>
+        </Link>
 
         {/* Mobile CTA Button */}
-        <a href="/contact" className="md:hidden bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm uppercase tracking-wide">
+        <Link href="/contact" prefetch={true} className="md:hidden bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm uppercase tracking-wide">
           Free
-        </a>
+        </Link>
       </nav>
 
       {/* Mobile Menu Overlay */}
@@ -152,14 +160,15 @@ export default function Header() {
             { name: 'Insights', href: '/insights' },
             { name: 'Contact', href: '/contact' }
           ].map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
-                  className="text-[var(--cres-white)] text-lg font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300"
+              prefetch={true}
+              className="text-[var(--cres-white)] text-lg font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
       )}

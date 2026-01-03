@@ -1,0 +1,18 @@
+# robots.txt for CRES Dynamics
+# https://cresdynamics.com
+
+User-agent: *
+Allow: /
+
+# Disallow API routes
+Disallow: /api/
+
+# Disallow admin/internal pages (if any)
+# Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://cresdynamics.com/sitemap.xml
+
+# Crawl-delay (optional - remove if not needed)
+# Crawl-delay: 1
+
