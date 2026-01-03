@@ -17,7 +17,7 @@ export default function HowCresWorks() {
         {/* PROCESS CARDS - Horizontal Flow */}
         <div className="relative">
           {/* Process Steps */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-20">
+          <div className="grid grid-cols-2 gap-4 md:gap-6 mb-20">
             {[
               {
                 number: '1️⃣',

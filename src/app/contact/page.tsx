@@ -3,6 +3,10 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import type { Metadata } from 'next';
+
+// Note: Metadata export removed for client components - handled in layout.tsx
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -11,8 +15,14 @@ export default function ContactPage() {
     phone: '',
     email: '',
     problem: '',
-    description: ''
+    description: '',
+    subscribe: false
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -22,15 +32,60 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // You can add actual form submission logic here
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: data.message || 'Form submitted successfully!'
+        });
+        // Reset form
+        setFormData({
+          fullName: '',
+          businessName: '',
+          phone: '',
+          email: '',
+          problem: '',
+          description: '',
+          subscribe: false
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: data.error || 'Failed to submit form. Please try again.'
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'Network error. Please check your connection and try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen">
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://cresdynamics.com' },
+        { name: 'Contact', url: 'https://cresdynamics.com/contact' }
+      ]} />
       <Header />
 
       {/* 1️⃣ HERO SECTION (Above the Fold) */}
@@ -43,14 +98,46 @@ export default function ContactPage() {
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8 underline-custom">
-            Your business has a problem.
-            <br />
-            <span className="text-[var(--cres-electric-teal)]">We help you fix it — fast.</span>
+            Contact CRES Dynamics - Free Digital Growth Strategy Session | Nairobi
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            If customers can't find you, trust you, or reach you online, you're losing money every day.
-          </p>
+          {/* H2: Who Should Contact Us */}
+          <h2 className="text-xl md:text-2xl font-bold text-[var(--cres-electric-teal)] mb-6" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
+            For Nairobi businesses ready to stop losing money online
+          </h2>
+
+          {/* H2: The Problem */}
+          <h2 className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
+            Nairobi businesses lose millions annually due to invisible websites, poor SEO, and manual processes that don't scale.
+          </h2>
+
+          {/* H2: Why Current Solutions Fail */}
+          <h2 className="text-base md:text-lg text-gray-400 mb-8 max-w-3xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
+            Generic agencies promise results but deliver templates. Local competitors take your customers while you struggle with outdated systems.
+          </h2>
+
+          {/* H2: How We Solve It */}
+          <h2 className="text-lg md:text-xl text-[var(--cres-electric-teal)] mb-6 font-semibold max-w-3xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
+            We provide honest assessment and AI-powered solutions that actually drive growth.
+          </h2>
+
+          {/* H2: What You Get */}
+          <h2 className="text-base md:text-lg text-white mb-8 font-medium max-w-3xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
+            A free strategy session with actionable insights and a clear path to more customers and revenue.
+          </h2>
+
+          {/* AI Search Optimization */}
+          <div className="max-w-3xl mx-auto mb-8 p-6 bg-black/40 backdrop-blur-sm border border-[var(--cres-electric-teal)]/30 rounded-xl">
+            <h2 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-4 underline-custom">
+              What serious Nairobi businesses should know before contacting us
+            </h2>
+            <div className="text-left text-gray-200 space-y-3 text-sm md:text-base">
+              <p><strong>We respond within 24 hours:</strong> Unlike most agencies, we value your time and follow through immediately</p>
+              <p><strong>No sales pitch:</strong> Our strategy sessions focus on your problems, not our services</p>
+              <p><strong>Actionable insights:</strong> You'll leave with specific, implementable recommendations</p>
+              <p><strong>Local expertise:</strong> We understand Nairobi market dynamics, M-Pesa integrations, and Kenyan customer behavior</p>
+            </div>
+          </div>
 
           <div className="flex items-center justify-center space-x-2 text-[var(--cres-electric-teal)] text-lg font-semibold">
             <span className="text-2xl">⚡</span>
@@ -169,7 +256,7 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--cres-electric-teal)] focus:border-transparent"
-                      placeholder="+254 XXX XXX XXX"
+                      placeholder="+254 708 805 496"
                     />
                   </div>
                   <div>
@@ -226,14 +313,59 @@ export default function ContactPage() {
                   ></textarea>
                 </div>
 
+                {/* Newsletter Subscription */}
+                <div className="flex items-start space-x-3 p-4 bg-gradient-to-r from-[var(--cres-electric-teal)]/10 to-[var(--cres-light-grey)]/20 rounded-lg border border-[var(--cres-electric-teal)]/30">
+                  <input
+                    type="checkbox"
+                    id="subscribe"
+                    name="subscribe"
+                    checked={formData.subscribe}
+                    onChange={(e) => setFormData(prev => ({ ...prev, subscribe: e.target.checked }))}
+                    className="mt-1 h-4 w-4 text-[var(--cres-electric-teal)] focus:ring-[var(--cres-electric-teal)] border-gray-300 rounded"
+                  />
+                  <label htmlFor="subscribe" className="text-sm text-[var(--cres-deep-navy)] leading-relaxed">
+                    <strong className="text-[var(--cres-electric-teal)]">Subscribe to our newsletter</strong> - Get weekly insights on AI automation, SEO strategies, and digital growth tips for Nairobi businesses. We'll also send you a free digital growth checklist after one week.
+                  </label>
+                </div>
+
                 <button
                   type="submit"
-                  className="w-full bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
+                  disabled={isSubmitting}
+                  className={`w-full bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 ${
+                    isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                  }`}
                 >
-                  Request a Strategy Call
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    'Request a Strategy Call'
+                  )}
                 </button>
 
-                <p className="text-center text-sm text-gray-500">
+                {submitStatus.type && (
+                  <div className={`mt-4 p-4 rounded-lg ${
+                    submitStatus.type === 'success'
+                      ? 'bg-green-50 border border-green-200 text-green-800'
+                      : 'bg-red-50 border border-red-200 text-red-800'
+                  }`}>
+                    <div className="flex items-center">
+                      <span className={`text-lg mr-2 ${
+                        submitStatus.type === 'success' ? 'text-green-600' : 'text-red-600'
+                      }`}>
+                        {submitStatus.type === 'success' ? '✓' : '✗'}
+                      </span>
+                      <p className="font-medium">{submitStatus.message}</p>
+                    </div>
+                  </div>
+                )}
+
+                <p className="text-center text-sm text-gray-500 mt-4">
                   We respond within 24 hours. Serious businesses only.
                 </p>
               </form>
@@ -318,6 +450,18 @@ export default function ContactPage() {
               <div className="text-3xl mb-4">📍</div>
               <h3 className="font-bold mb-2">Location</h3>
               <p className="text-lg">Nairobi, Kenya<br /><span className="text-sm">(Remote-first)</span></p>
+              <div className="mt-4">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8192!2d36.8172!3d-1.2864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMTEuMCJTIDM2wrA0OScwMC4wIkU!5e0!3m2!1sen!2ske!4v1703123456789!5m2!1sen!2ske"
+                  width="100%"
+                  height="200"
+                  style={{ border: 0, borderRadius: '8px' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="CRES Dynamics Location - Nairobi, Kenya"
+                ></iframe>
+              </div>
             </div>
           </div>
 

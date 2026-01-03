@@ -237,10 +237,20 @@ export default function ConsultingSEOCaseStudyPage() {
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-[var(--cres-electric-teal)]/10 rounded-lg border border-[var(--cres-electric-teal)]/20">
-              <p className="text-[var(--cres-deep-navy)] font-semibold">
-                System Integration: SEO drives qualified traffic to authoritative content that converts visitors into consulting conversations.
-              </p>
+            <div className="mt-8 p-8 bg-gradient-to-r from-[var(--cres-electric-teal)]/20 to-[var(--cres-light-grey)]/30 rounded-xl border border-[var(--cres-electric-teal)]/30 shadow-lg backdrop-blur-sm">
+              <div className="flex items-start space-x-4">
+                <div className="w-10 h-10 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                  <i className="fas fa-search-plus"></i>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-[var(--cres-deep-navy)] mb-3 underline-custom">
+                    System Integration
+                  </h4>
+                  <p className="text-[var(--cres-deep-navy)] font-medium leading-relaxed text-base">
+                    SEO drives qualified traffic to authoritative content that converts visitors into consulting conversations.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

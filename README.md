@@ -16,6 +16,36 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Email Configuration (Resend)
+
+The contact form sends emails via [Resend](https://resend.com). To set it up:
+
+1. **Create a Resend Account:**
+   - Go to [resend.com](https://resend.com) and sign up
+   - Use your `cresdynamics@gmail.com` email for the account
+
+2. **Get Your API Key:**
+   - Go to [resend.com/api-keys](https://resend.com/api-keys)
+   - Create a new API key
+   - Copy the API key
+
+3. **Configure Environment Variables:**
+   - Open `.env.local` file in the project root
+   - Replace `your_resend_api_key_here` with your actual Resend API key:
+   ```env
+   RESEND_API_KEY=re_your_actual_api_key_here
+   ```
+
+4. **Verify Domain (Optional but Recommended):**
+   - In Resend dashboard, verify `cresdynamics.com` domain
+   - This allows sending from `noreply@cresdynamics.com`
+
+5. **Test the Contact Form:**
+   - Fill out the contact form at `/contact`
+   - Submit it and check that emails are delivered to `info@cresdynamics.com`
+
+The contact form will send beautifully formatted HTML emails with all the form data to your specified email address.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
