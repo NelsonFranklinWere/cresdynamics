@@ -3,10 +3,10 @@ export default function Footer() {
     <footer className="bg-[var(--cres-deep-navy)] border-t border-[var(--cres-charcoal)]/50">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12">
 
           {/* COLUMN 1 — BRAND */}
-          <div className="col-span-2 lg:col-span-1">
+          <div className="lg:col-span-1">
             <div className="text-2xl font-black text-[var(--cres-white)] mb-4">
               CRES<span className="text-[var(--cres-electric-teal)]"> Dynamics</span>
             </div>
@@ -22,31 +22,31 @@ export default function Footer() {
           </div>
 
           {/* COLUMN 2 — SOLUTIONS */}
-          <div>
-            <h3 className="text-[var(--cres-white)] font-bold text-base md:text-lg mb-4 md:mb-6">Solutions</h3>
-            <ul className="space-y-2 md:space-y-3">
+          <div className="lg:col-span-1">
+            <h3 className="text-[var(--cres-white)] font-bold text-lg mb-6">Solutions</h3>
+            <ul className="space-y-3">
               <li>
-                <a href="/solutions/web-growth" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/solutions/web-growth" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   Website Development
                 </a>
               </li>
               <li>
-                <a href="/solutions/seo-visibility" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/solutions/seo-visibility" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   SEO & Google Visibility
                 </a>
               </li>
               <li>
-                <a href="/solutions/ai-automation" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/solutions/ai-automation" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   AI & Sales Automation
                 </a>
               </li>
               <li>
-                <a href="/solutions/digital-sales" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/solutions/digital-sales" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   WhatsApp Business Systems
                 </a>
               </li>
               <li>
-                <a href="/solutions/web-growth" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/solutions/web-growth" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   Conversion Optimization
                 </a>
               </li>
@@ -54,31 +54,31 @@ export default function Footer() {
           </div>
 
           {/* COLUMN 3 — COMPANY */}
-          <div>
-            <h3 className="text-[var(--cres-white)] font-bold text-base md:text-lg mb-4 md:mb-6">Company</h3>
-            <ul className="space-y-2 md:space-y-3">
+          <div className="lg:col-span-1">
+            <h3 className="text-[var(--cres-white)] font-bold text-lg mb-6">Company</h3>
+            <ul className="space-y-3">
               <li>
-                <a href="/" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   How It Works
                 </a>
               </li>
               <li>
-                <a href="/about" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/about" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="/case-studies" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/case-studies" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   Case Studies
                 </a>
               </li>
               <li>
-                <a href="/insights" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/insights" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   Insights
                 </a>
               </li>
               <li>
-                <a href="/contact" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="/contact" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   Contact
                 </a>
               </li>
@@ -86,27 +86,27 @@ export default function Footer() {
           </div>
 
           {/* COLUMN 4 — CONTACT & ACTION */}
-          <div className="col-span-2 lg:col-span-1">
-            <h3 className="text-[var(--cres-white)] font-bold text-base md:text-lg mb-4 md:mb-6">Get in Touch</h3>
+          <div className="lg:col-span-1">
+            <h3 className="text-[var(--cres-white)] font-bold text-lg mb-6">Get in Touch</h3>
 
-            <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
-              <div className="flex items-center space-x-2 md:space-x-3">
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center space-x-3">
                 <span className="text-[var(--cres-electric-teal)]">📧</span>
-                <a href="mailto:info@cresdynamics.com" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="mailto:info@cresdynamics.com" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   info@cresdynamics.com
                 </a>
               </div>
 
-              <div className="flex items-center space-x-2 md:space-x-3">
+              <div className="flex items-center space-x-3">
                 <span className="text-[var(--cres-electric-teal)]">📞</span>
-                <a href="tel:0708805496" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="tel:0708805496" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   0708 805 496
                 </a>
               </div>
 
-              <div className="flex items-center space-x-2 md:space-x-3">
+              <div className="flex items-center space-x-3">
                 <span className="text-[var(--cres-electric-teal)]">📞</span>
-                <a href="tel:0743869564" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs md:text-sm">
+                <a href="tel:0743869564" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-sm">
                   0743 869 564
                 </a>
               </div>
@@ -114,7 +114,7 @@ export default function Footer() {
 
             <a
               href="/contact"
-              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 text-xs md:text-sm"
+              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm"
             >
               Book a Free Strategy Session
             </a>

@@ -1,20 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
-import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
-  title: 'CRES Dynamics - AI Automation, Websites & SEO for Kenyan Businesses | Nairobi',
-  description: 'Transform your Kenyan business with AI automation, fast websites, and SEO systems that convert traffic into revenue. Nairobi\'s trusted digital growth partner.',
-  keywords: 'AI automation Kenya, website development Nairobi, SEO services Kenya, digital marketing East Africa, business growth systems',
-  authors: [{ name: 'CRES Dynamics' }],
-  creator: 'CRES Dynamics',
-  publisher: 'CRES Dynamics',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  title: 'CRES Dynamics - Websites, SEO & AI Solutions | Nairobi Digital Agency',
+  description: 'Stop losing leads. Turn clicks into clients. Free strategy session for Kenyan businesses.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -23,25 +13,20 @@ export const metadata: Metadata = {
     apple: '/logo.png',
   },
   openGraph: {
-    title: 'CRES Dynamics - AI Automation, Websites & SEO for Kenyan Businesses',
-    description: 'Transform your Kenyan business with AI automation, fast websites, and SEO systems that convert traffic into revenue. Nairobi\'s trusted digital growth partner.',
-    url: 'https://cresdynamics.com',
-    siteName: 'CRES Dynamics',
     images: [
       {
         url: '/logo.png',
         width: 512,
         height: 512,
-        alt: 'CRES Dynamics - AI Automation & Digital Growth Systems',
+        alt: 'CRES Dynamics Logo',
       },
     ],
-    locale: 'en_KE',
     type: 'website',
+    locale: 'en_KE',
+    siteName: 'CRES Dynamics',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CRES Dynamics - AI Automation, Websites & SEO for Kenyan Businesses',
-    description: 'Transform your Kenyan business with AI automation, fast websites, and SEO systems that convert traffic into revenue.',
     images: '/logo.png',
   },
   robots: {
@@ -55,9 +40,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: 'https://cresdynamics.com',
-  },
 };
 
 export default function RootLayout({
@@ -65,161 +47,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const schema = [
-    // Organization Schema
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "CRES Dynamics",
-      "alternateName": "Cres Dynamics",
-      "description": "AI automation, website development, and SEO services for growing businesses in Kenya. Transform your Nairobi business with digital systems that drive revenue.",
-      "url": "https://cresdynamics.com",
-      "logo": "https://cresdynamics.com/logo.png",
-      "image": "https://cresdynamics.com/logo.png",
-      "telephone": "+254708805496",
-      "email": "info@cresdynamics.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Nairobi",
-        "addressCountry": "KE",
-        "addressRegion": "Nairobi County"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -1.2864,
-        "longitude": 36.8172
-      },
-      "areaServed": [
-        {
-          "@type": "Place",
-          "name": "Nairobi, Kenya"
-        },
-        {
-          "@type": "Place",
-          "name": "Kenya"
-        },
-        {
-          "@type": "Place",
-          "name": "East Africa"
-        }
-      ],
-      "serviceType": ["AI Automation", "Website Development", "SEO Services", "Digital Marketing", "Business Growth Systems"],
-      "knowsAbout": ["Artificial Intelligence", "Web Development", "Search Engine Optimization", "Digital Marketing", "Business Automation"],
-      "sameAs": [
-        "https://www.linkedin.com/company/cres-dynamics",
-        "https://www.instagram.com/cresdynamics",
-        "https://twitter.com/cresdynamics"
-      ],
-      "founder": {
-        "@type": "Person",
-        "name": "CRES Dynamics Team"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+254708805496",
-        "contactType": "customer service",
-        "availableLanguage": "English",
-        "hoursAvailable": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
-      }
-    },
-    // LocalBusiness Schema
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": "https://cresdynamics.com/#organization",
-      "name": "CRES Dynamics",
-      "image": "https://cresdynamics.com/logo.png",
-      "description": "Leading AI automation and digital growth agency serving businesses in Nairobi, Kenya. Specializing in websites, SEO, and business systems.",
-      "url": "https://cresdynamics.com",
-      "telephone": "+254708805496",
-      "email": "info@cresdynamics.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Nairobi",
-        "addressCountry": "KE"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -1.2864,
-        "longitude": 36.8172
-      },
-      "areaServed": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": -1.2864,
-          "longitude": 36.8172
-        },
-        "geoRadius": 50000
-      },
-      "priceRange": "$$",
-      "paymentAccepted": "Cash, Credit Card, Mobile Money",
-      "currenciesAccepted": "KES, USD",
-      "openingHours": "Mo-Fr 09:00-18:00"
-    },
-    // Services Schema
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "AI Automation Services",
-      "description": "Automate your Kenyan business operations with AI-powered systems that save time and increase revenue.",
-      "provider": {
-        "@type": "Organization",
-        "name": "CRES Dynamics"
-      },
-      "areaServed": "Kenya",
-      "serviceType": "Business Automation"
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Website Development",
-      "description": "Fast, conversion-optimized websites for Nairobi businesses that turn visitors into customers.",
-      "provider": {
-        "@type": "Organization",
-        "name": "CRES Dynamics"
-      },
-      "areaServed": "Kenya",
-      "serviceType": "Web Development"
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "SEO Services Kenya",
-      "description": "Google-first SEO strategies that help Kenyan businesses rank higher and get more qualified leads.",
-      "provider": {
-        "@type": "Organization",
-        "name": "CRES Dynamics"
-      },
-      "areaServed": "Kenya",
-      "serviceType": "Search Engine Optimization"
-    },
-    // Website Schema
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "CRES Dynamics",
-      "url": "https://cresdynamics.com",
-      "description": "AI automation, website development, and SEO services for growing businesses in Kenya.",
-      "publisher": {
-        "@type": "Organization",
-        "name": "CRES Dynamics"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://cresdynamics.com/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "DigitalAgency",
+    "name": "Cres Dynamics",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressCountry": "KE"
     }
-  ];
+  };
 
   return (
     <html lang="en">
@@ -286,17 +123,13 @@ export default function RootLayout({
         {/* Preload critical CSS */}
         <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />
 
-        {schema.map((schemaData, index) => (
-          <script
-            key={index}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
       </head>
       <body className="antialiased">
         <PerformanceMonitor />
-        <Analytics />
         {children}
 
         {/* Performance optimizations */}

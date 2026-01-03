@@ -9,10 +9,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
-    const { fullName, businessName, phone, email, problem, description, subscribe } = await request.json();
+    const { fullName, phone, email, description, subscribe } = await request.json();
 
     // Validate required fields
-    if (!fullName || !businessName || !phone || !email || !problem || !description) {
+    if (!fullName || !phone || !email || !description) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: 'CRES Dynamics <cresdynamics@gmail.com>',
       to: ['info@cresdynamics.com'],
-      subject: `New Contact Form Submission - ${businessName}`,
+      subject: `New Contact Form Submission - ${fullName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
           <div style="background: linear-gradient(135deg, #0D1B2A 0%, #4FB3A9 100%); padding: 30px; border-radius: 10px; margin-bottom: 20px;">
@@ -50,11 +50,6 @@ export async function POST(request: NextRequest) {
               </div>
 
               <div style="display: flex; margin-bottom: 15px;">
-                <strong style="width: 140px; color: #0D1B2A;">Business Name:</strong>
-                <span style="color: #333;">${businessName}</span>
-              </div>
-
-              <div style="display: flex; margin-bottom: 15px;">
                 <strong style="width: 140px; color: #0D1B2A;">Phone:</strong>
                 <span style="color: #333;">${phone}</span>
               </div>
@@ -63,14 +58,9 @@ export async function POST(request: NextRequest) {
                 <strong style="width: 140px; color: #0D1B2A;">Email:</strong>
                 <span style="color: #333;">${email}</span>
               </div>
-
-              <div style="display: flex; margin-bottom: 15px;">
-                <strong style="width: 140px; color: #0D1B2A;">Main Problem:</strong>
-                <span style="color: #333;">${problem.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}</span>
-              </div>
             </div>
 
-            <h3 style="color: #0D1B2A; margin-top: 30px; border-bottom: 2px solid #4FB3A9; padding-bottom: 10px;">Problem Description</h3>
+            <h3 style="color: #0D1B2A; margin-top: 30px; border-bottom: 2px solid #4FB3A9; padding-bottom: 10px;">Message</h3>
             <div style="background: #f8f9fa; padding: 20px; border-radius: 5px; margin: 15px 0; border-left: 4px solid #4FB3A9;">
               <p style="margin: 0; color: #333; line-height: 1.6;">${description.replace(/\n/g, '<br>')}</p>
             </div>
@@ -137,10 +127,26 @@ export async function POST(request: NextRequest) {
           `,
         });
 
-        // Store subscriber info for follow-up (using Resend's scheduled emails or external service)
-        // For now, we'll use a simple approach: store in environment variable or use a database
+        // Store subscriber info for 7-day follow-up
+        // Calculate follow-up date (7 days from now)
+        const followUpDate = new Date();
+        followUpDate.setDate(followUpDate.getDate() + 7);
+        
+        // Store subscriber in environment variable (for Vercel, use a database in production)
         // The follow-up will be handled by a cron job that checks for subscribers
-        console.log(`New subscriber added: ${email}`);
+        const subscriberData = {
+          email,
+          fullName,
+          phone,
+          subscribedAt: new Date().toISOString(),
+          followUpDate: followUpDate.toISOString(),
+          followUpSent: false
+        };
+        
+        console.log(`New subscriber added: ${email}, Follow-up scheduled for: ${followUpDate.toISOString()}`);
+        
+        // In production, store this in a database (Vercel Postgres, Supabase, etc.)
+        // For now, we'll log it and the cron job will handle it
       } catch (subscribeError) {
         console.error('Error handling subscription:', subscribeError);
         // Don't fail the main request if subscription fails

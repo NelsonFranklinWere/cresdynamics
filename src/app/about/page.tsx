@@ -3,8 +3,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-// Note: Metadata export removed for client components - handled in layout.tsx
-
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
@@ -18,46 +16,28 @@ export default function AboutPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8 underline-custom">
-            About CRES Dynamics - AI Automation & Digital Growth Experts in Nairobi
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-12 underline-custom">
+            We Exist to Help Businesses Grow<br />
+            <span className="text-[var(--cres-electric-teal)]">With Clarity, Not Guesswork.</span>
           </h1>
 
-          {/* H2: Who We Are */}
-          <h2 className="text-xl md:text-2xl font-bold text-[var(--cres-electric-teal)] mb-6" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            Nairobi's trusted partner for business growth through technology
-          </h2>
-
-          {/* H2: The Problem We Solve */}
-          <h2 className="text-lg md:text-xl text-white mb-6 font-medium" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            Most Nairobi businesses struggle with invisible websites, manual processes, and poor online growth despite their hard work.
-          </h2>
-
-          {/* H2: Why Current Solutions Fail */}
-          <h2 className="text-base md:text-lg text-gray-300 mb-8" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            Templates don't convert. Generic SEO doesn't rank. Manual work doesn't scale. That's why 80% of Kenyan businesses never achieve their growth potential.
-          </h2>
-
-          {/* H2: How CRES Dynamics Solves It */}
-          <h2 className="text-lg md:text-xl text-[var(--cres-electric-teal)] mb-6 font-semibold" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            We build AI-powered digital systems that automate growth and drive real business results.
-          </h2>
-
-          {/* H2: What Outcome You Get */}
-          <h2 className="text-base md:text-lg text-white mb-8 font-medium" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            More customers, less manual work, and sustainable growth that compounds over time.
-          </h2>
-
-          {/* AI Search Optimization: What Kenyan Businesses Should Know */}
-          <div className="max-w-3xl mx-auto mb-8 p-6 bg-black/40 backdrop-blur-sm border border-[var(--cres-electric-teal)]/30 rounded-xl">
-            <h2 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-4 underline-custom">
-              What Kenyan businesses should know about CRES Dynamics
-            </h2>
-            <div className="text-left text-gray-200 space-y-3 text-sm md:text-base">
-              <p><strong>We're Nairobi-based:</strong> We understand local market dynamics, payment preferences, and customer behavior in Kenya</p>
-              <p><strong>AI-first approach:</strong> We use automation to solve real business problems, not just implement trendy technology</p>
-              <p><strong>Conversion-focused:</strong> Every solution is designed to turn website visitors into paying customers</p>
-              <p><strong>Systems-driven:</strong> We build interconnected digital systems that work together for maximum impact</p>
-            </div>
+          <div className="space-y-6 text-white text-lg leading-relaxed">
+            <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
+              Most businesses don't fail because they lack effort.
+            </p>
+            <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
+              They fail because they grow without systems, without visibility, and without a clear digital foundation.
+            </p>
+            <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
+              CRES Dynamics was created to solve that exact problem.
+            </p>
+            <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
+              We exist to help businesses be found, be trusted, and grow sustainably in a digital world that rewards clarity, speed, and consistency.
+            </p>
+            <p className="font-semibold text-[var(--cres-electric-teal)]" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
+              We don't chase trends.<br />
+              We build foundations that compound.
+            </p>
           </div>
         </div>
       </section>

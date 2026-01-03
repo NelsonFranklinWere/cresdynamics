@@ -32,21 +32,12 @@ export default function HeroSection2() {
           ))}
         </div>
 
-        {/* YELLOW CTA CARD */}
-        <div className="mt-12 max-w-2xl mx-auto">
-          <div className="bg-[var(--cres-orange-primary)] rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <h3 className="text-2xl md:text-3xl font-bold text-[var(--cres-black)] text-center mb-4">
-              Book Your Free Strategy Session
-            </h3>
-            <p className="text-[var(--cres-black)] text-center text-lg mb-6 opacity-90">
-              Let's identify what's holding your growth back and fix it.
-            </p>
-            <div className="text-center">
-              <a href="/contact" className="inline-block bg-[var(--cres-black)] hover:bg-gray-800 text-[var(--cres-orange-primary)] font-bold px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
-                Get Started Now
-              </a>
-            </div>
-          </div>
+        {/* CTA BUTTON */}
+        <div className="mt-12 text-center">
+          <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+            Get Your Free Strategy Session
+            <i className="fas fa-chevron-right text-sm"></i>
+          </a>
         </div>
       </div>
     </section>

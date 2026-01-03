@@ -16,25 +16,25 @@ export default function HeroSection3() {
         <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto mb-20">
           {[
             {
-              icon: '👁️',
+              icon: <i className="fas fa-eye-slash"></i>,
               title: 'Invisible',
-              subtitle: "You’re not ranking online. Potential customers can't find you."
+              subtitle: "You're not ranking online, and your visibility is low. Potential customers can't find you over the competition."
             },
             {
-              icon: '✉️',
+              icon: <i className="fas fa-envelope-open-text"></i>,
               title: 'Manual',
-              subtitle: 'Sales are slow. Follow-ups are inconsistent. Teams burn out.'
+              subtitle: 'Your sales are slow, follow-ups are inconsistent, and your team stuck repetitive, boring tasks.'
             },
             {
-              icon: '⚡',
+              icon: <i className="fas fa-dollar-sign"></i>,
               title: 'Inefficient',
-              subtitle: 'You spend more to get less. Leads slip through cracks.'
+              subtitle: "You're spending too much to get too little. Leads slip through the cracks and valuable data is going to waste."
             }
           ].map((card, i) => (
             <div key={i} className="group p-6 md:p-10 rounded-xl bg-black/70 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="text-2xl md:text-3xl opacity-75 group-hover:scale-110 transition-transform">{card.icon}</div>
-                <h4 className="text-xs md:text-sm font-black text-[var(--cres-white)] underline-custom group-hover:text-[var(--cres-orange-primary)] transition-colors">{card.title}</h4>
+                <div className="text-2xl md:text-3xl text-[var(--cres-white)] opacity-75 group-hover:scale-110 transition-transform">{card.icon}</div>
+                <h4 className="text-xs md:text-sm font-black text-[var(--cres-orange-primary)] underline-custom group-hover:text-[var(--cres-orange-primary)] transition-colors">{card.title}</h4>
               </div>
               <p className="text-white leading-relaxed text-center text-sm md:text-base">{card.subtitle}</p>
             </div>
@@ -64,13 +64,14 @@ export default function HeroSection3() {
 
           {/* RIGHT: Let's Finally Fix It */}
           <div className="text-center md:text-left">
-            <h4 className="text-3xl font-black text-[var(--cres-white)] mb-8 underline-custom" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)'}}>Let's Finally Fix it</h4>
+            <h4 className="text-3xl font-black text-[var(--cres-white)] mb-8 underline-custom" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)'}}>Let's Finally Fix It.</h4>
             <p className="text-xl text-[var(--cres-white)] mb-8 leading-relaxed" style={{textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)'}}>
-              Imagine a system so powerful that it pays itself.
+              Imagine a system so powerful it literally pays for itself.
             </p>
             <div className="text-center md:text-left">
-              <a href="/contact" className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-black)] font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+              <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
                 Book Your Free Strategy Session
+                <i className="fas fa-chevron-right text-sm"></i>
               </a>
             </div>
           </div>

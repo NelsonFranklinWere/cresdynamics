@@ -34,19 +34,19 @@ export default function FinalCTA() {
           </div>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto">
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl p-4 md:p-6 text-center">
-            <div className="text-xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">100+</div>
-            <div className="text-xs md:text-sm text-[var(--cres-white)]">Businesses Transformed</div>
+        {/* Trust Indicators - Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto">
+          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg text-center">
+            <div className="text-2xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-2">100+</div>
+            <div className="text-sm md:text-base text-[var(--cres-white)]">Businesses Transformed</div>
           </div>
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl p-4 md:p-6 text-center">
-            <div className="text-xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">300%</div>
-            <div className="text-xs md:text-sm text-[var(--cres-white)]">Average Growth</div>
+          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg text-center">
+            <div className="text-2xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-2">300%</div>
+            <div className="text-sm md:text-base text-[var(--cres-white)]">Average Growth</div>
           </div>
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl p-4 md:p-6 text-center">
-            <div className="text-xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">24/7</div>
-            <div className="text-xs md:text-sm text-[var(--cres-white)]">System Support</div>
+          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg text-center">
+            <div className="text-2xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-2">24/7</div>
+            <div className="text-sm md:text-base text-[var(--cres-white)]">System Support</div>
           </div>
         </div>
       </div>

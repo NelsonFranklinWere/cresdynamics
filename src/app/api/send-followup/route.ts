@@ -27,8 +27,11 @@ export async function GET() {
     let updatedSubscribers = [];
 
     for (const subscriber of subscribers) {
-      // Check if follow-up is due and hasn't been sent
-      if (!subscriber.followUpSent && new Date(subscriber.followUpScheduledFor) <= now) {
+      // Check if follow-up is due (7 days after subscription) and hasn't been sent
+      const subscribedDate = new Date(subscriber.subscribedAt || subscriber.followUpDate);
+      const daysSinceSubscription = Math.floor((now.getTime() - subscribedDate.getTime()) / (1000 * 60 * 60 * 24));
+      
+      if (daysSinceSubscription >= 7 && !subscriber.followUpSent) {
         try {
           // Send follow-up email
           const { data: emailData, error } = await resend.emails.send({

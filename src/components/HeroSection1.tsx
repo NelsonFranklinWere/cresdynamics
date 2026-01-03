@@ -10,85 +10,37 @@ export default function HeroSection1() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-        {/* H1: Primary Value Proposition */}
+        {/* H1: Turn Clicks Into Clients. Turn Chaos Into Growth. */}
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] leading-tight mb-8 animate-fade-in-up underline-custom">
           <span style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            AI Automation & SEO for Growing Businesses in Kenya | CRES Dynamics Nairobi
+            Turn Clicks Into Clients.{' '}
+            <span className="text-[var(--cres-orange-primary)]">Turn Chaos Into Growth.</span>
           </span>
         </h1>
 
-        {/* H2: Who This Is For */}
-        <h2 className="text-xl md:text-2xl font-bold text-[var(--cres-electric-teal)] mb-6 max-w-4xl mx-auto leading-relaxed" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-          For Nairobi entrepreneurs ready to stop losing money online
-        </h2>
+        {/* H2: Smart Websites, SEO & Automation Solutions */}
+        <p className="text-xl md:text-2xl font-bold text-[var(--cres-white)] mb-16 max-w-4xl mx-auto leading-relaxed" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
+          Smart Websites, SEO & Automation Solutions to Supercharge Your Business.
+        </p>
 
-        {/* H2: The Problem */}
-        <h2 className="text-lg md:text-xl text-[var(--cres-white)] mb-8 max-w-3xl mx-auto leading-relaxed font-medium" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-          Most Kenyan businesses struggle with invisible websites, manual processes, and poor Google rankings. This means wasted marketing spend and missed opportunities.
-        </h2>
-
-        {/* H2: Why Current Solutions Fail */}
-        <h2 className="text-base md:text-lg text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed" style={{textShadow: '1px 1px 2px rgba(0, 0, 0, 0.95)'}}>
-          Templates don't convert. Generic SEO doesn't rank. Manual work doesn't scale. That's why 80% of Nairobi businesses never grow online.
-        </h2>
-
-        {/* H2: How CRES Dynamics Solves It */}
-        <h2 className="text-lg md:text-xl text-[var(--cres-white)] mb-6 max-w-4xl mx-auto leading-relaxed font-semibold" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-          We build AI-powered systems that automate your growth while you sleep.
-        </h2>
-
-        {/* H2: What Outcome They Get */}
-        <h2 className="text-base md:text-lg text-[var(--cres-electric-teal)] mb-12 max-w-3xl mx-auto leading-relaxed font-medium" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-          More customers. Less work. Real revenue growth. That's the CRES Dynamics difference.
-        </h2>
-
-        {/* AI Search Optimization: What Kenyan Businesses Should Know */}
-        <div className="max-w-4xl mx-auto mb-12 p-6 bg-black/40 backdrop-blur-sm border border-[var(--cres-electric-teal)]/30 rounded-xl">
-          <h2 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-4 underline-custom">
-            What Kenyan businesses should know about digital growth in 2026
-          </h2>
-          <div className="text-left text-gray-200 space-y-3 text-sm md:text-base">
-            <p><strong>AI automation</strong> isn't just trendy—it's how Nairobi businesses stay competitive</p>
-            <p><strong>Google's algorithm</strong> now favors local, helpful content that answers real questions</p>
-            <p><strong>Conversion-optimized websites</strong> turn 3x more visitors into paying customers</p>
-            <p><strong>System-driven growth</strong> compounds faster than manual marketing efforts</p>
-          </div>
-        </div>
-
-        {/* H2: Our Process (H3 Level Benefits) */}
-        <h2 className="text-xl font-bold text-[var(--cres-white)] mb-8 underline-custom">
-          How we transform Nairobi businesses
-        </h2>
-
+        {/* VALUE CARDS - Separate Cards in One Row */}
         <div className="max-w-6xl mx-auto mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-3 gap-4 md:gap-6">
             {[
               {
-                icon: <i className="fas fa-search"></i>,
+                icon: <i className="fas fa-search-location"></i>,
                 title: 'Get Found Faster',
-                problem: 'Invisible online presence costs Nairobi businesses millions annually',
-                solution: 'Strategic SEO that puts you on Google\'s first page for local searches',
-                outcome: '300% more qualified leads from organic search',
-                caseStudyLink: '/case-studies/consulting-seo-growth',
-                serviceLink: '/solutions/seo-visibility'
+                text: 'Boost your visibility & drive quality traffic.'
               },
               {
                 icon: <i className="fas fa-cog"></i>,
                 title: 'Automate Your Sales',
-                problem: 'Manual follow-ups and customer service overwhelm growing teams',
-                solution: 'AI-powered automation systems handle inquiries, qualify leads, and nurture prospects',
-                outcome: '24/7 lead conversion while your team focuses on growth',
-                caseStudyLink: '/case-studies/restaurant-automation-system',
-                serviceLink: '/solutions/ai-automation'
+                text: 'Convert leads with AI & automated follow-ups.'
               },
               {
                 icon: <i className="fas fa-chart-line"></i>,
                 title: 'Scale Your Success',
-                problem: 'Business growth hits bottlenecks without proper systems',
-                solution: 'Conversion-optimized websites and automated workflows that scale with you',
-                outcome: 'Sustainable growth from 2x to 10x revenue without proportional effort increase',
-                caseStudyLink: '/case-studies/car-rental-growth-system',
-                serviceLink: '/solutions/web-growth'
+                text: 'Streamline processes & grow efficiently.'
               }
             ].map((card, i) => (
               <div key={i} className="bg-black/60 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-4 md:p-6 group hover:shadow-xl transition-all duration-300">
@@ -100,39 +52,20 @@ export default function HeroSection1() {
                     {card.title}
                   </h3>
                 </div>
-                <div className="text-white leading-relaxed text-xs md:text-sm space-y-2">
-                  <p><strong>Problem:</strong> {card.problem}</p>
-                  <p><strong>Solution:</strong> <a href={card.serviceLink} className="text-[var(--cres-electric-teal)] hover:underline">{card.solution}</a></p>
-                  <p><strong>Outcome:</strong> <span className="text-[var(--cres-electric-teal)] font-semibold">{card.outcome}</span></p>
-                  <p className="text-xs mt-2"><a href={card.caseStudyLink} className="text-[var(--cres-electric-teal)] hover:underline">See case study →</a></p>
-                </div>
+                <p className="text-white leading-relaxed text-sm md:text-base">
+                  {card.text}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* H2: What To Do Next */}
-        <h2 className="text-lg md:text-xl text-[var(--cres-white)] mb-6 font-semibold" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-          Ready to stop losing money online?
-        </h2>
-
         {/* PRIMARY CTA: Get Your Free Strategy Session */}
-        <div className="space-y-4">
-          <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+        <div>
+          <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
             Get Your Free Strategy Session
             <i className="fas fa-chevron-right text-sm"></i>
           </a>
-
-          {/* Trust Signals */}
-          <div className="text-center">
-            <p className="text-gray-300 text-sm mb-2">
-              <i className="fas fa-shield-alt text-[var(--cres-electric-teal)] mr-2"></i>
-              Trusted by 100+ Nairobi businesses
-            </p>
-            <p className="text-gray-400 text-xs">
-              No sales pitch. Just honest assessment of your digital growth potential.
-            </p>
-          </div>
         </div>
       </div>
     </section>

@@ -17,34 +17,34 @@ export default function HowCresWorks() {
         {/* PROCESS CARDS - Horizontal Flow */}
         <div className="relative">
           {/* Process Steps */}
-          <div className="grid grid-cols-2 gap-4 md:gap-6 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-20">
             {[
               {
-                number: '1️⃣',
+                icon: <i className="fas fa-search"></i>,
                 title: 'Audit & Strategy',
-                text: 'We analyze gaps and define a custom growth plan.'
+                text: 'We analyze your online presence to identify gaps and craft a custom growth plan.'
               },
               {
-                number: '2️⃣',
+                icon: <i className="fas fa-rocket"></i>,
                 title: 'Build & Optimize',
-                text: 'Conversion-focused website, SEO, and systems.'
+                text: 'Your website is designed to convert. SEO and conversion tools, put you in front of your perfect customer.'
               },
               {
-                number: '3️⃣',
+                icon: <i className="fas fa-users-cog"></i>,
                 title: 'Automate & Integrate',
-                text: 'AI captures, follows up, and nurtures leads.'
+                text: 'AI-driven automation captures, follows up, and nurtures leads, so you don\'t have to.'
               },
               {
-                number: '4️⃣',
+                icon: <i className="fas fa-chart-bar"></i>,
                 title: 'Measure & Scale',
-                text: 'Real-time analytics to double down on what works.'
+                text: 'Track performance with real-time analytics and scale what works best.'
               }
             ].map((step, i) => (
               <div key={i} className="relative">
                 <div className="group p-6 rounded-xl bg-black/70 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="text-2xl">{step.number}</div>
-                    <h3 className="text-lg font-bold text-[var(--cres-white)] group-hover:text-[var(--cres-orange-primary)] transition-colors">
+                    <div className="text-2xl text-[var(--cres-white)]">{step.icon}</div>
+                    <h3 className="text-lg font-bold text-[var(--cres-white)] group-hover:text-[var(--cres-orange-primary)] transition-colors underline-custom">
                       {step.title}
                     </h3>
                   </div>
@@ -55,10 +55,8 @@ export default function HowCresWorks() {
 
                 {/* Arrow between steps (not on last item) */}
                 {i < 3 && (
-                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                    <svg className="w-8 h-8 text-[var(--cres-orange-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
+                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+                    <i className="fas fa-arrow-right text-2xl text-[var(--cres-orange-primary)]"></i>
                   </div>
                 )}
               </div>
@@ -66,7 +64,7 @@ export default function HowCresWorks() {
           </div>
 
           {/* STATEMENT BANNER */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 md:p-12 rounded-xl shadow-lg text-center mb-16">
+          <div className="bg-black backdrop-blur-sm border border-white/20 p-6 md:p-12 rounded-xl shadow-lg text-center mb-16">
             <p className="text-xl md:text-2xl lg:text-3xl font-black text-[var(--cres-white)]">
               With CRES, You're Not Buying Services.
               <br />
@@ -76,8 +74,9 @@ export default function HowCresWorks() {
 
           {/* CTA */}
           <div className="text-center">
-            <a href="/contact" className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-black)] font-bold text-lg px-12 py-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+            <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg px-12 py-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
               Get Your Free Strategy Session
+              <i className="fas fa-chevron-right text-sm"></i>
             </a>
           </div>
         </div>

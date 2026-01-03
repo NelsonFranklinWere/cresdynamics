@@ -3,26 +3,17 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import BreadcrumbSchema from '@/components/BreadcrumbSchema';
-import type { Metadata } from 'next';
-
-// Note: Metadata export removed for client components - handled in layout.tsx
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     fullName: '',
-    businessName: '',
     phone: '',
     email: '',
-    problem: '',
     description: '',
     subscribe: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{
-    type: 'success' | 'error' | null;
-    message: string;
-  }>({ type: null, message: '' });
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -35,7 +26,7 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: '' });
+    setSubmitMessage('');
 
     try {
       const response = await fetch('/api/contact', {
@@ -49,32 +40,21 @@ export default function ContactPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setSubmitStatus({
-          type: 'success',
-          message: data.message || 'Form submitted successfully!'
-        });
+        setSubmitMessage(data.message || 'Message sent successfully! We will contact you within 24 hours.');
         // Reset form
         setFormData({
           fullName: '',
-          businessName: '',
           phone: '',
           email: '',
-          problem: '',
           description: '',
           subscribe: false
         });
       } else {
-        setSubmitStatus({
-          type: 'error',
-          message: data.error || 'Failed to submit form. Please try again.'
-        });
+        setSubmitMessage(data.error || 'Failed to send message. Please try again.');
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      setSubmitStatus({
-        type: 'error',
-        message: 'Network error. Please check your connection and try again.'
-      });
+      setSubmitMessage('An error occurred. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -82,10 +62,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen">
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://cresdynamics.com' },
-        { name: 'Contact', url: 'https://cresdynamics.com/contact' }
-      ]} />
       <Header />
 
       {/* 1️⃣ HERO SECTION (Above the Fold) */}
@@ -98,46 +74,14 @@ export default function ContactPage() {
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8 underline-custom">
-            Contact CRES Dynamics - Free Digital Growth Strategy Session | Nairobi
+            Your business has a problem.
+            <br />
+            <span className="text-[var(--cres-electric-teal)]">We help you fix it — fast.</span>
           </h1>
 
-          {/* H2: Who Should Contact Us */}
-          <h2 className="text-xl md:text-2xl font-bold text-[var(--cres-electric-teal)] mb-6" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            For Nairobi businesses ready to stop losing money online
-          </h2>
-
-          {/* H2: The Problem */}
-          <h2 className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            Nairobi businesses lose millions annually due to invisible websites, poor SEO, and manual processes that don't scale.
-          </h2>
-
-          {/* H2: Why Current Solutions Fail */}
-          <h2 className="text-base md:text-lg text-gray-400 mb-8 max-w-3xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            Generic agencies promise results but deliver templates. Local competitors take your customers while you struggle with outdated systems.
-          </h2>
-
-          {/* H2: How We Solve It */}
-          <h2 className="text-lg md:text-xl text-[var(--cres-electric-teal)] mb-6 font-semibold max-w-3xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            We provide honest assessment and AI-powered solutions that actually drive growth.
-          </h2>
-
-          {/* H2: What You Get */}
-          <h2 className="text-base md:text-lg text-white mb-8 font-medium max-w-3xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.95)'}}>
-            A free strategy session with actionable insights and a clear path to more customers and revenue.
-          </h2>
-
-          {/* AI Search Optimization */}
-          <div className="max-w-3xl mx-auto mb-8 p-6 bg-black/40 backdrop-blur-sm border border-[var(--cres-electric-teal)]/30 rounded-xl">
-            <h2 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-4 underline-custom">
-              What serious Nairobi businesses should know before contacting us
-            </h2>
-            <div className="text-left text-gray-200 space-y-3 text-sm md:text-base">
-              <p><strong>We respond within 24 hours:</strong> Unlike most agencies, we value your time and follow through immediately</p>
-              <p><strong>No sales pitch:</strong> Our strategy sessions focus on your problems, not our services</p>
-              <p><strong>Actionable insights:</strong> You'll leave with specific, implementable recommendations</p>
-              <p><strong>Local expertise:</strong> We understand Nairobi market dynamics, M-Pesa integrations, and Kenyan customer behavior</p>
-            </div>
-          </div>
+          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            If customers can't find you, trust you, or reach you online, you're losing money every day.
+          </p>
 
           <div className="flex items-center justify-center space-x-2 text-[var(--cres-electric-teal)] text-lg font-semibold">
             <span className="text-2xl">⚡</span>
@@ -146,228 +90,159 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* 2️⃣ CONTACT OPTIONS (Split Layout) */}
-      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+      {/* 2️⃣ CONTACT FORM SECTION (Matching Image Layout) */}
+      <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
+        {/* Dimmed background overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
 
-            {/* LEFT SIDE → Problem-Focused Copy */}
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+            
+            {/* LEFT SIDE → Get in Touch */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-black text-white mb-6 underline-custom">Who should contact us:</h2>
-                <ul className="space-y-4 text-gray-300 text-base">
-                  <li className="flex items-center space-x-3">
-                    <span className="text-[var(--cres-electric-teal)]">✓</span>
-                    <span>Businesses losing customers online</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <span className="text-[var(--cres-electric-teal)]">✓</span>
-                    <span>Brands invisible on Google</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <span className="text-[var(--cres-electric-teal)]">✓</span>
-                    <span>Teams overwhelmed by WhatsApp messages</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <span className="text-[var(--cres-electric-teal)]">✓</span>
-                    <span>Founders ready to scale with systems</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="border-t border-gray-700 pt-8">
-                <h3 className="text-2xl font-bold text-red-400 mb-4">Who should NOT contact us:</h3>
-                <ul className="space-y-3 text-gray-400">
-                  <li className="flex items-center space-x-3">
-                    <span className="text-red-400">✗</span>
-                    <span>Looking for "cheap work"</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <span className="text-red-400">✗</span>
-                    <span>Not ready to act</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <span className="text-red-400">✗</span>
-                    <span>No intention to grow</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
-                <p className="text-gray-300 font-semibold">
-                  We work with <span className="text-[var(--cres-electric-teal)] font-black">decision-makers</span> only.
+                <h2 className="text-4xl md:text-5xl font-black text-[var(--cres-white)] mb-4" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
+                  Get in Touch
+                </h2>
+                <p className="text-xl md:text-2xl text-[var(--cres-white)] mb-6" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
+                  Let's Discuss Growing Your Business <span className="text-[var(--cres-orange-primary)]">Smarter.</span>
                 </p>
+                <p className="text-base md:text-lg text-[var(--cres-white)] leading-relaxed" style={{textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)'}}>
+                  Whether you're ready to improve your lead flow, automate your processes, or just have questions, we're here to help.
+                </p>
+              </div>
+
+              {/* Contact Us Card */}
+              <div className="bg-black border border-white/20 rounded-xl p-6 md:p-8 shadow-lg">
+                <h3 className="text-2xl font-bold text-[var(--cres-white)] mb-4">Contact Us</h3>
+                <p className="text-[var(--cres-white)] mb-6 leading-relaxed">
+                  Reach out to discuss your growth challenges. We respond within 24 hours.
+                </p>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <i className="fas fa-phone text-[var(--cres-orange-primary)] text-xl"></i>
+                    <a href="tel:+254708805496" className="text-[var(--cres-white)] hover:text-[var(--cres-orange-primary)] transition-colors">
+                      +254 708 805 496
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <i className="fas fa-phone text-[var(--cres-orange-primary)] text-xl"></i>
+                    <a href="tel:+254743869564" className="text-[var(--cres-white)] hover:text-[var(--cres-orange-primary)] transition-colors">
+                      +254 743 869 564
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <i className="fas fa-envelope text-[var(--cres-orange-primary)] text-xl"></i>
+                    <a href="mailto:info@cresdynamics.com" className="text-[var(--cres-white)] hover:text-[var(--cres-orange-primary)] transition-colors">
+                      info@cresdynamics.com
+                    </a>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <i className="fas fa-map-marker-alt text-[var(--cres-orange-primary)] text-xl mt-1"></i>
+                    <p className="text-[var(--cres-white)]">
+                      Kivuli Tower, 3rd Floor Westlands, Nairobi, Kenya
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* RIGHT SIDE → CONTACT FORM */}
-            <div className="bg-[var(--cres-light-grey)] rounded-2xl p-8 shadow-2xl">
-              <div className="mb-8">
-                <h3 className="text-xl font-black text-[var(--cres-deep-navy)] mb-2">
-                  Tell us what's breaking your growth
+            {/* RIGHT SIDE → Contact Form */}
+            <div className="bg-black border border-white/20 rounded-xl p-6 md:p-8 shadow-lg">
+              <div className="mb-6">
+                <h3 className="text-2xl md:text-3xl font-black text-[var(--cres-white)] mb-3">
+                  Let's Strategize Your Growth
                 </h3>
-                <p className="text-gray-600 text-sm">Serious businesses ready to fix real problems.</p>
+                <p className="text-[var(--cres-white)] text-base md:text-lg">
+                  Fill out the form below, and let's talk about scaling your business effectively.
+                </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="fullName" className="block text-sm font-semibold text-[var(--cres-deep-navy)] mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="fullName"
-                      name="fullName"
-                      required
-                      value={formData.fullName}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--cres-electric-teal)] focus:border-transparent"
-                      placeholder="Your full name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="businessName" className="block text-sm font-semibold text-[var(--cres-deep-navy)] mb-2">
-                      Business Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="businessName"
-                      name="businessName"
-                      required
-                      value={formData.businessName}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--cres-electric-teal)] focus:border-transparent"
-                      placeholder="Your business name"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-[var(--cres-deep-navy)] mb-2">
-                      Phone Number (WhatsApp preferred) *
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--cres-electric-teal)] focus:border-transparent"
-                      placeholder="+254 708 805 496"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-[var(--cres-deep-navy)] mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--cres-electric-teal)] focus:border-transparent"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                </div>
-
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="problem" className="block text-sm font-semibold text-[var(--cres-deep-navy)] mb-2">
-                    What best describes your problem? *
-                  </label>
-                  <select
-                    id="problem"
-                    name="problem"
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
                     required
-                    value={formData.problem}
+                    value={formData.fullName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--cres-electric-teal)] focus:border-transparent"
-                  >
-                    <option value="">Select your main challenge</option>
-                    <option value="not-getting-customers">Not getting customers</option>
-                    <option value="website-not-converting">Website not converting</option>
-                    <option value="poor-google-visibility">Poor Google visibility</option>
-                    <option value="manual-work">Manual work wasting time</option>
-                    <option value="need-automation">Need automation / AI</option>
-                  </select>
+                    className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    placeholder="Full Name"
+                  />
                 </div>
 
                 <div>
-                  <label htmlFor="description" className="block text-sm font-semibold text-[var(--cres-deep-navy)] mb-2">
-                    Describe the problem (short but specific) *
-                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    placeholder="Email"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    placeholder="Contact Number"
+                  />
+                </div>
+
+                <div>
                   <textarea
                     id="description"
                     name="description"
                     required
                     value={formData.description}
                     onChange={handleInputChange}
-                    rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--cres-electric-teal)] focus:border-transparent"
-                    placeholder="Be specific about what's not working and what's costing you money..."
+                    rows={5}
+                    className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent resize-none"
+                    placeholder="Message"
                   ></textarea>
                 </div>
 
-                {/* Newsletter Subscription */}
-                <div className="flex items-start space-x-3 p-4 bg-gradient-to-r from-[var(--cres-electric-teal)]/10 to-[var(--cres-light-grey)]/20 rounded-lg border border-[var(--cres-electric-teal)]/30">
+                <div className="flex items-start gap-3">
                   <input
                     type="checkbox"
                     id="subscribe"
                     name="subscribe"
-                    checked={formData.subscribe}
+                    checked={formData.subscribe || false}
                     onChange={(e) => setFormData(prev => ({ ...prev, subscribe: e.target.checked }))}
-                    className="mt-1 h-4 w-4 text-[var(--cres-electric-teal)] focus:ring-[var(--cres-electric-teal)] border-gray-300 rounded"
+                    className="mt-1 w-5 h-5 rounded border-gray-700 bg-gray-800 text-[var(--cres-orange-primary)] focus:ring-2 focus:ring-[var(--cres-orange-primary)]"
                   />
-                  <label htmlFor="subscribe" className="text-sm text-[var(--cres-deep-navy)] leading-relaxed">
-                    <strong className="text-[var(--cres-electric-teal)]">Subscribe to our newsletter</strong> - Get weekly insights on AI automation, SEO strategies, and digital growth tips for Nairobi businesses. We'll also send you a free digital growth checklist after one week.
+                  <label htmlFor="subscribe" className="text-sm md:text-base text-[var(--cres-white)] cursor-pointer">
+                    Yes, I'd like to get insights and tips for digital growth (optional)
                   </label>
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 ${
-                    isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
-                  }`}
+                  className="w-full bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? (
-                    <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Sending...
-                    </span>
-                  ) : (
-                    'Request a Strategy Call'
-                  )}
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
-
-                {submitStatus.type && (
-                  <div className={`mt-4 p-4 rounded-lg ${
-                    submitStatus.type === 'success'
-                      ? 'bg-green-50 border border-green-200 text-green-800'
-                      : 'bg-red-50 border border-red-200 text-red-800'
+                
+                {submitMessage && (
+                  <div className={`mt-4 p-4 rounded-xl text-center ${
+                    submitMessage.includes('successfully') 
+                      ? 'bg-green-900/50 text-green-300 border border-green-700' 
+                      : 'bg-red-900/50 text-red-300 border border-red-700'
                   }`}>
-                    <div className="flex items-center">
-                      <span className={`text-lg mr-2 ${
-                        submitStatus.type === 'success' ? 'text-green-600' : 'text-red-600'
-                      }`}>
-                        {submitStatus.type === 'success' ? '✓' : '✗'}
-                      </span>
-                      <p className="font-medium">{submitStatus.message}</p>
-                    </div>
+                    {submitMessage}
                   </div>
                 )}
-
-                <p className="text-center text-sm text-gray-500 mt-4">
-                  We respond within 24 hours. Serious businesses only.
-                </p>
               </form>
             </div>
           </div>
@@ -450,18 +325,6 @@ export default function ContactPage() {
               <div className="text-3xl mb-4">📍</div>
               <h3 className="font-bold mb-2">Location</h3>
               <p className="text-lg">Nairobi, Kenya<br /><span className="text-sm">(Remote-first)</span></p>
-              <div className="mt-4">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8192!2d36.8172!3d-1.2864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMTEuMCJTIDM2wrA0OScwMC4wIkU!5e0!3m2!1sen!2ske!4v1703123456789!5m2!1sen!2ske"
-                  width="100%"
-                  height="200"
-                  style={{ border: 0, borderRadius: '8px' }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="CRES Dynamics Location - Nairobi, Kenya"
-                ></iframe>
-              </div>
             </div>
           </div>
 
