@@ -89,16 +89,6 @@ export default function Header() {
 
           <li>
             <Link
-              href="/#how-it-works"
-              prefetch={true}
-              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
-            >
-              How It Works
-            </Link>
-          </li>
-
-          <li>
-            <Link
               href="/case-studies"
               prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
@@ -141,11 +131,6 @@ export default function Header() {
         {/* CTA BUTTON: Book a Free Consultation → Orange, rounded-xl, shadow */}
         <Link href="/contact" prefetch={true} className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-white)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
           Book a Free Consultation
-        </Link>
-
-        {/* Mobile CTA Button */}
-        <Link href="/contact" prefetch={true} className="md:hidden bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-black)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm uppercase tracking-wide">
-          Free
         </Link>
       </nav>
 

@@ -13,7 +13,7 @@ export default function HeroSection3() {
         </p>
 
         {/* 3 PROBLEM CARDS */}
-        <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto mb-20">
+        <div className="grid grid-cols-3 gap-2 md:gap-8 max-w-5xl mx-auto mb-20">
           {[
             {
               icon: <i className="fas fa-eye-slash"></i>,
@@ -31,12 +31,12 @@ export default function HeroSection3() {
               subtitle: "You're spending too much to get too little. Leads slip through the cracks and valuable data is going to waste."
             }
           ].map((card, i) => (
-            <div key={i} className="group p-6 md:p-10 rounded-xl bg-black/70 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="text-2xl md:text-3xl text-[var(--cres-white)] opacity-75 group-hover:scale-110 transition-transform">{card.icon}</div>
+            <div key={i} className="group p-2 md:p-10 rounded-xl bg-black/70 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center justify-center gap-1 md:gap-3 mb-2 md:mb-4">
+                <div className="text-sm md:text-3xl text-[var(--cres-white)] opacity-75 group-hover:scale-110 transition-transform">{card.icon}</div>
                 <h4 className="text-xs md:text-sm font-black text-[var(--cres-orange-primary)] underline-custom group-hover:text-[var(--cres-orange-primary)] transition-colors">{card.title}</h4>
               </div>
-              <p className="text-white leading-relaxed text-center text-sm md:text-base">{card.subtitle}</p>
+              <p className="text-white leading-relaxed text-center text-xs md:text-base">{card.subtitle}</p>
             </div>
           ))}
         </div>
