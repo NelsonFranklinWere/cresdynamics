@@ -3,14 +3,17 @@ import "./globals.css";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://cresdynamics.com'),
   title: 'CRES Dynamics - Websites, SEO & AI Solutions | Nairobi Digital Agency',
   description: 'Stop losing leads. Turn clicks into clients. Free strategy session for Kenyan businesses.',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/logo.png', type: 'image/png' },
+      { url: '/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
+      { url: '/logo.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: '/logo.png',
+    shortcut: '/logo.png',
   },
   openGraph: {
     images: [
@@ -81,11 +84,11 @@ export default function RootLayout({
         <link rel="prefetch" href="/solutions/seo-visibility" />
         <link rel="prefetch" href="/case-studies" />
 
-        {/* Favicon and App Icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
-        <link rel="icon" href="/icon-512.png" sizes="512x512" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        {/* Favicon and App Icons - Logo as favicon */}
+        <link rel="icon" href="/logo.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/logo.png" sizes="192x192" type="image/png" />
+        <link rel="icon" href="/logo.png" sizes="512x512" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" sizes="180x180" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0D1B2A" />
         <meta name="msapplication-TileColor" content="#0D1B2A" />
@@ -99,7 +102,14 @@ export default function RootLayout({
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="CRES Dynamics Logo" />
 
-        {/* Preload critical font */}
+        {/* Preload critical fonts - multiple weights for hero */}
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
         <link
           rel="preload"
           href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuDyfAZ9hjp-Ek-_EeA.woff2"
@@ -107,21 +117,52 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin=""
         />
+        
+        {/* Preload logo for instant display */}
+        <link rel="preload" href="/logo.png" as="image" fetchPriority="high" />
+        
+        {/* Preload background image for hero */}
+        <link rel="preload" href="/backround.png" as="image" fetchPriority="high" />
 
-        {/* Optimized font loading */}
+        {/* Optimized font loading with display=swap for instant FCP */}
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
 
-        {/* Font Awesome */}
+        {/* Font Awesome - deferred loading for better FCP */}
         <link
-          rel="stylesheet"
+          rel="preload"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          as="style"
         />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              const link = document.createElement('link');
+              link.rel = 'stylesheet';
+              link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+              link.media = 'print';
+              link.onload = function() { this.media = 'all'; };
+              document.head.appendChild(link);
+            })();
+          `
+        }} />
 
-        {/* Preload critical CSS */}
-        <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />
+        {/* Critical inline styles for instant FCP */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* Critical CSS for instant render - prevents FCP delay */
+            body{margin:0;padding:0;background:#0B0F14;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+            header{position:fixed;top:0;width:100%;z-index:50;background:rgba(11,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,31,42,0.5)}
+            nav{max-width:1280px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
+            /* Prevent layout shift for logo */
+            img[src="/logo.png"]{width:32px;height:32px;border-radius:50%;object-fit:cover;display:block}
+            /* Hero section critical styles */
+            section:first-of-type{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:80px 24px}
+            h1{font-size:clamp(1.875rem,4vw,3rem);font-weight:900;line-height:1.2;margin:0 0 2rem;color:#fff;text-shadow:3px 3px 6px rgba(0,0,0,0.95)}
+          `
+        }} />
 
         <script
           type="application/ld+json"

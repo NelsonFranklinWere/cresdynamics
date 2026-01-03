@@ -5,10 +5,23 @@ import { Resend } from 'resend';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+// Check if API key is configured
+if (!process.env.RESEND_API_KEY) {
+  console.error('RESEND_API_KEY is not configured in environment variables');
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function GET() {
   try {
+    // Check if API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is missing');
+      return NextResponse.json(
+        { error: 'Email service is not configured' },
+        { status: 500 }
+      );
+    }
     // Get subscribers from environment variable or external storage
     // For Vercel, we'll use a simple approach: store subscribers in a JSON string in env var
     // In production, you should use a database (Vercel Postgres, Supabase, etc.)
@@ -35,7 +48,7 @@ export async function GET() {
         try {
           // Send follow-up email
           const { data: emailData, error } = await resend.emails.send({
-            from: 'CRES Dynamics <cresdynamics@gmail.com>',
+            from: 'CRES Dynamics <onboarding@resend.dev>', // Use Resend's default domain for testing
             to: [subscriber.email],
             subject: `Your Free Digital Growth Checklist - CRES Dynamics`,
             html: `

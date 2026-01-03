@@ -16,6 +16,10 @@ export default function Header() {
             src="/logo.png"
             alt="Cres Dynamics Logo"
             className="h-6 w-6 md:h-8 md:w-8 rounded-full object-cover"
+            fetchPriority="high"
+            loading="eager"
+            width="32"
+            height="32"
           />
           <span className="text-[var(--cres-white)] font-bold text-xs md:text-sm uppercase tracking-wide">
             <span className="font-black">CRES</span> Dynamics

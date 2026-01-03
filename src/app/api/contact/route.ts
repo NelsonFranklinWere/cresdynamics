@@ -5,10 +5,24 @@ import { Resend } from 'resend';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+// Check if API key is configured
+if (!process.env.RESEND_API_KEY) {
+  console.error('RESEND_API_KEY is not configured in environment variables');
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is missing');
+      return NextResponse.json(
+        { error: 'Email service is not configured. Please contact the administrator.' },
+        { status: 500 }
+      );
+    }
+
     const { fullName, phone, email, description, subscribe } = await request.json();
 
     // Validate required fields
@@ -30,7 +44,7 @@ export async function POST(request: NextRequest) {
 
     // Send email via Resend
     const { data, error } = await resend.emails.send({
-      from: 'CRES Dynamics <cresdynamics@gmail.com>',
+      from: 'CRES Dynamics <onboarding@resend.dev>', // Use Resend's default domain for testing
       to: ['info@cresdynamics.com'],
       subject: `New Contact Form Submission - ${fullName}`,
       html: `
@@ -80,8 +94,17 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error('Resend error:', error);
+      // Provide more detailed error message
+      let errorMessage = 'Failed to send email. ';
+      if (error.message) {
+        errorMessage += error.message;
+      } else if (error.name === 'validation_error') {
+        errorMessage += 'Please verify that the sender email is verified in Resend.';
+      } else {
+        errorMessage += 'Please try again later or contact support.';
+      }
       return NextResponse.json(
-        { error: 'Failed to send email' },
+        { error: errorMessage },
         { status: 500 }
       );
     }
@@ -92,7 +115,7 @@ export async function POST(request: NextRequest) {
       try {
         // Send welcome email with subscription confirmation
         await resend.emails.send({
-          from: 'CRES Dynamics <cresdynamics@gmail.com>',
+          from: 'CRES Dynamics <onboarding@resend.dev>', // Use Resend's default domain for testing
           to: [email],
           subject: 'Welcome to CRES Dynamics Newsletter!',
           html: `

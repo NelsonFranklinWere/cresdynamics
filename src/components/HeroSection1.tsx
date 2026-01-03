@@ -1,21 +1,30 @@
 export default function HeroSection1() {
   return (
-    <section className="py-20 flex items-center justify-center bg-gradient-to-br from-[var(--cres-gradient-bg)] via-black to-[var(--cres-dark)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
+    <section className="py-20 flex items-center justify-center bg-gradient-to-br from-[var(--cres-gradient-bg)] via-black to-[var(--cres-dark)] relative overflow-hidden">
+      {/* Optimized background image - CSS background for better performance */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url(/backround.png)',
+          backgroundRepeat: 'repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          willChange: 'transform'
+        }}
+      />
       {/* BACKGROUND IMAGE OVERLAY FOR OPACITY */}
       <div className="absolute inset-0 bg-black/10"></div>
-      {/* CITY GLOW OVERLAYS */}
+      {/* CITY GLOW OVERLAYS - deferred animation */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[radial-gradient(circle_at_30%_70%,rgba(244,122,42,0.3)_0%,transparent_50%)] rounded-full blur-xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[rgba(79,179,184,0.15)] rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[radial-gradient(circle_at_30%_70%,rgba(244,122,42,0.3)_0%,transparent_50%)] rounded-full blur-xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[rgba(79,179,184,0.15)] rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-        {/* H1: Turn Clicks Into Clients. Turn Chaos Into Growth. */}
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] leading-tight mb-8 animate-fade-in-up underline-custom">
-          <span style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            Turn Clicks Into Clients.{' '}
-            <span className="text-[var(--cres-orange-primary)]">Turn Chaos Into Growth.</span>
-          </span>
+        {/* H1: Turn Clicks Into Clients. Turn Chaos Into Growth. - LCP Element */}
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] leading-tight mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
+          Turn Clicks Into Clients.{' '}
+          <span className="text-[var(--cres-orange-primary)]">Turn Chaos Into Growth.</span>
         </h1>
 
         {/* H2: Smart Websites, SEO & Automation Solutions */}

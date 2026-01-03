@@ -16,7 +16,7 @@ export default function DigitalSalesPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-[0-9]xl md:text-[0-9]xl lg:text-[0-9]xl font-black underline-custom text-white leading-tight mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white leading-tight mb-8">
             Traffic flows in but
             <br />
             <span className="text-[var(--cres-electric-teal)]">customers leak out everywhere.</span>
@@ -30,97 +30,99 @@ export default function DigitalSalesPage() {
             <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Request a Growth Audit
             </a>
-            <button className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/contact" className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
               See How It Works
-            </button>
+            </a>
           </div>
         </div>
       </section>
 
       {/* 2️⃣ THE PROBLEM (MAKE IT UNCOMFORTABLE) */}
-      <section className="py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] text-center mb-16">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] text-center mb-16">
             The Problem Most Businesses Ignore Until It's Too Late
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="text-center p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="text-5xl mb-4">🚫</div>
-              <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-3">Leads Disappear</h3>
-              <p className="text-gray-600">Visitors contact you but never hear back. Or they hear back too late. By the time you respond, they've bought from someone else.</p>
+              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-3 group-hover:text-[var(--cres-orange-primary)] transition-colors">Leads Disappear</h3>
+              <p className="text-gray-300">Visitors contact you but never hear back. Or they hear back too late. By the time you respond, they've bought from someone else.</p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="text-5xl mb-4">📞</div>
-              <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-3">No Follow-Up System</h3>
-              <p className="text-gray-600">You get inquiries but don't have a process to nurture them. One touchpoint isn't enough to close the sale.</p>
+              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-3 group-hover:text-[var(--cres-orange-primary)] transition-colors">No Follow-Up System</h3>
+              <p className="text-gray-300">You get inquiries but don't have a process to nurture them. One touchpoint isn't enough to close the sale.</p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="text-5xl mb-4">💰</div>
-              <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-3">High Ad Spend, Low ROI</h3>
-              <p className="text-gray-600">You're paying for clicks but not getting customers. Your cost per acquisition is through the roof.</p>
+              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-3 group-hover:text-[var(--cres-orange-primary)] transition-colors">High Ad Spend, Low ROI</h3>
+              <p className="text-gray-300">You're paying for clicks but not getting customers. Your cost per acquisition is through the roof.</p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="text-5xl mb-4">🔄</div>
-              <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-3">Manual Sales Process</h3>
-              <p className="text-gray-600">Everything is manual. Following up, sending quotes, tracking deals. You can't scale because you're the bottleneck.</p>
+              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-3 group-hover:text-[var(--cres-orange-primary)] transition-colors">Manual Sales Process</h3>
+              <p className="text-gray-300">Everything is manual. Following up, sending quotes, tracking deals. You can't scale because you're the bottleneck.</p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="text-5xl mb-4">📊</div>
-              <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-3">No Conversion Tracking</h3>
-              <p className="text-gray-600">You don't know which marketing works. No data means no optimization. You're guessing, not growing.</p>
+              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-3 group-hover:text-[var(--cres-orange-primary)] transition-colors">No Conversion Tracking</h3>
+              <p className="text-gray-300">You don't know which marketing works. No data means no optimization. You're guessing, not growing.</p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="text-5xl mb-4">🎯</div>
-              <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-3">Wrong Customer Journey</h3>
-              <p className="text-gray-600">Your sales process doesn't match how customers want to buy. You're pushing when you should be guiding.</p>
+              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-3 group-hover:text-[var(--cres-orange-primary)] transition-colors">Wrong Customer Journey</h3>
+              <p className="text-gray-300">Your sales process doesn't match how customers want to buy. You're pushing when you should be guiding.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* 3️⃣ WHY THIS KEEPS HAPPENING */}
-      <section className="py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-12">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-secondary-bg)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] mb-12">
             Why This Problem Persists
           </h2>
 
-          <div className="space-y-8 text-left">
-            <div className="flex items-start space-x-4">
+          <div className="space-y-6 text-left">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
               <div className="text-3xl">🎨</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Websites designed for looks, not sales</h3>
-                <p className="text-gray-600">Most websites are built to impress, not convert. Pretty designs don't turn visitors into customers.</p>
+                <h3 className="text-xl font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">Websites designed for looks, not sales</h3>
+                <p className="text-gray-300">Most websites are built to impress, not convert. Pretty designs don't turn visitors into customers.</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
               <div className="text-3xl">📱</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Fragmented communication channels</h3>
-                <p className="text-gray-600">Customers contact you via website, WhatsApp, phone, email. You manage them separately instead of as a unified journey.</p>
+                <h3 className="text-xl font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">Fragmented communication channels</h3>
+                <p className="text-gray-300">Customers contact you via website, WhatsApp, phone, email. You manage them separately instead of as a unified journey.</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
               <div className="text-3xl">⏱️</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">No sales process</h3>
-                <p className="text-gray-600">You don't have a defined sales funnel. Every customer interaction is handled differently, leading to inconsistent results.</p>
+                <h3 className="text-xl font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">No sales process</h3>
+                <p className="text-gray-300">You don't have a defined sales funnel. Every customer interaction is handled differently, leading to inconsistent results.</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
               <div className="text-3xl">🎯</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Wrong customer understanding</h3>
-                <p className="text-gray-600">You don't understand your customer's buying journey. You push sales instead of guiding purchases.</p>
+                <h3 className="text-xl font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">Wrong customer understanding</h3>
+                <p className="text-gray-300">You don't understand your customer's buying journey. You push sales instead of guiding purchases.</p>
               </div>
             </div>
           </div>
@@ -128,28 +130,29 @@ export default function DigitalSalesPage() {
       </section>
 
       {/* 4️⃣ THE CRES SOLUTION (SYSTEM, NOT SERVICE) */}
-      <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white text-center mb-16">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white text-center mb-16">
             The System We Build to Fix This
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-6">1</div>
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-4">Conversion-Optimized Website</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-[var(--cres-orange-primary)] rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-6 group-hover:scale-110 transition-transform">1</div>
+              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">Conversion-Optimized Website</h3>
               <p className="text-gray-300">Landing pages designed specifically for your customer journey. Clear value propositions, social proof, and irresistible offers.</p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-6">2</div>
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-4">Unified Lead Management</h3>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-[var(--cres-orange-primary)] rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-6 group-hover:scale-110 transition-transform">2</div>
+              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">Unified Lead Management</h3>
               <p className="text-gray-300">All inquiries — website forms, WhatsApp, phone calls — flow into one system. Never lose a lead again.</p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-6">3</div>
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-4">Automated Sales Funnel</h3>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-[var(--cres-orange-primary)] rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-6 group-hover:scale-110 transition-transform">3</div>
+              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">Automated Sales Funnel</h3>
               <p className="text-gray-300">Nurture leads automatically. Follow-up sequences, proposal delivery, payment collection — all on autopilot.</p>
             </div>
           </div>
@@ -157,50 +160,51 @@ export default function DigitalSalesPage() {
       </section>
 
       {/* 5️⃣ WHAT MAKES THIS DIFFERENT */}
-      <section className="py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] text-center mb-12">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] text-center mb-12">
             Why This Isn't Just Another Service
           </h2>
 
           <div className="space-y-6">
-            <div className="flex items-start space-x-4">
-              <div className="text-2xl text-[var(--cres-electric-teal)]">🎯</div>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
+              <div className="text-2xl text-[var(--cres-orange-primary)]">🎯</div>
               <div>
-                <h3 className="text-lg font-bold text-[var(--cres-deep-navy)]">Sales psychology built-in</h3>
-                <p className="text-gray-600">Every page, every email, every follow-up is crafted using proven sales psychology. We guide, not push.</p>
+                <h3 className="text-lg font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">Sales psychology built-in</h3>
+                <p className="text-gray-300">Every page, every email, every follow-up is crafted using proven sales psychology. We guide, not push.</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="text-2xl text-[var(--cres-electric-teal)]">📊</div>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
+              <div className="text-2xl text-[var(--cres-orange-primary)]">📊</div>
               <div>
-                <h3 className="text-lg font-bold text-[var(--cres-deep-navy)]">Data-driven optimization</h3>
-                <p className="text-gray-600">Track every conversion point. Know exactly where customers drop off and why. Continuous improvement based on real data.</p>
+                <h3 className="text-lg font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">Data-driven optimization</h3>
+                <p className="text-gray-300">Track every conversion point. Know exactly where customers drop off and why. Continuous improvement based on real data.</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="text-2xl text-[var(--cres-electric-teal)]">🇰🇪</div>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
+              <div className="text-2xl text-[var(--cres-orange-primary)]">🇰🇪</div>
               <div>
-                <h3 className="text-lg font-bold text-[var(--cres-deep-navy)]">Kenyan payment integration</h3>
-                <p className="text-gray-600">M-Pesa, card payments, bank transfers — all integrated. Make buying from you as easy as buying from your competitors.</p>
+                <h3 className="text-lg font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">Kenyan payment integration</h3>
+                <p className="text-gray-300">M-Pesa, card payments, bank transfers — all integrated. Make buying from you as easy as buying from your competitors.</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="text-2xl text-[var(--cres-electric-teal)]">🤖</div>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
+              <div className="text-2xl text-[var(--cres-orange-primary)]">🤖</div>
               <div>
-                <h3 className="text-lg font-bold text-[var(--cres-deep-navy)]">AI-powered personalization</h3>
-                <p className="text-gray-600">Dynamic content and recommendations based on customer behavior. Every visitor sees a personalized experience.</p>
+                <h3 className="text-lg font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">AI-powered personalization</h3>
+                <p className="text-gray-300">Dynamic content and recommendations based on customer behavior. Every visitor sees a personalized experience.</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-4">
-              <div className="text-2xl text-[var(--cres-electric-teal)]">🔄</div>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
+              <div className="text-2xl text-[var(--cres-orange-primary)]">🔄</div>
               <div>
-                <h3 className="text-lg font-bold text-[var(--cres-deep-navy)]">Lifetime customer value focus</h3>
-                <p className="text-gray-600">We don't just close sales — we build long-term customer relationships that generate repeat business and referrals.</p>
+                <h3 className="text-lg font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">Lifetime customer value focus</h3>
+                <p className="text-gray-300">We don't just close sales — we build long-term customer relationships that generate repeat business and referrals.</p>
               </div>
             </div>
           </div>
@@ -208,67 +212,68 @@ export default function DigitalSalesPage() {
       </section>
 
       {/* 6️⃣ WHO THIS IS FOR (AND NOT FOR) */}
-      <section className="py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] text-center mb-16">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-secondary-bg)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] text-center mb-16">
             Is This Right for Your Business?
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-green-600 mb-6 flex items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-8">
+              <h3 className="text-2xl font-bold text-[var(--cres-orange-primary)] mb-6 flex items-center">
                 <span className="text-3xl mr-3">✅</span>
                 This is for you if:
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span className="text-gray-700">You're tired of losing leads and wasting ad spend</span>
+                  <span className="text-[var(--cres-orange-primary)] mt-1">✓</span>
+                  <span className="text-gray-300">You're tired of losing leads and wasting ad spend</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span className="text-gray-700">You want predictable sales instead of feast-or-famine</span>
+                  <span className="text-[var(--cres-orange-primary)] mt-1">✓</span>
+                  <span className="text-gray-300">You want predictable sales instead of feast-or-famine</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span className="text-gray-700">You're ready to invest in systems that pay for themselves</span>
+                  <span className="text-[var(--cres-orange-primary)] mt-1">✓</span>
+                  <span className="text-gray-300">You're ready to invest in systems that pay for themselves</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span className="text-gray-700">You want to scale without hiring a sales team</span>
+                  <span className="text-[var(--cres-orange-primary)] mt-1">✓</span>
+                  <span className="text-gray-300">You want to scale without hiring a sales team</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span className="text-gray-700">You understand that great marketing needs great sales systems</span>
+                  <span className="text-[var(--cres-orange-primary)] mt-1">✓</span>
+                  <span className="text-gray-300">You understand that great marketing needs great sales systems</span>
                 </li>
               </ul>
             </div>
 
-            <div>
-              <h3 className="text-2xl font-bold text-red-600 mb-6 flex items-center">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-8">
+              <h3 className="text-2xl font-bold text-red-400 mb-6 flex items-center">
                 <span className="text-3xl mr-3">❌</span>
                 This is NOT for you if:
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
-                  <span className="text-red-600 mt-1">✗</span>
-                  <span className="text-gray-700">You want to handle every customer interaction personally</span>
+                  <span className="text-red-400 mt-1">✗</span>
+                  <span className="text-gray-300">You want to handle every customer interaction personally</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="text-red-600 mt-1">✗</span>
-                  <span className="text-gray-700">You don't want to track or measure your sales performance</span>
+                  <span className="text-red-400 mt-1">✗</span>
+                  <span className="text-gray-300">You don't want to track or measure your sales performance</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="text-red-600 mt-1">✗</span>
-                  <span className="text-gray-700">You prefer manual processes to automated systems</span>
+                  <span className="text-red-400 mt-1">✗</span>
+                  <span className="text-gray-300">You prefer manual processes to automated systems</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="text-red-600 mt-1">✗</span>
-                  <span className="text-gray-700">You're not ready to invest in your sales infrastructure</span>
+                  <span className="text-red-400 mt-1">✗</span>
+                  <span className="text-gray-300">You're not ready to invest in your sales infrastructure</span>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="text-red-600 mt-1">✗</span>
-                  <span className="text-gray-700">You think sales funnels are just for "big companies"</span>
+                  <span className="text-red-400 mt-1">✗</span>
+                  <span className="text-gray-300">You think sales funnels are just for "big companies"</span>
                 </li>
               </ul>
             </div>
@@ -277,30 +282,31 @@ export default function DigitalSalesPage() {
       </section>
 
       {/* 7️⃣ RESULTS & IMPACT (NO FAKE CLAIMS) */}
-      <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white text-center mb-12">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white text-center mb-12">
             What Businesses Gain After Implementation
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-800/50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-3">Higher Conversion Rates</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <h3 className="text-xl font-bold text-[var(--cres-orange-primary)] mb-3">Higher Conversion Rates</h3>
               <p className="text-gray-300">Turn more website visitors into paying customers. Stop losing prospects at every stage of the funnel.</p>
             </div>
 
-            <div className="bg-gray-800/50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-3">Predictable Revenue</h3>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <h3 className="text-xl font-bold text-[var(--cres-orange-primary)] mb-3">Predictable Revenue</h3>
               <p className="text-gray-300">Know exactly how many leads you need to hit your revenue targets. No more guessing or hoping.</p>
             </div>
 
-            <div className="bg-gray-800/50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-3">Lower Customer Acquisition Cost</h3>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <h3 className="text-xl font-bold text-[var(--cres-orange-primary)] mb-3">Lower Customer Acquisition Cost</h3>
               <p className="text-gray-300">More efficient sales process means you spend less to acquire each customer. Higher profit margins.</p>
             </div>
 
-            <div className="bg-gray-800/50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-3">Scalable Sales Operations</h3>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <h3 className="text-xl font-bold text-[var(--cres-orange-primary)] mb-3">Scalable Sales Operations</h3>
               <p className="text-gray-300">Handle more customers without adding staff. Your sales team becomes more productive, not bigger.</p>
             </div>
           </div>
@@ -308,9 +314,10 @@ export default function DigitalSalesPage() {
       </section>
 
       {/* 8️⃣ STRONG CTA (URGENCY) */}
-      <section className="py-12 md:py-20 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-orange-primary)] to-[#E87528] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white mb-8">
             Every Week You Delay, You Lose
           </h2>
 
@@ -319,15 +326,15 @@ export default function DigitalSalesPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-            <a href="/contact" className="bg-white text-[var(--cres-electric-teal)] hover:bg-gray-100 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+            <a href="/contact" className="bg-white text-[var(--cres-orange-primary)] hover:bg-gray-100 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Book a Strategy Call
             </a>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/contact" className="border-2 border-white text-white hover:bg-white hover:text-[var(--cres-orange-primary)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
               Start With a Growth Audit
-            </button>
+            </a>
           </div>
 
-          <p className="text-white/80 text-sm">
+          <p className="text-white/90 text-sm font-medium">
             "We don't sell services. We build systems that grow businesses."
           </p>
         </div>
