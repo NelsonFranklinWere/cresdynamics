@@ -79,17 +79,9 @@ const nextConfig: NextConfig = {
     },
   } : {}),
 
-  // Only use static export for production builds
-  ...(process.env.NODE_ENV === 'production' ? {
-    output: 'export',
-    trailingSlash: true,
-  } : {}),
-
-  // Experimental features for performance
-  experimental: {
-    optimizeCss: true, // Optimize CSS
-    scrollRestoration: true, // Better UX
-  },
+  // Note: Removed static export to support API routes on Vercel
+  // Vercel will handle deployment automatically
+  trailingSlash: true,
 };
 
 export default nextConfig;

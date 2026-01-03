@@ -29,8 +29,8 @@ export default function Analytics() {
 
     // Track contact form submissions
     const handleContactFormSubmit = () => {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'contact_form_submit', {
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'contact_form_submit', {
           event_category: 'engagement',
           event_label: 'contact_form',
           value: 1
@@ -40,8 +40,8 @@ export default function Analytics() {
 
     // Track strategy session requests
     const handleStrategySessionRequest = () => {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'strategy_session_request', {
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'strategy_session_request', {
           event_category: 'conversion',
           event_label: 'strategy_session',
           value: 1

@@ -2,25 +2,8 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import type { Metadata } from 'next';
 
-// Note: Metadata export moved to separate file for client components
-export const metadata: Metadata = {
-  title: 'About CRES Dynamics - AI Automation & Digital Growth Experts | Nairobi Kenya',
-  description: 'Learn about CRES Dynamics, Nairobi\'s trusted partner for AI automation, SEO, and digital systems. We help Kenyan businesses grow with clarity through technology that converts.',
-  keywords: 'about CRES Dynamics, Nairobi digital agency, AI automation Kenya, digital growth experts, business systems Kenya',
-  openGraph: {
-    title: 'About CRES Dynamics - AI Automation & Digital Growth Experts',
-    description: 'Learn about CRES Dynamics, Nairobi\'s trusted partner for AI automation, SEO, and digital systems that drive business growth.',
-    url: 'https://cresdynamics.com/about',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'About CRES Dynamics - AI Automation & Digital Growth Experts',
-    description: 'Nairobi\'s trusted partner for AI automation, SEO, and digital systems that drive business growth.',
-  },
-};
+// Note: Metadata export removed for client components - handled in layout.tsx
 
 export default function AboutPage() {
   return (

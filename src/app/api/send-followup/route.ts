@@ -1,26 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import fs from 'fs';
-import path from 'path';
+
+// Runtime configuration for Vercel
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function GET() {
   try {
-    const subscribersFile = path.join(process.cwd(), 'subscribers.json');
-
-    // Check if subscribers file exists
-    if (!fs.existsSync(subscribersFile)) {
-      return NextResponse.json({
-        success: true,
-        message: 'No subscribers file found',
-        emailsSent: 0
-      });
+    // Get subscribers from environment variable or external storage
+    // For Vercel, we'll use a simple approach: store subscribers in a JSON string in env var
+    // In production, you should use a database (Vercel Postgres, Supabase, etc.)
+    const subscribersJson = process.env.SUBSCRIBERS_DATA || '[]';
+    let subscribers = [];
+    
+    try {
+      subscribers = JSON.parse(subscribersJson);
+    } catch (parseError) {
+      console.error('Error parsing subscribers data:', parseError);
+      subscribers = [];
     }
-
-    // Read subscribers
-    const data = fs.readFileSync(subscribersFile, 'utf8');
-    const subscribers = JSON.parse(data);
 
     const now = new Date();
     let emailsSent = 0;
@@ -144,13 +144,16 @@ export async function GET() {
       updatedSubscribers.push(subscriber);
     }
 
-    // Write updated subscribers back to file
-    fs.writeFileSync(subscribersFile, JSON.stringify(updatedSubscribers, null, 2));
+    // Note: In production, update subscribers in your database
+    // For now, we'll log the updated list (you'll need to manually update env var or use a database)
+    console.log('Updated subscribers:', JSON.stringify(updatedSubscribers, null, 2));
+    // TODO: Update SUBSCRIBERS_DATA environment variable or database
 
     return NextResponse.json({
       success: true,
       message: `Follow-up emails sent to ${emailsSent} subscribers`,
-      emailsSent
+      emailsSent,
+      note: 'For production, use a database (Vercel Postgres, Supabase) to store subscribers'
     });
 
   } catch (error) {
