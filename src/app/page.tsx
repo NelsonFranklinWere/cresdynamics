@@ -8,8 +8,50 @@ import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 
 export default function Home() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CRES Dynamics",
+    "url": "https://cresdynamics.com",
+    "logo": "https://cresdynamics.com/logo.png",
+    "description": "Digital agency helping Nairobi businesses turn clicks into clients through websites, SEO, AI automation, and digital growth solutions.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressCountry": "KE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "url": "https://cresdynamics.com/contact"
+    },
+    "sameAs": [
+      "https://cresdynamics.com"
+    ]
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CRES Dynamics",
+    "url": "https://cresdynamics.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://cresdynamics.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
       <Header />
       <main>
         <HeroSection1 />

@@ -4,15 +4,22 @@
 User-agent: *
 Allow: /
 
-# Disallow API routes
+# Disallow API routes and internal endpoints
 Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
 
-# Disallow admin/internal pages (if any)
-# Disallow: /admin/
+# Allow all important pages
+Allow: /
+Allow: /about
+Allow: /contact
+Allow: /insights
+Allow: /case-studies
+Allow: /solutions/
 
 # Sitemap location
 Sitemap: https://cresdynamics.com/sitemap.xml
 
-# Crawl-delay (optional - remove if not needed)
-# Crawl-delay: 1
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
 

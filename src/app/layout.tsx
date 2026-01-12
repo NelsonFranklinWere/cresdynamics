@@ -52,13 +52,35 @@ export default function RootLayout({
 }>) {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "DigitalAgency",
-    "name": "Cres Dynamics",
+    "@type": "ProfessionalService",
+    "name": "CRES Dynamics",
+    "alternateName": "Cres Dynamics",
+    "url": "https://cresdynamics.com",
+    "logo": "https://cresdynamics.com/logo.png",
+    "description": "Digital agency specializing in websites, SEO, AI automation, and digital growth solutions for Nairobi businesses.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Nairobi",
+      "addressRegion": "Nairobi",
       "addressCountry": "KE"
-    }
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Kenya"
+    },
+    "serviceType": [
+      "Website Development",
+      "SEO Services",
+      "AI Automation",
+      "Digital Marketing",
+      "Business Consulting"
+    ],
+    "priceRange": "$$",
+    "telephone": "+254-XXX-XXXX",
+    "email": "info@cresdynamics.com",
+    "sameAs": [
+      "https://cresdynamics.com"
+    ]
   };
 
   return (
