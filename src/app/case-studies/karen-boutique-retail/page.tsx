@@ -9,7 +9,7 @@ export default function BoutiqueCaseStudyPage() {
       <Header />
 
       {/* SECTION 1: Quiet Authority Hero */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -28,7 +28,7 @@ export default function BoutiqueCaseStudyPage() {
       </section>
 
       {/* SECTION 2: Pattern Recognition */}
-      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
             Different industries. The same hidden problems.

@@ -47,8 +47,10 @@ export async function GET() {
       if (daysSinceSubscription >= 7 && !subscriber.followUpSent) {
         try {
           // Send follow-up email
+          const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+          
           const { data: emailData, error } = await resend.emails.send({
-            from: 'CRES Dynamics <onboarding@resend.dev>', // Use Resend's default domain for testing
+            from: `CRES Dynamics <${senderEmail}>`, // Use Resend's default domain for testing
             to: [subscriber.email],
             subject: `Your Free Digital Growth Checklist - CRES Dynamics`,
             html: `

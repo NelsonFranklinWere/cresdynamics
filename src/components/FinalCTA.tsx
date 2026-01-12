@@ -1,7 +1,9 @@
 export default function FinalCTA() {
   return (
-    <section className="py-32 bg-gradient-to-r from-[var(--cres-primary-bg)] via-[#0D1520] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section className="py-32 bg-gradient-to-r from-[var(--cres-primary-bg)] via-[#0D1520] to-[var(--cres-primary-bg)] relative">
+      <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+      <div className="relative z-10">
+        <div className="max-w-4xl mx-auto px-6 text-center">
         {/* Final Statement */}
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
@@ -48,6 +50,7 @@ export default function FinalCTA() {
             <div className="text-2xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-2">24/7</div>
             <div className="text-sm md:text-base text-[var(--cres-white)]">System Support</div>
           </div>
+        </div>
         </div>
       </div>
     </section>

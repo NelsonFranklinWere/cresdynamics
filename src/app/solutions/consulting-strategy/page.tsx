@@ -38,7 +38,8 @@ export default function ConsultingStrategyPage() {
       </section>
 
       {/* 2️⃣ THE PROBLEM (MAKE IT UNCOMFORTABLE) */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] text-center mb-16">
@@ -86,7 +87,8 @@ export default function ConsultingStrategyPage() {
       </section>
 
       {/* 3️⃣ WHY THIS KEEPS HAPPENING */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-secondary-bg)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-secondary-bg)] to-[var(--cres-primary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] mb-12">
@@ -130,7 +132,8 @@ export default function ConsultingStrategyPage() {
       </section>
 
       {/* 4️⃣ THE CRES SOLUTION (SYSTEM, NOT SERVICE) */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white text-center mb-16">
@@ -160,7 +163,8 @@ export default function ConsultingStrategyPage() {
       </section>
 
       {/* 5️⃣ WHAT MAKES THIS DIFFERENT */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] text-center mb-12">
@@ -282,7 +286,8 @@ export default function ConsultingStrategyPage() {
       </section>
 
       {/* 7️⃣ RESULTS & IMPACT (NO FAKE CLAIMS) */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white text-center mb-12">
@@ -314,7 +319,8 @@ export default function ConsultingStrategyPage() {
       </section>
 
       {/* 8️⃣ STRONG CTA (URGENCY) */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-orange-primary)] to-[#E87528] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-orange-primary)] to-[#E87528] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white mb-8">

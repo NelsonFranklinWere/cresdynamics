@@ -38,7 +38,8 @@ export default function SEOVisibilityPage() {
       </section>
 
       {/* 2️⃣ THE PROBLEM (MAKE IT UNCOMFORTABLE) */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] text-center mb-16">
@@ -46,10 +47,10 @@ export default function SEOVisibilityPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="text-5xl mb-4">🔍</div>
-              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-3 group-hover:text-[var(--cres-orange-primary)] transition-colors">Invisible on Google</h3>
-              <p className="text-gray-300">Customers search for your services every day but your business doesn't appear. You're completely invisible to the people who need you.</p>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-4 md:p-6 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="text-3xl md:text-5xl mb-3 md:mb-4">🔍</div>
+              <h3 className="text-base md:text-xl font-bold text-[var(--cres-white)] mb-2 md:mb-3 group-hover:text-[var(--cres-orange-primary)] transition-colors">Invisible on Google</h3>
+              <p className="text-xs md:text-sm text-gray-300">Customers search for your services every day but your business doesn't appear. You're completely invisible to the people who need you.</p>
             </div>
 
             <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
@@ -86,7 +87,8 @@ export default function SEOVisibilityPage() {
       </section>
 
       {/* 3️⃣ WHY THIS KEEPS HAPPENING */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-secondary-bg)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-secondary-bg)] to-[var(--cres-primary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] mb-12">
@@ -98,7 +100,7 @@ export default function SEOVisibilityPage() {
               <div className="text-3xl">🎯</div>
               <div>
                 <h3 className="text-xl font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">SEO feels too complicated</h3>
-                <p className="text-gray-300">Business owners know they need SEO but think it's too technical. They throw money at ads instead of building long-term visibility.</p>
+                <p className="text-xs md:text-sm text-gray-300">Business owners know they need SEO but think it's too technical. They throw money at ads instead of building long-term visibility.</p>
               </div>
             </div>
 
@@ -130,7 +132,8 @@ export default function SEOVisibilityPage() {
       </section>
 
       {/* 4️⃣ THE CRES SOLUTION (SYSTEM, NOT SERVICE) */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white text-center mb-16">
@@ -138,10 +141,10 @@ export default function SEOVisibilityPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="w-16 h-16 bg-[var(--cres-orange-primary)] rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-6 group-hover:scale-110 transition-transform">1</div>
-              <h3 className="text-xl font-bold text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">Local SEO Foundation</h3>
-              <p className="text-gray-300">Google Business Profile optimization, local keywords, and Nairobi-specific ranking factors. Dominate local search.</p>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-4 md:p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-[var(--cres-orange-primary)] rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white mx-auto mb-4 md:mb-6 group-hover:scale-110 transition-transform">1</div>
+              <h3 className="text-base md:text-xl font-bold text-[var(--cres-white)] mb-2 md:mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">Local SEO Foundation</h3>
+              <p className="text-xs md:text-sm text-gray-300">Google Business Profile optimization, local keywords, and Nairobi-specific ranking factors. Dominate local search.</p>
             </div>
 
             <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-8 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
@@ -160,7 +163,8 @@ export default function SEOVisibilityPage() {
       </section>
 
       {/* 5️⃣ WHAT MAKES THIS DIFFERENT */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-[var(--cres-white)] text-center mb-12">
@@ -168,11 +172,11 @@ export default function SEOVisibilityPage() {
           </h2>
 
           <div className="space-y-6">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 flex items-start space-x-4 group hover:shadow-xl transition-all duration-300">
-              <div className="text-2xl text-[var(--cres-orange-primary)]">🇰🇪</div>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-4 md:p-6 flex items-start space-x-3 md:space-x-4 group hover:shadow-xl transition-all duration-300">
+              <div className="text-xl md:text-2xl text-[var(--cres-orange-primary)]">🇰🇪</div>
               <div>
-                <h3 className="text-lg font-bold text-[var(--cres-white)] mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">Kenya-first SEO</h3>
-                <p className="text-gray-300">We understand Kenyan search behavior, local competition, and what works in Nairobi markets. No generic global strategies.</p>
+                <h3 className="text-sm md:text-base font-bold text-[var(--cres-white)] mb-1 md:mb-2 group-hover:text-[var(--cres-orange-primary)] transition-colors">Kenya-first SEO</h3>
+                <p className="text-xs md:text-sm text-gray-300">We understand Kenyan search behavior, local competition, and what works in Nairobi markets. No generic global strategies.</p>
               </div>
             </div>
 
@@ -220,15 +224,15 @@ export default function SEOVisibilityPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold text-[var(--cres-orange-primary)] mb-6 flex items-center">
-                <span className="text-3xl mr-3">✅</span>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-4 md:p-8">
+              <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-orange-primary)] mb-4 md:mb-6 flex items-center">
+                <span className="text-2xl md:text-3xl mr-2 md:mr-3">✅</span>
                 This is for you if:
               </h3>
-              <ul className="space-y-4">
-                <li className="flex items-start space-x-3">
-                  <span className="text-[var(--cres-orange-primary)] mt-1">✓</span>
-                  <span className="text-gray-300">You're tired of paying for ads that disappear</span>
+              <ul className="space-y-2 md:space-y-4">
+                <li className="flex items-start space-x-2 md:space-x-3">
+                  <span className="text-[var(--cres-orange-primary)] mt-1 text-xs md:text-base">✓</span>
+                  <span className="text-xs md:text-sm text-gray-300">You're tired of paying for ads that disappear</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-[var(--cres-orange-primary)] mt-1">✓</span>
@@ -249,15 +253,15 @@ export default function SEOVisibilityPage() {
               </ul>
             </div>
 
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold text-red-400 mb-6 flex items-center">
-                <span className="text-3xl mr-3">❌</span>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-4 md:p-8">
+              <h3 className="text-lg md:text-2xl font-bold text-red-400 mb-4 md:mb-6 flex items-center">
+                <span className="text-2xl md:text-3xl mr-2 md:mr-3">❌</span>
                 This is NOT for you if:
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
-                  <span className="text-red-400 mt-1">✗</span>
-                  <span className="text-gray-300">You want instant results (SEO takes 3-6 months)</span>
+                  <span className="text-red-400 mt-1 text-xs md:text-base">✗</span>
+                  <span className="text-xs md:text-sm text-gray-300">You want instant results (SEO takes 3-6 months)</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-red-400 mt-1">✗</span>
@@ -282,7 +286,8 @@ export default function SEOVisibilityPage() {
       </section>
 
       {/* 7️⃣ RESULTS & IMPACT (NO FAKE CLAIMS) */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] to-[var(--cres-primary-bg)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white text-center mb-12">
@@ -290,9 +295,9 @@ export default function SEOVisibilityPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <h3 className="text-xl font-bold text-[var(--cres-orange-primary)] mb-3">Free Organic Traffic</h3>
-              <p className="text-gray-300">Customers find you without paying for ads. Sustainable growth that doesn't disappear when budget runs out.</p>
+            <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-4 md:p-6 group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <h3 className="text-base md:text-xl font-bold text-[var(--cres-orange-primary)] mb-2 md:mb-3">Free Organic Traffic</h3>
+              <p className="text-xs md:text-sm text-gray-300">Customers find you without paying for ads. Sustainable growth that doesn't disappear when budget runs out.</p>
             </div>
 
             <div className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
@@ -314,7 +319,8 @@ export default function SEOVisibilityPage() {
       </section>
 
       {/* 8️⃣ STRONG CTA (URGENCY) */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-orange-primary)] to-[#E87528] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative">
+      <      section className="py-12 md:py-20 bg-gradient-to-br from-[var(--cres-orange-primary)] to-[#E87528] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white mb-8">

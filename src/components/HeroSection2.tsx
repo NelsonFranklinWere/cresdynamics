@@ -1,7 +1,9 @@
 export default function HeroSection2() {
   return (
-    <section className="pt-8 pb-32 bg-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-      <div className="max-w-7xl mx-auto px-6 text-center">
+    <section className="pt-8 pb-32 bg-[var(--cres-secondary-bg)] relative">
+      <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+      <div className="relative z-10">
+        <div className="max-w-7xl mx-auto px-6 text-center">
         {/* STRUGGLING TO GROW ONLINE? */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
           Struggling to Grow Online?
@@ -38,6 +40,7 @@ export default function HeroSection2() {
             Get Your Free Strategy Session
             <i className="fas fa-chevron-right text-sm"></i>
           </a>
+        </div>
         </div>
       </div>
     </section>

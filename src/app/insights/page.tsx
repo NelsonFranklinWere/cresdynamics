@@ -9,7 +9,8 @@ export default function InsightsPage() {
       <Header />
 
       {/* 1️⃣ HERO SECTION (ABOVE THE FOLD) */}
-      <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         {/* Dimmed background overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
@@ -63,20 +64,22 @@ export default function InsightsPage() {
       </section>
 
       {/* 2️⃣ THE PROBLEM SECTION — "THE SILENT LEAKS" */}
-      <section id="silent-leaks" className="py-12 md:py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <h2 className="text-3xl font-black text-center mb-10 underline-custom">
+      <section id="silent-leaks" className="py-12 md:py-20 bg-gray-800 relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-2xl md:text-3xl font-black text-center mb-6 md:mb-10 underline-custom">
             The Silent Growth Killers Most Businesses Ignore
           </h2>
 
-          <p className="text-xl text-gray-300 text-center mb-16 max-w-3xl mx-auto">
+          <p className="text-base md:text-xl text-gray-300 text-center mb-8 md:mb-16 max-w-3xl mx-auto">
             Most businesses don't fail because they lack effort.<br />
             They fail because they're leaking leads, time, and money — silently.
           </p>
 
           <div className="grid md:grid-cols-2 gap-4 md:gap-8">
             {/* Pain #1 — Visibility */}
-            <div className="bg-black border border-white/20 p-6 md:p-8 rounded-lg border-l-4 border-orange-500">
+            <div className="bg-black border border-white/20 p-4 md:p-8 rounded-lg border-l-4 border-orange-500">
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-3xl md:text-4xl">🔍</div>
                 <h3 className="text-xl md:text-2xl font-bold text-orange-500 underline-custom">Visibility</h3>
@@ -90,7 +93,7 @@ export default function InsightsPage() {
             </div>
 
             {/* Pain #2 — Conversion */}
-            <div className="bg-black border border-white/20 p-6 md:p-8 rounded-lg border-l-4 border-orange-500">
+            <div className="bg-black border border-white/20 p-4 md:p-8 rounded-lg border-l-4 border-orange-500">
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-3xl md:text-4xl">🎯</div>
                 <h3 className="text-xl md:text-2xl font-bold text-orange-500 underline-custom">Conversion</h3>
@@ -105,7 +108,7 @@ export default function InsightsPage() {
             </div>
 
             {/* Pain #3 — Manual Work */}
-            <div className="bg-black border border-white/20 p-6 md:p-8 rounded-lg border-l-4 border-orange-500">
+            <div className="bg-black border border-white/20 p-4 md:p-8 rounded-lg border-l-4 border-orange-500">
               <div className="text-4xl mb-4">⚙️</div>
               <h3 className="text-2xl font-bold text-orange-500 mb-4">Manual Work</h3>
               <h4 className="text-xl font-semibold text-white mb-3">You're Doing Work Software Should Be Doing.</h4>
@@ -118,7 +121,7 @@ export default function InsightsPage() {
             </div>
 
             {/* Pain #4 — Data Blindness */}
-            <div className="bg-black border border-white/20 p-6 md:p-8 rounded-lg border-l-4 border-orange-500">
+            <div className="bg-black border border-white/20 p-4 md:p-8 rounded-lg border-l-4 border-orange-500">
               <div className="text-4xl mb-4">📊</div>
               <h3 className="text-2xl font-bold text-orange-500 mb-4">Data Blindness</h3>
               <h4 className="text-xl font-semibold text-white mb-3">You Can't Fix What You Don't Track.</h4>
@@ -130,11 +133,14 @@ export default function InsightsPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* 3️⃣ INSIGHT CATEGORIES (CONTENT STRUCTURE) */}
-      <section className="py-12 md:py-20 bg-gray-900 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
+      <section className="py-12 md:py-20 bg-gray-900 relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
           <h2 className="text-3xl font-black text-center mb-10 underline-custom">
             What We See After Working With Real Businesses
           </h2>
@@ -171,14 +177,17 @@ export default function InsightsPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* 4️⃣ FEATURED INSIGHT CARDS (HIGH-IMPACT) */}
-      <section className="py-12 md:py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <h2 className="text-3xl font-black text-center mb-10 underline-custom">Featured Insights</h2>
+      <section className="py-12 md:py-20 bg-gray-800 relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
+            <h2 className="text-3xl font-black text-center mb-10 underline-custom">Featured Insights</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {/* Card 1 */}
             <div className="bg-black border border-white/20 p-6 md:p-8 rounded-lg border-l-4 border-orange-500 hover:border-orange-400 transition-colors duration-300">
               <h3 className="text-2xl font-bold text-white mb-4">
@@ -226,13 +235,16 @@ export default function InsightsPage() {
                 Read Full Insight →
               </button>
             </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 5️⃣ REALITY CHECK SECTION (URGENCY CREATOR) */}
-      <section className="py-12 md:py-20 bg-gray-900 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <section className="py-12 md:py-20 bg-gray-900 relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-3xl font-black mb-10">
             If You Do Nothing, This Is What Happens
           </h2>
@@ -275,11 +287,14 @@ export default function InsightsPage() {
             </p>
           </div>
         </div>
+        </div>
       </section>
 
       {/* 6️⃣ THE OUTCOME SECTION — "WHAT CHANGES" */}
-      <section className="py-12 md:py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
+      <section className="py-12 md:py-20 bg-gray-800 relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
           <h2 className="text-3xl font-black text-center mb-10 underline-custom">
             What Happens When You Fix the System
           </h2>
@@ -338,11 +353,14 @@ export default function InsightsPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* 7️⃣ AUTHORITY POSITIONING (WHY CRES) */}
-      <section className="py-12 md:py-20 bg-gray-900 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <section className="py-12 md:py-20 bg-gray-900 relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl font-black mb-8">
             Why These Insights Matter
           </h2>
@@ -378,11 +396,14 @@ export default function InsightsPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* 8️⃣ SOFT CASE PROOF (WITHOUT NUMBERS) */}
-      <section className="py-12 md:py-20 bg-gray-800 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <section className="py-12 md:py-20 bg-gray-800 relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl font-black mb-12">
             What Businesses Discover After Working With Us
           </h2>
@@ -419,10 +440,13 @@ export default function InsightsPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* 9️⃣ LATEST INSIGHTS SECTION */}
-      <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
         {/* Dimmed background overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
@@ -533,6 +557,7 @@ export default function InsightsPage() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
 

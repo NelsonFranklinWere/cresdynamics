@@ -9,7 +9,8 @@ export default function AboutPage() {
       <Header />
 
       {/* SECTION 1: OPENING STATEMENT (WHY WE EXIST) */}
-      <section className="py-12 md:py-12 md:py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
+      <section className="py-12 md:py-12 md:py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -43,8 +44,10 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 2: THE PROBLEM WE SAW (THE "WHY") */}
-      <section className="py-12 md:py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
+      <section className="py-12 md:py-12 md:py-20 bg-white relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
           <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 text-center underline-custom">
             The Gap Between Effort and Results
           </h2>
@@ -84,10 +87,13 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
+        </div>
       </section>
 
       {/* SECTION 3: OUR PHILOSOPHY (HOW WE THINK) */}
-      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-light-grey)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
         <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
           <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 underline-custom">
             Technology Should Simplify Growth, Not Complicate It
@@ -129,11 +135,14 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* SECTION 4: WHAT MAKES US DIFFERENT */}
-      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
           <h2 className="text-2xl font-black text-white mb-10 text-center underline-custom">
             We Build Systems, Not Just Deliverables
           </h2>
@@ -176,10 +185,13 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* SECTION 5: OUR CULTURE (HOW WE OPERATE) */}
-      <section className="py-12 md:py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-12 md:py-12 md:py-20 bg-white relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
         <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
           <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 text-center underline-custom">
             Principle-Driven. Outcome-Focused. Built for the Long Term.
@@ -222,10 +234,13 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* SECTION 6: OUR LANGUAGE (HOW WE COMMUNICATE) */}
-      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-light-grey)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
         <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
           <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 underline-custom">
             Clear. Professional. Grounded in Reality.
@@ -264,11 +279,14 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* SECTION 7: THE IMPACT WE AIM FOR */}
-      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
           <h2 className="text-2xl font-black text-white mb-10 text-center underline-custom">
             Growth That Is Measurable, Predictable, and Sustainable
           </h2>
@@ -311,11 +329,14 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* SECTION 8: WHO WE WORK WITH */}
-      <section className="py-12 md:py-12 md:py-20 bg-white bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
+      <section className="py-12 md:py-12 md:py-20 bg-white relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
           <h2 className="text-2xl font-black text-[var(--cres-deep-navy)] mb-10 underline-custom">
             Built for Businesses That Want to Grow With Intention
           </h2>
@@ -351,11 +372,14 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* SECTION 9: CLOSING STATEMENT (SUBTLE CTA) */}
-      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-light-grey)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
-        <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-light-grey)] relative">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="relative z-10">
+          <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
           <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8 underline-custom">
             Growth Favors the Prepared
           </h2>
@@ -377,6 +401,7 @@ export default function AboutPage() {
               Contact CRES Dynamics
             </a>
           </div>
+        </div>
         </div>
       </section>
 

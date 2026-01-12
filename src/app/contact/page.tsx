@@ -65,7 +65,8 @@ export default function ContactPage() {
       <Header />
 
       {/* 1️⃣ HERO SECTION (Above the Fold) */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         {/* Subtle Electric Teal glow lines */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -91,7 +92,8 @@ export default function ContactPage() {
       </section>
 
       {/* 2️⃣ CONTACT FORM SECTION (Matching Image Layout) */}
-      <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         {/* Dimmed background overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
@@ -101,46 +103,46 @@ export default function ContactPage() {
             {/* LEFT SIDE → Get in Touch */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-4xl md:text-5xl font-black text-[var(--cres-white)] mb-4" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-3 md:mb-4" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
                   Get in Touch
                 </h2>
-                <p className="text-xl md:text-2xl text-[var(--cres-white)] mb-6" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
+                <p className="text-base md:text-xl lg:text-2xl text-[var(--cres-white)] mb-4 md:mb-6" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
                   Let's Discuss Growing Your Business <span className="text-[var(--cres-orange-primary)]">Smarter.</span>
                 </p>
-                <p className="text-base md:text-lg text-[var(--cres-white)] leading-relaxed" style={{textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)'}}>
+                <p className="text-sm md:text-base lg:text-lg text-[var(--cres-white)] leading-relaxed" style={{textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)'}}>
                   Whether you're ready to improve your lead flow, automate your processes, or just have questions, we're here to help.
                 </p>
               </div>
 
               {/* Contact Us Card */}
-              <div className="bg-black border border-white/20 rounded-xl p-6 md:p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-[var(--cres-white)] mb-4">Contact Us</h3>
-                <p className="text-[var(--cres-white)] mb-6 leading-relaxed">
+              <div className="bg-black border border-white/20 rounded-xl p-4 md:p-8 shadow-lg">
+                <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-white)] mb-3 md:mb-4">Contact Us</h3>
+                <p className="text-xs md:text-sm text-[var(--cres-white)] mb-4 md:mb-6 leading-relaxed">
                   Reach out to discuss your growth challenges. We respond within 24 hours.
                 </p>
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <i className="fas fa-phone text-[var(--cres-orange-primary)] text-xl"></i>
-                    <a href="tel:+254708805496" className="text-[var(--cres-white)] hover:text-[var(--cres-orange-primary)] transition-colors">
+                    <i className="fas fa-phone text-[var(--cres-orange-primary)] text-base md:text-xl"></i>
+                    <a href="tel:+254708805496" className="text-xs md:text-sm text-[var(--cres-white)] hover:text-[var(--cres-orange-primary)] transition-colors">
                       +254 708 805 496
                     </a>
                   </div>
                   <div className="flex items-center gap-3">
-                    <i className="fas fa-phone text-[var(--cres-orange-primary)] text-xl"></i>
-                    <a href="tel:+254743869564" className="text-[var(--cres-white)] hover:text-[var(--cres-orange-primary)] transition-colors">
+                    <i className="fas fa-phone text-[var(--cres-orange-primary)] text-base md:text-xl"></i>
+                    <a href="tel:+254743869564" className="text-xs md:text-sm text-[var(--cres-white)] hover:text-[var(--cres-orange-primary)] transition-colors">
                       +254 743 869 564
                     </a>
                   </div>
                   <div className="flex items-center gap-3">
-                    <i className="fas fa-envelope text-[var(--cres-orange-primary)] text-xl"></i>
-                    <a href="mailto:info@cresdynamics.com" className="text-[var(--cres-white)] hover:text-[var(--cres-orange-primary)] transition-colors">
+                    <i className="fas fa-envelope text-[var(--cres-orange-primary)] text-base md:text-xl"></i>
+                    <a href="mailto:info@cresdynamics.com" className="text-xs md:text-sm text-[var(--cres-white)] hover:text-[var(--cres-orange-primary)] transition-colors">
                       info@cresdynamics.com
                     </a>
                   </div>
                   <div className="flex items-start gap-3">
-                    <i className="fas fa-map-marker-alt text-[var(--cres-orange-primary)] text-xl mt-1"></i>
-                    <p className="text-[var(--cres-white)]">
+                    <i className="fas fa-map-marker-alt text-[var(--cres-orange-primary)] text-base md:text-xl mt-1"></i>
+                    <p className="text-xs md:text-sm text-[var(--cres-white)]">
                       Kivuli Tower, 3rd Floor Westlands, Nairobi, Kenya
                     </p>
                   </div>
@@ -149,12 +151,12 @@ export default function ContactPage() {
             </div>
 
             {/* RIGHT SIDE → Contact Form */}
-            <div className="bg-black border border-white/20 rounded-xl p-6 md:p-8 shadow-lg">
-              <div className="mb-6">
-                <h3 className="text-2xl md:text-3xl font-black text-[var(--cres-white)] mb-3">
+            <div className="bg-black border border-white/20 rounded-xl p-4 md:p-8 shadow-lg">
+              <div className="mb-4 md:mb-6">
+                <h3 className="text-lg md:text-2xl lg:text-3xl font-black text-[var(--cres-white)] mb-2 md:mb-3">
                   Let's Strategize Your Growth
                 </h3>
-                <p className="text-[var(--cres-white)] text-base md:text-lg">
+                <p className="text-xs md:text-base lg:text-lg text-[var(--cres-white)]">
                   Fill out the form below, and let's talk about scaling your business effectively.
                 </p>
               </div>
@@ -221,7 +223,7 @@ export default function ContactPage() {
                     onChange={(e) => setFormData(prev => ({ ...prev, subscribe: e.target.checked }))}
                     className="mt-1 w-5 h-5 rounded border-gray-700 bg-gray-800 text-[var(--cres-orange-primary)] focus:ring-2 focus:ring-[var(--cres-orange-primary)]"
                   />
-                  <label htmlFor="subscribe" className="text-sm md:text-base text-[var(--cres-white)] cursor-pointer">
+                  <label htmlFor="subscribe" className="text-xs md:text-sm lg:text-base text-[var(--cres-white)] cursor-pointer">
                     Yes, I'd like to get insights and tips for digital growth (optional)
                   </label>
                 </div>

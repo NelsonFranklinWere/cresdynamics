@@ -43,9 +43,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email via Resend
+    const recipientEmail = process.env.CONTACT_FORM_EMAIL || 'info@cresdynamics.com';
+    // Use custom domain if verified, otherwise fallback to Resend testing domain
+    const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+    
     const { data, error } = await resend.emails.send({
-      from: 'CRES Dynamics <onboarding@resend.dev>', // Use Resend's default domain for testing
-      to: ['info@cresdynamics.com'],
+      from: `CRES Dynamics <${senderEmail}>`,
+      to: [recipientEmail],
       subject: `New Contact Form Submission - ${fullName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
@@ -115,7 +119,7 @@ export async function POST(request: NextRequest) {
       try {
         // Send welcome email with subscription confirmation
         await resend.emails.send({
-          from: 'CRES Dynamics <onboarding@resend.dev>', // Use Resend's default domain for testing
+          from: `CRES Dynamics <${senderEmail}>`,
           to: [email],
           subject: 'Welcome to CRES Dynamics Newsletter!',
           html: `

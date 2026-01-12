@@ -1,7 +1,9 @@
 export default function HowCresWorks() {
   return (
-    <section className="py-32 bg-[var(--cres-primary-bg)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center" id="how-it-works">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-32 bg-[var(--cres-primary-bg)] relative" id="how-it-works">
+      <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+      <div className="relative z-10">
+        <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           {/* Here's How CRES Transforms Frustration Into Growth. */}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
@@ -79,6 +81,7 @@ export default function HowCresWorks() {
               <i className="fas fa-chevron-right text-sm"></i>
             </a>
           </div>
+        </div>
         </div>
       </div>
     </section>
