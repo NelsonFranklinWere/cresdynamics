@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
+import AIChatWidget from "@/components/AIChatWidget";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cresdynamics.com'),
@@ -194,6 +195,7 @@ export default function RootLayout({
       <body className="antialiased">
         <PerformanceMonitor />
         {children}
+        <AIChatWidget />
 
         {/* Performance optimizations */}
         <script

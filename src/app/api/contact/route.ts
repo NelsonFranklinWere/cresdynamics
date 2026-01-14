@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email via Resend
-    const recipientEmail = process.env.CONTACT_FORM_EMAIL || 'info@cresdynamics.com';
+    const recipientEmail = process.env.CONTACT_FORM_EMAIL || 'cresdynamics@gmail.com';
     // Use custom domain if verified, otherwise fallback to Resend testing domain
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
     
