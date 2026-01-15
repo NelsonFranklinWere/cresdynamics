@@ -7,8 +7,18 @@ interface Message {
   content: string;
 }
 
+interface ClientDetails {
+  name: string;
+  phone: string;
+  email?: string;
+}
+
 export default function AIChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [clientDetails, setClientDetails] = useState<ClientDetails | null>(null);
+  const [showDetailsForm, setShowDetailsForm] = useState(true);
+  const [detailsFormData, setDetailsFormData] = useState({ name: '', phone: '', email: '' });
+  const [isSubmittingDetails, setIsSubmittingDetails] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
@@ -19,6 +29,7 @@ export default function AIChatWidget() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -29,10 +40,70 @@ export default function AIChatWidget() {
   }, [messages]);
 
   useEffect(() => {
-    if (isOpen && inputRef.current) {
+    if (isOpen && showDetailsForm && nameInputRef.current) {
+      nameInputRef.current.focus();
+    } else if (isOpen && !showDetailsForm && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [isOpen]);
+  }, [isOpen, showDetailsForm]);
+
+  const handleDetailsSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!detailsFormData.name.trim() || !detailsFormData.phone.trim()) {
+      return;
+    }
+
+    setIsSubmittingDetails(true);
+
+    try {
+      // Send client details to API
+      const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
+      const userAgent = typeof window !== 'undefined' ? window.navigator.userAgent : '';
+
+      const response = await fetch('/api/chat-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: detailsFormData.name.trim(),
+          phone: detailsFormData.phone.trim(),
+          email: detailsFormData.email.trim() || undefined,
+          pageUrl,
+          userAgent,
+        }),
+      });
+
+      if (response.ok) {
+        // Store client details
+        setClientDetails({
+          name: detailsFormData.name.trim(),
+          phone: detailsFormData.phone.trim(),
+          email: detailsFormData.email.trim() || undefined,
+        });
+        setShowDetailsForm(false);
+      } else {
+        // Still allow chat even if email fails
+        setClientDetails({
+          name: detailsFormData.name.trim(),
+          phone: detailsFormData.phone.trim(),
+          email: detailsFormData.email.trim() || undefined,
+        });
+        setShowDetailsForm(false);
+      }
+    } catch (error) {
+      console.error('Error submitting details:', error);
+      // Still allow chat even if email fails
+      setClientDetails({
+        name: detailsFormData.name.trim(),
+        phone: detailsFormData.phone.trim(),
+        email: detailsFormData.email.trim() || undefined,
+      });
+      setShowDetailsForm(false);
+    } finally {
+      setIsSubmittingDetails(false);
+    }
+  };
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,11 +134,13 @@ export default function AIChatWidget() {
           { role: 'assistant', content: data.response },
         ]);
       } else {
+        // Show the actual error message if available
+        const errorMsg = data.error || "I'm sorry, I'm having trouble connecting right now. Please try again or contact us directly at info@cresdynamics.com";
         setMessages((prev) => [
           ...prev,
           {
             role: 'assistant',
-            content: "I'm sorry, I'm having trouble connecting right now. Please try again or contact us directly at info@cresdynamics.com",
+            content: errorMsg,
           },
         ]);
       }
@@ -134,11 +207,18 @@ export default function AIChatWidget() {
               </div>
               <div>
                 <h3 className="text-white font-bold text-lg">CRES AI Assistant</h3>
-                <p className="text-white/80 text-xs">Ask me anything about our services</p>
+                <p className="text-white/80 text-xs">
+                  {showDetailsForm ? 'Please provide your details to continue' : 'Ask me anything about our services'}
+                </p>
               </div>
             </div>
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                setShowDetailsForm(true);
+                setClientDetails(null);
+                setDetailsFormData({ name: '', phone: '', email: '' });
+              }}
               className="text-white hover:text-white/80 transition-colors p-1"
               aria-label="Close chat"
             >
@@ -158,8 +238,78 @@ export default function AIChatWidget() {
             </button>
           </div>
 
+          {/* Details Form */}
+          {showDetailsForm && (
+            <div className="flex-1 overflow-y-auto p-6 bg-[var(--cres-primary-bg)]">
+              <div className="mb-4">
+                <h4 className="text-[var(--cres-white)] font-semibold mb-2">Let's get started!</h4>
+                <p className="text-gray-400 text-sm mb-4">
+                  Please provide your details so we can assist you better and follow up with you.
+                </p>
+              </div>
+              <form onSubmit={handleDetailsSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-[var(--cres-white)] mb-2">
+                    Full Name <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    ref={nameInputRef}
+                    type="text"
+                    id="name"
+                    required
+                    value={detailsFormData.name}
+                    onChange={(e) => setDetailsFormData({ ...detailsFormData, name: e.target.value })}
+                    placeholder="Enter your full name"
+                    className="w-full px-4 py-3 bg-black/70 border border-white/20 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    disabled={isSubmittingDetails}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-[var(--cres-white)] mb-2">
+                    Phone Number <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    required
+                    value={detailsFormData.phone}
+                    onChange={(e) => setDetailsFormData({ ...detailsFormData, phone: e.target.value })}
+                    placeholder="e.g., +254 712 345 678"
+                    className="w-full px-4 py-3 bg-black/70 border border-white/20 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    disabled={isSubmittingDetails}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-[var(--cres-white)] mb-2">
+                    Email (Optional)
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={detailsFormData.email}
+                    onChange={(e) => setDetailsFormData({ ...detailsFormData, email: e.target.value })}
+                    placeholder="your.email@example.com"
+                    className="w-full px-4 py-3 bg-black/70 border border-white/20 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    disabled={isSubmittingDetails}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={!detailsFormData.name.trim() || !detailsFormData.phone.trim() || isSubmittingDetails}
+                  className="w-full bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-white px-6 py-3 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+                >
+                  {isSubmittingDetails ? 'Starting chat...' : 'Start Chat'}
+                </button>
+                <p className="text-xs text-gray-400 text-center mt-2">
+                  By continuing, you agree to be contacted by CRES Dynamics
+                </p>
+              </form>
+            </div>
+          )}
+
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[var(--cres-primary-bg)]">
+          {!showDetailsForm && (
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[var(--cres-primary-bg)]">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -190,10 +340,12 @@ export default function AIChatWidget() {
               </div>
             )}
             <div ref={messagesEndRef} />
-          </div>
+            </div>
+          )}
 
           {/* Input */}
-          <form onSubmit={handleSend} className="p-4 bg-[var(--cres-deep-navy)] border-t border-white/10">
+          {!showDetailsForm && (
+            <form onSubmit={handleSend} className="p-4 bg-[var(--cres-deep-navy)] border-t border-white/10">
             <div className="flex gap-2">
               <input
                 ref={inputRef}
@@ -226,9 +378,10 @@ export default function AIChatWidget() {
               </button>
             </div>
             <p className="text-xs text-gray-400 mt-2 text-center">
-              Powered by Grok AI • Learn about CRES Dynamics
+              Powered by AI • Learn about CRES Dynamics
             </p>
           </form>
+          )}
         </div>
       )}
     </>

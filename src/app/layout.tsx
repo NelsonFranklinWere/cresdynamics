@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   description: 'Stop losing leads. Turn clicks into clients. Free strategy session for Kenyan businesses.',
   icons: {
     icon: [
-      { url: '/logo.png', sizes: '32x32', type: 'image/png' },
-      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
-      { url: '/logo.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon-circular.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-circular.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon-circular.png', sizes: '512x512', type: 'image/png' },
     ],
-    apple: '/logo.png',
-    shortcut: '/logo.png',
+    apple: '/favicon-circular.png',
+    shortcut: '/favicon-circular.png',
   },
   openGraph: {
     images: [
@@ -107,15 +107,16 @@ export default function RootLayout({
         <link rel="prefetch" href="/solutions/seo-visibility" />
         <link rel="prefetch" href="/case-studies" />
 
-        {/* Favicon and App Icons - Logo as favicon */}
-        <link rel="icon" href="/logo.png" sizes="32x32" type="image/png" />
-        <link rel="icon" href="/logo.png" sizes="192x192" type="image/png" />
-        <link rel="icon" href="/logo.png" sizes="512x512" type="image/png" />
-        <link rel="apple-touch-icon" href="/logo.png" sizes="180x180" />
+        {/* Favicon and App Icons - Circular Logo as favicon */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-circular.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon-circular.png" sizes="192x192" type="image/png" />
+        <link rel="icon" href="/favicon-circular.png" sizes="512x512" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon-circular.png" sizes="180x180" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0D1B2A" />
         <meta name="msapplication-TileColor" content="#0D1B2A" />
-        <meta name="msapplication-TileImage" content="/logo.png" />
+        <meta name="msapplication-TileImage" content="/favicon-circular.png" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
         {/* Open Graph Images */}
@@ -142,7 +143,7 @@ export default function RootLayout({
         />
         
         {/* Preload logo for instant display */}
-        <link rel="preload" href="/logo.png" as="image" fetchPriority="high" />
+        <link rel="preload" href="/favicon-circular.png" as="image" fetchPriority="high" />
         
         {/* Preload background image for hero */}
         <link rel="preload" href="/backround.png" as="image" fetchPriority="high" />
