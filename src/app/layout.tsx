@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   description: 'Stop losing leads. Turn clicks into clients. Free strategy session for Kenyan businesses.',
   icons: {
     icon: [
-      { url: '/favicon-circular.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-circular.png', sizes: '192x192', type: 'image/png' },
-      { url: '/favicon-circular.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon-circular.png?v=2', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-circular.png?v=2', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon-circular.png?v=2', sizes: '512x512', type: 'image/png' },
     ],
-    apple: '/favicon-circular.png',
-    shortcut: '/favicon-circular.png',
+    apple: '/favicon-circular.png?v=2',
+    shortcut: '/favicon-circular.png?v=2',
   },
   openGraph: {
     images: [
@@ -87,6 +87,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2WR5M5FGH"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-P2WR5M5FGH');
+            `,
+          }}
+        />
+
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
@@ -108,15 +121,15 @@ export default function RootLayout({
         <link rel="prefetch" href="/case-studies" />
 
         {/* Favicon and App Icons - Circular Logo as favicon */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon-circular.png" sizes="32x32" type="image/png" />
-        <link rel="icon" href="/favicon-circular.png" sizes="192x192" type="image/png" />
-        <link rel="icon" href="/favicon-circular.png" sizes="512x512" type="image/png" />
-        <link rel="apple-touch-icon" href="/favicon-circular.png" sizes="180x180" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" href="/favicon-circular.png?v=2" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon-circular.png?v=2" sizes="192x192" type="image/png" />
+        <link rel="icon" href="/favicon-circular.png?v=2" sizes="512x512" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon-circular.png?v=2" sizes="180x180" />
+        <link rel="manifest" href="/manifest.json?v=2" />
         <meta name="theme-color" content="#0D1B2A" />
         <meta name="msapplication-TileColor" content="#0D1B2A" />
-        <meta name="msapplication-TileImage" content="/favicon-circular.png" />
+        <meta name="msapplication-TileImage" content="/favicon-circular.png?v=2" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
         {/* Open Graph Images */}
