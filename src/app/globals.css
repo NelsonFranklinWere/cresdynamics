@@ -139,6 +139,30 @@
   /* Stats stack vertically, CTA full-width */
   .stats-grid { @apply grid-cols-1 gap-6; }
   .cta-hero { @apply w-full px-8 py-8 text-lg; }
+  
+  /* Compact mobile sections */
+  .mobile-compact {
+    @apply py-12 px-4;
+  }
+  
+  /* Mobile text sizing */
+  .mobile-title {
+    @apply text-2xl leading-tight;
+  }
+  
+  .mobile-subtitle {
+    @apply text-lg leading-relaxed;
+  }
+  
+  /* Mobile card spacing */
+  .mobile-card {
+    @apply p-4 mb-4;
+  }
+  
+  /* Mobile grid adjustments */
+  .mobile-grid-1 { @apply grid-cols-1 gap-4; }
+  .mobile-grid-2 { @apply grid-cols-2 gap-3; }
+  .mobile-grid-3 { @apply grid-cols-1 gap-4; }
 }
 
 /* Desktop: Cards hover lift 8px, glow */
