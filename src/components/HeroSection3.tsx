@@ -16,8 +16,8 @@ export default function HeroSection3() {
           Stop Spinning Your Wheels — Let's Build a Machine That Works for You.
         </p>
 
-        {/* 3 PROBLEM CARDS - Mobile: Stack vertically, Desktop: 3 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto mb-16 md:mb-20">
+        {/* 3 PROBLEM CARDS - 3 columns on all screen sizes */}
+        <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto mb-16 md:mb-20">
           {[
             {
               icon: <i className="fas fa-eye-slash"></i>,
@@ -35,12 +35,12 @@ export default function HeroSection3() {
               subtitle: "You're spending too much to get too little. Leads slip through the cracks and valuable data is going to waste."
             }
           ].map((card, i) => (
-            <div key={i} className="group p-4 md:p-10 rounded-xl bg-black/80 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="text-lg md:text-3xl text-[var(--cres-white)] opacity-75 group-hover:scale-110 transition-transform">{card.icon}</div>
-                <h4 className="text-sm md:text-lg font-black text-[var(--cres-orange-primary)] underline-custom group-hover:text-[var(--cres-orange-primary)] transition-colors">{card.title}</h4>
+            <div key={i} className="group p-3 md:p-6 rounded-xl bg-black/80 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center justify-center gap-2 md:gap-3 mb-2 md:mb-3">
+                <div className="text-base md:text-xl text-[var(--cres-white)] opacity-75 group-hover:scale-110 transition-transform">{card.icon}</div>
+                <h4 className="text-xs md:text-sm font-black text-[var(--cres-orange-primary)] underline-custom group-hover:text-[var(--cres-orange-primary)] transition-colors">{card.title}</h4>
               </div>
-              <p className="text-white leading-relaxed text-center text-sm md:text-base">{card.subtitle}</p>
+              <p className="text-white leading-relaxed text-center text-xs md:text-sm">{card.subtitle}</p>
             </div>
           ))}
         </div>
@@ -73,7 +73,7 @@ export default function HeroSection3() {
               Imagine a system so powerful it literally pays for itself.
             </p>
             <div className="text-center md:text-left">
-              <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-base md:text-lg px-6 md:px-8 py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+              <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-sm md:text-base px-4 md:px-6 py-2 md:py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
                 Book Your Free Strategy Session
                 <i className="fas fa-chevron-right text-sm"></i>
               </a>

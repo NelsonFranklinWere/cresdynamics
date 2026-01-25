@@ -16,20 +16,20 @@ export default function HeroSection2() {
           Stop Losing Leads & Wasting Money. Let's Fix That.
         </p>
 
-        {/* Stats Row - Mobile: Stack vertically, Desktop: 3 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto">
+        {/* Stats Row - 3 columns on all screen sizes */}
+        <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
           {[
             { num: '90%', label: 'of websites fail to convert visitors.' },
             { num: '60%', label: 'of leads go cold without follow-up.' },
             { num: '1000s', label: 'of hours wasted on manual tasks.' }
           ].map((stat, i) => (
-            <div key={i} className="group p-4 md:p-8 rounded-xl bg-black/80 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div key={i} className="group p-3 md:p-4 rounded-xl bg-black/80 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300">
               {/* STAT NUMBER: Large, bold, orange */}
-              <div className="text-2xl md:text-3xl lg:text-4xl font-black text-[var(--cres-orange-primary)] mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="text-lg md:text-xl lg:text-2xl font-black text-[var(--cres-orange-primary)] mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300">
                 {stat.num}
               </div>
               {/* LABEL: Secondary text */}
-              <p className="text-white text-sm md:text-base lg:text-lg font-medium leading-relaxed">
+              <p className="text-white text-xs md:text-sm lg:text-base font-medium leading-relaxed">
                 {stat.label}
               </p>
             </div>

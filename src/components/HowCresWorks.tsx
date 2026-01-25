@@ -18,10 +18,10 @@ export default function HowCresWorks() {
           </p>
         </div>
 
-        {/* PROCESS CARDS - Mobile: 1 column, Tablet: 2 columns, Desktop: 4 columns */}
+        {/* PROCESS CARDS - 3 columns on all screen sizes */}
         <div className="relative">
           {/* Process Steps */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-16 md:mb-20">
+          <div className="grid grid-cols-3 gap-4 md:gap-6 mb-16 md:mb-20">
             {[
               {
                 icon: <i className="fas fa-search"></i>,
@@ -45,20 +45,20 @@ export default function HowCresWorks() {
               }
             ].map((step, i) => (
               <div key={i} className="relative">
-                <div className="group p-4 md:p-6 rounded-xl bg-black/80 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col justify-center">
-                  <div className="flex items-center gap-2 md:gap-3 mb-3">
-                    <div className="text-xl md:text-2xl text-[var(--cres-white)]">{step.icon}</div>
-                    <h3 className="text-base md:text-lg font-bold text-[var(--cres-white)] group-hover:text-[var(--cres-orange-primary)] transition-colors underline-custom">
+                <div className="group p-3 md:p-4 rounded-xl bg-black/80 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 md:gap-3 mb-2">
+                    <div className="text-lg md:text-xl text-[var(--cres-white)]">{step.icon}</div>
+                    <h3 className="text-sm md:text-base font-bold text-[var(--cres-white)] group-hover:text-[var(--cres-orange-primary)] transition-colors underline-custom">
                       {step.title}
                     </h3>
                   </div>
-                  <p className="text-white leading-relaxed text-sm md:text-base">
+                  <p className="text-white leading-relaxed text-xs md:text-sm">
                     {step.text}
                   </p>
                 </div>
 
                 {/* Arrow between steps (not on last item, only on desktop) */}
-                {i < 3 && (
+                {i < 2 && (
                   <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
                     <i className="fas fa-arrow-right text-xl md:text-2xl text-[var(--cres-orange-primary)]"></i>
                   </div>

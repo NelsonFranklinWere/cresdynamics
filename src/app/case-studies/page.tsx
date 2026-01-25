@@ -84,31 +84,32 @@ export default function CaseStudiesPage() {
       <Header />
 
       {/* 1️⃣ HERO SECTION – AUTHORITY FIRST */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+      <section className="pt-12 md:pt-16 pb-0 flex flex-col justify-end bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-3/4 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-white leading-tight mb-6 md:mb-8 underline-custom">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10 pb-0">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-3 md:mb-4 underline-custom">
             Real Growth. Real Systems. Real Businesses.
           </h1>
 
-          <p className="text-base md:text-xl lg:text-2xl text-gray-300 mb-6 md:mb-8 max-w-3xl mx-auto">
+          <p className="text-sm md:text-lg lg:text-xl text-gray-300 mb-3 md:mb-4 max-w-3xl mx-auto">
             How we help businesses remove bottlenecks, build systems, and grow sustainably using technology and automation.
           </p>
 
-          <p className="text-sm md:text-lg text-gray-400 mb-8 md:mb-12">
+          <p className="text-xs md:text-sm text-gray-400 mb-4 md:mb-6">
             Not experiments. Not templates. Real work done for real businesses.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
+            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Request a Growth Audit
             </a>
-            <button className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <button className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-bold text-base py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
               See How We Work
             </button>
           </div>
@@ -116,7 +117,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* 2️⃣ HOW TO READ OUR CASE STUDIES */}
-      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
+      <section className="pt-0 pb-12 md:pb-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
         <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
@@ -128,7 +129,7 @@ export default function CaseStudiesPage() {
             We don't show screenshots to impress. We show problems → systems → outcomes. Each case focuses on decision-making, not deliverables.
           </p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 text-left">
+            <div className="grid grid-cols-3 gap-6 md:gap-8 text-left">
               <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
                 <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Business Context</h3>
                 <p className="text-xs md:text-sm text-white">Understanding the industry, market situation, and growth stage before any recommendations.</p>
@@ -172,7 +173,7 @@ export default function CaseStudiesPage() {
               Case Studies
             </h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-3 gap-6 md:gap-8">
               {caseStudies.map((study) => (
                 <div key={study.id} className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg shadow-lg p-4 md:p-6 hover:shadow-xl transition-all duration-300">
                   <div className="mb-3 md:mb-4">

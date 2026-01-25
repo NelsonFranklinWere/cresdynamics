@@ -6,6 +6,7 @@ import Link from 'next/link';
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSolutionsDropdownOpen, setIsSolutionsDropdownOpen] = useState(false);
+  const [isMobileSolutionsOpen, setIsMobileSolutionsOpen] = useState(false);
 
   return (
     <header className="fixed top-0 w-full z-50 bg-gradient-to-r from-[var(--cres-black)]/95 to-[var(--cres-dark)]/95 backdrop-blur-xl border-b border-[var(--cres-charcoal)]/50">
@@ -29,7 +30,12 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           className="md:hidden text-[var(--cres-white)]"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          onClick={() => {
+            setIsMobileMenuOpen(!isMobileMenuOpen);
+            if (isMobileMenuOpen) {
+              setIsMobileSolutionsOpen(false);
+            }
+          }}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -133,31 +139,77 @@ export default function Header() {
         </ul>
 
         {/* CTA BUTTON: Book a Free Consultation → Orange, rounded-xl, shadow */}
-        <Link href="/contact" prefetch={true} className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-white)] font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
+        <Link href="/contact" prefetch={true} className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-white)] font-bold px-4 py-1.5 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
           Book a Free Consultation
         </Link>
       </nav>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed top-20 left-0 w-full h-screen bg-[var(--cres-black)]/95 backdrop-blur-xl flex flex-col items-center justify-center space-y-8 pt-20">
+        <div className="mobile-menu open md:hidden">
           {[
             { name: 'Home', href: '/' },
-            { name: 'Solutions', href: '#solutions' },
+            { name: 'Solutions', href: '#solutions', isDropdown: true },
             { name: 'Case Studies', href: '/case-studies' },
             { name: 'About', href: '/about' },
             { name: 'Insights', href: '/insights' },
             { name: 'Contact', href: '/contact' }
           ].map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              prefetch={true}
-              className="text-[var(--cres-white)] text-lg font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {item.name}
-            </Link>
+            <div key={item.name}>
+              {item.isDropdown ? (
+                <div>
+                  <button
+                    onClick={() => setIsMobileSolutionsOpen(!isMobileSolutionsOpen)}
+                    className="text-[var(--cres-white)] text-base font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 flex items-center justify-between w-full text-left"
+                  >
+                    <span>{item.name}</span>
+                    <svg
+                      className={`w-4 h-4 transition-transform duration-200 ${isMobileSolutionsOpen ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {isMobileSolutionsOpen && (
+                    <div className="mt-2 ml-4 space-y-2">
+                      {[
+                        { name: 'Web Growth Systems', href: '/solutions/web-growth' },
+                        { name: 'AI & Automation', href: '/solutions/ai-automation' },
+                        { name: 'SEO & Online Visibility', href: '/solutions/seo-visibility' },
+                        { name: 'Digital Sales Systems', href: '/solutions/digital-sales' },
+                        { name: 'Content & Brand Authority', href: '/solutions/content-brand' },
+                        { name: 'Consulting & Strategy', href: '/solutions/consulting-strategy' }
+                      ].map((solution) => (
+                        <Link
+                          key={solution.href}
+                          href={solution.href}
+                          prefetch={true}
+                          className="text-[var(--cres-white)]/80 text-sm font-medium hover:text-[var(--cres-orange-primary)] transition-all duration-300 block w-full text-left"
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            setIsMobileSolutionsOpen(false);
+                          }}
+                        >
+                          {solution.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  href={item.href}
+                  prefetch={true}
+                  className="text-[var(--cres-white)] text-base font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 block w-full text-left"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              )}
+            </div>
           ))}
         </div>
       )}

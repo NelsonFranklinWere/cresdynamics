@@ -26,7 +26,7 @@ export default function FinalCTA() {
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
             <a
               href="/contact"
-              className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-black)] font-bold text-base md:text-lg px-8 md:px-12 py-4 md:py-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide"
+              className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-black)] font-bold text-sm md:text-base px-6 md:px-8 py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide"
             >
               Book Your Free Session Now
             </a>
@@ -36,19 +36,19 @@ export default function FinalCTA() {
           </div>
         </div>
 
-        {/* Trust Indicators - Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto">
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg text-center">
-            <div className="text-2xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-2">100+</div>
-            <div className="text-sm md:text-base text-[var(--cres-white)]">Businesses Transformed</div>
+        {/* Trust Indicators - Cards - 3 columns on all screen sizes */}
+        <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
+          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-lg text-center">
+            <div className="text-lg md:text-xl font-bold text-[var(--cres-orange-primary)] mb-1">100+</div>
+            <div className="text-xs md:text-sm text-[var(--cres-white)]">Businesses Transformed</div>
           </div>
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg text-center">
-            <div className="text-2xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-2">300%</div>
-            <div className="text-sm md:text-base text-[var(--cres-white)]">Average Growth</div>
+          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-lg text-center">
+            <div className="text-lg md:text-xl font-bold text-[var(--cres-orange-primary)] mb-1">300%</div>
+            <div className="text-xs md:text-sm text-[var(--cres-white)]">Average Growth</div>
           </div>
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg text-center">
-            <div className="text-2xl md:text-3xl font-bold text-[var(--cres-orange-primary)] mb-2">24/7</div>
-            <div className="text-sm md:text-base text-[var(--cres-white)]">System Support</div>
+          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-lg text-center">
+            <div className="text-lg md:text-xl font-bold text-[var(--cres-orange-primary)] mb-1">24/7</div>
+            <div className="text-xs md:text-sm text-[var(--cres-white)]">System Support</div>
           </div>
         </div>
         </div>

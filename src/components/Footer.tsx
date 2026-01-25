@@ -117,7 +117,7 @@ export default function Footer() {
 
             <a
               href="/contact"
-              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 text-xs"
+              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-1.5 px-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 text-xs"
             >
               Book a Free Strategy Session
             </a>

@@ -32,9 +32,9 @@ export default function HeroSection1() {
           Smart Websites, SEO & Automation Solutions to Supercharge Your Business.
         </p>
 
-        {/* VALUE CARDS - Mobile: Stack vertically, Desktop: 3 columns */}
+        {/* VALUE CARDS - 3 columns on all screen sizes */}
         <div className="max-w-6xl mx-auto mb-12 md:mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-3 gap-4 md:gap-6">
             {[
               {
                 icon: <i className="fas fa-search-location"></i>,
@@ -52,16 +52,16 @@ export default function HeroSection1() {
                 text: 'Streamline processes & grow efficiently.'
               }
             ].map((card, i) => (
-              <div key={i} className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-4 md:p-6 group hover:shadow-xl transition-all duration-300">
-                <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                  <div className="text-[var(--cres-orange-primary)] group-hover:scale-110 transition-transform text-lg md:text-2xl">
+              <div key={i} className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-3 md:p-4 group hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                  <div className="text-[var(--cres-orange-primary)] group-hover:scale-110 transition-transform text-base md:text-lg">
                     {card.icon}
                   </div>
-                  <h3 className="text-sm md:text-lg font-bold text-[var(--cres-white)] group-hover:text-[var(--cres-orange-primary)] transition-colors underline-custom">
+                  <h3 className="text-xs md:text-sm font-bold text-[var(--cres-white)] group-hover:text-[var(--cres-orange-primary)] transition-colors underline-custom">
                     {card.title}
                   </h3>
                 </div>
-                <p className="text-white leading-relaxed text-sm md:text-base">
+                <p className="text-white leading-relaxed text-xs md:text-sm">
                   {card.text}
                 </p>
               </div>

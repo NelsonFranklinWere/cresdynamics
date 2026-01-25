@@ -15,8 +15,8 @@ export default function WhyChooseCres() {
           </p>
         </div>
 
-        {/* 4 BENEFIT CARDS GRID - Mobile: 1 column, Tablet: 2 columns, Desktop: 4 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-12 md:mb-16">
+        {/* 4 BENEFIT CARDS GRID - 3 columns on all screen sizes */}
+        <div className="grid grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
           {[
             {
               icon: <i className="fas fa-chart-line"></i>,
@@ -39,14 +39,14 @@ export default function WhyChooseCres() {
               text: 'Track performance with real time, analytics and scale what works best.'
             }
           ].map((card, i) => (
-            <div key={i} className="group bg-black/80 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="text-xl md:text-2xl text-[var(--cres-orange-primary)] group-hover:scale-110 transition-transform">{card.icon}</div>
-                <h3 className="text-sm md:text-lg font-bold text-[var(--cres-white)] group-hover:text-[var(--cres-orange-primary)] transition-colors">
+            <div key={i} className="group bg-black/80 backdrop-blur-sm border border-white/20 p-3 md:p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                <div className="text-lg md:text-xl text-[var(--cres-orange-primary)] group-hover:scale-110 transition-transform">{card.icon}</div>
+                <h3 className="text-xs md:text-sm font-bold text-[var(--cres-white)] group-hover:text-[var(--cres-orange-primary)] transition-colors">
                   {card.title}
                 </h3>
               </div>
-              <p className="text-[var(--cres-white)] leading-relaxed text-sm md:text-base">
+              <p className="text-[var(--cres-white)] leading-relaxed text-xs md:text-sm">
                 {card.text}
               </p>
             </div>
@@ -130,7 +130,7 @@ export default function WhyChooseCres() {
           <h3 className="text-2xl md:text-4xl font-black text-[var(--cres-white)] mb-6 md:mb-8" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
             Stop Chasing Customers. Let Them Come to You.
           </h3>
-          <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-base md:text-lg px-6 md:px-8 py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+          <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-sm md:text-base px-4 md:px-6 py-2 md:py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
             Book a Free Strategy Session
             <i className="fas fa-chevron-right text-sm"></i>
           </a>
