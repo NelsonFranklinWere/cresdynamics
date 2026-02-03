@@ -27,9 +27,9 @@ export default function HeroSection1() {
           <span className="text-[var(--cres-orange-primary)]">Turn Chaos Into Growth.</span>
         </h1>
 
-        {/* H2: Smart Websites, SEO & Automation Solutions */}
+        {/* H2: Digital Growth & Software Engineering Company */}
         <p className="text-lg md:text-2xl font-bold text-[var(--cres-white)] mb-12 md:mb-16 max-w-4xl mx-auto leading-relaxed" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-          Smart Websites, SEO & Automation Solutions to Supercharge Your Business.
+          Digital Growth & Software Engineering Company. We help Nairobi businesses grow using technology.
         </p>
 
         {/* VALUE CARDS - 3 columns on all screen sizes */}

@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Digital Growth Insights - CRES Dynamics | SEO & AI Tips for Nairobi Businesses',
-  description: 'Weekly insights on AI automation, SEO strategies, and digital growth tips specifically designed for Nairobi businesses. Learn how to turn clicks into clients.',
+  title: 'Business Growth Insights - Learn How Nairobi Businesses Scale | CRES Dynamics',
+  description: 'Learn proven strategies to grow your Nairobi business. SEO tips, automation hacks, customer acquisition tactics. Stop guessing, start growing with data-driven insights.',
   openGraph: {
-    title: 'Digital Growth Insights - CRES Dynamics',
-    description: 'Weekly insights on AI automation, SEO strategies, and digital growth tips specifically designed for Nairobi businesses.',
+    title: 'Business Growth Insights - Scale Your Nairobi Business',
+    description: 'Learn proven strategies to grow your Nairobi business. SEO tips, automation hacks, customer acquisition tactics.',
     url: 'https://cresdynamics.com/insights',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Digital Growth Insights - CRES Dynamics',
-    description: 'Weekly insights on AI automation, SEO strategies, and digital growth tips for Nairobi businesses.',
+    title: 'Business Growth Insights - Scale Your Business',
+    description: 'Learn proven strategies to grow your Nairobi business. Stop guessing, start growing.',
   },
 };
 

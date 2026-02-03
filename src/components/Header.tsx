@@ -50,7 +50,7 @@ export default function Header() {
               prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
-              Home
+              Who We Are
             </Link>
           </li>
 
@@ -61,7 +61,7 @@ export default function Header() {
               onMouseLeave={() => setIsSolutionsDropdownOpen(false)}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 flex items-center space-x-1"
             >
-              <span>Solutions</span>
+              <span>What We Do</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -103,7 +103,7 @@ export default function Header() {
               prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
-              Case Studies
+              Case Impact
             </Link>
           </li>
 
@@ -113,7 +113,7 @@ export default function Header() {
               prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
-              About Cres
+              Why We Exist
             </Link>
           </li>
 
@@ -123,7 +123,7 @@ export default function Header() {
               prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
-              Insights
+              Growth Insights
             </Link>
           </li>
 
@@ -133,7 +133,7 @@ export default function Header() {
               prefetch={true}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
             >
-              Contact
+              Talk to Us
             </Link>
           </li>
         </ul>
@@ -148,12 +148,12 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="mobile-menu open md:hidden">
           {[
-            { name: 'Home', href: '/' },
-            { name: 'Solutions', href: '#solutions', isDropdown: true },
-            { name: 'Case Studies', href: '/case-studies' },
-            { name: 'About', href: '/about' },
-            { name: 'Insights', href: '/insights' },
-            { name: 'Contact', href: '/contact' }
+            { name: 'Who We Are', href: '/' },
+            { name: 'What We Do', href: '#solutions', isDropdown: true },
+            { name: 'Case Impact', href: '/case-studies' },
+            { name: 'Why We Exist', href: '/about' },
+            { name: 'Growth Insights', href: '/insights' },
+            { name: 'Talk to Us', href: '/contact' }
           ].map((item) => (
             <div key={item.name}>
               {item.isDropdown ? (

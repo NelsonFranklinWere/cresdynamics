@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Case Studies - CRES Dynamics | Success Stories from Nairobi Businesses',
-  description: 'Real success stories from Nairobi businesses. See how CRES Dynamics helped florists, restaurants, SACCOs, and more turn clicks into clients with digital growth solutions.',
+  title: 'Real Business Results - How Nairobi Companies Grew 300% | CRES Dynamics',
+  description: 'See real results: Nairobi businesses that doubled revenue, automated operations, and scaled profitably. Florists, restaurants, SACCOs - proven growth strategies that work.',
   openGraph: {
-    title: 'Case Studies - CRES Dynamics | Success Stories',
-    description: 'Real success stories from Nairobi businesses. See how CRES Dynamics helped turn clicks into clients with digital growth solutions.',
+    title: 'Real Business Results - How Companies Grew 300%',
+    description: 'See real results: Nairobi businesses that doubled revenue and scaled profitably. Proven growth strategies.',
     url: 'https://cresdynamics.com/case-studies',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Case Studies - CRES Dynamics',
-    description: 'Real success stories from Nairobi businesses. See how we helped turn clicks into clients.',
+    title: 'Real Business Results - Growth Stories',
+    description: 'See how Nairobi businesses doubled revenue and scaled with our proven strategies.',
   },
 };
 

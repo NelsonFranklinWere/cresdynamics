@@ -5,8 +5,8 @@ import AIChatWidget from "@/components/AIChatWidget";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cresdynamics.com'),
-  title: 'CRES Dynamics - Websites, SEO & AI Solutions | Nairobi Digital Agency',
-  description: 'Stop losing leads. Turn clicks into clients. Free strategy session for Kenyan businesses.',
+  title: 'CRES Dynamics - Business Growth Through Technology | Nairobi Digital Solutions',
+  description: 'Struggling with business growth? Get more customers online. Websites, SEO & AI automation that actually work. Free strategy session for Nairobi businesses.',
   icons: {
     icon: [
       { url: '/favicon-circular.png?v=2', sizes: '32x32', type: 'image/png' },
@@ -17,17 +17,20 @@ export const metadata: Metadata = {
     shortcut: '/favicon-circular.png?v=2',
   },
   openGraph: {
+    title: 'CRES Dynamics - Business Growth Through Technology | Nairobi',
+    description: 'Struggling with business growth? Get more customers online. Websites, SEO & AI automation that actually work. Free strategy session.',
     images: [
       {
         url: '/logo.png',
         width: 512,
         height: 512,
-        alt: 'CRES Dynamics Logo',
+        alt: 'CRES Dynamics - Business Growth Solutions',
       },
     ],
     type: 'website',
     locale: 'en_KE',
     siteName: 'CRES Dynamics',
+    url: 'https://cresdynamics.com',
   },
   twitter: {
     card: 'summary_large_image',
@@ -55,10 +58,10 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "CRES Dynamics",
-    "alternateName": "Cres Dynamics",
+    "alternateName": "Cres Dynamics Digital Growth Company",
     "url": "https://cresdynamics.com",
     "logo": "https://cresdynamics.com/logo.png",
-    "description": "Digital agency specializing in websites, SEO, AI automation, and digital growth solutions for Nairobi businesses.",
+    "description": "Digital Growth & Software Engineering Company helping Nairobi businesses turn clicks into clients through websites, SEO, AI automation, and measurable business outcomes.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Nairobi",
@@ -66,21 +69,79 @@ export default function RootLayout({
       "addressCountry": "KE"
     },
     "areaServed": {
-      "@type": "Country",
-      "name": "Kenya"
+      "@type": "City",
+      "name": "Nairobi"
     },
     "serviceType": [
+      "Digital Growth Solutions",
+      "Software Engineering",
+      "Business Automation",
       "Website Development",
-      "SEO Services",
-      "AI Automation",
-      "Digital Marketing",
-      "Business Consulting"
+      "SEO & Online Visibility",
+      "AI-Powered Sales Systems",
+      "Business Transformation",
+      "Technology Growth Consulting"
     ],
     "priceRange": "$$",
-    "telephone": "+254-XXX-XXXX",
+    "telephone": "+254708805496",
     "email": "info@cresdynamics.com",
+    "knowsAbout": [
+      "Business Growth",
+      "Digital Transformation",
+      "Software Engineering",
+      "AI Automation",
+      "SEO Optimization",
+      "Lead Generation",
+      "Sales Automation",
+      "Website Development"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Digital Growth Solutions",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Website Development",
+            "description": "High-converting websites that turn visitors into customers"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "SEO & Online Visibility",
+            "description": "Get found by customers searching for your services in Nairobi"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Automation",
+            "description": "Automate your sales and customer follow-ups with AI"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Business Growth Consulting",
+            "description": "Strategic guidance to scale your Nairobi business"
+          }
+        }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "50"
+    },
     "sameAs": [
-      "https://cresdynamics.com"
+      "https://cresdynamics.com",
+      "https://x.com/cresdynamics",
+      "https://www.instagram.com/cresdynamics"
     ]
   };
 
@@ -204,6 +265,114 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+
+        {/* Additional Schema for SEO Targeting */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "CRES Dynamics - Digital Growth Company",
+              "description": "Nairobi's leading digital growth and software engineering company. We help businesses get found, convert leads, and scale using technology.",
+              "url": "https://cresdynamics.com",
+              "telephone": "+254708805496",
+              "email": "info@cresdynamics.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nairobi",
+                "addressCountry": "KE"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "-1.2864",
+                "longitude": "36.8172"
+              },
+              "areaServed": "Nairobi",
+              "priceRange": "$$"
+            })
+          }}
+        />
+
+        {/* FAQ Schema for Problem Searches */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Why is my website not generating leads?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most websites fail because they're not optimized for conversions. At CRES Dynamics, we build websites that turn visitors into customers through strategic design, clear calls-to-action, and conversion optimization."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How can I get more customers online in Nairobi?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Focus on SEO, content marketing, and conversion optimization. We help Nairobi businesses get found by their ideal customers and convert more visitors into paying clients."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do I automate my business operations?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Business automation involves streamlining repetitive tasks with software and AI. We build custom automation solutions that save time and increase efficiency for Nairobi businesses."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What should I do when sales are down?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Focus on three areas: improve visibility (SEO), optimize conversions (website), and automate follow-ups (AI). We help businesses turn sales challenges into growth opportunities."
+                  }
+                }
+              ]
+            })
+          }}
+        />
+
+        {/* Organization Schema with Growth Focus */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "CRES Dynamics",
+              "legalName": "CRES Dynamics Digital Growth Company",
+              "url": "https://cresdynamics.com",
+              "logo": "https://cresdynamics.com/logo.png",
+              "description": "Digital Growth & Software Engineering Company. We don't sell services - we sell business outcomes. More customers, more revenue, less chaos.",
+              "foundingDate": "2024",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nairobi",
+                "addressCountry": "KE"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Customer Service",
+                "telephone": "+254708805496",
+                "email": "info@cresdynamics.com",
+                "areaServed": "KE",
+                "availableLanguage": "English"
+              },
+              "sameAs": [
+                "https://cresdynamics.com",
+                "https://x.com/cresdynamics",
+                "https://www.instagram.com/cresdynamics"
+              ]
+            })
+          }}
         />
       </head>
       <body className="antialiased">

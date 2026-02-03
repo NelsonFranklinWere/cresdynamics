@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'SEO & Google Visibility Services - CRES Dynamics | Nairobi SEO Agency',
-  description: 'Get found on Google. Professional SEO services for Nairobi businesses. Increase organic traffic, rankings, and leads with proven SEO strategies.',
+  title: 'SEO That Actually Brings Customers - Stop Being Invisible Online | Nairobi',
+  description: 'Nobody finds your business online? Get SEO that works. Rank on Google for your services, attract qualified customers, grow revenue. Proven results for Nairobi businesses.',
   openGraph: {
-    title: 'SEO & Google Visibility Services - CRES Dynamics',
-    description: 'Get found on Google. Professional SEO services for Nairobi businesses. Increase organic traffic, rankings, and leads.',
+    title: 'SEO That Actually Brings Customers',
+    description: 'Nobody finds your business online? Get SEO that works. Rank on Google, attract customers, grow revenue.',
     url: 'https://cresdynamics.com/solutions/seo-visibility',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SEO & Google Visibility Services - CRES Dynamics',
-    description: 'Get found on Google. Professional SEO services for Nairobi businesses.',
+    title: 'SEO That Brings Real Customers',
+    description: 'Stop being invisible online. Get SEO that ranks and brings qualified customers.',
   },
 };
 

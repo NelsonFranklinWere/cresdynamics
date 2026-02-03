@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Digital Strategy Consulting - CRES Dynamics | Nairobi Business Consulting',
-  description: 'Strategic digital consulting for Nairobi businesses. Custom growth strategies, digital transformation, and business optimization. Free strategy session available.',
+  title: 'Business Growth Strategy - Stop Guessing, Start Scaling | Nairobi Consulting',
+  description: 'Tired of trial and error growth? Get a custom strategy that actually works. Data-driven consulting for Nairobi businesses. From idea to profitable scaling - proven framework.',
   openGraph: {
-    title: 'Digital Strategy Consulting - CRES Dynamics',
-    description: 'Strategic digital consulting for Nairobi businesses. Custom growth strategies and digital transformation.',
+    title: 'Business Growth Strategy - Stop Guessing',
+    description: 'Tired of trial and error growth? Get a custom strategy that actually works for Nairobi businesses.',
     url: 'https://cresdynamics.com/solutions/consulting-strategy',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Digital Strategy Consulting - CRES Dynamics',
-    description: 'Strategic digital consulting for Nairobi businesses. Custom growth strategies.',
+    title: 'Business Growth Strategy - Stop Guessing',
+    description: 'Get a custom growth strategy that works. From idea to profitable scaling.',
   },
 };
 

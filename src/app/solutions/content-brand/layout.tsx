@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Content & Brand Authority Services - CRES Dynamics | Nairobi Content Marketing',
-  description: 'Build brand authority with strategic content marketing. SEO-optimized content, thought leadership, and brand positioning for Nairobi businesses.',
+  title: 'Content Marketing That Builds Trust - Become Your Industry Expert | Nairobi',
+  description: 'Customers do not trust your brand? Build authority with content that positions you as the expert. SEO-optimized articles, thought leadership, credibility that converts to customers.',
   openGraph: {
-    title: 'Content & Brand Authority Services - CRES Dynamics',
-    description: 'Build brand authority with strategic content marketing. SEO-optimized content and thought leadership for Nairobi businesses.',
+    title: 'Content Marketing That Builds Trust',
+    description: 'Customers do not trust your brand? Build authority with content that positions you as the expert.',
     url: 'https://cresdynamics.com/solutions/content-brand',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Content & Brand Authority Services - CRES Dynamics',
-    description: 'Build brand authority with strategic content marketing for Nairobi businesses.',
+    title: 'Content Marketing That Builds Trust',
+    description: 'Become your industry expert. Content marketing that converts trust to customers.',
   },
 };
 

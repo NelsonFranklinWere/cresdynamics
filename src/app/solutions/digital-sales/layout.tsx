@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'WhatsApp Business Systems - CRES Dynamics | Digital Sales Automation',
-  description: '24/7 WhatsApp automation for Nairobi businesses. Never miss a lead. Automated responses, lead management, and customer service systems.',
+  title: 'WhatsApp Automation - Never Miss Another Customer Inquiry | Nairobi',
+  description: 'Customers contact you but you miss calls? 24/7 WhatsApp automation that responds instantly, qualifies leads, and books meetings. Stop losing customers to slow responses.',
   openGraph: {
-    title: 'WhatsApp Business Systems - CRES Dynamics',
-    description: '24/7 WhatsApp automation for Nairobi businesses. Never miss a lead. Automated responses and lead management.',
+    title: 'WhatsApp Automation - Never Miss Customer Inquiries',
+    description: 'Customers contact you but you miss calls? 24/7 WhatsApp automation that responds instantly and books meetings.',
     url: 'https://cresdynamics.com/solutions/digital-sales',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WhatsApp Business Systems - CRES Dynamics',
-    description: '24/7 WhatsApp automation for Nairobi businesses. Never miss a lead.',
+    title: 'WhatsApp Automation - Never Miss Leads',
+    description: 'Stop losing customers to slow responses. 24/7 WhatsApp automation that converts.',
   },
 };
 
