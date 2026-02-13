@@ -94,24 +94,24 @@ export default function CaseStudiesPage() {
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10 pb-0">
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-3 md:mb-4 underline-custom">
-            Real Growth. Real Systems. Real Businesses.
+            Real Systems. Real Production. Real Businesses.
           </h1>
 
           <p className="text-sm md:text-lg lg:text-xl text-gray-300 mb-3 md:mb-4 max-w-3xl mx-auto">
-            How we help businesses remove bottlenecks, build systems, and grow sustainably using technology and automation.
+            How we build business systems—ERPs, finance platforms, and automation—that companies actually run on.
           </p>
 
           <p className="text-xs md:text-sm text-gray-400 mb-4 md:mb-6">
-            Not experiments. Not templates. Real work done for real businesses.
+            Production proof: active users, revenue tracked, roles, deployment stack, uptime. Numbers over testimonials.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
             <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-              Request a Growth Audit
+              Book a Systems Discovery Session
             </a>
-            <button className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-bold text-base py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
-              See How We Work
-            </button>
+            <a href="/how-we-build" className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-bold text-base py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
+              See How We Build Systems
+            </a>
           </div>
         </div>
       </section>
@@ -122,11 +122,11 @@ export default function CaseStudiesPage() {
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-[var(--cres-white)] mb-6 md:mb-8 underline-custom">
-              This Is Not a Portfolio. It's Proof of Thinking.
+              This Is Not a Portfolio. It's Proof of Systems Built.
             </h2>
 
             <p className="text-base md:text-xl text-white mb-8 md:mb-12 max-w-3xl mx-auto">
-            We don't show screenshots to impress. We show problems → systems → outcomes. Each case focuses on decision-making, not deliverables.
+            We don't show screenshots to impress. We show problems → systems built → production outcomes. Each case focuses on the systems we built—ERPs, finance platforms, automation—that companies actually run on.
           </p>
 
             <div className="grid grid-cols-3 gap-6 md:gap-8 text-left">
@@ -142,7 +142,7 @@ export default function CaseStudiesPage() {
 
               <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
                 <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">System Built</h3>
-                <p className="text-xs md:text-sm text-white">The integrated solution that connects technology, processes, and business goals.</p>
+                <p className="text-xs md:text-sm text-white">The business system we built—ERP, finance platform, or automation—with architecture, modules, and production metrics.</p>
               </div>
 
               <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
@@ -218,27 +218,27 @@ export default function CaseStudiesPage() {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-6 md:mb-8 underline-custom">
               Your Business Doesn't Need More Tools.
               <br />
-              It Needs a System.
+              It Needs Systems That Run Companies.
             </h2>
 
             <p className="text-base md:text-xl text-white mb-8 md:mb-12 max-w-2xl mx-auto">
-            If any of these case studies feel familiar, it's not by accident. Most growing businesses hit the same ceiling — until systems are put in place.
+            If any of these case studies feel familiar, it's not by accident. Most growing businesses hit the same ceiling — until we build ERPs, finance platforms, and automation systems that companies actually run on.
           </p>
 
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center mb-6 md:mb-8">
               <a href="/contact" className="bg-black/70 backdrop-blur-sm border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/80 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                Request a Growth Audit
+                Book a Systems Discovery Session
               </a>
-              <a href="/contact" className="border-2 border-white text-white hover:bg-white hover:text-[var(--cres-electric-teal)] font-bold text-sm md:text-lg py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300">
-                Talk to a Specialist
+              <a href="/how-we-build" className="border-2 border-white text-white hover:bg-white hover:text-[var(--cres-electric-teal)] font-bold text-sm md:text-lg py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300">
+                See How We Build Systems
               </a>
             </div>
 
             <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
               <p className="text-sm md:text-base text-white font-semibold">
-                CRES Dynamics partners with businesses that are serious about growth.
+                CRES Dynamics builds business systems for companies that are serious about scale, visibility, and control.
                 <br />
-                We don't chase volume — we build foundations.
+                We don't build websites — we build systems that companies run on.
               </p>
             </div>
           </div>

@@ -75,18 +75,18 @@ export default function ContactPage() {
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8 underline-custom">
-            Your business has a problem.
+            Book a Systems Discovery Session
             <br />
-            <span className="text-[var(--cres-electric-teal)]">We help you fix it — fast.</span>
+            <span className="text-[var(--cres-electric-teal)]">Map your needs. We architect and deploy.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            If customers can't find you, trust you, or reach you online, you're losing money every day.
+            Discuss your processes, data, and goals. We map requirements and show how we build production-ready ERPs, finance platforms, and automation.
           </p>
 
           <div className="flex items-center justify-center space-x-2 text-[var(--cres-electric-teal)] text-lg font-semibold">
             <span className="text-2xl">⚡</span>
-            <span>Every week you delay, competitors take your customers.</span>
+            <span>Visibility, control, and scale start with the right system—and the right discovery.</span>
           </div>
         </div>
       </section>
@@ -107,10 +107,10 @@ export default function ContactPage() {
                   Get in Touch
                 </h2>
                 <p className="text-base md:text-xl lg:text-2xl text-[var(--cres-white)] mb-4 md:mb-6" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-                  Let's Discuss Growing Your Business <span className="text-[var(--cres-orange-primary)]">Smarter.</span>
+                  Systems Discovery: <span className="text-[var(--cres-orange-primary)]">Process mapping, architecture, and production deployment.</span>
                 </p>
                 <p className="text-sm md:text-base lg:text-lg text-[var(--cres-white)] leading-relaxed" style={{textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)'}}>
-                  Whether you're ready to improve your lead flow, automate your processes, or just have questions, we're here to help.
+                  Tell us your operations, data, and goals. We respond with a clear path: process and data mapping, then system design and deployment.
                 </p>
               </div>
 
@@ -118,7 +118,7 @@ export default function ContactPage() {
               <div className="bg-black border border-white/20 rounded-xl p-4 md:p-8 shadow-lg">
                 <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-white)] mb-3 md:mb-4">Contact Us</h3>
                 <p className="text-xs md:text-sm text-[var(--cres-white)] mb-4 md:mb-6 leading-relaxed">
-                  Reach out to discuss your growth challenges. We respond within 24 hours.
+                  Reach out to discuss your system needs. We respond within 24 hours.
                 </p>
                 
                 <div className="space-y-4">
@@ -154,10 +154,10 @@ export default function ContactPage() {
             <div className="bg-black border border-white/20 rounded-xl p-4 md:p-8 shadow-lg">
               <div className="mb-4 md:mb-6">
                 <h3 className="text-lg md:text-2xl lg:text-3xl font-black text-[var(--cres-white)] mb-2 md:mb-3">
-                  Let's Strategize Your Growth
+                  Book a Systems Discovery Session
                 </h3>
                 <p className="text-xs md:text-base lg:text-lg text-[var(--cres-white)]">
-                  Fill out the form below, and let's talk about scaling your business effectively.
+                  Submit the form below. We'll map your processes and system requirements, then outline how we architect and deploy production-ready systems.
                 </p>
               </div>
 
@@ -210,7 +210,7 @@ export default function ContactPage() {
                     onChange={handleInputChange}
                     rows={5}
                     className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent resize-none"
-                    placeholder="Message"
+                    placeholder="Describe your operations, goals, and what you need from a system (ERP, finance, automation, etc.)"
                   ></textarea>
                 </div>
 
@@ -224,7 +224,7 @@ export default function ContactPage() {
                     className="mt-1 w-5 h-5 rounded border-gray-700 bg-gray-800 text-[var(--cres-orange-primary)] focus:ring-2 focus:ring-[var(--cres-orange-primary)]"
                   />
                   <label htmlFor="subscribe" className="text-xs md:text-sm lg:text-base text-[var(--cres-white)] cursor-pointer">
-                    Yes, I'd like to get insights and tips for digital growth (optional)
+                    Yes, I'd like to get insights about building business systems (optional)
                   </label>
                 </div>
 
@@ -262,39 +262,39 @@ export default function ContactPage() {
             <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl">
               <div className="flex items-center justify-center gap-1 mb-3">
                 <div className="text-xl">🔧</div>
-                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Systems, not templates</h3>
+                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Business Systems</h3>
               </div>
-              <p className="text-white text-center text-sm">Custom-built solutions that grow with you</p>
+              <p className="text-white text-center text-sm">ERPs, finance platforms, and automation that companies run on</p>
             </div>
 
             <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl">
               <div className="flex items-center justify-center gap-1 mb-3">
                 <div className="text-xl">🎯</div>
-                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Strategy before execution</h3>
+                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Process Mapping First</h3>
               </div>
-              <p className="text-white text-center text-sm">We plan your growth, then build it</p>
+              <p className="text-white text-center text-sm">We map your processes, then build systems that fit</p>
             </div>
 
             <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl">
               <div className="flex items-center justify-center gap-1 mb-3">
                 <div className="text-xl">📈</div>
-                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Growth-focused, ROI-driven</h3>
+                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Production-Ready Systems</h3>
               </div>
-              <p className="text-white text-center text-sm">Every feature drives revenue</p>
+              <p className="text-white text-center text-sm">Live systems with real users and revenue tracking</p>
             </div>
 
             <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-xl">
               <div className="flex items-center justify-center gap-1 mb-3">
                 <div className="text-xl">🌍</div>
-                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Built for African businesses</h3>
+                <h3 className="text-[10px] font-bold text-[var(--cres-electric-teal)] underline-custom leading-tight">Scale, Visibility, Control</h3>
               </div>
-              <p className="text-white text-center text-sm">Understanding your market and customers</p>
+              <p className="text-white text-center text-sm">Systems designed for governance and enterprise-grade security</p>
             </div>
           </div>
 
           <div className="mt-12 bg-gray-800/50 p-8 rounded-lg border border-gray-700">
             <p className="text-xl font-bold text-white">
-              We don't sell websites. <span className="text-[var(--cres-electric-teal)]">We build growth systems.</span>
+              We don't build websites. <span className="text-[var(--cres-electric-teal)]">We build business systems that run companies.</span>
             </p>
           </div>
         </div>
@@ -330,10 +330,10 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+            <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
             <p className="text-white font-semibold">
-              Most clients contact us <span className="font-black">after</span> losing money.<br />
-              The best ones contact us <span className="font-black">before</span>.
+              Most clients contact us <span className="font-black">after</span> struggling without systems.<br />
+              The best ones contact us <span className="font-black">before</span> they hit the ceiling.
             </p>
           </div>
         </div>
@@ -343,19 +343,19 @@ export default function ContactPage() {
       <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-8 underline-custom">
-            Your customers are already searching.
+            Your business needs systems.
             <br />
-            The only question is — <span className="text-[var(--cres-electric-teal)]">will they find you?</span>
+            The only question is — <span className="text-[var(--cres-electric-teal)]">will you build them?</span>
           </h2>
 
           <div className="mb-12">
-            <button className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-2xl py-6 px-12 rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-105">
-              Let's Fix This Now
-            </button>
+            <a href="#contact-form" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-2xl py-6 px-12 rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 inline-block">
+              Book a Systems Discovery Session
+            </a>
           </div>
 
           <div className="text-gray-400 text-sm">
-            <p>Every day without the right systems is another day losing customers to competitors.</p>
+            <p>Every day without systems is another day operating without visibility, control, and scale.</p>
           </div>
         </div>
       </section>

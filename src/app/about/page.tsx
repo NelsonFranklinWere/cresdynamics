@@ -19,26 +19,26 @@ export default function AboutPage() {
 
         <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center relative z-10">
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8 md:mb-12 underline-custom">
-            We Exist to Help Businesses Grow<br />
-            <span className="text-[var(--cres-electric-teal)]">With Clarity, Not Guesswork.</span>
+            We Build Business Systems That<br />
+            <span className="text-[var(--cres-electric-teal)]">Run Companies.</span>
           </h1>
 
           <div className="space-y-4 md:space-y-6 text-white text-base md:text-lg leading-relaxed">
             <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-              Most businesses don't fail because they lack effort.
+              CRES Dynamics is a systems engineering company that builds ERP platforms, financial infrastructure, and automation systems that enable businesses to operate with visibility, control, and scale.
             </p>
             <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-              They fail because they grow without systems, without visibility, and without a clear digital foundation.
+              Most businesses fail not because they lack effort, but because they operate without systems, without visibility, and without proper controls.
             </p>
             <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-              CRES Dynamics was created to solve that exact problem.
+              We build systems that solve business problems, control critical data, and enable better decisions.
             </p>
             <p style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-              We exist to help businesses be found, be trusted, and grow sustainably in a digital world that rewards clarity, speed, and consistency.
+              Every system we build—from ERPs to finance platforms to automation pipelines—is designed for scale, visibility, and control.
             </p>
             <p className="font-semibold text-[var(--cres-electric-teal)]" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-              We don't chase trends.<br />
-              We build foundations that compound.
+              We don't build websites.<br />
+              We build systems that companies run on.
             </p>
           </div>
         </div>
@@ -50,12 +50,12 @@ export default function AboutPage() {
         <div className="relative z-10">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             <h2 className="text-lg md:text-2xl font-black text-[var(--cres-deep-navy)] mb-6 md:mb-8 text-center underline-custom">
-              CRES Dynamics — A Digital Innovation Company
+              CRES Dynamics — Business Systems Builder
             </h2>
 
             <div className="text-center mb-8 md:mb-12">
               <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-4xl mx-auto">
-                CRES Dynamics is a digital innovation company focused on building fast, growth driven digital systems that solve real world business problems. We design, optimize, and automate digital experiences that help businesses move faster, scale smarter, and achieve measurable success.
+                CRES Dynamics designs and builds business systems—ERPs, finance platforms, and automation—that companies actually run on. We build systems that solve business problems, control critical data, and enable better decisions. Every system is designed for scale, visibility, and control.
               </p>
             </div>
 
@@ -64,7 +64,7 @@ export default function AboutPage() {
               <div className="bg-[var(--cres-black)] backdrop-blur-sm border border-[var(--cres-orange-primary)] md:border-white/20 p-4 md:p-8 rounded-lg shadow-lg">
                 <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-electric-teal)] mb-3 md:mb-6">Our Mission</h3>
                 <p className="text-white text-xs md:text-lg leading-relaxed">
-                  Empower businesses with fast, growth-focused digital solutions that solve real-world problems and drive measurable success.
+                  Build business systems—ERPs, finance platforms, and automation—that companies actually run on. Systems that solve problems, control data, and enable decisions.
                 </p>
               </div>
 
@@ -72,7 +72,7 @@ export default function AboutPage() {
               <div className="bg-[var(--cres-black)] backdrop-blur-sm border border-[var(--cres-orange-primary)] md:border-white/20 p-4 md:p-8 rounded-lg shadow-lg">
                 <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-electric-teal)] mb-3 md:mb-6">Our Vision</h3>
                 <p className="text-white text-xs md:text-lg leading-relaxed">
-                  Become the leading force in transforming businesses through technology, setting new standards for speed, growth, and innovation in the digital landscape.
+                  Become the leading builder of business systems in Kenya—ERPs, finance platforms, and automation systems that companies actually run on.
                 </p>
               </div>
 
@@ -115,7 +115,7 @@ export default function AboutPage() {
 
             <div className="text-center">
               <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-base md:text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 inline-block">
-                Book a Free Strategy Session
+                Book a Systems Discovery Session
               </a>
             </div>
           </div>
@@ -159,7 +159,7 @@ export default function AboutPage() {
               The problem wasn't the business.
             </p>
             <p>
-              The problem was the lack of structure, automation, and strategy behind their growth.
+              The problem was the lack of structure, automation, and systems—visibility and control were missing.
             </p>
             <p className="font-semibold text-[var(--cres-deep-navy)]">
               CRES Dynamics was born to close that gap.
@@ -202,7 +202,7 @@ export default function AboutPage() {
               That's why our approach is simple:
             </p>
             <p>
-              We design systems that work together — websites, SEO, automation, and data — all aligned to one goal: business growth.
+              We build business systems that work together — ERPs, finance platforms, automation pipelines, and analytics — all aligned to one goal: systems that companies actually run on.
             </p>
 
             <div className="bg-[var(--cres-electric-teal)] text-white p-4 md:p-6 rounded-lg mt-4 md:mt-6">
@@ -215,21 +215,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* SECTION 5: WHAT MAKES US DIFFERENT */}
-      <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)] relative">
+      {/* SECTION 5: WHAT MAKES US DIFFERENT (WHY US) */}
+      <section id="why-us" className="py-12 md:py-20 bg-[var(--cres-deep-navy)] relative scroll-mt-20">
         <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
           <h2 className="text-2xl font-black text-white mb-10 text-center underline-custom">
-            We Build Systems, Not Just Deliverables
+            We Build Business Systems, Not Just Websites
           </h2>
 
           <div className="space-y-8 text-gray-300 text-lg leading-relaxed">
             <p>
-              Most agencies deliver assets.
+              Most agencies build websites and deliver assets.
             </p>
             <p>
-              We build operating systems for growth.
+              We build business systems—ERPs, finance platforms, and automation—that companies actually run on.
             </p>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -243,21 +243,21 @@ export default function AboutPage() {
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-4">We go further:</h3>
+                <h3 className="text-xl font-bold text-[var(--cres-electric-teal)] mb-4">We build systems:</h3>
                 <ul className="space-y-3">
-                  <li>• How will this convert?</li>
-                  <li>• How will this scale?</li>
-                  <li>• How will this perform in 6 12 months?</li>
+                  <li>• ERPs with role-based access and analytics</li>
+                  <li>• Finance platforms with revenue tracking</li>
+                  <li>• Automation pipelines that enable decisions</li>
                 </ul>
               </div>
             </div>
 
             <div className="bg-gray-800/50 p-6 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
               <p className="text-lg">
-                Every solution we design answers one question:
+                Every system we build answers three questions:
               </p>
               <p className="text-xl font-bold text-[var(--cres-electric-teal)] mt-2">
-                Does this move the business forward?
+                What business problem does it solve? What data does it control? What decisions does it enable?
               </p>
             </div>
           </div>
@@ -382,20 +382,20 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-2 gap-4 md:gap-6 my-4 md:my-8">
               <div className="bg-[var(--cres-black)] p-4 md:p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] text-sm md:text-base mb-2 md:mb-3">Increased visibility</h3>
-                <p className="text-white text-sm md:text-base">Customers find you when they search for your services</p>
+                <h3 className="font-bold text-[var(--cres-electric-teal)] text-sm md:text-base mb-2 md:mb-3">ERP Systems</h3>
+                <p className="text-white text-sm md:text-base">Role-based access, analytics, and automation that companies run on</p>
               </div>
               <div className="bg-[var(--cres-black)] p-4 md:p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] text-sm md:text-base mb-2 md:mb-3">Better conversion</h3>
-                <p className="text-white text-sm md:text-base">More visitors become paying customers</p>
+                <h3 className="font-bold text-[var(--cres-electric-teal)] text-sm md:text-base mb-2 md:mb-3">Finance Platforms</h3>
+                <p className="text-white text-sm md:text-base">Billing, subscriptions, invoices, and revenue dashboards</p>
               </div>
               <div className="bg-[var(--cres-black)] p-4 md:p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] text-sm md:text-base mb-2 md:mb-3">Reduced manual effort</h3>
-                <p className="text-white text-sm md:text-base">Systems handle routine tasks automatically</p>
+                <h3 className="font-bold text-[var(--cres-electric-teal)] text-sm md:text-base mb-2 md:mb-3">Automation Systems</h3>
+                <p className="text-white text-sm md:text-base">Workflows, pipelines, and decision support that eliminate manual work</p>
               </div>
               <div className="bg-[var(--cres-black)] p-4 md:p-6 rounded-lg">
-                <h3 className="font-bold text-[var(--cres-electric-teal)] text-sm md:text-base mb-2 md:mb-3">Stronger brand authority</h3>
-                <p className="text-white text-sm md:text-base">Customers see you as the trusted expert</p>
+                <h3 className="font-bold text-[var(--cres-electric-teal)] text-sm md:text-base mb-2 md:mb-3">Business Operations</h3>
+                <p className="text-white text-sm md:text-base">Projects, approvals, workflows, and reporting systems</p>
               </div>
             </div>
 
@@ -420,25 +420,25 @@ export default function AboutPage() {
 
           <div className="space-y-8 text-gray-700 text-lg leading-relaxed">
             <p>
-              CRES Dynamics works with:
+              CRES Dynamics works with businesses that need:
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 my-8">
               <div className="bg-[var(--cres-black)] backdrop-blur-sm border border-[var(--cres-orange-primary)] md:border-white/20 p-6 rounded-lg">
-                <h3 className="font-bold text-white mb-3">SMEs ready to professionalize</h3>
-                <p className="text-white">Their online presence</p>
+                <h3 className="font-bold text-white mb-3">Custom ERP Systems</h3>
+                <p className="text-white">When off-the-shelf ERPs fail</p>
               </div>
               <div className="bg-[var(--cres-black)] backdrop-blur-sm border border-[var(--cres-orange-primary)] md:border-white/20 p-6 rounded-lg">
-                <h3 className="font-bold text-white mb-3">Growing businesses seeking</h3>
-                <p className="text-white">Predictable lead flow</p>
+                <h3 className="font-bold text-white mb-3">Finance & Revenue Platforms</h3>
+                <p className="text-white">Billing, subscriptions, invoices, dashboards</p>
               </div>
               <div className="bg-[var(--cres-black)] backdrop-blur-sm border border-[var(--cres-orange-primary)] md:border-white/20 p-6 rounded-lg">
-                <h3 className="font-bold text-white mb-3">Organizations tired of</h3>
-                <p className="text-white">Fragmented tools and guesswork</p>
+                <h3 className="font-bold text-white mb-3">Business Operations Systems</h3>
+                <p className="text-white">Projects, approvals, workflows, reporting</p>
               </div>
               <div className="bg-[var(--cres-black)] backdrop-blur-sm border border-[var(--cres-orange-primary)] md:border-white/20 p-6 rounded-lg">
-                <h3 className="font-bold text-white mb-3">Leaders who value</h3>
-                <p className="text-white">Systems, data, and long term growth</p>
+                <h3 className="font-bold text-white mb-3">Automation & AI Systems</h3>
+                <p className="text-white">Follow-ups, workflows, decision support</p>
               </div>
             </div>
 
@@ -463,13 +463,13 @@ export default function AboutPage() {
 
           <div className="space-y-4 md:space-y-6 text-gray-700 text-base md:text-lg leading-relaxed">
             <p>
-              The digital landscape rewards businesses that are structured, visible, and intentional.
+              The business landscape rewards companies that have systems, visibility, and control.
             </p>
             <p>
-              CRES Dynamics exists to help you get there — with systems that work today and scale tomorrow.
+              CRES Dynamics exists to build those systems — ERPs, finance platforms, and automation that companies actually run on.
             </p>
             <p className="font-semibold text-[var(--cres-deep-navy)]">
-              When you're ready to build for growth, we're ready to help.
+              When you're ready to build systems that run your company, we're ready to help.
             </p>
           </div>
 

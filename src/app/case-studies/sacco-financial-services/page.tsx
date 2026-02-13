@@ -79,16 +79,16 @@ export default function SaccoCaseStudyPage() {
             </p>
           </div>
 
-          {/* The Strategic Shift */}
+          {/* The System Built */}
           <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">The Strategic Shift</h3>
+            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">The System Built</h3>
             <p className="text-white text-lg leading-relaxed mb-8">
-              Instead of increasing staff workload to cover more hours, the SACCO needed a system that never sleeps, never forgets, and never delays. Automation wasn't about replacing people — it was about protecting opportunity and ensuring consistent service quality.
+              We built an AI & Automation System that never sleeps, never forgets, and never delays. This wasn't about replacing people — it was about building a system that protects opportunity and ensures consistent service quality.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">WhatsApp AI Automation</h4>
+                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Automation System Module</h4>
                 <ul className="text-white space-y-2">
                   <li>• Instant responses to common inquiries</li>
                   <li>• Lead qualification and information gathering</li>
@@ -98,7 +98,7 @@ export default function SaccoCaseStudyPage() {
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Structured Follow-Up System</h4>
+                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Workflow & Analytics Module</h4>
                 <ul className="text-white space-y-2">
                   <li>• Automated engagement sequences</li>
                   <li>• Usage tracking and member activity monitoring</li>
@@ -109,15 +109,19 @@ export default function SaccoCaseStudyPage() {
             </div>
           </div>
 
-          {/* The Outcome */}
+          {/* Production Metrics */}
           <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">The Outcome</h3>
+            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">Production System Metrics</h3>
             <p className="text-white text-lg leading-relaxed mb-6">
-              The SACCO established 24/7 lead engagement capability with consistent application flow processing. The system worked quietly in the background without disrupting existing operations or requiring additional staffing.
+              The automation system is now in production, providing 24/7 lead engagement with consistent application flow processing. The system runs in the background without disrupting existing operations or requiring additional staffing.
             </p>
-            <p className="text-white text-lg leading-relaxed">
+            <p className="text-white text-lg leading-relaxed mb-4">
               Member acquisition became more predictable, with reduced workload on existing staff and no missed opportunities after hours. The SACCO moved from reactive customer service to always-on availability.
             </p>
+            <div className="bg-[var(--cres-deep-navy)] p-4 rounded-lg mt-4">
+              <p className="text-[var(--cres-electric-teal)] font-semibold">System Status: Production</p>
+              <p className="text-white text-sm mt-2">Live automation system • 24/7 availability • Automated workflows • Analytics dashboard</p>
+            </div>
           </div>
 
           {/* Reflection Prompt */}
@@ -142,7 +146,7 @@ export default function SaccoCaseStudyPage() {
                   ← Back to Case Studies
                 </a>
                 <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-semibold py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
-                  Explore the System
+                  Book ERP Discovery Session
                 </a>
               </div>
             </div>
@@ -155,19 +159,19 @@ export default function SaccoCaseStudyPage() {
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">
             Growth doesn't break businesses.<br />
-            <span className="text-[var(--cres-electric-teal)]">Weak systems do.</span>
+            <span className="text-[var(--cres-electric-teal)]">Missing systems do.</span>
           </h2>
 
           <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
-            The difference between businesses that scale and those that stall is rarely effort. It's whether the systems can support the next level of growth without breaking under the strain.
+            The difference between businesses that scale and those that stall is rarely effort. It's whether you have systems—ERPs, finance platforms, automation—that can support the next level of growth without breaking under the strain.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-lg py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-              Discuss your growth constraints
+              Book ERP Discovery Session
             </a>
-            <a href="/insights" className="border-2 border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-lg py-4 px-8 rounded-lg transition-all duration-300">
-              Read more insights
+            <a href="/how-we-build" className="border-2 border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+              See How We Build Systems
             </a>
           </div>
         </div>

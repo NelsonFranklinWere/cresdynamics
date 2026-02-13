@@ -3,6 +3,7 @@ import HeroSection1 from '@/components/HeroSection1';
 import HeroSection2 from '@/components/HeroSection2';
 import HeroSection3 from '@/components/HeroSection3';
 import WhyChooseCres from '@/components/WhyChooseCres';
+import LiveSystemsProof from '@/components/LiveSystemsProof';
 import HowCresWorks from '@/components/HowCresWorks';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
@@ -14,7 +15,7 @@ export default function Home() {
     "name": "CRES Dynamics",
     "url": "https://cresdynamics.com",
     "logo": "https://cresdynamics.com/logo.png",
-    "description": "Digital agency helping Nairobi businesses turn clicks into clients through websites, SEO, AI automation, and digital growth solutions.",
+        "description": "CRES Dynamics is a systems engineering company that builds ERP platforms, financial infrastructure, and automation systems that enable businesses to operate with visibility, control, and scale.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Nairobi",
@@ -53,53 +54,65 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
 
-      {/* HIDDEN SEO CONTENT - Targets Problem Searches */}
+      {/* HIDDEN SEO CONTENT - Targets How Companies Think & Search */}
       <div className="sr-only" aria-hidden="true">
-        {/* PROBLEM SEARCHES - HIGHEST INTENT */}
-        <h1>Why My Business Is Not Growing Online Nairobi</h1>
-        <h2>My Website Is Not Generating Leads</h2>
-        <h3>How To Get More Customers Online Nairobi</h3>
-        <h4>How To Automate Business Operations</h4>
-        <h5>Sales Are Down What To Do</h5>
-        <h6>Business Growth Challenges Nairobi</h6>
-        <p>Online visibility problems Kenya, lead generation not working, customer acquisition Nairobi, business automation solutions, sales system not working.</p>
+        {/* PROBLEM SEARCHES - HOW COMPANIES THINK (HIGHEST INTENT) */}
+        <h1>My Business Needs ERP System Nairobi</h1>
+        <h2>Off-the-Shelf ERP Failed Kenya</h2>
+        <h3>Need Custom Finance Platform Nairobi</h3>
+        <h4>Business Operations Manual Processes</h4>
+        <h5>Revenue Tracking Not Working</h5>
+        <h6>Need Business Systems That Scale</h6>
+        <p>My business needs ERP system Nairobi, off-the-shelf ERP failed Kenya, need custom finance platform Nairobi, business operations manual processes, revenue tracking not working, need business systems that scale, production-ready ERP Kenya, fast ERP implementation Nairobi, quality business systems Kenya.</p>
 
-        {/* PROVIDER SEARCHES - COMPARISON STAGE */}
-        <h1>Best Digital Agency In Nairobi</h1>
-        <h2>Top Software Development Companies In Nairobi</h2>
-        <h3>Best SEO Company Nairobi</h3>
-        <h4>Best Web Development Company Kenya</h4>
-        <h5>Business Automation Company Nairobi</h5>
-        <h6>Digital Growth Company Nairobi</h6>
-        <p>Software engineering Nairobi, growth agency Kenya, business transformation Nairobi, digital transformation company Kenya.</p>
+        <h1>Business Growing But Systems Can't Handle It</h1>
+        <h2>Need ERP With AI Integration Nairobi</h2>
+        <h3>Fast ERP Development Kenya</h3>
+        <h4>Quality Business Systems Nairobi</h4>
+        <h5>Speed ERP Implementation Kenya</h5>
+        <h6>AI-Powered Business Systems Nairobi</h6>
+        <p>Business growing but systems can't handle it, need ERP with AI integration Nairobi, fast ERP development Kenya, quality business systems Nairobi, speed ERP implementation Kenya, AI-powered business systems Nairobi, enterprise-grade systems Kenya.</p>
+
+        {/* SOLUTION SEARCHES - COMPARISON STAGE */}
+        <h1>Best ERP Development Company Nairobi</h1>
+        <h2>Custom ERP Builders Kenya Quality</h2>
+        <h3>Fast ERP Development Nairobi</h3>
+        <h4>Business Systems Builder Kenya Speed</h4>
+        <h5>Finance Platform Developers Nairobi Quality</h5>
+        <h6>AI Integration ERP Systems Kenya</h6>
+        <p>Best ERP development company Nairobi, custom ERP builders Kenya quality, fast ERP development Nairobi, business systems builder Kenya speed, finance platform developers Nairobi quality, AI integration ERP systems Kenya, production-ready systems Nairobi.</p>
 
         {/* LOCAL TRUST SEARCHES - INSTANT CALLS */}
-        <h1>Software Development Company Near Me</h1>
-        <h2>Digital Agency Near Me</h2>
-        <h3>IT Company Near Me</h3>
-        <h4>Business Automation Nairobi</h4>
-        <h5>Web Development Nairobi</h5>
-        <h6>SEO Services Nairobi</h6>
-        <p>Growth consultants Nairobi, business systems Nairobi, automation experts Kenya.</p>
+        <h1>ERP Systems Near Me Nairobi</h1>
+        <h2>Business Systems Builder Near Me Kenya</h2>
+        <h3>Finance Platform Developers Near Me Nairobi</h3>
+        <h4>Custom ERP Near Me Kenya</h4>
+        <h5>Fast ERP Development Near Me Nairobi</h5>
+        <h6>Quality Business Systems Near Me Kenya</h6>
+        <p>ERP systems near me Nairobi, business systems builder near me Kenya, finance platform developers near me Nairobi, custom ERP near me Kenya, fast ERP development near me Nairobi, quality business systems near me Kenya, AI-powered systems near me Nairobi.</p>
 
-        {/* WHAT IT MEANS TO BE GROWTH */}
-        <h1>Digital Growth Company Nairobi</h1>
-        <h2>Software Engineering Company Kenya</h2>
-        <h3>Business Growth Solutions Nairobi</h3>
-        <h4>Technology Growth Partners Kenya</h4>
-        <h5>Digital Transformation Nairobi</h5>
-        <p>When you say "we are growth", it means you are not selling services. You are selling business outcomes. Business owners want more customers, more revenue, less chaos, systems that work, a team they can trust.</p>
+        {/* QUALITY, SPEED, AI INTEGRATION SEARCHES */}
+        <h1>Fast ERP Development With Quality Nairobi</h1>
+        <h2>AI Integration Business Systems Kenya</h2>
+        <h3>Speed ERP Implementation Quality Nairobi</h3>
+        <h4>Production-Ready Systems Fast Kenya</h4>
+        <h5>Enterprise-Grade ERP Speed Nairobi</h5>
+        <h6>AI-Powered Finance Platforms Quality Kenya</h6>
+        <p>Fast ERP development with quality Nairobi, AI integration business systems Kenya, speed ERP implementation quality Nairobi, production-ready systems fast Kenya, enterprise-grade ERP speed Nairobi, AI-powered finance platforms quality Kenya, scalable systems speed Nairobi.</p>
 
-        {/* GROWTH POSITIONING CONTENT */}
+        {/* POSITIONING CONTENT */}
         <div>
-          <h2>Growth Is The Language Of Buyers</h2>
-          <p>Most companies in Nairobi sell web design, software development, SEO, apps. Business owners do not wake up wanting those. They wake up wanting more customers, more revenue, less chaos, systems that work, a team they can trust.</p>
+          <h2>CRES Dynamics Builds Business Systems - Quality, Speed, AI Integration</h2>
+          <p>CRES Dynamics designs and builds business systems—ERPs, finance platforms, and automation—that companies actually run on. We build systems that solve business problems, control critical data, and enable better decisions. Quality systems, fast implementation, AI integration, production-ready.</p>
 
-          <h3>How Business Owners Actually Search</h3>
-          <p>There are 3 search mindsets. Problem searches like "my website is not generating leads", provider searches like "best digital agency in Nairobi", and local trust searches like "software development company near me".</p>
+          <h3>Why Companies Choose CRES Dynamics Nairobi</h3>
+          <p>Quality: Production-ready systems with enterprise-grade security. Speed: Fast ERP development and implementation in Nairobi Kenya. AI Integration: AI-powered automation and decision support built into every system. Real Systems: Live systems with real users and revenue tracking, not promises.</p>
 
-          <h3>How To Become Top 5 In Nairobi</h3>
-          <p>You don't rank top 5 by saying "we do everything". You rank top 5 by being clear about one thing: "We help businesses grow using technology." Everything else supports that. Position as a Digital Growth & Software Engineering Company.</p>
+          <h3>Systems We Build in Kenya</h3>
+          <p>Business Operations Systems: Projects, approvals, workflows, reporting. Finance & Revenue Systems: Billing, subscriptions, invoices, dashboards. ERP Platforms: Role-based access, analytics, automation. AI & Automation Systems: Follow-ups, workflows, decision support. All built with quality, speed, and AI integration for Nairobi businesses.</p>
+
+          <h3>How We Build Systems - Quality, Speed, AI</h3>
+          <p>Process Mapping: We map existing processes and design optimized workflows. System Architecture: Scalable, secure architectures with modular design. MVP ERP Build: Production-ready modules built incrementally with speed. Automation & Analytics: AI-powered pipelines and analytics that turn data into decisions. Security, Governance & Scale: Enterprise-grade security built into every system. Quality delivery, fast implementation, AI integration throughout.</p>
         </div>
       </div>
 
@@ -111,6 +124,7 @@ export default function Home() {
         <HeroSection2 />
         <HeroSection3 />
         <WhyChooseCres />
+        <LiveSystemsProof />
         <HowCresWorks />
         <FinalCTA />
       </main>

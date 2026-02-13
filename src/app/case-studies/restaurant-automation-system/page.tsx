@@ -24,7 +24,7 @@ export default function RestaurantAutomationCaseStudyPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
-              Request a Growth Audit
+              Book ERP Discovery Session
             </a>
             <a href="/case-studies" className="border border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
               ← Back to Case Studies
@@ -238,9 +238,13 @@ export default function RestaurantAutomationCaseStudyPage() {
             </div>
 
             <div className="mt-8 p-6 bg-[var(--cres-electric-teal)]/10 rounded-lg border border-[var(--cres-electric-teal)]/20">
-              <p className="text-[var(--cres-deep-navy)] font-semibold">
+              <p className="text-[var(--cres-deep-navy)] font-semibold mb-4">
                 System Integration: Orders flow seamlessly from customer to kitchen to delivery, with every step tracked and optimized automatically.
               </p>
+              <div className="bg-[var(--cres-deep-navy)] p-4 rounded-lg mt-4">
+                <p className="text-[var(--cres-electric-teal)] font-semibold">System Status: Production</p>
+                <p className="text-white text-sm mt-2">Live automation system • 3 locations • Real-time order processing • Analytics dashboard</p>
+              </div>
             </div>
           </div>
         </div>

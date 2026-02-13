@@ -7,14 +7,14 @@ export default function HowCresWorks() {
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center mb-16 md:mb-20">
-          {/* Here's How CRES Transforms Frustration Into Growth. */}
+          {/* Here's How CRES Builds Business Systems */}
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 md:mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            Here's How CRES Transforms <span className="text-[var(--cres-orange-primary)]">Frustration Into Growth.</span>
+            Here's How We Build <span className="text-[var(--cres-orange-primary)]">Business Systems.</span>
           </h2>
 
-          {/* From attracting visitors to automating sales */}
+          {/* From process mapping to production systems */}
           <p className="text-lg md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            From attracting visitors to automating sales — we build systems that work while you work.
+            From process mapping to production systems — we build platforms that companies actually run on.
           </p>
         </div>
 
@@ -24,24 +24,24 @@ export default function HowCresWorks() {
           <div className="grid grid-cols-3 gap-4 md:gap-6 mb-16 md:mb-20">
             {[
               {
-                icon: <i className="fas fa-search"></i>,
-                title: 'Audit & Strategy',
-                text: 'We analyze your online presence to identify gaps and craft a custom growth plan.'
+                icon: <i className="fas fa-project-diagram"></i>,
+                title: 'Process Mapping',
+                text: 'We map your existing processes, identify bottlenecks, and design optimized workflows before building.'
               },
               {
-                icon: <i className="fas fa-rocket"></i>,
-                title: 'Build & Optimize',
-                text: 'Your website is designed to convert. SEO and conversion tools, put you in front of your perfect customer.'
+                icon: <i className="fas fa-network-wired"></i>,
+                title: 'System Architecture',
+                text: 'We design scalable, secure architectures with modular design, APIs, and proper data governance.'
               },
               {
-                icon: <i className="fas fa-users-cog"></i>,
-                title: 'Automate & Integrate',
-                text: 'AI-driven automation captures, follows up, and nurtures leads, so you don\'t have to.'
+                icon: <i className="fas fa-cogs"></i>,
+                title: 'MVP ERP Build',
+                text: 'We build production-ready modules incrementally, so you start seeing value immediately.'
               },
               {
-                icon: <i className="fas fa-chart-bar"></i>,
-                title: 'Measure & Scale',
-                text: 'Track performance with real-time analytics and scale what works best.'
+                icon: <i className="fas fa-shield-alt"></i>,
+                title: 'Security & Scale',
+                text: 'Enterprise-grade security, governance, and scalability built into every system module.'
               }
             ].map((step, i) => (
               <div key={i} className="relative">
@@ -72,14 +72,14 @@ export default function HowCresWorks() {
             <p className="text-lg md:text-2xl lg:text-3xl font-black text-[var(--cres-white)]">
               With CRES, You're Not Buying Services.
               <br />
-              <span className="text-[var(--cres-orange-primary)] underline-custom">You're Investing in Results.</span>
+              <span className="text-[var(--cres-orange-primary)] underline-custom">You're Investing in Systems.</span>
             </p>
           </div>
 
           {/* CTA */}
           <div className="text-center">
             <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-base md:text-lg px-8 md:px-12 py-4 md:py-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
-              Get Your Free Strategy Session
+              Book ERP Discovery Session
               <i className="fas fa-chevron-right text-sm"></i>
             </a>
           </div>

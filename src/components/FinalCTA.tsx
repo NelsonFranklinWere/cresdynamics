@@ -7,20 +7,20 @@ export default function FinalCTA() {
         {/* Final Statement */}
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            Ready to Stop the Struggle and Start Growing?
+            Ready to Build Systems That Run Your Company?
           </h2>
           <p className="text-lg md:text-xl lg:text-2xl text-[var(--cres-text-secondary)] max-w-3xl mx-auto leading-relaxed" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            Your business deserves systems that work. Not guesswork. Not hype. Just results.
+            Your business deserves systems that work. ERPs, finance platforms, and automation—designed for scale, visibility, and control.
           </p>
         </div>
 
         {/* CTA Section */}
         <div className="bg-[var(--cres-card-bg)] p-6 md:p-12 rounded-xl shadow-2xl border border-[var(--cres-divider)] mb-12">
           <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[var(--cres-white)] mb-4 md:mb-6">
-            Get Your Free Strategy Session
+            Book a Systems Discovery Session
           </h3>
           <p className="text-base md:text-lg text-[var(--cres-text-secondary)] mb-6 md:mb-8 max-w-2xl mx-auto">
-            We'll analyze your current situation, identify the biggest opportunities, and show you exactly how to turn clicks into clients.
+            We map your processes and data, identify system requirements, and show how we architect and deploy ERPs and finance platforms that companies run on.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
@@ -28,7 +28,7 @@ export default function FinalCTA() {
               href="/contact"
               className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-black)] font-bold text-sm md:text-base px-6 md:px-8 py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide"
             >
-              Book Your Free Session Now
+              Book a Systems Discovery Session
             </a>
             <p className="text-xs md:text-sm text-[var(--cres-text-secondary)]">
               No commitment • No sales pitch • Just clarity

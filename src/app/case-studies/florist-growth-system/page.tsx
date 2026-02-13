@@ -87,16 +87,16 @@ export default function FloristCaseStudyPage() {
 
           {/* Our Approach (Architectural) */}
           <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-8 rounded-lg shadow-sm mb-6 md:mb-8">
-            <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-orange-primary)] mb-4 md:mb-6">The System Architecture</h3>
+            <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-orange-primary)] mb-4 md:mb-6">The Business Operations System Built</h3>
             <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed mb-6 md:mb-8">
-              We designed a digital infrastructure that allowed customer acquisition and order processing to operate independently of direct owner involvement, while maintaining the personal service quality that drove customer loyalty.
+              We built a Business Operations System that allowed customer acquisition and order processing to operate independently of direct owner involvement, while maintaining the personal service quality that drove customer loyalty.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h4 className="text-base md:text-lg font-semibold text-[var(--cres-electric-teal)]">Digital Presence Infrastructure</h4>
+                <h4 className="text-base md:text-lg font-semibold text-[var(--cres-electric-teal)]">Customer Acquisition Module</h4>
                 <ul className="text-xs md:text-sm text-white space-y-2">
-                  <li>• Website as a 24/7 customer acquisition channel</li>
+                  <li>• 24/7 customer acquisition channel</li>
                   <li>• SEO-driven visibility for organic search traffic</li>
                   <li>• Online ordering system with real-time availability</li>
                   <li>• Automated inquiry response and qualification</li>
@@ -104,7 +104,7 @@ export default function FloristCaseStudyPage() {
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Operational Scaling Framework</h4>
+                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Operations & Workflow Module</h4>
                 <ul className="text-white space-y-2">
                   <li>• Standardized order processing workflows</li>
                   <li>• Customer data collection and segmentation</li>
@@ -115,15 +115,19 @@ export default function FloristCaseStudyPage() {
             </div>
           </div>
 
-          {/* Outcome (Readiness-Focused) */}
+          {/* Production System Metrics */}
           <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">The Outcome</h3>
+            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">Production System Metrics</h3>
             <p className="text-white text-lg leading-relaxed mb-6">
-              The business established clear visibility into customer demand patterns and developed operational processes that could scale beyond a single location or owner involvement.
+              The Business Operations System is now in production, providing clear visibility into customer demand patterns and operational processes that scale beyond a single location or owner involvement.
             </p>
-            <p className="text-white text-lg leading-relaxed">
+            <p className="text-white text-lg leading-relaxed mb-4">
               Customer acquisition became predictable and measurable, with systems in place to handle increased order volume without compromising service quality or requiring immediate staff expansion.
             </p>
+            <div className="bg-[var(--cres-deep-navy)] p-4 rounded-lg mt-4">
+              <p className="text-[var(--cres-electric-teal)] font-semibold">System Status: Production</p>
+              <p className="text-white text-sm mt-2">Live operations system • Automated workflows • Customer data platform • Performance analytics</p>
+            </div>
           </div>
 
           {/* Reflection Prompt */}

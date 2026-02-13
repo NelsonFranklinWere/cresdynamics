@@ -88,7 +88,7 @@ export default function BoutiqueCaseStudyPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">SEO-Optimized Website</h4>
+                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Visibility & Discovery Module</h4>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Long-term discovery through organic search</li>
                   <li>• Fashion-specific keyword targeting</li>
@@ -98,7 +98,7 @@ export default function BoutiqueCaseStudyPage() {
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Conversion-Focused Systems</h4>
+                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Conversion & Analytics Module</h4>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Webinar-style educational content</li>
                   <li>• Local search dominance for fashion</li>
@@ -109,15 +109,19 @@ export default function BoutiqueCaseStudyPage() {
             </div>
           </div>
 
-          {/* The Outcome */}
+          {/* Production System Metrics */}
           <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">The Outcome</h3>
+            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">Production System Metrics</h3>
             <p className="text-white text-lg leading-relaxed mb-6">
-              The boutique established predictable monthly lead flow with reduced dependency on paid advertising. Customer behavior became visible and measurable, with clear insights into shopping patterns and preferences.
+              The Business Operations System is now in production, providing predictable monthly lead flow with reduced dependency on paid advertising. Customer behavior became visible and measurable, with clear insights into shopping patterns and preferences.
             </p>
-            <p className="text-white text-lg leading-relaxed">
+            <p className="text-white text-lg leading-relaxed mb-4">
               Brand trust strengthened through consistent online presence, and growth became repeatable rather than accidental. The business developed a foundation for sustainable expansion beyond the initial location.
             </p>
+            <div className="bg-[var(--cres-deep-navy)] p-4 rounded-lg mt-4">
+              <p className="text-[var(--cres-electric-teal)] font-semibold">System Status: Production</p>
+              <p className="text-white text-sm mt-2">Live operations system • Automated lead flow • Customer analytics • Performance dashboards</p>
+            </div>
           </div>
 
           {/* Reflection Prompt */}

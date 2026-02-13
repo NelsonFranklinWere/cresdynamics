@@ -8,20 +8,18 @@ export default function HeroSection2() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
         {/* STRUGGLING TO GROW ONLINE? */}
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 md:mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-          Struggling to Grow Online?
+          Operating Without Systems?
         </h2>
 
-        {/* Stop Losing Leads & Wasting Money */}
         <p className="text-lg md:text-2xl text-[var(--cres-white)] mb-12 md:mb-16 max-w-4xl mx-auto" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-          Stop Losing Leads & Wasting Money. Let's Fix That.
+          No visibility. No control. Manual processes that don't scale. Let's map and fix that.
         </p>
 
-        {/* Stats Row - 3 columns on all screen sizes */}
         <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
           {[
-            { num: '90%', label: 'of websites fail to convert visitors.' },
-            { num: '60%', label: 'of leads go cold without follow-up.' },
-            { num: '1000s', label: 'of hours wasted on manual tasks.' }
+            { num: '90%', label: 'of businesses lack unified systems for operations and finance.' },
+            { num: '60%', label: 'of data stays in spreadsheets instead of one platform.' },
+            { num: '1000s', label: 'of hours lost to manual workflows and approvals.' }
           ].map((stat, i) => (
             <div key={i} className="group p-3 md:p-4 rounded-xl bg-black/80 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300">
               {/* STAT NUMBER: Large, bold, orange */}
@@ -39,7 +37,7 @@ export default function HeroSection2() {
         {/* CTA BUTTON */}
         <div className="mt-8 md:mt-12 text-center">
           <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-base md:text-lg px-6 md:px-8 py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
-            Get Your Free Strategy Session
+            Book a Systems Discovery Session
             <i className="fas fa-chevron-right text-sm"></i>
           </a>
         </div>

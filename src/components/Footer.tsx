@@ -11,72 +11,74 @@ export default function Footer() {
               CRES<span className="text-[var(--cres-electric-teal)]"> Dynamics</span>
             </div>
             <p className="text-[var(--cres-white)] font-semibold text-sm mb-2">
-              Smart Websites, SEO & AI Automation
+              Business Systems That Run Companies
             </p>
             <p className="text-gray-300 text-xs mb-2">
-              Built to help businesses get found, convert, and scale.
+              ERPs, finance platforms, and automation systems designed for scale, visibility, and control.
             </p>
             <p className="text-[var(--cres-electric-teal)] text-xs font-medium italic">
-              Turning digital chaos into measurable growth.
+              CRES Dynamics is a systems engineering company that builds ERP platforms, financial infrastructure, and automation systems that enable businesses to operate with visibility, control, and scale.
             </p>
           </div>
 
-          {/* COLUMN 2-3 — SOLUTIONS & COMPANY IN ONE ROW */}
-          <div className="lg:col-span-2 grid grid-cols-2 gap-4 md:gap-8">
-            {/* SOLUTIONS */}
+          {/* COLUMN 2-4 — ERP Systems • Finance Platforms • Automation • Governance */}
+          <div className="lg:col-span-3 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             <div>
-              <h3 className="text-[var(--cres-white)] font-bold text-sm mb-4">Solutions</h3>
+              <h3 className="text-[var(--cres-white)] font-bold text-sm mb-4">ERP Systems</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="/solutions/web-growth" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                    Website Development
+                  <a href="/cresos" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
+                    CresOS
                   </a>
                 </li>
                 <li>
-                  <a href="/solutions/seo-visibility" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                    SEO & Google Visibility
+                  <a href="/erp" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
+                    Custom ERP
                   </a>
                 </li>
                 <li>
-                  <a href="/solutions/ai-automation" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                    AI & Sales Automation
-                  </a>
-                </li>
-                <li>
-                  <a href="/solutions/digital-sales" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                    WhatsApp Business Systems
-                  </a>
-                </li>
-                <li>
-                  <a href="/solutions/web-growth" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                    Conversion Optimization
+                  <a href="/how-we-build" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
+                    How We Build
                   </a>
                 </li>
               </ul>
             </div>
-
-            {/* COMPANY */}
             <div>
-              <h3 className="text-[var(--cres-white)] font-bold text-sm mb-4">Company</h3>
+              <h3 className="text-[var(--cres-white)] font-bold text-sm mb-4">Finance Platforms</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="/" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                    How It Works
-                  </a>
-                </li>
-                <li>
-                  <a href="/about" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                    About Us
+                  <a href="/solutions/digital-sales" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
+                    Finance & Revenue Systems
                   </a>
                 </li>
                 <li>
                   <a href="/case-studies" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                    Case Studies
+                    Case Proof
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-[var(--cres-white)] font-bold text-sm mb-4">Automation Infrastructure</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="/solutions/ai-automation" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
+                    AI & Automation
                   </a>
                 </li>
                 <li>
-                  <a href="/insights" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                    Insights
+                  <a href="/solutions/web-growth" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
+                    Operations & Workflow
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-[var(--cres-white)] font-bold text-sm mb-4">Governance & Security</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="/how-we-build#security" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
+                    Security & Governance
                   </a>
                 </li>
                 <li>
@@ -143,9 +145,9 @@ export default function Footer() {
 
             <a
               href="/contact"
-              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-1.5 px-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 text-xs"
+              className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold py-1.5 px-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 text-xs"
             >
-              Book a Free Strategy Session
+              Book a Systems Discovery Session
             </a>
           </div>
         </div>
@@ -159,7 +161,7 @@ export default function Footer() {
               © 2026 CRES Dynamics. All rights reserved.
             </p>
             <p className="text-[var(--cres-electric-teal)] text-xs font-medium">
-              Built for businesses that want growth — not guesswork.
+              Business systems that companies actually run on.
             </p>
           </div>
         </div>

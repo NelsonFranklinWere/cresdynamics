@@ -1,18 +1,30 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Real Business Results - How Nairobi Companies Grew 300% | CRES Dynamics',
-  description: 'See real results: Nairobi businesses that doubled revenue, automated operations, and scaled profitably. Florists, restaurants, SACCOs - proven growth strategies that work.',
+  title: 'Live Systems in Production | Real ERP Systems, Finance Platforms | Nairobi Kenya',
+  description: 'Real systems. Real production. Real businesses. See live ERP systems, finance platforms, and automation systems in production. Production-ready systems with real users and revenue tracking. Nairobi Kenya.',
+  keywords: [
+    'ERP systems case studies Nairobi',
+    'finance platform case studies Kenya',
+    'production ERP systems Nairobi',
+    'live business systems Kenya',
+    'ERP proof Nairobi',
+    'finance platform proof Kenya',
+    'automation systems case studies Nairobi',
+    'production-ready systems Kenya',
+    'real ERP systems Nairobi',
+    'business systems proof Kenya'
+  ],
   openGraph: {
-    title: 'Real Business Results - How Companies Grew 300%',
-    description: 'See real results: Nairobi businesses that doubled revenue and scaled profitably. Proven growth strategies.',
+    title: 'Live Systems in Production | Real ERP Systems, Finance Platforms | Nairobi Kenya',
+    description: 'Real systems. Real production. Real businesses. See live ERP systems, finance platforms, and automation systems in production with real users and revenue tracking.',
     url: 'https://cresdynamics.com/case-studies',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Real Business Results - Growth Stories',
-    description: 'See how Nairobi businesses doubled revenue and scaled with our proven strategies.',
+    title: 'Live Systems in Production | Real ERP Systems',
+    description: 'Real systems. Real production. See live ERP systems, finance platforms, and automation systems in production.',
   },
 };
 

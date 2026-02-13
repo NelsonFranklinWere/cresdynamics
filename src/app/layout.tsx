@@ -5,8 +5,30 @@ import AIChatWidget from "@/components/AIChatWidget";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cresdynamics.com'),
-  title: 'CRES Dynamics - Business Growth Through Technology | Nairobi Digital Solutions',
-  description: 'Struggling with business growth? Get more customers online. Websites, SEO & AI automation that actually work. Free strategy session for Nairobi businesses.',
+  title: 'CRES Dynamics - Business Systems That Run Companies | ERP, Finance Platforms & Automation | Nairobi Kenya',
+  description: 'CRES Dynamics is a systems engineering company that builds ERP platforms, financial infrastructure, and automation systems that enable businesses to operate with visibility, control, and scale. Custom ERP, CresOS, finance platforms, Nairobi Kenya.',
+  keywords: [
+    'ERP systems Nairobi',
+    'ERP development Kenya',
+    'custom ERP systems Nairobi',
+    'finance platforms Kenya',
+    'business systems builder Nairobi',
+    'fast ERP development Kenya',
+    'quality business systems Nairobi',
+    'AI integration ERP Kenya',
+    'speed ERP implementation Nairobi',
+    'production-ready ERP Kenya',
+    'enterprise-grade systems Nairobi',
+    'business operations systems Kenya',
+    'revenue tracking platforms Nairobi',
+    'automation systems Kenya',
+    'ERP near me Nairobi',
+    'business systems near me Kenya',
+    'off-the-shelf ERP failed',
+    'custom finance platform Nairobi',
+    'AI-powered business systems Kenya',
+    'scalable ERP systems Nairobi'
+  ],
   icons: {
     icon: [
       { url: '/favicon-circular.png?v=2', sizes: '32x32', type: 'image/png' },
@@ -17,8 +39,8 @@ export const metadata: Metadata = {
     shortcut: '/favicon-circular.png?v=2',
   },
   openGraph: {
-    title: 'CRES Dynamics - Business Growth Through Technology | Nairobi',
-    description: 'Struggling with business growth? Get more customers online. Websites, SEO & AI automation that actually work. Free strategy session.',
+    title: 'CRES Dynamics - Business Systems That Run Companies | ERP, Finance Platforms & Automation | Nairobi Kenya',
+    description: 'CRES Dynamics designs and builds business systems—ERPs, finance platforms, and automation—that companies actually run on. Custom ERP systems Nairobi Kenya, fast ERP development, quality business systems, AI integration, production-ready systems.',
     images: [
       {
         url: '/logo.png',
@@ -58,10 +80,10 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "CRES Dynamics",
-    "alternateName": "Cres Dynamics Digital Growth Company",
+    "alternateName": "CRES Dynamics Systems Engineering",
     "url": "https://cresdynamics.com",
     "logo": "https://cresdynamics.com/logo.png",
-    "description": "Digital Growth & Software Engineering Company helping Nairobi businesses turn clicks into clients through websites, SEO, AI automation, and measurable business outcomes.",
+    "description": "CRES Dynamics is a systems engineering company that builds ERP platforms, financial infrastructure, and automation systems that enable businesses to operate with visibility, control, and scale.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Nairobi",
@@ -73,62 +95,63 @@ export default function RootLayout({
       "name": "Nairobi"
     },
     "serviceType": [
-      "Digital Growth Solutions",
-      "Software Engineering",
+      "ERP Systems",
+      "Finance Platforms",
+      "Business Operations Systems",
+      "Revenue Tracking Systems",
       "Business Automation",
-      "Website Development",
-      "SEO & Online Visibility",
-      "AI-Powered Sales Systems",
-      "Business Transformation",
-      "Technology Growth Consulting"
+      "System Architecture",
+      "Process Mapping",
+      "Custom ERP Development"
     ],
     "priceRange": "$$",
     "telephone": "+254708805496",
     "email": "info@cresdynamics.com",
     "knowsAbout": [
-      "Business Growth",
-      "Digital Transformation",
-      "Software Engineering",
-      "AI Automation",
-      "SEO Optimization",
-      "Lead Generation",
-      "Sales Automation",
-      "Website Development"
+      "ERP Systems",
+      "Finance Platforms",
+      "Business Operations Systems",
+      "System Architecture",
+      "Process Mapping",
+      "Revenue Tracking",
+      "Role-Based Access Control",
+      "Business Automation",
+      "System Governance"
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Digital Growth Solutions",
+      "name": "Business Systems",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Website Development",
-            "description": "High-converting websites that turn visitors into customers"
+            "name": "ERP Platforms",
+            "description": "Custom ERP systems with role-based access, analytics, and automation"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "SEO & Online Visibility",
-            "description": "Get found by customers searching for your services in Nairobi"
+            "name": "Finance & Revenue Systems",
+            "description": "Billing, subscriptions, invoices, and revenue dashboards"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "AI Automation",
-            "description": "Automate your sales and customer follow-ups with AI"
+            "name": "Business Operations Systems",
+            "description": "Projects, approvals, workflows, and reporting systems"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Business Growth Consulting",
-            "description": "Strategic guidance to scale your Nairobi business"
+            "name": "AI & Automation Systems",
+            "description": "Follow-ups, workflows, and decision support automation"
           }
         }
       ]
@@ -178,7 +201,8 @@ export default function RootLayout({
         {/* Prefetch likely navigation targets */}
         <link rel="prefetch" href="/about" />
         <link rel="prefetch" href="/contact" />
-        <link rel="prefetch" href="/solutions/seo-visibility" />
+        <link rel="prefetch" href="/cresos" />
+        <link rel="prefetch" href="/how-we-build" />
         <link rel="prefetch" href="/case-studies" />
 
         {/* Favicon and App Icons - Circular Logo as favicon */}
@@ -197,6 +221,25 @@ export default function RootLayout({
         <meta property="og:image" content="/logo.png" />
         <meta property="og:image:width" content="512" />
         <meta property="og:image:height" content="512" />
+
+        {/* Strategic SEO Meta Tags for Kenya/Nairobi */}
+        <meta name="geo.region" content="KE-110" />
+        <meta name="geo.placename" content="Nairobi" />
+        <meta name="geo.position" content="-1.2921;36.8219" />
+        <meta name="ICBM" content="-1.2921, 36.8219" />
+        <meta name="location" content="Nairobi, Kenya" />
+        <meta name="language" content="en-KE" />
+        <meta name="country" content="Kenya" />
+        
+        {/* Business Focus Meta Tags */}
+        <meta name="business.type" content="ERP Development, Finance Platforms, Business Systems Builder" />
+        <meta name="service.area" content="Nairobi, Kenya" />
+        <meta name="specialization" content="Custom ERP Systems, Finance Platforms, Business Operations Systems, AI Integration" />
+        
+        {/* Quality, Speed, AI Integration Emphasis */}
+        <meta name="quality.focus" content="Production-ready systems, Enterprise-grade quality, Fast implementation" />
+        <meta name="ai.integration" content="AI-powered automation, AI decision support, Intelligent workflows" />
+        <meta name="speed.focus" content="Fast ERP development, Quick implementation, Rapid deployment" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="CRES Dynamics Logo" />
 
@@ -274,8 +317,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "CRES Dynamics - Digital Growth Company",
-              "description": "Nairobi's leading digital growth and software engineering company. We help businesses get found, convert leads, and scale using technology.",
+              "name": "CRES Dynamics",
+              "description": "CRES Dynamics is a systems engineering company that builds ERP platforms, financial infrastructure, and automation systems for visibility, control, and scale.",
               "url": "https://cresdynamics.com",
               "telephone": "+254708805496",
               "email": "info@cresdynamics.com",
@@ -305,18 +348,18 @@ export default function RootLayout({
               "mainEntity": [
                 {
                   "@type": "Question",
-                  "name": "Why is my website not generating leads?",
+                  "name": "When should I consider a custom ERP instead of off-the-shelf?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Most websites fail because they're not optimized for conversions. At CRES Dynamics, we build websites that turn visitors into customers through strategic design, clear calls-to-action, and conversion optimization."
+                    "text": "When off-the-shelf ERPs force you to change your processes, or when you need modular systems (like CresOS) that fit your operations. CRES Dynamics builds production-ready ERPs with role-based access, finance visibility, and governance."
                   }
                 },
                 {
                   "@type": "Question",
-                  "name": "How can I get more customers online in Nairobi?",
+                  "name": "What is a Systems Discovery Session?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Focus on SEO, content marketing, and conversion optimization. We help Nairobi businesses get found by their ideal customers and convert more visitors into paying clients."
+                    "text": "A structured session where we map your processes, data, and goals. We then outline how we architect and deploy ERP platforms, finance systems, and automation—with visibility, control, and scale."
                   }
                 },
                 {
@@ -348,10 +391,10 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "CRES Dynamics",
-              "legalName": "CRES Dynamics Digital Growth Company",
+              "legalName": "CRES Dynamics",
               "url": "https://cresdynamics.com",
               "logo": "https://cresdynamics.com/logo.png",
-              "description": "Digital Growth & Software Engineering Company. We don't sell services - we sell business outcomes. More customers, more revenue, less chaos.",
+              "description": "CRES Dynamics is a systems engineering company that builds ERP platforms, financial infrastructure, and automation systems that enable businesses to operate with visibility, control, and scale.",
               "foundingDate": "2024",
               "address": {
                 "@type": "PostalAddress",

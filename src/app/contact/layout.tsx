@@ -1,18 +1,28 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact CRES Dynamics - Free Business Growth Consultation | Nairobi',
-  description: 'Ready to grow your business? Get a free strategy session. We help Nairobi businesses get more customers, automate operations, and scale profitably. Book now.',
+  title: 'Book a Systems Discovery Session | Contact CRES Dynamics Nairobi Kenya',
+  description: 'Book a Systems Discovery Session with CRES Dynamics. Map your processes, data, and goals. We outline how we architect and deploy ERP platforms, finance systems, and automation—visibility, control, scale.',
+  keywords: [
+    'Systems Discovery Session Nairobi',
+    'ERP discovery session Kenya',
+    'process mapping Nairobi',
+    'business systems contact Kenya',
+    'CresOS discovery Nairobi',
+    'finance platform discussion Kenya',
+    'custom ERP contact Nairobi',
+    'systems engineering Kenya contact'
+  ],
   openGraph: {
-    title: 'Contact CRES Dynamics - Free Business Growth Consultation',
-    description: 'Ready to grow your business? Get a free strategy session. We help Nairobi businesses get more customers and scale profitably.',
+    title: 'Book a Systems Discovery Session | Contact CRES Dynamics',
+    description: 'Map your processes and system needs. We architect and deploy production-ready ERPs, finance platforms, and automation.',
     url: 'https://cresdynamics.com/contact',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact CRES Dynamics - Free Consultation',
-    description: 'Ready to grow your business? Get a free strategy session for Nairobi businesses.',
+    title: 'Book a Systems Discovery Session | CRES Dynamics',
+    description: 'Map your processes and system needs. We architect and deploy production-ready ERPs, finance platforms, and automation.',
   },
 };
 

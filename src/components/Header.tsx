@@ -42,32 +42,29 @@ export default function Header() {
           </svg>
         </button>
 
-        {/* NAV LINKS: Muted white → Orange hover, compact spacing */}
+        {/* NAV: Home • CresOS • Systems • How We Build • Case Proof • Contact */}
         <ul className="hidden md:flex space-x-4">
           <li>
-            <Link
-              href="/"
-              prefetch={true}
-              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
-            >
-              Who We Are
+            <Link href="/" prefetch={true} className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4">
+              Home
             </Link>
           </li>
-
-          {/* Solutions Dropdown */}
+          <li>
+            <Link href="/cresos" prefetch={true} className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4">
+              CresOS
+            </Link>
+          </li>
           <li className="relative">
             <button
               onMouseEnter={() => setIsSolutionsDropdownOpen(true)}
               onMouseLeave={() => setIsSolutionsDropdownOpen(false)}
               className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 flex items-center space-x-1"
             >
-              <span>What We Do</span>
+              <span>Systems</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-
-            {/* Dropdown Menu */}
             {isSolutionsDropdownOpen && (
               <div
                 className="absolute top-full left-0 mt-2 w-64 bg-[var(--cres-black)] border border-[var(--cres-charcoal)] rounded-lg shadow-xl z-50"
@@ -76,12 +73,11 @@ export default function Header() {
               >
                 <div className="py-2">
                   {[
-                    { name: 'Web Growth Systems', href: '/solutions/web-growth', icon: '🌐' },
-                    { name: 'AI & Automation', href: '/solutions/ai-automation', icon: '🤖' },
-                    { name: 'SEO & Online Visibility', href: '/solutions/seo-visibility', icon: '🔍' },
-                    { name: 'Digital Sales Systems', href: '/solutions/digital-sales', icon: '💰' },
-                    { name: 'Content & Brand Authority', href: '/solutions/content-brand', icon: '📝' },
-                    { name: 'Consulting & Strategy', href: '/solutions/consulting-strategy', icon: '🎯' }
+                    { name: 'CresOS – Business Operating System', href: '/cresos' },
+                    { name: 'Finance & Revenue Systems', href: '/solutions/digital-sales' },
+                    { name: 'Operations & Workflow', href: '/solutions/web-growth' },
+                    { name: 'AI & Automation', href: '/solutions/ai-automation' },
+                    { name: 'ERP & Custom ERP', href: '/erp' },
                   ].map((solution) => (
                     <Link
                       key={solution.href}
@@ -96,51 +92,25 @@ export default function Header() {
               </div>
             )}
           </li>
-
           <li>
-            <Link
-              href="/case-studies"
-              prefetch={true}
-              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
-            >
-              Case Impact
+            <Link href="/how-we-build" prefetch={true} className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4">
+              How We Build
             </Link>
           </li>
-
           <li>
-            <Link
-              href="/about"
-              prefetch={true}
-              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
-            >
-              Why We Exist
+            <Link href="/case-studies" prefetch={true} className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4">
+              Case Proof
             </Link>
           </li>
-
           <li>
-            <Link
-              href="/insights"
-              prefetch={true}
-              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
-            >
-              Growth Insights
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="/contact"
-              prefetch={true}
-              className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4"
-            >
-              Talk to Us
+            <Link href="/contact" prefetch={true} className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4">
+              Contact
             </Link>
           </li>
         </ul>
 
-        {/* CTA BUTTON: Book a Free Consultation → Orange, rounded-xl, shadow */}
         <Link href="/contact" prefetch={true} className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-white)] font-bold px-4 py-1.5 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
-          Book a Free Consultation
+          Book a Systems Discovery Session
         </Link>
       </nav>
 
@@ -148,12 +118,12 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="mobile-menu open md:hidden">
           {[
-            { name: 'Who We Are', href: '/' },
-            { name: 'What We Do', href: '#solutions', isDropdown: true },
-            { name: 'Case Impact', href: '/case-studies' },
-            { name: 'Why We Exist', href: '/about' },
-            { name: 'Growth Insights', href: '/insights' },
-            { name: 'Talk to Us', href: '/contact' }
+            { name: 'Home', href: '/' },
+            { name: 'CresOS', href: '/cresos' },
+            { name: 'Systems', href: '#systems', isDropdown: true },
+            { name: 'How We Build', href: '/how-we-build' },
+            { name: 'Case Proof', href: '/case-studies' },
+            { name: 'Contact', href: '/contact' }
           ].map((item) => (
             <div key={item.name}>
               {item.isDropdown ? (
@@ -176,12 +146,11 @@ export default function Header() {
                   {isMobileSolutionsOpen && (
                     <div className="mt-2 ml-4 space-y-2">
                       {[
-                        { name: 'Web Growth Systems', href: '/solutions/web-growth' },
+                        { name: 'CresOS', href: '/cresos' },
+                        { name: 'Finance & Revenue Systems', href: '/solutions/digital-sales' },
+                        { name: 'Operations & Workflow', href: '/solutions/web-growth' },
                         { name: 'AI & Automation', href: '/solutions/ai-automation' },
-                        { name: 'SEO & Online Visibility', href: '/solutions/seo-visibility' },
-                        { name: 'Digital Sales Systems', href: '/solutions/digital-sales' },
-                        { name: 'Content & Brand Authority', href: '/solutions/content-brand' },
-                        { name: 'Consulting & Strategy', href: '/solutions/consulting-strategy' }
+                        { name: 'ERP', href: '/erp' },
                       ].map((solution) => (
                         <Link
                           key={solution.href}
