@@ -37,14 +37,14 @@ export default function HeroSection1() {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="/cresos" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-base md:text-lg px-6 md:px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <a href="/cresos" className="inline-flex items-center gap-1.5 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-sm px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 uppercase tracking-wide">
             Explore CresOS
-            <i className="fas fa-chevron-right text-sm"></i>
+            <i className="fas fa-chevron-right text-xs"></i>
           </a>
-          <a href="/contact" className="inline-flex items-center gap-2 bg-transparent border-2 border-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-primary)]/10 text-[var(--cres-white)] font-bold text-base md:text-lg px-6 md:px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
-            Book a Systems Discovery Session
-            <i className="fas fa-arrow-right text-sm"></i>
+          <a href="/contact" className="inline-flex items-center gap-1.5 bg-transparent border border-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-primary)]/10 text-[var(--cres-white)] font-bold text-sm px-4 py-2 rounded-lg transition-all duration-300 uppercase tracking-wide">
+            Book Session
+            <i className="fas fa-arrow-right text-xs"></i>
           </a>
         </div>
       </div>

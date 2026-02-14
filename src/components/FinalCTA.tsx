@@ -26,9 +26,9 @@ export default function FinalCTA() {
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
             <a
               href="/contact"
-              className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-black)] font-bold text-sm md:text-base px-6 md:px-8 py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide"
+              className="inline-block bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-black)] font-bold text-sm px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 uppercase tracking-wide"
             >
-              Book a Systems Discovery Session
+              Book Session
             </a>
             <p className="text-xs md:text-sm text-[var(--cres-text-secondary)]">
               No commitment • No sales pitch • Just clarity

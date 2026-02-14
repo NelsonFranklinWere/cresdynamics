@@ -127,8 +127,8 @@
   }
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
+/* Mobile / Tablet menu: show hamburger and slide-out menu up to 1024px (iPad included) */
+@media (max-width: 1024px) {
   .mobile-menu {
     position: fixed;
     top: 64px; /* top-16 = 64px */
@@ -152,9 +152,12 @@
     z-index: 50;
     border-radius: 8px 0 0 8px; /* Rounded corners on left side */
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-    /* Right-side slide animation - menu slides from right edge */
   }
   .mobile-menu.open { right: 0; }
+}
+
+/* Mobile Responsiveness (small phones) */
+@media (max-width: 768px) {
 
   /* Stats stack vertically, CTA full-width */
   .stats-grid { @apply grid-cols-1 gap-6; }

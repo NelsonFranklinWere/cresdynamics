@@ -27,9 +27,9 @@ export default function Header() {
           </span>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - show on tablet/iPad and below (lg breakpoint = 1024px) */}
         <button
-          className="md:hidden text-[var(--cres-white)]"
+          className="lg:hidden text-[var(--cres-white)]"
           onClick={() => {
             setIsMobileMenuOpen(!isMobileMenuOpen);
             if (isMobileMenuOpen) {
@@ -42,11 +42,21 @@ export default function Header() {
           </svg>
         </button>
 
-        {/* NAV: Home • CresOS • Systems • How We Build • Case Proof • Contact */}
-        <ul className="hidden md:flex space-x-4">
+        {/* NAV: Home • Who We Are • Why Us • CresOS • Systems • How We Build • Case Proof • Contact */}
+        <ul className="hidden lg:flex space-x-4">
           <li>
             <Link href="/" prefetch={true} className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4">
               Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" prefetch={true} className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4">
+              Who We Are
+            </Link>
+          </li>
+          <li>
+            <Link href="/why-us" prefetch={true} className="text-[var(--cres-white)] text-sm font-medium uppercase hover:text-[var(--cres-orange-primary)] transition-all duration-300 hover:underline underline-offset-4">
+              Why Us
             </Link>
           </li>
           <li>
@@ -109,16 +119,18 @@ export default function Header() {
           </li>
         </ul>
 
-        <Link href="/contact" prefetch={true} className="hidden md:block bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-white)] font-bold px-4 py-1.5 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wide">
-          Book a Systems Discovery Session
+        <Link href="/contact" prefetch={true} className="hidden lg:inline-flex items-center bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-[var(--cres-white)] font-bold px-3 py-1 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-[10px] leading-tight uppercase tracking-wide whitespace-nowrap">
+          Book Session
         </Link>
       </nav>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="mobile-menu open md:hidden">
+        <div className="mobile-menu open lg:hidden">
           {[
             { name: 'Home', href: '/' },
+            { name: 'Who We Are', href: '/about' },
+            { name: 'Why Us', href: '/why-us' },
             { name: 'CresOS', href: '/cresos' },
             { name: 'Systems', href: '#systems', isDropdown: true },
             { name: 'How We Build', href: '/how-we-build' },

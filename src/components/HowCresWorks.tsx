@@ -78,9 +78,9 @@ export default function HowCresWorks() {
 
           {/* CTA */}
           <div className="text-center">
-            <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-base md:text-lg px-8 md:px-12 py-4 md:py-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
-              Book ERP Discovery Session
-              <i className="fas fa-chevron-right text-sm"></i>
+            <a href="/contact" className="inline-flex items-center gap-1.5 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-sm px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 uppercase tracking-wide">
+              Book Session
+              <i className="fas fa-chevron-right text-xs"></i>
             </a>
           </div>
         </div>

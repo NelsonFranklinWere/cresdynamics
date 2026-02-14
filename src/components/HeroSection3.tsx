@@ -73,9 +73,9 @@ export default function HeroSection3() {
               Imagine a system so powerful it literally pays for itself.
             </p>
             <div className="text-center md:text-left">
-              <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-sm md:text-base px-4 md:px-6 py-2 md:py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
-                Book a Systems Discovery Session
-                <i className="fas fa-chevron-right text-sm"></i>
+              <a href="/contact" className="inline-flex items-center gap-1.5 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-xs px-3 py-1.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 uppercase tracking-wide">
+                Book Session
+                <i className="fas fa-chevron-right text-xs"></i>
               </a>
             </div>
           </div>
