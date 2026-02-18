@@ -7,10 +7,10 @@ export default function FinalCTA() {
         {/* Final Statement */}
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            Ready to Build Systems That Run Your Company?
+            Ready for Proprietary Operating Environments That Run Your Company?
           </h2>
           <p className="text-lg md:text-xl lg:text-2xl text-[var(--cres-text-secondary)] max-w-3xl mx-auto leading-relaxed" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            Your business deserves systems that work. ERPs, finance platforms, and automation—designed for scale, visibility, and control.
+            We engineer digital infrastructure—not websites. Our systems are so essential clients stay for years. High retention. Cres Core Engine. Zero-Trust Architecture.
           </p>
         </div>
 
@@ -20,7 +20,7 @@ export default function FinalCTA() {
             Book a Systems Discovery Session
           </h3>
           <p className="text-base md:text-lg text-[var(--cres-text-secondary)] mb-6 md:mb-8 max-w-2xl mx-auto">
-            We map your processes and data, identify system requirements, and show how we architect and deploy ERPs and finance platforms that companies run on.
+            We map your processes and data, then show how we architect and deploy with the Cres Core Engine—optimized for low-latency performance, elastic scalability, and military-grade security.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
@@ -39,16 +39,16 @@ export default function FinalCTA() {
         {/* Trust Indicators - Cards - 3 columns on all screen sizes */}
         <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
           <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-lg text-center">
-            <div className="text-lg md:text-xl font-bold text-[var(--cres-orange-primary)] mb-1">100+</div>
-            <div className="text-xs md:text-sm text-[var(--cres-white)]">Businesses Transformed</div>
+            <div className="text-lg md:text-xl font-bold text-[var(--cres-orange-primary)] mb-1">Cres Core Engine</div>
+            <div className="text-xs md:text-sm text-[var(--cres-white)]">Proprietary framework • Deploy faster</div>
           </div>
           <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-lg text-center">
-            <div className="text-lg md:text-xl font-bold text-[var(--cres-orange-primary)] mb-1">300%</div>
-            <div className="text-xs md:text-sm text-[var(--cres-white)]">Average Growth</div>
+            <div className="text-lg md:text-xl font-bold text-[var(--cres-orange-primary)] mb-1">High Retention</div>
+            <div className="text-xs md:text-sm text-[var(--cres-white)]">Systems so essential they stay for years</div>
           </div>
           <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-lg text-center">
-            <div className="text-lg md:text-xl font-bold text-[var(--cres-orange-primary)] mb-1">24/7</div>
-            <div className="text-xs md:text-sm text-[var(--cres-white)]">System Support</div>
+            <div className="text-lg md:text-xl font-bold text-[var(--cres-orange-primary)] mb-1">SOPs & Manuals</div>
+            <div className="text-xs md:text-sm text-[var(--cres-white)]">A manual for everything • Capital-ready</div>
           </div>
         </div>
         </div>

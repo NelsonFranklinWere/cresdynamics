@@ -9,12 +9,11 @@ export default function HowCresWorks() {
         <div className="text-center mb-16 md:mb-20">
           {/* Here's How CRES Builds Business Systems */}
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 md:mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            Here's How We Build <span className="text-[var(--cres-orange-primary)]">Business Systems.</span>
+            Here&apos;s How We Build <span className="text-[var(--cres-orange-primary)]">Business Systems.</span>
           </h2>
 
-          {/* From process mapping to production systems */}
           <p className="text-lg md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-            From process mapping to production systems — we build platforms that companies actually run on.
+            We don&apos;t just build for clients—we build the <strong className="text-[var(--cres-orange-primary)]">Cres Core Engine</strong>, a proprietary framework that lets us deploy secure systems faster. Zero-Trust Architecture and military-grade encryption built in.
           </p>
         </div>
 
@@ -41,7 +40,7 @@ export default function HowCresWorks() {
               {
                 icon: <i className="fas fa-shield-alt"></i>,
                 title: 'Security & Scale',
-                text: 'Enterprise-grade security, governance, and scalability built into every system module.'
+                text: 'Zero-Trust Architecture and military-grade encryption. Governance and elastic scalability built into every system module.'
               }
             ].map((step, i) => (
               <div key={i} className="relative">
@@ -70,9 +69,12 @@ export default function HowCresWorks() {
           {/* STATEMENT BANNER */}
           <div className="bg-black/80 backdrop-blur-sm border border-white/20 p-6 md:p-12 rounded-xl shadow-lg text-center mb-12 md:mb-16">
             <p className="text-lg md:text-2xl lg:text-3xl font-black text-[var(--cres-white)]">
-              With CRES, You're Not Buying Services.
+              With CRES, You&apos;re Not Buying Services.
               <br />
-              <span className="text-[var(--cres-orange-primary)] underline-custom">You're Investing in Systems.</span>
+              <span className="text-[var(--cres-orange-primary)] underline-custom">You&apos;re Investing in Systems.</span>
+            </p>
+            <p className="text-[var(--cres-white)]/80 text-sm md:text-base mt-4 max-w-2xl mx-auto">
+              CRES Dynamics was born from years of R&D in system security. We have a manual for everything—SOPs that mean the business runs with or without the founder.
             </p>
           </div>
 

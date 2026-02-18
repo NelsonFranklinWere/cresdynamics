@@ -90,30 +90,37 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* COLUMN 4 — CONTACT & ACTION */}
+          {/* COLUMN 4 — CONTACT US & LOCATION */}
           <div className="lg:col-span-1">
-            <h3 className="text-[var(--cres-white)] font-bold text-sm mb-4">Get in Touch</h3>
+            <h3 className="text-[var(--cres-white)] font-bold text-sm mb-2">Contact Us</h3>
+            <p className="text-gray-400 text-xs mb-4">
+              Reach out to discuss your system needs. We respond within 24 hours.
+            </p>
 
-            <div className="space-y-3 mb-6">
+            <div className="space-y-3 mb-4">
+              <div className="flex items-center space-x-2">
+                <span className="text-[var(--cres-electric-teal)] text-xs">📞</span>
+                <a href="tel:+254708805496" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
+                  +254 708 805 496
+                </a>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-[var(--cres-electric-teal)] text-xs">📞</span>
+                <a href="tel:+254743869564" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
+                  +254 743 869 564
+                </a>
+              </div>
               <div className="flex items-center space-x-2">
                 <span className="text-[var(--cres-electric-teal)] text-xs">📧</span>
                 <a href="mailto:info@cresdynamics.com" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
                   info@cresdynamics.com
                 </a>
               </div>
-
-              <div className="flex items-center space-x-2">
-                <span className="text-[var(--cres-electric-teal)] text-xs">📞</span>
-                <a href="tel:0708805496" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                  0708 805 496
-                </a>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <span className="text-[var(--cres-electric-teal)] text-xs">📞</span>
-                <a href="tel:0743869564" className="text-gray-300 hover:text-[var(--cres-electric-teal)] transition-colors duration-200 text-xs">
-                  0743 869 564
-                </a>
+              <div className="flex items-start space-x-2">
+                <span className="text-[var(--cres-electric-teal)] text-xs mt-0.5">📍</span>
+                <span className="text-gray-300 text-xs leading-relaxed">
+                  Kivuli Tower, 3rd Floor Westlands, Nairobi, Kenya
+                </span>
               </div>
             </div>
 

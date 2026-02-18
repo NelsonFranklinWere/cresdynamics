@@ -1,10 +1,7 @@
 import Header from '@/components/Header';
-import HeroSection1 from '@/components/HeroSection1';
-import HeroSection2 from '@/components/HeroSection2';
-import HeroSection3 from '@/components/HeroSection3';
-import WhyChooseCres from '@/components/WhyChooseCres';
+import HeroTesla from '@/components/HeroTesla';
+import SystemsShowcaseTesla from '@/components/SystemsShowcaseTesla';
 import LiveSystemsProof from '@/components/LiveSystemsProof';
-import HowCresWorks from '@/components/HowCresWorks';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 
@@ -100,32 +97,27 @@ export default function Home() {
         <h6>AI-Powered Finance Platforms Quality Kenya</h6>
         <p>Fast ERP development with quality Nairobi, AI integration business systems Kenya, speed ERP implementation quality Nairobi, production-ready systems fast Kenya, enterprise-grade ERP speed Nairobi, AI-powered finance platforms quality Kenya, scalable systems speed Nairobi.</p>
 
-        {/* POSITIONING CONTENT */}
+        {/* POSITIONING CONTENT - Engines / Digital Infrastructure language */}
         <div>
-          <h2>CRES Dynamics Builds Business Systems - Quality, Speed, AI Integration</h2>
-          <p>CRES Dynamics designs and builds business systems—ERPs, finance platforms, and automation—that companies actually run on. We build systems that solve business problems, control critical data, and enable better decisions. Quality systems, fast implementation, AI integration, production-ready.</p>
+          <h2>CRES Dynamics Engineers Proprietary Operating Environments and Digital Infrastructure</h2>
+          <p>We do not build websites. We engineer proprietary operating environments and digital infrastructure—ERPs, finance platforms, automation—optimized for low-latency performance, elastic scalability, and Zero-Trust Architecture with military-grade encryption. Cres Core Engine. Nairobi Kenya.</p>
 
-          <h3>Why Companies Choose CRES Dynamics Nairobi</h3>
-          <p>Quality: Production-ready systems with enterprise-grade security. Speed: Fast ERP development and implementation in Nairobi Kenya. AI Integration: AI-powered automation and decision support built into every system. Real Systems: Live systems with real users and revenue tracking, not promises.</p>
+          <h3>Why Serious Businesses Choose CRES Dynamics</h3>
+          <p>Zero-Trust Architecture and military-grade encryption. Systems optimized for low-latency performance and elastic scalability. Cres Core Engine: proprietary framework to deploy secure systems faster. High retention: systems so essential clients stay for years. Trusted to build regional digital infrastructure—enterprise systems, secure architecture, Church platforms.</p>
 
           <h3>Systems We Build in Kenya</h3>
-          <p>Business Operations Systems: Projects, approvals, workflows, reporting. Finance & Revenue Systems: Billing, subscriptions, invoices, dashboards. ERP Platforms: Role-based access, analytics, automation. AI & Automation Systems: Follow-ups, workflows, decision support. All built with quality, speed, and AI integration for Nairobi businesses.</p>
+          <p>Business Operations Systems: Projects, approvals, workflows, reporting. Finance & Revenue Systems: Billing, subscriptions, invoices, dashboards. ERP Platforms: Role-based access, analytics, automation. AI & Automation Systems: Follow-ups, workflows, decision support. All built on the Cres Core Engine with SOPs and a manual for everything—capital-ready.</p>
 
-          <h3>How We Build Systems - Quality, Speed, AI</h3>
-          <p>Process Mapping: We map existing processes and design optimized workflows. System Architecture: Scalable, secure architectures with modular design. MVP ERP Build: Production-ready modules built incrementally with speed. Automation & Analytics: AI-powered pipelines and analytics that turn data into decisions. Security, Governance & Scale: Enterprise-grade security built into every system. Quality delivery, fast implementation, AI integration throughout.</p>
+          <h3>Heritage and R&D</h3>
+          <p>CRES Dynamics was born from years of R&D in system security. We have a manual for everything. The business runs with or without the founder. Trusted to build regional digital infrastructure.</p>
         </div>
       </div>
 
       <Header />
       <main>
-        <HeroSection1 />
-
-
-        <HeroSection2 />
-        <HeroSection3 />
-        <WhyChooseCres />
+        <HeroTesla />
+        <SystemsShowcaseTesla />
         <LiveSystemsProof />
-        <HowCresWorks />
         <FinalCTA />
       </main>
       <Footer />

@@ -8,11 +8,11 @@ export default function HeroSection2() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
         {/* STRUGGLING TO GROW ONLINE? */}
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 md:mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-          Operating Without Systems?
+          Operating Without <span className="text-[var(--cres-orange-primary)]">Digital Infrastructure?</span>
         </h2>
 
         <p className="text-lg md:text-2xl text-[var(--cres-white)] mb-12 md:mb-16 max-w-4xl mx-auto" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-          No visibility. No control. Manual processes that don't scale. Let's map and fix that.
+          No visibility. No control. Manual processes that don&apos;t scale. We don&apos;t build pages—we build engines. Let&apos;s map and fix that.
         </p>
 
         <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">

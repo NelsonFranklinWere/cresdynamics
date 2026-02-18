@@ -11,7 +11,7 @@ export default function WhyChooseCres() {
             Systems We <span className="text-[var(--cres-orange-primary)]">Build</span>
           </h2>
           <p className="text-lg md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-            Each system solves a business problem, centralizes data, and enables measurable decisions.
+            We don&apos;t build websites. We engineer proprietary operating environments—each system centralizes data and enables measurable decisions.
           </p>
         </div>
 

@@ -8,12 +8,11 @@ export default function HeroSection3() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
         {/* Without the Right System, Your Business is Stuck. */}
         <h3 className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 md:mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-          Without the Right System, Your Business is <span className="text-[var(--cres-orange-primary)]">Stuck.</span>
+          Without the Right <span className="text-[var(--cres-orange-primary)]">Engine</span>, Your Business is Stuck.
         </h3>
 
-        {/* Stop Spinning Your Wheels */}
         <p className="text-lg md:text-2xl text-[var(--cres-white)] mb-12 md:mb-16 max-w-4xl mx-auto" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-          Stop Spinning Your Wheels — Let's Build a Machine That Works for You.
+          We implement Zero-Trust Architecture and military-grade encryption. Let&apos;s build the operating environment your company runs on.
         </p>
 
         {/* 3 PROBLEM CARDS - 3 columns on all screen sizes */}
@@ -70,7 +69,7 @@ export default function HeroSection3() {
           <div className="text-center md:text-left">
             <h4 className="text-2xl md:text-3xl font-black text-[var(--cres-white)] mb-6 md:mb-8 underline-custom" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)'}}>Let's Finally Fix It.</h4>
             <p className="text-lg md:text-xl text-[var(--cres-white)] mb-6 md:mb-8 leading-relaxed" style={{textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)'}}>
-              Imagine a system so powerful it literally pays for itself.
+              Systems optimized for low-latency performance and elastic scalability—so essential they drive retention for years.
             </p>
             <div className="text-center md:text-left">
               <a href="/contact" className="inline-flex items-center gap-1.5 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-xs px-3 py-1.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 uppercase tracking-wide">

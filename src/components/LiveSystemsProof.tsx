@@ -9,8 +9,11 @@ export default function LiveSystemsProof() {
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 md:mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
               Live Systems in <span className="text-[var(--cres-orange-primary)]">Production</span>
             </h2>
+            <p className="text-sm md:text-base text-[var(--cres-electric-teal)] font-semibold mb-2 uppercase tracking-wide">
+              Trusted to Build Regional Digital Infrastructure
+            </p>
             <p className="text-lg md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-              Real systems. Real users. Real revenue. This beats testimonials.
+              Real systems. Real users. Real revenue. From enterprise systems and secure architecture to Church platforms—we deploy the engines enterprises run on.
             </p>
           </div>
 
