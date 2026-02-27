@@ -1,2 +1,2 @@
-export { default } from '../../../operations-workflow/page';
+export { default } from '../../operations-workflow/page';
 

@@ -1,2 +1,2 @@
-export { default } from '../../../websites/page';
+export { default } from '../../websites/page';
 

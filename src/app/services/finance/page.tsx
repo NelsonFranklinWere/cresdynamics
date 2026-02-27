@@ -1,2 +1,2 @@
-export { default } from '../../../finance-platforms/page';
+export { default } from '../../finance-platforms/page';
 

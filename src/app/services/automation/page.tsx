@@ -1,2 +1,2 @@
-export { default } from '../../../ai-automation/page';
+export { default } from '../../ai-automation/page';
 
