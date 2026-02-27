@@ -17,7 +17,7 @@ export default function CresOSPage() {
               CresOS – The Operating System for <span className="text-[var(--cres-orange-primary)]">Growing Businesses</span>
             </h1>
             <p className="text-xl md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' }}>
-              One modular platform: identity, operations, finance, clients, and analytics. Built for visibility, control, and scale.
+              Our internal growth operating system: sales, marketing, finance, and operations in one system. Built for SMEs scaling beyond survival. Structured decision-making, KPI visibility, workflow clarity. Growth infrastructure in one system.
             </p>
           </div>
         </div>

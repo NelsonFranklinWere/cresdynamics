@@ -1,8 +1,7 @@
 export default function HowCresWorks() {
   return (
     <section className="py-20 md:py-32 bg-[var(--cres-primary-bg)] relative" id="how-it-works">
-      <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
-      {/* Enhanced overlay for better content visibility */}
+      {/* Navy background only, no texture image */}
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6">

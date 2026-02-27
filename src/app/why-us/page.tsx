@@ -10,7 +10,6 @@ export default function WhyUsPage() {
       {/* 1. HERO */}
       <section className="relative min-h-[70vh] flex flex-col items-center justify-center py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#0B0F14]" />
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-cover bg-center opacity-[0.07]" />
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 tracking-tight">
@@ -41,7 +40,6 @@ export default function WhyUsPage() {
       {/* 2. THE REAL PROBLEM */}
       <section className="relative py-20 md:py-28">
         <div className="absolute inset-0 bg-[var(--cres-primary-bg)]" />
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-cover bg-center opacity-[0.06]" />
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <h2 className="text-2xl md:text-4xl font-black text-white mb-8 text-center">
             Most Agencies Build Pages. <span className="text-[var(--cres-orange-primary)]">We Build Engines.</span>
@@ -51,11 +49,11 @@ export default function WhyUsPage() {
           </p>
           <ul className="space-y-4 max-w-2xl mx-auto">
             {[
-              'No CRM — leads and customers live in spreadsheets and inboxes.',
-              'No financial visibility — revenue and cash flow are guesswork.',
-              'No automation — repetitive work burns time and creates errors.',
-              'No measurable data — decisions are gut feel, not evidence.',
-              'No growth structure — scaling means chaos, not control.',
+              'No CRM – leads and customers live in spreadsheets and inboxes.',
+              'No financial visibility – revenue and cash flow are guesswork.',
+              'No automation – repetitive work burns time and creates errors.',
+              'No measurable data – decisions are gut feel, not evidence.',
+              'No growth structure – scaling means chaos, not control.',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-white/90">
                 <span className="text-[var(--cres-orange-primary)] mt-1.5 text-sm">▸</span>
@@ -69,9 +67,121 @@ export default function WhyUsPage() {
         </div>
       </section>
 
+      {/* 2b. HOW WE THINK — DIFFERENTIATION */}
+      <section className="relative py-20 md:py-28 bg-[var(--cres-secondary-bg)]">
+        <div className="relative z-10 max-w-4xl mx-auto px-6">
+          <h2 className="text-2xl md:text-4xl font-black text-white mb-6 text-center">
+            How We <span className="text-[var(--cres-orange-primary)]">Think</span>
+          </h2>
+          <ul className="space-y-3 max-w-2xl mx-auto">
+            {[
+              'We build systems, not pages.',
+              'We focus on revenue, not aesthetics.',
+              'We start from structure, not design.',
+              'We think in scalability from day one.',
+              'We combine business thinking and tech execution.',
+              'We move fast but deliberately.',
+              'We operate with discipline.',
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-3 text-white/90">
+                <span className="text-[var(--cres-orange-primary)] mt-1 shrink-0">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-12 p-6 rounded-xl bg-black/40 border border-white/10 max-w-2xl mx-auto">
+            <h3 className="text-lg font-bold text-[var(--cres-orange-primary)] mb-2">Philosophy: Structure before scale</h3>
+            <p className="text-white/80 text-sm">We map processes and data first. When the structure is right, scaling and design follow. No building on sand.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2c. WHY CRES — DIFFERENT CATEGORY */}
+      <section className="relative py-20 md:py-28">
+        <div className="absolute inset-0 bg-[var(--cres-primary-bg)]" />
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+            <h2 className="text-2xl md:text-4xl font-black text-white mb-3">
+              Why <span className="text-[var(--cres-orange-primary)]">CRES</span>
+            </h2>
+            <p className="text-xl md:text-2xl font-black text-white mb-4 leading-tight">
+              Not Another Tech Vendor.
+              <br />
+              A Different Category.
+            </p>
+            <p className="text-white/75 text-sm md:text-base leading-relaxed">
+              We don&apos;t compete with web agencies or freelancers. We sit at a different layer – the infrastructure
+              between your business and its ability to scale. When you outgrow campaigns and templates, this is the layer
+              that actually runs the company.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {[
+              {
+                title: 'We own our technology',
+                body: 'The Cres Core Engine is proprietary. No licensing fees to third-party platforms, no dependency on SaaS tools that change pricing or shut down. Your system is built on infrastructure we control, so you are not exposed to surprise deprecations.',
+              },
+              {
+                title: 'We start with your business, not a brief',
+                body: 'Before any code is written, we understand how your business actually operates – decisions, approvals, money flows, edge cases. We build around your reality, not a generic template or theme.',
+              },
+              {
+                title: 'We have proof in the Nairobi market',
+                body: '127 active users. KES 4.97M tracked. Live systems across logistics, church management, finance, and operations. Not demos – production systems that have to work every day.',
+              },
+              {
+                title: 'We understand Kenyan business realities',
+                body: 'Mpesa integration. Kenyan accounting and regulatory expectations. County business contexts and how Nairobi companies actually sell and collect. We build for that world – not how Silicon Valley imagines it.',
+              },
+              {
+                title: 'We stay after the launch',
+                body: 'Every system comes with a support structure and a relationship. We are an infrastructure partner, not a vendor who hands over and disappears. Systems are monitored, improved, and kept accountable over time.',
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-black/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-7 shadow-[0_18px_40px_rgba(0,0,0,0.55)]"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-white/80 text-sm md:text-base leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 2d. COMPARISON TABLE */}
+      <section className="relative py-20 md:py-28">
+        <div className="absolute inset-0 bg-[var(--cres-primary-bg)]" />
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <h2 className="text-2xl md:text-4xl font-black text-white mb-6 text-center">
+            Freelancer vs Agency vs <span className="text-[var(--cres-orange-primary)]">CRES Dynamics</span>
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border border-white/20 rounded-xl overflow-hidden">
+              <thead>
+                <tr className="bg-black/60">
+                  <th className="text-left p-4 text-white/90 font-bold border-b border-white/20">Criteria</th>
+                  <th className="text-left p-4 text-white/80 border-b border-white/20">Freelancer</th>
+                  <th className="text-left p-4 text-white/80 border-b border-white/20">Agency</th>
+                  <th className="text-left p-4 text-[var(--cres-orange-primary)] border-b border-white/20">CRES Dynamics</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm">
+                <tr className="border-b border-white/10"><td className="p-4 font-medium text-white/90">Deliverable</td><td className="p-4 text-white/70">Pages, templates</td><td className="p-4 text-white/70">Campaigns, sites</td><td className="p-4 text-white/90">Systems (ERP, finance, automation)</td></tr>
+                <tr className="border-b border-white/10"><td className="p-4 font-medium text-white/90">Focus</td><td className="p-4 text-white/70">Task completion</td><td className="p-4 text-white/70">Aesthetics, campaigns</td><td className="p-4 text-white/90">Revenue, visibility, control</td></tr>
+                <tr className="border-b border-white/10"><td className="p-4 font-medium text-white/90">Starting point</td><td className="p-4 text-white/70">Design or code</td><td className="p-4 text-white/70">Creative brief</td><td className="p-4 text-white/90">Structure, process, data</td></tr>
+                <tr className="border-b border-white/10"><td className="p-4 font-medium text-white/90">Scale</td><td className="p-4 text-white/70">Single projects</td><td className="p-4 text-white/70">Multiple clients, fixed scope</td><td className="p-4 text-white/90">Scalable architecture from day one</td></tr>
+                <tr><td className="p-4 font-medium text-white/90">Outcome</td><td className="p-4 text-white/70">Deliverable handed off</td><td className="p-4 text-white/70">Launch and handoff</td><td className="p-4 text-white/90">System you run and extend</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       {/* 3. OUR PHILOSOPHY */}
       <section className="relative py-20 md:py-28 bg-[var(--cres-secondary-bg)]">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-cover bg-center opacity-[0.06]" />
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <h2 className="text-2xl md:text-4xl font-black text-white mb-4 text-center">
             We Build for <span className="text-[var(--cres-orange-primary)]">Control. Scale. Longevity.</span>
@@ -112,7 +222,6 @@ export default function WhyUsPage() {
       {/* 4. WHAT MAKES US DIFFERENT — 6 CARDS */}
       <section className="relative py-20 md:py-28">
         <div className="absolute inset-0 bg-[var(--cres-primary-bg)]" />
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-cover bg-center opacity-[0.06]" />
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <h2 className="text-2xl md:text-4xl font-black text-white mb-4 text-center">
             What Makes Us <span className="text-[var(--cres-orange-primary)]">Different</span>
@@ -143,7 +252,6 @@ export default function WhyUsPage() {
 
       {/* 5. THE CRES ADVANTAGE FRAMEWORK — 5 STEPS */}
       <section className="relative py-20 md:py-28 bg-[var(--cres-secondary-bg)]">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-cover bg-center opacity-[0.06]" />
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <h2 className="text-2xl md:text-4xl font-black text-white mb-4 text-center">
             The Cres Advantage <span className="text-[var(--cres-orange-primary)]">Framework</span>
@@ -176,7 +284,6 @@ export default function WhyUsPage() {
       {/* 6. REAL IMPACT */}
       <section className="relative py-20 md:py-28">
         <div className="absolute inset-0 bg-[var(--cres-primary-bg)]" />
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-cover bg-center opacity-[0.06]" />
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <h2 className="text-2xl md:text-4xl font-black text-white mb-4 text-center">
             Systems That Deliver <span className="text-[var(--cres-orange-primary)]">Measurable Results</span>
@@ -203,7 +310,6 @@ export default function WhyUsPage() {
 
       {/* 7. WHO WE WORK BEST WITH */}
       <section className="relative py-20 md:py-28 bg-[var(--cres-secondary-bg)]">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-cover bg-center opacity-[0.06]" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-4xl font-black text-white mb-6">
             Who We Work <span className="text-[var(--cres-orange-primary)]">Best With</span>
@@ -233,7 +339,6 @@ export default function WhyUsPage() {
       {/* 8. FINAL AUTHORITY CLOSE */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--cres-primary-bg)] to-[#0B0F14]" />
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-cover bg-center opacity-[0.07]" />
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-8">

@@ -16,7 +16,7 @@ export default function HowWeBuildPage() {
               Our System Engineering <span className="text-[var(--cres-orange-primary)]">Framework</span>
             </h1>
             <p className="text-xl md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' }}>
-              We map your processes and data, architect the core system, add automation and intelligence, then deploy with security, governance, and scale built in.
+              Diagnose, Architect, Build, Deploy, Optimize, Scale. Structured implementation with clear milestones, accountability, and reporting at every phase.
             </p>
           </div>
         </div>
@@ -29,7 +29,7 @@ export default function HowWeBuildPage() {
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
-              <span className="text-[var(--cres-orange-primary)] font-black text-sm uppercase tracking-wider">Phase 1</span>
+              <span className="text-[var(--cres-orange-primary)] font-black text-sm uppercase tracking-wider">Phase 1 — Diagnose</span>
               <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mt-2 mb-4 underline-custom">
                 Process & Data Mapping
               </h2>
@@ -61,7 +61,7 @@ export default function HowWeBuildPage() {
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
-              <span className="text-[var(--cres-orange-primary)] font-black text-sm uppercase tracking-wider">Phase 2</span>
+              <span className="text-[var(--cres-orange-primary)] font-black text-sm uppercase tracking-wider">Phase 2 — Architect & Build</span>
               <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mt-2 mb-4 underline-custom">
                 Core ERP Architecture
               </h2>
@@ -104,7 +104,7 @@ export default function HowWeBuildPage() {
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
-              <span className="text-[var(--cres-orange-primary)] font-black text-sm uppercase tracking-wider">Phase 3</span>
+              <span className="text-[var(--cres-orange-primary)] font-black text-sm uppercase tracking-wider">Phase 3 — Deploy & Optimize</span>
               <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mt-2 mb-4 underline-custom">
                 Automation & Intelligence
               </h2>
@@ -147,7 +147,7 @@ export default function HowWeBuildPage() {
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className="text-center mb-12">
-              <span className="text-[var(--cres-orange-primary)] font-black text-sm uppercase tracking-wider">Phase 4</span>
+              <span className="text-[var(--cres-orange-primary)] font-black text-sm uppercase tracking-wider">Phase 4 — Scale</span>
               <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mt-2 mb-4 underline-custom">
                 Security, Governance & Scale
               </h2>

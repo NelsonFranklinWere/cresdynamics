@@ -164,10 +164,10 @@ export default function Header() {
         <div className="max-w-6xl mx-auto px-6 py-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10">
             {[
-              { name: 'Who We Are', href: '/about', desc: 'Our story and mission', image: '/about.png' },
-              { name: 'Why Us', href: '/why-us', desc: 'Why serious businesses choose us', image: '/why-us.png' },
-              { name: 'How We Build', href: '/how-we-build', desc: 'Our system engineering framework', image: '/how-we-build.png' },
-              { name: 'Contact', href: '/contact', desc: 'Book a systems discovery session', image: '/contact.png' },
+              { name: 'Who We Are', href: '/about', desc: 'Our story and mission', image: '/logo.png' },
+              { name: 'Why Us', href: '/why-us', desc: 'Why serious businesses choose us', image: '/logo.png' },
+              { name: 'How We Build', href: '/how-we-build', desc: 'Our system engineering framework', image: '/logo.png' },
+              { name: 'Contact', href: '/contact', desc: 'Book a systems discovery session', image: '/logo.png' },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -287,7 +287,16 @@ export default function Header() {
                   { name: 'AI & Automation', href: '/solutions/ai-automation' },
                   { name: 'ERP', href: '/erp' },
                 ].map((solution) => (
-                  <Link key={solution.href} href={solution.href} prefetch={true} className="text-[var(--cres-white)]/80 text-sm font-medium hover:text-[var(--cres-orange-primary)] transition-all duration-300 block w-full text-left" onClick={() => { setIsMobileMenuOpen(false); setIsMobileSolutionsOpen(false); }}>
+                  <Link
+                    key={solution.href}
+                    href={solution.href}
+                    prefetch={true}
+                    className="text-[var(--cres-white)]/80 text-sm font-medium hover:text-[var(--cres-orange-primary)] transition-all duration-300 block w-full text-left"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsMobileSolutionsOpen(false);
+                    }}
+                  >
                     {solution.name}
                   </Link>
                 ))}

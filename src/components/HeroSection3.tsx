@@ -1,8 +1,7 @@
 export default function HeroSection3() {
   return (
     <section className="py-20 md:py-32 bg-gradient-to-b from-[var(--cres-secondary-bg)] to-[var(--cres-primary-bg)] relative">
-      <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
-      {/* Enhanced overlay for better content visibility */}
+      {/* Solid navy gradient only */}
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">

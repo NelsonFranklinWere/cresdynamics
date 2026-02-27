@@ -1,9 +1,14 @@
 import Header from '@/components/Header';
 import HeroTesla from '@/components/HeroTesla';
+import HeroCarousels from '@/components/HeroCarousels';
+import HomepageStatsMarquee from '@/components/HomepageStatsMarquee';
+import HomepageProblemSection from '@/components/HomepageProblemSection';
 import SystemsShowcaseTesla from '@/components/SystemsShowcaseTesla';
 import LiveSystemsProof from '@/components/LiveSystemsProof';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
+import HomepageSystemsGrid from '@/components/HomepageSystemsGrid';
+import HomepageHowWeBuild from '@/components/HomepageHowWeBuild';
 
 export default function Home() {
   const organizationSchema = {
@@ -100,13 +105,13 @@ export default function Home() {
         {/* POSITIONING CONTENT - Engines / Digital Infrastructure language */}
         <div>
           <h2>CRES Dynamics Engineers Proprietary Operating Environments and Digital Infrastructure</h2>
-          <p>We do not build websites. We engineer proprietary operating environments and digital infrastructure—ERPs, finance platforms, automation—optimized for low-latency performance, elastic scalability, and Zero-Trust Architecture with military-grade encryption. Cres Core Engine. Nairobi Kenya.</p>
+          <p>We do not build websites. We engineer proprietary operating environments and digital infrastructure – ERPs, finance platforms, automation – optimized for low-latency performance, elastic scalability, and Zero-Trust Architecture with military-grade encryption. Cres Core Engine. Nairobi Kenya.</p>
 
           <h3>Why Serious Businesses Choose CRES Dynamics</h3>
-          <p>Zero-Trust Architecture and military-grade encryption. Systems optimized for low-latency performance and elastic scalability. Cres Core Engine: proprietary framework to deploy secure systems faster. High retention: systems so essential clients stay for years. Trusted to build regional digital infrastructure—enterprise systems, secure architecture, Church platforms.</p>
+          <p>Zero-Trust Architecture and military-grade encryption. Systems optimized for low-latency performance and elastic scalability. Cres Core Engine: proprietary framework to deploy secure systems faster. High retention: systems so essential clients stay for years. Trusted to build regional digital infrastructure – enterprise systems, secure architecture, Church platforms.</p>
 
           <h3>Systems We Build in Kenya</h3>
-          <p>Business Operations Systems: Projects, approvals, workflows, reporting. Finance & Revenue Systems: Billing, subscriptions, invoices, dashboards. ERP Platforms: Role-based access, analytics, automation. AI & Automation Systems: Follow-ups, workflows, decision support. All built on the Cres Core Engine with SOPs and a manual for everything—capital-ready.</p>
+          <p>Business Operations Systems: Projects, approvals, workflows, reporting. Finance & Revenue Systems: Billing, subscriptions, invoices, dashboards. ERP Platforms: Role-based access, analytics, automation. AI & Automation Systems: Follow-ups, workflows, decision support. All built on the Cres Core Engine with SOPs and a manual for everything – capital-ready.</p>
 
           <h3>Heritage and R&D</h3>
           <p>CRES Dynamics was born from years of R&D in system security. We have a manual for everything. The business runs with or without the founder. Trusted to build regional digital infrastructure.</p>
@@ -116,6 +121,13 @@ export default function Home() {
       <Header />
       <main>
         <HeroTesla />
+        <section className="relative min-h-screen h-screen flex flex-col items-center justify-center bg-[var(--cres-primary-bg)]" aria-label="Websites, CresOS, Custom ERPs">
+          <HeroCarousels />
+        </section>
+        <HomepageStatsMarquee />
+        <HomepageProblemSection />
+        <HomepageSystemsGrid />
+        <HomepageHowWeBuild />
         <SystemsShowcaseTesla />
         <LiveSystemsProof />
         <FinalCTA />

@@ -1,8 +1,7 @@
 export default function WhyChooseCres() {
   return (
     <section className="py-16 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative">
-      <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
-      {/* Enhanced overlay for better content visibility */}
+      {/* Navy gradient only, no texture */}
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6">

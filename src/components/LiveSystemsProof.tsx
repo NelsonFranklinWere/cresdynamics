@@ -1,19 +1,30 @@
+'use client';
+
+import { motion } from 'framer-motion';
+
 export default function LiveSystemsProof() {
   return (
     <section className="py-16 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative">
-      <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
+      {/* Solid navy gradient only */}
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-6 md:mb-8 underline-custom" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-              Live Systems in <span className="text-[var(--cres-orange-primary)]">Production</span>
+            <h2
+              className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-4 md:mb-5 underline-custom"
+              style={{ textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)' }}
+            >
+              Live in <span className="text-[var(--cres-orange-primary)]">Production</span>
             </h2>
-            <p className="text-sm md:text-base text-[var(--cres-electric-teal)] font-semibold mb-2 uppercase tracking-wide">
-              Trusted to Build Regional Digital Infrastructure
+            <p
+              className="text-lg md:text-2xl text-[var(--cres-white)] max-w-3xl mx-auto mb-3"
+              style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' }}
+            >
+              Real Systems. Real Businesses. Real Numbers.
             </p>
-            <p className="text-lg md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-              Real systems. Real users. Real revenue. From enterprise systems and secure architecture to Church platforms—we deploy the engines enterprises run on.
+            <p className="text-sm md:text-base text-[var(--cres-white)]/80 max-w-3xl mx-auto">
+              These are not demos. Not mockups. Live systems running in production today, serving real users and real
+              businesses in Kenya.
             </p>
           </div>
 
@@ -51,7 +62,14 @@ export default function LiveSystemsProof() {
                 uptime: '99.7%'
               }
             ].map((system, i) => (
-              <div key={i} className="bg-black/80 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <motion.div
+                key={i}
+                className="bg-black/80 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.12 * i, ease: [0.22, 0.61, 0.36, 1] }}
+              >
                 <h3 className="text-lg md:text-xl font-bold text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">
                   {system.title}
                 </h3>
@@ -92,7 +110,7 @@ export default function LiveSystemsProof() {
                 <div className="pt-4 border-t border-white/10">
                   <p className="text-xs text-[var(--cres-white)]/60 font-mono">{system.stack}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 

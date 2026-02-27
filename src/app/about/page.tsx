@@ -161,8 +161,11 @@ export default function AboutPage() {
             <p>
               The problem was the lack of structure, automation, and systems—visibility and control were missing.
             </p>
+            <p>
+              Businesses lose money digitally when they are invisible to search, when revenue and payments are untracked, and when leads and deals slip through unrecorded.
+            </p>
             <p className="font-semibold text-[var(--cres-deep-navy)]">
-              CRES Dynamics was born to close that gap.
+              CRES Dynamics was born to close that gap. Our long-term ambition: Africa tech transformation—business systems that companies across the region actually run on.
             </p>
           </div>
         </div>

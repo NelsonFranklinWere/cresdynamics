@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 import AIChatWidget from "@/components/AIChatWidget";
+import PageTransitionShell from "@/components/PageTransitionShell";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cresdynamics.com'),
@@ -262,9 +263,6 @@ export default function RootLayout({
         {/* Preload logo for instant display */}
         <link rel="preload" href="/favicon-circular.png" as="image" fetchPriority="high" />
         
-        {/* Preload background image for hero */}
-        <link rel="preload" href="/backround.png" as="image" fetchPriority="high" />
-
         {/* Optimized font loading with display=swap for instant FCP */}
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
@@ -420,7 +418,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <PerformanceMonitor />
-        {children}
+        <PageTransitionShell>{children}</PageTransitionShell>
         <AIChatWidget />
 
         {/* Performance optimizations */}

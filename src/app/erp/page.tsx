@@ -8,7 +8,6 @@ export default function ERPPage() {
 
       {/* HERO SECTION */}
       <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-black/40"></div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -17,7 +16,7 @@ export default function ERPPage() {
               Custom ERP Systems for <span className="text-[var(--cres-orange-primary)]">Growing Businesses</span>
             </h1>
             <p className="text-xl md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto mb-8" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
-              When off-the-shelf ERPs fail, we build modular systems—including CresOS—that fit your business. Governance, security, production-grade.
+              When spreadsheets break businesses and off-the-shelf ERPs fail, we build custom ERP for schools, retail, service companies, and multi-branch operations: inventory tracking, finance tracking, staff tracking, reporting dashboards. Clarity, control, scalability.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a href="/cresos" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 uppercase tracking-wide">
@@ -33,14 +32,19 @@ export default function ERPPage() {
         </div>
       </section>
 
-      {/* WHEN OFF-THE-SHELF ERPs FAIL */}
+      {/* WHY SPREADSHEETS BREAK BUSINESSES */}
       <section className="py-16 md:py-20 bg-[var(--cres-primary-bg)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 underline-custom">
+                Why Spreadsheets Break Businesses
+              </h2>
+              <p className="text-lg text-[var(--cres-white)]/80 max-w-3xl mx-auto mb-12">Operational chaos without ERP: duplicated data, no single source of truth, no audit trail. Custom ERP gives you clarity, control, and scalability.</p>
+            </div>
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-black text-[var(--cres-white)] mb-4 underline-custom">
                 When Off-the-Shelf ERPs Fail
               </h2>
               <p className="text-lg md:text-xl text-[var(--cres-white)]/80 max-w-3xl mx-auto">

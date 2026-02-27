@@ -1,19 +1,8 @@
 export default function HeroSection1() {
   return (
     <section className="py-12 md:py-20 flex items-center justify-center bg-gradient-to-br from-[var(--cres-gradient-bg)] via-black to-[var(--cres-dark)] relative overflow-hidden">
-      {/* Optimized background image - CSS background for better performance */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          backgroundImage: 'url(/backround.png)',
-          backgroundRepeat: 'repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          willChange: 'transform'
-        }}
-      />
-      {/* ENHANCED BACKGROUND IMAGE OVERLAY FOR BETTER OPACITY */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      {/* Solid navy gradient background only */}
+      <div className="absolute inset-0 bg-black/60" />
       {/* CITY GLOW OVERLAYS - deferred animation */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[radial-gradient(circle_at_30%_70%,rgba(244,122,42,0.2)_0%,transparent_50%)] rounded-full blur-xl" />

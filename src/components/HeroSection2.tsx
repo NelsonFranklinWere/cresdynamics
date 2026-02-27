@@ -1,8 +1,7 @@
 export default function HeroSection2() {
   return (
     <section className="pt-6 md:pt-8 pb-20 md:pb-32 bg-[var(--cres-secondary-bg)] relative">
-      <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
-      {/* Enhanced overlay for better content visibility */}
+      {/* Solid navy background only */}
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
