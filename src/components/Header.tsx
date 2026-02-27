@@ -261,7 +261,7 @@ export default function Header() {
         style={{ minHeight: '320px' }}
       >
         <div className="max-w-6xl mx-auto px-6 py-6">
-          <div className="grid grid-flow-col auto-cols-[minmax(120px,1fr)] gap-4 overflow-x-auto pb-1">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 pb-1">
             {[
               { name: 'CresOS', href: '/cresos', desc: 'Business operating system', image: '/cresOs.businessoperatingsystem.png' },
               { name: 'Finance Platforms', href: '/finance-platforms', desc: 'Revenue, invoices, dashboards', image: '/finance.and.revenue.png' },
@@ -275,7 +275,7 @@ export default function Header() {
                 prefetch={true}
                 className="group block"
               >
-                <div className="relative w-full h-14 rounded-lg overflow-hidden bg-white/5 mb-2 shrink-0">
+                <div className="relative w-full h-16 rounded-xl overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.45)] mb-2">
                   <DropdownImage src={item.image} />
                 </div>
                 <span className="text-white font-medium text-[14px] group-hover:text-[var(--cres-orange-primary)] transition-colors duration-150">
@@ -300,7 +300,7 @@ export default function Header() {
         style={{ minHeight: '260px' }}
       >
         <div className="max-w-6xl mx-auto px-6 py-6">
-          <div className="grid grid-flow-col auto-cols-[minmax(120px,1fr)] gap-4 overflow-x-auto pb-1">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-1">
             {[
               {
                 name: 'Websites',
@@ -333,7 +333,7 @@ export default function Header() {
                 prefetch={true}
                 className="group block"
               >
-                <div className="relative w-full h-14 rounded-lg overflow-hidden bg-white/5 mb-2 shrink-0">
+                <div className="relative w-full h-16 rounded-xl overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.45)] mb-2">
                   <DropdownImage src={item.image} />
                 </div>
                 <span className="text-white font-medium text-[14px] group-hover:text-[var(--cres-orange-primary)] transition-colors duration-150">

@@ -15,6 +15,7 @@ interface ClientDetails {
 
 export default function AIChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showTeaser, setShowTeaser] = useState(false);
   const [clientDetails, setClientDetails] = useState<ClientDetails | null>(null);
   const [showDetailsForm, setShowDetailsForm] = useState(true);
   const [detailsFormData, setDetailsFormData] = useState({ name: '', phone: '', email: '' });
@@ -46,6 +47,26 @@ export default function AIChatWidget() {
       inputRef.current.focus();
     }
   }, [isOpen, showDetailsForm]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setShowTeaser(false);
+      return;
+    }
+
+    const showTimer = setTimeout(() => {
+      if (!isOpen) {
+        setShowTeaser(true);
+        setTimeout(() => {
+          setShowTeaser(false);
+        }, 4000);
+      }
+    }, 10000);
+
+    return () => {
+      clearTimeout(showTimer);
+    };
+  }, [isOpen]);
 
   const handleDetailsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -160,10 +181,20 @@ export default function AIChatWidget() {
 
   return (
     <>
+      {/* Teaser bubble */}
+      {!isOpen && showTeaser && (
+        <div className="fixed bottom-20 right-6 z-50 max-w-xs bg-[var(--cres-black)] text-white/85 text-[11px] leading-snug px-3 py-2 rounded-lg shadow-lg border border-white/10">
+          <p>I'm your CRES AI assistant,</p>
+          <p>chat with me.</p>
+        </div>
+      )}
+
       {/* Chat Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
+          onMouseEnter={() => setShowTeaser(true)}
+          onMouseLeave={() => setShowTeaser(false)}
           className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-[var(--cres-orange-primary)] to-[#E87528] hover:from-[#E87528] hover:to-[var(--cres-orange-primary)] text-white rounded-full p-4 shadow-2xl hover:shadow-[var(--cres-orange-primary)]/50 transition-all duration-300 hover:scale-110 group"
           aria-label="Open AI chat"
         >
