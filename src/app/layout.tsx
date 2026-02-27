@@ -6,8 +6,9 @@ import PageTransitionShell from "@/components/PageTransitionShell";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cresdynamics.com'),
-  title: 'CRES Dynamics - Business Systems That Run Companies | ERP, Finance Platforms & Automation | Nairobi Kenya',
-  description: 'CRES Dynamics is a systems engineering company that builds ERP platforms, financial infrastructure, and automation systems that enable businesses to operate with visibility, control, and scale. Custom ERP, CresOS, finance platforms, Nairobi Kenya.',
+  title: 'CRES Dynamics Nairobi – Business Systems Kenyan Companies Run On | ERP, Finance Platforms & Automation',
+  description:
+    'CRES Dynamics is a Nairobi-based business systems engineering company that builds ERPs, finance platforms, operations systems, and AI automation for serious Kenyan businesses. When you outgrow WhatsApp and Excel, this is the infrastructure layer that comes next.',
   keywords: [
     'ERP systems Nairobi',
     'ERP development Kenya',
@@ -40,8 +41,9 @@ export const metadata: Metadata = {
     shortcut: '/favicon-circular.png?v=2',
   },
   openGraph: {
-    title: 'CRES Dynamics - Business Systems That Run Companies | ERP, Finance Platforms & Automation | Nairobi Kenya',
-    description: 'CRES Dynamics designs and builds business systems—ERPs, finance platforms, and automation—that companies actually run on. Custom ERP systems Nairobi Kenya, fast ERP development, quality business systems, AI integration, production-ready systems.',
+    title: 'CRES Dynamics Nairobi – Business Systems Kenyan Companies Run On',
+    description:
+      'CRES Dynamics designs and builds systems that real Kenyan businesses run on: custom ERPs, finance & revenue platforms, operations systems, and AI automation – engineered and supported from Nairobi, Kenya.',
     images: [
       {
         url: '/logo.png',
