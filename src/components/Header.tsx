@@ -131,6 +131,13 @@ export default function Header() {
             <button
               type="button"
               className="text-white/90 hover:text-white text-[13px] font-medium transition-colors duration-200 py-2 flex items-center gap-1"
+              onClick={() => {
+                if (isSolutionsDropdownOpen) {
+                  closeSystemsDropdown();
+                } else {
+                  openSystemsDropdown();
+                }
+              }}
               aria-expanded={isSolutionsDropdownOpen}
               aria-haspopup="true"
             >
