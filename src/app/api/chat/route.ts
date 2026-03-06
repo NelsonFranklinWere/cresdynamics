@@ -1,30 +1,175 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// System instruction to guide the AI about CRES Dynamics
-const SYSTEM_INSTRUCTION = `You are a helpful AI assistant for CRES Dynamics, a Nairobi-based digital agency. Your role is to enlighten users about CRES Dynamics' services and help them understand how the company can help their business grow.
+// Optional email client for chat-triggered actions
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
-Key Information about CRES Dynamics:
-- CRES Dynamics is a digital agency based in Nairobi, Kenya
-- They specialize in: Website Development, SEO & Google Visibility, AI & Sales Automation, WhatsApp Business Systems, Content & Brand Authority, and Digital Strategy Consulting
-- Their mission: Help Nairobi businesses turn clicks into clients
-- They offer free strategy sessions
-- They focus on building growth systems, not just templates
-- They understand the African business market
-- Contact: info@cresdynamics.com, Phone: +254 708 805 496 or +254 743 869 564
-- Location: Kivuli Tower, 3rd Floor Westlands, Nairobi, Kenya
+// System instruction to guide the AI about CRES Dynamics and available actions
+const SYSTEM_INSTRUCTION = `You are the CRES Dynamics website chat assistant.
 
-Your responses should:
-1. Be helpful, friendly, and professional
-2. Focus on educating users about CRES Dynamics services
-3. Explain how their services can help businesses grow
-4. Be concise but informative
-5. Encourage users to book a free strategy session if they're interested
-6. Always mention that they can contact CRES Dynamics directly for more information
+Company:
+- CRES Dynamics is a digital agency based in Nairobi, Kenya.
+- They specialize in: Website Development, SEO & Google Visibility, AI & Sales Automation, WhatsApp Business Systems, Content & Brand Authority, and Digital Strategy Consulting.
+- Mission: Help Nairobi businesses turn clicks into clients.
+- They offer free strategy sessions and focus on building growth systems, not just templates.
+- They understand the African business market.
+- Contact: info@cresdynamics.com, Phone: +254 708 805 496 or +254 743 869 564.
+- Location: Kivuli Tower, 3rd Floor Westlands, Nairobi, Kenya.
 
-Keep responses conversational and avoid being overly salesy. Focus on education and value.`;
+Response style:
+- Keep answers short, clear, and practical.
+- Maximum 3 short paragraphs or bullet lists, no long essays.
+- Go straight to the point, avoid repeating yourself.
+- Do NOT tell users to go and book themselves; instead, offer to arrange a call or follow-up from the CRES team.
+
+Actions you can trigger:
+- When a user shows serious interest (e.g. asks for help, pricing, proposal, or how to start), ask if they’d like a call or WhatsApp follow-up.
+- Confirm rough timing with them (e.g. “today”, “tomorrow”, or a day next week, plus preferred time window).
+- Once they clearly agree to be contacted, notify the CRES team by including an action in your JSON response with type "send_email_to_team".
+- In the "summary", briefly capture what they need, the key points discussed, and their preferred timing/channel for the call so the team can follow up smoothly.
+
+Response format (very important):
+- ALWAYS respond ONLY as minified JSON (no markdown, no extra text) with this exact shape:
+  {"reply":"SHORT_TEXT_RESPONSE","actions":[{"type":"send_email_to_team","subject":"EMAIL_SUBJECT","summary":"WHAT_THE_USER_WANTS"}]}
+- "reply" is what will be shown to the user (keep it short but helpful).
+- "actions" is an array; use [] when there is no action.
+- Only include "send_email_to_team" when the user explicitly asks you to have the CRES team follow up, send a proposal/quote, or contact them.
+- If you're not sure, prefer not to trigger an action.`;
+
+type ClientDetails = {
+  name?: string;
+  phone?: string;
+  email?: string;
+};
+
+type ChatMessage = {
+  role: 'user' | 'assistant';
+  content: string;
+};
+
+type AssistantAction = {
+  type: 'send_email_to_team';
+  subject?: string;
+  summary?: string;
+};
+
+type ParsedAssistantResponse = {
+  reply: string;
+  actions: AssistantAction[];
+};
+
+function parseAssistantContent(raw: string): ParsedAssistantResponse {
+  const text = raw.trim();
+
+  // Strip markdown fences if the model accidentally adds them
+  let cleaned = text;
+  if (cleaned.startsWith('```')) {
+    const withoutStart = cleaned.replace(/^```[a-zA-Z]*\n?/, '');
+    const endFenceIndex = withoutStart.lastIndexOf('```');
+    cleaned = endFenceIndex >= 0 ? withoutStart.slice(0, endFenceIndex) : withoutStart;
+  }
+
+  try {
+    const parsed = JSON.parse(cleaned);
+    const reply =
+      typeof parsed.reply === 'string' && parsed.reply.trim().length > 0
+        ? parsed.reply.trim()
+        : cleaned;
+    const actions = Array.isArray(parsed.actions)
+      ? parsed.actions.filter((a: any) => a && a.type === 'send_email_to_team')
+      : [];
+
+    return {
+      reply,
+      actions,
+    };
+  } catch {
+    // Fallback: treat entire text as the reply with no actions
+    return {
+      reply: cleaned,
+      actions: [],
+    };
+  }
+}
+
+async function executeActions(
+  actions: AssistantAction[],
+  opts: { clientDetails?: ClientDetails; latestUserMessage: string; conversationHistory?: ChatMessage[] }
+) {
+  if (!actions.length || !resend) return;
+
+  const recipientEmail = 'cresdynamics@gmail.com';
+  const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+
+  // Build a short transcript from recent messages, including the latest user message
+  let transcriptHtml = '';
+  try {
+    const history: ChatMessage[] = Array.isArray(opts.conversationHistory)
+      ? opts.conversationHistory
+      : [];
+    const combined: ChatMessage[] = [
+      ...history.slice(-8), // last few messages before the latest input
+      { role: 'user', content: opts.latestUserMessage },
+    ];
+
+    if (combined.length) {
+      const lines = combined.map((m) => {
+        const who = m.role === 'user' ? 'Client' : 'Assistant';
+        const safeContent = (m.content || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return `<li><strong>${who}:</strong> ${safeContent}</li>`;
+      });
+      transcriptHtml = `
+        <h3 style="color:#0D1B2A; margin-top:20px;">Conversation summary</h3>
+        <ul style="color:#333; padding-left:18px; list-style-type:disc;">
+          ${lines.join('')}
+        </ul>
+      `;
+    }
+  } catch (e) {
+    console.error('Failed to build transcript HTML for chat action email:', e);
+  }
+
+  for (const action of actions) {
+    if (action.type !== 'send_email_to_team') continue;
+
+    const subject =
+      action.subject ||
+      `New chat follow-up request from ${opts.clientDetails?.name || 'website visitor'}`;
+    const summary = action.summary || opts.latestUserMessage;
+
+    try {
+      await resend.emails.send({
+        from: `CRES Dynamics Chat Assistant <${senderEmail}>`,
+        to: [recipientEmail],
+        subject,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+            <h2 style="color: #0D1B2A;">Chat follow-up requested from website</h2>
+            <p style="color:#333;">The visitor asked the AI assistant to have the CRES team follow up.</p>
+            <h3 style="color:#0D1B2A; margin-top:20px;">Visitor details</h3>
+            <ul style="color:#333; padding-left:18px;">
+              <li><strong>Name:</strong> ${opts.clientDetails?.name || 'Not provided'}</li>
+              <li><strong>Phone:</strong> ${opts.clientDetails?.phone || 'Not provided'}</li>
+              <li><strong>Email:</strong> ${opts.clientDetails?.email || 'Not provided'}</li>
+            </ul>
+            <h3 style="color:#0D1B2A; margin-top:20px;">Summary of request</h3>
+            <p style="color:#333; white-space:pre-line;">${summary}</p>
+            ${transcriptHtml}
+            <p style="margin-top:24px; font-size:12px; color:#666;">
+              This email was generated automatically from a chat conversation on the CRES Dynamics website.
+            </p>
+          </div>
+        `,
+      });
+    } catch (error) {
+      console.error('Failed to execute chat action (send_email_to_team):', error);
+    }
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -40,7 +185,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { message, conversationHistory } = await request.json();
+    const { message, conversationHistory, clientDetails } = await request.json();
 
     if (!message || typeof message !== 'string') {
       return NextResponse.json(
@@ -104,8 +249,16 @@ export async function POST(request: NextRequest) {
         );
       }
 
+      const assistantText = data.choices[0].message.content as string;
+      const parsed = parseAssistantContent(assistantText);
+      await executeActions(parsed.actions, {
+        clientDetails,
+        latestUserMessage: message,
+        conversationHistory: (conversationHistory || []) as ChatMessage[],
+      });
+
       return NextResponse.json({
-        response: data.choices[0].message.content,
+        response: parsed.reply,
       });
     } else {
       // Fallback to Gemini API
@@ -196,8 +349,16 @@ export async function POST(request: NextRequest) {
         );
       }
 
+      const assistantText = data.candidates[0].content.parts[0].text as string;
+      const parsed = parseAssistantContent(assistantText);
+      await executeActions(parsed.actions, {
+        clientDetails,
+        latestUserMessage: message,
+        conversationHistory: (conversationHistory || []) as ChatMessage[],
+      });
+
       return NextResponse.json({
-        response: data.candidates[0].content.parts[0].text,
+        response: parsed.reply,
       });
     }
   } catch (error) {

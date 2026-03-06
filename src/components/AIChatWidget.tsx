@@ -23,7 +23,7 @@ export default function AIChatWidget() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Hi! I'm here to help you learn about CRES Dynamics. What would you like to know about our services?",
+      content: "Hi, I’m the CRES AI assistant. Ask me anything about our services or how we can help your business grow.",
     },
   ]);
   const [input, setInput] = useState('');
@@ -144,6 +144,7 @@ export default function AIChatWidget() {
         body: JSON.stringify({
           message: userMessage,
           conversationHistory: messages,
+          clientDetails,
         }),
       });
 
