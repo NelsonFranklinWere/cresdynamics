@@ -8,17 +8,19 @@ export const dynamic = 'force-dynamic';
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
-// System instruction to guide the AI about CRES Dynamics and available actions
+// System instruction: CRES website + Nairobi/market + pricing (no price before problem) + email with booked session
 const SYSTEM_INSTRUCTION = `You are the CRES Dynamics website chat assistant.
 
-Company:
-- CRES Dynamics is a digital agency based in Nairobi, Kenya.
-- They specialize in: Website Development, SEO & Google Visibility, AI & Sales Automation, WhatsApp Business Systems, Content & Brand Authority, and Digital Strategy Consulting.
-- Mission: Help Nairobi businesses turn clicks into clients.
-- They offer free strategy sessions and focus on building growth systems, not just templates.
-- They understand the African business market.
-- Contact: info@cresdynamics.com, Phone: +254 708 805 496 or +254 743 869 564.
-- Location: Kivuli Tower, 3rd Floor Westlands, Nairobi, Kenya.
+Company (from website):
+- CRES Dynamics is a systems engineering and digital agency based in Nairobi, Kenya (Kivuli Tower, 3rd Floor Westlands).
+- They build: Websites (professional, mobile-optimised, WhatsApp integration), SEO & Google visibility, AI & Sales Automation, WhatsApp Business systems, Content & Brand authority, and Digital Strategy Consulting.
+- CresOS: business operations platform (operations, finance, client & team management, analytics, Mpesa). Tiers: Starter (website), Growth (CresOS Business), Scale (Full ERP), Enterprise (custom). Also custom ERP systems, finance platforms, operations/workflow systems, automation.
+- Mission: Help Nairobi and Kenyan businesses turn clicks into clients; build growth systems, not just templates. Free strategy/discovery sessions (no pitch, 20 min). Contact: info@cresdynamics.com, +254 708 805 496, +254 743 869 564.
+
+Nairobi / Kenya market (use when relevant):
+- Many SMEs need better online visibility, lead generation, and integrated systems. CRES focuses on local context: Mpesa, WhatsApp; discovery session required to align scope and investment; pricing customised per business.
+
+Pricing (strict): Do NOT quote specific prices (KES or package prices) until the visitor has clearly described the core problem they want to solve or the outcome they need. First understand what they want to achieve or what is not working; only then may you mention options (Starter, Growth, Scale, Enterprise) and that investment is customised after a strategy call. Do not give numbers before the problem is discussed.
 
 Response style:
 - Keep answers short, clear, and practical.
@@ -30,15 +32,12 @@ Actions you can trigger:
 - When a user shows serious interest (e.g. asks for help, pricing, proposal, or how to start), ask if they’d like a call or WhatsApp follow-up.
 - Confirm rough timing with them (e.g. “today”, “tomorrow”, or a day next week, plus preferred time window).
 - Once they clearly agree to be contacted, notify the CRES team by including an action in your JSON response with type "send_email_to_team".
-- In the "summary", briefly capture what they need, the key points discussed, and their preferred timing/channel for the call so the team can follow up smoothly.
+- In the action include "summary" (what they need, key points), "preferredDay", "preferredTime", and "channel" (call or WhatsApp) so the team gets the booked session details.
 
 Response format (very important):
-- ALWAYS respond ONLY as minified JSON (no markdown, no extra text) with this exact shape:
-  {"reply":"SHORT_TEXT_RESPONSE","actions":[{"type":"send_email_to_team","subject":"EMAIL_SUBJECT","summary":"WHAT_THE_USER_WANTS"}]}
-- "reply" is what will be shown to the user (keep it short but helpful).
-- "actions" is an array; use [] when there is no action.
-- Only include "send_email_to_team" when the user explicitly asks you to have the CRES team follow up, send a proposal/quote, or contact them.
-- If you're not sure, prefer not to trigger an action.`;
+- ALWAYS respond ONLY as minified JSON (no markdown, no extra text). Shape:
+  {"reply":"SHORT_TEXT_RESPONSE","actions":[{"type":"send_email_to_team","subject":"EMAIL_SUBJECT","summary":"WHAT_THE_USER_WANTS_AND_KEY_POINTS","preferredDay":"DAY_OR_DATE","preferredTime":"TIME_WINDOW","channel":"call_or_WhatsApp"}]}
+- Use [] for actions when there is no follow-up. Only include "send_email_to_team" when the user has agreed to be contacted and you have confirmed at least rough day and time.`;
 
 type ClientDetails = {
   name?: string;
@@ -55,6 +54,9 @@ type AssistantAction = {
   type: 'send_email_to_team';
   subject?: string;
   summary?: string;
+  preferredDay?: string;
+  preferredTime?: string;
+  channel?: string;
 };
 
 type ParsedAssistantResponse = {
@@ -80,7 +82,16 @@ function parseAssistantContent(raw: string): ParsedAssistantResponse {
         ? parsed.reply.trim()
         : cleaned;
     const actions = Array.isArray(parsed.actions)
-      ? parsed.actions.filter((a: any) => a && a.type === 'send_email_to_team')
+      ? parsed.actions
+          .filter((a: any) => a && a.type === 'send_email_to_team')
+          .map((a: any) => ({
+            type: 'send_email_to_team' as const,
+            subject: a.subject,
+            summary: a.summary,
+            preferredDay: a.preferredDay,
+            preferredTime: a.preferredTime,
+            channel: a.channel,
+          }))
       : [];
 
     return {
@@ -140,6 +151,21 @@ async function executeActions(
       action.subject ||
       `New chat follow-up request from ${opts.clientDetails?.name || 'website visitor'}`;
     const summary = action.summary || opts.latestUserMessage;
+    const day = (action.preferredDay || '').trim();
+    const time = (action.preferredTime || '').trim();
+    const channel = (action.channel || '').trim();
+    const hasBookedSession = day || time || channel;
+
+    const bookedSessionHtml = hasBookedSession
+      ? `
+            <h3 style="color:#0D1B2A; margin-top:20px;">📅 Booked session (day &amp; time)</h3>
+            <div style="background:#e8f5f3; border-left:4px solid #1E7C88; padding:14px 18px; margin:10px 0; border-radius:6px;">
+              <p style="margin:0; color:#333;"><strong>Day/date:</strong> ${day || 'Not specified'}</p>
+              <p style="margin:6px 0 0 0; color:#333;"><strong>Time window:</strong> ${time || 'Not specified'}</p>
+              <p style="margin:6px 0 0 0; color:#333;"><strong>Channel:</strong> ${channel || 'Not specified'}</p>
+            </div>
+            `
+      : '';
 
     try {
       await resend.emails.send({
@@ -156,8 +182,9 @@ async function executeActions(
               <li><strong>Phone:</strong> ${opts.clientDetails?.phone || 'Not provided'}</li>
               <li><strong>Email:</strong> ${opts.clientDetails?.email || 'Not provided'}</li>
             </ul>
+            ${bookedSessionHtml}
             <h3 style="color:#0D1B2A; margin-top:20px;">Summary of request</h3>
-            <p style="color:#333; white-space:pre-line;">${summary}</p>
+            <p style="color:#333; white-space:pre-line;">${(summary || '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
             ${transcriptHtml}
             <p style="margin-top:24px; font-size:12px; color:#666;">
               This email was generated automatically from a chat conversation on the CRES Dynamics website.
