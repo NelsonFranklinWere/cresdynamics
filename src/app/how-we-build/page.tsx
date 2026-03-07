@@ -223,9 +223,12 @@ export default function HowWeBuildPage() {
             <p className="text-lg md:text-xl text-[var(--cres-white)]/80 mb-8 max-w-2xl mx-auto">
               Book a Systems Discovery Session. We map your needs, then show you how we architect and deploy.
             </p>
-            <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-base md:text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+            <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-base md:text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
               Book a Systems Discovery Session
               <i className="fas fa-chevron-right text-sm"></i>
+            </a>
+            <a href="tel:+254708805496" className="inline-flex items-center gap-2 border-2 border-[var(--cres-orange-primary)] text-[var(--cres-white)] font-bold text-base md:text-lg px-8 py-4 rounded-xl hover:bg-[var(--cres-orange-primary)]/10 transition-all duration-500 uppercase tracking-wide mt-4 sm:mt-0 sm:ml-4">
+              Call 0708 805 496
             </a>
           </div>
         </div>

@@ -15,11 +15,11 @@ export default function PageTransitionShell({ children }: Props) {
     <AnimatePresence mode="wait">
       <motion.div
         key={pathname}
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 1, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -16 }}
         transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
-        className="will-change-transform"
+        className="will-change-transform min-h-screen"
       >
         {children}
       </motion.div>

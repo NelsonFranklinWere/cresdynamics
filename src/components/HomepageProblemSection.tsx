@@ -36,7 +36,7 @@ export default function HomepageProblemSection() {
 
   return (
     <motion.section
-      className="bg-[#F8F6F1] text-[#08090F]"
+      className="bg-white text-[var(--navy-primary)]"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -44,18 +44,18 @@ export default function HomepageProblemSection() {
     >
       <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
         <div className="mb-6">
-          <div className="flex items-center gap-3 text-[10px] md:text-xs font-mono tracking-[0.25em] uppercase text-[#C8902A]">
-            <span className="inline-block h-px w-7 bg-[#C8902A]" />
+          <div className="flex items-center gap-3 text-[10px] md:text-xs font-mono tracking-[0.25em] uppercase text-[var(--teal-accent)]">
+            <span className="inline-block h-px w-7 bg-[var(--teal-accent)]" />
             <span>The Problem We Solve</span>
           </div>
         </div>
         <div className="max-w-3xl mb-10">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-4 text-[var(--navy-primary)]">
             Your Business Has
             <br />
             Outgrown Its Infrastructure.
           </h2>
-          <p className="text-sm md:text-base text-[#6B6B80] leading-relaxed">
+          <p className="text-sm md:text-base text-[var(--navy-primary)]/80 leading-relaxed">
             You are making sales. You have clients. The work is good. But everything still runs
             through WhatsApp groups, Excel sheets, and one person who holds it all together. That
             person is usually you.
@@ -70,18 +70,18 @@ export default function HomepageProblemSection() {
             return (
             <motion.div
               key={p.num}
-              className="relative bg-white/95 px-6 py-8 md:px-8 md:py-10 rounded-2xl border border-[#D5CBB8] shadow-[0_14px_30px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,0,0,0.12)]"
+              className="relative bg-[var(--neutral-bg)] px-6 py-8 md:px-8 md:py-10 rounded-2xl border border-[#E5E7EB] shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               initial={{ opacity: 0, x: initialX }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
             >
               <div className="text-2xl mb-3">{p.icon}</div>
-              <h3 className="text-base md:text-lg font-semibold mb-2 text-[#08090F]">
+              <h3 className="text-base md:text-lg font-semibold mb-2 text-[var(--navy-primary)]">
                 {p.title}
               </h3>
-              <p className="text-xs md:text-sm text-[#6B6B80] leading-relaxed">{p.description}</p>
-              <div className="pointer-events-none select-none absolute -top-2 right-4 text-[72px] font-black text-[#C8902A]/10 leading-none">
+              <p className="text-xs md:text-sm text-[var(--navy-primary)]/75 leading-relaxed">{p.description}</p>
+              <div className="pointer-events-none select-none absolute -top-2 right-4 text-[72px] font-black text-[var(--teal-accent)]/10 leading-none">
                 {p.num}
               </div>
             </motion.div>

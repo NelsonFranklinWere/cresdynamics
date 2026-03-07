@@ -4,25 +4,23 @@ import { motion } from 'framer-motion';
 
 export default function LiveSystemsProof() {
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative">
-      {/* Solid navy gradient only */}
-      <div className="absolute inset-0 bg-black/40"></div>
+    <section className="py-16 md:py-20 relative" style={{ background: 'var(--cres-gradient-bg)' }}>
+      <div className="absolute inset-0 bg-black/20" aria-hidden />
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-12 md:mb-16">
             <h2
-              className="text-2xl md:text-4xl lg:text-5xl font-black text-[var(--cres-white)] mb-4 md:mb-5 underline-custom"
-              style={{ textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)' }}
+              className="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-4 md:mb-5"
+              style={{ textShadow: '0 2px 12px rgba(0,0,0,0.3)' }}
             >
-              Live in <span className="text-[var(--cres-orange-primary)]">Production</span>
+              Live in <span className="text-[var(--orange-energy)]">Production</span>
             </h2>
             <p
-              className="text-lg md:text-2xl text-[var(--cres-white)] max-w-3xl mx-auto mb-3"
-              style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' }}
+              className="text-lg md:text-2xl text-white max-w-3xl mx-auto mb-3"
             >
               Real Systems. Real Businesses. Real Numbers.
             </p>
-            <p className="text-sm md:text-base text-[var(--cres-white)]/80 max-w-3xl mx-auto">
+            <p className="text-sm md:text-base text-white/85 max-w-3xl mx-auto">
               These are not demos. Not mockups. Live systems running in production today, serving real users and real
               businesses in Kenya.
             </p>
@@ -70,45 +68,45 @@ export default function LiveSystemsProof() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: 0.12 * i, ease: [0.22, 0.61, 0.36, 1] }}
               >
-                <h3 className="text-lg md:text-xl font-bold text-[var(--cres-white)] mb-4 group-hover:text-[var(--cres-orange-primary)] transition-colors">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-4 group-hover:text-[var(--teal-accent)] transition-colors">
                   {system.title}
                 </h3>
                 <div className="mb-4 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs md:text-sm text-[var(--cres-white)]/70">Active users</span>
-                    <span className="text-xl md:text-2xl font-black text-[var(--cres-orange-primary)]">{system.users}</span>
+                    <span className="text-xs md:text-sm text-white/70">Active users</span>
+                    <span className="text-xl md:text-2xl font-black text-[var(--orange-energy)]">{system.users}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs md:text-sm text-[var(--cres-white)]/70">Revenue tracked</span>
-                    <span className="text-lg md:text-xl font-bold text-[var(--cres-electric-teal)]">{system.revenue}</span>
+                    <span className="text-xs md:text-sm text-white/70">Revenue tracked</span>
+                    <span className="text-lg md:text-xl font-bold text-[var(--teal-accent)]">{system.revenue}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs md:text-sm text-[var(--cres-white)]/70">Roles</span>
-                    <span className="text-sm font-medium text-[var(--cres-white)]/90">{system.roles}</span>
+                    <span className="text-xs md:text-sm text-white/70">Roles</span>
+                    <span className="text-sm font-medium text-white/90">{system.roles}</span>
                   </div>
                   {system.uptime && (
                     <div className="flex items-center justify-between">
-                      <span className="text-xs md:text-sm text-[var(--cres-white)]/70">Uptime</span>
+                      <span className="text-xs md:text-sm text-white/70">Uptime</span>
                       <span className="text-sm font-medium text-green-400">{system.uptime}</span>
                     </div>
                   )}
                 </div>
-                <p className="text-sm md:text-base text-[var(--cres-white)]/90 mb-4 leading-relaxed">
+                <p className="text-sm md:text-base text-white/90 mb-4 leading-relaxed">
                   {system.description}
                 </p>
                 <div className="mb-4">
-                  <p className="text-xs md:text-sm font-bold text-[var(--cres-orange-primary)] mb-2">Capabilities</p>
+                  <p className="text-xs md:text-sm font-bold text-[var(--orange-energy)] mb-2">Capabilities</p>
                   <ul className="space-y-1">
                     {system.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <span className="text-[var(--cres-orange-primary)] text-xs">•</span>
-                        <span className="text-xs md:text-sm text-[var(--cres-white)]/80">{feature}</span>
+                        <span className="text-[var(--teal-accent)] text-xs">•</span>
+                        <span className="text-xs md:text-sm text-white/80">{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="pt-4 border-t border-white/10">
-                  <p className="text-xs text-[var(--cres-white)]/60 font-mono">{system.stack}</p>
+                  <p className="text-xs text-white/60 font-mono">{system.stack}</p>
                 </div>
               </motion.div>
             ))}
@@ -116,7 +114,7 @@ export default function LiveSystemsProof() {
 
           {/* CTA */}
           <div className="text-center">
-            <a href="/case-studies" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-base md:text-lg px-6 md:px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+            <a href="/case-studies" className="inline-flex items-center gap-2 bg-[var(--orange-energy)] hover:bg-[var(--orange-energy-hover)] text-white font-bold text-base md:text-lg px-6 md:px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent">
               View Case Proof
               <i className="fas fa-chevron-right text-sm"></i>
             </a>

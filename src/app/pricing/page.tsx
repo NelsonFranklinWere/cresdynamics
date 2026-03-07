@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+import { whatsappUrl, WHATSAPP_PREFILL } from '@/lib/contact';
 
 export default function PricingPage() {
   return (
@@ -50,12 +50,14 @@ export default function PricingPage() {
                   <li>WhatsApp integration</li>
                   <li>3 workflow triggers</li>
                 </ul>
-                <Link
-                  href="/contact"
+                <a
+                  href={whatsappUrl(WHATSAPP_PREFILL.pricingPackage('Basic Automation'))}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold text-sm py-3 rounded-lg transition-colors"
                 >
                   Get Started
-                </Link>
+                </a>
               </div>
 
               <div className="rounded-xl border-2 border-[var(--cres-orange-primary)] bg-black/60 p-6 md:p-8 relative">
@@ -74,12 +76,14 @@ export default function PricingPage() {
                   <li>Analytics dashboard</li>
                   <li>AI anomaly detection</li>
                 </ul>
-                <Link
-                  href="/contact"
+                <a
+                  href={whatsappUrl(WHATSAPP_PREFILL.pricingPackage('Automation Suite'))}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm py-3 rounded-lg transition-colors"
                 >
                   Book Discovery
-                </Link>
+                </a>
               </div>
 
               <div className="rounded-xl border border-white/10 bg-black/40 p-6 md:p-8">
@@ -95,12 +99,14 @@ export default function PricingPage() {
                   <li>Unlimited triggers</li>
                   <li>Dedicated support retainer</li>
                 </ul>
-                <Link
-                  href="/contact"
+                <a
+                  href={whatsappUrl(WHATSAPP_PREFILL.pricingPackage('AI + Automation'))}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold text-sm py-3 rounded-lg transition-colors"
                 >
                   Let&apos;s Talk
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -128,7 +134,7 @@ export default function PricingPage() {
                   <li>WhatsApp integration</li>
                   <li>2-week build timeline</li>
                 </ul>
-                <Link href="/contact" className="block w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold text-sm py-3 rounded-lg transition-colors">Start Here</Link>
+                <a href={whatsappUrl(WHATSAPP_PREFILL.pricingPackage('Website'))} target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold text-sm py-3 rounded-lg transition-colors">Start Here</a>
               </div>
 
               <div className="rounded-xl border-2 border-[var(--cres-orange-primary)] bg-black/60 p-6 md:p-8 relative">
@@ -147,7 +153,7 @@ export default function PricingPage() {
                   <li>Staff training included</li>
                   <li>3-week build timeline</li>
                 </ul>
-                <Link href="/contact" className="block w-full text-center bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm py-3 rounded-lg transition-colors">Book Discovery</Link>
+                <a href={whatsappUrl(WHATSAPP_PREFILL.pricingPackage('CresOS Business'))} target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm py-3 rounded-lg transition-colors">Book Discovery</a>
               </div>
 
               <div className="rounded-xl border border-white/10 bg-black/40 p-6 md:p-8">
@@ -164,7 +170,7 @@ export default function PricingPage() {
                   <li>Dedicated support retainer</li>
                   <li>4-week build timeline</li>
                 </ul>
-                <Link href="/contact" className="block w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold text-sm py-3 rounded-lg transition-colors">Let&apos;s Talk</Link>
+                <a href={whatsappUrl(WHATSAPP_PREFILL.pricingPackage('Full ERP'))} target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold text-sm py-3 rounded-lg transition-colors">Let&apos;s Talk</a>
               </div>
             </div>
             <p className="text-center text-white/60 text-sm mt-8">
@@ -202,12 +208,14 @@ export default function PricingPage() {
                   <li>Up to 10 users</li>
                   <li>Mobile access</li>
                 </ul>
-                <Link
-                  href="/contact"
+                <a
+                  href={whatsappUrl(WHATSAPP_PREFILL.pricingPackage('Team Operations'))}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold text-sm py-3 rounded-lg transition-colors"
                 >
                   Get Started
-                </Link>
+                </a>
               </div>
 
               <div className="rounded-xl border-2 border-[var(--cres-orange-primary)] bg-black/60 p-6 md:p-8 relative">
@@ -226,12 +234,14 @@ export default function PricingPage() {
                   <li>Smart alerts</li>
                   <li>Up to 30 users</li>
                 </ul>
-                <Link
-                  href="/contact"
+                <a
+                  href={whatsappUrl(WHATSAPP_PREFILL.pricingPackage('Operations Platform'))}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm py-3 rounded-lg transition-colors"
                 >
                   Book Discovery
-                </Link>
+                </a>
               </div>
 
               <div className="rounded-xl border border-white/10 bg-black/40 p-6 md:p-8">
@@ -247,12 +257,14 @@ export default function PricingPage() {
                   <li>Custom workflows</li>
                   <li>Dedicated retainer</li>
                 </ul>
-                <Link
-                  href="/contact"
+                <a
+                  href={whatsappUrl(WHATSAPP_PREFILL.pricingPackage('Operations + Finance'))}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center bg-white/10 hover:bg-white/20 text-white font-bold text-sm py-3 rounded-lg transition-colors"
                 >
                   Let&apos;s Talk
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -272,13 +284,20 @@ export default function PricingPage() {
               No pitch. No slides. Just an honest conversation about your business and what&apos;s possible. 20 minutes.
               No commitment.
             </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
+              <a
+                href={whatsappUrl(WHATSAPP_PREFILL.strategySession)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
+              >
+                WhatsApp to Book
+              </a>
+              <a href="tel:+254708805496" className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
+                Call 0708 805 496
+              </a>
+            </div>
             <div className="space-y-2 text-sm md:text-base text-white/80">
-              <p>
-                Call{' '}
-                <a href="tel:+254708805496" className="font-semibold text-[var(--cres-orange-primary)]">
-                  +254 708 805 496
-                </a>
-              </p>
               <p>
                 Or{' '}
                 <a

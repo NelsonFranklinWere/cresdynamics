@@ -215,8 +215,8 @@ export default function RootLayout({
         <link rel="icon" href="/favicon-circular.png?v=2" sizes="512x512" type="image/png" />
         <link rel="apple-touch-icon" href="/favicon-circular.png?v=2" sizes="180x180" />
         <link rel="manifest" href="/manifest.json?v=2" />
-        <meta name="theme-color" content="#0D1B2A" />
-        <meta name="msapplication-TileColor" content="#0D1B2A" />
+        <meta name="theme-color" content="#1A2433" />
+        <meta name="msapplication-TileColor" content="#1A2433" />
         <meta name="msapplication-TileImage" content="/favicon-circular.png?v=2" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
@@ -294,8 +294,8 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{
           __html: `
             /* Critical CSS for instant render - prevents FCP delay */
-            body{margin:0;padding:0;background:#0B0F14;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-            header{position:fixed;top:0;width:100%;z-index:50;background:rgba(11,15,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,31,42,0.5)}
+            body{margin:0;padding:0;background:#F5F7FA;color:#2F3B52;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+            header{position:fixed;top:0;width:100%;z-index:50;background:#fff;border-bottom:1px solid rgba(245,247,250,1);box-shadow:0 1px 3px rgba(0,0,0,0.06)}
             nav{max-width:1280px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
             /* Prevent layout shift for logo */
             img[src="/logo.png"]{width:32px;height:32px;border-radius:50%;object-fit:cover;display:block}

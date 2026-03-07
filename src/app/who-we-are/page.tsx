@@ -1,6 +1,5 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
 
 export default function WhoWeArePage() {
   return (
@@ -17,9 +16,12 @@ export default function WhoWeArePage() {
             <p className="text-white/80 text-lg md:text-xl mb-8">
               A systems-first company that builds growth infrastructure for African businesses. Performance-driven, vision-led, built by practitioners.
             </p>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
+            <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20strategy%20call%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
               Book a Strategy Call
-            </Link>
+            </a>
+            <a href="tel:+254708805496" className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
+              Call 0708 805 496
+            </a>
           </div>
         </section>
         <section className="relative py-16 md:py-20 bg-[var(--cres-primary-bg)]">

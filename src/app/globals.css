@@ -5,41 +5,44 @@
 @tailwind utilities;
 
 :root {
-  /* CRES Core Color Palette */
-  --cres-deep-navy: #0D1B2A;       /* Deep Navy – foundation */
-  --cres-electric-teal: #00B894;  /* Electric Teal – intelligence & motion */
-  --cres-light-grey: #F8F9FA;      /* Light Grey – clarity & balance */
+  /* ─── CRES Dynamics Brand Palette (official) ─── */
+  --navy-primary: #2F3B52;         /* Headings, nav, body text, secondary buttons */
+  --teal-accent: #2FA6B3;         /* Interactive highlights, icons, links, hover */
+  --teal-deep: #1E7C88;           /* Section backgrounds, cards, panels, hero */
+  --orange-energy: #F39C24;       /* Primary buttons, CTAs, key emphasis */
+  --orange-energy-hover: #E48B18; /* Primary button hover */
+  --teal-accent-hover: #268F9A;   /* Secondary teal hover */
+  --neutral-bg: #F5F7FA;          /* Page background, section separation, cards */
+  --navy-dark: #1A2433;           /* Footer, dark sections, contrast panels */
 
-  /* Updated Core Colors for CRES Brand Alignment */
-  --cres-teal-secondary: #00B894;  /* Updated Electric Teal */
+  /* Hero gradient (brand) */
+  --cres-gradient-bg: linear-gradient(135deg, #1A2433 0%, #1E7C88 100%);
+  --cres-city-glow: radial-gradient(circle at 30% 70%, rgba(243,156,36,0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 30%, rgba(47,166,179,0.2) 0%, transparent 50%);
 
-  /* Primary Branding - Updated Color Palette */
-  --cres-primary-bg: #0B0F14;      /* Primary Background (near-black charcoal) */
-  --cres-secondary-bg: #121821;    /* Secondary Background / Overlays */
-  --cres-card-bg: rgba(18, 24, 33, 0.85); /* Card Background with blur */
-  --cres-orange-primary: #F47A2A;  /* Primary Accent (Orange) */
-  --cres-orange-hover: #E87528;     /* Orange hover state */
-  --cres-teal-secondary: #4FB3B8;  /* Secondary Accent (Teal) */
+  /* Mapped CRES tokens → new palette (existing components get new colors) */
+  --cres-deep-navy: var(--navy-primary);
+  --cres-electric-teal: var(--teal-accent);
+  --cres-light-grey: var(--neutral-bg);
+  --cres-teal-secondary: var(--teal-accent);
+  --cres-primary-bg: var(--navy-dark);
+  --cres-secondary-bg: var(--teal-deep);
+  --cres-card-bg: rgba(30, 124, 136, 0.9);
+  --cres-orange-primary: var(--orange-energy);
+  --cres-orange-hover: var(--orange-energy-hover);
+  --cres-black: var(--navy-dark);
+  --cres-dark: var(--teal-deep);
+  --cres-charcoal: var(--navy-primary);
 
-  /* Hero Gradient Background (Night city vibe) */
-  --cres-gradient-bg: linear-gradient(135deg, #0B0F14 0%, #121821 50%, #1A1F2A 100%);
-  --cres-city-glow: radial-gradient(circle at 30% 70%, rgba(244,122,42,0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 30%, rgba(79,179,184,0.2) 0%, transparent 50%);
+  /* Text hierarchy */
+  --cres-white: #FFFFFF;
+  --cres-text-secondary: rgba(255, 255, 255, 0.85);
+  --cres-divider: rgba(255, 255, 255, 0.12);
 
-  /* Text Hierarchy */
-  --cres-white: #FFFFFF;           /* Primary text */
-  --cres-text-secondary: #B5BDC9;  /* Secondary text */
-  --cres-divider: rgba(255,255,255,0.08); /* Divider lines */
-
-  /* Legacy Colors (for compatibility) */
-  --cres-black: #0B0F14;
-  --cres-dark: #121821;
-  --cres-charcoal: #1A1F2A;
-
-  /* Modern Shadows (Exact from screenshots) */
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
-  --shadow-md: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,149,0,0.1);
-  --shadow-lg: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,149,0,0.2);
+  /* Shadows (brand orange accent) */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(243, 156, 36, 0.1);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(243, 156, 36, 0.15);
 }
 
 @layer base {
@@ -51,8 +54,8 @@
     text-rendering: optimizeLegibility;
   }
   body {
-    background-color: var(--cres-black);
-    color: var(--cres-white);
+    background-color: var(--neutral-bg);
+    color: var(--navy-primary);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 400;
     line-height: 1.5;
@@ -106,9 +109,7 @@
     height: 2px;
     background: linear-gradient(90deg,
       rgba(255, 255, 255, 0.3) 0%,
-      rgba(244, 122, 42, 0.8) 20%,
-      rgba(244, 122, 42, 1) 50%,
-      rgba(244, 122, 42, 0.8) 80%,
+      var(--orange-energy) 50%,
       rgba(255, 255, 255, 0.3) 100%
     );
     border-radius: 1px;
@@ -138,8 +139,9 @@
     height: auto; /* Auto height to fit content */
     max-height: 70vh; /* Maximum 70% of viewport height */
     min-height: 400px; /* Minimum height to fit navigation */
-    background: rgba(13, 27, 42, 0.98); /* cres-deep-navy */
-    backdrop-filter: blur(12px);
+    background: var(--neutral-bg);
+    border: 1px solid rgba(47, 59, 82, 0.15);
+    box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
     align-items: flex-start;

@@ -20,7 +20,7 @@ const SYSTEMS = [
     title: 'Finance & Revenue',
     subtitle: 'Billing, Invoices, Dashboards',
     description: 'Revenue visibility, subscription billing, and payment tracking. One finance layer across your business.',
-    href: '/solutions/digital-sales',
+    href: '/finance-platforms',
   },
   {
     id: 'ops',
@@ -28,7 +28,7 @@ const SYSTEMS = [
     title: 'Operations & Workflow',
     subtitle: 'Projects, Approvals, Performance',
     description: 'Who owns what, what’s stuck, how teams perform. Clear operations, no blind spots.',
-    href: '/solutions/web-growth',
+    href: '/operations-workflow',
   },
   {
     id: 'ai',
@@ -36,7 +36,7 @@ const SYSTEMS = [
     title: 'AI & Automation',
     subtitle: 'Workflows, Triggers, Decision Support',
     description: 'Less manual work, consistent execution. Automated follow-ups and intelligence where it adds value.',
-    href: '/solutions/ai-automation',
+    href: '/ai-automation',
   },
 ];
 
@@ -84,15 +84,15 @@ function SystemBlock({
         </div>
       </div>
 
-      {/* Copy half */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 lg:px-20 py-16 md:py-24 bg-[var(--cres-primary-bg)] md:bg-white text-[var(--cres-white)] md:text-[var(--cres-black)]">
+      {/* Copy half – dark on mobile, white + navy on desktop */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 lg:px-20 py-16 md:py-24 bg-[var(--navy-dark)] md:bg-white text-white md:text-[var(--navy-primary)]">
         {id === 'cresos' ? (
           <>
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--cres-orange-primary)] mb-2">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--orange-energy)] mb-2">
               01 · Flagship
             </p>
             <div className="mb-6">
-              <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.28em] text-[var(--cres-orange-primary)] mb-2">
+              <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.28em] text-[var(--orange-energy)] mb-2">
                 What We Build
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
@@ -124,7 +124,7 @@ function SystemBlock({
             </div>
             <Link
               href={href}
-              className="inline-flex items-center gap-2 font-bold text-sm border-b-2 border-current pb-1 w-fit hover:opacity-80 transition-opacity uppercase tracking-wide"
+              className="inline-flex items-center gap-2 font-bold text-sm text-[var(--teal-accent)] border-b-2 border-[var(--teal-accent)] pb-1 w-fit hover:text-[var(--orange-energy)] hover:border-[var(--orange-energy)] transition-colors uppercase tracking-wide"
             >
               Learn more
               <i className="fas fa-arrow-right text-xs" />
@@ -132,7 +132,7 @@ function SystemBlock({
           </>
         ) : (
           <>
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--cres-orange-primary)] mb-2">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--orange-energy)] mb-2">
               {subtitle}
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-6">
@@ -143,7 +143,7 @@ function SystemBlock({
             </p>
             <Link
               href={href}
-              className="inline-flex items-center gap-2 font-bold text-sm border-b-2 border-current pb-1 w-fit hover:opacity-80 transition-opacity uppercase tracking-wide"
+              className="inline-flex items-center gap-2 font-bold text-sm text-[var(--teal-accent)] border-b-2 border-[var(--teal-accent)] pb-1 w-fit hover:text-[var(--orange-energy)] hover:border-[var(--orange-energy)] transition-colors uppercase tracking-wide"
             >
               Learn more
               <i className="fas fa-arrow-right text-xs" />

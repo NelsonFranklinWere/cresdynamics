@@ -17,9 +17,14 @@ export default function BookStrategyCallPage() {
             <p className="text-white/80 text-lg md:text-xl mb-8">
               Tell us your goals and pain points. We will map options and next steps.
             </p>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
-              Go to Contact
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20strategy%20call%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
+              WhatsApp
+            </a>
+            <a href="tel:+254708805496" className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
+              Call 0708 805 496
+            </a>
+          </div>
           </div>
         </section>
       </main>

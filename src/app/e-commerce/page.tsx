@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
 
 export default function ECommercePage() {
   const whoItsFor = [
@@ -76,9 +77,12 @@ export default function ECommercePage() {
             <p className="text-white/80 text-lg md:text-xl mb-8">
               Product structure, inventory clarity, payment flow, conversion strategy, mobile optimization, abandoned-cart handling. One business-ready platform. Outcome: turn traffic into predictable revenue.
             </p>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
+            <a href={whatsappUrl(WHATSAPP_PREFILL.ecommerceDiscovery)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
               Discuss your store
-            </Link>
+            </a>
+            <a href={TEL_LINK} className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide ml-0 mt-3 sm:mt-0 sm:ml-3">
+              Call 0708 805 496
+            </a>
           </div>
         </section>
 
@@ -151,9 +155,9 @@ export default function ECommercePage() {
             <p className="text-white/80 text-sm md:text-base leading-relaxed">
               Start with e-commerce and order management. When you’re ready for operations, workflow, finance, or full ERP, we build on the same platform—CresOS and custom ERP—so your store isn’t an island. One data model, one place to run the business.
             </p>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide mt-4">
+            <a href={whatsappUrl(WHATSAPP_PREFILL.ecommerceDiscovery)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide mt-4">
               Talk to us about your setup
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -161,9 +165,14 @@ export default function ECommercePage() {
         <section className="relative py-16 bg-[var(--cres-secondary-bg)]">
           <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
             <p className="text-white/80 mb-6">Ready to move off WhatsApp and spreadsheets into a real e-commerce system?</p>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
-              Book a discovery
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a href={whatsappUrl(WHATSAPP_PREFILL.ecommerceDiscovery)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
+                Book a discovery
+              </a>
+              <a href={TEL_LINK} className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
+                Call 0708 805 496
+              </a>
+            </div>
           </div>
         </section>
       </main>

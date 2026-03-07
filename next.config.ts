@@ -14,8 +14,8 @@ const nextConfig: NextConfig = {
   compress: true, // Enable gzip compression
   poweredByHeader: false, // Remove X-Powered-By header
 
-  // Turbopack configuration for Next.js 16
-  turbopack: {}, // Explicitly enable Turbopack
+  // Turbopack configuration for Next.js 16 (omit to use webpack if SWC native binary has issues)
+  turbopack: {},
 
   // Bundle analysis and optimization - only for production builds
   ...(process.env.NODE_ENV === 'production' ? {
@@ -100,6 +100,13 @@ const nextConfig: NextConfig = {
       ];
     },
   } : {}),
+
+  // Redirect /finance to main finance service page
+  async redirects() {
+    return [
+      { source: '/finance', destination: '/finance-platforms', permanent: true },
+    ];
+  },
 
   // Note: Removed static export to support API routes on Vercel
   // Vercel will handle deployment automatically

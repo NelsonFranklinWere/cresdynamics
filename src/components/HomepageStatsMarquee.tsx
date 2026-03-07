@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export default function HomepageStatsMarquee() {
   return (
     <motion.section
-      className="bg-[var(--cres-black)] text-[var(--cres-white)]"
+      className="bg-[var(--navy-dark)] text-white"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
@@ -28,7 +28,7 @@ export default function HomepageStatsMarquee() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.45, delay: 0.08 * index, ease: [0.22, 0.61, 0.36, 1] }}
             >
-              <div className="text-2xl md:text-3xl font-black text-[var(--cres-orange-primary)] leading-none mb-1">
+              <div className="text-2xl md:text-3xl font-black text-[var(--orange-energy)] leading-none mb-1">
                 {stat.value}
               </div>
               <div className="text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase text-white/50">

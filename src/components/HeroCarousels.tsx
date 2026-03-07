@@ -83,7 +83,7 @@ export default function HeroCarousels() {
     <div className="relative z-10 w-full max-w-5xl mx-auto px-4 md:px-8 flex flex-col flex-1 justify-center py-12">
       <div className="flex items-center justify-between mb-4 md:mb-6">
         <div className="flex items-center gap-2">
-          <span className="text-[10px] md:text-xs font-semibold tracking-[0.28em] uppercase text-[var(--cres-orange-primary)]">
+          <span className="text-[10px] md:text-xs font-semibold tracking-[0.28em] uppercase text-[var(--orange-energy)]">
             {slide.tag}
           </span>
         </div>
@@ -116,7 +116,7 @@ export default function HeroCarousels() {
               <ul className="space-y-2 md:space-y-3">
                 {slide.points.map((point, i) => (
                   <li key={i} className="flex items-start gap-3 text-white/75 text-sm md:text-base">
-                    <span className="text-[var(--cres-orange-primary)] mt-1.5 shrink-0">▸</span>
+                    <span className="text-[var(--orange-energy)] mt-1.5 shrink-0">▸</span>
                     <span>{point}</span>
                   </li>
                 ))}
@@ -125,7 +125,7 @@ export default function HeroCarousels() {
             <div className="flex md:flex-col items-center md:items-end gap-3 shrink-0">
               <Link
                 href={slide.href}
-                className="inline-flex items-center justify-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm md:text-base px-6 py-3 rounded-md uppercase tracking-wide transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[var(--orange-energy)] hover:bg-[var(--orange-energy-hover)] text-white font-bold text-sm md:text-base px-6 py-3 rounded-lg uppercase tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
               >
                 {slide.cta}
                 <i className="fas fa-arrow-right text-xs" />
@@ -144,7 +144,7 @@ export default function HeroCarousels() {
                 onClick={() => goTo(i)}
                 className={`h-1.5 rounded-full transition-all duration-200 ${
                   i === index
-                    ? 'w-6 bg-[var(--cres-orange-primary)]'
+                    ? 'w-6 bg-[var(--orange-energy)]'
                     : 'w-2 bg-white/25 hover:bg-white/50'
                 }`}
                 aria-label={`Go to ${s.tag}`}

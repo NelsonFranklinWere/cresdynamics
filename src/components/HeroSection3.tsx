@@ -71,7 +71,7 @@ export default function HeroSection3() {
               Systems optimized for low-latency performance and elastic scalability—so essential they drive retention for years.
             </p>
             <div className="text-center md:text-left">
-              <a href="/contact" className="inline-flex items-center gap-1.5 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-xs px-3 py-1.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 uppercase tracking-wide">
+              <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20strategy%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-xs px-3 py-1.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 uppercase tracking-wide">
                 Book Session
                 <i className="fas fa-chevron-right text-xs"></i>
               </a>

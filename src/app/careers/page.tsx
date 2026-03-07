@@ -5,41 +5,64 @@ import Link from 'next/link';
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-[#0B0F14] text-white">
+    <div className="min-h-screen bg-[var(--navy-dark)] text-white">
       <Header />
 
       <main className="pt-24">
-        {/* HERO */}
-        <section className="relative py-20 md:py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--cres-primary-bg)] via-[#0D1B2A] to-[#020611]" />
-          <div className="absolute inset-0 bg-black/40" />
-
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-            <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-3">
-              Careers — CRES Dynamics
-            </p>
-            <h1 className="text-3xl md:text-5xl font-black mb-6">
-              Build the Systems
-              <br />
-              Kenya Runs On.
-            </h1>
-            <p className="text-white/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-              We&apos;re building the infrastructure layer for Kenyan business. If you want to build things that matter – with people
-              who care about quality – this is the place.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="#open-roles"
-                className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
-              >
-                See Open Roles
-              </Link>
-              <Link
-                href="/who-we-are"
-                className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
-              >
-                Our Culture
-              </Link>
+        {/* HERO — two-column with open roles sidebar */}
+        <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: 'var(--cres-gradient-bg)' }}>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_60%_40%,rgba(243,156,36,0.08)_0%,transparent_70%)]" />
+          <div className="relative z-10 max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div>
+                <span className="inline-block bg-[var(--teal-accent)]/20 border border-[var(--teal-accent)]/40 text-[var(--teal-accent)] px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase mb-5">
+                  We&apos;re Hiring
+                </span>
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
+                  Build the Future
+                  <br />
+                  <span style={{ color: 'var(--orange-energy)' }}>With Us.</span>
+                </h1>
+                <p className="text-white/80 text-base md:text-lg mb-8 max-w-xl">
+                  At CRES Dynamics we don&apos;t just build software — we build the infrastructure Kenyan businesses run on. We&apos;re looking for driven, curious people ready to shape how companies operate.
+                </p>
+                <div className="flex flex-col sm:flex-row items-start gap-4">
+                  <Link
+                    href="#open-roles"
+                    className="inline-flex items-center gap-2 bg-[var(--orange-energy)] hover:bg-[var(--orange-energy-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
+                  >
+                    See Open Roles
+                  </Link>
+                  <Link
+                    href="#culture"
+                    className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
+                  >
+                    Our Culture
+                  </Link>
+                </div>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+                <h4 className="text-[11px] font-bold tracking-widest uppercase text-white/60 mb-4">Open Positions</h4>
+                <div className="space-y-2">
+                  <a href="#open-roles" className="flex items-center justify-between rounded-xl bg-white/5 border border-white/10 hover:bg-[var(--teal-accent)]/20 hover:border-[var(--teal-accent)]/40 px-4 py-3 transition-colors">
+                    <span className="font-semibold text-white">💻 Software Developer</span>
+                    <span className="bg-[var(--teal-accent)]/20 text-[var(--teal-accent)] text-[11px] font-bold px-2.5 py-1 rounded-full">Open</span>
+                  </a>
+                  <a href="#open-roles" className="flex items-center justify-between rounded-xl bg-white/5 border border-white/10 hover:bg-[var(--teal-accent)]/20 hover:border-[var(--teal-accent)]/40 px-4 py-3 transition-colors">
+                    <span className="font-semibold text-white">🎯 Sales Executive</span>
+                    <span className="bg-[var(--teal-accent)]/20 text-[var(--teal-accent)] text-[11px] font-bold px-2.5 py-1 rounded-full">Open</span>
+                  </a>
+                  <a href="#open-roles" className="flex items-center justify-between rounded-xl bg-white/5 border border-white/10 hover:bg-[var(--teal-accent)]/20 hover:border-[var(--teal-accent)]/40 px-4 py-3 transition-colors">
+                    <span className="font-semibold text-white">🎨 UI/UX Designer</span>
+                    <span className="bg-[var(--teal-accent)]/20 text-[var(--teal-accent)] text-[11px] font-bold px-2.5 py-1 rounded-full">Open</span>
+                  </a>
+                  <a href="#open-roles" className="flex items-center justify-between rounded-xl bg-white/5 border border-white/10 hover:bg-[var(--teal-accent)]/20 hover:border-[var(--teal-accent)]/40 px-4 py-3 transition-colors">
+                    <span className="font-semibold text-white">📋 Project & Client Manager</span>
+                    <span className="bg-[var(--teal-accent)]/20 text-[var(--teal-accent)] text-[11px] font-bold px-2.5 py-1 rounded-full">Open</span>
+                  </a>
+                </div>
+                <p className="text-white/50 text-xs text-center mt-4">4 positions open · Nairobi (Hybrid) · Kenya</p>
+              </div>
             </div>
           </div>
         </section>
@@ -87,8 +110,8 @@ export default function CareersPage() {
           </div>
         </section>
 
-        {/* HOW WE WORK */}
-        <section className="relative py-16 md:py-20 bg-[var(--cres-secondary-bg)]">
+        {/* WHY CRES — culture / how we work */}
+        <section id="culture" className="relative py-16 md:py-20 bg-[var(--cres-secondary-bg)]">
           <div className="relative z-10 max-w-5xl mx-auto px-6">
             <div className="text-center mb-10 md:mb-12">
               <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/60 mb-2">

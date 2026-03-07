@@ -114,8 +114,11 @@ export default function AboutPage() {
             </div>
 
             <div className="text-center">
-              <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-base md:text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 inline-block">
+              <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-base md:text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 inline-block">
                 Book a Systems Discovery Session
+              </a>
+              <a href="tel:+254708805496" className="ml-3 border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-black text-base md:text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 inline-block">
+                Call 0708 805 496
               </a>
             </div>
           </div>
@@ -477,7 +480,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-12">
-            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+            <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Contact CRES Dynamics
             </a>
           </div>

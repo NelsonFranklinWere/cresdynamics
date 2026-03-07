@@ -23,7 +23,7 @@ export default function ERPPage() {
                 Explore CresOS
                 <i className="fas fa-chevron-right text-sm"></i>
               </a>
-              <a href="/contact" className="inline-flex items-center gap-2 border-2 border-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-primary)]/10 text-[var(--cres-white)] font-bold text-lg px-6 py-3 rounded-xl transition-all duration-300 uppercase tracking-wide">
+              <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-2 border-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-primary)]/10 text-[var(--cres-white)] font-bold text-lg px-6 py-3 rounded-xl transition-all duration-300 uppercase tracking-wide">
                 Book a Systems Discovery Session
                 <i className="fas fa-arrow-right text-sm"></i>
               </a>
@@ -289,9 +289,12 @@ export default function ERPPage() {
             <p className="text-lg md:text-xl text-[var(--cres-white)]/80 mb-8 max-w-2xl mx-auto">
               Book a discovery session to discuss your business needs and see how we build ERPs that companies actually run on.
             </p>
-            <a href="/contact" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg md:text-xl px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
+            <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg md:text-xl px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide">
               Book a Systems Discovery Session
               <i className="fas fa-chevron-right text-sm"></i>
+            </a>
+            <a href="tel:+254708805496" className="inline-flex items-center gap-2 border-2 border-[var(--cres-orange-primary)] text-[var(--cres-white)] font-bold text-lg md:text-xl px-8 py-4 rounded-xl hover:bg-[var(--cres-orange-primary)]/10 transition-all duration-500 uppercase tracking-wide mt-4 sm:mt-0 sm:ml-4">
+              Call 0708 805 496
             </a>
           </div>
         </div>

@@ -1,16 +1,16 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
 
 export default function AIAutomationPage() {
   return (
-    <div className="min-h-screen bg-[#0B0F14] text-white">
+    <div className="min-h-screen bg-[var(--navy-dark)] text-white">
       <Header />
       <main className="pt-24">
         {/* HERO */}
-        <section className="relative py-20 md:py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--cres-primary-bg)] via-[#0D1B2A] to-[#020611]" />
-          <div className="absolute inset-0 bg-black/40" />
+        <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: 'var(--cres-gradient-bg)' }}>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_60%_40%,rgba(106,72,8,0.2)_0%,transparent_70%)]" />
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-3xl md:text-5xl font-black mb-6">
               Less Manual.
@@ -24,18 +24,20 @@ export default function AIAutomationPage() {
               on what does.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/contact"
+              <a
+                href={whatsappUrl(WHATSAPP_PREFILL.automationDiscovery)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
               >
                 Book Automation Discovery
-              </Link>
-              <Link
-                href="/ai-automation"
+              </a>
+              <a
+                href={TEL_LINK}
                 className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
               >
-                See What We Automate
-              </Link>
+                Call 0708 805 496
+              </a>
             </div>
           </div>
         </section>

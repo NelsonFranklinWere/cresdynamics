@@ -37,18 +37,18 @@ const STEPS = [
 
 export default function HomepageHowWeBuild() {
   return (
-    <section className="bg-white text-[#08090F] py-16 md:py-24">
+    <section className="bg-white text-[var(--navy-primary)] py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="max-w-3xl mb-10 md:mb-14">
-          <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-[#C08A2A] mb-3">
+          <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-[var(--teal-accent)] mb-3">
             How We Build
           </p>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black leading-tight mb-3">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black leading-tight mb-3 text-[var(--navy-primary)]">
             Business First.
             <br />
             Technology Second.
           </h2>
-          <p className="text-sm md:text-base text-[#5A5A70] max-w-xl">
+          <p className="text-sm md:text-base text-[var(--navy-primary)]/80 max-w-xl">
             We never open with a product feature. We open with your business. Only after understanding how you operate do
             we build what you actually need.
           </p>
@@ -62,17 +62,17 @@ export default function HomepageHowWeBuild() {
             return (
               <motion.div
                 key={step.id}
-                className="relative bg-[#F8F6F1] px-5 py-7 md:px-6 md:py-8 rounded-2xl border border-[#E0D9CC] shadow-[0_10px_24px_rgba(0,0,0,0.04)] flex flex-col gap-3 overflow-hidden"
+                className="relative bg-[var(--neutral-bg)] px-5 py-7 md:px-6 md:py-8 rounded-2xl border border-[#E5E7EB] shadow-sm flex flex-col gap-3 overflow-hidden transition-all duration-300 hover:shadow-md"
                 initial={{ opacity: 0, x: initialX, y: 16 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
               >
-                <p className="text-[10px] md:text-xs font-semibold tracking-[0.24em] uppercase text-[#C08A2A]">
+                <p className="text-[10px] md:text-xs font-semibold tracking-[0.24em] uppercase text-[var(--teal-accent)]">
                   {step.label}
                 </p>
-                <h3 className="text-sm md:text-base font-semibold">{step.title}</h3>
-                <p className="text-[11px] md:text-sm text-[#5A5A70] leading-relaxed">{step.body}</p>
+                <h3 className="text-sm md:text-base font-semibold text-[var(--navy-primary)]">{step.title}</h3>
+                <p className="text-[11px] md:text-sm text-[var(--navy-primary)]/75 leading-relaxed">{step.body}</p>
               </motion.div>
             );
           })}

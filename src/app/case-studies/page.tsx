@@ -106,8 +106,11 @@ export default function CaseStudiesPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
-            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+            <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Book a Systems Discovery Session
+            </a>
+            <a href="tel:+254708805496" className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-black text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 ml-3">
+              Call 0708 805 496
             </a>
             <a href="/how-we-build" className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-bold text-base py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
               See How We Build Systems
@@ -226,8 +229,11 @@ export default function CaseStudiesPage() {
           </p>
 
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center mb-6 md:mb-8">
-              <a href="/contact" className="bg-black/70 backdrop-blur-sm border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/80 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+              <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="bg-black/70 backdrop-blur-sm border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/80 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
                 Book a Systems Discovery Session
+              </a>
+              <a href="tel:+254708805496" className="border-2 border-white/40 text-white hover:bg-white/10 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 ml-3">
+                Call 0708 805 496
               </a>
               <a href="/how-we-build" className="border-2 border-white text-white hover:bg-white hover:text-[var(--cres-electric-teal)] font-bold text-sm md:text-lg py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300">
                 See How We Build Systems

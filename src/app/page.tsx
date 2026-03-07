@@ -121,7 +121,7 @@ export default function Home() {
       <Header />
       <main>
         <HeroTesla />
-        <section className="relative min-h-screen h-screen flex flex-col items-center justify-center bg-[var(--cres-primary-bg)]" aria-label="Websites, CresOS, Custom ERPs">
+        <section className="relative min-h-screen h-screen flex flex-col items-center justify-center" style={{ background: 'var(--cres-gradient-bg)' }} aria-label="Websites, CresOS, Custom ERPs">
           <HeroCarousels />
         </section>
         <HomepageStatsMarquee />

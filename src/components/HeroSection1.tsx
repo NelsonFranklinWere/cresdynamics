@@ -31,7 +31,7 @@ export default function HeroSection1() {
             Explore CresOS
             <i className="fas fa-chevron-right text-xs"></i>
           </a>
-          <a href="/contact" className="inline-flex items-center gap-1.5 bg-transparent border border-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-primary)]/10 text-[var(--cres-white)] font-bold text-sm px-4 py-2 rounded-lg transition-all duration-300 uppercase tracking-wide">
+          <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20strategy%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 bg-transparent border border-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-primary)]/10 text-[var(--cres-white)] font-bold text-sm px-4 py-2 rounded-lg transition-all duration-300 uppercase tracking-wide">
             Book Session
             <i className="fas fa-arrow-right text-xs"></i>
           </a>
