@@ -1,21 +1,15 @@
 import type { Metadata } from 'next';
-import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'AI Automation Nairobi | Business Automation Kenya — Cres Dynamics',
-  description: 'Cres Dynamics builds AI-powered automation systems for Nairobi businesses — eliminating manual work, automating workflows, and integrating intelligent tools into your business operations. Live in production across Kenya.',
-  keywords: 'AI automation Nairobi, business automation Kenya, AI software Nairobi, workflow automation Kenya, intelligent systems Nairobi, AI business tools Kenya, process automation Nairobi',
-  alternates: { canonical: canonical('/solutions/ai-automation/') },
+  description: 'AI-powered automation systems for Nairobi businesses. Automate workflows, eliminate manual work and integrate intelligent tools. Live in production across Kenya.',
+  alternates: { canonical: 'https://cresdynamics.com/solutions/ai-automation/' },
+  robots: { index: true, follow: true },
   openGraph: {
-    title: 'AI Automation Nairobi | Business Automation Kenya — Cres Dynamics',
-    description: 'Cres Dynamics builds AI-powered automation systems for Nairobi businesses.',
+    title: 'AI Automation Nairobi — Cres Dynamics',
+    description: 'Workflow automation and AI systems for Nairobi businesses. Live in production across Kenya.',
     url: 'https://cresdynamics.com/solutions/ai-automation/',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AI Automation Nairobi | Business Automation Kenya',
-    description: 'AI-powered automation systems for Nairobi businesses. Live in production across Kenya.',
   },
 };
 

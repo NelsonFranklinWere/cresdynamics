@@ -6,9 +6,8 @@ import PageTransitionShell from "@/components/PageTransitionShell";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cresdynamics.com'),
-  title: 'CRES Dynamics Nairobi – Business Systems Kenyan Companies Run On | ERP, Finance Platforms & Automation',
-  description:
-    'CRES Dynamics is a Nairobi-based business systems engineering company that builds ERPs, finance platforms, operations systems, and AI automation for serious Kenyan businesses. When you outgrow WhatsApp and Excel, this is the infrastructure layer that comes next.',
+  title: { default: 'Cres Dynamics | Nairobi, Kenya', template: '%s' },
+  description: 'Cres Dynamics — Custom ERP, business systems and web development in Nairobi, Kenya.',
   keywords: [
     'ERP systems Nairobi',
     'ERP development Kenya',
@@ -41,21 +40,12 @@ export const metadata: Metadata = {
     shortcut: '/favicon-circular.png?v=2',
   },
   openGraph: {
-    title: 'CRES Dynamics Nairobi – Business Systems Kenyan Companies Run On',
-    description:
-      'CRES Dynamics designs and builds systems that real Kenyan businesses run on: custom ERPs, finance & revenue platforms, operations systems, and AI automation – engineered and supported from Nairobi, Kenya.',
     images: [
-      {
-        url: 'https://cresdynamics.com/logo.png',
-        width: 512,
-        height: 512,
-        alt: 'CRES Dynamics - Business Growth Solutions',
-      },
+      { url: 'https://cresdynamics.com/logo.png', width: 512, height: 512, alt: 'Cres Dynamics Logo' },
     ],
     type: 'website',
     locale: 'en_KE',
     siteName: 'Cres Dynamics',
-    url: 'https://cresdynamics.com',
   },
   twitter: {
     card: 'summary_large_image',
@@ -235,6 +225,7 @@ export default function RootLayout({
         <meta name="geo.placename" content="Nairobi" />
         <meta name="geo.position" content="-1.286389;36.817223" />
         <meta name="ICBM" content="-1.286389, 36.817223" />
+        <meta name="author" content="Cres Dynamics Ltd" />
         <meta name="location" content="Nairobi, Kenya" />
         <meta name="language" content="en-KE" />
         <meta name="country" content="Kenya" />
@@ -322,19 +313,28 @@ export default function RootLayout({
               "email": "info@cresdynamics.com",
               "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "Kivuli Tower, 3rd Floor, Westlands",
                 "addressLocality": "Nairobi",
                 "addressCountry": "KE"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": -1.286389,
+                "longitude": 36.817223
               },
               "areaServed": ["Nairobi", "Kenya", "East Africa"],
               "serviceType": [
                 "Custom ERP Development",
-                "Web Development",
-                "AI Automation",
-                "Business Systems",
-                "Finance Platforms",
+                "Web Development Nairobi",
+                "AI Automation Kenya",
+                "Business Systems Nairobi",
+                "Finance Platforms Kenya",
                 "M-Pesa Integration",
-                "Zero-Trust Security"
-              ]
+                "Zero-Trust Security",
+                "E-Commerce Development Kenya"
+              ],
+              "priceRange": "KES",
+              "openingHours": "Mo-Fr 08:00-18:00"
             })
           }}
         />

@@ -12,10 +12,16 @@ import HomepageHowWeBuild from '@/components/HomepageHowWeBuild';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cres Dynamics | Custom ERP, Business Systems & Web Development Nairobi',
-  description: 'Cres Dynamics builds custom ERP systems, AI-powered business automation, professional websites and finance platforms for businesses in Nairobi, Kenya. Powered by the Cres Core Engine. 127 active users. KES 4.97M tracked. Zero-Trust security.',
-  keywords: 'web development company Nairobi, ERP system Kenya, custom software Nairobi, business systems Kenya, AI automation Nairobi, software developer Nairobi, Cres Dynamics, CresOS, Cres Core Engine, finance platform Kenya, M-Pesa integration Kenya',
+  title: 'Cres Dynamics | Custom ERP, Business Systems & Web Development — Nairobi, Kenya',
+  description: 'Cres Dynamics builds custom ERP systems, business automation, professional websites and finance platforms for businesses in Nairobi. Powered by the Cres Core Engine. 127 active users. KES 4.97M tracked.',
   alternates: { canonical: 'https://cresdynamics.com/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Cres Dynamics | Custom ERP & Business Systems Nairobi',
+    description: 'Custom ERP, websites, AI automation and finance platforms for Nairobi businesses. Powered by the Cres Core Engine.',
+    url: 'https://cresdynamics.com/',
+    type: 'website',
+  },
 };
 
 export default function Home() {

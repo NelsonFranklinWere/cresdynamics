@@ -3,13 +3,18 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
 import type { Metadata } from 'next';
-import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Professional Website Development Nairobi | Web Design Kenya — Cres Dynamics',
-  description: 'Cres Dynamics designs and develops professional websites for businesses, NGOs, startups and corporates in Nairobi. Corporate websites, e-commerce, landing pages and web applications — all built for performance and Google ranking.',
-  keywords: 'web development company Nairobi, website design Kenya, professional website Nairobi, web designer Nairobi, affordable website Kenya, corporate website Nairobi, NGO website Kenya, e-commerce website Nairobi, WordPress developer Kenya, web application Nairobi',
-  alternates: { canonical: canonical('/websites/') },
+  description: 'Cres Dynamics builds professional websites for businesses, NGOs, startups and corporates in Nairobi. Corporate sites, e-commerce, landing pages — mobile-first, SEO-ready and built to convert.',
+  alternates: { canonical: 'https://cresdynamics.com/websites/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Professional Website Development Nairobi — Cres Dynamics',
+    description: 'Professional websites for Nairobi businesses. Corporate sites, e-commerce, landing pages — built to convert.',
+    url: 'https://cresdynamics.com/websites/',
+    type: 'website',
+  },
 };
 
 export default function WebsitesPage() {

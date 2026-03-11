@@ -1,30 +1,14 @@
 import type { Metadata } from 'next';
-import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Contact Cres Dynamics | Web Development & ERP Company Nairobi, Kenya',
-  description: 'Get in touch with Cres Dynamics — Nairobi\'s custom ERP, business systems and web development company. Call +254 708 805 496 or email info@cresdynamics.com to discuss your project.',
-  alternates: { canonical: canonical('/contact/') },
-  keywords: [
-    'Systems Discovery Session Nairobi',
-    'ERP discovery session Kenya',
-    'process mapping Nairobi',
-    'business systems contact Kenya',
-    'CresOS discovery Nairobi',
-    'finance platform discussion Kenya',
-    'custom ERP contact Nairobi',
-    'systems engineering Kenya contact'
-  ],
+  title: 'Contact Cres Dynamics | Web Development & ERP Company Nairobi Kenya',
+  description: 'Contact Cres Dynamics — Nairobi\'s custom ERP, business systems and web development company. Call +254 708 805 496 or email info@cresdynamics.com. Kivuli Tower, Westlands, Nairobi.',
+  alternates: { canonical: 'https://cresdynamics.com/contact/' },
+  robots: { index: true, follow: true },
   openGraph: {
-    title: 'Contact Cres Dynamics | Web Development & ERP Company Nairobi, Kenya',
-    description: 'Get in touch with Cres Dynamics — Nairobi\'s custom ERP, business systems and web development company.',
+    title: 'Contact Cres Dynamics Nairobi',
     url: 'https://cresdynamics.com/contact/',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Contact Cres Dynamics | Nairobi, Kenya',
-    description: 'Get in touch with Cres Dynamics — custom ERP, business systems and web development.',
   },
 };
 

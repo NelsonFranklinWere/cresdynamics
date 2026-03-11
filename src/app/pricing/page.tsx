@@ -2,10 +2,17 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { whatsappUrl, WHATSAPP_PREFILL } from '@/lib/contact';
 import type { Metadata } from 'next';
-import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  alternates: { canonical: canonical('/pricing/') },
+  title: 'Pricing | Website & ERP System Costs Nairobi — Cres Dynamics',
+  description: 'Transparent pricing for websites, ERP systems, finance platforms and AI automation in Nairobi. All packages include 50% deposit to start, 2-week build, 30-day post-launch support.',
+  alternates: { canonical: 'https://cresdynamics.com/pricing/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Pricing — Website & ERP Costs Nairobi | Cres Dynamics',
+    url: 'https://cresdynamics.com/pricing/',
+    type: 'website',
+  },
 };
 
 export default function PricingPage() {

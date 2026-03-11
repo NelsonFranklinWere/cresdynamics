@@ -2,6 +2,20 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'AI Automation Nairobi | Business Automation Kenya — Cres Dynamics',
+  description: 'AI-powered automation systems for Nairobi businesses. Automate workflows, eliminate manual work and integrate intelligent tools into your operations. Live in production across Kenya.',
+  alternates: { canonical: 'https://cresdynamics.com/ai-automation/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'AI Automation Nairobi — Cres Dynamics',
+    description: 'Workflow automation and AI systems for Nairobi businesses. Live in production across Kenya.',
+    url: 'https://cresdynamics.com/ai-automation/',
+    type: 'website',
+  },
+};
 
 export default function AIAutomationPage() {
   return (

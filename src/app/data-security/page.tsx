@@ -1,13 +1,18 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
-import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Data Security & Zero-Trust Architecture Nairobi | Secure Systems Kenya — Cres Dynamics',
-  description: 'Cres Dynamics builds systems with Zero-Trust security architecture — the same standard used by enterprise and government organisations. Military-grade encryption, access control and data protection for businesses in Nairobi, Kenya.',
-  keywords: 'Zero-Trust security Kenya, data security Nairobi, secure business systems Kenya, cybersecurity Nairobi, data protection Kenya, secure ERP Kenya, encrypted systems Nairobi',
-  alternates: { canonical: canonical('/data-security/') },
+  title: 'Data Security & Zero-Trust Architecture Kenya | Secure Systems Nairobi — Cres Dynamics',
+  description: 'Zero-Trust security architecture for Nairobi businesses. Military-grade encryption, access control and data protection — the same standard used by enterprise and government.',
+  alternates: { canonical: 'https://cresdynamics.com/data-security/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Zero-Trust Security & Data Protection Kenya — Cres Dynamics',
+    description: 'Zero-Trust security architecture and military-grade encryption for Nairobi businesses.',
+    url: 'https://cresdynamics.com/data-security/',
+    type: 'website',
+  },
 };
 
 export default function DataSecurityPage() {

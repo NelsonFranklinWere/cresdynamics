@@ -3,13 +3,18 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
 import type { Metadata } from 'next';
-import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Operations & Workflow Management Kenya | Business Systems Nairobi — Cres Dynamics',
-  description: 'Stop running your business on WhatsApp and Excel. Cres Dynamics builds custom operations and workflow management systems for Nairobi businesses — automate approvals, track tasks, manage teams and run your operations from one platform.',
-  keywords: 'business systems Nairobi, operations management Kenya, workflow automation Nairobi, business management system Kenya, replace Excel Kenya, task management system Nairobi, operations software Kenya',
-  alternates: { canonical: canonical('/operations-workflow/') },
+  description: 'Replace WhatsApp and Excel with a real operations system. Custom workflow management for Nairobi businesses — automate approvals, track tasks and manage teams from one platform.',
+  alternates: { canonical: 'https://cresdynamics.com/operations-workflow/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Operations & Workflow Management Kenya — Cres Dynamics',
+    description: 'Replace WhatsApp and Excel with real workflow management for Nairobi businesses.',
+    url: 'https://cresdynamics.com/operations-workflow/',
+    type: 'website',
+  },
 };
 
 export default function OperationsWorkflowPage() {

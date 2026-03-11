@@ -1,18 +1,14 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Business Growth Insights - Learn How Nairobi Businesses Scale | CRES Dynamics',
-  description: 'Learn proven strategies to grow your Nairobi business. SEO tips, automation hacks, customer acquisition tactics. Stop guessing, start growing with data-driven insights.',
+  title: 'Insights & Blog | Business Systems, ERP & Tech for Kenya — Cres Dynamics',
+  description: 'Guides, articles and insights for Nairobi businesses — covering ERP systems, business automation, web development, M-Pesa integration and digital growth strategies for Kenya.',
+  alternates: { canonical: 'https://cresdynamics.com/insights/' },
+  robots: { index: true, follow: true },
   openGraph: {
-    title: 'Business Growth Insights - Scale Your Nairobi Business',
-    description: 'Learn proven strategies to grow your Nairobi business. SEO tips, automation hacks, customer acquisition tactics.',
-    url: 'https://cresdynamics.com/insights',
+    title: 'Insights & Blog — Business Systems for Kenya | Cres Dynamics',
+    url: 'https://cresdynamics.com/insights/',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Business Growth Insights - Scale Your Business',
-    description: 'Learn proven strategies to grow your Nairobi business. Stop guessing, start growing.',
   },
 };
 
