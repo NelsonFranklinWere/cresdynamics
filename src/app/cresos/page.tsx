@@ -37,88 +37,90 @@ export default function CresOSPage() {
         </div>
       </section>
 
-      {/* CORE: MODULAR ARCHITECTURE */}
+      {/* CORE: MODULAR ARCHITECTURE — desktop: content left, grid right; mobile: stacked */}
       <section className="py-16 md:py-20 bg-[var(--cres-primary-bg)] relative">
         <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 underline-custom">
-                What CresOS Is
-              </h2>
-              <p className="text-lg md:text-xl text-[var(--cres-white)]/80 max-w-3xl mx-auto">
-                Modular architecture, customizable modules, multi-role dashboards, and a single source of truth for your business.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {[
-                { title: 'Modular architecture', desc: 'Add only the modules you need. Identity, operations, finance, clients, analytics—each can scale independently.' },
-                { title: 'Multi-role dashboards', desc: 'Role-based views so each user sees only what they need: exec summary, ops, finance, or client-facing.' },
-                { title: 'Finance layer', desc: 'Revenue tracking, invoicing, subscriptions, and export to your accounting tools. One finance layer across the business.' },
-                { title: 'Analytics engine', desc: 'Dashboards, reports, and KPIs built on the same data your operations and finance run on.' },
-                { title: 'API-first backend', desc: 'Integrate with existing tools, mobile apps, or third-party systems. No vendor lock-in.' },
-                { title: 'Secure cloud deployment', desc: 'Hosted, monitored, and maintained with RBAC, audit trails, and governance built in.' },
-              ].map((item, i) => (
-                <div key={i} className="bg-black/80 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg">
-                  <h3 className="text-lg font-bold text-[var(--cres-orange-primary)] mb-2">{item.title}</h3>
-                  <p className="text-[var(--cres-white)]/90 text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
+            <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 gap-10">
+              <div className="lg:w-2/5 shrink-0 text-center lg:text-left">
+                <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 underline-custom">
+                  What CresOS Is
+                </h2>
+                <p className="text-lg md:text-xl text-[var(--cres-white)]/80 max-w-3xl lg:max-w-none mx-auto lg:mx-0">
+                  Modular architecture, customizable modules, multi-role dashboards, and a single source of truth for your business.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 flex-1 min-w-0">
+                {[
+                  { title: 'Modular architecture', desc: 'Add only the modules you need. Identity, operations, finance, clients, analytics—each can scale independently.' },
+                  { title: 'Multi-role dashboards', desc: 'Role-based views so each user sees only what they need: exec summary, ops, finance, or client-facing.' },
+                  { title: 'Finance layer', desc: 'Revenue tracking, invoicing, subscriptions, and export to your accounting tools. One finance layer across the business.' },
+                  { title: 'Analytics engine', desc: 'Dashboards, reports, and KPIs built on the same data your operations and finance run on.' },
+                  { title: 'API-first backend', desc: 'Integrate with existing tools, mobile apps, or third-party systems. No vendor lock-in.' },
+                  { title: 'Secure cloud deployment', desc: 'Hosted, monitored, and maintained with RBAC, audit trails, and governance built in.' },
+                ].map((item, i) => (
+                  <div key={i} className="bg-black/80 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg">
+                    <h3 className="text-lg font-bold text-[var(--cres-orange-primary)] mb-2">{item.title}</h3>
+                    <p className="text-[var(--cres-white)]/90 text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* USE CASES */}
+      {/* USE CASES — desktop: grid left, content right (alternate from previous section); mobile: stacked */}
       <section className="py-16 md:py-20 bg-[var(--cres-secondary-bg)] relative">
         <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 underline-custom">
-                Who CresOS Serves
-              </h2>
-              <p className="text-lg md:text-xl text-[var(--cres-white)]/80 max-w-3xl mx-auto">
-                SMEs, training institutions, fintech, and NGOs—any organization that needs one system for operations, finance, and visibility.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {[
-                { title: 'SMEs', desc: 'Replace spreadsheets and siloed tools with one platform: projects, finance, clients, and reporting in one place.' },
-                { title: 'Training institutions', desc: 'Student lifecycle, courses, payments, certifications, and reporting—all with role-based access for staff and admins.' },
-                { title: 'Fintech', desc: 'Operations, compliance, and revenue visibility. Subscription billing, usage tracking, and audit-ready reporting.' },
-                { title: 'NGOs', desc: 'Programs, beneficiaries, grants, donor reporting, and internal controls. One system for program and finance teams.' },
-              ].map((item, i) => (
-                <div key={i} className="bg-black/80 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg">
-                  <h3 className="text-xl font-bold text-[var(--cres-orange-primary)] mb-3">{item.title}</h3>
-                  <p className="text-[var(--cres-white)]/90 leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
+            <div className="flex flex-col lg:flex-row-reverse lg:items-start lg:gap-12 gap-10">
+              <div className="lg:w-2/5 shrink-0 text-center lg:text-left order-first lg:order-last">
+                <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 underline-custom">
+                  Who CresOS Serves
+                </h2>
+                <p className="text-lg md:text-xl text-[var(--cres-white)]/80 max-w-3xl lg:max-w-none mx-auto lg:mx-0">
+                  SMEs, training institutions, fintech, and NGOs—any organization that needs one system for operations, finance, and visibility.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 flex-1 min-w-0 order-last lg:order-first">
+                {[
+                  { title: 'SMEs', desc: 'Replace spreadsheets and siloed tools with one platform: projects, finance, clients, and reporting in one place.' },
+                  { title: 'Training institutions', desc: 'Student lifecycle, courses, payments, certifications, and reporting—all with role-based access for staff and admins.' },
+                  { title: 'Fintech', desc: 'Operations, compliance, and revenue visibility. Subscription billing, usage tracking, and audit-ready reporting.' },
+                  { title: 'NGOs', desc: 'Programs, beneficiaries, grants, donor reporting, and internal controls. One system for program and finance teams.' },
+                ].map((item, i) => (
+                  <div key={i} className="bg-black/80 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg">
+                    <h3 className="text-xl font-bold text-[var(--cres-orange-primary)] mb-3">{item.title}</h3>
+                    <p className="text-[var(--cres-white)]/90 leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* WHY OFF-THE-SHELF ERPs FAIL */}
+      {/* WHY OFF-THE-SHELF ERPs FAIL — desktop: content left, comparison right; mobile: stacked */}
       <section className="py-16 md:py-20 bg-[var(--cres-primary-bg)] relative">
         <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 underline-custom">
-                Why Off-the-Shelf ERPs Fail
-              </h2>
-              <p className="text-lg md:text-xl text-[var(--cres-white)]/80 max-w-3xl mx-auto">
-                Generic ERPs force your processes to fit their template. CresOS is built to fit yours.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="flex flex-col lg:flex-row lg:items-stretch lg:gap-12 gap-10">
+              <div className="lg:w-2/5 shrink-0 text-center lg:text-left flex flex-col justify-center">
+                <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 underline-custom">
+                  Why Off-the-Shelf ERPs Fail
+                </h2>
+                <p className="text-lg md:text-xl text-[var(--cres-white)]/80 max-w-3xl lg:max-w-none mx-auto lg:mx-0">
+                  Generic ERPs force your processes to fit their template. CresOS is built to fit yours.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 flex-1 min-w-0">
               <div className="bg-black/80 backdrop-blur-sm border border-red-500/30 p-6 rounded-xl shadow-lg">
                 <h3 className="text-xl font-bold text-red-500 mb-4 flex items-center gap-2">
                   <i className="fas fa-times-circle"></i>
@@ -146,6 +148,7 @@ export default function CresOSPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
               </div>
             </div>
           </div>

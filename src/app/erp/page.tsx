@@ -32,27 +32,25 @@ export default function ERPPage() {
         </div>
       </section>
 
-      {/* WHY SPREADSHEETS BREAK BUSINESSES */}
+      {/* WHY SPREADSHEETS / OFF-THE-SHELF — desktop: content left, comparison cards right; mobile: stacked */}
       <section className="py-16 md:py-20 bg-[var(--cres-primary-bg)] relative">
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 underline-custom">
-                Why Spreadsheets Break Businesses
-              </h2>
-              <p className="text-lg text-[var(--cres-white)]/80 max-w-3xl mx-auto mb-12">Operational chaos without ERP: duplicated data, no single source of truth, no audit trail. Custom ERP gives you clarity, control, and scalability.</p>
-            </div>
-            <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-black text-[var(--cres-white)] mb-4 underline-custom">
-                When Off-the-Shelf ERPs Fail
-              </h2>
-              <p className="text-lg md:text-xl text-[var(--cres-white)]/80 max-w-3xl mx-auto">
-                Generic ERPs force you to change your business. We build ERPs that adapt to yours.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="flex flex-col lg:flex-row lg:items-stretch lg:gap-12 gap-10">
+              <div className="lg:w-2/5 shrink-0 flex flex-col justify-center text-center lg:text-left">
+                <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-4 underline-custom">
+                  Why Spreadsheets Break Businesses
+                </h2>
+                <p className="text-lg text-[var(--cres-white)]/80 max-w-3xl lg:max-w-none mx-auto lg:mx-0 mb-8">Operational chaos without ERP: duplicated data, no single source of truth, no audit trail. Custom ERP gives you clarity, control, and scalability.</p>
+                <h2 className="text-2xl md:text-3xl font-black text-[var(--cres-white)] mb-4 underline-custom">
+                  When Off-the-Shelf ERPs Fail
+                </h2>
+                <p className="text-lg md:text-xl text-[var(--cres-white)]/80 max-w-3xl lg:max-w-none mx-auto lg:mx-0">
+                  Generic ERPs force you to change your business. We build ERPs that adapt to yours.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 flex-1 min-w-0">
               <div className="bg-black/80 backdrop-blur-sm border border-red-500/30 p-6 rounded-xl shadow-lg">
                 <h3 className="text-xl font-bold text-red-500 mb-4 flex items-center gap-2">
                   <i className="fas fa-times-circle"></i>
@@ -109,6 +107,7 @@ export default function ERPPage() {
                     <span className="text-[var(--cres-white)]/90">You own the code and data</span>
                   </li>
                 </ul>
+              </div>
               </div>
             </div>
           </div>

@@ -59,29 +59,32 @@ export default function OperationsWorkflowPage() {
           </div>
         </section>
 
-        {/* THE PROBLEM */}
+        {/* THE PROBLEM — desktop: content left, cards right; mobile: stacked */}
         <section className="relative py-16 md:py-20 bg-[var(--cres-primary-bg)]">
-          <div className="relative z-10 max-w-4xl mx-auto px-6">
-            <h2 className="text-sm md:text-base font-semibold tracking-[0.24em] uppercase text-white/60 mb-2 text-center">
-              The Problem
-            </h2>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-4 text-center">
-              You Are the System.
-              <br />
-              And That Has
-              <br />
-              A Ceiling.
-            </h3>
-            <p className="text-white/75 text-sm md:text-base text-center max-w-2xl mx-auto mb-6">
-              You built the business. You know every process, every client, every team member. The problem: everything depends
-              on you knowing it.
-            </p>
-            <p className="text-white/75 text-sm md:text-base text-center max-w-2xl mx-auto mb-10">
-              A business where the owner is the system cannot scale. Every hour spent managing operations is an hour not spent
-              growing. The businesses that break through are the ones that move from people-dependent to system-dependent –
-              where the process runs whether the owner is in the room or not.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="relative z-10 max-w-6xl mx-auto px-6">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 gap-10">
+              <div className="lg:w-2/5 shrink-0 text-center lg:text-left">
+                <h2 className="text-sm md:text-base font-semibold tracking-[0.24em] uppercase text-white/60 mb-2">
+                  The Problem
+                </h2>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-4">
+                  You Are the System.
+                  <br />
+                  And That Has
+                  <br />
+                  A Ceiling.
+                </h3>
+                <p className="text-white/75 text-sm md:text-base mb-6 max-w-2xl lg:max-w-none mx-auto lg:mx-0">
+                  You built the business. You know every process, every client, every team member. The problem: everything depends
+                  on you knowing it.
+                </p>
+                <p className="text-white/75 text-sm md:text-base max-w-2xl lg:max-w-none mx-auto lg:mx-0 mb-0">
+                  A business where the owner is the system cannot scale. Every hour spent managing operations is an hour not spent
+                  growing. The businesses that break through are the ones that move from people-dependent to system-dependent –
+                  where the process runs whether the owner is in the room or not.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 min-w-0">
               <div className="bg-black/50 border border-white/10 rounded-2xl p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
                 <div className="text-2xl mb-3">📲</div>
                 <h4 className="text-lg font-bold text-white mb-2">WhatsApp is your project management tool</h4>
@@ -114,27 +117,29 @@ export default function OperationsWorkflowPage() {
                   the cracks. Hiring helps – but only when there&apos;s infrastructure to plug into.
                 </p>
               </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* THE SYSTEM */}
+        {/* THE SYSTEM — desktop: cards left, content right (alternate); mobile: stacked */}
         <section className="relative py-16 md:py-20 bg-[var(--cres-secondary-bg)]">
-          <div className="relative z-10 max-w-4xl mx-auto px-6">
-            <div className="text-center mb-10 md:mb-12">
-              <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-2">
-                The System
-              </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
-                Operations That
-                <br />
-                Run Themselves.
-              </h2>
-              <p className="text-white/75 text-sm md:text-base max-w-2xl mx-auto">
-                We build the operational infrastructure that lets your team manage – and lets you lead instead of firefight.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="relative z-10 max-w-6xl mx-auto px-6">
+            <div className="flex flex-col lg:flex-row-reverse lg:items-start lg:gap-12 gap-10">
+              <div className="lg:w-2/5 shrink-0 text-center lg:text-left order-first lg:order-last">
+                <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-2">
+                  The System
+                </p>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
+                  Operations That
+                  <br />
+                  Run Themselves.
+                </h2>
+                <p className="text-white/75 text-sm md:text-base max-w-2xl lg:max-w-none mx-auto lg:mx-0">
+                  We build the operational infrastructure that lets your team manage – and lets you lead instead of firefight.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 min-w-0 order-last lg:order-first">
               <div className="bg-black/50 border border-white/10 rounded-2xl p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)]">
@@ -213,6 +218,7 @@ export default function OperationsWorkflowPage() {
                   pocket. Whether you&apos;re in the office or not.
                 </p>
               </div>
+            </div>
             </div>
           </div>
         </section>

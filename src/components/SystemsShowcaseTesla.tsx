@@ -1,5 +1,9 @@
 'use client';
 
+/**
+ * Homepage systems showcase: desktop = image and content alternate left-right per block;
+ * mobile = stacked (image then content). Each SystemBlock uses reverse={i % 2 === 1} for alternating.
+ */
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';

@@ -86,29 +86,32 @@ export default function FinancePlatformsPage() {
           </div>
         </section>
 
-        {/* THE PROBLEM */}
+        {/* THE PROBLEM — desktop: content left, cards right; mobile: stacked */}
         <section className="relative py-16 md:py-20 bg-[var(--cres-primary-bg)]">
-          <div className="relative z-10 max-w-4xl mx-auto px-6">
-            <h2 className="text-sm md:text-base font-semibold tracking-[0.24em] uppercase text-white/60 mb-2 text-center">
-              The Problem
-            </h2>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-4 text-center">
-              If You Don&apos;t Know
-              <br />
-              Your Numbers,
-              <br />
-              You Can&apos;t Lead.
-            </h3>
-            <p className="text-white/75 text-sm md:text-base text-center max-w-2xl mx-auto mb-6">
-              Most business owners in Nairobi find out how last month went from a conversation at end of month. That&apos;s
-              not visibility. That&apos;s archaeology.
-            </p>
-            <p className="text-white/75 text-sm md:text-base text-center max-w-2xl mx-auto mb-10">
-              A business doing KES 500,000 a month with no finance system is typically losing KES 60,000–120,000 monthly in
-              missed invoices, untracked stock, and unrecorded transactions. Not because they&apos;re careless. Because
-              they have no system to catch it.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="relative z-10 max-w-6xl mx-auto px-6">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:gap-12 gap-10">
+              <div className="lg:w-2/5 shrink-0 text-center lg:text-left">
+                <h2 className="text-sm md:text-base font-semibold tracking-[0.24em] uppercase text-white/60 mb-2">
+                  The Problem
+                </h2>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-4">
+                  If You Don&apos;t Know
+                  <br />
+                  Your Numbers,
+                  <br />
+                  You Can&apos;t Lead.
+                </h3>
+                <p className="text-white/75 text-sm md:text-base mb-6 max-w-2xl lg:max-w-none mx-auto lg:mx-0">
+                  Most business owners in Nairobi find out how last month went from a conversation at end of month. That&apos;s
+                  not visibility. That&apos;s archaeology.
+                </p>
+                <p className="text-white/75 text-sm md:text-base max-w-2xl lg:max-w-none mx-auto lg:mx-0 mb-0 lg:mb-0">
+                  A business doing KES 500,000 a month with no finance system is typically losing KES 60,000–120,000 monthly in
+                  missed invoices, untracked stock, and unrecorded transactions. Not because they&apos;re careless. Because
+                  they have no system to catch it.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 min-w-0">
               <div className="bg-black/50 border border-white/10 rounded-2xl p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
                 <div className="text-2xl mb-3">📊</div>
                 <h4 className="text-lg font-bold text-white mb-2">You find out how you&apos;re doing too late</h4>
@@ -141,28 +144,30 @@ export default function FinancePlatformsPage() {
                   produce without a system. You&apos;re locked out of the capital you deserve.
                 </p>
               </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* THE PLATFORM */}
+        {/* THE PLATFORM — desktop: cards left, content right (alternate); mobile: stacked */}
         <section className="relative py-16 md:py-20 bg-[var(--cres-secondary-bg)]">
-          <div className="relative z-10 max-w-4xl mx-auto px-6">
-            <div className="text-center mb-10 md:mb-12">
-              <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-2">
-                The Platform
-              </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
-                Finance Infrastructure
-                <br />
-                Built for Kenya.
-              </h2>
-              <p className="text-white/75 text-sm md:text-base max-w-2xl mx-auto">
-                Not adapted from a global SaaS tool. Built from the ground up for how Kenyan businesses move money –
-                Mpesa, invoice terms, local accounting standards.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="relative z-10 max-w-6xl mx-auto px-6">
+            <div className="flex flex-col lg:flex-row-reverse lg:items-start lg:gap-12 gap-10">
+              <div className="lg:w-2/5 shrink-0 text-center lg:text-left order-first lg:order-last">
+                <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-2">
+                  The Platform
+                </p>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
+                  Finance Infrastructure
+                  <br />
+                  Built for Kenya.
+                </h2>
+                <p className="text-white/75 text-sm md:text-base max-w-2xl lg:max-w-none mx-auto lg:mx-0">
+                  Not adapted from a global SaaS tool. Built from the ground up for how Kenyan businesses move money –
+                  Mpesa, invoice terms, local accounting standards.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 min-w-0 order-last lg:order-first">
               <div className="bg-black/50 border border-white/10 rounded-2xl p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)]">
@@ -241,6 +246,7 @@ export default function FinancePlatformsPage() {
                   accountant, bank, or investor needs.
                 </p>
               </div>
+            </div>
             </div>
           </div>
         </section>
