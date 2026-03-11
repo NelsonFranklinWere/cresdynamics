@@ -1,5 +1,14 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  title: 'Data Security & Zero-Trust Architecture Nairobi | Secure Systems Kenya — Cres Dynamics',
+  description: 'Cres Dynamics builds systems with Zero-Trust security architecture — the same standard used by enterprise and government organisations. Military-grade encryption, access control and data protection for businesses in Nairobi, Kenya.',
+  keywords: 'Zero-Trust security Kenya, data security Nairobi, secure business systems Kenya, cybersecurity Nairobi, data protection Kenya, secure ERP Kenya, encrypted systems Nairobi',
+  alternates: { canonical: canonical('/data-security/') },
+};
 
 export default function DataSecurityPage() {
   const practices = [

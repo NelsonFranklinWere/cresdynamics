@@ -1,18 +1,21 @@
 import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'WhatsApp Automation - Never Miss Another Customer Inquiry | Nairobi',
-  description: 'Customers contact you but you miss calls? 24/7 WhatsApp automation that responds instantly, qualifies leads, and books meetings. Stop losing customers to slow responses.',
+  title: 'Digital Sales Systems Nairobi | CRM & Sales Pipeline Kenya — Cres Dynamics',
+  description: 'Replace spreadsheets with a real digital sales system. Cres Dynamics builds CRM, sales pipeline and lead management platforms for Nairobi businesses — track revenue, manage clients and close deals faster.',
+  keywords: 'CRM Nairobi, digital sales Kenya, sales pipeline Kenya, lead management Nairobi, CRM software Kenya, sales system Nairobi, customer management Kenya',
+  alternates: { canonical: canonical('/solutions/digital-sales/') },
   openGraph: {
-    title: 'WhatsApp Automation - Never Miss Customer Inquiries',
-    description: 'Customers contact you but you miss calls? 24/7 WhatsApp automation that responds instantly and books meetings.',
-    url: 'https://cresdynamics.com/solutions/digital-sales',
+    title: 'Digital Sales Systems Nairobi | CRM & Sales Pipeline Kenya — Cres Dynamics',
+    description: 'Replace spreadsheets with a real digital sales system. CRM and lead management for Nairobi businesses.',
+    url: 'https://cresdynamics.com/solutions/digital-sales/',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WhatsApp Automation - Never Miss Leads',
-    description: 'Stop losing customers to slow responses. 24/7 WhatsApp automation that converts.',
+    title: 'Digital Sales Systems Nairobi | CRM Kenya',
+    description: 'CRM, sales pipeline and lead management for Nairobi businesses.',
   },
 };
 

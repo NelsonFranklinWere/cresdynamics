@@ -1,6 +1,15 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  title: 'CresOS | All-in-One Business Operating System Nairobi — Cres Dynamics',
+  description: "CresOS is Cres Dynamics' proprietary business operating system — combining ERP, finance, sales, AI automation and operations into one platform built for growing Kenyan businesses. Run your entire business on one system.",
+  keywords: 'CresOS, business operating system Kenya, all-in-one business platform Nairobi, Cres Core Engine, business management platform Kenya, integrated business system Nairobi, ERP platform Kenya',
+  alternates: { canonical: canonical('/cresos/') },
+};
 
 export default function CresOSPage() {
   return (

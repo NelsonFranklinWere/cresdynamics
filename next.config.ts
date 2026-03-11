@@ -101,10 +101,11 @@ const nextConfig: NextConfig = {
     },
   } : {}),
 
-  // Redirect /finance to main finance service page
+  // Redirect /finance to main finance service page; /data-security → /data-security/ (canonical trailing slash)
   async redirects() {
     return [
-      { source: '/finance', destination: '/finance-platforms', permanent: true },
+      { source: '/finance', destination: '/finance-platforms/', permanent: true },
+      { source: '/data-security', destination: '/data-security/', permanent: true },
     ];
   },
 

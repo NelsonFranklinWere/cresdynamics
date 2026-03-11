@@ -2,6 +2,15 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
+import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  title: 'Finance Platform Kenya | Business Finance System Nairobi — Cres Dynamics',
+  description: 'Cres Dynamics builds custom finance platforms for businesses in Nairobi — track revenue, manage invoicing, M-Pesa reconciliation, payroll and financial reporting in one secure system. KES 4.97M already tracked live.',
+  keywords: 'finance platform Kenya, financial system Nairobi, business finance software Kenya, M-Pesa reconciliation, invoicing system Kenya, payroll system Nairobi, accounting software Kenya, revenue tracking Nairobi',
+  alternates: { canonical: canonical('/finance-platforms/') },
+};
 
 export default function FinancePlatformsPage() {
   return (

@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Book a Systems Discovery Session | Contact CRES Dynamics Nairobi Kenya',
-  description: 'Book a Systems Discovery Session with CRES Dynamics. Map your processes, data, and goals. We outline how we architect and deploy ERP platforms, finance systems, and automation—visibility, control, scale.',
+  title: 'Contact Cres Dynamics | Web Development & ERP Company Nairobi, Kenya',
+  description: 'Get in touch with Cres Dynamics — Nairobi\'s custom ERP, business systems and web development company. Call +254 708 805 496 or email info@cresdynamics.com to discuss your project.',
+  alternates: { canonical: canonical('/contact/') },
   keywords: [
     'Systems Discovery Session Nairobi',
     'ERP discovery session Kenya',
@@ -14,15 +16,15 @@ export const metadata: Metadata = {
     'systems engineering Kenya contact'
   ],
   openGraph: {
-    title: 'Book a Systems Discovery Session | Contact CRES Dynamics',
-    description: 'Map your processes and system needs. We architect and deploy production-ready ERPs, finance platforms, and automation.',
-    url: 'https://cresdynamics.com/contact',
+    title: 'Contact Cres Dynamics | Web Development & ERP Company Nairobi, Kenya',
+    description: 'Get in touch with Cres Dynamics — Nairobi\'s custom ERP, business systems and web development company.',
+    url: 'https://cresdynamics.com/contact/',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Book a Systems Discovery Session | CRES Dynamics',
-    description: 'Map your processes and system needs. We architect and deploy production-ready ERPs, finance platforms, and automation.',
+    title: 'Contact Cres Dynamics | Nairobi, Kenya',
+    description: 'Get in touch with Cres Dynamics — custom ERP, business systems and web development.',
   },
 };
 

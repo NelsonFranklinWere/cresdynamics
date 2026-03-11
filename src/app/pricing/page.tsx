@@ -1,6 +1,12 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { whatsappUrl, WHATSAPP_PREFILL } from '@/lib/contact';
+import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  alternates: { canonical: canonical('/pricing/') },
+};
 
 export default function PricingPage() {
   return (

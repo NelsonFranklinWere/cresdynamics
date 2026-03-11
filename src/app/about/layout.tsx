@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'About CRES Dynamics - Business Systems Builder | ERP, Finance Platforms Nairobi Kenya',
   description: 'CRES Dynamics builds business systems—ERPs, finance platforms, and automation—that companies actually run on. Quality systems, fast implementation, AI integration. Why Nairobi Kenya businesses choose us for ERP development and business systems.',
+  alternates: { canonical: canonical('/about/') },
   keywords: [
     'about CRES Dynamics Nairobi',
     'business systems builder Kenya',

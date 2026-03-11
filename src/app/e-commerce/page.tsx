@@ -2,6 +2,15 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
+import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  title: 'E-Commerce Website Development Nairobi | Online Store Kenya — Cres Dynamics',
+  description: 'Launch your online store in Nairobi with Cres Dynamics. We build full e-commerce websites with M-Pesa integration, product management, order tracking and mobile-optimised checkout for Kenyan businesses.',
+  keywords: 'e-commerce website Nairobi, online store Kenya, M-Pesa e-commerce, online shop Nairobi, e-commerce developer Kenya, sell online Kenya, WooCommerce Kenya, e-commerce platform Nairobi',
+  alternates: { canonical: canonical('/e-commerce/') },
+};
 
 export default function ECommercePage() {
   const whoItsFor = [

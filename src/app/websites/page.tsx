@@ -2,6 +2,15 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
+import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  title: 'Professional Website Development Nairobi | Web Design Kenya — Cres Dynamics',
+  description: 'Cres Dynamics designs and develops professional websites for businesses, NGOs, startups and corporates in Nairobi. Corporate websites, e-commerce, landing pages and web applications — all built for performance and Google ranking.',
+  keywords: 'web development company Nairobi, website design Kenya, professional website Nairobi, web designer Nairobi, affordable website Kenya, corporate website Nairobi, NGO website Kenya, e-commerce website Nairobi, WordPress developer Kenya, web application Nairobi',
+  alternates: { canonical: canonical('/websites/') },
+};
 
 export default function WebsitesPage() {
   const painPoints = [
@@ -66,9 +75,38 @@ export default function WebsitesPage() {
     },
   ];
 
+  const websiteTypes = [
+    { title: 'Corporate / Business Website', body: 'A professional online presence for established businesses, companies and organisations. Designed to build credibility, explain your services and convert visitors into enquiries. Includes contact forms, service pages, about sections and SEO optimisation for Google search in Kenya.' },
+    { title: 'E-Commerce / Online Store', body: 'A fully functional online shop where customers can browse products, add to cart and pay — including M-Pesa, card and mobile money checkout. Ideal for retailers, wholesalers and product-based businesses wanting to sell online in Kenya.' },
+    { title: 'Landing Page / Campaign Page', body: 'A single focused page designed to convert visitors into leads or sales for a specific product, service or promotion. Fast to build, optimised for paid ads and Google search. Used by businesses running promotions or launching new services.' },
+    { title: 'NGO / Non-Profit Website', body: 'Websites built for NGOs, charities, churches and community organisations in Kenya. Includes donor pages, programme showcases, team sections and grant-ready professional presentation.' },
+    { title: 'Portfolio / Personal Brand Website', body: 'A professional online portfolio for consultants, freelancers, creatives and professionals. Showcases work, skills and experience to attract clients, employers or investors.' },
+    { title: 'Web Application / Business Platform', body: 'A full web-based system that users log into to manage data, processes or operations. More than a website — this is a functioning software product accessible from any browser. Used for portals, dashboards, booking systems and internal tools.' },
+    { title: 'Informational / Blog Website', body: 'Content-rich websites designed to publish articles, guides and news. Used by businesses, media organisations and thought leaders to build authority, drive organic Google traffic and grow an audience in Kenya.' },
+    { title: 'School / Institution Website', body: 'Websites for schools, colleges, universities and training institutions in Kenya. Includes admissions pages, fee structures, news sections, staff profiles and online enquiry forms.' },
+  ];
+
+  const websiteServiceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Website Development Nairobi',
+    provider: { '@type': 'LocalBusiness', name: 'Cres Dynamics Ltd' },
+    areaServed: 'Nairobi, Kenya',
+    description: 'Professional website design and development for businesses, NGOs, startups and corporates in Nairobi, Kenya.',
+    serviceType: [
+      'Corporate Website Development',
+      'E-Commerce Website Nairobi',
+      'NGO Website Kenya',
+      'Landing Page Design',
+      'WordPress Development Kenya',
+      'Web Application Development',
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[var(--navy-dark)] text-white">
       <Header />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteServiceSchema) }} />
 
       <main className="pt-24">
         {/* HERO */}
@@ -109,6 +147,31 @@ export default function WebsitesPage() {
               >
                 See Pricing
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* TYPES OF WEBSITES WE BUILD — PART 6 */}
+        <section className="relative py-16 md:py-20 bg-[var(--cres-primary-bg)]">
+          <div className="relative z-10 max-w-5xl mx-auto px-6">
+            <div className="text-center mb-10 md:mb-12">
+              <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-2">
+                What We Build
+              </p>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white">
+                Types of Websites We Build
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {websiteTypes.map((item, i) => (
+                <div
+                  key={i}
+                  className="bg-black/50 border border-white/10 rounded-2xl p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]"
+                >
+                  <h3 className="text-lg font-bold text-white mb-3">{item.title}</h3>
+                  <p className="text-white/80 text-sm md:text-base leading-relaxed">{item.body}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

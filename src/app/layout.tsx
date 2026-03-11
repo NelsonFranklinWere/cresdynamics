@@ -46,7 +46,7 @@ export const metadata: Metadata = {
       'CRES Dynamics designs and builds systems that real Kenyan businesses run on: custom ERPs, finance & revenue platforms, operations systems, and AI automation – engineered and supported from Nairobi, Kenya.',
     images: [
       {
-        url: '/logo.png',
+        url: 'https://cresdynamics.com/logo.png',
         width: 512,
         height: 512,
         alt: 'CRES Dynamics - Business Growth Solutions',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     ],
     type: 'website',
     locale: 'en_KE',
-    siteName: 'CRES Dynamics',
+    siteName: 'Cres Dynamics',
     url: 'https://cresdynamics.com',
   },
   twitter: {
@@ -220,16 +220,21 @@ export default function RootLayout({
         <meta name="msapplication-TileImage" content="/favicon-circular.png?v=2" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
-        {/* Open Graph Images */}
-        <meta property="og:image" content="/logo.png" />
+        {/* Open Graph — PART 4 global */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Cres Dynamics" />
+        <meta property="og:locale" content="en_KE" />
+        <meta property="og:image" content="https://cresdynamics.com/logo.png" />
         <meta property="og:image:width" content="512" />
         <meta property="og:image:height" content="512" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:alt" content="Cres Dynamics Logo" />
 
-        {/* Strategic SEO Meta Tags for Kenya/Nairobi */}
+        {/* Strategic SEO Meta Tags for Kenya/Nairobi — PART 4 */}
         <meta name="geo.region" content="KE-110" />
         <meta name="geo.placename" content="Nairobi" />
-        <meta name="geo.position" content="-1.2921;36.8219" />
-        <meta name="ICBM" content="-1.2921, 36.8219" />
+        <meta name="geo.position" content="-1.286389;36.817223" />
+        <meta name="ICBM" content="-1.286389, 36.817223" />
         <meta name="location" content="Nairobi, Kenya" />
         <meta name="language" content="en-KE" />
         <meta name="country" content="Kenya" />
@@ -243,8 +248,6 @@ export default function RootLayout({
         <meta name="quality.focus" content="Production-ready systems, Enterprise-grade quality, Fast implementation" />
         <meta name="ai.integration" content="AI-powered automation, AI decision support, Intelligent workflows" />
         <meta name="speed.focus" content="Fast ERP development, Quick implementation, Rapid deployment" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:alt" content="CRES Dynamics Logo" />
 
         {/* Preload critical fonts - multiple weights for hero */}
         <link
@@ -305,6 +308,36 @@ export default function RootLayout({
           `
         }} />
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Cres Dynamics Ltd",
+              "url": "https://cresdynamics.com",
+              "logo": "https://cresdynamics.com/logo.png",
+              "description": "Custom ERP systems, business automation, web development and AI-powered software for businesses in Nairobi, Kenya.",
+              "telephone": "+254708805496",
+              "email": "info@cresdynamics.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nairobi",
+                "addressCountry": "KE"
+              },
+              "areaServed": ["Nairobi", "Kenya", "East Africa"],
+              "serviceType": [
+                "Custom ERP Development",
+                "Web Development",
+                "AI Automation",
+                "Business Systems",
+                "Finance Platforms",
+                "M-Pesa Integration",
+                "Zero-Trust Security"
+              ]
+            })
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

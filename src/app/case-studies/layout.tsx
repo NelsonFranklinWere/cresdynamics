@@ -1,30 +1,21 @@
 import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Live Systems in Production | Real ERP Systems, Finance Platforms | Nairobi Kenya',
-  description: 'Real systems. Real production. Real businesses. See live ERP systems, finance platforms, and automation systems in production. Production-ready systems with real users and revenue tracking. Nairobi Kenya.',
-  keywords: [
-    'ERP systems case studies Nairobi',
-    'finance platform case studies Kenya',
-    'production ERP systems Nairobi',
-    'live business systems Kenya',
-    'ERP proof Nairobi',
-    'finance platform proof Kenya',
-    'automation systems case studies Nairobi',
-    'production-ready systems Kenya',
-    'real ERP systems Nairobi',
-    'business systems proof Kenya'
-  ],
+  title: 'Case Studies | Real Business Results Nairobi — Cres Dynamics',
+  description: 'Real production results from Cres Dynamics — 127 active users, KES 4.97M tracked, 99.9% uptime. See how Nairobi businesses are running faster, smarter and more profitably on systems built by Cres Dynamics.',
+  keywords: 'Cres Dynamics case studies, ERP results Kenya, business system results Nairobi, software success stories Kenya, Cres Dynamics reviews',
+  alternates: { canonical: canonical('/case-studies/') },
   openGraph: {
-    title: 'Live Systems in Production | Real ERP Systems, Finance Platforms | Nairobi Kenya',
-    description: 'Real systems. Real production. Real businesses. See live ERP systems, finance platforms, and automation systems in production with real users and revenue tracking.',
-    url: 'https://cresdynamics.com/case-studies',
+    title: 'Case Studies | Real Business Results Nairobi — Cres Dynamics',
+    description: 'Real production results from Cres Dynamics — 127 active users, KES 4.97M tracked. See how Nairobi businesses run on systems built by Cres Dynamics.',
+    url: 'https://cresdynamics.com/case-studies/',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Live Systems in Production | Real ERP Systems',
-    description: 'Real systems. Real production. See live ERP systems, finance platforms, and automation systems in production.',
+    title: 'Case Studies | Real Business Results Nairobi — Cres Dynamics',
+    description: 'Real production results. 127 active users, KES 4.97M tracked.',
   },
 };
 

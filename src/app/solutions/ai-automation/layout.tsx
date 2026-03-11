@@ -1,18 +1,21 @@
 import type { Metadata } from 'next';
+import { canonical } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'AI Sales Automation - Stop Losing Leads, Automate Customer Service | Nairobi',
-  description: 'Tired of manual customer service? Automate WhatsApp responses, follow-ups, and sales processes. AI that works 24/7 for Nairobi businesses. Get more customers while you sleep.',
+  title: 'AI Automation Nairobi | Business Automation Kenya — Cres Dynamics',
+  description: 'Cres Dynamics builds AI-powered automation systems for Nairobi businesses — eliminating manual work, automating workflows, and integrating intelligent tools into your business operations. Live in production across Kenya.',
+  keywords: 'AI automation Nairobi, business automation Kenya, AI software Nairobi, workflow automation Kenya, intelligent systems Nairobi, AI business tools Kenya, process automation Nairobi',
+  alternates: { canonical: canonical('/solutions/ai-automation/') },
   openGraph: {
-    title: 'AI Sales Automation - Stop Losing Leads',
-    description: 'Tired of manual customer service? Automate WhatsApp responses and sales processes. AI that works 24/7.',
-    url: 'https://cresdynamics.com/solutions/ai-automation',
+    title: 'AI Automation Nairobi | Business Automation Kenya — Cres Dynamics',
+    description: 'Cres Dynamics builds AI-powered automation systems for Nairobi businesses.',
+    url: 'https://cresdynamics.com/solutions/ai-automation/',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Sales Automation - Automate Customer Service',
-    description: 'Stop losing leads. Automate WhatsApp responses and get more customers while you sleep.',
+    title: 'AI Automation Nairobi | Business Automation Kenya',
+    description: 'AI-powered automation systems for Nairobi businesses. Live in production across Kenya.',
   },
 };
 
