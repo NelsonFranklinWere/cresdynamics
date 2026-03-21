@@ -6,6 +6,46 @@ import Footer from '@/components/Footer';
 export default function CaseStudiesPage() {
   const caseStudies = [
     {
+      id: 'thestems-flowers',
+      industry: 'Florist · E-commerce (Nairobi CBD)',
+      problem: 'Strong in-store trade but invisible online — no reorder path or M-Pesa checkout',
+      solution: 'Next.js e-commerce, M-Pesa, SEO, same-day delivery UX — live in 4 weeks',
+      outcome: 'Full catalogue live; organic & order metrics tracked from Month 2',
+      slug: 'the-stems-flowers',
+    },
+    {
+      id: 'floral-whispers-gifts',
+      industry: 'Florist · E-commerce (referral engine)',
+      problem: 'Premium bouquets & hampers with almost no digital discoverability',
+      solution: 'Premium e-commerce, WhatsApp + M-Pesa, SEO — full catalogue indexed',
+      outcome: '100+ monthly organic visitors; referral win → The Stems Flowers project',
+      slug: 'floral-whispers-gifts',
+    },
+    {
+      id: 'whitelight-store',
+      industry: 'Fitness Retail · E-commerce + SEO',
+      problem: 'Strong product range but no digital storefront or search visibility',
+      solution: 'New e-commerce build, category architecture, and Nairobi-focused SEO',
+      outcome: 'Live indexed store; month-2 tracking for traffic, orders, and top categories',
+      slug: 'whitelight-store',
+    },
+    {
+      id: 'mohaa-finest',
+      industry: 'Home Decor · Website + SEO',
+      problem: 'Trusted in Eastleigh but invisible to online curtain searches',
+      solution: 'New website, product sections, and Nairobi/Eastleigh local SEO targeting',
+      outcome: 'Live indexed site; month-2 tracking for WhatsApp inquiries and conversions',
+      slug: 'mohaa-finest',
+    },
+    {
+      id: 'spark-lights-254',
+      industry: 'Lighting Retail · Website + SEO',
+      problem: 'Large lighting showroom but no Google visibility for Nairobi buyers',
+      solution: 'SEO-first site with 7 product categories, local search targeting, and WhatsApp flow',
+      outcome: '11.7k impressions, 281 clicks, and 2.4% CTR from organic search',
+      slug: 'spark-lights-254',
+    },
+    {
       id: 'florist-growth',
       industry: 'Florist Business',
       problem: 'Successful locally but unable to scale beyond owner capacity',
