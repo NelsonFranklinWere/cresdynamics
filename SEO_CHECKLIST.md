@@ -44,3 +44,9 @@ Completed in code (no visual or content changes except PART 6):
 ## Notes
 - **Canonical**: Other routes (e.g. /how-we-build/, /careers/, /events/) inherit default metadata from root layout; add `metadata.alternates.canonical` in their layout or page to set canonical if needed.
 - **Redirects**: If the site is behind a host (e.g. Vercel), configure “Redirect to HTTPS” and “Redirect www to non-www” in the host dashboard so the canonical domain is always https://cresdynamics.com.
+
+### If Google Search Console shows “Redirect error”
+1. **URL Inspection** — Open a failing URL in GSC and check “Page fetch” / live test; note every hop (status codes).
+2. **No conflicting host rules** — In Vercel (or DNS host), the **primary domain must be `cresdynamics.com`**. If the host redirects apex → `www` while the app redirects `www` → apex, Google sees a **loop** → “Redirect error”. Fix: one canonical policy only (prefer apex + HTTPS, `www` as alias to apex).
+3. **One clean chain** — Prefer: `http`/`www` → single 301 → `https://cresdynamics.com/path/` (trailing slash matches `next.config` `trailingSlash: true`).
+4. **Verify externally** — Use [httpstatus.io](https://httpstatus.io) or `curl -I -L` on the exact URL GSC reports.
