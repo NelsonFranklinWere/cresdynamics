@@ -11,7 +11,7 @@ export const FLORAL_WHISPERS_SCREENSHOT_FILES = [
 ] as const;
 
 export function floralWhispersPublicPath(filename: string): string {
-  return `/floralwhispers/${encodeURIComponent(filename)}`;
+  return `/floralwhispers/${filename}`;
 }
 
 export function floralWhispersImageItems() {

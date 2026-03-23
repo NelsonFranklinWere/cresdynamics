@@ -17,7 +17,7 @@ export const WHITELIGHT_SCREENSHOT_FILES = [
 ] as const;
 
 export function whitelightPublicPath(filename: string): string {
-  return `/whitelight/${encodeURIComponent(filename)}`;
+  return `/whitelight/${filename}`;
 }
 
 export function whitelightImageItems() {

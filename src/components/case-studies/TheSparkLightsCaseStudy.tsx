@@ -20,14 +20,14 @@ const dmSans = DM_Sans({
   variable: '--font-sl-dm',
 });
 
-const cream = '#faf8f4';
-const ink = '#18140a';
-const amber = '#c47c0a';
-const amberLight = '#fdf4e0';
-const amberDeep = '#8a5400';
-const teal = '#0f5c52';
-const muted = '#7a7060';
-const border = '#e6e0d4';
+const cream = 'var(--neutral-bg)';
+const ink = 'var(--cres-deep-navy)';
+const amber = 'var(--cres-orange-primary)';
+const amberLight = 'rgba(243, 156, 36, 0.12)';
+const amberDeep = 'var(--cres-orange-hover)';
+const teal = 'var(--cres-teal-secondary)';
+const muted = 'rgba(47, 59, 82, 0.72)';
+const border = 'rgba(47, 59, 82, 0.18)';
 
 export default function TheSparkLightsCaseStudy() {
   const all = sparkLightsImageItems();
@@ -45,7 +45,7 @@ export default function TheSparkLightsCaseStudy() {
           </Link>
         </div>
 
-        <header className="relative overflow-hidden text-[#faf8f4]" style={{ background: '#120e04' }}>
+        <header className="relative overflow-hidden text-[var(--cres-white)]" style={{ background: 'var(--cres-gradient-bg)' }}>
           <div
             className="pointer-events-none absolute inset-0"
             style={{
@@ -101,8 +101,8 @@ export default function TheSparkLightsCaseStudy() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-[860px] px-6 pb-20 md:px-12">
-          <section className="mt-16">
+        <main className="mx-auto max-w-[860px] px-6 pt-12 pb-20 md:px-12 md:pt-16">
+          <section>
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: amber }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: amber }} />
               01 · The Problem
@@ -110,14 +110,14 @@ export default function TheSparkLightsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               A full lighting showroom at Nyamakima — unknown to anyone online
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3428]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
               Spark Lights 254 stocked one of Nairobi&apos;s widest selections of chandeliers, ceiling lights, pendant lights, wall lights, bedroom lights, and outdoor lighting — all available for same-day delivery. But without a website, none of that catalogue existed to a customer searching Google for &ldquo;chandeliers Nairobi&rdquo; or &ldquo;ceiling lights Karen.&rdquo;
             </p>
-            <p className="mt-3.5 max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3428]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
               Interior designers sourcing lights for a Karen project, homeowners renovating in Kilimani, and landlords furnishing apartments in Westlands — all of them were searching online and finding competitors. Spark Lights had the stock, the prices, and the delivery speed. What they didn&apos;t have was digital visibility.
             </p>
-            <div className="mt-8 rounded-r-lg border-l-[3px] py-6 pl-7 pr-7" style={{ background: amberLight, borderColor: amber }}>
-              <p className={`${playfair.className} text-lg italic leading-relaxed text-[#5a3800]`}>
+            <div className="mt-8 rounded-r-lg border-l-[3px] px-4 py-5 md:py-6 md:pl-7 md:pr-7" style={{ background: amberLight, borderColor: amber }}>
+              <p className={`${playfair.className} text-base md:text-lg italic leading-relaxed text-[#5a3800]`}>
                 &ldquo;Every day, Nairobi residents were typing &lsquo;chandeliers Nairobi&rsquo; into Google and finding someone else. Spark Lights 254 had exactly what those buyers needed — they just couldn&apos;t be found.&rdquo;
               </p>
             </div>
@@ -131,10 +131,10 @@ export default function TheSparkLightsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               A structured website engineered to rank for lighting searches across Nairobi
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3428]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
               Cres Dynamics built Spark Lights 254 a full website with seven dedicated product category pages — Chandeliers, Ceiling Lights, Pendant Lights, Dining Room Lights, Wall Lights, Outdoor Lights, and Bedroom Lights. Each page was individually optimised for the exact search terms Nairobi buyers use, with room-specific targeting to capture searches at every stage of a home renovation.
             </p>
-            <p className="mt-3.5 max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3428]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
               The site was built around a WhatsApp-first ordering flow — matching how Nairobi buyers prefer to transact — with same-day delivery prominently communicated throughout. A Lighting Guide blog was added to capture additional search traffic from informational queries, and Google Business Profile was optimised to surface the Nyamakima location for local searches.
             </p>
             <div className="mt-7 flex flex-wrap gap-2">
@@ -163,7 +163,7 @@ export default function TheSparkLightsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               Real numbers. Verified from Google Search Console.
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3428]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
               These are not projections. These are live figures pulled directly from Google Search Console — showing exactly how many Nairobi buyers the website is now reaching through organic search.
             </p>
 
@@ -189,7 +189,7 @@ export default function TheSparkLightsCaseStudy() {
               </div>
             </div>
 
-            <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
               {[
                 { tf: 'Before launch', num: '0', label: 'Google impressions, zero online presence, zero search traffic', pending: false },
                 { tf: 'Live now', num: '7', label: 'Category pages ranked on Google — chandeliers, pendant, wall, outdoor, bedroom, ceiling, dining', pending: false },
@@ -221,7 +221,7 @@ export default function TheSparkLightsCaseStudy() {
               04 · The Proof
             </div>
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>See it live — and see the numbers</h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3428]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
               The website is fully live, ranking across multiple lighting categories in Nairobi. The Google Search Console data is available for any prospect who wants to see it.
             </p>
 
@@ -291,7 +291,7 @@ export default function TheSparkLightsCaseStudy() {
               CRES <span style={{ color: amber }}>DYNAMICS</span>
             </div>
             <div className="text-xs" style={{ color: muted }}>
-              Nairobi, Kenya · Web &amp; Digital Solutions
+              Nairobi, Kenya · Building systems that make businesses run better
             </div>
             <a href="https://cresdynamics.com/" className="text-[13px] font-medium" style={{ color: amberDeep }}>
               cresdynamics.com

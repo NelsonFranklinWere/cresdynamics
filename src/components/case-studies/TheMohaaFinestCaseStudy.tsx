@@ -20,18 +20,19 @@ const dmSans = DM_Sans({
   variable: '--font-mh-dm',
 });
 
-const cream = '#faf8f3';
-const ink = '#1a1710';
-const gold = '#b8880a';
-const goldLight = '#fdf6e3';
-const teal = '#1a5c52';
-const muted = '#7a7870';
-const border = '#e4dfd6';
+const cream = 'var(--neutral-bg)';
+const ink = 'var(--cres-deep-navy)';
+const gold = 'var(--cres-orange-primary)';
+const goldLight = 'rgba(243, 156, 36, 0.12)';
+const teal = 'var(--cres-teal-secondary)';
+const muted = 'rgba(47, 59, 82, 0.72)';
+const border = 'rgba(47, 59, 82, 0.18)';
 
 export default function TheMohaaFinestCaseStudy() {
   const all = mohaaFinestImageItems();
-  const carouselA = all.slice(0, 14);
-  const carouselB = all.slice(14);
+  const splitAt = Math.ceil(all.length / 2);
+  const carouselA = all.slice(0, splitAt);
+  const carouselB = all.slice(splitAt);
 
   return (
     <div className={`min-h-screen ${dmSans.className} ${playfair.variable} ${dmSans.variable}`} style={{ background: cream, color: ink }}>
@@ -44,7 +45,7 @@ export default function TheMohaaFinestCaseStudy() {
           </Link>
         </div>
 
-        <header className="relative overflow-hidden text-[#faf8f3]" style={{ background: '#1a1208' }}>
+        <header className="relative overflow-hidden text-[var(--cres-white)]" style={{ background: 'var(--cres-gradient-bg)' }}>
           <div
             className="pointer-events-none absolute inset-0"
             style={{
@@ -71,8 +72,8 @@ export default function TheMohaaFinestCaseStudy() {
                 {
                   label: 'Live site',
                   value: (
-                    <a href="https://mohaafinest.co.ke" target="_blank" rel="noopener noreferrer" className="text-[#e8c97a] no-underline hover:underline">
-                      mohaafinest.co.ke ↗
+                    <a href="https://mohaafinestcurtains.co.ke" target="_blank" rel="noopener noreferrer" className="text-[var(--cres-orange-primary)] no-underline hover:underline">
+                      mohaafinestcurtains.co.ke ↗
                     </a>
                   ),
                 },
@@ -86,8 +87,8 @@ export default function TheMohaaFinestCaseStudy() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-[860px] px-6 pb-20 md:px-12">
-          <section className="mt-16">
+        <main className="mx-auto max-w-[860px] px-6 pt-12 pb-20 md:px-12 md:pt-16">
+          <section>
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: gold }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: gold }} />
               01 · The Problem
@@ -95,14 +96,14 @@ export default function TheMohaaFinestCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               A trusted curtain shop, invisible to everyone searching online
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3830]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3830]">
               Mohaa Finest had built a solid reputation in Eastleigh for quality curtains and interior fabric — but their entire customer base came through foot traffic and word of mouth. Anyone in Nairobi searching online for curtains, blinds, or home decor had no way to find them.
             </p>
-            <p className="mt-3.5 max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3830]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3830]">
               Without a website, Mohaa Finest could not compete with newer businesses that ranked on Google, displayed their catalogue online, or captured leads from customers planning a home renovation. The business was capped by geography — limited to whoever physically walked past their door.
             </p>
-            <div className="mt-8 rounded-r-lg border-l-[3px] py-6 pl-7 pr-7" style={{ background: goldLight, borderColor: gold }}>
-              <p className={`${playfair.className} text-lg italic leading-relaxed text-[#5a3e00]`}>
+            <div className="mt-8 rounded-r-lg border-l-[3px] px-4 py-5 md:py-6 md:pl-7 md:pr-7" style={{ background: goldLight, borderColor: gold }}>
+              <p className={`${playfair.className} text-base md:text-lg italic leading-relaxed text-[#5a3e00]`}>
                 &ldquo;The quality was there, the range was there, the experience was there — but if you weren&apos;t in Eastleigh already, Mohaa Finest simply didn&apos;t exist to you.&rdquo;
               </p>
             </div>
@@ -116,10 +117,10 @@ export default function TheMohaaFinestCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               A professional website built to rank and convert
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3830]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3830]">
               Cres Dynamics built Mohaa Finest a brand new website from scratch — clean, professional, and designed to immediately communicate quality to any visitor landing from search. The site showcases their curtain range with clear product categories, helping customers understand the breadth of their offering before even making contact.
             </p>
-            <p className="mt-3.5 max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3830]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3830]">
               We layered in on-page SEO from the ground up, targeting high-intent searches like &ldquo;curtains Nairobi,&rdquo; &ldquo;curtains Eastleigh,&rdquo; and &ldquo;home decor Kenya&rdquo; — the exact terms a homeowner or interior designer in Nairobi would type when ready to buy. The goal: turn Mohaa Finest from a local secret into a Google-discoverable business.
             </p>
             <div className="mt-7 flex flex-wrap gap-2">
@@ -134,7 +135,7 @@ export default function TheMohaaFinestCaseStudy() {
           <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
             <StemsScreenshotCarousel
               title="Live build — homepage, catalogue & mobile"
-              subtitle="Screenshots from mohaafinest.co.ke showing the new digital storefront and category presentation."
+              subtitle="Screenshots from mohaafinestcurtains.co.ke showing the new digital storefront and category presentation."
               images={carouselA}
               autoplayMs={6000}
             />
@@ -148,11 +149,11 @@ export default function TheMohaaFinestCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               From zero digital presence to Google-indexed and growing
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3830]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3830]">
               Before this project, Mohaa Finest had no website and zero organic search presence. The site launch created a searchable, credible digital footprint for the first time — expanding their potential customer reach from Eastleigh foot traffic to anyone in Nairobi searching online.
             </p>
 
-            <div className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
               {[
                 { tf: 'Before Cres Dynamics', num: '0', label: 'Online presence — no website, no Google ranking, no digital enquiries', pending: false },
                 { tf: 'Post-launch', num: 'Live', label: 'Indexed on Google — now appearing for curtain and home decor searches in Nairobi', pending: false },
@@ -184,7 +185,7 @@ export default function TheMohaaFinestCaseStudy() {
               04 · The Proof
             </div>
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>See it live</h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3830]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3830]">
               The site is fully live and ranking for curtain-related searches in Nairobi — opening the business to customers well beyond Eastleigh.
             </p>
 
@@ -193,8 +194,8 @@ export default function TheMohaaFinestCaseStudy() {
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Live website
                 </div>
-                <a href="https://mohaafinest.co.ke" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-b border-[rgba(26,92,82,0.25)] pb-0.5 text-[15px] font-medium hover:border-[#1a5c52]" style={{ color: teal }}>
-                  mohaafinest.co.ke <span className="-rotate-45 text-sm not-italic">→</span>
+                <a href="https://mohaafinestcurtains.co.ke" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-b border-[color:rgba(47,166,179,0.35)] pb-0.5 text-[15px] font-medium hover:border-[var(--cres-teal-secondary)]" style={{ color: teal }}>
+                  mohaafinestcurtains.co.ke <span className="-rotate-45 text-sm not-italic">→</span>
                 </a>
                 <p className="mt-3.5 text-[13.5px] leading-relaxed" style={{ color: muted }}>
                   Curtain catalogue · WhatsApp inquiries · SEO-optimised for Nairobi and Eastleigh searches
@@ -215,7 +216,7 @@ export default function TheMohaaFinestCaseStudy() {
           <section className="mt-14 border-t pb-8 pt-14" style={{ borderColor: border }}>
             <StemsScreenshotCarousel
               title="More live screenshots — product sections & inquiry paths"
-              subtitle="Additional page captures from mohaafinest.co.ke, including mobile-ready layouts."
+              subtitle="Additional page captures from mohaafinestcurtains.co.ke, including mobile-ready layouts."
               images={carouselB}
               autoplayMs={6500}
             />
@@ -226,7 +227,7 @@ export default function TheMohaaFinestCaseStudy() {
               CRES <span style={{ color: teal }}>DYNAMICS</span>
             </div>
             <div className="text-xs" style={{ color: muted }}>
-              Nairobi, Kenya · Web &amp; Digital Solutions
+              Nairobi, Kenya · Building systems that make businesses run better
             </div>
             <a href="https://cresdynamics.com/" className="text-[13px] font-medium" style={{ color: teal }}>
               cresdynamics.com

@@ -13,7 +13,7 @@ export const SPARK_LIGHTS_SCREENSHOT_FILES = [
 ] as const;
 
 export function sparkLightsPublicPath(filename: string): string {
-  return `/sparklights/${encodeURIComponent(filename)}`;
+  return `/sparklights/${filename}`;
 }
 
 export function sparkLightsImageItems() {

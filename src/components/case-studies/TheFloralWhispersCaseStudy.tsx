@@ -20,14 +20,14 @@ const dmSans = DM_Sans({
   variable: '--font-fw-dm',
 });
 
-const cream = '#faf7f2';
-const ink = '#1c1820';
-const rose = '#b85c7a';
-const roseLight = '#f8edf2';
-const plumMid = '#6b3d7a';
-const muted = '#7a7a72';
-const border = '#e2ddd6';
-const gold = '#b8935a';
+const cream = 'var(--neutral-bg)';
+const ink = 'var(--cres-deep-navy)';
+const rose = 'var(--cres-orange-primary)';
+const roseLight = 'rgba(243, 156, 36, 0.12)';
+const plumMid = 'var(--cres-teal-secondary)';
+const muted = 'rgba(47, 59, 82, 0.72)';
+const border = 'rgba(47, 59, 82, 0.18)';
+const gold = 'var(--cres-orange-primary)';
 
 export default function TheFloralWhispersCaseStudy() {
   const all = floralWhispersImageItems();
@@ -53,7 +53,7 @@ export default function TheFloralWhispersCaseStudy() {
         </div>
 
         {/* HERO — plum gradient */}
-        <header className="relative overflow-hidden text-[#faf7f2]" style={{ background: '#2a1030' }}>
+        <header className="relative overflow-hidden text-[var(--cres-white)]" style={{ background: 'var(--cres-gradient-bg)' }}>
           <div
             className="pointer-events-none absolute inset-0"
             style={{
@@ -108,9 +108,9 @@ export default function TheFloralWhispersCaseStudy() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-[860px] px-6 pb-20 md:px-12">
+        <main className="mx-auto max-w-[860px] px-6 pt-12 pb-20 md:px-12 md:pt-16">
           {/* 01 PROBLEM */}
-          <section className="mt-16">
+          <section>
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: rose }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: rose }} />
               01 · The Problem
@@ -118,21 +118,21 @@ export default function TheFloralWhispersCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               The value was there. The visibility wasn&apos;t.
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3a34]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
               Floral Whispers Gifts was already delivering premium flower bouquets, luxury gift hampers, and teddy bears
               across Nairobi — but their digital footprint did not match the quality of what they were offering. Customers
               searching online for flower delivery or anniversary gifts in Nairobi had no way to discover them.
             </p>
-            <p className="mt-3.5 max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3a34]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
               Without a structured product catalogue or online ordering system, potential customers either called in, found a
               competitor instead, or simply never knew Floral Whispers existed. The business was undercharging in reach for
               the premium service it was actually delivering.
             </p>
             <div
-              className="mt-8 rounded-r-lg border-l-[3px] py-6 pl-7 pr-7"
+              className="mt-8 rounded-r-lg border-l-[3px] px-4 py-5 md:py-6 md:pl-7 md:pr-7"
               style={{ background: roseLight, borderColor: rose }}
             >
-              <p className={`${playfair.className} text-lg italic leading-relaxed text-[#5a1f35]`}>
+              <p className={`${playfair.className} text-base md:text-lg italic leading-relaxed text-[#5a1f35]`}>
                 &ldquo;They had the flowers, the presentation, the delivery speed — everything a Nairobi customer wants. The
                 only thing missing was a platform that could show the world what they had.&rdquo;
               </p>
@@ -148,13 +148,13 @@ export default function TheFloralWhispersCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               An e-commerce platform built to communicate premium
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3a34]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
               Cres Dynamics designed and built a full e-commerce website for Floral Whispers Gifts — visually premium,
               mobile-first, and structured for search. The site organises their catalogue into clear collections: Flower
               Bouquets, Teddy Bears, Gift Hampers, and Cards, with dedicated product pages that communicate the value of each
               offering.
             </p>
-            <p className="mt-3.5 max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3a34]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
               We integrated WhatsApp ordering for fast customer communication and M-Pesa for seamless Kenyan payments.
               On-page SEO was built in from the start, targeting searches like &ldquo;flower delivery Nairobi,&rdquo;
               &ldquo;gift hampers Nairobi,&rdquo; and occasion-driven queries across birthdays, anniversaries, and
@@ -206,13 +206,13 @@ export default function TheFloralWhispersCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               Visibility, reach, and a referral that proved the work
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3a34]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
               The site established Floral Whispers Gifts as a discoverable, credible brand online. The strongest result was
               indirect but unmistakable — within months of launch, a competing Nairobi florist found the site, recognised the
               quality of the build, and contacted Cres Dynamics directly to do the same for their business.
             </p>
 
-            <div className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
               {[
                 {
                   tf: 'Post-launch',
@@ -287,7 +287,7 @@ export default function TheFloralWhispersCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               See it live
             </h2>
-            <p className="max-w-[640px] text-[16.5px] leading-[1.78] text-[#3a3a34]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
               The site is fully live, SEO-indexed, and serving customers across Nairobi — from CBD to Westlands, Karen, and
               Lavington.
             </p>
@@ -376,7 +376,7 @@ export default function TheFloralWhispersCaseStudy() {
               CRES <span style={{ color: rose }}>DYNAMICS</span>
             </div>
             <div className="text-xs" style={{ color: muted }}>
-              Nairobi, Kenya · Web &amp; Digital Solutions
+              Nairobi, Kenya · Building systems that make businesses run better
             </div>
             <a href="https://cresdynamics.com/" className="text-[13px] font-medium" style={{ color: plumMid }}>
               cresdynamics.com

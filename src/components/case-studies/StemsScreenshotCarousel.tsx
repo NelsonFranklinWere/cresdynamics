@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -17,19 +16,19 @@ type StemsScreenshotCarouselProps = {
 
 const ACCENT = {
   sage: {
-    btn: 'text-[#4a6741] hover:bg-[#eef2ec]',
-    dot: 'bg-[#4a6741]',
-    dotInactive: 'bg-[#e2ddd6] hover:bg-[#c9826b]/50',
+    btn: 'text-[var(--cres-teal-secondary)] hover:bg-[color:rgba(47,166,179,0.12)]',
+    dot: 'bg-[var(--cres-teal-secondary)]',
+    dotInactive: 'bg-[color:rgba(47,166,179,0.28)] hover:bg-[color:rgba(47,166,179,0.5)]',
   },
   rose: {
-    btn: 'text-[#6b3d7a] hover:bg-[#f8edf2]',
-    dot: 'bg-[#b85c7a]',
-    dotInactive: 'bg-[#e2ddd6] hover:bg-[#b85c7a]/40',
+    btn: 'text-[var(--cres-orange-primary)] hover:bg-[color:rgba(243,156,36,0.14)]',
+    dot: 'bg-[var(--cres-orange-primary)]',
+    dotInactive: 'bg-[color:rgba(243,156,36,0.28)] hover:bg-[color:rgba(243,156,36,0.5)]',
   },
   electric: {
-    btn: 'text-[#1a3fb5] hover:bg-[#edf1fc]',
-    dot: 'bg-[#1a3fb5]',
-    dotInactive: 'bg-[#dde0e8] hover:bg-[#1a3fb5]/35',
+    btn: 'text-[var(--cres-deep-navy)] hover:bg-[color:rgba(47,59,82,0.12)]',
+    dot: 'bg-[var(--cres-deep-navy)]',
+    dotInactive: 'bg-[color:rgba(47,59,82,0.25)] hover:bg-[color:rgba(47,59,82,0.45)]',
   },
 } as const;
 
@@ -70,15 +69,15 @@ export default function StemsScreenshotCarousel({
   const slide = images[index];
 
   return (
-    <div className={`rounded-xl border border-[#e2ddd6] bg-white p-4 md:p-6 shadow-sm ${className}`}>
+    <div className={`rounded-xl border border-[color:rgba(47,59,82,0.18)] bg-white p-4 md:p-6 shadow-sm ${className}`}>
       <div className="mb-4">
-        <h3 className="font-serif text-lg font-semibold text-[#1c2018] md:text-xl">
+        <h3 className="font-serif text-lg font-semibold text-[var(--cres-deep-navy)] md:text-xl">
           {title}
         </h3>
-        {subtitle ? <p className="mt-1 text-sm text-[#7a7a72]">{subtitle}</p> : null}
+        {subtitle ? <p className="mt-1 text-sm text-[color:rgba(47,59,82,0.72)]">{subtitle}</p> : null}
       </div>
 
-      <div className="relative overflow-hidden rounded-lg border border-[#e2ddd6] bg-[#faf7f2]">
+      <div className="relative overflow-hidden rounded-lg border border-[color:rgba(47,59,82,0.18)] bg-[var(--neutral-bg)]">
         <div className="relative aspect-[16/10] w-full md:aspect-[1280/800]">
           <AnimatePresence initial={false} mode="wait">
             <motion.div
@@ -89,20 +88,17 @@ export default function StemsScreenshotCarousel({
               transition={{ duration: 0.3 }}
               className="absolute inset-0"
             >
-              <Image
+              <img
                 src={slide.src}
                 alt={slide.alt}
-                fill
-                className="object-contain object-top"
-                sizes="(max-width: 860px) 100vw, 860px"
+                className="h-full w-full object-contain object-top"
                 loading="eager"
-                priority={index === 0}
               />
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <div className="flex items-center justify-between gap-2 border-t border-[#e2ddd6] bg-white/90 px-3 py-2 backdrop-blur-sm">
+        <div className="flex items-center justify-between gap-2 border-t border-[color:rgba(47,59,82,0.18)] bg-white/90 px-3 py-2 backdrop-blur-sm">
           <button
             type="button"
             onClick={prev}

@@ -6,46 +6,6 @@ import Footer from '@/components/Footer';
 export default function CaseStudiesPage() {
   const caseStudies = [
     {
-      id: 'thestems-flowers',
-      industry: 'Florist · E-commerce (Nairobi CBD)',
-      problem: 'Strong in-store trade but invisible online — no reorder path or M-Pesa checkout',
-      solution: 'Next.js e-commerce, M-Pesa, SEO, same-day delivery UX — live in 4 weeks',
-      outcome: 'Full catalogue live; organic & order metrics tracked from Month 2',
-      slug: 'the-stems-flowers',
-    },
-    {
-      id: 'floral-whispers-gifts',
-      industry: 'Florist · E-commerce (referral engine)',
-      problem: 'Premium bouquets & hampers with almost no digital discoverability',
-      solution: 'Premium e-commerce, WhatsApp + M-Pesa, SEO — full catalogue indexed',
-      outcome: '100+ monthly organic visitors; referral win → The Stems Flowers project',
-      slug: 'floral-whispers-gifts',
-    },
-    {
-      id: 'whitelight-store',
-      industry: 'Fitness Retail · E-commerce + SEO',
-      problem: 'Strong product range but no digital storefront or search visibility',
-      solution: 'New e-commerce build, category architecture, and Nairobi-focused SEO',
-      outcome: 'Live indexed store; month-2 tracking for traffic, orders, and top categories',
-      slug: 'whitelight-store',
-    },
-    {
-      id: 'mohaa-finest',
-      industry: 'Home Decor · Website + SEO',
-      problem: 'Trusted in Eastleigh but invisible to online curtain searches',
-      solution: 'New website, product sections, and Nairobi/Eastleigh local SEO targeting',
-      outcome: 'Live indexed site; month-2 tracking for WhatsApp inquiries and conversions',
-      slug: 'mohaa-finest',
-    },
-    {
-      id: 'spark-lights-254',
-      industry: 'Lighting Retail · Website + SEO',
-      problem: 'Large lighting showroom but no Google visibility for Nairobi buyers',
-      solution: 'SEO-first site with 7 product categories, local search targeting, and WhatsApp flow',
-      outcome: '11.7k impressions, 281 clicks, and 2.4% CTR from organic search',
-      slug: 'spark-lights-254',
-    },
-    {
       id: 'florist-growth',
       industry: 'Florist Business',
       problem: 'Successful locally but unable to scale beyond owner capacity',
@@ -144,6 +104,19 @@ export default function CaseStudiesPage() {
           <p className="text-xs md:text-sm text-gray-400 mb-4 md:mb-6">
             Production proof: active users, revenue tracked, roles, deployment stack, uptime. Numbers over testimonials.
           </p>
+
+          <div className="mb-4 md:mb-6">
+            <p className="mb-2 text-xs md:text-sm text-[var(--cres-text-secondary)]">
+              See systems Cres Dynamics recently deployed and the business outcomes they are driving.
+            </p>
+            <a
+              href="/proof-of-work/"
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--cres-orange-primary)] px-4 py-2 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-[var(--cres-orange-hover)]"
+            >
+              See Recent Results & Deployed Projects
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
             <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">

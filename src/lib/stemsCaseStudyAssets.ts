@@ -11,7 +11,7 @@ export const STEMS_SCREENSHOT_FILES = [
 ] as const;
 
 export function stemsPublicPath(filename: string): string {
-  return `/thestems/${encodeURIComponent(filename)}`;
+  return `/thestems/${filename}`;
 }
 
 export function stemsImageItems() {

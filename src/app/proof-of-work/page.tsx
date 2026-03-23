@@ -37,7 +37,7 @@ export default function ProofOfWorkPage() {
       solution: 'New website, product sections, and Nairobi/Eastleigh local SEO targeting',
       outcome: 'Live indexed site; month-2 tracking for WhatsApp inquiries and conversions',
       slug: 'mohaa-finest',
-      liveUrl: 'https://mohaafinest.co.ke',
+      liveUrl: 'https://mohaafinestcurtains.co.ke',
     },
     {
       id: 'spark-lights-254',
