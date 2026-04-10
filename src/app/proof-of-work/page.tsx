@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import LiveProjectsSection from '@/components/proof-of-work/LiveProjectsSection';
 
 export default function ProofOfWorkPage() {
   const caseStudies = [
@@ -60,18 +61,22 @@ export default function ProofOfWorkPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--cres-primary-bg)] via-[#101927] to-[#020611]" />
           <div className="absolute inset-0 bg-black/40" />
 
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-            <h1 className="text-3xl md:text-5xl font-black mb-6">
+          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+            <h1 className="text-3xl md:text-5xl font-black mb-8">
               Proof of <span className="text-[var(--cres-orange-primary)]">Work</span>
             </h1>
-            <p className="text-white/80 text-lg md:text-xl mb-8">
-              Systems we&apos;ve shipped, the engines behind them, and the business outcomes they created.
+            <p className="text-white/85 text-lg md:text-xl leading-relaxed">
+              Every case study needs four things a buyer can&apos;t argue with — the exact before state (in numbers or
+              specifics), what was built (named, not described), the exact after state (in numbers or specifics), and one
+              honest sentence about what made it hard.
             </p>
-            <p className="text-[var(--cres-electric-teal)] text-sm md:text-base font-semibold">
-              This is the bridge between CresOS, custom ERPs, and the numbers they move.
+            <p className="mt-6 text-[var(--cres-electric-teal)] text-base md:text-lg font-semibold tracking-tight">
+              No adjectives. No hype. Just what happened.
             </p>
           </div>
         </section>
+
+        <LiveProjectsSection />
 
         {/* CASE STUDIES GRID */}
         <section className="relative py-16 bg-[var(--cres-primary-bg)]">
