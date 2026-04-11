@@ -2,6 +2,22 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CareersApplicationForm from '@/components/CareersApplicationForm';
 import Link from 'next/link';
+import { CAREER_ROLES } from '@/data/careersRoles';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Careers — Build Kenyan Business Infrastructure | CRES Dynamics',
+  description:
+    'Open roles: Full-Stack Developer and Sales Executive at CRES Dynamics. Hybrid in Westlands, Nairobi. We hire for attitude, execution, and quality.',
+  alternates: { canonical: 'https://cresdynamics.com/careers/' },
+  openGraph: {
+    title: 'Careers at CRES Dynamics — Nairobi',
+    description:
+      'Join a team building real operational systems for Kenyan businesses. See open roles and how to apply.',
+    url: 'https://cresdynamics.com/careers/',
+    type: 'website',
+  },
+};
 
 export default function CareersPage() {
   return (
@@ -13,18 +29,24 @@ export default function CareersPage() {
         <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: 'var(--cres-gradient-bg)' }}>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_60%_40%,rgba(243,156,36,0.08)_0%,transparent_70%)]" />
           <div className="relative z-10 max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               <div>
                 <span className="inline-block bg-[var(--teal-accent)]/20 border border-[var(--teal-accent)]/40 text-[var(--teal-accent)] px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase mb-5">
                   We&apos;re Hiring
                 </span>
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
-                  Build the Future
+                  Build Infrastructure,
                   <br />
-                  <span style={{ color: 'var(--orange-energy)' }}>With Us.</span>
+                  <span style={{ color: 'var(--orange-energy)' }}>Not Slides.</span>
                 </h1>
-                <p className="text-white/80 text-base md:text-lg mb-8 max-w-xl">
-                  At CRES Dynamics we don&apos;t just build software — we build the infrastructure Kenyan businesses run on. We&apos;re looking for driven, curious people ready to shape how companies operate.
+                <p className="text-white/80 text-base md:text-lg mb-6 max-w-xl">
+                  CRES Dynamics designs and ships systems that real businesses run on—websites, finance tooling, automation,
+                  and CresOS. If you want ownership, high standards, and work that shows up in production, you belong in this
+                  conversation.
+                </p>
+                <p className="text-white/65 text-sm md:text-base mb-8 max-w-xl border-l-2 border-[var(--teal-accent)]/50 pl-4">
+                  We are a small, senior-minded team in Nairobi. Every role touches clients, delivery, or code that operators
+                  depend on. We move fast, document what matters, and hold the line on quality.
                 </p>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <Link
@@ -37,31 +59,27 @@ export default function CareersPage() {
                     href="#culture"
                     className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
                   >
-                    Our Culture
+                    How We Work
                   </Link>
                 </div>
               </div>
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
-                <h4 className="text-[11px] font-bold tracking-widest uppercase text-white/60 mb-4">Open Positions</h4>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 lg:sticky lg:top-28">
+                <h4 className="text-[11px] font-bold tracking-widest uppercase text-white/60 mb-4">Open positions</h4>
                 <div className="space-y-2">
-                  <a href="#open-roles" className="flex items-center justify-between rounded-xl bg-white/5 border border-white/10 hover:bg-[var(--teal-accent)]/20 hover:border-[var(--teal-accent)]/40 px-4 py-3 transition-colors">
-                    <span className="font-semibold text-white">💻 Software Developer</span>
-                    <span className="bg-[var(--teal-accent)]/20 text-[var(--teal-accent)] text-[11px] font-bold px-2.5 py-1 rounded-full">Open</span>
-                  </a>
-                  <a href="#open-roles" className="flex items-center justify-between rounded-xl bg-white/5 border border-white/10 hover:bg-[var(--teal-accent)]/20 hover:border-[var(--teal-accent)]/40 px-4 py-3 transition-colors">
-                    <span className="font-semibold text-white">🎯 Sales Executive</span>
-                    <span className="bg-[var(--teal-accent)]/20 text-[var(--teal-accent)] text-[11px] font-bold px-2.5 py-1 rounded-full">Open</span>
-                  </a>
-                  <a href="#open-roles" className="flex items-center justify-between rounded-xl bg-white/5 border border-white/10 hover:bg-[var(--teal-accent)]/20 hover:border-[var(--teal-accent)]/40 px-4 py-3 transition-colors">
-                    <span className="font-semibold text-white">🎨 UI/UX Designer</span>
-                    <span className="bg-[var(--teal-accent)]/20 text-[var(--teal-accent)] text-[11px] font-bold px-2.5 py-1 rounded-full">Open</span>
-                  </a>
-                  <a href="#open-roles" className="flex items-center justify-between rounded-xl bg-white/5 border border-white/10 hover:bg-[var(--teal-accent)]/20 hover:border-[var(--teal-accent)]/40 px-4 py-3 transition-colors">
-                    <span className="font-semibold text-white">📋 Project & Client Manager</span>
-                    <span className="bg-[var(--teal-accent)]/20 text-[var(--teal-accent)] text-[11px] font-bold px-2.5 py-1 rounded-full">Open</span>
-                  </a>
+                  {CAREER_ROLES.map((role) => (
+                    <a
+                      key={role.id}
+                      href="#open-roles"
+                      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 rounded-xl bg-white/5 border border-white/10 hover:bg-[var(--teal-accent)]/20 hover:border-[var(--teal-accent)]/40 px-4 py-3 transition-colors text-left"
+                    >
+                      <span className="font-semibold text-white">{role.title}</span>
+                      <span className="text-[11px] text-white/55 sm:text-right">{role.department}</span>
+                    </a>
+                  ))}
                 </div>
-                <p className="text-white/50 text-xs text-center mt-4">4 positions open · Nairobi (Hybrid) · Kenya</p>
+                <p className="text-white/50 text-xs mt-4 pt-4 border-t border-white/10">
+                  {CAREER_ROLES.length} roles · Nairobi (hybrid where noted) · We review applications on a rolling basis
+                </p>
               </div>
             </div>
           </div>
@@ -74,37 +92,36 @@ export default function CareersPage() {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4">
                 We&apos;re Not Building
                 <br />
-                Another Tech Company.
+                Another Generic Agency.
                 <br />
                 We&apos;re Building Infrastructure.
               </h2>
               <p className="text-white/75 text-sm md:text-base mb-4">
-                Every system we build runs real businesses. Real people depend on it. Real money moves through it. That&apos;s the
-                weight of the work – and it&apos;s also what makes it worth doing.
+                Every system we ship runs real businesses. People depend on it. Revenue and payroll move through it. That is
+                the weight of the work—and what makes it worth doing well.
               </p>
               <p className="text-white/75 text-sm md:text-base">
-                CRES Dynamics was founded on one belief: that growing Kenyan businesses deserve world-class operational
-                infrastructure – built for how they actually operate, not adapted from tools designed for someone else. We&apos;re
-                building that. And we want people who want to build it with us.
+                Kenyan operators deserve tooling that fits how they actually work—not borrowed templates from another market.
+                That is the standard we build to. If that mission resonates, you will feel at home here.
               </p>
             </div>
 
             <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-sm md:text-base">
               <div className="rounded-2xl border border-white/10 bg-black/40 p-4 md:p-5 text-center">
-                <div className="text-2xl font-black text-[var(--cres-orange-primary)] mb-1">3</div>
-                <div className="text-white/70 text-xs md:text-sm">Team Members</div>
+                <div className="text-2xl font-black text-[var(--cres-orange-primary)] mb-1">6</div>
+                <div className="text-white/70 text-xs md:text-sm">Core team</div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-4 md:p-5 text-center">
-                <div className="text-2xl font-black text-[var(--cres-orange-primary)] mb-1">5+</div>
-                <div className="text-white/70 text-xs md:text-sm">Active Systems in Production</div>
+                <div className="text-2xl font-black text-[var(--cres-orange-primary)] mb-1">13</div>
+                <div className="text-white/70 text-xs md:text-sm">Systems in production</div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-4 md:p-5 text-center">
                 <div className="text-2xl font-black text-[var(--cres-orange-primary)] mb-1">127+</div>
-                <div className="text-white/70 text-xs md:text-sm">Daily Active Users</div>
+                <div className="text-white/70 text-xs md:text-sm">Daily active users (our stack)</div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-4 md:p-5 text-center">
                 <div className="text-2xl font-black text-[var(--cres-orange-primary)] mb-1">2026</div>
-                <div className="text-white/70 text-xs md:text-sm">Scaling Year</div>
+                <div className="text-white/70 text-xs md:text-sm">Scaling delivery &amp; product</div>
               </div>
             </div>
           </div>
@@ -119,8 +136,7 @@ export default function CareersPage() {
               </p>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white">The CRES Standard.</h2>
               <p className="text-white/75 text-sm md:text-base mt-3 max-w-2xl mx-auto">
-                These aren&apos;t values on a wall. They&apos;re how we make decisions, how we treat clients, and how we hold each
-                other accountable.
+                These are not posters—they are how we decide, how we ship, and how we expect teammates to show up.
               </p>
             </div>
 
@@ -131,8 +147,8 @@ export default function CareersPage() {
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">Execution Over Conversation</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  Ideas have no value until built. We move fast, ship real things, and learn from what exists – not from what we
-                  discussed.
+                  Ideas earn value when they ship. We bias to working software, real pages in production, and learning from what
+                  is live—not what was debated in a meeting.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -141,8 +157,8 @@ export default function CareersPage() {
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">Quality Is Not Optional</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  Real businesses run on what we build. The standard is: would you be proud if the client saw the code, the
-                  process, the commit message?
+                  Businesses run on what we build. The bar: would you stand behind this if the client saw the code, the copy,
+                  and the cutover plan?
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -151,8 +167,8 @@ export default function CareersPage() {
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">Honesty Is the Default</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  Say problems before the deadline, not after. Say &quot;I don&apos;t know&quot; before guessing. Honest and early
-                  beats polished and late.
+                  Surface risks before deadlines. Say &quot;I don&apos;t know&quot; before guessing. Early and accurate beats late and
+                  polished.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -161,8 +177,8 @@ export default function CareersPage() {
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">We Build for Business</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  We understand the business well enough to know when the brief is wrong. Technology is the tool – solving the
-                  business problem is the job.
+                  Technology is the lever; the business outcome is the job. We learn the operation well enough to challenge a
+                  bad brief with respect.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -171,8 +187,7 @@ export default function CareersPage() {
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">Growth Is Shared</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  Knowledge shared is capability multiplied. We document, we teach, we onboard. The team that learns together
-                  scales together.
+                  We teach, document, and onboard deliberately. Capability compounds when the team levels up together.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -181,8 +196,8 @@ export default function CareersPage() {
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">We Are the Standard</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  Every client interaction, every line of code, every delivery – we hold the line. Not because someone is
-                  watching. Because we are.
+                  Every client touch and every deploy reflects who we are. We hold the line because we choose to—not because
+                  someone is watching.
                 </p>
               </div>
             </div>
@@ -196,124 +211,67 @@ export default function CareersPage() {
               <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/60 mb-2">
                 Open Positions
               </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white">Current Openings.</h2>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white">Roles We&apos;re Hiring For.</h2>
               <p className="text-white/75 text-sm md:text-base mt-3 max-w-2xl mx-auto">
-                We hire for attitude, then skill. If you can build things and you care about quality – talk to us.
+                Each listing matches what you&apos;ll select in the application form. Read the fit bullets, then apply with
+                evidence of what you&apos;ve shipped or owned.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {/* Full-Stack Developer */}
-              <div className="rounded-2xl border border-white/10 bg-black/40 p-6 md:p-7 flex flex-col justify-between">
-                <div>
-                  <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)] mb-1">
-                    Engineering
-                  </p>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2">Full-Stack Developer</h3>
-                  <p className="text-white/70 text-xs md:text-sm mb-3">
-                    Full-time · Westlands, Nairobi (Hybrid) · Competitive + Commission
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4 text-xs">
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">React</span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">Node.js</span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">PostgreSQL</span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">Next.js</span>
+              {CAREER_ROLES.map((role) => (
+                <article
+                  key={role.id}
+                  className="rounded-2xl border border-white/10 bg-black/40 p-6 md:p-7 flex flex-col justify-between"
+                >
+                  <div>
+                    <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)] mb-1">
+                      {role.department}
+                    </p>
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">{role.title}</h3>
+                    <p className="text-white/70 text-xs md:text-sm mb-2">
+                      {role.commitment} · {role.location}
+                    </p>
+                    <p className="text-white/80 text-sm md:text-base mb-4 leading-relaxed">{role.summary}</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-white/50 mb-2">Strong fit if</p>
+                    <ul className="list-disc list-inside space-y-1.5 text-white/80 text-sm md:text-base mb-4">
+                      {role.focus.map((line) => (
+                        <li key={line}>{line}</li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {role.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div className="mt-4">
-                  <Link
-                    href="#application"
-                    className="inline-flex items-center justify-center w-full bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm py-3 rounded-lg transition-colors"
-                  >
-                    Apply Now
-                  </Link>
-                </div>
-              </div>
-
-              {/* Business Development Representative */}
-              <div className="rounded-2xl border border-white/10 bg-black/40 p-6 md:p-7 flex flex-col justify-between">
-                <div>
-                  <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)] mb-1">Sales</p>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2">Business Development Representative</h3>
-                  <p className="text-white/70 text-xs md:text-sm mb-3">Full-time · Nairobi · Base + Commission</p>
-                  <div className="flex flex-wrap gap-2 mb-4 text-xs">
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">B2B Sales</span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">Tech</span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">SME Market</span>
+                  <div className="mt-6">
+                    <Link
+                      href="#application"
+                      className="inline-flex items-center justify-center w-full bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm py-3 rounded-lg transition-colors"
+                    >
+                      Apply for this role
+                    </Link>
                   </div>
-                </div>
-                <div className="mt-4">
-                  <Link
-                    href="#application"
-                    className="inline-flex items-center justify-center w-full bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm py-3 rounded-lg transition-colors"
-                  >
-                    Apply Now
-                  </Link>
-                </div>
-              </div>
-
-              {/* UI/UX Designer */}
-              <div className="rounded-2xl border border-white/10 bg-black/40 p-6 md:p-7 flex flex-col justify-between">
-                <div>
-                  <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)] mb-1">Design</p>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2">UI/UX Designer</h3>
-                  <p className="text-white/70 text-xs md:text-sm mb-3">Contract / Part-time · Remote-friendly</p>
-                  <div className="flex flex-wrap gap-2 mb-4 text-xs">
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">Figma</span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">UI Design</span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">Systems</span>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <Link
-                    href="#application"
-                    className="inline-flex items-center justify-center w-full bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm py-3 rounded-lg transition-colors"
-                  >
-                    Apply Now
-                  </Link>
-                </div>
-              </div>
-
-              {/* Project & Client Manager */}
-              <div className="rounded-2xl border border-white/10 bg-black/40 p-6 md:p-7 flex flex-col justify-between">
-                <div>
-                  <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)] mb-1">
-                    Operations
-                  </p>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2">Project &amp; Client Manager</h3>
-                  <p className="text-white/70 text-xs md:text-sm mb-3">Full-time · Westlands, Nairobi</p>
-                  <div className="flex flex-wrap gap-2 mb-4 text-xs">
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">
-                      Project Management
-                    </span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">
-                      Client Relations
-                    </span>
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/80">Tech</span>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <Link
-                    href="#application"
-                    className="inline-flex items-center justify-center w-full bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm py-3 rounded-lg transition-colors"
-                  >
-                    Apply Now
-                  </Link>
-                </div>
-              </div>
+                </article>
+              ))}
             </div>
 
             <div className="mt-10 max-w-3xl mx-auto text-center text-sm md:text-base text-white/80">
               <p className="mb-2">
-                Don&apos;t see your role? We&apos;re always looking for exceptional people. If you build things, understand
-                business, and care about quality – send your work to{' '}
+                Don&apos;t see a perfect title? We still read strong general applications. Email{' '}
                 <a
                   href="mailto:careers@cresdynamics.com"
                   className="font-semibold text-[var(--cres-orange-primary)] hover:underline"
                 >
                   careers@cresdynamics.com
                 </a>{' '}
-                and tell us what you&apos;d build here.
+                with what you&apos;d build in your first 90 days.
               </p>
             </div>
           </div>
@@ -326,7 +284,10 @@ export default function CareersPage() {
               <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/60 mb-2">
                 What You Get
               </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white">Working at CRES Means.</h2>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white">What It&apos;s Like Here.</h2>
+              <p className="text-white/70 text-sm md:text-base mt-3 max-w-2xl mx-auto">
+                Small team, high trust. You will be close to decisions, clients, and production—not buried in layers.
+              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -336,8 +297,7 @@ export default function CareersPage() {
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">Real Ownership</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  You own your work. Every system you build has your name on it – and runs in production for real businesses. No
-                  busywork. No meaningless tasks.
+                  Your work ships under real business load. You will see impact in weeks, not hypothetical roadmaps.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -345,10 +305,9 @@ export default function CareersPage() {
                   <span className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)]">02</span>
                   <span className="text-2xl">📈</span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">Fast Growth</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Room to Grow</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  We&apos;re scaling. That means opportunities grow as the company grows. The people who join now build the
-                  culture, the systems, and the leadership of what CRES becomes.
+                  We are building product and process at the same time. Early hires help shape how CRES scales.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -356,10 +315,9 @@ export default function CareersPage() {
                   <span className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)]">03</span>
                   <span className="text-2xl">🧠</span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">Learning Culture</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Modern Stack &amp; Craft</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  AI tools. Modern stack. Real problems. We invest in the team&apos;s skills because a team that doesn&apos;t grow is
-                  a team that leaves. We&apos;d rather help you grow and stay.
+                  Next.js, disciplined design, automation where it saves time. We invest in tools and skills that raise the bar.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -367,10 +325,10 @@ export default function CareersPage() {
                   <span className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)]">04</span>
                   <span className="text-2xl">💰</span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">Competitive Compensation</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Fair Compensation</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  Base salary plus performance incentives. As the company grows, compensation grows with it. We share the results
-                  of the work we build together.
+                  Base plus performance where the role allows. As the company grows, we want growth to show up in your
+                  package too.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -378,10 +336,9 @@ export default function CareersPage() {
                   <span className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)]">05</span>
                   <span className="text-2xl">🌍</span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">Mission That Matters</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Mission You Can Point To</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  We&apos;re building the infrastructure layer for Kenyan business. The systems you build here power real companies,
-                  real jobs, real economic activity. That&apos;s the work.
+                  Systems you help build power Kenyan operators, jobs, and transactions you can name. That clarity matters.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">
@@ -389,13 +346,26 @@ export default function CareersPage() {
                   <span className="text-xs font-semibold tracking-[0.24em] uppercase text-[var(--cres-orange-primary)]">06</span>
                   <span className="text-2xl">📍</span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">Westlands, Nairobi</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Westlands Base</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  Based in Kivuli Tower, Westlands. Hybrid-friendly for the right roles. We work seriously – and we respect that
-                  life exists outside of work.
+                  Kivuli Tower, Westlands. Hybrid where the role allows. We work hard and respect life outside the job.
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Hiring process — intentional expectations */}
+        <section className="relative py-14 bg-[var(--cres-primary-bg)] border-y border-white/10">
+          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+            <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/60 mb-2">Process</p>
+            <h2 className="text-xl md:text-2xl font-black text-white mb-4">What Happens After You Apply</h2>
+            <ol className="text-left text-white/80 text-sm md:text-base space-y-3 list-decimal list-inside max-w-xl mx-auto">
+              <li>We read every complete application—role selected, experience summary, and why CRES.</li>
+              <li>Short screening call (video or phone) to align on fit and your work samples.</li>
+              <li>Role-specific conversation: engineering exercise or walkthrough, sales scenario, design critique, or delivery case—kept proportionate.</li>
+              <li>Offer and start date. We aim for clear feedback either way within a few weeks.</li>
+            </ol>
           </div>
         </section>
 
@@ -404,40 +374,26 @@ export default function CareersPage() {
           <div className="relative z-10 max-w-5xl mx-auto px-6">
             <div className="text-center mb-10 md:mb-12">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
-                Ready to Build Something Real?
+                Apply in One Flow
               </h2>
               <p className="text-white/75 text-sm md:text-base mb-4 max-w-2xl mx-auto">
-                Send your CV and a brief note on what you&apos;d build here to{' '}
+                Prefer email? Send your CV and a short note to{' '}
                 <a
                   href="mailto:careers@cresdynamics.com"
                   className="font-semibold text-[var(--cres-orange-primary)] hover:underline"
                 >
                   careers@cresdynamics.com
                 </a>
-                .
-              </p>
-              <p className="text-white/75 text-xs md:text-sm mb-6">
-                Or use the form below. We read every serious application.
+                . Prefer the form? Use the same details below—choose the role that matches the listing above.
               </p>
             </div>
 
             <CareersApplicationForm />
-
-            <div className="mt-8 flex justify-center">
-              <Link
-                href="#application"
-                className="inline-flex items-center justify-center bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
-              >
-                Apply Now
-              </Link>
-            </div>
           </div>
         </section>
-
       </main>
 
       <Footer />
     </div>
   );
 }
-

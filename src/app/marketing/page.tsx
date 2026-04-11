@@ -3,8 +3,9 @@ import Footer from '@/components/Footer';
 import MarketingPageContent from '@/components/MarketingPageContent';
 
 export const metadata = {
-  title: 'How We Work & Marketing — CRES Dynamics',
-  description: 'Structured process from first call to go-live. Meta and Google Ads that bring real buyers to your business.',
+  title: 'Marketing & Ads for Nairobi — Meta & Google | CRES Dynamics',
+  description:
+    'Meta and Google Ads built for Nairobi and Kenya: local, countywide, and diaspora. Packages, benchmarks, and retainers that focus on buyers—not vanity metrics.',
 };
 
 export default function MarketingPage() {

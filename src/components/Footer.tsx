@@ -28,6 +28,7 @@ export default function Footer() {
               <li><a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20strategy%20call%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className={linkClass}>Book Strategy Call</a></li>
               <li><a href="tel:+254708805496" className={linkClass}>Call 0708 805 496</a></li>
               <li><a href="/contact" className={linkClass}>Contact form</a></li>
+              <li><a href="/how-we-work" className={linkClass}>How We Work</a></li>
               <li><a href="/how-we-build" className={linkClass}>How We Build</a></li>
             </ul>
           </div>

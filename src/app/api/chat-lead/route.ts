@@ -1,28 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { upsertChatSessionFromLead, insertFrankGreetingIfEmpty } from '@/lib/db';
+import { CHAT_FRANK_GREETING } from '@/lib/chatConstants';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// Check if API key is configured
-if (!process.env.RESEND_API_KEY) {
-  console.error('RESEND_API_KEY is not configured in environment variables');
-}
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if API key is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is missing');
-      return NextResponse.json(
-        { error: 'Email service is not configured' },
-        { status: 500 }
-      );
-    }
-
-    const { name, phone, email, pageUrl, userAgent } = await request.json();
+    const { name, phone, email, pageUrl, userAgent, sessionPublicId } = await request.json();
 
     // Validate required fields
     if (!name || !phone) {
@@ -41,10 +30,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send email via Resend - Always send to cresdynamics@gmail.com
+    const sid =
+      typeof sessionPublicId === 'string' && sessionPublicId.trim().length > 0
+        ? sessionPublicId.trim()
+        : null;
+
+    if (sid) {
+      try {
+        await upsertChatSessionFromLead({
+          sessionPublicId: sid,
+          visitorName: name,
+          phone,
+          email: email || null,
+          pageUrl: pageUrl || null,
+          userAgent: userAgent || null,
+        });
+        await insertFrankGreetingIfEmpty(sid, CHAT_FRANK_GREETING);
+      } catch (dbErr) {
+        console.error('chat session / greeting save failed:', dbErr);
+      }
+    }
+
+    if (!resend) {
+      console.warn('RESEND_API_KEY not set; chat session saved but no notification email sent.');
+      return NextResponse.json({
+        success: true,
+        message: 'Lead captured; email notifications disabled',
+        emailSent: false,
+      });
+    }
+
+    // Send email via Resend — optional; DB persistence above always runs when DATABASE_URL is set
     const recipientEmail = 'cresdynamics@gmail.com';
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
-    
+
     const { data, error } = await resend.emails.send({
       from: `CRES Dynamics Chat Bot <${senderEmail}>`,
       to: [recipientEmail],
@@ -116,6 +135,7 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         message: 'Lead captured successfully',
+        emailSent: true,
       },
       { status: 200 }
     );

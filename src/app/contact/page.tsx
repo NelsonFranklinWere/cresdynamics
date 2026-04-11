@@ -7,10 +7,11 @@ import Footer from '@/components/Footer';
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     fullName: '',
-    phone: '',
     email: '',
-    description: '',
-    subscribe: false
+    contactPhone: '',
+    projectTitle: '',
+    projectDetail: '',
+    subscribe: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -44,10 +45,11 @@ export default function ContactPage() {
         // Reset form
         setFormData({
           fullName: '',
-          phone: '',
           email: '',
-          description: '',
-          subscribe: false
+          contactPhone: '',
+          projectTitle: '',
+          projectDetail: '',
+          subscribe: false,
         });
       } else {
         setSubmitMessage(data.error || 'Failed to send message. Please try again.');
@@ -97,7 +99,7 @@ export default function ContactPage() {
         {/* Dimmed background overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div id="contact-form" className="max-w-7xl mx-auto px-6 relative z-10 scroll-mt-24">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             
             {/* LEFT SIDE → Get in Touch */}
@@ -154,15 +156,20 @@ export default function ContactPage() {
             <div className="bg-black border border-white/20 rounded-xl p-4 md:p-8 shadow-lg">
               <div className="mb-4 md:mb-6">
                 <h3 className="text-lg md:text-2xl lg:text-3xl font-black text-[var(--cres-white)] mb-2 md:mb-3">
-                  Book a Systems Discovery Session
+                  Tell us about your project
                 </h3>
                 <p className="text-xs md:text-base lg:text-lg text-[var(--cres-white)]">
-                  Submit the form below. We'll map your processes and system requirements, then outline how we architect and deploy production-ready systems.
+                  Share your name and how to reach you. In the project box below, tell us what you want the project to do,
+                  what the website should do, what the system should do—we read everything and reply with next steps,
+                  usually within one business day.
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
+                  <label htmlFor="fullName" className="block text-xs font-semibold text-gray-300 mb-1.5">
+                    Your name
+                  </label>
                   <input
                     type="text"
                     id="fullName"
@@ -171,11 +178,14 @@ export default function ContactPage() {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
-                    placeholder="Full Name"
+                    placeholder="Full name"
                   />
                 </div>
 
                 <div>
+                  <label htmlFor="email" className="block text-xs font-semibold text-gray-300 mb-1.5">
+                    Email
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -184,33 +194,61 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
-                    placeholder="Email"
+                    placeholder="We’ll reply here"
                   />
                 </div>
 
                 <div>
+                  <label htmlFor="contactPhone" className="block text-xs font-semibold text-gray-300 mb-1.5">
+                    Phone or WhatsApp
+                  </label>
                   <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
+                    type="text"
+                    id="contactPhone"
+                    name="contactPhone"
                     required
-                    value={formData.phone}
+                    value={formData.contactPhone}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
-                    placeholder="Contact Number"
+                    placeholder="+254 … (best number to reach you)"
                   />
                 </div>
 
                 <div>
-                  <textarea
-                    id="description"
-                    name="description"
+                  <label htmlFor="projectTitle" className="block text-xs font-semibold text-gray-300 mb-1.5">
+                    Project title (short)
+                  </label>
+                  <input
+                    type="text"
+                    id="projectTitle"
+                    name="projectTitle"
                     required
-                    value={formData.description}
+                    value={formData.projectTitle}
                     onChange={handleInputChange}
-                    rows={5}
-                    className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent resize-none"
-                    placeholder="Describe your operations, goals, and what you need from a system (ERP, finance, automation, etc.)"
+                    className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    placeholder="e.g. New website + Mpesa, ERP for stock, finance dashboard"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="projectDetail" className="block text-xs font-semibold text-gray-300 mb-1.5">
+                    Explain your project — what should it do?
+                  </label>
+                  <p className="text-[11px] md:text-xs text-gray-400 mb-2 leading-snug">
+                    What do you want the project to achieve? What should the <span className="text-gray-300">website</span>{' '}
+                    do (e.g. leads, sales, catalogue, bookings)? What should the{' '}
+                    <span className="text-gray-300">system</span> do (e.g. stock, invoices, WhatsApp, reports)? Share it
+                    with us here—the clearer you are, the faster we can help.
+                  </p>
+                  <textarea
+                    id="projectDetail"
+                    name="projectDetail"
+                    required
+                    value={formData.projectDetail}
+                    onChange={handleInputChange}
+                    rows={6}
+                    className="w-full px-4 py-3 bg-gray-800/80 border border-gray-700 rounded-xl text-[var(--cres-white)] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent resize-none text-sm"
+                    placeholder="Project: …  ·  Website: …  ·  System: …  (add timeline, tools you use today, and what success looks like)"
                   ></textarea>
                 </div>
 
@@ -238,8 +276,9 @@ export default function ContactPage() {
                 
                 {submitMessage && (
                   <div className={`mt-4 p-4 rounded-xl text-center ${
-                    submitMessage.includes('successfully') 
-                      ? 'bg-green-900/50 text-green-300 border border-green-700' 
+                    submitMessage.toLowerCase().includes('thank you') ||
+                    submitMessage.toLowerCase().includes('success')
+                      ? 'bg-green-900/50 text-green-300 border border-green-700'
                       : 'bg-red-900/50 text-red-300 border border-red-700'
                   }`}>
                     {submitMessage}

@@ -229,13 +229,14 @@ export default function Header() {
         }`}
         onMouseEnter={openWhoWeAreDropdown}
         onMouseLeave={closeWhoWeAreDropdown}
-        style={{ minHeight: '260px' }}
+        style={{ minHeight: '280px' }}
       >
         <div className="max-w-6xl mx-auto px-6 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10">
             {[
               { name: 'Who We Are', href: '/about', desc: 'Our story and mission', image: '/logo.png' },
               { name: 'Why Us', href: '/why-us', desc: 'Why serious businesses choose us', image: '/logo.png' },
+              { name: 'How We Work', href: '/how-we-work', desc: 'Discovery to go-live — our delivery process', image: '/logo.png' },
               { name: 'How We Build', href: '/how-we-build', desc: 'Our system engineering framework', image: '/logo.png' },
               { name: 'Contact', href: 'https://wa.me/254708805496?text=Hi%2C%20I\'d%20like%20to%20book%20a%20systems%20discovery%20session.', desc: 'Book a systems discovery session (WhatsApp)', image: '/logo.png' },
             ].map((item) => (
@@ -388,6 +389,7 @@ export default function Header() {
                 {[
                   { name: 'Who We Are', href: '/about' },
                   { name: 'Why Us', href: '/why-us' },
+                  { name: 'How We Work', href: '/how-we-work' },
                   { name: 'How We Build', href: '/how-we-build' },
                   { name: 'Contact', href: '/contact' },
                 ].map((link) => (

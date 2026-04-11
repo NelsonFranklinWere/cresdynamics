@@ -161,11 +161,15 @@ export default function WebsitesPage() {
           <div className="relative z-10 max-w-5xl mx-auto px-6">
             <div className="text-center mb-10 md:mb-12">
               <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-2">
-                What We Build
+                Scope
               </p>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white">
                 Types of Websites We Build
               </h2>
+              <p className="text-white/70 text-sm md:text-base mt-4 max-w-2xl mx-auto leading-relaxed">
+                From corporate sites and stores to portals and content engines—each build is scoped to how you sell, who you
+                serve, and what must happen when someone lands on the page.
+              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {websiteTypes.map((item, i) => (
@@ -218,7 +222,7 @@ export default function WebsitesPage() {
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             <div className="text-center mb-10 md:mb-12">
               <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-2">
-                What We Build
+                Conversion
               </p>
               <h2 className="text-2xl md:text-3xl font-black text-white mb-2">
                 Not a Website.
@@ -226,8 +230,8 @@ export default function WebsitesPage() {
                 A Sales System.
               </h2>
               <p className="text-white/75 text-sm md:text-base max-w-2xl mx-auto">
-                Every CRES website is built to do one job: convert visitors into clients. Design is how we achieve that –
-                not the goal itself.
+                Design and copy serve one outcome: moving the right visitor to enquiry, checkout, or booking. Below is how we
+                engineer that path—not just how pages look.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

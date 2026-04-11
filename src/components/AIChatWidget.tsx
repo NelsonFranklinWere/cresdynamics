@@ -1,6 +1,14 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { MessageCircle, User } from 'lucide-react';
+import {
+  CHAT_FRANK_GREETING,
+  CHAT_FRANK_TEASER,
+  CHAT_FRANK_LEAD_INTRO,
+  CHAT_FRANK_LEAD_CTA,
+  CHAT_FRANK_INSIST_NAME,
+} from '@/lib/chatConstants';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -13,24 +21,34 @@ interface ClientDetails {
   email?: string;
 }
 
+/** Proactive teaser bubble while the widget is closed. */
+const GREETING_DELAY_MS = 4000;
+const TEASER_VISIBLE_MS = 9000;
+/** Auto-open the chat panel after this delay (ms) if the visitor hasn’t opened it yet. */
+const AUTO_OPEN_CHAT_MS = 45_000;
+
 export default function AIChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [showTeaser, setShowTeaser] = useState(false);
+  const [sessionPublicId, setSessionPublicId] = useState('');
   const [clientDetails, setClientDetails] = useState<ClientDetails | null>(null);
   const [showDetailsForm, setShowDetailsForm] = useState(true);
   const [detailsFormData, setDetailsFormData] = useState({ name: '', phone: '', email: '' });
   const [isSubmittingDetails, setIsSubmittingDetails] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: "Hi, I’m the CRES AI assistant. Ask me anything about our services or how we can help your business grow.",
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      setSessionPublicId(crypto.randomUUID());
+    } else {
+      setSessionPublicId(`sess_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`);
+    }
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -59,25 +77,29 @@ export default function AIChatWidget() {
         setShowTeaser(true);
         setTimeout(() => {
           setShowTeaser(false);
-        }, 4000);
+        }, TEASER_VISIBLE_MS);
       }
-    }, 10000);
+    }, GREETING_DELAY_MS);
 
     return () => {
       clearTimeout(showTimer);
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const id = window.setTimeout(() => setIsOpen(true), AUTO_OPEN_CHAT_MS);
+    return () => window.clearTimeout(id);
+  }, []);
+
   const handleDetailsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!detailsFormData.name.trim() || !detailsFormData.phone.trim()) {
+    if (!detailsFormData.name.trim() || !detailsFormData.phone.trim() || !sessionPublicId) {
       return;
     }
 
     setIsSubmittingDetails(true);
 
     try {
-      // Send client details to API
       const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
       const userAgent = typeof window !== 'undefined' ? window.navigator.userAgent : '';
 
@@ -92,35 +114,31 @@ export default function AIChatWidget() {
           email: detailsFormData.email.trim() || undefined,
           pageUrl,
           userAgent,
+          sessionPublicId,
         }),
       });
 
-      if (response.ok) {
-        // Store client details
-        setClientDetails({
-          name: detailsFormData.name.trim(),
-          phone: detailsFormData.phone.trim(),
-          email: detailsFormData.email.trim() || undefined,
-        });
-        setShowDetailsForm(false);
-      } else {
-        // Still allow chat even if email fails
-        setClientDetails({
-          name: detailsFormData.name.trim(),
-          phone: detailsFormData.phone.trim(),
-          email: detailsFormData.email.trim() || undefined,
-        });
-        setShowDetailsForm(false);
+      const nextDetails: ClientDetails = {
+        name: detailsFormData.name.trim(),
+        phone: detailsFormData.phone.trim(),
+        email: detailsFormData.email.trim() || undefined,
+      };
+      setClientDetails(nextDetails);
+      setShowDetailsForm(false);
+      setMessages([{ role: 'assistant', content: CHAT_FRANK_GREETING }]);
+
+      if (!response.ok) {
+        console.warn('Chat lead API returned non-OK; continuing with local chat.');
       }
     } catch (error) {
       console.error('Error submitting details:', error);
-      // Still allow chat even if email fails
       setClientDetails({
         name: detailsFormData.name.trim(),
         phone: detailsFormData.phone.trim(),
         email: detailsFormData.email.trim() || undefined,
       });
       setShowDetailsForm(false);
+      setMessages([{ role: 'assistant', content: CHAT_FRANK_GREETING }]);
     } finally {
       setIsSubmittingDetails(false);
     }
@@ -135,6 +153,8 @@ export default function AIChatWidget() {
     setMessages((prev) => [...prev, { role: 'user', content: userMessage }]);
     setIsLoading(true);
 
+    const historyForApi = [...messages, { role: 'user' as const, content: userMessage }];
+
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -143,28 +163,21 @@ export default function AIChatWidget() {
         },
         body: JSON.stringify({
           message: userMessage,
-          conversationHistory: messages,
+          conversationHistory: historyForApi,
           clientDetails,
+          sessionPublicId,
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessages((prev) => [
-          ...prev,
-          { role: 'assistant', content: data.response },
-        ]);
+        setMessages((prev) => [...prev, { role: 'assistant', content: data.response }]);
       } else {
-        // Show the actual error message if available
-        const errorMsg = data.error || "I'm sorry, I'm having trouble connecting right now. Please try again or contact us directly at info@cresdynamics.com";
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: 'assistant',
-            content: errorMsg,
-          },
-        ]);
+        const errorMsg =
+          data.error ||
+          "I'm having trouble connecting right now. Please try again or reach us at info@cresdynamics.com";
+        setMessages((prev) => [...prev, { role: 'assistant', content: errorMsg }]);
       }
     } catch (error) {
       console.error('Chat error:', error);
@@ -172,7 +185,7 @@ export default function AIChatWidget() {
         ...prev,
         {
           role: 'assistant',
-          content: "I'm sorry, something went wrong. Please try again or contact us at info@cresdynamics.com",
+          content: "Something went wrong. Please try again or contact us at info@cresdynamics.com",
         },
       ]);
     } finally {
@@ -180,86 +193,69 @@ export default function AIChatWidget() {
     }
   };
 
+  const leadNameAndPhoneReady =
+    detailsFormData.name.trim().length > 0 && detailsFormData.phone.trim().length > 0;
+
+  const closeChat = () => {
+    setIsOpen(false);
+    setShowDetailsForm(true);
+    setClientDetails(null);
+    setDetailsFormData({ name: '', phone: '', email: '' });
+    setMessages([]);
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      setSessionPublicId(crypto.randomUUID());
+    } else {
+      setSessionPublicId(`sess_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`);
+    }
+  };
+
   return (
     <>
-      {/* Teaser bubble */}
+      {/* Proactive greeting — appears ~4s after load (within first 5s window) */}
       {!isOpen && showTeaser && (
-        <div className="fixed bottom-20 right-6 z-50 max-w-xs bg-[var(--cres-black)] text-white/85 text-[11px] leading-snug px-3 py-2 rounded-lg shadow-lg border border-white/10">
-          <p>I'm your CRES AI assistant,</p>
-          <p>chat with me.</p>
+        <div className="fixed bottom-20 right-6 z-50 max-w-[min(18rem,calc(100vw-3rem))] bg-[var(--cres-black)] text-white/90 text-[9px] leading-snug px-2.5 py-2 rounded-xl shadow-xl border border-white/15 flex gap-2 items-start text-left">
+          <div className="shrink-0 w-7 h-7 rounded-full bg-white/10 flex items-center justify-center border border-white/10">
+            <MessageCircle className="w-3.5 h-3.5 text-[var(--cres-electric-teal)]" aria-hidden />
+          </div>
+          <p className="pt-0.5 text-left">{CHAT_FRANK_TEASER}</p>
         </div>
       )}
 
-      {/* Chat Button */}
       {!isOpen && (
         <button
+          type="button"
           onClick={() => setIsOpen(true)}
           onMouseEnter={() => setShowTeaser(true)}
           onMouseLeave={() => setShowTeaser(false)}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-[var(--cres-orange-primary)] to-[#E87528] hover:from-[#E87528] hover:to-[var(--cres-orange-primary)] text-white rounded-full p-4 shadow-2xl hover:shadow-[var(--cres-orange-primary)]/50 transition-all duration-300 hover:scale-110 group"
-          aria-label="Open AI chat"
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-[var(--cres-orange-primary)] to-[#E87528] hover:from-[#E87528] hover:to-[var(--cres-orange-primary)] text-white rounded-full p-3 shadow-2xl hover:shadow-[var(--cres-orange-primary)]/50 transition-all duration-300 hover:scale-110 group"
+          aria-label="Open chat with Frank from CRES Dynamics"
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-            />
-          </svg>
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-[var(--cres-electric-teal)] rounded-full animate-pulse"></span>
+          <MessageCircle className="w-5 h-5" strokeWidth={2} aria-hidden />
+          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[var(--cres-electric-teal)] rounded-full animate-pulse" />
         </button>
       )}
 
-      {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[600px] max-h-[calc(100vh-8rem)] bg-[var(--cres-deep-navy)] border border-white/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-[var(--cres-orange-primary)] to-[#E87528] p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                  />
-                </svg>
+        <div className="fixed bottom-6 right-6 z-50 w-[22rem] max-w-[calc(100vw-3rem)] h-[min(32rem,calc(100vh-5rem))] bg-[var(--cres-deep-navy)] border border-white/20 rounded-xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl">
+          <div className="bg-gradient-to-r from-[var(--cres-orange-primary)] to-[#E87528] px-3 py-2.5 flex items-center justify-between">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-9 h-9 shrink-0 bg-white/20 rounded-full flex items-center justify-center border border-white/20">
+                <User className="w-4 h-4 text-white" strokeWidth={2} aria-hidden />
               </div>
-              <div>
-                <h3 className="text-white font-bold text-lg">CRES AI Assistant</h3>
-                <p className="text-white/80 text-xs">
-                  {showDetailsForm ? 'Please provide your details to continue' : 'Ask me anything about our services'}
+              <div className="min-w-0">
+                <h3 className="text-white font-semibold text-sm truncate">Frank</h3>
+                <p className="text-white/85 text-[11px] truncate">
+                  {showDetailsForm ? 'Leave your details to start' : 'CRES Dynamics · Let’s talk about your business'}
                 </p>
               </div>
             </div>
             <button
-              onClick={() => {
-                setIsOpen(false);
-                setShowDetailsForm(true);
-                setClientDetails(null);
-                setDetailsFormData({ name: '', phone: '', email: '' });
-              }}
-              className="text-white hover:text-white/80 transition-colors p-1"
+              type="button"
+              onClick={closeChat}
+              className="text-white hover:text-white/80 transition-colors p-1 shrink-0"
               aria-label="Close chat"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -270,19 +266,31 @@ export default function AIChatWidget() {
             </button>
           </div>
 
-          {/* Details Form */}
           {showDetailsForm && (
-            <div className="flex-1 overflow-y-auto p-6 bg-[var(--cres-primary-bg)]">
-              <div className="mb-4">
-                <h4 className="text-[var(--cres-white)] font-semibold mb-2">Let's get started!</h4>
-                <p className="text-gray-400 text-sm mb-4">
-                  Please provide your details so we can assist you better and follow up with you.
-                </p>
+            <div className="flex-1 overflow-y-auto p-3 space-y-3 bg-[var(--cres-primary-bg)]">
+              <div className="flex gap-1.5 justify-start">
+                <div
+                  className="shrink-0 w-7 h-7 rounded-full bg-white/10 border border-white/15 flex items-center justify-center mt-0.5"
+                  aria-hidden
+                >
+                  <User className="w-3.5 h-3.5 text-[var(--cres-electric-teal)]" strokeWidth={2} />
+                </div>
+                <div className="max-w-[92%] self-start rounded-lg px-2.5 py-1.5 bg-black/70 border border-white/20 text-[var(--cres-white)] shadow-sm text-left">
+                  <p className="text-[8px] font-semibold uppercase tracking-wider text-[var(--cres-electric-teal)] mb-0.5 text-left">
+                    Frank
+                  </p>
+                  <p className="text-[10px] text-gray-200 leading-snug text-left">{CHAT_FRANK_LEAD_INTRO}</p>
+                  <p className="text-[10px] text-gray-300 leading-snug mt-1.5 text-left">{CHAT_FRANK_LEAD_CTA}</p>
+                  <p className="text-[10px] text-[var(--cres-white)] leading-snug mt-1.5 pt-1.5 border-t border-white/10 text-left">
+                    <span className="font-semibold text-[var(--cres-electric-teal)]">{CHAT_FRANK_INSIST_NAME}</span>
+                  </p>
+                </div>
               </div>
-              <form onSubmit={handleDetailsSubmit} className="space-y-4">
+              <form onSubmit={handleDetailsSubmit} className="space-y-3">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-[var(--cres-white)] mb-2">
-                    Full Name <span className="text-red-400">*</span>
+                  <label htmlFor="name" className="block text-[11px] font-medium text-[var(--cres-white)] mb-1">
+                    Full name <span className="text-red-400">*</span>{' '}
+                    <span className="font-normal text-gray-400">(required)</span>
                   </label>
                   <input
                     ref={nameInputRef}
@@ -291,14 +299,14 @@ export default function AIChatWidget() {
                     required
                     value={detailsFormData.name}
                     onChange={(e) => setDetailsFormData({ ...detailsFormData, name: e.target.value })}
-                    placeholder="Enter your full name"
-                    className="w-full px-4 py-3 bg-black/70 border border-white/20 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
-                    disabled={isSubmittingDetails}
+                    placeholder="Your full name"
+                    className="w-full px-3 py-2 text-xs bg-black/70 border border-white/20 rounded-lg text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    disabled={isSubmittingDetails || !sessionPublicId}
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-[var(--cres-white)] mb-2">
-                    Phone Number <span className="text-red-400">*</span>
+                  <label htmlFor="phone" className="block text-[11px] font-medium text-[var(--cres-white)] mb-1">
+                    Phone <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="tel"
@@ -306,14 +314,14 @@ export default function AIChatWidget() {
                     required
                     value={detailsFormData.phone}
                     onChange={(e) => setDetailsFormData({ ...detailsFormData, phone: e.target.value })}
-                    placeholder="e.g., +254 712 345 678"
-                    className="w-full px-4 py-3 bg-black/70 border border-white/20 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
-                    disabled={isSubmittingDetails}
+                    placeholder="e.g. +254 712 345 678"
+                    className="w-full px-3 py-2 text-xs bg-black/70 border border-white/20 rounded-lg text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    disabled={isSubmittingDetails || !sessionPublicId}
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-[var(--cres-white)] mb-2">
-                    Email (Optional)
+                  <label htmlFor="email" className="block text-[11px] font-medium text-[var(--cres-white)] mb-1">
+                    Email (optional)
                   </label>
                   <input
                     type="email"
@@ -321,102 +329,131 @@ export default function AIChatWidget() {
                     value={detailsFormData.email}
                     onChange={(e) => setDetailsFormData({ ...detailsFormData, email: e.target.value })}
                     placeholder="your.email@example.com"
-                    className="w-full px-4 py-3 bg-black/70 border border-white/20 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
-                    disabled={isSubmittingDetails}
+                    className="w-full px-3 py-2 text-xs bg-black/70 border border-white/20 rounded-lg text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                    disabled={isSubmittingDetails || !sessionPublicId}
                   />
                 </div>
                 <button
                   type="submit"
-                  disabled={!detailsFormData.name.trim() || !detailsFormData.phone.trim() || isSubmittingDetails}
-                  className="w-full bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-white px-6 py-3 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+                  disabled={!leadNameAndPhoneReady || isSubmittingDetails || !sessionPublicId}
+                  className="w-full text-xs bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-white px-4 py-2.5 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                  aria-label={
+                    isSubmittingDetails
+                      ? 'Sending'
+                      : leadNameAndPhoneReady
+                        ? 'Start chatting'
+                        : 'Enter your name and number to continue'
+                  }
                 >
-                  {isSubmittingDetails ? 'Starting chat...' : 'Start Chat'}
+                  {isSubmittingDetails
+                    ? 'Sending…'
+                    : leadNameAndPhoneReady
+                      ? "Now let's chat"
+                      : 'Enter your name and number'}
                 </button>
-                <p className="text-xs text-gray-400 text-center mt-2">
-                  By continuing, you agree to be contacted by CRES Dynamics
+                <p className="text-[10px] text-gray-400 text-center mt-1 leading-snug">
+                  So I know who I&apos;m chatting with. By sending, you agree we may continue this conversation.
                 </p>
               </form>
             </div>
           )}
 
-          {/* Messages */}
           {!showDetailsForm && (
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[var(--cres-primary-bg)]">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
+            <div className="flex-1 overflow-y-auto p-3 space-y-3 bg-[var(--cres-primary-bg)]">
+              {messages.map((message, index) => (
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-3 ${
-                    message.role === 'user'
-                      ? 'bg-[var(--cres-orange-primary)] text-white'
-                      : 'bg-black/70 border border-white/20 text-[var(--cres-white)]'
-                  }`}
+                  key={index}
+                  className={`flex gap-1.5 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                    {message.content}
-                  </p>
-                </div>
-              </div>
-            ))}
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-black/70 border border-white/20 rounded-2xl px-4 py-3">
-                  <div className="flex gap-2">
-                    <div className="w-2 h-2 bg-[var(--cres-electric-teal)] rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-[var(--cres-electric-teal)] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-2 h-2 bg-[var(--cres-electric-teal)] rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                  {message.role === 'assistant' && (
+                    <div
+                      className="shrink-0 w-7 h-7 rounded-full bg-white/10 border border-white/15 flex items-center justify-center mt-0.5"
+                      aria-hidden
+                    >
+                      <User className="w-3.5 h-3.5 text-[var(--cres-electric-teal)]" strokeWidth={2} />
+                    </div>
+                  )}
+                  <div
+                    className={`max-w-[88%] rounded-lg px-2.5 py-1.5 text-left ${
+                      message.role === 'user'
+                        ? 'bg-[var(--cres-orange-primary)] text-white'
+                        : 'bg-black/70 border border-white/20 text-[var(--cres-white)]'
+                    }`}
+                  >
+                    {message.role === 'assistant' && (
+                      <p className="text-[8px] font-semibold uppercase tracking-wider text-[var(--cres-electric-teal)] mb-0.5 text-left">
+                        Frank
+                      </p>
+                    )}
+                    <p
+                      className={`text-[10px] leading-snug whitespace-pre-wrap ${
+                        message.role === 'user' ? 'text-right text-white' : 'text-left'
+                      }`}
+                    >
+                      {message.content}
+                    </p>
                   </div>
                 </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
+              ))}
+              {isLoading && (
+                <div className="flex justify-start gap-1.5">
+                  <div className="shrink-0 w-7 h-7 rounded-full bg-white/10 border border-white/15 flex items-center justify-center">
+                    <User className="w-3.5 h-3.5 text-[var(--cres-electric-teal)]" strokeWidth={2} aria-hidden />
+                  </div>
+                  <div className="bg-black/70 border border-white/20 rounded-lg px-2.5 py-1.5">
+                    <div className="flex gap-1.5">
+                      <div className="w-1.5 h-1.5 bg-[var(--cres-electric-teal)] rounded-full animate-bounce" />
+                      <div
+                        className="w-1.5 h-1.5 bg-[var(--cres-electric-teal)] rounded-full animate-bounce"
+                        style={{ animationDelay: '0.2s' }}
+                      />
+                      <div
+                        className="w-1.5 h-1.5 bg-[var(--cres-electric-teal)] rounded-full animate-bounce"
+                        style={{ animationDelay: '0.4s' }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
             </div>
           )}
 
-          {/* Input */}
           {!showDetailsForm && (
-            <form onSubmit={handleSend} className="p-4 bg-[var(--cres-deep-navy)] border-t border-white/10">
-            <div className="flex gap-2">
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about our services..."
-                className="flex-1 px-4 py-3 bg-black/70 border border-white/20 rounded-xl text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
-                disabled={isLoading}
-              />
-              <button
-                type="submit"
-                disabled={!input.trim() || isLoading}
-                className="bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-white px-6 py-3 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                aria-label="Send message"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            <form onSubmit={handleSend} className="p-3 bg-[var(--cres-deep-navy)] border-t border-white/10">
+              <div className="flex gap-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Message Frank…"
+                  className="flex-1 px-3 py-2 text-xs bg-black/70 border border-white/20 rounded-lg text-[var(--cres-white)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--cres-orange-primary)] focus:border-transparent"
+                  disabled={isLoading}
+                />
+                <button
+                  type="submit"
+                  disabled={!input.trim() || isLoading}
+                  className="bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-white px-3 py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                  aria-label="Send message"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                  />
-                </svg>
-              </button>
-            </div>
-            <p className="text-xs text-gray-400 mt-2 text-center">
-              Powered by AI • Learn about CRES Dynamics
-            </p>
-          </form>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <p className="text-[9px] text-gray-500 mt-1.5 text-center leading-snug">
+                You&apos;re messaging our team—Frank is here to help. We typically reply within business hours.
+              </p>
+            </form>
           )}
         </div>
       )}
     </>
   );
 }
-

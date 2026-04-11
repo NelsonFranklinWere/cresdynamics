@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: cresdynamics-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: cres
+      POSTGRES_PASSWORD: cres
+      POSTGRES_DB: cresdynamics
+    ports:
+      # Avoid clashes with local Postgres on 5432/5433 — pick a free host port if this fails
+      - '15432:5432'
+    volumes:
+      - cresdynamics_pgdata:/var/lib/postgresql/data
+
+volumes:
+  cresdynamics_pgdata:

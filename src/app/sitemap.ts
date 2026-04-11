@@ -41,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/case-studies/retail-sales-system/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/pricing/`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/how-we-build/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/how-we-work/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/who-we-are/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/careers/`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${BASE}/events/`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },

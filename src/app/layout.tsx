@@ -196,6 +196,8 @@ export default function RootLayout({
         <link rel="prefetch" href="/contact" />
         <link rel="prefetch" href="/cresos" />
         <link rel="prefetch" href="/how-we-build" />
+        <link rel="prefetch" href="/how-we-work" />
+        <link rel="prefetch" href="/marketing" />
         <link rel="prefetch" href="/case-studies" />
 
         {/* Favicon and App Icons - Circular Logo as favicon */}

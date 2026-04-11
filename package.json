@@ -12,7 +12,9 @@
     "lighthouse": "lhci autorun",
     "performance": "next build && next export",
     "generate-favicons": "node generate-favicons.js",
-    "send-followups": "node send-followup-emails.js"
+    "send-followups": "node send-followup-emails.js",
+    "db:init": "node scripts/init-db.mjs",
+    "db:up": "docker compose up -d && sleep 3 && npm run db:init"
   },
   "dependencies": {
     "@radix-ui/react-scroll-area": "^1.2.10",
@@ -20,6 +22,7 @@
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
+    "pg": "^8.16.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "resend": "^6.6.0"
@@ -27,6 +30,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.11.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

@@ -13,10 +13,10 @@ export default function HowWeBuildPage() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[var(--cres-white)] mb-6" style={{ textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)' }}>
-              Our System Engineering <span className="text-[var(--cres-orange-primary)]">Framework</span>
+              Enterprise Systems <span className="text-[var(--cres-orange-primary)]">Built for Nairobi</span> &amp; Scale
             </h1>
             <p className="text-xl md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' }}>
-              Diagnose, Architect, Build, Deploy, Optimize, Scale. Structured implementation with clear milestones, accountability, and reporting at every phase.
+              Diagnose, Architect, Build, Deploy, Optimize, Scale — the same discipline Kenyan enterprises use when clicks must become operations, not slide decks.
             </p>
           </div>
         </div>

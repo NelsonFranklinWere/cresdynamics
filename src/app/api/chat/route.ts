@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { ensureChatSession, insertChatMessage } from '@/lib/db';
+import { FRANK_SYSTEM_INSTRUCTION } from '@/lib/chatFrankSystemPrompt';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -7,37 +9,6 @@ export const dynamic = 'force-dynamic';
 // Optional email client for chat-triggered actions
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
-
-// System instruction: CRES website + Nairobi/market + pricing (no price before problem) + email with booked session
-const SYSTEM_INSTRUCTION = `You are the CRES Dynamics website chat assistant.
-
-Company (from website):
-- CRES Dynamics is a systems engineering and digital agency based in Nairobi, Kenya (Kivuli Tower, 3rd Floor Westlands).
-- They build: Websites (professional, mobile-optimised, WhatsApp integration), SEO & Google visibility, AI & Sales Automation, WhatsApp Business systems, Content & Brand authority, and Digital Strategy Consulting.
-- CresOS: business operations platform (operations, finance, client & team management, analytics, Mpesa). Tiers: Starter (website), Growth (CresOS Business), Scale (Full ERP), Enterprise (custom). Also custom ERP systems, finance platforms, operations/workflow systems, automation.
-- Mission: Help Nairobi and Kenyan businesses turn clicks into clients; build growth systems, not just templates. Free strategy/discovery sessions (no pitch, 20 min). Contact: info@cresdynamics.com, +254 708 805 496, +254 743 869 564.
-
-Nairobi / Kenya market (use when relevant):
-- Many SMEs need better online visibility, lead generation, and integrated systems. CRES focuses on local context: Mpesa, WhatsApp; discovery session required to align scope and investment; pricing customised per business.
-
-Pricing (strict): Do NOT quote specific prices (KES or package prices) until the visitor has clearly described the core problem they want to solve or the outcome they need. First understand what they want to achieve or what is not working; only then may you mention options (Starter, Growth, Scale, Enterprise) and that investment is customised after a strategy call. Do not give numbers before the problem is discussed.
-
-Response style:
-- Keep answers short, clear, and practical.
-- Maximum 3 short paragraphs or bullet lists, no long essays.
-- Go straight to the point, avoid repeating yourself.
-- Do NOT tell users to go and book themselves; instead, offer to arrange a call or follow-up from the CRES team.
-
-Actions you can trigger:
-- When a user shows serious interest (e.g. asks for help, pricing, proposal, or how to start), ask if they’d like a call or WhatsApp follow-up.
-- Confirm rough timing with them (e.g. “today”, “tomorrow”, or a day next week, plus preferred time window).
-- Once they clearly agree to be contacted, notify the CRES team by including an action in your JSON response with type "send_email_to_team".
-- In the action include "summary" (what they need, key points), "preferredDay", "preferredTime", and "channel" (call or WhatsApp) so the team gets the booked session details.
-
-Response format (very important):
-- ALWAYS respond ONLY as minified JSON (no markdown, no extra text). Shape:
-  {"reply":"SHORT_TEXT_RESPONSE","actions":[{"type":"send_email_to_team","subject":"EMAIL_SUBJECT","summary":"WHAT_THE_USER_WANTS_AND_KEY_POINTS","preferredDay":"DAY_OR_DATE","preferredTime":"TIME_WINDOW","channel":"call_or_WhatsApp"}]}
-- Use [] for actions when there is no follow-up. Only include "send_email_to_team" when the user has agreed to be contacted and you have confirmed at least rough day and time.`;
 
 type ClientDetails = {
   name?: string;
@@ -63,6 +34,22 @@ type ParsedAssistantResponse = {
   reply: string;
   actions: AssistantAction[];
 };
+
+async function persistChatMessages(
+  sessionPublicId: unknown,
+  userMsg: string,
+  assistantReply: string
+) {
+  if (typeof sessionPublicId !== 'string' || !sessionPublicId.trim()) return;
+  const sid = sessionPublicId.trim();
+  try {
+    await ensureChatSession(sid);
+    await insertChatMessage(sid, 'user', userMsg);
+    await insertChatMessage(sid, 'assistant', assistantReply);
+  } catch (e) {
+    console.error('chat DB persist failed:', e);
+  }
+}
 
 function parseAssistantContent(raw: string): ParsedAssistantResponse {
   const text = raw.trim();
@@ -212,7 +199,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { message, conversationHistory, clientDetails } = await request.json();
+    const { message, conversationHistory, clientDetails, sessionPublicId } = await request.json();
 
     if (!message || typeof message !== 'string') {
       return NextResponse.json(
@@ -227,7 +214,7 @@ export async function POST(request: NextRequest) {
       const messages = [
         {
           role: 'system',
-          content: SYSTEM_INSTRUCTION,
+          content: FRANK_SYSTEM_INSTRUCTION,
         },
         // Add conversation history (last 10 messages to avoid token limits)
         ...(conversationHistory || [])
@@ -253,7 +240,7 @@ export async function POST(request: NextRequest) {
           model: 'llama-3.1-8b-instant', // Fast and free model
           messages: messages,
           temperature: 0.7,
-          max_tokens: 500,
+          max_tokens: 380,
         }),
       });
 
@@ -278,6 +265,7 @@ export async function POST(request: NextRequest) {
 
       const assistantText = data.choices[0].message.content as string;
       const parsed = parseAssistantContent(assistantText);
+      await persistChatMessages(sessionPublicId, message, parsed.reply);
       await executeActions(parsed.actions, {
         clientDetails,
         latestUserMessage: message,
@@ -311,10 +299,10 @@ export async function POST(request: NextRequest) {
         contents: contents,
         generationConfig: {
           temperature: 0.7,
-          maxOutputTokens: 500,
+          maxOutputTokens: 380,
         },
         systemInstruction: {
-          parts: [{ text: SYSTEM_INSTRUCTION }],
+          parts: [{ text: FRANK_SYSTEM_INSTRUCTION }],
         },
       };
 
@@ -378,6 +366,7 @@ export async function POST(request: NextRequest) {
 
       const assistantText = data.candidates[0].content.parts[0].text as string;
       const parsed = parseAssistantContent(assistantText);
+      await persistChatMessages(sessionPublicId, message, parsed.reply);
       await executeActions(parsed.actions, {
         clientDetails,
         latestUserMessage: message,
