@@ -1,10 +1,10 @@
 export default function FinalCTA() {
   return (
-    <section className="py-32 relative" style={{ background: 'var(--cres-gradient-bg)' }}>
+    <section className="py-10 md:py-32 relative" style={{ background: 'var(--cres-gradient-bg)' }}>
       <div className="relative z-10">
         <div className="max-w-4xl mx-auto px-6 text-center">
         {/* Final Statement */}
-        <div className="mb-12">
+        <div className="mb-6 md:mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.3)' }}>
             Ready for Proprietary Operating Environments That Run Your Company?
           </h2>
@@ -14,7 +14,7 @@ export default function FinalCTA() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-[var(--navy-dark)]/90 backdrop-blur-sm p-6 md:p-12 rounded-xl shadow-xl border border-white/10 mb-12">
+        <div className="bg-[var(--navy-dark)]/90 backdrop-blur-sm p-6 md:p-12 rounded-xl shadow-xl border border-white/10 mb-6 md:mb-12">
           <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6">
             Choose Your Next Step
           </h3>

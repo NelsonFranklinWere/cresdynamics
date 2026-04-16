@@ -13,7 +13,7 @@ if (!process.env.RESEND_API_KEY) {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const DEFAULT_INBOX = 'info@cresdynamics.com';
+const DEFAULT_INBOX = 'cresdynamics@gmail.com';
 
 const MAX_CV_BYTES = 4 * 1024 * 1024; // 4 MB (fits typical email + serverless limits)
 const ALLOWED_CV_MIME = new Set([

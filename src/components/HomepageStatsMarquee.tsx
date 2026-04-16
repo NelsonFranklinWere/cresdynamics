@@ -11,7 +11,7 @@ export default function HomepageStatsMarquee() {
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
     >
-      <div className="max-w-5xl mx-auto px-6 pb-10 pt-6 md:pt-10">
+      <div className="max-w-5xl mx-auto px-6 pb-4 pt-2 md:pb-10 md:pt-10">
         {/* Stats bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 border border-white/10 bg-black/40">
           {[

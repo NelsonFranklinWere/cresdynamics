@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 
 export const runtime = 'nodejs';
 
-export default function NotFound() {
+export default function AdminCatchAllRedirectPage() {
   redirect('/');
 }
+

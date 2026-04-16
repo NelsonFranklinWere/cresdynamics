@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future of AI — CRES Dynamics Event | June 20, Nairobi</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#08090F;--ink2:#13141E;--gold:#C8902A;--gold2:#E8A830;
+  --lgold:#FBF0DC;--bgold:#6A4808;--white:#FFFFFF;--off:#F8F6F1;
+  --muted:#6B6B80;--bord:#E0DCD4;--green:#1A6835;--lgreen:#EEF8F2;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--white);font-family:'Lora',serif;overflow-x:hidden;}
+
+/* ── NOISE OVERLAY ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,9,15,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,144,42,0.1);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.1em;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.nav-date{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;}
+.nav-reg{background:var(--gold);color:var(--ink);padding:9px 20px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .2s;}
+.nav-reg:hover{background:var(--gold2);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:100px 48px 60px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 50%,rgba(200,144,42,0.07) 0%,transparent 65%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(200,144,42,0.04) 0%,transparent 60%),var(--ink);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,144,42,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(200,144,42,0.035) 1px,transparent 1px);background-size:64px 64px;}
+.hero-ghost{position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(160px,22vw,320px);line-height:1;color:rgba(200,144,42,0.03);pointer-events:none;user-select:none;letter-spacing:-.02em;}
+
+.hero-inner{position:relative;z-index:1;max-width:900px;}
+.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.hero-badge{background:rgba(200,144,42,0.12);border:1px solid rgba(200,144,42,0.3);padding:6px 14px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;border-radius:1px;}
+.hero-line{width:40px;height:1px;background:rgba(200,144,42,0.4);}
+.hero-subtitle-top{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;}
+
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,148px);line-height:.88;letter-spacing:.01em;color:var(--white);margin-bottom:10px;}
+.hero-title .gold{color:var(--gold);}
+.hero-title .stroke{-webkit-text-stroke:1px rgba(255,255,255,0.2);color:transparent;}
+
+.hero-desc{font-family:'Lora',serif;font-style:italic;font-size:clamp(15px,1.8vw,20px);color:rgba(255,255,255,0.38);max-width:520px;line-height:1.7;margin:20px 0 36px;}
+
+.hero-meta{display:flex;gap:32px;align-items:center;flex-wrap:wrap;margin-bottom:36px;}
+.hero-meta-item{display:flex;flex-direction:column;gap:4px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.2em;color:rgba(255,255,255,0.25);text-transform:uppercase;}
+.hero-meta-val{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:.04em;}
+.hero-meta-val span{color:var(--gold);}
+.meta-div{width:1px;height:36px;background:rgba(255,255,255,0.08);}
+
+.hero-ctas{display:flex;gap:14px;align-items:center;}
+.btn-primary{background:var(--gold);color:var(--ink);padding:16px 36px;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .25s;display:inline-block;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,144,42,0.25);}
+.btn-ghost{color:rgba(255,255,255,0.38);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
+.btn-ghost:hover{color:var(--gold);}
+.btn-ghost::after{content:'↓';}
+
+/* ── COUNTDOWN ── */
+.countdown-bar{background:var(--gold);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;position:relative;z-index:1;}
+.cd-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--bgold);text-transform:uppercase;}
+.cd-nums{display:flex;gap:6px;align-items:center;}
+.cd-block{background:var(--bgold);color:var(--gold);padding:6px 12px;font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;border-radius:2px;min-width:56px;text-align:center;}
+.cd-sep{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--bgold);}
+.cd-sub{font-family:'DM Mono',monospace;font-size:8px;color:var(--bgold);text-align:center;letter-spacing:.1em;margin-top:2px;}
+.cd-right{font-family:'Lora',serif;font-style:italic;font-size:14px;color:var(--bgold);}
+
+/* ── ABOUT ── */
+.about{padding:80px 48px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;}
+.about-left .sec-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.about-left .sec-label::before{content:'';width:28px;height:1px;background:var(--gold);}
+.about-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);line-height:.92;color:var(--white);margin-bottom:20px;letter-spacing:.02em;}
+.about-title .gold{color:var(--gold);}
+.about-body{font-size:14.5px;line-height:1.85;color:rgba(255,255,255,0.42);margin-bottom:24px;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(200,144,42,0.1);}
+.stat-c{background:var(--ink2);padding:20px 18px;}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--gold);line-height:1;margin-bottom:2px;}
+.stat-l{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:.1em;text-transform:uppercase;}
+
+/* TRACKS VISUAL */
+.tracks-box{display:flex;flex-direction:column;gap:2px;}
+.track-card{padding:28px 24px;position:relative;overflow:hidden;}
+.track-card.biz{background:var(--lgold);}
+.track-card.dev{background:var(--ink2);border:1px solid rgba(200,144,42,0.15);}
+.track-ghost{position:absolute;right:-10px;bottom:-14px;font-family:'Bebas Neue',sans-serif;font-size:80px;opacity:.07;line-height:1;pointer-events:none;}
+.track-card.biz .track-ghost{color:var(--bgold);}
+.track-card.dev .track-ghost{color:var(--gold);}
+.track-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;}
+.track-card.biz .track-tag{color:var(--bgold);}
+.track-card.dev .track-tag{color:var(--gold);}
+.track-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;margin-bottom:6px;}
+.track-card.biz .track-title{color:var(--ink);}
+.track-card.dev .track-title{color:var(--white);}
+.track-desc{font-size:13px;line-height:1.7;}
+.track-card.biz .track-desc{color:var(--bgold);}
+.track-card.dev .track-desc{color:rgba(255,255,255,0.38);}
+
+/* ── AGENDA ── */
+.agenda{background:var(--ink2);padding:80px 48px;border-top:1px solid rgba(200,144,42,0.08);}
+.sec-head{margin-bottom:48px;}
+.sec-head-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.sec-head-label::before{content:'';width:28px;height:1px;background:var(--gold);}
+.sec-head-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);line-height:.92;color:var(--white);letter-spacing:.02em;}
+.sec-head-title .gold{color:var(--gold);}
+
+.agenda-list{display:flex;flex-direction:column;gap:2px;}
+.agenda-row{display:grid;grid-template-columns:140px 1fr;gap:0;background:var(--bord);}
+.ag-time{background:var(--ink);padding:20px 18px;display:flex;flex-direction:column;justify-content:center;}
+.ag-time-val{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);line-height:1;}
+.ag-time-label{font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.2);letter-spacing:.1em;margin-top:4px;}
+.ag-content{background:var(--white);padding:20px 24px;}
+.ag-content.break{background:var(--lgold);}
+.ag-content.panel{background:var(--ink);border-left:3px solid var(--gold);}
+.ag-title{font-family:'Lora',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.ag-content.break .ag-title{color:var(--bgold);}
+.ag-content.panel .ag-title{color:var(--white);}
+.ag-desc{font-size:12.5px;line-height:1.65;color:var(--muted);}
+.ag-content.break .ag-desc{color:var(--bgold);opacity:.7;}
+.ag-content.panel .ag-desc{color:rgba(255,255,255,0.38);}
+.ag-tag{display:inline-block;padding:2px 8px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;border-radius:1px;margin-bottom:6px;text-transform:uppercase;}
+.tag-biz{background:var(--lgold);color:var(--bgold);}
+.tag-dev{background:rgba(200,144,42,0.12);color:var(--gold);}
+.tag-all{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);}
+.tag-break{background:rgba(106,72,8,0.12);color:var(--bgold);}
+
+/* ── SPEAKERS ── */
+.speakers{padding:80px 48px;background:var(--off);}
+.speakers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bord);margin-top:48px;}
+.speaker-card{background:var(--white);padding:28px 22px;position:relative;overflow:hidden;transition:transform .2s;}
+.speaker-card:hover{transform:translateY(-3px);}
+.speaker-card.tba{background:var(--lgrey,#f4f4f6);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:200px;}
+.speaker-avatar{width:72px;height:72px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);margin-bottom:14px;border:2px solid rgba(200,144,42,0.2);}
+.speaker-name{font-family:'Lora',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.speaker-role{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.speaker-bio{font-size:12px;line-height:1.65;color:var(--muted);}
+.tba-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
+.speaker-card.tba .speaker-avatar{background:var(--bord);color:var(--muted);font-size:22px;}
+
+/* ── WHAT YOU LEARN ── */
+.learn{padding:80px 48px;background:var(--ink);}
+.learn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(200,144,42,0.08);margin-top:48px;}
+.learn-card{background:var(--ink2);padding:28px 24px;position:relative;overflow:hidden;}
+.learn-card::before{content:attr(data-n);position:absolute;bottom:-14px;right:10px;font-family:'Bebas Neue',sans-serif;font-size:88px;color:rgba(200,144,42,0.04);line-height:1;}
+.learn-for{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.learn-title{font-family:'Lora',serif;font-size:16px;font-weight:600;color:var(--white);margin-bottom:8px;}
+.learn-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.learn-list li{font-size:13px;color:rgba(255,255,255,0.4);display:flex;gap:10px;line-height:1.6;}
+.learn-list li::before{content:'→';color:var(--gold);flex-shrink:0;font-family:'DM Mono',monospace;}
+
+/* ── VENUE ── */
+.venue{padding:80px 48px;background:var(--ink2);}
+.venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px;}
+.venue-details{display:flex;flex-direction:column;gap:2px;}
+.venue-detail{background:var(--ink);padding:18px 20px;display:grid;grid-template-columns:120px 1fr;}
+.venue-d-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;align-self:center;}
+.venue-d-val{font-family:'Lora',serif;font-size:14px;color:var(--white);}
+.venue-map{background:var(--ink);border:1px solid rgba(200,144,42,0.15);padding:28px;display:flex;flex-direction:column;gap:16px;}
+.venue-map-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);letter-spacing:.04em;}
+.venue-map-body{font-size:13.5px;line-height:1.7;color:rgba(255,255,255,0.38);}
+.venue-map-btn{background:transparent;border:1px solid rgba(200,144,42,0.3);color:var(--gold);padding:10px 18px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border-radius:2px;}
+.venue-map-btn:hover{background:var(--gold);color:var(--ink);}
+
+/* ── REGISTER ── */
+.register{padding:80px 48px;background:var(--ink);position:relative;overflow:hidden;}
+.register::before{content:'REGISTER';position:absolute;left:50%;transform:translateX(-50%);bottom:-40px;font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,14vw,200px);color:rgba(200,144,42,0.03);white-space:nowrap;pointer-events:none;}
+.register-inner{display:grid;grid-template-columns:1fr 440px;gap:64px;align-items:start;position:relative;z-index:1;}
+.reg-left h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,80px);line-height:.9;color:var(--white);margin-bottom:16px;letter-spacing:.02em;}
+.reg-left h2 .gold{color:var(--gold);}
+.reg-left p{font-size:14.5px;line-height:1.8;color:rgba(255,255,255,0.38);margin-bottom:24px;}
+.reg-perks{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.reg-perks li{font-size:13px;color:rgba(255,255,255,0.45);display:flex;gap:10px;align-items:flex-start;line-height:1.5;}
+.reg-perks li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;font-family:'DM Mono',monospace;}
+
+/* FORM */
+.reg-form{background:var(--ink2);border:1px solid rgba(200,144,42,0.15);padding:36px 32px;}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);letter-spacing:.04em;margin-bottom:4px;}
+.form-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.form-field label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;color:rgba(255,255,255,0.35);text-transform:uppercase;}
+.form-field input,.form-field select{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--white);padding:12px 14px;font-family:'Lora',serif;font-size:14px;border-radius:2px;outline:none;transition:border-color .2s;width:100%;}
+.form-field input::placeholder{color:rgba(255,255,255,0.2);}
+.form-field input:focus,.form-field select:focus{border-color:var(--gold);}
+.form-field select option{background:var(--ink2);color:var(--white);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ticket-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.ticket-opt{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:14px 16px;border-radius:2px;cursor:pointer;transition:all .2s;}
+.ticket-opt:hover,.ticket-opt.selected{border-color:var(--gold);background:rgba(200,144,42,0.06);}
+.ticket-opt input[type=radio]{accent-color:var(--gold);}
+.ticket-opt-info{flex:1;}
+.ticket-name{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--white);text-transform:uppercase;}
+.ticket-desc{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.ticket-price{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);}
+.submit-btn{width:100%;background:var(--gold);color:var(--ink);padding:16px;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:all .25s;margin-top:4px;}
+.submit-btn:hover{background:var(--gold2);transform:translateY(-1px);}
+.form-note{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);text-align:center;margin-top:10px;line-height:1.6;}
+
+/* ── CTA STRIP ── */
+.cta-strip{background:var(--gold);padding:48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.cta-strip-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);color:var(--ink);line-height:1;}
+.cta-strip-sub{font-family:'Lora',serif;font-style:italic;font-size:14px;color:var(--bgold);margin-top:4px;}
+.cta-strip-btn{background:var(--ink);color:var(--gold);padding:14px 28px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .2s;white-space:nowrap;}
+.cta-strip-btn:hover{background:var(--ink2);}
+
+/* ── FOOTER ── */
+footer{background:var(--ink2);padding:40px 48px 24px;border-top:1px solid rgba(200,144,42,0.08);}
+.ft{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap;margin-bottom:28px;}
+.ft-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);text-decoration:none;}
+.ft-logo span{color:var(--gold);}
+.ft-contact{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);display:flex;flex-direction:column;gap:4px;}
+.ft-btn{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;background:var(--gold);color:var(--ink);padding:12px 18px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .2s;}
+.ft-btn:hover{background:var(--gold2);transform:translateY(-1px);}
+.ft-legal{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.15);margin-top:20px;letter-spacing:.05em;}
+
+/* ── SUCCESS STATE ── */
+.success-msg{display:none;background:var(--lgreen);border:1px solid var(--green);padding:20px 24px;border-radius:2px;margin-top:12px;text-align:center;}
+.success-msg p{font-family:'Lora',serif;font-size:14px;color:var(--green);line-height:1.6;}
+.success-msg strong{font-weight:600;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.fade-up{opacity:0;animation:fadeUp .7s ease forwards;}
+.fade-up:nth-child(1){animation-delay:.1s;}
+.fade-up:nth-child(2){animation-delay:.2s;}
+.fade-up:nth-child(3){animation-delay:.35s;}
+.fade-up:nth-child(4){animation-delay:.5s;}
+.fade-up:nth-child(5){animation-delay:.65s;}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px){
+  nav{padding:12px 16px;gap:12px;}
+  .nav-reg{padding:9px 14px;}
+
+  .hero{padding:86px 16px 40px;}
+  .hero-eyebrow{flex-wrap:wrap;row-gap:10px;}
+  .hero-line{display:none;}
+  .hero-title{line-height:.92;}
+  .hero-meta{gap:14px;}
+  .meta-div{display:none;}
+  .hero-ctas{flex-wrap:wrap;gap:10px;}
+
+  .countdown-bar{padding:12px 16px;gap:12px;}
+  .cd-right{font-size:12px;}
+
+  .about,.venue-grid,.register-inner{grid-template-columns:1fr;}
+  .agenda-row{grid-template-columns:96px 1fr;}
+  .speakers-grid,.learn-grid{grid-template-columns:1fr;}
+
+  .cta-strip{padding:28px 16px;}
+  .about,.agenda,.speakers,.learn,.venue,.register{padding:52px 16px;}
+  .form-row{grid-template-columns:1fr;}
+  .reg-form{padding:28px 22px;}
+}
+
+@media (max-width: 600px){
+  nav{align-items:flex-start;flex-wrap:wrap;}
+  .nav-date{display:none;}
+  .nav-logo{font-size:20px;}
+  .nav-reg{width:100%;text-align:center;}
+
+  .hero{padding:78px 14px 34px;min-height:92vh;}
+  .hero-ghost{right:-10px;font-size:clamp(120px,26vw,220px);}
+  .hero-badge{padding:6px 12px;}
+  .hero-subtitle-top{letter-spacing:.16em;}
+  .hero-desc{margin:16px 0 24px;}
+
+  .btn-primary{padding:14px 18px;width:100%;text-align:center;}
+  .btn-ghost{width:100%;justify-content:center;}
+
+  .countdown-bar{align-items:flex-start;}
+  .cd-nums{flex-wrap:wrap;gap:6px;}
+  .cd-block{font-size:22px;min-width:46px;padding:6px 10px;}
+  .cd-sep{display:none;}
+  .cd-label{font-size:9px;}
+
+  .about,.agenda,.speakers,.learn,.venue,.register{padding:44px 14px;}
+  .about{gap:28px;}
+  .agenda-row{grid-template-columns:78px 1fr;}
+  .ag-time{padding:16px 12px;}
+  .ag-content{padding:16px 16px;}
+  .speaker-card{padding:22px 18px;}
+  .learn-card{padding:22px 18px;}
+  .venue-map{padding:20px;}
+}
+
+@media (max-width: 420px){
+  nav{padding:10px 12px;}
+  .hero{padding:72px 12px 30px;}
+  .hero-title{font-size:clamp(52px,15vw,86px);}
+  .hero-meta-val{font-size:18px;}
+  .countdown-bar{padding:10px 12px;}
+  .cd-block{font-size:20px;min-width:42px;}
+  .cta-strip{padding:22px 12px;}
+  .about,.agenda,.speakers,.learn,.venue,.register{padding:40px 12px;}
+  .reg-form{padding:22px 16px;}
+  .ticket-opt{padding:12px 12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">CRES<span>.</span></a>
+  <span class="nav-date">June 20, 2026 · Nairobi</span>
+  <a href="#register" class="nav-reg">Reserve Your Spot</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-ghost">AI</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow fade-up">
+      <div class="hero-badge">Nairobi · June 20, 2026</div>
+      <div class="hero-line"></div>
+      <div class="hero-subtitle-top">Sarit Expo Centre · 2PM – 7PM</div>
+    </div>
+    <h1 class="hero-title fade-up">
+      The <span class="gold">Future</span><br>
+      of <span class="stroke">AI</span><br>
+      in Business.
+    </h1>
+    <p class="hero-desc fade-up">One afternoon. 300 seats. Business owners and developers learning what AI means for them — and what to do about it right now.</p>
+    <div class="hero-meta fade-up">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Date</span>
+        <span class="hero-meta-val">16 <span>May</span></span>
+      </div>
+      <div class="meta-div"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Time</span>
+        <span class="hero-meta-val">2PM – <span>7PM</span></span>
+      </div>
+      <div class="meta-div"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Venue</span>
+        <span class="hero-meta-val">Sarit <span>Expo</span></span>
+      </div>
+      <div class="meta-div"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Seats</span>
+        <span class="hero-meta-val"><span>300</span> Only</span>
+      </div>
+    </div>
+    <div class="hero-ctas fade-up">
+      <a href="#register" class="btn-primary">Reserve Your Seat</a>
+      <a href="#agenda" class="btn-ghost">See the Agenda</a>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN BAR -->
+<div class="countdown-bar">
+  <span class="cd-label">Event starts in</span>
+  <div class="cd-nums">
+    <div><div class="cd-block" id="cd-days">76</div><div class="cd-sub">Days</div></div>
+    <span class="cd-sep">:</span>
+    <div><div class="cd-block" id="cd-hrs">00</div><div class="cd-sub">Hours</div></div>
+    <span class="cd-sep">:</span>
+    <div><div class="cd-block" id="cd-min">00</div><div class="cd-sub">Mins</div></div>
+    <span class="cd-sep">:</span>
+    <div><div class="cd-block" id="cd-sec">00</div><div class="cd-sub">Secs</div></div>
+  </div>
+  <span class="cd-right">Seats are limited to 300 people.</span>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-left">
+    <div class="sec-label">About the Event</div>
+    <h2 class="about-title">This is Not<br>a Tech Talk.<br><span class="gold">This is Your<br>Competitive Edge.</span></h2>
+    <p class="about-body">AI is no longer a future technology. It is here. It is being used by your competitors right now to reach more customers, build faster, and operate smarter. The only question is whether you're using it too — or being left behind by someone who is.</p>
+    <p class="about-body">This event is built for two groups: business owners who want to use AI to grow their revenue and reach more clients, and developers who need to understand what AI means for their career and how to stay relevant in an era where tools are rebuilding the entire industry.</p>
+    <div class="about-stats">
+      <div class="stat-c"><div class="stat-n">300</div><div class="stat-l">Seats available</div></div>
+      <div class="stat-c"><div class="stat-n">5hrs</div><div class="stat-l">Of content & networking</div></div>
+      <div class="stat-c"><div class="stat-n">2</div><div class="stat-l">Dedicated tracks</div></div>
+      <div class="stat-c"><div class="stat-n">1</div><div class="stat-l">Day to change direction</div></div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="tracks-box">
+      <div class="track-card biz">
+        <div class="track-ghost">BIZ</div>
+        <div class="track-tag">Track A · Business Owners</div>
+        <div class="track-title">AI for Growth</div>
+        <div class="track-desc">How to use AI to find more clients, automate your marketing, target the right audience, and run a smarter business — without needing to be technical.</div>
+      </div>
+      <div class="track-card dev">
+        <div class="track-ghost">DEV</div>
+        <div class="track-tag">Track B · Developers</div>
+        <div class="track-title">AI for Developers</div>
+        <div class="track-desc">What AI means for software engineering careers. The tools, the workflow shifts, and how to position yourself so you're the developer using AI — not the one being replaced by someone who does.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="agenda" id="agenda">
+  <div class="sec-head">
+    <div class="sec-head-label">Full Programme</div>
+    <h2 class="sec-head-title">What Happens<br><span class="gold">2PM to 7PM.</span></h2>
+  </div>
+  <div class="agenda-list">
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">2:00</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content break"><div class="ag-tag tag-break">Arrival</div><div class="ag-title">Registration & Welcome</div><div class="ag-desc">Doors open. Check in, collect your badge, grab a coffee. Network before the sessions begin.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">2:15</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content panel"><div class="ag-tag tag-all">All Attendees</div><div class="ag-title">Opening Keynote: The AI Moment We Are In</div><div class="ag-desc">Nelson Were, CEO of CRES Dynamics. What is actually happening with AI right now. Why the next 12 months matter more than the last 10 years. What this means for Kenyan businesses and developers specifically.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">2:45</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content"><div class="ag-tag tag-biz">Business Track</div><div class="ag-title">AI for Business: Reach More Clients, Close More Sales</div><div class="ag-desc">How AI-powered tools are changing client acquisition — from Meta Ads targeting to automated follow-ups to AI that recommends your business to potential buyers. Real examples. Real numbers. No jargon.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">3:30</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content break"><div class="ag-tag tag-break">Break</div><div class="ag-title">Afternoon Tea & Networking</div><div class="ag-desc">20-minute break. Refreshments provided. A chance to connect with other attendees before the developer session.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">3:50</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content"><div class="ag-tag tag-dev">Developer Track</div><div class="ag-title">AI for Developers: How to Stay Irreplaceable</div><div class="ag-desc">The tools that are compressing 6-month projects into days. How to package your skills differently. What the developer who survives the AI era looks like — and the concrete steps to become them.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">4:35</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content panel"><div class="ag-tag tag-all">Panel</div><div class="ag-title">Panel Discussion: AI Adoption in Kenya — The Honest Conversation</div><div class="ag-desc">Business owner + developer + CRES + invited guest. What is working. What is being overhyped. What Kenyan businesses and developers need to do right now that others aren't doing yet. Live Q&A from the audience.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">5:20</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content break"><div class="ag-tag tag-break">Break</div><div class="ag-title">Networking Break</div><div class="ag-desc">Refreshments. Connect with speakers. Exchange contacts. The room is full of decision-makers.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">5:40</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content"><div class="ag-tag tag-biz">Track A</div><div class="ag-title">Breakout: AI Tools Your Business Runs On — Live Demo</div><div class="ag-desc">Hands-on walkthrough of AI-powered marketing: Meta Ads automation, email sequences, lead scoring, and real-time audience targeting. See it working — not just described.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">5:40</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content"><div class="ag-tag tag-dev">Track B</div><div class="ag-title">Breakout: Building with AI — Real Workflow Demo</div><div class="ag-desc">Cursor, Claude, Copilot — how developers are using these tools in production. Watch a feature get built in real time with AI assistance. The new workflow for the developer who wants to stay ahead.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">6:45</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content panel"><div class="ag-tag tag-all">Closing</div><div class="ag-title">Closing & What's Next</div><div class="ag-desc">Final remarks. Key takeaways from the day. What to do on Monday morning. Information on working with CRES. Networking continues.</div></div>
+    </div>
+    <div class="agenda-row">
+      <div class="ag-time"><div class="ag-time-val">7:00</div><div class="ag-time-label">PM</div></div>
+      <div class="ag-content break"><div class="ag-tag tag-break">End</div><div class="ag-title">Event Closes</div><div class="ag-desc">Thank you for being part of this. Speakers available for questions as you leave.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers">
+  <div class="sec-head">
+    <div class="sec-head-label">Speakers</div>
+    <h2 class="sec-head-title" style="color:var(--ink);">Who You'll<br><span class="gold">Hear From.</span></h2>
+  </div>
+  <div class="speakers-grid">
+    <div class="speaker-card">
+      <div class="speaker-avatar">NW</div>
+      <div class="speaker-name">Nelson Were</div>
+      <div class="speaker-role">CEO · CRES Dynamics</div>
+      <div class="speaker-bio">Systems engineer and founder of CRES Dynamics — the company building the operating infrastructure that Kenyan businesses run on. Nelson will open the event with the honest conversation about where AI is right now and what it means for anyone building or running a business in Kenya.</div>
+    </div>
+    <div class="speaker-card tba">
+      <div class="speaker-avatar">?</div>
+      <div class="tba-label">Speaker · To Be Announced</div>
+      <div class="speaker-bio" style="color:var(--muted);font-size:12px;margin-top:8px;text-align:center;">Business Track Speaker — AI & Marketing</div>
+    </div>
+    <div class="speaker-card tba">
+      <div class="speaker-avatar">?</div>
+      <div class="tba-label">Speaker · To Be Announced</div>
+      <div class="speaker-bio" style="color:var(--muted);font-size:12px;margin-top:8px;text-align:center;">Developer Track Speaker — AI Engineering</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU LEARN -->
+<section class="learn">
+  <div class="sec-head">
+    <div class="sec-head-label">Why Attend</div>
+    <h2 class="sec-head-title">Leave with<br><span class="gold">This.</span></h2>
+  </div>
+  <div class="learn-grid">
+    <div class="learn-card" data-n="01">
+      <div class="learn-for">For Business Owners</div>
+      <div class="learn-title">The AI tools that bring in clients automatically</div>
+      <ul class="learn-list">
+        <li>How AI-powered ads find your ideal customer without you manually searching</li>
+        <li>Email automation that follows up leads while you sleep</li>
+        <li>How your AI assistant will soon recommend businesses to buyers — and how to be the one it recommends</li>
+        <li>The systems CRES is building for Kenyan businesses right now</li>
+      </ul>
+    </div>
+    <div class="learn-card" data-n="02">
+      <div class="learn-for">For Developers</div>
+      <div class="learn-title">How to stay irreplaceable as AI rewrites the industry</div>
+      <ul class="learn-list">
+        <li>The AI tools compressing 6-month projects into days — and how to use them</li>
+        <li>How to repackage your skills for the AI era so you're more valuable, not less</li>
+        <li>The developer workflow that makes you 10x faster while others are still working the old way</li>
+        <li>What companies are actually looking for from engineers in 2026 and beyond</li>
+      </ul>
+    </div>
+    <div class="learn-card" data-n="03">
+      <div class="learn-for">For Everyone</div>
+      <div class="learn-title">A clear picture of what is actually happening</div>
+      <ul class="learn-list">
+        <li>The difference between AI hype and AI reality — Kenya context</li>
+        <li>Real case studies of businesses that have shifted how they operate because of AI</li>
+        <li>Honest answers to hard questions during the panel session</li>
+        <li>A network of 300 people who are serious about what comes next</li>
+      </ul>
+    </div>
+    <div class="learn-card" data-n="04">
+      <div class="learn-for">After the Event</div>
+      <div class="learn-title">A Monday morning action plan — not just inspiration</div>
+      <ul class="learn-list">
+        <li>Specific tools to install or try in the first 48 hours</li>
+        <li>The one AI-powered change to make in your business or workflow immediately</li>
+        <li>Optional 1:1 AI Audit session with CRES (available to attendees post-event)</li>
+        <li>Access to all presentation materials and recordings after the event</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="venue">
+  <div class="sec-head">
+    <div class="sec-head-label">Venue</div>
+    <h2 class="sec-head-title">Sarit <span class="gold">Expo Centre.</span></h2>
+  </div>
+  <div class="venue-grid">
+    <div class="venue-details">
+      <div class="venue-detail"><span class="venue-d-label">Venue</span><span class="venue-d-val">Sarit Expo Centre</span></div>
+      <div class="venue-detail"><span class="venue-d-label">Location</span><span class="venue-d-val">Westlands, Nairobi</span></div>
+      <div class="venue-detail"><span class="venue-d-label">Date</span><span class="venue-d-val">Friday, 20th June 2026</span></div>
+      <div class="venue-detail"><span class="venue-d-label">Time</span><span class="venue-d-val">2:00 PM — 7:00 PM</span></div>
+      <div class="venue-detail"><span class="venue-d-label">Parking</span><span class="venue-d-val">Available on site — Sarit Centre</span></div>
+      <div class="venue-detail"><span class="venue-d-label">Transport</span><span class="venue-d-val">Uber / Bolt drop-off at main entrance</span></div>
+      <div class="venue-detail"><span class="venue-d-label">Nearest mall</span><span class="venue-d-val">Sarit Centre (same compound)</span></div>
+    </div>
+    <div class="venue-map">
+      <div class="venue-map-title">How to Get There</div>
+      <p class="venue-map-body">Sarit Expo Centre is located within the Sarit Centre complex in Westlands — one of Nairobi's most accessible business hubs. Easily reachable from CBD, Kilimani, Parklands, and Gigiri. Matatu routes 106, 107, and 108 stop at Westlands roundabout, a 3-minute walk.</p>
+      <p class="venue-map-body" style="margin-top:12px;">Parking is available in the Sarit Centre parking complex. We recommend arriving by 1:45 PM to allow time for registration.</p>
+      <a href="https://maps.google.com/?q=Sarit+Expo+Centre+Westlands+Nairobi" target="_blank" class="venue-map-btn">Open in Google Maps →</a>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="register" id="register">
+  <div class="register-inner">
+    <div class="reg-left">
+      <h2>Secure<br>Your <span class="gold">Seat<br>Today.</span></h2>
+      <p>300 seats. One afternoon that changes how you see AI in your business or career. Registration takes 60 seconds.</p>
+      <ul class="reg-perks">
+        <li>Full 5-hour programme — keynotes, talks, panel, breakouts</li>
+        <li>Afternoon refreshments included</li>
+        <li>Access to all session recordings after the event</li>
+        <li>Post-event AI Audit opportunity with CRES (attendees only)</li>
+        <li>Network with 300 business owners and developers in Nairobi</li>
+        <li>VIP ticket includes front seating + priority 1:1 with speakers</li>
+      </ul>
+    </div>
+    <div class="reg-form">
+      <div class="form-title">Register Now</div>
+      <div class="form-sub">June 20 · Sarit Expo · 2PM</div>
+      <div class="ticket-opts">
+        <label class="ticket-opt selected" id="opt-standard">
+          <input type="radio" name="ticket" value="standard" checked onchange="selectTicket(this)">
+          <div class="ticket-opt-info">
+            <div class="ticket-name">Standard Access</div>
+            <div class="ticket-desc">Full programme, refreshments, recordings</div>
+          </div>
+          <div class="ticket-price">3K</div>
+        </label>
+        <label class="ticket-opt" id="opt-vip">
+          <input type="radio" name="ticket" value="vip" onchange="selectTicket(this)">
+          <div class="ticket-opt-info">
+            <div class="ticket-name">VIP Access</div>
+            <div class="ticket-desc">Front seating + priority 1:1 with speakers + AI Audit</div>
+          </div>
+          <div class="ticket-price">6K</div>
+        </label>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>First Name</label><input id="reg-firstName" name="fname" type="text" placeholder="John"></div>
+        <div class="form-field"><label>Last Name</label><input id="reg-lastName" name="lname" type="text" placeholder="Kamau"></div>
+      </div>
+      <div class="form-field"><label>Email Address</label><input id="reg-email" name="email" type="email" placeholder="john@business.co.ke"></div>
+      <div class="form-field"><label>Phone (WhatsApp)</label><input id="reg-phone" name="phone" type="tel" placeholder="+254 7XX XXX XXX"></div>
+      <div class="form-field">
+        <label>I am attending as a</label>
+        <select id="reg-attendance" name="type">
+          <option value="">Select...</option>
+          <option value="Business Owner">Business Owner</option>
+          <option value="Developer / Engineer">Developer / Engineer</option>
+          <option value="Both (I wear both hats)">Both (I wear both hats)</option>
+          <option value="Marketing / Sales Professional">Marketing / Sales Professional</option>
+          <option value="Student">Student</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <button type="button" class="submit-btn" onclick="handleSubmit(event)">Reserve My Seat — Register Now</button>
+      <div class="success-msg" id="success">
+        <p><strong>You're registered! 🎉</strong><br>Check your email for confirmation. We'll WhatsApp you a reminder 24 hours before the event.</p>
+      </div>
+      <p class="form-note">Payment via Mpesa on confirmation. Secure checkout. Your details will never be shared.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div>
+    <div class="cta-strip-title">Questions? Talk to Nelson Directly.</div>
+    <div class="cta-strip-sub">WhatsApp or call — he picks up.</div>
+  </div>
+  <a href="https://wa.me/254708805496?text=Hi%20Nelson%2C%20I%20saw%20the%20AI%20event%20and%20I%20have%20a%20question" class="cta-strip-btn">WhatsApp +254 708 805 496</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div>
+      <a href="https://cresdynamics.com" class="ft-logo">CRES<span>.</span></a>
+      <div class="ft-contact" style="margin-top:10px;">
+        <span>+254 708 805 496</span>
+        <span>info@cresdynamics.com</span>
+        <span>cresdynamics.com</span>
+      </div>
+      <a href="#register" class="ft-btn">Reserve Your Spot</a>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">Event Details</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.35);line-height:2;">
+        Friday, 20th June 2026<br>
+        2:00 PM — 7:00 PM<br>
+        Sarit Expo Centre, Westlands<br>
+        Nairobi, Kenya
+      </div>
+    </div>
+  </div>
+  <div class="ft-legal">© 2026 CRES Dynamics. Event organised by CRES Dynamics · Kivuli Tower, 3rd Floor, Westlands, Nairobi.</div>
+</footer>
+
+<script>
+// COUNTDOWN
+function updateCountdown(){
+  const event=new Date('2026-06-20T14:00:00+03:00');
+  const now=new Date();
+  const diff=event-now;
+  if(diff<=0){document.querySelector('.countdown-bar').innerHTML='<span style="font-family:\'DM Mono\',monospace;font-size:14px;color:var(--bgold);">The event is happening now. Welcome!</span>';return;}
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor((diff%86400000)/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+  document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+// TICKET SELECT
+function selectTicket(el){
+  document.querySelectorAll('.ticket-opt').forEach(o=>o.classList.remove('selected'));
+  el.closest('.ticket-opt').classList.add('selected');
+}
+
+// FORM SUBMIT
+async function handleSubmit(e){
+  if(e && e.preventDefault) e.preventDefault();
+
+  const firstNameEl = document.getElementById('reg-firstName');
+  const lastNameEl = document.getElementById('reg-lastName');
+  const emailEl = document.getElementById('reg-email');
+  const phoneEl = document.getElementById('reg-phone');
+  const attendanceEl = document.getElementById('reg-attendance');
+  const ticketEl = document.querySelector('input[name="ticket"]:checked');
+
+  const defaultButtonText = 'Reserve My Seat — Register Now';
+
+  const fname = (firstNameEl?.value || '').trim();
+  const lname = (lastNameEl?.value || '').trim();
+  const email = (emailEl?.value || '').trim();
+  const phone = (phoneEl?.value || '').trim();
+  const type = (attendanceEl?.value || '').trim();
+  const ticket = (ticketEl?.value || '').trim();
+
+  let valid=true;
+  const setInvalid=(el)=>{ if(!el) return; el.style.borderColor='#B02020'; valid=false; };
+  const setValid=(el)=>{ if(!el) return; el.style.borderColor='rgba(255,255,255,0.08)'; };
+
+  if(!fname) setInvalid(firstNameEl); else setValid(firstNameEl);
+  if(!lname) setInvalid(lastNameEl); else setValid(lastNameEl);
+  if(!email) setInvalid(emailEl); else setValid(emailEl);
+  if(!phone) setInvalid(phoneEl); else setValid(phoneEl);
+  if(!type) setInvalid(attendanceEl); else setValid(attendanceEl);
+  if(!ticket) valid=false;
+
+  if(!valid){ return; }
+
+  const submitBtn = document.querySelector('.submit-btn');
+  const successEl = document.getElementById('success');
+
+  submitBtn.textContent = 'Submitting...';
+  submitBtn.disabled = true;
+  if(successEl) successEl.style.display='none';
+
+  try{
+    const payload = {
+      fname,
+      lname,
+      email,
+      phone,
+      company: '',
+      type,
+      ticket,
+      eventTitle: 'The Future of AI in Business',
+      eventDate: '20 June 2026'
+    };
+
+    const res = await fetch('/api/events/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json().catch(()=>null);
+
+    if(!res.ok){
+      alert((data && data.error) ? data.error : 'Failed to submit registration. Please try again.');
+      submitBtn.textContent = defaultButtonText;
+      submitBtn.disabled = false;
+      return;
+    }
+
+    submitBtn.textContent='Registered ✓';
+    submitBtn.style.background='#1A6835';
+    if(successEl){
+      successEl.style.display='block';
+      successEl.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  } catch (err){
+    console.error('Events submit error', err);
+    alert('An error occurred. Please try again later.');
+    submitBtn.textContent = defaultButtonText;
+    submitBtn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

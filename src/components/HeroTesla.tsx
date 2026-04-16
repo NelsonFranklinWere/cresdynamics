@@ -61,7 +61,7 @@ export default function HeroTesla() {
 
   return (
     <motion.section
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden py-16 md:py-20"
+      className="relative min-h-[70vh] md:min-h-screen flex flex-col justify-center overflow-hidden py-6 md:py-20"
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}

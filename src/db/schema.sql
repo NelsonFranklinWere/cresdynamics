@@ -56,3 +56,40 @@ CREATE TABLE IF NOT EXISTS chat_messages (
 );
 
 CREATE INDEX IF NOT EXISTS idx_chat_messages_session ON chat_messages (session_public_id, created_at);
+
+-- Events registrations (AI Event landing page reserve spot)
+CREATE TABLE IF NOT EXISTS event_reservations (
+  id SERIAL PRIMARY KEY,
+  event_title TEXT NOT NULL,
+  event_date TEXT NOT NULL,
+  first_name TEXT NOT NULL,
+  last_name TEXT,
+  email TEXT NOT NULL,
+  phone TEXT,
+  company TEXT,
+  ticket_type TEXT,
+  attendance_type TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE (event_title, event_date, email)
+);
+
+CREATE INDEX IF NOT EXISTS idx_event_reservations_created_at ON event_reservations (created_at DESC);
+
+-- Payments (placeholder for integrating Mpesa/Stripe later)
+CREATE TABLE IF NOT EXISTS payments (
+  id SERIAL PRIMARY KEY,
+  source TEXT NOT NULL, -- e.g. 'mpesa', 'stripe', 'manual'
+  reference TEXT,
+  email TEXT,
+  phone TEXT,
+  amount_kes INTEGER,
+  currency TEXT NOT NULL DEFAULT 'KES',
+  status TEXT NOT NULL DEFAULT 'pending', -- pending|paid|failed|refunded
+  purpose TEXT, -- e.g. 'event_ticket'
+  event_title TEXT,
+  event_date TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_payments_created_at ON payments (created_at DESC);

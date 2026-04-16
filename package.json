@@ -14,7 +14,7 @@
     "generate-favicons": "node generate-favicons.js",
     "send-followups": "node send-followup-emails.js",
     "db:init": "node scripts/init-db.mjs",
-    "db:up": "docker compose up -d && sleep 3 && npm run db:init"
+    "db:up": "docker compose up -d --wait && npm run db:init"
   },
   "dependencies": {
     "@radix-ui/react-scroll-area": "^1.2.10",

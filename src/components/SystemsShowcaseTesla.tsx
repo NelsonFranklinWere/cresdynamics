@@ -65,7 +65,7 @@ function SystemBlock({
 }) {
   return (
     <motion.section
-      className={`min-h-[85vh] md:min-h-screen flex flex-col ${
+      className={`min-h-[60vh] md:min-h-screen flex flex-col ${
         reverse ? 'md:flex-row-reverse' : 'md:flex-row'
       }`}
       initial={{ opacity: 0, y: 40, x: reverse ? 40 : -40 }}
@@ -89,7 +89,7 @@ function SystemBlock({
       </div>
 
       {/* Copy half – dark on mobile, white + navy on desktop */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 lg:px-20 py-16 md:py-24 bg-[var(--navy-dark)] md:bg-white text-white md:text-[var(--navy-primary)]">
+      <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 lg:px-20 py-8 md:py-24 bg-[var(--navy-dark)] md:bg-white text-white md:text-[var(--navy-primary)]">
         {id === 'cresos' ? (
           <>
             <p className="text-sm font-semibold uppercase tracking-widest text-[var(--orange-energy)] mb-2">

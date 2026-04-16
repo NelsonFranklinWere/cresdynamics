@@ -28,10 +28,39 @@ export default function MarketingPageContent() {
             <br />
             <span style={{ color: 'var(--orange-energy)' }}>Nairobi.</span>
           </h1>
-          <p className="text-white/70 italic text-lg max-w-xl mb-8">
-            Meta and Google Ads tuned for Kenyan buyers — CBD, Westlands, countywide, and diaspora. Paying customers,
-            not vanity likes.
+          <p className="text-white/75 text-lg md:text-xl max-w-2xl mb-6 leading-relaxed">
+            Meta and Google Ads tuned for Kenyan buyers — CBD, Westlands, countywide, and diaspora. Built for outcomes
+            you can measure: calls, WhatsApp enquiries, booked visits, and purchases. Not vanity likes.
           </p>
+
+          <div className="grid sm:grid-cols-2 gap-3 text-white/80 text-sm md:text-base max-w-3xl mb-8">
+            {[
+              {
+                title: 'Why Meta',
+                body: 'Your buyers already spend hours on Instagram & Facebook. We use targeting + retargeting so your spend goes to people most likely to buy.',
+              },
+              {
+                title: 'Why Google Search',
+                body: 'Search captures intent. When someone is actively looking for what you sell, you show up before competitors.',
+              },
+              {
+                title: 'Why CRES',
+                body: 'We build the tracking + landing flow first, then run ads on top—so you can see what works and scale without guessing.',
+              },
+              {
+                title: 'What you get',
+                body: 'Clear offer + campaign structure, creatives, conversion tracking, retargeting, and reporting you can understand.',
+              },
+            ].map((item) => (
+              <div key={item.title} className="bg-black/20 border border-white/10 rounded-xl p-4">
+                <p className="text-[11px] md:text-xs font-semibold tracking-[0.22em] uppercase text-white/60 mb-1">
+                  {item.title}
+                </p>
+                <p className="leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+
           <div className="flex flex-wrap gap-4">
             <a
               href="#mkt-packages"
@@ -40,12 +69,30 @@ export default function MarketingPageContent() {
               See Marketing Packages
             </a>
             <a
+              href={whatsappUrl(WHATSAPP_PREFILL.marketingDiscovery)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-white/25 bg-white/5 hover:bg-white/10 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
+            >
+              WhatsApp Us
+            </a>
+            <a
               href="#mkt-services"
               className="inline-flex items-center gap-2 text-white/60 hover:text-[var(--teal-accent)] font-mono text-sm uppercase tracking-wide"
             >
               What We Run →
             </a>
+            <a
+              href="tel:+254708805496"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white font-mono text-sm uppercase tracking-wide"
+            >
+              Call 0708 805 496 →
+            </a>
           </div>
+          <p className="mt-4 text-white/55 text-xs md:text-sm max-w-2xl">
+            If you’re already boosting posts and “getting messages” but not seeing consistent sales, this is the page to
+            start with.
+          </p>
         </div>
       </section>
 
@@ -292,8 +339,8 @@ export default function MarketingPageContent() {
             {[
               { val: '3–7x', label: 'ROAS for e-commerce' },
               { val: '15–30%', label: 'Visitors recovered via retargeting' },
-              { val: 'KES 80–300', label: 'Cost per lead (Nairobi)' },
-              { val: '2–4 weeks', label: 'To first optimised campaign' },
+              { val: 'KES 25 → 5', label: 'Cost per lead (Nairobi)' },
+              { val: '1–2 weeks', label: 'To first optimised campaign' },
             ].map((r, i) => (
               <div key={i} className="bg-[var(--navy-primary)]/60 p-5 rounded text-center">
                 <div className="text-3xl font-black text-[var(--orange-energy)]">{r.val}</div>

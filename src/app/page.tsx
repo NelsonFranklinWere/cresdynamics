@@ -3,6 +3,7 @@ import HeroTesla from '@/components/HeroTesla';
 import HeroCarousels from '@/components/HeroCarousels';
 import HomepageStatsMarquee from '@/components/HomepageStatsMarquee';
 import HomepageProblemSection from '@/components/HomepageProblemSection';
+import HomepageMarketingWebsitesSection from '@/components/HomepageMarketingWebsitesSection';
 import SystemsShowcaseTesla from '@/components/SystemsShowcaseTesla';
 import LiveSystemsProof from '@/components/LiveSystemsProof';
 import FinalCTA from '@/components/FinalCTA';
@@ -135,10 +136,15 @@ export default function Home() {
       <Header />
       <main>
         <HeroTesla />
-        <section className="relative min-h-screen h-screen flex flex-col items-center justify-center" style={{ background: 'var(--cres-gradient-bg)' }} aria-label="Websites, CresOS, Custom ERPs">
+        <section
+          className="relative min-h-[70vh] h-[70vh] md:min-h-screen md:h-screen flex flex-col items-center justify-center"
+          style={{ background: 'var(--cres-gradient-bg)' }}
+          aria-label="Websites, CresOS, Custom ERPs"
+        >
           <HeroCarousels />
         </section>
         <HomepageStatsMarquee />
+        <HomepageMarketingWebsitesSection />
         <HomepageProblemSection />
         <HomepageSystemsGrid />
         <HomepageHowWeBuild />

@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 
 export default function LiveSystemsProof() {
   return (
-    <section className="py-16 md:py-20 relative" style={{ background: 'var(--cres-gradient-bg)' }}>
+    <section className="py-8 md:py-20 relative" style={{ background: 'var(--cres-gradient-bg)' }}>
       <div className="absolute inset-0 bg-black/20" aria-hidden />
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="text-center mb-12 md:mb-16">
+          <div className="text-center mb-6 md:mb-16">
             <h2
               className="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-4 md:mb-5"
               style={{ textShadow: '0 2px 12px rgba(0,0,0,0.3)' }}
@@ -27,7 +27,7 @@ export default function LiveSystemsProof() {
           </div>
 
           {/* PROOF CARDS: active users, revenue, roles, stack, uptime/performance where possible */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-16">
             {[
               {
                 title: 'Finance & Revenue Platform',

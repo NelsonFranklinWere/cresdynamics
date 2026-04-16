@@ -42,7 +42,7 @@ export default function HomepageProblemSection() {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-20 md:py-24">
+      <div className="max-w-6xl mx-auto px-6 py-8 md:py-24">
         <div className="mb-6">
           <div className="flex items-center gap-3 text-[10px] md:text-xs font-mono tracking-[0.25em] uppercase text-[var(--teal-accent)]">
             <span className="inline-block h-px w-7 bg-[var(--teal-accent)]" />

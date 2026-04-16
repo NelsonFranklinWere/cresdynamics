@@ -37,7 +37,7 @@ const STEPS = [
 
 export default function HomepageHowWeBuild() {
   return (
-    <section className="bg-white text-[var(--navy-primary)] py-16 md:py-24">
+    <section className="bg-white text-[var(--navy-primary)] py-8 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="max-w-3xl mb-10 md:mb-14">
           <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-[var(--teal-accent)] mb-3">

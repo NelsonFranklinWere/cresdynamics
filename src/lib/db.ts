@@ -44,6 +44,41 @@ export async function insertContactLead(input: ContactLeadInput): Promise<number
   return Number(r.rows[0].id);
 }
 
+export type ContactLeadRow = {
+  id: number;
+  fullName: string;
+  email: string;
+  contactPhone: string;
+  projectTitle: string;
+  projectDetail: string;
+  subscribe: boolean;
+  createdAt: string; // ISO
+};
+
+export async function listContactLeads(limit = 200): Promise<ContactLeadRow[]> {
+  const p = getPool();
+  if (!p) return [];
+  const r = await p.query(
+    `
+    select id, full_name, email, contact_phone, project_title, project_detail, subscribe, created_at
+    from contact_leads
+    order by created_at desc
+    limit $1
+    `,
+    [limit]
+  );
+  return r.rows.map((row) => ({
+    id: Number(row.id),
+    fullName: String(row.full_name),
+    email: String(row.email),
+    contactPhone: String(row.contact_phone),
+    projectTitle: String(row.project_title),
+    projectDetail: String(row.project_detail),
+    subscribe: Boolean(row.subscribe),
+    createdAt: new Date(row.created_at).toISOString(),
+  }));
+}
+
 export type CareerApplicationInput = {
   fullName: string;
   email: string;
@@ -77,6 +112,217 @@ export async function insertCareerApplication(input: CareerApplicationInput): Pr
     ]
   );
   return Number(r.rows[0].id);
+}
+
+export type CareerApplicationRow = {
+  id: number;
+  fullName: string;
+  email: string;
+  phone: string | null;
+  role: string;
+  linkedin: string | null;
+  portfolio: string | null;
+  experienceSummary: string;
+  whyCres: string;
+  cvOriginalFilename: string | null;
+  createdAt: string; // ISO
+};
+
+export async function listCareerApplications(limit = 200): Promise<CareerApplicationRow[]> {
+  const p = getPool();
+  if (!p) return [];
+  const r = await p.query(
+    `
+    select
+      id,
+      full_name,
+      email,
+      phone,
+      role,
+      linkedin,
+      portfolio,
+      experience_summary,
+      why_cres,
+      cv_original_filename,
+      created_at
+    from career_applications
+    order by created_at desc
+    limit $1
+    `,
+    [limit]
+  );
+  return r.rows.map((row) => ({
+    id: Number(row.id),
+    fullName: String(row.full_name),
+    email: String(row.email),
+    phone: row.phone ? String(row.phone) : null,
+    role: String(row.role),
+    linkedin: row.linkedin ? String(row.linkedin) : null,
+    portfolio: row.portfolio ? String(row.portfolio) : null,
+    experienceSummary: String(row.experience_summary),
+    whyCres: String(row.why_cres),
+    cvOriginalFilename: row.cv_original_filename ? String(row.cv_original_filename) : null,
+    createdAt: new Date(row.created_at).toISOString(),
+  }));
+}
+
+export type EventReservationInput = {
+  eventTitle: string;
+  eventDate: string;
+  firstName: string;
+  lastName?: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  ticketType?: string;
+  attendanceType?: string;
+};
+
+export async function insertEventReservation(
+  input: EventReservationInput
+): Promise<number | null> {
+  const p = getPool();
+  if (!p) return null;
+
+  const r = await p.query(
+    `
+    INSERT INTO event_reservations
+      (event_title, event_date, first_name, last_name, email, phone, company, ticket_type, attendance_type)
+    VALUES
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    ON CONFLICT (event_title, event_date, email) DO UPDATE SET
+      last_name = EXCLUDED.last_name,
+      phone = EXCLUDED.phone,
+      company = EXCLUDED.company,
+      ticket_type = EXCLUDED.ticket_type,
+      attendance_type = EXCLUDED.attendance_type,
+      updated_at = now()
+    RETURNING id
+    `,
+    [
+      input.eventTitle,
+      input.eventDate,
+      input.firstName,
+      input.lastName ?? null,
+      input.email,
+      input.phone ?? null,
+      input.company ?? null,
+      input.ticketType ?? null,
+      input.attendanceType ?? null,
+    ]
+  );
+
+  return Number(r.rows[0].id);
+}
+
+export type EventReservationRow = {
+  id: number;
+  eventTitle: string;
+  eventDate: string;
+  firstName: string;
+  lastName: string | null;
+  email: string;
+  phone: string | null;
+  company: string | null;
+  ticketType: string | null;
+  attendanceType: string | null;
+  createdAt: string; // ISO
+  updatedAt: string; // ISO
+};
+
+export async function listEventReservations(limit = 200): Promise<EventReservationRow[]> {
+  const p = getPool();
+  if (!p) return [];
+  const r = await p.query(
+    `
+    select
+      id,
+      event_title,
+      event_date,
+      first_name,
+      last_name,
+      email,
+      phone,
+      company,
+      ticket_type,
+      attendance_type,
+      created_at,
+      updated_at
+    from event_reservations
+    order by created_at desc
+    limit $1
+    `,
+    [limit]
+  );
+  return r.rows.map((row) => ({
+    id: Number(row.id),
+    eventTitle: String(row.event_title),
+    eventDate: String(row.event_date),
+    firstName: String(row.first_name),
+    lastName: row.last_name ? String(row.last_name) : null,
+    email: String(row.email),
+    phone: row.phone ? String(row.phone) : null,
+    company: row.company ? String(row.company) : null,
+    ticketType: row.ticket_type ? String(row.ticket_type) : null,
+    attendanceType: row.attendance_type ? String(row.attendance_type) : null,
+    createdAt: new Date(row.created_at).toISOString(),
+    updatedAt: new Date(row.updated_at).toISOString(),
+  }));
+}
+
+export type PaymentRow = {
+  id: number;
+  source: string;
+  reference: string | null;
+  email: string | null;
+  phone: string | null;
+  amountKes: number | null;
+  currency: string;
+  status: string;
+  purpose: string | null;
+  eventTitle: string | null;
+  eventDate: string | null;
+  createdAt: string; // ISO
+};
+
+export async function listPayments(limit = 200): Promise<PaymentRow[]> {
+  const p = getPool();
+  if (!p) return [];
+  const r = await p.query(
+    `
+    select
+      id,
+      source,
+      reference,
+      email,
+      phone,
+      amount_kes,
+      currency,
+      status,
+      purpose,
+      event_title,
+      event_date,
+      created_at
+    from payments
+    order by created_at desc
+    limit $1
+    `,
+    [limit]
+  );
+  return r.rows.map((row) => ({
+    id: Number(row.id),
+    source: String(row.source),
+    reference: row.reference ? String(row.reference) : null,
+    email: row.email ? String(row.email) : null,
+    phone: row.phone ? String(row.phone) : null,
+    amountKes: row.amount_kes === null || row.amount_kes === undefined ? null : Number(row.amount_kes),
+    currency: String(row.currency),
+    status: String(row.status),
+    purpose: row.purpose ? String(row.purpose) : null,
+    eventTitle: row.event_title ? String(row.event_title) : null,
+    eventDate: row.event_date ? String(row.event_date) : null,
+    createdAt: new Date(row.created_at).toISOString(),
+  }));
 }
 
 export type ChatLeadSessionInput = {
