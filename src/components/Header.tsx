@@ -234,11 +234,11 @@ export default function Header() {
         <div className="max-w-6xl mx-auto px-6 py-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10">
             {[
-              { name: 'Who We Are', href: '/about', desc: 'Our story and mission', image: '/logo.png' },
-              { name: 'Why Us', href: '/why-us', desc: 'Why serious businesses choose us', image: '/logo.png' },
-              { name: 'How We Work', href: '/how-we-work', desc: 'Discovery to go-live — our delivery process', image: '/logo.png' },
-              { name: 'How We Build', href: '/how-we-build', desc: 'Our system engineering framework', image: '/logo.png' },
-              { name: 'Contact', href: 'https://wa.me/254708805496?text=Hi%2C%20I\'d%20like%20to%20book%20a%20systems%20discovery%20session.', desc: 'Book a systems discovery session (WhatsApp)', image: '/logo.png' },
+              { name: 'Who We Are', href: '/about', desc: 'Our story and mission', image: '/01_who_we_are.jpg' },
+              { name: 'Why Us', href: '/why-us', desc: 'Why serious businesses choose us', image: '/02_why_us.jpg' },
+              { name: 'How We Work', href: '/how-we-work', desc: 'Discovery to go-live — our delivery process', image: '/03_how_we_work.jpg' },
+              { name: 'How We Build', href: '/how-we-build', desc: 'Our system engineering framework', image: '/04_how_we_build.jpg' },
+              { name: 'Contact', href: 'https://wa.me/254708805496?text=Hi%2C%20I\'d%20like%20to%20book%20a%20systems%20discovery%20session.', desc: 'Book a systems discovery session (WhatsApp)', image: '/05_contact.jpg' },
             ].map((item) => (
               <Link
                 key={item.name}
@@ -276,10 +276,10 @@ export default function Header() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 pb-1">
             {[
               { name: 'CresOS', href: '/cresos', desc: 'Business operating system', image: '/cresOs.businessoperatingsystem.png' },
-              { name: 'Finance Platforms', href: '/finance-platforms', desc: 'Revenue, invoices, dashboards', image: '/finance.and.revenue.png' },
-              { name: 'Operations & Workflow', href: '/operations-workflow', desc: 'Projects, approvals, reporting', image: '/operations.and.workflow.png' },
-              { name: 'AI & Automation', href: '/ai-automation', desc: 'Workflows, triggers, intelligence', image: '/ai.automation.png' },
-              { name: 'Custom ERP', href: '/erp', desc: 'Modular ERP & governance', image: '/erp.png' },
+              { name: 'Finance Platforms', href: '/finance-platforms', desc: 'Revenue, invoices, dashboards', image: '/09_finance.jpg' },
+              { name: 'Operations & Workflow', href: '/operations-workflow', desc: 'Projects, approvals, reporting', image: '/10_operations_workflow.jpg' },
+              { name: 'AI & Automation', href: '/ai-automation', desc: 'Workflows, triggers, intelligence', image: '/11_ai_automation.jpg' },
+              { name: 'Custom ERP', href: '/erp', desc: 'Modular ERP & governance', image: '/06_custom_erp.jpg' },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -287,7 +287,7 @@ export default function Header() {
                 prefetch={true}
                 className="group block"
               >
-                <div className="relative w-full h-16 rounded-xl overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.45)] mb-2">
+                <div className="relative w-full h-24 rounded-lg overflow-hidden bg-white/5 shadow-[0_10px_25px_rgba(0,0,0,0.45)] mb-3">
                   <DropdownImage src={item.image} />
                 </div>
                 <span className="text-white font-medium text-[14px] group-hover:text-[var(--teal-accent)] transition-colors duration-150">
@@ -318,31 +318,31 @@ export default function Header() {
                 name: 'Websites',
                 href: '/websites',
                 desc: 'Professional websites that convert, not just look good',
-                image: '/systems/websites.jpg',
+                image: '/07_websites.jpg',
               },
               {
                 name: 'E-Commerce',
                 href: '/e-commerce',
                 desc: 'Online stores built for Kenyan businesses',
-                image: '/logo.png',
+                image: '/08_ecommerce.jpg',
               },
               {
                 name: 'Finance',
                 href: '/finance-platforms',
                 desc: 'Revenue, invoices, and dashboards as a service',
-                image: '/finance.and.revenue.png',
+                image: '/09_finance.jpg',
               },
               {
                 name: 'Operations & Workflow',
                 href: '/operations-workflow',
                 desc: 'Projects, approvals, and reporting',
-                image: '/operations.and.workflow.png',
+                image: '/10_operations_workflow.jpg',
               },
               {
                 name: 'AI & Automation',
                 href: '/ai-automation',
                 desc: 'Automation and intelligence on top of your systems',
-                image: '/ai.automation.png',
+                image: '/11_ai_automation.jpg',
               },
             ].map((item) => (
               <Link
@@ -351,7 +351,7 @@ export default function Header() {
                 prefetch={true}
                 className="group block"
               >
-                <div className="relative w-full h-16 rounded-xl overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.45)] mb-2">
+                <div className="relative w-full h-24 rounded-lg overflow-hidden bg-white/5 shadow-[0_10px_25px_rgba(0,0,0,0.45)] mb-3">
                   <DropdownImage src={item.image} />
                 </div>
                 <span className="text-white font-medium text-[14px] group-hover:text-[var(--teal-accent)] transition-colors duration-150">
