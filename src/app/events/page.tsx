@@ -6,12 +6,12 @@ import type { Metadata } from 'next';
 export const runtime = 'nodejs';
 
 export const metadata: Metadata = {
-  title: 'Future of AI — CRES Dynamics Event | June 20, Nairobi',
+  title: 'Future of AI — CRES Dynamics Event | Saturday, 20th June 2026',
   description:
     'One afternoon. 300 seats. Business owners and developers learning what AI means for them — and what to do about it right now.',
   alternates: { canonical: 'https://cresdynamics.com/events/' },
   openGraph: {
-    title: 'Future of AI in Business — Nairobi (June 20, 2026)',
+    title: 'Future of AI in Business — Nairobi (Saturday, 20th June 2026)',
     description:
       'Reserve your spot for CRES Dynamics’ AI event in Nairobi. Keynotes, panel, breakouts, and networking.',
     url: 'https://cresdynamics.com/events/',

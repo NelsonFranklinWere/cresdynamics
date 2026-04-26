@@ -274,6 +274,10 @@ export type PaymentRow = {
   id: number;
   source: string;
   reference: string | null;
+  providerTrackingId: string | null;
+  merchantReference: string | null;
+  paymentLinkToken: string | null;
+  paymentLinkActive: boolean;
   email: string | null;
   phone: string | null;
   amountKes: number | null;
@@ -282,6 +286,8 @@ export type PaymentRow = {
   purpose: string | null;
   eventTitle: string | null;
   eventDate: string | null;
+  metadata: Record<string, unknown> | null;
+  updatedAt: string; // ISO
   createdAt: string; // ISO
 };
 
@@ -294,6 +300,10 @@ export async function listPayments(limit = 200): Promise<PaymentRow[]> {
       id,
       source,
       reference,
+      provider_tracking_id,
+      merchant_reference,
+      payment_link_token,
+      payment_link_active,
       email,
       phone,
       amount_kes,
@@ -302,6 +312,8 @@ export async function listPayments(limit = 200): Promise<PaymentRow[]> {
       purpose,
       event_title,
       event_date,
+      metadata_json,
+      updated_at,
       created_at
     from payments
     order by created_at desc
@@ -313,6 +325,10 @@ export async function listPayments(limit = 200): Promise<PaymentRow[]> {
     id: Number(row.id),
     source: String(row.source),
     reference: row.reference ? String(row.reference) : null,
+    providerTrackingId: row.provider_tracking_id ? String(row.provider_tracking_id) : null,
+    merchantReference: row.merchant_reference ? String(row.merchant_reference) : null,
+    paymentLinkToken: row.payment_link_token ? String(row.payment_link_token) : null,
+    paymentLinkActive: Boolean(row.payment_link_active),
     email: row.email ? String(row.email) : null,
     phone: row.phone ? String(row.phone) : null,
     amountKes: row.amount_kes === null || row.amount_kes === undefined ? null : Number(row.amount_kes),
@@ -321,8 +337,186 @@ export async function listPayments(limit = 200): Promise<PaymentRow[]> {
     purpose: row.purpose ? String(row.purpose) : null,
     eventTitle: row.event_title ? String(row.event_title) : null,
     eventDate: row.event_date ? String(row.event_date) : null,
+    metadata: row.metadata_json && typeof row.metadata_json === 'object'
+      ? (row.metadata_json as Record<string, unknown>)
+      : null,
+    updatedAt: new Date(row.updated_at).toISOString(),
     createdAt: new Date(row.created_at).toISOString(),
   }));
+}
+
+export type CreatePaymentInput = {
+  source: string;
+  reference?: string | null;
+  providerTrackingId?: string | null;
+  merchantReference?: string | null;
+  paymentLinkToken?: string | null;
+  paymentLinkActive?: boolean;
+  email?: string | null;
+  phone?: string | null;
+  amountKes?: number | null;
+  currency?: string;
+  status?: string;
+  purpose?: string | null;
+  eventTitle?: string | null;
+  eventDate?: string | null;
+  metadata?: Record<string, unknown> | null;
+};
+
+export async function createPayment(input: CreatePaymentInput): Promise<number | null> {
+  const p = getPool();
+  if (!p) return null;
+  const r = await p.query(
+    `
+    INSERT INTO payments
+      (source, reference, provider_tracking_id, merchant_reference, payment_link_token, payment_link_active, email, phone, amount_kes, currency, status, purpose, event_title, event_date, metadata_json, updated_at)
+    VALUES
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, now())
+    RETURNING id
+    `,
+    [
+      input.source,
+      input.reference ?? null,
+      input.providerTrackingId ?? null,
+      input.merchantReference ?? null,
+      input.paymentLinkToken ?? null,
+      input.paymentLinkActive ?? true,
+      input.email ?? null,
+      input.phone ?? null,
+      input.amountKes ?? null,
+      input.currency ?? 'KES',
+      input.status ?? 'pending',
+      input.purpose ?? null,
+      input.eventTitle ?? null,
+      input.eventDate ?? null,
+      input.metadata ?? null,
+    ]
+  );
+  return Number(r.rows[0].id);
+}
+
+export type UpdatePaymentStatusInput = {
+  status: string;
+  providerTrackingId?: string | null;
+  merchantReference?: string | null;
+  reference?: string | null;
+  metadata?: Record<string, unknown> | null;
+};
+
+export async function updatePaymentStatus(input: UpdatePaymentStatusInput): Promise<void> {
+  const p = getPool();
+  if (!p) return;
+  await p.query(
+    `
+    UPDATE payments
+    SET status = $1,
+        payment_link_active = CASE WHEN $1 = 'paid' THEN false ELSE payment_link_active END,
+        metadata_json = COALESCE($2, metadata_json),
+        updated_at = now()
+    WHERE
+      ($3::text IS NOT NULL AND provider_tracking_id = $3)
+      OR ($4::text IS NOT NULL AND merchant_reference = $4)
+      OR ($5::text IS NOT NULL AND reference = $5)
+    `,
+    [
+      input.status,
+      input.metadata ?? null,
+      input.providerTrackingId ?? null,
+      input.merchantReference ?? null,
+      input.reference ?? null,
+    ]
+  );
+}
+
+export async function getPaymentByLinkToken(token: string): Promise<PaymentRow | null> {
+  const p = getPool();
+  if (!p) return null;
+  const r = await p.query(
+    `
+    select
+      id,
+      source,
+      reference,
+      provider_tracking_id,
+      merchant_reference,
+      payment_link_token,
+      payment_link_active,
+      email,
+      phone,
+      amount_kes,
+      currency,
+      status,
+      purpose,
+      event_title,
+      event_date,
+      metadata_json,
+      updated_at,
+      created_at
+    from payments
+    where payment_link_token = $1
+    limit 1
+    `,
+    [token]
+  );
+  if (r.rows.length === 0) return null;
+  const row = r.rows[0];
+  return {
+    id: Number(row.id),
+    source: String(row.source),
+    reference: row.reference ? String(row.reference) : null,
+    providerTrackingId: row.provider_tracking_id ? String(row.provider_tracking_id) : null,
+    merchantReference: row.merchant_reference ? String(row.merchant_reference) : null,
+    paymentLinkToken: row.payment_link_token ? String(row.payment_link_token) : null,
+    paymentLinkActive: Boolean(row.payment_link_active),
+    email: row.email ? String(row.email) : null,
+    phone: row.phone ? String(row.phone) : null,
+    amountKes: row.amount_kes === null || row.amount_kes === undefined ? null : Number(row.amount_kes),
+    currency: String(row.currency),
+    status: String(row.status),
+    purpose: row.purpose ? String(row.purpose) : null,
+    eventTitle: row.event_title ? String(row.event_title) : null,
+    eventDate: row.event_date ? String(row.event_date) : null,
+    metadata: row.metadata_json && typeof row.metadata_json === 'object'
+      ? (row.metadata_json as Record<string, unknown>)
+      : null,
+    updatedAt: new Date(row.updated_at).toISOString(),
+    createdAt: new Date(row.created_at).toISOString(),
+  };
+}
+
+export type AttachCheckoutDetailsInput = {
+  paymentId: number;
+  email: string;
+  phone: string;
+  merchantReference: string;
+  providerTrackingId?: string | null;
+  metadata?: Record<string, unknown> | null;
+};
+
+export async function attachPaymentCheckoutDetails(input: AttachCheckoutDetailsInput): Promise<void> {
+  const p = getPool();
+  if (!p) return;
+  await p.query(
+    `
+    update payments
+    set email = $2,
+        phone = $3,
+        merchant_reference = $4,
+        provider_tracking_id = $5,
+        status = 'pending',
+        metadata_json = COALESCE($6, metadata_json),
+        updated_at = now()
+    where id = $1
+    `,
+    [
+      input.paymentId,
+      input.email,
+      input.phone,
+      input.merchantReference,
+      input.providerTrackingId ?? null,
+      input.metadata ?? null,
+    ]
+  );
 }
 
 export type ChatLeadSessionInput = {
@@ -401,4 +595,94 @@ export async function insertFrankGreetingIfEmpty(
   await p.query(`UPDATE chat_sessions SET last_message_at = now() WHERE session_public_id = $1`, [
     sessionPublicId,
   ]);
+}
+
+export type SpeakerApplicationInput = {
+  fullName: string;
+  email: string;
+  phone: string;
+  company?: string | null;
+  topic: string;
+  linkedin?: string | null;
+  audienceWhy: string;
+  bioPdfFilename: string;
+  imageFilename: string;
+};
+
+export async function insertSpeakerApplication(input: SpeakerApplicationInput): Promise<number | null> {
+  const p = getPool();
+  if (!p) return null;
+  const r = await p.query(
+    `
+    INSERT INTO speaker_applications
+      (full_name, email, phone, company, topic, linkedin, audience_why, bio_pdf_filename, image_filename)
+    VALUES
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    RETURNING id
+    `,
+    [
+      input.fullName,
+      input.email,
+      input.phone,
+      input.company ?? null,
+      input.topic,
+      input.linkedin ?? null,
+      input.audienceWhy,
+      input.bioPdfFilename,
+      input.imageFilename,
+    ]
+  );
+  return Number(r.rows[0].id);
+}
+
+export type SpeakerApplicationRow = {
+  id: number;
+  fullName: string;
+  email: string;
+  phone: string;
+  company: string | null;
+  topic: string;
+  linkedin: string | null;
+  audienceWhy: string;
+  bioPdfFilename: string;
+  imageFilename: string;
+  createdAt: string;
+};
+
+export async function listSpeakerApplications(limit = 200): Promise<SpeakerApplicationRow[]> {
+  const p = getPool();
+  if (!p) return [];
+  const r = await p.query(
+    `
+    select
+      id,
+      full_name,
+      email,
+      phone,
+      company,
+      topic,
+      linkedin,
+      audience_why,
+      bio_pdf_filename,
+      image_filename,
+      created_at
+    from speaker_applications
+    order by created_at desc
+    limit $1
+    `,
+    [limit]
+  );
+  return r.rows.map((row) => ({
+    id: Number(row.id),
+    fullName: String(row.full_name),
+    email: String(row.email),
+    phone: String(row.phone),
+    company: row.company ? String(row.company) : null,
+    topic: String(row.topic),
+    linkedin: row.linkedin ? String(row.linkedin) : null,
+    audienceWhy: String(row.audience_why),
+    bioPdfFilename: String(row.bio_pdf_filename),
+    imageFilename: String(row.image_filename),
+    createdAt: new Date(row.created_at).toISOString(),
+  }));
 }

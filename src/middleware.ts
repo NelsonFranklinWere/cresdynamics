@@ -8,6 +8,7 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const host = request.headers.get('host') || '';
   const hostLower = host.toLowerCase();
+  const forwardedProto = (request.headers.get('x-forwarded-proto') || '').toLowerCase();
   const isLocalhost = /^(localhost|127\.0\.0\.1)(:\d+)?$/i.test(host);
 
   // In local dev, don't redirect http → https (dev server is HTTP only)
@@ -21,7 +22,8 @@ export function middleware(request: NextRequest) {
   }
 
   // 301: http → https (when not already https)
-  if (request.nextUrl.protocol !== 'https:') {
+  const isHttps = request.nextUrl.protocol === 'https:' || forwardedProto === 'https';
+  if (!isHttps) {
     url.protocol = HTTPS;
     url.host = host.replace(/^www\./i, '');
     return NextResponse.redirect(url.toString(), 301);

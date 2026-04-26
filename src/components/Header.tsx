@@ -232,12 +232,13 @@ export default function Header() {
         style={{ minHeight: '280px' }}
       >
         <div className="max-w-6xl mx-auto px-6 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-10">
             {[
               { name: 'Who We Are', href: '/about', desc: 'Our story and mission', image: '/01_who_we_are.jpg' },
               { name: 'Why Us', href: '/why-us', desc: 'Why serious businesses choose us', image: '/02_why_us.jpg' },
               { name: 'How We Work', href: '/how-we-work', desc: 'Discovery to go-live — our delivery process', image: '/03_how_we_work.jpg' },
               { name: 'How We Build', href: '/how-we-build', desc: 'Our system engineering framework', image: '/04_how_we_build.jpg' },
+              { name: 'Events', href: '/events', desc: 'Upcoming events and registrations', image: '/01_who_we_are.jpg' },
               { name: 'Contact', href: 'https://wa.me/254708805496?text=Hi%2C%20I\'d%20like%20to%20book%20a%20systems%20discovery%20session.', desc: 'Book a systems discovery session (WhatsApp)', image: '/05_contact.jpg' },
             ].map((item) => (
               <Link
@@ -391,6 +392,7 @@ export default function Header() {
                   { name: 'Why Us', href: '/why-us' },
                   { name: 'How We Work', href: '/how-we-work' },
                   { name: 'How We Build', href: '/how-we-build' },
+                  { name: 'Events', href: '/events' },
                   { name: 'Contact', href: '/contact' },
                 ].map((link) => (
                   <Link key={link.href} href={link.href} prefetch={true} className="text-[var(--navy-primary)]/90 text-sm font-medium hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => { setIsMobileMenuOpen(false); setIsMobileWhoWeAreOpen(false); }}>

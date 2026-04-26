@@ -38,10 +38,10 @@ export default async function ManagementProtectedLayout({
 
   return (
     <div className="min-h-screen bg-[var(--navy-dark)] text-white">
-      <div className="mx-auto max-w-7xl px-4 md:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
-          <aside className="rounded-2xl border border-white/10 bg-black/30 p-4 h-fit lg:sticky lg:top-6">
-            <div className="mb-4">
+      <div className="grid min-h-screen grid-cols-1 lg:grid-cols-[280px_1fr]">
+        <aside className="border-b border-white/10 bg-black/35 lg:border-b-0 lg:border-r">
+          <div className="p-5 lg:sticky lg:top-0 lg:h-screen lg:flex lg:flex-col">
+            <div className="mb-5">
               <p className="text-[11px] font-semibold tracking-[0.24em] uppercase text-white/60">
                 Management
               </p>
@@ -55,9 +55,10 @@ export default async function ManagementProtectedLayout({
               <NavItem href="/management/payments" label="Payments" />
               <NavItem href="/management/messages" label="Messages" />
               <NavItem href="/management/applications" label="Applications" />
+              <NavItem href="/management/speakers" label="Speakers" />
             </div>
 
-            <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-3">
+            <div className="mt-5 pt-5 border-t border-white/10 flex items-center gap-3 lg:mt-auto">
               <Link
                 href="/events/"
                 className="inline-flex flex-1 items-center justify-center rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-bold uppercase tracking-wide hover:bg-white/10"
@@ -66,10 +67,10 @@ export default async function ManagementProtectedLayout({
               </Link>
               <LogoutButton />
             </div>
-          </aside>
+          </div>
+        </aside>
 
-          <main>{children}</main>
-        </div>
+        <main className="px-4 py-5 md:px-6 md:py-6 lg:px-8">{children}</main>
       </div>
     </div>
   );

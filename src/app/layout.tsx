@@ -477,16 +477,23 @@ export default function RootLayout({
                 });
               });
 
-              // Service Worker Registration
+              // Service worker cleanup: old cached bundles can break Next.js server actions
               if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                      console.log('SW registered: ', registration);
+                  navigator.serviceWorker.getRegistrations()
+                    .then(function(registrations) {
+                      registrations.forEach(function(reg) { reg.unregister(); });
                     })
-                    .catch(function(registrationError) {
-                      console.log('SW registration failed: ', registrationError);
-                    });
+                    .catch(function() {});
+                  if ('caches' in window) {
+                    caches.keys()
+                      .then(function(keys) {
+                        keys.forEach(function(key) {
+                          if (key.indexOf('cres-') === 0) caches.delete(key);
+                        });
+                      })
+                      .catch(function() {});
+                  }
                 });
               }
             `,

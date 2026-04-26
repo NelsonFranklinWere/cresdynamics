@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { insertEventReservation } from '@/lib/db';
+import { attachPaymentCheckoutDetails, createPayment, insertEventReservation } from '@/lib/db';
+import { submitPesapalOrder } from '@/lib/pesapal';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -17,11 +18,11 @@ const safe = (value?: string) =>
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { fname, lname, email, phone, company, type, ticket } = body;
+    const { fname, lname, email, phone, company, type, ticket, paymentMethod } = body;
 
-    if (!fname || !email) {
+    if (!fname || !email || !phone) {
       return NextResponse.json(
-        { error: 'First name and email are required.' },
+        { error: 'First name, email and phone are required.' },
         { status: 400 }
       );
     }
@@ -40,7 +41,14 @@ export async function POST(request: NextRequest) {
       'cresdynamics@gmail.com';
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
     const eventTitle = body.eventTitle || 'The Future of AI in Business';
-    const eventDate = body.eventDate || '20 June 2026';
+    const eventDate = body.eventDate || 'Saturday, 20th June 2026';
+    const ticketPrices: Record<string, number> = {
+      economy: 1500,
+      standard: 2500,
+      vip: 3500,
+    };
+    const selectedTicket = String(ticket || 'standard').toLowerCase();
+    const amountKes = ticketPrices[selectedTicket] || 2500;
 
     let dbId: number | null = null;
     try {
@@ -65,6 +73,22 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    const paymentId = await createPayment({
+      source: 'event_registration',
+      status: 'pending',
+      amountKes,
+      currency: 'KES',
+      email,
+      phone,
+      purpose: `event_ticket_${selectedTicket}`,
+      eventTitle,
+      eventDate,
+      metadata: {
+        reservationId: dbId,
+        paymentMethod: paymentMethod || 'pesapal',
+      },
+    });
 
     // Email sending is best-effort. We must always persist to Postgres first.
     if (resend) {
@@ -100,10 +124,93 @@ export async function POST(request: NextRequest) {
       console.warn('RESEND_API_KEY not configured; reservation saved but email not sent.');
     }
 
-    return NextResponse.json(
-      { success: true, message: resend ? 'Reservation saved.' : 'Reservation saved (email not configured).' },
-      { status: 200 }
-    );
+    const method = String(paymentMethod || 'pesapal').toLowerCase();
+    if (method === 'paybill') {
+      return NextResponse.json(
+        {
+          success: true,
+          reservationId: dbId,
+          paymentId,
+          paymentStatus: 'pending',
+          paymentMethod: 'paybill',
+          paybill: { number: '542542', account: '43869' },
+          message: 'Reservation saved. Complete payment via Paybill 542542 Account 43869.',
+        },
+        { status: 200 }
+      );
+    }
+
+    const notificationId = process.env.PESAPAL_IPN_ID;
+    if (!notificationId) {
+      return NextResponse.json(
+        {
+          success: true,
+          reservationId: dbId,
+          paymentId,
+          paymentStatus: 'pending',
+          paymentMethod: 'pesapal',
+          warning: 'PESAPAL_IPN_ID missing. Reservation saved; payment link unavailable.',
+        },
+        { status: 200 }
+      );
+    }
+
+    const merchantReference = `event-${dbId}-${Date.now()}`;
+    try {
+      const submit = await submitPesapalOrder({
+        amountKes,
+        description: `${eventTitle} (${selectedTicket})`,
+        userFirstName: fname,
+        userLastName: lname || '-',
+        email,
+        phoneNumber: phone,
+        merchantReference,
+        notificationId,
+      });
+      const redirectUrl = String(
+        submit.redirect_url || submit.redirectUrl || submit.payment_url || submit.paymentUrl || ''
+      );
+      const orderTrackingId = String(
+        submit.order_tracking_id || submit.orderTrackingId || submit.tracking_id || ''
+      );
+      if (paymentId) {
+        await attachPaymentCheckoutDetails({
+          paymentId,
+          email,
+          phone,
+          merchantReference,
+          providerTrackingId: orderTrackingId || null,
+          metadata: submit as Record<string, unknown>,
+        });
+      }
+
+      return NextResponse.json(
+        {
+          success: true,
+          reservationId: dbId,
+          paymentId,
+          paymentStatus: 'pending',
+          paymentMethod: 'pesapal',
+          redirectUrl,
+          orderTrackingId: orderTrackingId || null,
+          message: resend ? 'Reservation saved.' : 'Reservation saved (email not configured).',
+        },
+        { status: 200 }
+      );
+    } catch (pesapalErr) {
+      console.error('Pesapal submission failed after reservation save:', pesapalErr);
+      return NextResponse.json(
+        {
+          success: true,
+          reservationId: dbId,
+          paymentId,
+          paymentStatus: 'pending',
+          paymentMethod: 'pesapal',
+          warning: 'Reservation saved but Pesapal checkout failed to initialize. We will contact you.',
+        },
+        { status: 200 }
+      );
+    }
   } catch (error) {
     console.error('Events register error:', error);
     return NextResponse.json(

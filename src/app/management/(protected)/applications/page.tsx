@@ -7,14 +7,14 @@ export default async function ManagementApplicationsPage() {
   const rows = await listCareerApplications(500);
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-black/30 overflow-x-auto">
-      <div className="p-5 border-b border-white/10">
+    <section className="w-full border border-white/10 bg-black/25">
+      <div className="px-5 py-4 border-b border-white/10 md:px-6">
         <h1 className="text-xl md:text-2xl font-black">Applications</h1>
         <p className="text-white/70 text-sm mt-1">Careers applications ({rows.length}).</p>
       </div>
-
-      <table className="w-full text-left text-sm">
-        <thead className="bg-black/40 text-white/70 text-xs uppercase tracking-wider">
+      <div className="overflow-x-auto">
+      <table className="w-full min-w-[900px] text-left text-sm">
+        <thead className="bg-black/35 text-white/70 text-xs uppercase tracking-wider">
           <tr>
             <th className="px-4 py-3">Created</th>
             <th className="px-4 py-3">Full name</th>
@@ -52,7 +52,8 @@ export default async function ManagementApplicationsPage() {
           ) : null}
         </tbody>
       </table>
-    </div>
+      </div>
+    </section>
   );
 }
 
