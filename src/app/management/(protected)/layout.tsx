@@ -56,6 +56,7 @@ export default async function ManagementProtectedLayout({
               <NavItem href="/management/messages" label="Messages" />
               <NavItem href="/management/applications" label="Applications" />
               <NavItem href="/management/speakers" label="Speakers" />
+              <NavItem href="/management/sponsors" label="Sponsor applications" />
             </div>
 
             <div className="mt-5 pt-5 border-t border-white/10 flex items-center gap-3 lg:mt-auto">

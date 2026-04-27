@@ -768,3 +768,199 @@ export async function listSpeakerApplications(limit = 200): Promise<SpeakerAppli
     createdAt: new Date(row.created_at).toISOString(),
   }));
 }
+
+/** Sponsor package tier for slot counting when status is Confirmed */
+export type SponsorPackageTier =
+  | 'gold'
+  | 'silver'
+  | 'community'
+  | 'community_inkind'
+  | 'custom';
+
+export type SponsorApplicationInput = {
+  companyName: string;
+  contactFullName: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+  companyWebsite?: string | null;
+  packageSelected: string;
+  packageTier: SponsorPackageTier;
+  whySponsor: string;
+  howHeard?: string | null;
+};
+
+export async function hasRecentSponsorApplicationByEmail(
+  email: string,
+  hours = 24
+): Promise<boolean> {
+  const p = getPool();
+  if (!p) return false;
+  const r = await p.query(
+    `
+    select 1 from sponsors_applications
+    where lower(email) = lower($1)
+      and created_at > now() - ($2::numeric * interval '1 hour')
+    limit 1
+    `,
+    [email.trim(), hours]
+  );
+  return r.rows.length > 0;
+}
+
+export async function insertSponsorApplication(input: SponsorApplicationInput): Promise<number | null> {
+  const p = getPool();
+  if (!p) return null;
+  const r = await p.query(
+    `
+    INSERT INTO sponsors_applications
+      (company_name, contact_full_name, job_title, email, phone, company_website,
+       package_selected, package_tier, why_sponsor, how_heard)
+    VALUES
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    RETURNING id
+    `,
+    [
+      input.companyName,
+      input.contactFullName,
+      input.jobTitle,
+      input.email.trim(),
+      input.phone,
+      input.companyWebsite ?? null,
+      input.packageSelected,
+      input.packageTier,
+      input.whySponsor,
+      input.howHeard ?? null,
+    ]
+  );
+  return Number(r.rows[0].id);
+}
+
+export type SponsorApplicationRow = {
+  id: number;
+  companyName: string;
+  contactFullName: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+  companyWebsite: string | null;
+  packageSelected: string;
+  packageTier: SponsorPackageTier;
+  whySponsor: string;
+  howHeard: string | null;
+  status: string;
+  notes: string | null;
+  createdAt: string;
+};
+
+const SPONSOR_STATUSES = [
+  'New',
+  'Contacted',
+  'In Discussion',
+  'Confirmed',
+  'Declined',
+] as const;
+
+export function isValidSponsorStatus(s: string): boolean {
+  return SPONSOR_STATUSES.includes(s as (typeof SPONSOR_STATUSES)[number]);
+}
+
+export async function listSponsorApplications(limit = 500): Promise<SponsorApplicationRow[]> {
+  const p = getPool();
+  if (!p) return [];
+  const r = await p.query(
+    `
+    select
+      id,
+      company_name,
+      contact_full_name,
+      job_title,
+      email,
+      phone,
+      company_website,
+      package_selected,
+      package_tier,
+      why_sponsor,
+      how_heard,
+      status,
+      notes,
+      created_at
+    from sponsors_applications
+    order by created_at desc
+    limit $1
+    `,
+    [limit]
+  );
+  return r.rows.map((row) => ({
+    id: Number(row.id),
+    companyName: String(row.company_name),
+    contactFullName: String(row.contact_full_name),
+    jobTitle: String(row.job_title),
+    email: String(row.email),
+    phone: String(row.phone),
+    companyWebsite: row.company_website ? String(row.company_website) : null,
+    packageSelected: String(row.package_selected),
+    packageTier: String(row.package_tier) as SponsorPackageTier,
+    whySponsor: String(row.why_sponsor),
+    howHeard: row.how_heard ? String(row.how_heard) : null,
+    status: String(row.status),
+    notes: row.notes ? String(row.notes) : null,
+    createdAt: new Date(row.created_at).toISOString(),
+  }));
+}
+
+export type SponsorSlotSummary = {
+  totalApplications: number;
+  goldRemaining: number;
+  silverRemaining: number;
+  communityRemaining: number;
+};
+
+export async function getSponsorSlotSummary(): Promise<SponsorSlotSummary | null> {
+  const p = getPool();
+  if (!p) return null;
+  const r = await p.query(`
+    select
+      (select count(*)::int from sponsors_applications) as total,
+      (select count(*)::int from sponsors_applications where status = 'Confirmed' and package_tier = 'gold') as gold_c,
+      (select count(*)::int from sponsors_applications where status = 'Confirmed' and package_tier = 'silver') as silver_c,
+      (select count(*)::int from sponsors_applications where status = 'Confirmed' and package_tier in ('community', 'community_inkind')) as comm_c
+  `);
+  const row = r.rows[0];
+  const goldC = Number(row.gold_c) || 0;
+  const silverC = Number(row.silver_c) || 0;
+  const commC = Number(row.comm_c) || 0;
+  return {
+    totalApplications: Number(row.total) || 0,
+    goldRemaining: Math.max(0, 1 - goldC),
+    silverRemaining: Math.max(0, 3 - silverC),
+    communityRemaining: Math.max(0, 10 - commC),
+  };
+}
+
+export async function updateSponsorApplicationFields(
+  id: number,
+  patch: { status?: string; notes?: string | null }
+): Promise<boolean> {
+  const p = getPool();
+  if (!p) return false;
+  const updates: string[] = [];
+  const vals: unknown[] = [];
+  let i = 1;
+  if (patch.status !== undefined) {
+    if (!isValidSponsorStatus(patch.status)) return false;
+    updates.push(`status = $${i++}`);
+    vals.push(patch.status);
+  }
+  if (patch.notes !== undefined) {
+    updates.push(`notes = $${i++}`);
+    vals.push(patch.notes);
+  }
+  if (updates.length === 0) return false;
+  vals.push(id);
+  const r = await p.query(
+    `update sponsors_applications set ${updates.join(', ')} where id = $${i}`,
+    vals
+  );
+  return (r.rowCount ?? 0) > 0;
+}

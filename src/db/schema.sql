@@ -127,3 +127,24 @@ CREATE TABLE IF NOT EXISTS speaker_applications (
 );
 
 CREATE INDEX IF NOT EXISTS idx_speaker_applications_created_at ON speaker_applications (created_at DESC);
+
+-- Sponsor applications (AI event)
+CREATE TABLE IF NOT EXISTS sponsors_applications (
+  id SERIAL PRIMARY KEY,
+  company_name TEXT NOT NULL,
+  contact_full_name TEXT NOT NULL,
+  job_title TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  company_website TEXT,
+  package_selected TEXT NOT NULL,
+  package_tier TEXT NOT NULL,
+  why_sponsor TEXT NOT NULL,
+  how_heard TEXT,
+  status TEXT NOT NULL DEFAULT 'New',
+  notes TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_sponsors_applications_created_at ON sponsors_applications (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_sponsors_applications_email_lower ON sponsors_applications (lower(email));

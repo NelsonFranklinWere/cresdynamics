@@ -167,6 +167,42 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 48px;display:fl
 .speaker-apply p{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.5);}
 .speaker-apply a{display:inline-flex;margin-top:12px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
 
+/* ── SPONSORS ── */
+.sponsor-section{padding:80px 48px;background:var(--ink2);border-top:1px solid rgba(200,144,42,0.08);}
+.sponsor-section .sec-head-title{color:var(--white);}
+.sponsor-intro{font-size:15px;line-height:1.85;color:rgba(255,255,255,0.52);max-width:920px;margin-top:24px;}
+.sponsor-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(200,144,42,0.12);margin-top:40px;}
+.sponsor-card{padding:28px 22px;background:var(--ink);position:relative;display:flex;flex-direction:column;gap:12px;min-height:100%;}
+.sponsor-card.gold{border:2px solid rgba(200,144,42,0.55);box-shadow:inset 0 0 0 1px rgba(200,144,42,0.12);}
+.sponsor-card.silver{border:1px solid rgba(94,189,184,0.45);}
+.sponsor-card.community{border:1px solid rgba(255,255,255,0.12);}
+.sponsor-badge-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px;}
+.sponsor-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,144,42,0.4);padding:4px 10px;}
+.sponsor-tier{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:.04em;line-height:1.1;}
+.sponsor-price{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;}
+.sponsor-benefits-h{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:6px;}
+.sponsor-benefits{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.sponsor-benefits li{font-size:12.5px;line-height:1.65;color:rgba(255,255,255,0.42);padding-left:14px;position:relative;}
+.sponsor-benefits li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;background:var(--gold);border-radius:1px;opacity:.85;}
+.sponsor-audience{margin-top:56px;}
+.sponsor-audience > h3{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);letter-spacing:.03em;}
+.sponsor-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(200,144,42,0.1);margin-top:24px;}
+.sponsor-stat{background:var(--ink);padding:20px 16px;text-align:center;}
+.sponsor-stat-n{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,4vw,34px);color:var(--gold);line-height:1;}
+.sponsor-stat-l{font-size:11px;line-height:1.45;color:rgba(255,255,255,0.38);margin-top:8px;}
+.sponsor-stats-note{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.28);margin-top:16px;text-align:center;line-height:1.6;}
+.sponsor-why{margin-top:56px;}
+.sponsor-why > h3{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);}
+.sponsor-why-list{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:22px;counter-reset:swhy;}
+.sponsor-why-list li{font-size:13px;line-height:1.75;color:rgba(255,255,255,0.48);padding-left:0;}
+.sponsor-why-list li strong{display:block;color:var(--gold);font-weight:600;margin-bottom:4px;font-family:'Lora',serif;}
+.sponsor-form-wrap{width:100%;max-width:560px;margin-top:48px;}
+.sponsor-form{background:var(--ink);border:1px solid rgba(200,144,42,0.18);padding:36px 32px;}
+.sponsor-form .form-field textarea{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--white);padding:12px 14px;font-family:'Lora',serif;font-size:14px;border-radius:2px;outline:none;width:100%;min-height:120px;resize:vertical;}
+.sponsor-form .form-field textarea:focus{border-color:var(--gold);}
+.sponsor-success{display:none;background:var(--lgreen);border:1px solid var(--green);padding:20px;border-radius:2px;margin-top:16px;}
+.sponsor-success p{font-family:'Lora',serif;font-size:14px;color:var(--green);line-height:1.65;}
+
 /* ── WHATSAPP BROADCAST ── */
 .broadcast{background:var(--ink);border-top:1px solid rgba(200,144,42,0.12);padding:52px 48px;}
 .broadcast h3{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:var(--white);}
@@ -330,11 +366,12 @@ footer{background:var(--ink2);padding:40px 48px 24px;border-top:1px solid rgba(2
 
   .about,.venue-grid,.register-inner,.attend-grid{grid-template-columns:1fr;}
   .agenda-row{grid-template-columns:96px 1fr;}
-  .speakers-grid,.learn-grid,.test-grid,.social-proof,.lanyard-table{grid-template-columns:1fr;}
+  .speakers-grid,.learn-grid,.test-grid,.social-proof,.lanyard-table,.sponsor-cards{grid-template-columns:1fr;}
+  .sponsor-stats{grid-template-columns:repeat(2,1fr);}
   .lanyard-row{grid-template-columns:1fr;}
 
   .cta-strip{padding:28px 16px;}
-  .about,.agenda,.speakers,.learn,.venue,.register,.lanyard,.attend,.testimonials,.faq,.broadcast{padding:52px 16px;}
+  .about,.agenda,.speakers,.learn,.venue,.register,.lanyard,.attend,.testimonials,.faq,.broadcast,.sponsor-section{padding:52px 16px;}
   .form-row{grid-template-columns:1fr;}
   .reg-form{padding:28px 22px;}
   .sticky-register{display:block;}
@@ -363,7 +400,7 @@ footer{background:var(--ink2);padding:40px 48px 24px;border-top:1px solid rgba(2
   .cd-sep{display:none;}
   .cd-label{font-size:9px;}
 
-  .about,.agenda,.speakers,.learn,.venue,.register,.lanyard,.attend,.testimonials,.faq,.broadcast{padding:44px 14px;}
+  .about,.agenda,.speakers,.learn,.venue,.register,.lanyard,.attend,.testimonials,.faq,.broadcast,.sponsor-section{padding:44px 14px;}
   .about{gap:28px;}
   .agenda-row{grid-template-columns:78px 1fr;}
   .ag-time{padding:16px 12px;}
@@ -381,7 +418,8 @@ footer{background:var(--ink2);padding:40px 48px 24px;border-top:1px solid rgba(2
   .countdown-bar{padding:10px 12px;}
   .cd-block{font-size:20px;min-width:42px;}
   .cta-strip{padding:22px 12px;}
-  .about,.agenda,.speakers,.learn,.venue,.register,.lanyard,.attend,.testimonials,.faq,.broadcast{padding:40px 12px;}
+  .about,.agenda,.speakers,.learn,.venue,.register,.lanyard,.attend,.testimonials,.faq,.broadcast,.sponsor-section{padding:40px 12px;}
+  .sponsor-stats{grid-template-columns:1fr;}
   .reg-form{padding:22px 16px;}
   .ticket-opt{padding:12px 12px;}
 }
@@ -640,6 +678,119 @@ Saturday, 20th June 2026. Sarit Expo Centre. 300 seats. Register before they are
     <h3>🎤 Speaker applications are open.</h3>
     <p>Are you a business owner, developer, or AI practitioner with a real story to share? We are finalising our speaker lineup. If you have built something with AI or navigated the shift in your business or career — we want to hear from you.</p>
     <a href="/events/speak/" target="_blank" rel="noopener noreferrer">Apply to Speak →</a>
+  </div>
+</section>
+
+<!-- BECOME A SPONSOR -->
+<section class="sponsor-section" id="sponsors">
+  <div class="sec-head">
+    <div class="sec-head-label">Partnerships</div>
+    <h2 class="sec-head-title">Become a <span class="gold">Sponsor.</span></h2>
+  </div>
+  <p class="sponsor-intro">300 business owners, developers, HR professionals, and decision makers in one room for five hours. This is not a general audience. These are the people who buy software, hire talent, make procurement decisions, and influence how Kenyan businesses spend their money. If your brand needs to be in front of that room — this is your opportunity.</p>
+
+  <div class="sponsor-cards">
+    <div class="sponsor-card gold">
+      <div class="sponsor-badge-row">
+        <span class="sponsor-badge">Most impactful</span>
+        <span class="sponsor-badge">Premium placement</span>
+      </div>
+      <div class="sponsor-tier">GOLD SPONSOR</div>
+      <div class="sponsor-price">KES 50,000</div>
+      <div class="sponsor-benefits-h">What they get</div>
+      <ul class="sponsor-benefits">
+        <li>Your logo as the primary brand on the event backdrop, website, and all printed materials.</li>
+        <li>Named in all social media posts promoting the event — minimum 5 posts before the event.</li>
+        <li>3 VIP tickets to the event.</li>
+        <li>Branded pull-up banner placement at the event venue.</li>
+        <li>3 minute address to the full audience of 300 during the programme.</li>
+        <li>Your logo on every attendee certificate.</li>
+        <li>Featured in the post-event recap email sent to all 300 plus attendees.</li>
+        <li>Logo on the event programme booklet.</li>
+      </ul>
+    </div>
+    <div class="sponsor-card silver">
+      <div class="sponsor-tier">SILVER SPONSOR</div>
+      <div class="sponsor-price">KES 25,000</div>
+      <div class="sponsor-benefits-h">What they get</div>
+      <ul class="sponsor-benefits">
+        <li>Your logo on the event backdrop and website.</li>
+        <li>Named in 2 social media posts before the event.</li>
+        <li>2 VIP tickets to the event.</li>
+        <li>Logo on the event programme booklet.</li>
+        <li>Featured in the post-event recap email to all attendees.</li>
+        <li>Branded table in the networking area during the event.</li>
+      </ul>
+    </div>
+    <div class="sponsor-card community">
+      <div class="sponsor-tier">COMMUNITY PARTNER</div>
+      <div class="sponsor-price">KES 10,000 or In-Kind</div>
+      <div class="sponsor-benefits-h">What they get</div>
+      <ul class="sponsor-benefits">
+        <li>Your logo on the event website and programme.</li>
+        <li>1 ticket to the event.</li>
+        <li>1 social media mention before the event.</li>
+        <li>Recognition from stage during the closing session.</li>
+        <li>In-kind option available — contact us to discuss what you can offer in place of cash contribution.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sponsor-audience">
+    <h3>Who your brand will reach:</h3>
+    <div class="sponsor-stats">
+      <div class="sponsor-stat"><div class="sponsor-stat-n">300+</div><div class="sponsor-stat-l">Total Attendees</div></div>
+      <div class="sponsor-stat"><div class="sponsor-stat-n">60%</div><div class="sponsor-stat-l">Business Owners and Decision Makers</div></div>
+      <div class="sponsor-stat"><div class="sponsor-stat-n">20%</div><div class="sponsor-stat-l">Developers and Tech Professionals</div></div>
+      <div class="sponsor-stat"><div class="sponsor-stat-n">10%</div><div class="sponsor-stat-l">HR and Recruitment Professionals</div></div>
+      <div class="sponsor-stat"><div class="sponsor-stat-n">5%</div><div class="sponsor-stat-l">Investors</div></div>
+      <div class="sponsor-stat"><div class="sponsor-stat-n">5%</div><div class="sponsor-stat-l">Students and Recent Graduates</div></div>
+    </div>
+    <p class="sponsor-stats-note">Audience data based on ticket registrations. Updated in real time as registrations grow.</p>
+  </div>
+
+  <div class="sponsor-why">
+    <h3>Why Sponsor This Event</h3>
+    <ul class="sponsor-why-list">
+      <li><strong>One — Direct access to buyers.</strong> The people in this room make purchasing decisions for their businesses. Your brand in front of them for five hours is worth more than a month of digital ads.</li>
+      <li><strong>Two — Speaking opportunity.</strong> Gold sponsors address the full audience. 300 people hearing your brand message from your own representative — not a display banner.</li>
+      <li><strong>Three — Nairobi's AI conversation is starting now.</strong> The businesses and professionals who attend this event are the early adopters. Being the brand that supports that conversation positions you as a leader in this space.</li>
+      <li><strong>Four — Post-event reach.</strong> Your logo goes on every certificate sent to 300 attendees after the event. Every time they share their certificate on LinkedIn, your brand travels with it.</li>
+      <li><strong>Five — Limited slots.</strong> There is one Gold sponsor slot, three Silver slots, and ten Community Partner slots. Once they are filled they are filled.</li>
+    </ul>
+  </div>
+
+  <div class="sponsor-form-wrap">
+    <div class="sponsor-form">
+      <div class="form-title">Apply to sponsor</div>
+      <div class="form-sub">We respond within 48 hours · WhatsApp or email</div>
+      <div id="sponsor-success" class="sponsor-success">
+        <p><strong>Thank you.</strong> We have received your application and will be in touch within 48 hours via WhatsApp or email.</p>
+      </div>
+      <div id="sponsor-fields">
+        <div class="form-field"><label for="sponsor-company">Company Name</label><input id="sponsor-company" type="text" autocomplete="organization" placeholder="Your company" required></div>
+        <div class="form-field"><label for="sponsor-contact">Contact Person Full Name</label><input id="sponsor-contact" type="text" autocomplete="name" placeholder="Full name" required></div>
+        <div class="form-field"><label for="sponsor-title">Job Title</label><input id="sponsor-title" type="text" autocomplete="organization-title" placeholder="Your role" required></div>
+        <div class="form-field"><label for="sponsor-email">Email Address</label><input id="sponsor-email" type="email" autocomplete="email" placeholder="you@company.com" required></div>
+        <div class="form-field"><label for="sponsor-phone">Phone Number — WhatsApp preferred</label><input id="sponsor-phone" type="tel" autocomplete="tel" placeholder="+254 7XX XXX XXX" required></div>
+        <div class="form-field"><label for="sponsor-website">Company Website <span style="opacity:.45;">(optional)</span></label><input id="sponsor-website" type="url" inputmode="url" placeholder="https://"></div>
+        <div class="form-field">
+          <label for="sponsor-package">Sponsor Package Interested In</label>
+          <select id="sponsor-package" required>
+            <option value="">Select a package…</option>
+            <option value="gold">Gold KES 50,000</option>
+            <option value="silver">Silver KES 25,000</option>
+            <option value="community">Community Partner KES 10,000</option>
+            <option value="community_inkind">Community Partner In-Kind</option>
+            <option value="custom">I want to discuss a custom package</option>
+          </select>
+        </div>
+        <div class="form-field"><label for="sponsor-why">Why do you want to sponsor this event</label><textarea id="sponsor-why" placeholder="Minimum 50 characters." required></textarea></div>
+        <div class="form-field"><label for="sponsor-heard">How did you hear about this event <span style="opacity:.45;">(optional)</span></label><input id="sponsor-heard" type="text" placeholder="e.g. LinkedIn, referral, WhatsApp"></div>
+        <button type="button" class="submit-btn" id="sponsor-submit" onclick="handleSponsorSubmit(event)">Submit Sponsor Application</button>
+        <p class="form-note" style="margin-top:14px;">We review all applications within 48 hours and respond via WhatsApp or email. Submitting this form does not confirm your sponsorship — it begins the conversation. Nelson will contact you directly to discuss and confirm.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1005,6 +1156,103 @@ async function handleSubmit(e){
     alert('An error occurred. Please try again later.');
     submitBtn.textContent = defaultButtonText;
     submitBtn.disabled = false;
+  }
+}
+
+const SPONSOR_PKG_LABELS = {
+  gold: 'Gold KES 50,000',
+  silver: 'Silver KES 25,000',
+  community: 'Community Partner KES 10,000',
+  community_inkind: 'Community Partner In-Kind',
+  custom: 'I want to discuss a custom package'
+};
+
+async function handleSponsorSubmit(e){
+  if (e && e.preventDefault) e.preventDefault();
+
+  const companyEl = document.getElementById('sponsor-company');
+  const contactEl = document.getElementById('sponsor-contact');
+  const titleEl = document.getElementById('sponsor-title');
+  const emailEl = document.getElementById('sponsor-email');
+  const phoneEl = document.getElementById('sponsor-phone');
+  const websiteEl = document.getElementById('sponsor-website');
+  const pkgEl = document.getElementById('sponsor-package');
+  const whyEl = document.getElementById('sponsor-why');
+  const heardEl = document.getElementById('sponsor-heard');
+  const btn = document.getElementById('sponsor-submit');
+  const successEl = document.getElementById('sponsor-success');
+  const fieldsEl = document.getElementById('sponsor-fields');
+
+  const companyName = (companyEl && companyEl.value ? companyEl.value : '').trim();
+  const contactFullName = (contactEl && contactEl.value ? contactEl.value : '').trim();
+  const jobTitle = (titleEl && titleEl.value ? titleEl.value : '').trim();
+  const email = (emailEl && emailEl.value ? emailEl.value : '').trim();
+  const phone = (phoneEl && phoneEl.value ? phoneEl.value : '').trim();
+  const companyWebsite = (websiteEl && websiteEl.value ? websiteEl.value : '').trim();
+  const tier = pkgEl ? String(pkgEl.value || '').trim() : '';
+  const whySponsor = (whyEl && whyEl.value ? whyEl.value : '').trim();
+  const howHeard = (heardEl && heardEl.value ? heardEl.value : '').trim();
+
+  const setInvalid = (el) => { if(el) el.style.borderColor = '#B02020'; };
+  const setValid = (el) => { if(el) el.style.borderColor = 'rgba(255,255,255,0.08)'; };
+
+  let valid = true;
+  [companyEl, contactEl, titleEl, emailEl, phoneEl, pkgEl, whyEl].forEach(setValid);
+  if(!companyName){ setInvalid(companyEl); valid=false; }
+  if(!contactFullName){ setInvalid(contactEl); valid=false; }
+  if(!jobTitle){ setInvalid(titleEl); valid=false; }
+  if(!email){ setInvalid(emailEl); valid=false; }
+  if(!phone){ setInvalid(phoneEl); valid=false; }
+  if(!tier){ setInvalid(pkgEl); valid=false; }
+  if(whySponsor.length < 50){
+    setInvalid(whyEl);
+    alert('Please enter at least 50 characters for why you want to sponsor.');
+    valid=false;
+  }
+  if(!valid) return;
+
+  const packageSelected = SPONSOR_PKG_LABELS[tier];
+  if(!packageSelected){ alert('Please select a sponsor package.'); return; }
+
+  const defaultBtn = 'Submit Sponsor Application';
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+  if(successEl) successEl.style.display = 'none';
+
+  try{
+    const res = await fetch('/api/events/sponsors/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        companyName,
+        contactFullName,
+        jobTitle,
+        email,
+        phone,
+        companyWebsite: companyWebsite || null,
+        packageTier: tier,
+        packageSelected,
+        whySponsor,
+        howHeard: howHeard || null
+      })
+    });
+    const data = await res.json().catch(()=>null);
+    if(!res.ok){
+      alert((data && data.error) ? data.error : 'Could not submit. Please try again.');
+      btn.textContent = defaultBtn;
+      btn.disabled = false;
+      return;
+    }
+    if(successEl) successEl.style.display = 'block';
+    if(fieldsEl) fieldsEl.style.display = 'none';
+    if(successEl) successEl.scrollIntoView({behavior:'smooth', block:'center'});
+    btn.textContent = 'Submitted ✓';
+    btn.style.background = '#1A6835';
+  } catch(err){
+    console.error('Sponsor submit', err);
+    alert('An error occurred. Please try again later.');
+    btn.textContent = defaultBtn;
+    btn.disabled = false;
   }
 }
 </script>
