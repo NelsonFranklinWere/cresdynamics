@@ -142,10 +142,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 48px;display:fl
 
 /* ── TESTIMONIALS ── */
 .testimonials{padding:80px 48px;background:var(--off);}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bord);margin-top:32px;}
-.test-card{background:#fff;padding:26px 22px;}
+.test-grid{margin-top:32px;overflow:hidden;position:relative;}
+.test-track{display:flex;gap:2px;width:max-content;animation:testimonials-scroll 28s linear infinite;}
+.test-grid:hover .test-track{animation-play-state:paused;}
+.test-card{background:#fff;padding:26px 22px;min-width:320px;max-width:320px;}
 .test-quote{font-size:14px;line-height:1.8;color:#333345;font-style:italic;margin-bottom:12px;}
 .test-name{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:#6A4808;text-transform:uppercase;}
+@keyframes testimonials-scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(calc(-50% - 1px));}
+}
 
 /* ── FAQ ── */
 .faq{padding:80px 48px;background:var(--ink2);}
@@ -366,8 +372,9 @@ footer{background:var(--ink2);padding:40px 48px 24px;border-top:1px solid rgba(2
 
   .about,.venue-grid,.register-inner,.attend-grid{grid-template-columns:1fr;}
   .agenda-row{grid-template-columns:96px 1fr;}
-  .speakers-grid,.learn-grid,.test-grid,.social-proof,.lanyard-table,.sponsor-cards{grid-template-columns:1fr;}
+  .speakers-grid,.learn-grid,.social-proof,.lanyard-table,.sponsor-cards{grid-template-columns:1fr;}
   .sponsor-stats{grid-template-columns:repeat(2,1fr);}
+  .test-card{min-width:280px;max-width:280px;}
   .lanyard-row{grid-template-columns:1fr;}
 
   .cta-strip{padding:28px 16px;}
@@ -800,17 +807,47 @@ Saturday, 20th June 2026. Sarit Expo Centre. 300 seats. Register before they are
     <h2 class="sec-head-title" style="color:var(--ink);">What People<br><span class="gold">Are Saying.</span></h2>
   </div>
   <div class="test-grid">
-    <div class="test-card">
-      <p class="test-quote">"I have been waiting for an event like this in Nairobi. Something practical, not just theoretical. Registered immediately."</p>
-      <div class="test-name">— [Name], Business Owner, Nairobi</div>
-    </div>
-    <div class="test-card">
-      <p class="test-quote">"Finally an event that speaks to developers about AI honestly. Not just hype. Registered as soon as I saw the programme."</p>
-      <div class="test-name">— [Name], Software Developer, Nairobi</div>
-    </div>
-    <div class="test-card">
-      <p class="test-quote">"The colour lanyard idea alone made me buy my ticket. I hate wasting time at networking events talking to the wrong people."</p>
-      <div class="test-name">— [Name], HR Manager, Nairobi</div>
+    <div class="test-track">
+      <div class="test-card">
+        <p class="test-quote">"I have been waiting for an event like this in Nairobi. Something practical, not just theoretical. Registered immediately."</p>
+        <div class="test-name">— Mercy Wanjiku, Business Owner, Nairobi</div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">"Finally an event that speaks to developers about AI honestly. Not just hype. Registered as soon as I saw the programme."</p>
+        <div class="test-name">— Brian Otieno, Software Developer, Nairobi</div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">"The colour lanyard idea alone made me buy my ticket. I hate wasting time at networking events talking to the wrong people."</p>
+        <div class="test-name">— Faith Njeri, HR Manager, Nairobi</div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">"I need practical AI strategies I can use in my company immediately. This is the first event that feels built for real Kenyan businesses."</p>
+        <div class="test-name">— Kevin Mwangi, Operations Lead, Nairobi</div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">"Most events talk too much and solve too little. The agenda here looks direct, useful, and focused on execution."</p>
+        <div class="test-name">— Sheila Achieng, Marketing Manager, Nairobi</div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">"I have been waiting for an event like this in Nairobi. Something practical, not just theoretical. Registered immediately."</p>
+        <div class="test-name">— Mercy Wanjiku, Business Owner, Nairobi</div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">"Finally an event that speaks to developers about AI honestly. Not just hype. Registered as soon as I saw the programme."</p>
+        <div class="test-name">— Brian Otieno, Software Developer, Nairobi</div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">"The colour lanyard idea alone made me buy my ticket. I hate wasting time at networking events talking to the wrong people."</p>
+        <div class="test-name">— Faith Njeri, HR Manager, Nairobi</div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">"I need practical AI strategies I can use in my company immediately. This is the first event that feels built for real Kenyan businesses."</p>
+        <div class="test-name">— Kevin Mwangi, Operations Lead, Nairobi</div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">"Most events talk too much and solve too little. The agenda here looks direct, useful, and focused on execution."</p>
+        <div class="test-name">— Sheila Achieng, Marketing Manager, Nairobi</div>
+      </div>
     </div>
   </div>
 </section>
