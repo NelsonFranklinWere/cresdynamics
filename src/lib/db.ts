@@ -519,6 +519,88 @@ export async function attachPaymentCheckoutDetails(input: AttachCheckoutDetailsI
   );
 }
 
+export async function getPaymentByReferences(
+  providerTrackingId?: string | null,
+  merchantReference?: string | null,
+  reference?: string | null
+): Promise<PaymentRow | null> {
+  const p = getPool();
+  if (!p) return null;
+  const r = await p.query(
+    `
+    select
+      id,
+      source,
+      reference,
+      provider_tracking_id,
+      merchant_reference,
+      payment_link_token,
+      payment_link_active,
+      email,
+      phone,
+      amount_kes,
+      currency,
+      status,
+      purpose,
+      event_title,
+      event_date,
+      metadata_json,
+      updated_at,
+      created_at
+    from payments
+    where
+      ($1::text is not null and provider_tracking_id = $1)
+      or ($2::text is not null and merchant_reference = $2)
+      or ($3::text is not null and reference = $3)
+    order by created_at desc
+    limit 1
+    `,
+    [providerTrackingId ?? null, merchantReference ?? null, reference ?? null]
+  );
+  if (r.rows.length === 0) return null;
+  const row = r.rows[0];
+  return {
+    id: Number(row.id),
+    source: String(row.source),
+    reference: row.reference ? String(row.reference) : null,
+    providerTrackingId: row.provider_tracking_id ? String(row.provider_tracking_id) : null,
+    merchantReference: row.merchant_reference ? String(row.merchant_reference) : null,
+    paymentLinkToken: row.payment_link_token ? String(row.payment_link_token) : null,
+    paymentLinkActive: Boolean(row.payment_link_active),
+    email: row.email ? String(row.email) : null,
+    phone: row.phone ? String(row.phone) : null,
+    amountKes: row.amount_kes === null || row.amount_kes === undefined ? null : Number(row.amount_kes),
+    currency: String(row.currency),
+    status: String(row.status),
+    purpose: row.purpose ? String(row.purpose) : null,
+    eventTitle: row.event_title ? String(row.event_title) : null,
+    eventDate: row.event_date ? String(row.event_date) : null,
+    metadata:
+      row.metadata_json && typeof row.metadata_json === 'object'
+        ? (row.metadata_json as Record<string, unknown>)
+        : null,
+    updatedAt: new Date(row.updated_at).toISOString(),
+    createdAt: new Date(row.created_at).toISOString(),
+  };
+}
+
+export async function updatePaymentMetadataById(
+  paymentId: number,
+  metadata: Record<string, unknown>
+): Promise<void> {
+  const p = getPool();
+  if (!p) return;
+  await p.query(
+    `
+    update payments
+    set metadata_json = $2,
+        updated_at = now()
+    where id = $1
+    `,
+    [paymentId, metadata]
+  );
+}
+
 export type ChatLeadSessionInput = {
   sessionPublicId: string;
   visitorName: string;

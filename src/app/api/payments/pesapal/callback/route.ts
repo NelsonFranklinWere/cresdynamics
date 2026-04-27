@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { updatePaymentStatus } from '@/lib/db';
+import { getPaymentByReferences, updatePaymentStatus } from '@/lib/db';
 import { getPesapalTransactionStatus } from '@/lib/pesapal';
 
 export const runtime = 'nodejs';
@@ -18,9 +18,10 @@ export async function GET(req: Request) {
     const orderTrackingId = String(url.searchParams.get('OrderTrackingId') || '').trim();
     const merchantReference = String(url.searchParams.get('OrderMerchantReference') || '').trim();
 
+    let normalized = 'pending';
     if (orderTrackingId) {
       const status = await getPesapalTransactionStatus(orderTrackingId);
-      const normalized = normalizeStatus(
+      normalized = normalizeStatus(
         String(status.payment_status_description || status.status || status.message || '')
       );
       await updatePaymentStatus({
@@ -31,9 +32,17 @@ export async function GET(req: Request) {
       });
     }
 
-    const redirectTo = new URL('/management/payments', url.origin);
-    if (merchantReference) redirectTo.searchParams.set('ref', merchantReference);
-    if (orderTrackingId) redirectTo.searchParams.set('trackingId', orderTrackingId);
+    const payment = await getPaymentByReferences(orderTrackingId || null, merchantReference || null, null);
+    const isEventTicket = Boolean(payment?.purpose?.startsWith('event_ticket_'));
+    const redirectTo = isEventTicket
+      ? new URL('/events/', url.origin)
+      : new URL('/management/payments', url.origin);
+    if (isEventTicket) {
+      redirectTo.searchParams.set('payment', normalized === 'paid' ? 'success' : 'pending');
+    } else {
+      if (merchantReference) redirectTo.searchParams.set('ref', merchantReference);
+      if (orderTrackingId) redirectTo.searchParams.set('trackingId', orderTrackingId);
+    }
     return NextResponse.redirect(redirectTo, { status: 302 });
   } catch (error) {
     return NextResponse.json(
