@@ -3,9 +3,9 @@ import Footer from '@/components/Footer';
 import MarketingPageContent from '@/components/MarketingPageContent';
 
 export const metadata = {
-  title: 'Marketing & Ads for Nairobi — Meta & Google | CRES Dynamics',
+  title: 'Meta Ads Management Nairobi Kenya | Facebook & Instagram Ads | Cres Dynamics',
   description:
-    'Meta and Google Ads built for Nairobi and Kenya: local, countywide, and diaspora. Packages, benchmarks, and retainers that focus on buyers—not vanity metrics.',
+    'Professional Meta Ads and Google Ads management for Nairobi businesses. Structured campaigns, real targeting, monthly reporting. Packages from KES 25,000/month.',
 };
 
 export default function MarketingPage() {

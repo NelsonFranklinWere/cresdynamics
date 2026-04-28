@@ -5,13 +5,15 @@ import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'E-Commerce Website Development Nairobi | Online Store Kenya — Cres Dynamics',
-  description: 'Launch your online store in Nairobi with Cres Dynamics. M-Pesa integration, product management, order tracking and mobile-first checkout built for Kenyan businesses.',
+  title: 'E-Commerce Website Development Kenya | M-Pesa Online Store | Cres Dynamics',
+  description:
+    'We build e-commerce websites for Kenyan businesses with M-Pesa payments, product catalogues, and order management. Sell online in Kenya. Based in Nairobi.',
   alternates: { canonical: 'https://cresdynamics.com/e-commerce/' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'E-Commerce Website Development Nairobi — Cres Dynamics',
-    description: 'Online stores with M-Pesa, order management and mobile checkout built for Kenyan businesses.',
+    title: 'E-Commerce Website Development Kenya | M-Pesa Online Store | Cres Dynamics',
+    description:
+      'E-commerce websites for Kenyan businesses with M-Pesa payments, product catalogues, and order management.',
     url: 'https://cresdynamics.com/e-commerce/',
     type: 'website',
   },
@@ -86,10 +88,14 @@ export default function ECommercePage() {
           <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-3xl md:text-5xl font-black mb-6">
-              <span className="text-[var(--cres-orange-primary)]">E-Commerce</span> Built for How You Sell
+              E-Commerce Systems Built
+              <br />
+              for Kenyan Businesses
+              <br />
+              <span className="text-[var(--cres-orange-primary)]">M-Pesa, Orders, Catalogue</span>
             </h1>
             <p className="text-white/80 text-lg md:text-xl mb-8">
-              Product structure, inventory clarity, payment flow, conversion strategy, mobile optimization, abandoned-cart handling. One business-ready platform. Outcome: turn traffic into predictable revenue.
+              M-Pesa integrated e-commerce for Kenyan businesses: product structure, inventory clarity, payment flow, conversion strategy, mobile optimization, and abandoned-cart handling in one business-ready platform.
             </p>
             <a href={whatsappUrl(WHATSAPP_PREFILL.ecommerceDiscovery)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
               Discuss your store
@@ -186,6 +192,18 @@ export default function ECommercePage() {
               <a href={TEL_LINK} className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/5 text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide">
                 Call 0708 805 496
               </a>
+            </div>
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {[
+                { href: '/websites', label: 'Website Development' },
+                { href: '/marketing', label: 'Meta Ads & Marketing' },
+                { href: '/finance-platforms', label: 'Finance Platforms' },
+                { href: '/insights', label: 'Insights' },
+              ].map((item) => (
+                <Link key={item.href} href={item.href} className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10">
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
         </section>

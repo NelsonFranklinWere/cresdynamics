@@ -5,13 +5,15 @@ import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Operations & Workflow Management Kenya | Business Systems Nairobi — Cres Dynamics',
-  description: 'Replace WhatsApp and Excel with a real operations system. Custom workflow management for Nairobi businesses — automate approvals, track tasks and manage teams from one platform.',
+  title: 'Business Operations System Nairobi | Workflow Management Software Kenya | Cres Dynamics',
+  description:
+    'Operations and workflow systems for Kenyan businesses. Automate approvals, track tasks, and run operations without being in every decision.',
   alternates: { canonical: 'https://cresdynamics.com/operations-workflow/' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'Operations & Workflow Management Kenya — Cres Dynamics',
-    description: 'Replace WhatsApp and Excel with real workflow management for Nairobi businesses.',
+    title: 'Business Operations System Nairobi | Workflow Management Software Kenya | Cres Dynamics',
+    description:
+      'Operations and workflow systems for Kenyan businesses with automation, approvals, and real-time task visibility.',
     url: 'https://cresdynamics.com/operations-workflow/',
     type: 'website',
   },
@@ -30,11 +32,11 @@ export default function OperationsWorkflowPage() {
               Service – Operations &amp; Workflow
             </p>
             <h1 className="text-3xl md:text-5xl font-black mb-6">
-              Your Business
+              Operations &amp; Workflow Systems
               <br />
-              Should Run
+              Run Your Business Without
               <br />
-              Without You.
+              Being in Every Decision
             </h1>
             <p className="text-white/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
               When every decision, every approval, and every update flows through one person – that person is the bottleneck.

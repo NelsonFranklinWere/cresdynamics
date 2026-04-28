@@ -1,7 +1,21 @@
-'use client';
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Insights & Guides | Cres Dynamics Nairobi Kenya',
+  description:
+    'Practical insights on ERP systems, website strategy, AI automation, operations, and growth for Kenyan businesses.',
+  alternates: { canonical: 'https://cresdynamics.com/insights/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Insights & Guides | Cres Dynamics Nairobi Kenya',
+    description:
+      'Practical insights on ERP systems, website strategy, AI automation, operations, and growth for Kenyan businesses.',
+    url: 'https://cresdynamics.com/insights/',
+    type: 'website',
+  },
+};
 
 export default function InsightsPage() {
   return (
@@ -58,6 +72,38 @@ export default function InsightsPage() {
               >
                 {category.name}
               </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEO CONTENT CALENDAR */}
+      <section className="py-12 md:py-16 bg-[var(--navy-dark)] border-y border-white/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-[var(--teal-accent)] mb-2">
+            12-Week SEO Calendar
+          </p>
+          <h2 className="text-2xl md:text-4xl font-black text-white mb-8">
+            Weekly Articles That Capture High-Intent Search Traffic
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              'Week 1: How Much Does a Custom ERP System Cost in Kenya in 2026?',
+              'Week 2: How Much Does a Professional Website Cost in Nairobi in 2026?',
+              'Week 3: 7 Signs Your Business Has Outgrown WhatsApp and Excel',
+              'Week 4: M-Pesa Integration — How to Connect Mpesa to Your Business Software',
+              'Week 5: Meta Ads vs Google Ads — Which Should Nairobi Businesses Use First?',
+              'Week 6: What is an ERP System and Does Your Kenyan Business Need One?',
+              'Week 7: How to Choose a Web Developer in Nairobi — What to Look for and What to Avoid',
+              'Week 8: AI for Kenyan Businesses — What It Actually Means and What You Can Do With It Today',
+              'Week 9: How We Built a Finance Platform Tracking KES 4.97M for a Kenyan Business',
+              "Week 10: How We Replaced a Client's WhatsApp Operations with a Custom ERP — Before and After",
+              'Week 11: How a Nairobi Business Went From Zero Online Presence to Daily Leads After a Website Rebuild',
+              'Week 12: The Cres Dynamics Build Process — How We Go From Discovery to Live System in Weeks',
+            ].map((title) => (
+              <article key={title} className="rounded-xl border border-white/10 bg-black/30 p-4">
+                <h3 className="text-sm font-bold text-white leading-snug">{title}</h3>
+              </article>
             ))}
           </div>
         </div>
@@ -465,32 +511,36 @@ export default function InsightsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-16">
             {[
               {
-                category: 'Digital Growth',
-                title: '5 Digital Growth Mistakes Holding Your Business Back',
-                description: 'Common pitfalls that prevent businesses from scaling effectively and how to avoid them.',
-                date: 'April 26, 2024',
-                readTime: '5 min read'
+                category: 'ERP',
+                title: 'How Much Does a Custom ERP System Cost in Kenya in 2026?',
+                description: 'A practical pricing guide for Kenyan businesses planning ERP implementation, including what drives cost and timeline.',
+                date: 'April 28, 2026',
+                readTime: '8 min read',
+                href: '/insights/custom-erp-system-cost-kenya-2026'
               },
               {
                 category: 'SEO',
-                title: 'SEO Myths That Are Slowing Your Growth',
-                description: 'Debunking the most common SEO misconceptions that keep businesses invisible online.',
-                date: 'April 20, 2024',
-                readTime: '4 min read'
+                title: 'How Much Does a Professional Website Cost in Nairobi in 2026?',
+                description: 'Clear website pricing ranges in Nairobi and what influences final project scope for serious businesses.',
+                date: 'April 28, 2026',
+                readTime: '8 min read',
+                href: '/insights/professional-website-cost-nairobi-2026'
               },
               {
-                category: 'Automation',
-                title: 'Stop Missing Leads: How AI Automation Changed Sales for One Business',
-                description: 'A real case study showing how automation transformed lead management and increased conversions.',
-                date: 'April 18, 2024',
-                readTime: '5 min read'
+                category: 'Operations',
+                title: '7 Signs Your Business Has Outgrown WhatsApp and Excel',
+                description: 'The operational symptoms that show it is time to move from manual tools to integrated systems.',
+                date: 'April 28, 2026',
+                readTime: '7 min read',
+                href: '/insights/signs-business-outgrown-whatsapp-excel'
               },
               {
-                category: 'Digital Growth',
-                title: 'How to Make Your Website Work for You 24/7',
-                description: 'Transform your website into a sales machine that works around the clock, even when you\'re not online.',
-                date: 'April 9, 2024',
-                readTime: '5 min read'
+                category: 'Integration',
+                title: 'M-Pesa Integration — How to Connect Mpesa to Your Business Software',
+                description: 'Step-by-step integration guide for Kenyan teams connecting M-Pesa into software, invoicing, and workflow systems.',
+                date: 'April 28, 2026',
+                readTime: '8 min read',
+                href: '/insights/mpesa-integration-business-software-kenya'
               }
             ].map((article, i) => (
               <div key={i} className="bg-black border border-white/20 rounded-xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
@@ -513,7 +563,7 @@ export default function InsightsPage() {
                   <span>{article.date}</span>
                   <span>{article.readTime}</span>
                 </div>
-                <a href="#" className="text-sm md:text-base text-[var(--cres-white)] font-semibold hover:text-[var(--cres-orange-primary)] transition-colors">
+                <a href={article.href} className="text-sm md:text-base text-[var(--cres-white)] font-semibold hover:text-[var(--cres-orange-primary)] transition-colors">
                   Read More <span className="text-[var(--cres-orange-primary)]">→</span>
                 </a>
               </div>

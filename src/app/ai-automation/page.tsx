@@ -5,13 +5,14 @@ import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AI Automation Nairobi | Business Automation Kenya — Cres Dynamics',
-  description: 'AI-powered automation systems for Nairobi businesses. Automate workflows, eliminate manual work and integrate intelligent tools into your operations. Live in production across Kenya.',
+  title: 'AI Systems & Business Automation Nairobi Kenya | Cres Dynamics',
+  description:
+    'We build AI-powered automation systems for Kenyan businesses. Automated follow-ups, workflow triggers, and intelligent decision support. Based in Nairobi. Book a discovery session.',
   alternates: { canonical: 'https://cresdynamics.com/ai-automation/' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'AI Automation Nairobi — Cres Dynamics',
-    description: 'Workflow automation and AI systems for Nairobi businesses. Live in production across Kenya.',
+    title: 'AI Systems & Business Automation Nairobi Kenya | Cres Dynamics',
+    description: 'AI-powered automation systems for Kenyan businesses with automated follow-ups and workflow triggers.',
     url: 'https://cresdynamics.com/ai-automation/',
     type: 'website',
   },
@@ -27,15 +28,17 @@ export default function AIAutomationPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_60%_40%,rgba(106,72,8,0.2)_0%,transparent_70%)]" />
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-3xl md:text-5xl font-black mb-6">
-              Less Manual.
+              AI Systems &amp; Business Automation
               <br />
-              More Intelligent.
-              <br />
-              Always On.
+              Built for Kenyan Companies
             </h1>
             <p className="text-white/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
               Automate the repetitive. Trigger the important. Let AI handle what doesn&apos;t need a human – so your team focuses
               on what does.
+            </p>
+            <p className="text-white/75 text-sm md:text-base mb-8 max-w-3xl mx-auto">
+              An AI agent is a system that automatically follows up with a lead 24 hours after they fill your contact form —
+              without you lifting a finger. That is the level of practical automation we implement.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
@@ -205,6 +208,14 @@ export default function AIAutomationPage() {
                 </p>
               </div>
             </div>
+            <div className="mt-10 rounded-2xl border border-white/15 bg-black/40 p-6">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-white/60 mb-2">Production Proof</p>
+              <h3 className="text-xl font-bold text-white mb-2">OptionalHire AI integration</h3>
+              <p className="text-white/80 text-sm md:text-base">
+                We have implemented AI-driven capabilities in real production workflows, including OptionalHire use cases.
+                This is not theoretical AI content — it is operational implementation for live users.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -275,6 +286,17 @@ export default function AIAutomationPage() {
                 +254 708 805 496
               </a>
             </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {[
+                { href: '/erp', label: 'Custom ERP' },
+                { href: '/operations-workflow', label: 'Operations & Workflow' },
+                { href: '/software', label: 'Custom Software' },
+              ].map((item) => (
+                <Link key={item.href} href={item.href} className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       </main>

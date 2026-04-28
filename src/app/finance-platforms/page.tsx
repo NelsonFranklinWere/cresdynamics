@@ -5,13 +5,15 @@ import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Finance Platform Kenya | Business Finance System Nairobi — Cres Dynamics',
-  description: 'Custom finance platforms for Nairobi businesses — M-Pesa reconciliation, invoicing, revenue dashboards and payroll in one secure system. KES 4.97M already tracked live.',
+  title: 'Finance & Revenue Management System Kenya | M-Pesa Integration | Cres Dynamics',
+  description:
+    'Real-time revenue tracking, invoice management, and subscription billing for Kenyan businesses. M-Pesa integrated. 127 active users. KES 4.97M tracked. Based in Nairobi.',
   alternates: { canonical: 'https://cresdynamics.com/finance-platforms/' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'Finance Platform Kenya — Cres Dynamics',
-    description: 'M-Pesa reconciliation, invoicing and revenue dashboards for Nairobi businesses. KES 4.97M tracked live.',
+    title: 'Finance & Revenue Management System Kenya | M-Pesa Integration | Cres Dynamics',
+    description:
+      'Real-time revenue tracking, invoice management, and subscription billing with M-Pesa integration for Kenyan businesses.',
     url: 'https://cresdynamics.com/finance-platforms/',
     type: 'website',
   },
@@ -27,12 +29,15 @@ export default function FinancePlatformsPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_60%_40%,rgba(26,104,53,0.12)_0%,transparent_70%)]" />
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-3xl md:text-5xl font-black mb-6">
-              Know Your
+              Finance &amp; Revenue Platforms
               <br />
-              Numbers.
+              Real-Time Visibility for
               <br />
-              Every Day.
+              Kenyan Businesses
             </h1>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[var(--cres-orange-primary)]/50 bg-black/30 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--cres-orange-primary)] mb-5">
+              127 Active Users · KES 4.97M Tracked Live
+            </div>
             <p className="text-white/80 text-lg md:text-xl mb-8">
               Real-time revenue visibility, invoice management, and Mpesa integration. Stop reconstructing last month – start
               reading today&apos;s dashboard.
@@ -339,6 +344,17 @@ export default function FinancePlatformsPage() {
                 +254 708 805 496
               </a>
             </p>
+            <div className="mt-5 flex flex-wrap justify-center gap-2">
+              {[
+                { href: '/erp', label: 'Custom ERP' },
+                { href: '/operations-workflow', label: 'Operations & Workflow' },
+                { href: '/case-studies', label: 'Case Studies' },
+              ].map((item) => (
+                <Link key={item.href} href={item.href} className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       </main>

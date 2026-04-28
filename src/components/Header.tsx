@@ -345,6 +345,12 @@ export default function Header() {
                 desc: 'Automation and intelligence on top of your systems',
                 image: '/11_ai_automation.jpg',
               },
+              {
+                name: 'Custom Software',
+                href: '/software',
+                desc: 'Portals, dashboards, booking and internal tools',
+                image: '/10_operations_workflow.jpg',
+              },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -423,6 +429,7 @@ export default function Header() {
                 {[
                   { name: 'Websites', href: '/websites' },
                   { name: 'E-Commerce', href: '/e-commerce' },
+                  { name: 'Custom Software', href: '/software' },
                   { name: 'Finance', href: '/finance-platforms' },
                   { name: 'Operations & Workflow', href: '/operations-workflow' },
                   { name: 'AI & Automation', href: '/ai-automation' },

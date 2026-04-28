@@ -5,13 +5,15 @@ import { whatsappUrl, WHATSAPP_PREFILL, TEL_LINK } from '@/lib/contact';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Professional Website Development Nairobi | Web Design Kenya — Cres Dynamics',
-  description: 'Cres Dynamics builds professional websites for businesses, NGOs, startups and corporates in Nairobi. Corporate sites, e-commerce, landing pages — mobile-first, SEO-ready and built to convert.',
+  title: 'Professional Website Design & Development Nairobi Kenya | Cres Dynamics',
+  description:
+    'We build professional websites that convert visitors into clients. SEO-optimised, mobile-first, M-Pesa ready. Serving businesses across Nairobi and Kenya. Get a website that works.',
   alternates: { canonical: 'https://cresdynamics.com/websites/' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'Professional Website Development Nairobi — Cres Dynamics',
-    description: 'Professional websites for Nairobi businesses. Corporate sites, e-commerce, landing pages — built to convert.',
+    title: 'Professional Website Design & Development Nairobi Kenya | Cres Dynamics',
+    description:
+      'We build professional websites that convert visitors into clients. SEO-optimised, mobile-first, M-Pesa ready.',
     url: 'https://cresdynamics.com/websites/',
     type: 'website',
   },
@@ -107,11 +109,43 @@ export default function WebsitesPage() {
       'Web Application Development',
     ],
   };
+  const websiteFaqs = [
+    {
+      q: 'How much does a website cost in Nairobi?',
+      a: 'Most professional business websites in Nairobi range from KES 85,000 to KES 450,000 depending on scope, pages, features, and integrations. We provide a fixed scope and transparent quote before build starts.',
+    },
+    {
+      q: 'How long does it take to build a website in Kenya?',
+      a: 'Most projects take 2 to 6 weeks depending on content readiness and complexity. Campaign landing pages can go live faster, while larger multi-page websites or integrated platforms take longer.',
+    },
+    {
+      q: 'Do I own my website after it is built?',
+      a: 'Yes. You own your website, content, and core assets after project handover and payment completion. We also hand over credentials so your team has full control.',
+    },
+    {
+      q: 'Will my website rank on Google?',
+      a: 'We build every site SEO-ready: proper structure, metadata, speed optimisation, and Search Console setup. Ranking growth depends on competition and ongoing content, but the foundation is built in from day one.',
+    },
+    {
+      q: 'Can you build a website with M-Pesa payments?',
+      a: 'Yes. We implement M-Pesa-ready checkout and payment workflows for e-commerce and service businesses that need local payment support in Kenya.',
+    },
+  ];
+  const websiteFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: websiteFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
 
   return (
     <div className="min-h-screen bg-[var(--navy-dark)] text-white">
       <Header />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteServiceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteFaqSchema) }} />
 
       <main className="pt-24">
         {/* HERO */}
@@ -121,13 +155,7 @@ export default function WebsitesPage() {
             <p className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-3">
               Service – Websites
             </p>
-            <h1 className="text-3xl md:text-5xl font-black mb-6">
-              Your Business
-              <br />
-              Deserves to
-              <br />
-              Be Found.
-            </h1>
+            <h1 className="text-3xl md:text-5xl font-black mb-6">Professional Website Design &amp; Development — Nairobi, Kenya</h1>
             <p className="text-white/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
               A website that works as hard as you do – converting strangers into clients, 24 hours a day, while you sleep.
             </p>
@@ -368,6 +396,60 @@ export default function WebsitesPage() {
           </div>
         </section>
 
+        {/* PRICING RANGES */}
+        <section className="relative py-16 md:py-20 bg-[var(--cres-primary-bg)] border-y border-white/10">
+          <div className="relative z-10 max-w-5xl mx-auto px-6">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Website Pricing Ranges in Kenya</h2>
+              <p className="text-white/75 text-sm md:text-base max-w-2xl mx-auto">
+                Transparent pricing helps serious buyers decide faster. Final cost depends on scope, integrations, and content requirements.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--cres-orange-primary)] mb-2">Starter</p>
+                <h3 className="text-xl font-black mb-2">KES 85,000 – 140,000</h3>
+                <p className="text-white/80 text-sm">Professional business website, conversion-focused pages, mobile optimisation, and inquiry capture.</p>
+              </div>
+              <div className="rounded-2xl border border-[var(--cres-orange-primary)]/50 bg-black/50 p-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--cres-orange-primary)] mb-2">Growth</p>
+                <h3 className="text-xl font-black mb-2">KES 150,000 – 280,000</h3>
+                <p className="text-white/80 text-sm">Full marketing website with SEO structure, richer content blocks, analytics setup, and stronger conversion architecture.</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--cres-orange-primary)] mb-2">Commerce / Platform</p>
+                <h3 className="text-xl font-black mb-2">KES 280,000 – 450,000+</h3>
+                <p className="text-white/80 text-sm">M-Pesa-enabled e-commerce or portal-style builds with custom workflows, integrations, and admin capabilities.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PORTFOLIO */}
+        <section className="relative py-16 md:py-20 bg-[var(--cres-secondary-bg)]">
+          <div className="relative z-10 max-w-6xl mx-auto px-6">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Selected Website Work</h2>
+              <p className="text-white/75 text-sm md:text-base">Live examples from sectors we actively build for in Kenya.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[
+                { name: 'Cres Dynamics', href: 'https://cresdynamics.com', desc: 'Corporate and systems-led service website.' },
+                { name: 'Mohaa Finest', href: 'https://mohaafinest.co.ke', desc: 'Brand-led customer acquisition website.' },
+                { name: 'Spark Lights 254', href: 'https://sparklights254.co.ke', desc: 'Product-driven website with conversion intent.' },
+                { name: 'The Stems Flowers', href: 'https://thestemsflowers.com', desc: 'Modern florist website for lead capture and orders.' },
+                { name: 'Whitelight Store', href: 'https://whitelightstore.co.ke', desc: 'Online catalogue and e-commerce experience.' },
+              ].map((site) => (
+                <a key={site.href} href={site.href} target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-white/10 bg-black/40 p-5 hover:border-[var(--cres-orange-primary)]/60">
+                  <h3 className="text-lg font-bold text-white">{site.name}</h3>
+                  <p className="text-white/70 text-sm mt-1">{site.desc}</p>
+                  <p className="text-[var(--cres-orange-primary)] text-xs font-semibold uppercase tracking-[0.2em] mt-4">View Live Site</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* INVESTMENT */}
         <section className="relative py-16 md:py-20 bg-[var(--cres-primary-bg)]">
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
@@ -391,45 +473,39 @@ export default function WebsitesPage() {
           </div>
         </section>
 
-        {/* COMMON QUESTIONS */}
+        {/* SEO FAQ */}
         <section className="relative py-16 md:py-20 bg-[var(--cres-secondary-bg)]">
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             <div className="text-center mb-10 md:mb-12">
-              <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Common Questions</h2>
-              <p className="text-white/75 text-sm md:text-base">Answered honestly.</p>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Website Questions (Nairobi &amp; Kenya)</h2>
+              <p className="text-white/75 text-sm md:text-base">The exact questions buyers ask before choosing a developer.</p>
             </div>
             <div className="space-y-6 text-white/85 text-sm md:text-base">
-              <div>
-                <p className="font-semibold text-white mb-1">“Can&apos;t I just use Wix or a template?”</p>
-                <p>
-                  You can. But Wix and similar platforms are templates built for the global average – not your business.
-                  They&apos;re slow, hard to optimise for Kenyan search, and they look like every other website. A CRES website
-                  is built specifically around your business, your clients, and your conversion path.
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-white mb-1">“How long before this starts working?”</p>
-                <p>
-                  SEO takes 2–4 months to build momentum. But your website starts working from day one – every referral,
-                  every business card, every social media link now leads somewhere that converts. The compounding effect
-                  builds over time.
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-white mb-1">“I don&apos;t have copy or photos yet.”</p>
-                <p>
-                  We handle it. Our Growth and E-Commerce packages include professional copywriting. We&apos;ll guide you on
-                  photography or work with what you have. We&apos;ve launched great websites with nothing more than a phone call
-                  and a brief.
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-white mb-1">“Will I own and control the website?”</p>
-                <p>
-                  Yes – completely. The website belongs to you. We hand over all credentials and source files at launch. You
-                  can manage it yourself or engage us on a monthly retainer for updates and support.
-                </p>
-              </div>
+              {websiteFaqs.map((item) => (
+                <div key={item.q}>
+                  <p className="font-semibold text-white mb-1">{item.q}</p>
+                  <p>{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* INTERNAL LINKS */}
+        <section className="relative py-10 bg-[var(--cres-primary-bg)] border-t border-white/10">
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-white/60 mb-3">Related pages</p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { href: '/e-commerce', label: 'E-Commerce Systems' },
+                { href: '/marketing', label: 'Meta Ads & Marketing' },
+                { href: '/case-studies', label: 'Website Case Studies' },
+                { href: '/insights', label: 'Insights: Website Cost in Nairobi' },
+              ].map((item) => (
+                <Link key={item.href} href={item.href} className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10">
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
         </section>

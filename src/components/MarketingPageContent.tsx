@@ -23,10 +23,11 @@ export default function MarketingPageContent() {
             <span className={secLabelBar} /> Marketing &amp; Ads · Nairobi
           </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] mb-4">
-            Own the Feed
-            <br />&amp; Search in
+            Meta Ads &amp; Digital Marketing
             <br />
-            <span style={{ color: 'var(--orange-energy)' }}>Nairobi.</span>
+            Management
+            <br />
+            <span style={{ color: 'var(--orange-energy)' }}>Nairobi, Kenya.</span>
           </h1>
           <p className="text-white/75 text-lg md:text-xl max-w-2xl mb-6 leading-relaxed">
             Meta and Google Ads tuned for Kenyan buyers — CBD, Westlands, countywide, and diaspora. Built for outcomes
@@ -555,6 +556,14 @@ export default function MarketingPageContent() {
             <strong>Note on ad spend:</strong> Packages cover CRES management only. Your ad budget (Meta/Google) is
             separate. We recommend KES 15,000–30,000/month minimum for meaningful results.
           </div>
+          <div className="mt-6 rounded border border-[#E0DCD4] bg-white p-5 text-sm text-[var(--navy-primary)]">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--teal-accent)] mb-2">Before &amp; After (Honest)</p>
+            <p className="leading-relaxed">
+              Before: client was boosting posts with no targeting structure, no pixel events, and no clear conversion page.
+              Results were inconsistent and mostly vanity metrics. After: structured campaign setup (offer + landing flow + tracking + retargeting),
+              lead quality improved, reporting became predictable, and spend decisions were based on data not guesswork.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -610,6 +619,17 @@ export default function MarketingPageContent() {
                   <div className="px-5 pb-4 text-white/60 text-xs leading-relaxed">{faq.a}</div>
                 </div>
               </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-2">
+            {[
+              { href: '/websites', label: 'Website Development' },
+              { href: '/e-commerce', label: 'E-Commerce' },
+              { href: '/insights', label: 'Insights: Meta vs Google Ads' },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10">
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>

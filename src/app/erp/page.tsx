@@ -1,10 +1,55 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Custom ERP System Development Nairobi Kenya | Cres Dynamics',
+  description:
+    'We build custom ERP systems for growing Kenyan businesses. Finance, inventory, HR, and operations in one platform. M-Pesa integrated. Based in Nairobi. Book a free discovery session.',
+  alternates: { canonical: 'https://cresdynamics.com/erp/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Custom ERP System Development Nairobi Kenya | Cres Dynamics',
+    description:
+      'Custom ERP systems for growing Kenyan businesses with finance, inventory, HR and operations in one platform.',
+    url: 'https://cresdynamics.com/erp/',
+    type: 'website',
+  },
+};
 
 export default function ERPPage() {
+  const erpFaqs = [
+    {
+      q: 'How much does a custom ERP cost in Kenya?',
+      a: 'Most custom ERP implementations in Kenya start from around KES 350,000 for a lean foundation and scale upward based on modules, user count, integrations, and rollout complexity.',
+    },
+    {
+      q: 'How long does ERP implementation take?',
+      a: 'Typical ERP projects run in phased releases over 6 to 16 weeks. We prioritise high-impact modules first so you see value early instead of waiting for one massive launch.',
+    },
+    {
+      q: 'Can you integrate M-Pesa into an ERP system?',
+      a: 'Yes. We can integrate M-Pesa payment and reconciliation flows so finance and operations teams can track payments, invoices, and statuses from one system.',
+    },
+    {
+      q: 'What is the difference between a custom ERP and software like QuickBooks?',
+      a: 'QuickBooks and similar tools solve one domain well (mainly accounting). A custom ERP connects finance, operations, approvals, inventory, HR, and reporting in one workflow tailored to your business process.',
+    },
+  ];
+  const erpFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: erpFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Header />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(erpFaqSchema) }} />
 
       {/* HERO SECTION */}
       <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative overflow-hidden">
@@ -13,10 +58,15 @@ export default function ERPPage() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[var(--cres-white)] mb-6" style={{textShadow: '3px 3px 6px rgba(0, 0, 0, 0.95)'}}>
-              Custom ERP Systems for <span className="text-[var(--cres-orange-primary)]">Growing Businesses</span>
+              Custom ERP Systems Built for
+              <br />
+              <span className="text-[var(--cres-orange-primary)]">Kenyan Businesses</span>
             </h1>
             <p className="text-xl md:text-2xl text-[var(--cres-white)] max-w-4xl mx-auto mb-8" style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'}}>
               When spreadsheets break businesses and off-the-shelf ERPs fail, we build custom ERP for schools, retail, service companies, and multi-branch operations: inventory tracking, finance tracking, staff tracking, reporting dashboards. Clarity, control, scalability.
+            </p>
+            <p className="text-base md:text-lg text-white/80 max-w-4xl mx-auto mb-8">
+              ERP means one connected system across operations, finances, and your team — so your business is no longer running from five separate WhatsApp groups, disconnected spreadsheets, and delayed updates.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a href="/cresos" className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[#E87528] text-[var(--cres-white)] font-bold text-lg px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 uppercase tracking-wide">
@@ -175,6 +225,59 @@ export default function ERPPage() {
         </div>
       </section>
 
+      {/* CORE ERP MODULES */}
+      <section className="py-16 md:py-20 bg-[var(--cres-primary-bg)]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">Core ERP Modules We Build</h2>
+            <p className="text-white/75 max-w-3xl mx-auto">Each module is custom-fitted to your workflow so teams can work from one source of truth.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Finance',
+                body: 'Billing, invoicing, payment tracking, reconciliations, and cashflow visibility in one place. Finance teams stop chasing reports and start managing real-time numbers.',
+              },
+              {
+                title: 'Inventory',
+                body: 'Stock levels, reorder points, movement tracking, and issue logs. Inventory teams reduce losses, avoid stock-outs, and forecast with confidence.',
+              },
+              {
+                title: 'HR',
+                body: 'Employee records, onboarding workflows, leave management, and role-based access. HR operations become structured, auditable, and easier to scale.',
+              },
+              {
+                title: 'Operations',
+                body: 'Task routing, approvals, assignment chains, and process status visibility. Operations move from chat-based follow-up to system-driven execution.',
+              },
+              {
+                title: 'Reporting',
+                body: 'Management dashboards and department-level reports with live data views. Decision makers get operational visibility without waiting for month-end compilations.',
+              },
+            ].map((module) => (
+              <article key={module.title} className="rounded-2xl border border-white/10 bg-black/40 p-6">
+                <h3 className="text-xl font-bold text-[var(--cres-orange-primary)] mb-2">{module.title}</h3>
+                <p className="text-white/80 leading-relaxed">{module.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CASE PROOF */}
+      <section className="py-14 bg-[var(--cres-secondary-bg)] border-y border-white/10">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-white/60 mb-2">Case Proof</p>
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-4">Real System. Real Numbers. Real Kenyan Context.</h2>
+          <p className="text-white/80 mb-6">
+            Finance platform build currently supporting <strong>127 active users</strong> and tracking <strong>KES 4.97M</strong> in live revenue workflows.
+          </p>
+          <Link href="/finance-platforms" className="inline-flex items-center rounded-lg bg-[var(--cres-orange-primary)] px-5 py-2.5 text-sm font-bold text-white hover:bg-[#E87528]">
+            View Finance Platform Case Context
+          </Link>
+        </div>
+      </section>
+
       {/* GOVERNANCE & SECURITY */}
       <section className="py-16 md:py-20 bg-[var(--cres-primary-bg)] relative">
         <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
@@ -295,6 +398,33 @@ export default function ERPPage() {
             <a href="tel:+254708805496" className="inline-flex items-center gap-2 border-2 border-[var(--cres-orange-primary)] text-[var(--cres-white)] font-bold text-lg md:text-xl px-8 py-4 rounded-xl hover:bg-[var(--cres-orange-primary)]/10 transition-all duration-500 uppercase tracking-wide mt-4 sm:mt-0 sm:ml-4">
               Call 0708 805 496
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ERP FAQ */}
+      <section className="py-16 md:py-20 bg-[var(--cres-primary-bg)]">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-8 text-center">ERP Questions (Kenya)</h2>
+          <div className="space-y-5">
+            {erpFaqs.map((item) => (
+              <div key={item.q} className="rounded-2xl border border-white/10 bg-black/40 p-5">
+                <h3 className="text-lg font-bold text-white mb-2">{item.q}</h3>
+                <p className="text-white/80">{item.a}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-2">
+            {[
+              { href: '/finance-platforms', label: 'Finance Platforms' },
+              { href: '/operations-workflow', label: 'Operations & Workflow' },
+              { href: '/case-studies', label: 'Case Studies' },
+              { href: '/insights', label: 'Insights: ERP Cost in Kenya' },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10">
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
