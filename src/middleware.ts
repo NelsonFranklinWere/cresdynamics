@@ -16,8 +16,9 @@ export function middleware(request: NextRequest) {
 
   // 301: www → non-www https (Host header can be mixed-case; must match case-insensitively)
   if (hostLower.startsWith('www.')) {
-    url.host = CANONICAL_HOST;
     url.protocol = HTTPS;
+    url.hostname = CANONICAL_HOST;
+    url.port = '';
     return NextResponse.redirect(url.toString(), 301);
   }
 
@@ -25,7 +26,8 @@ export function middleware(request: NextRequest) {
   const isHttps = request.nextUrl.protocol === 'https:' || forwardedProto === 'https';
   if (!isHttps) {
     url.protocol = HTTPS;
-    url.host = host.replace(/^www\./i, '');
+    url.hostname = host.replace(/^www\./i, '').split(':')[0] || CANONICAL_HOST;
+    url.port = '';
     return NextResponse.redirect(url.toString(), 301);
   }
 
