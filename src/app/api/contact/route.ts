@@ -6,12 +6,6 @@ import { escapeHtml, nlToBr } from '@/lib/escapeHtml';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-if (!process.env.RESEND_API_KEY) {
-  console.error('RESEND_API_KEY is not configured in environment variables');
-}
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const DEFAULT_INBOX = 'cresdynamics@gmail.com';
 
 export async function POST(request: NextRequest) {
@@ -23,6 +17,8 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const body = await request.json();
     const fullName = typeof body.fullName === 'string' ? body.fullName.trim() : '';
