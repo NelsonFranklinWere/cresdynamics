@@ -32,6 +32,10 @@ const navLinkClass = (path: string) => {
 const navLinkActiveClass = (current: string, path: string) =>
   current === path ? 'border-b-2 border-[var(--orange-energy)]' : '';
 
+function eventsNavActive(pathname: string) {
+  return pathname === '/events' || pathname.startsWith('/events/');
+}
+
 export default function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -138,6 +142,11 @@ export default function Header() {
           <li>
             <Link href="/" prefetch={true} className={`${navLinkClass('')} ${pathname === '/' ? 'border-b-2 border-[var(--orange-energy)]' : ''}`}>
               Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/events" prefetch={true} className={`${navLinkClass('')} ${eventsNavActive(pathname) ? 'border-b-2 border-[var(--orange-energy)]' : ''}`}>
+              Events
             </Link>
           </li>
           <li
@@ -378,6 +387,10 @@ export default function Header() {
         <div className="mobile-menu open lg:hidden">
           <Link href="/" prefetch={true} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Home
+          </Link>
+
+          <Link href="/events" prefetch={true} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+            Events
           </Link>
 
           <div>
