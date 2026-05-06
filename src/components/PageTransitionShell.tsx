@@ -10,6 +10,13 @@ type Props = {
 
 export default function PageTransitionShell({ children }: Props) {
   const pathname = usePathname();
+  const isAdmin = pathname?.startsWith('/management');
+
+  // Skip fancy transitions and animations on admin/management routes
+  // to avoid client-side exceptions and keep the dashboard clean.
+  if (isAdmin) {
+    return <>{children}</>;
+  }
 
   return (
     <AnimatePresence mode="wait">

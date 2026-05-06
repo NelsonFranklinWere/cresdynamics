@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { MessageCircle, User } from 'lucide-react';
 import {
   CHAT_FRANK_GREETING,
@@ -28,6 +29,15 @@ const TEASER_VISIBLE_MS = 9000;
 const AUTO_OPEN_CHAT_MS = 45_000;
 
 export default function AIChatWidget() {
+  const pathname = usePathname?.() || '';
+  const isAdmin = pathname.startsWith('/management') || pathname.startsWith('/admin');
+
+  // Do not render the marketing chat widget inside the admin dashboard.
+  // It can cause client-side exceptions and is not needed for internal tools.
+  if (isAdmin) {
+    return null;
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const [showTeaser, setShowTeaser] = useState(false);
   const [sessionPublicId, setSessionPublicId] = useState('');
