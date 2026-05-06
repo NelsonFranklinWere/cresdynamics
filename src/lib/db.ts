@@ -228,6 +228,7 @@ export type EventReservationRow = {
   attendanceType: string | null;
   createdAt: string; // ISO
   updatedAt: string; // ISO
+  paymentStatus: string | null; // pending | paid | failed etc. from linked payment
 };
 
 export async function listEventReservations(limit = 200): Promise<EventReservationRow[]> {
@@ -236,20 +237,27 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
   const r = await p.query(
     `
     select
-      id,
-      event_title,
-      event_date,
-      first_name,
-      last_name,
-      email,
-      phone,
-      company,
-      ticket_type,
-      attendance_type,
-      created_at,
-      updated_at
-    from event_reservations
-    order by created_at desc
+      er.id,
+      er.event_title,
+      er.event_date,
+      er.first_name,
+      er.last_name,
+      er.email,
+      er.phone,
+      er.company,
+      er.ticket_type,
+      er.attendance_type,
+      er.created_at,
+      er.updated_at,
+      (
+        select p.status
+        from payments p
+        where (p.metadata_json->>'reservationId')::int = er.id
+        order by p.created_at desc
+        limit 1
+      ) as payment_status
+    from event_reservations er
+    order by er.created_at desc
     limit $1
     `,
     [limit]
@@ -267,6 +275,7 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
     attendanceType: row.attendance_type ? String(row.attendance_type) : null,
     createdAt: new Date(row.created_at).toISOString(),
     updatedAt: new Date(row.updated_at).toISOString(),
+    paymentStatus: row.payment_status ? String(row.payment_status) : 'pending',
   }));
 }
 

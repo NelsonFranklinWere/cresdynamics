@@ -1183,9 +1183,23 @@ async function handleSubmit(e){
     submitBtn.style.background='#1A6835';
     if(successEl){
       if (paymentMethod === 'paybill') {
-        successEl.innerHTML = '<p><strong>Reservation saved. ✅</strong><br>Complete payment via <strong>Paybill 542542</strong> Account <strong>43869</strong>. We will confirm your seat after payment.</p>';
+        successEl.innerHTML = `
+          <p><strong>Reservation saved. ✅</strong></p>
+          <p>Complete payment via <strong>Paybill 542542</strong> Account <strong>43869</strong>. We will confirm your seat after payment.</p>
+          <div style="margin-top:12px;">
+            <button type="button" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth', block:'start'}); document.querySelector('.submit-btn').textContent = 'Update details & proceed to pay';" 
+              class="inline-flex items-center justify-center rounded px-4 py-1.5 text-xs font-bold uppercase tracking-wider border border-white/30 hover:bg-white/10">Update details and proceed to pay</button>
+          </div>
+        `;
       } else {
-        successEl.innerHTML = '<p><strong>Reservation saved. ✅</strong><br>We could not redirect to Pesapal right now. We will contact you on your phone to complete payment.</p>';
+        successEl.innerHTML = `
+          <p><strong>Reservation saved. ✅</strong></p>
+          <p>We could not redirect to Pesapal right now. We will contact you on your phone to complete payment.</p>
+          <div style="margin-top:12px;">
+            <button type="button" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth', block:'start'}); document.querySelector('.submit-btn').textContent = 'Update details & proceed to pay';" 
+              class="inline-flex items-center justify-center rounded px-4 py-1.5 text-xs font-bold uppercase tracking-wider border border-white/30 hover:bg-white/10">Update details and proceed to pay</button>
+          </div>
+        `;
       }
       successEl.style.display='block';
       successEl.scrollIntoView({behavior:'smooth',block:'center'});

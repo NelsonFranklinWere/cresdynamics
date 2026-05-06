@@ -22,6 +22,7 @@ export default async function ManagementEventsPage() {
             <th className="px-4 py-3">Phone</th>
             <th className="px-4 py-3">Attendance</th>
             <th className="px-4 py-3">Ticket</th>
+            <th className="px-4 py-3">Payment</th>
             <th className="px-4 py-3">Event</th>
           </tr>
         </thead>
@@ -42,6 +43,13 @@ export default async function ManagementEventsPage() {
               <td className="px-4 py-3 whitespace-nowrap text-white/80">{r.phone || '—'}</td>
               <td className="px-4 py-3 whitespace-nowrap text-white/80">{r.attendanceType || '—'}</td>
               <td className="px-4 py-3 whitespace-nowrap text-white/80">{r.ticketType || '—'}</td>
+              <td className="px-4 py-3 whitespace-nowrap">
+                {r.paymentStatus === 'paid' ? (
+                  <span className="inline-block rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-400">Paid ✓</span>
+                ) : (
+                  <span className="inline-block rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-400">Pending — contact to pay</span>
+                )}
+              </td>
               <td className="px-4 py-3 whitespace-nowrap text-white/80">
                 {r.eventTitle} — {r.eventDate}
               </td>
@@ -49,7 +57,7 @@ export default async function ManagementEventsPage() {
           ))}
           {rows.length === 0 ? (
             <tr>
-              <td className="px-4 py-8 text-white/70" colSpan={7}>
+              <td className="px-4 py-8 text-white/70" colSpan={8}>
                 No event registrations yet.
               </td>
             </tr>
