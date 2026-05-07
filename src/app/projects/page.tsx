@@ -103,15 +103,18 @@ const projects: Project[] = [
 function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
   const [current, setCurrent] = useState(0);
 
-  const goTo = (index: number) => {
+  const goTo = (e: React.MouseEvent, index: number) => {
+    e.stopPropagation();
     setCurrent(index);
   };
 
-  const next = () => {
+  const next = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCurrent((prev) => (prev + 1) % images.length);
   };
 
-  const prev = () => {
+  const prev = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCurrent((prev) => (prev - 1 + images.length) % images.length);
   };
 
@@ -154,7 +157,7 @@ function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
             {images.map((_, index) => (
               <button
                 key={index}
-                onClick={() => goTo(index)}
+                onClick={(e) => goTo(e, index)}
                 className={`w-2 h-2 rounded-full transition-all ${
                   index === current 
                     ? 'bg-[var(--orange-energy)] w-4' 
@@ -237,9 +240,9 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 flex items-center justify-between">
-                  <div className="inline-flex items-center gap-2 text-sm font-bold text-[var(--orange-energy)] group-hover:underline">
-                    View Full Case Study 
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--orange-energy)] px-5 py-2.5 text-sm font-bold text-white group-hover:bg-[#E87528] transition">
+                    View Case Study 
                     <span className="transition group-hover:translate-x-0.5">→</span>
                   </div>
                   <a 
@@ -247,7 +250,7 @@ export default function ProjectsPage() {
                     target="_blank" 
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="text-xs px-3 py-1 border border-gray-200 rounded-full hover:bg-gray-50"
+                    className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-4 py-2.5 text-xs font-semibold text-[var(--navy-primary)] hover:bg-gray-50 transition"
                   >
                     Visit Live Site
                   </a>
