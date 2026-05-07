@@ -28,9 +28,10 @@ const projects: Project[] = [
     liveUrl: 'https://thestemsflowers.co.ke',
     caseStudySlug: 'the-stems-flowers',
     images: [
-      '/The-ai-event-the-future-of-ai-in-business.jpg', // placeholder - replace with actual screenshots
-      '/cresOs.businessoperatingsystem.png',
-      '/01_who_we_are.jpg'
+      '/thestems/Screenshot 2026-03-21 at 15.01.39.png',
+      '/thestems/Screenshot 2026-03-21 at 15.02.13.png',
+      '/thestems/Screenshot 2026-03-21 at 15.02.48.png',
+      '/thestems/Screenshot 2026-03-21 at 15.03.40.png'
     ]
   },
   {
@@ -43,9 +44,10 @@ const projects: Project[] = [
     liveUrl: 'https://floralwhispersgifts.co.ke',
     caseStudySlug: 'floral-whispers-gifts',
     images: [
-      '/The-ai-event-the-future-of-ai-in-business.jpg',
-      '/cresOs.businessoperatingsystem.png',
-      '/01_who_we_are.jpg'
+      '/floralwhispers/Screenshot 2026-03-21 at 15.41.27.png',
+      '/floralwhispers/Screenshot 2026-03-21 at 15.41.37.png',
+      '/floralwhispers/Screenshot 2026-03-21 at 15.41.53.png',
+      '/floralwhispers/Screenshot 2026-03-21 at 15.44.16.png'
     ]
   },
   {
@@ -58,9 +60,10 @@ const projects: Project[] = [
     liveUrl: 'https://whitelightstore.co.ke',
     caseStudySlug: 'whitelight-store',
     images: [
-      '/The-ai-event-the-future-of-ai-in-business.jpg',
-      '/cresOs.businessoperatingsystem.png',
-      '/01_who_we_are.jpg'
+      '/whitelight/Screenshot 2026-03-21 at 16.04.27.png',
+      '/whitelight/Screenshot 2026-03-21 at 16.04.42.png',
+      '/whitelight/Screenshot 2026-03-21 at 16.05.08.png',
+      '/whitelight/Screenshot 2026-03-21 at 16.05.58.png'
     ]
   },
   {
@@ -73,9 +76,10 @@ const projects: Project[] = [
     liveUrl: 'https://mohaafinestcurtains.co.ke',
     caseStudySlug: 'mohaa-finest',
     images: [
-      '/The-ai-event-the-future-of-ai-in-business.jpg',
-      '/cresOs.businessoperatingsystem.png',
-      '/01_who_we_are.jpg'
+      '/mohaafinest/Screenshot 2026-03-21 at 16.08.19.png',
+      '/mohaafinest/Screenshot 2026-03-21 at 16.08.28.png',
+      '/mohaafinest/Screenshot 2026-03-21 at 16.08.43.png',
+      '/mohaafinest/Screenshot 2026-03-21 at 16.08.49.png'
     ]
   },
   {
@@ -85,12 +89,13 @@ const projects: Project[] = [
     problem: 'Large lighting showroom but no Google visibility for Nairobi buyers',
     solution: 'SEO-first site with 7 product categories, local search targeting, and WhatsApp flow',
     outcome: '11.7k impressions, 281 clicks, and 2.4% CTR from organic search',
-    liveUrl: '#', // add real link when available
+    liveUrl: 'https://sparklights.co.ke',
     caseStudySlug: 'spark-lights-254',
     images: [
-      '/The-ai-event-the-future-of-ai-in-business.jpg',
-      '/cresOs.businessoperatingsystem.png',
-      '/01_who_we_are.jpg'
+      '/sparklights/Screenshot 2026-03-21 at 16.01.25.png',
+      '/sparklights/Screenshot 2026-03-21 at 16.01.33.png',
+      '/sparklights/Screenshot 2026-03-21 at 16.01.46.png',
+      '/sparklights/Screenshot 2026-03-21 at 16.02.24.png'
     ]
   }
 ];
