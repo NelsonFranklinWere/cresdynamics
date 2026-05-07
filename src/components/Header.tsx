@@ -223,6 +223,9 @@ export default function Header() {
             <Link href="/case-studies" prefetch={true} className={`${navLinkClass('')} ${navLinkActiveClass(pathname, '/case-studies')}`}>
               Case Proof
             </Link>
+            <Link href="/projects" prefetch={true} className={`${navLinkClass('')} ${navLinkActiveClass(pathname, '/projects')}`}>
+              Projects
+            </Link>
           </li>
         </ul>
 
@@ -503,6 +506,9 @@ export default function Header() {
 
           <Link href="/case-studies" prefetch={true} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Case Proof
+          </Link>
+          <Link href="/projects" prefetch={true} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+            Projects
           </Link>
         </div>
       )}

@@ -1,110 +1,257 @@
+'use client';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
 
-export default function ProjectsPage() {
-  const projects = [
-    {
-      name: 'Optiohire',
-      tagline: 'Smart hiring and talent operations',
-      description: 'A platform built to streamline recruitment, candidate pipeline, and hiring operations so teams scale without chaos. Structured workflows, visibility, and control for talent acquisition.',
-      highlight: 'Hiring systems that scale',
-      href: '/cresos',
-      color: 'from-amber-500/20 to-orange-600/10',
-      border: 'border-amber-500/30',
-    },
-    {
-      name: 'CresOS',
-      tagline: 'Growth infrastructure in one system',
-      description: 'Our internal growth operating system: sales, marketing, finance, and operations in one platform. Built for SMEs scaling beyond survival. KPI visibility, workflow clarity, structured decision-making.',
-      highlight: 'The OS for growing businesses',
-      href: '/cresos',
-      color: 'from-[var(--cres-orange-primary)]/20 to-[var(--cres-orange-hover)]/10',
-      border: 'border-[var(--cres-orange-primary)]/40',
-    },
-    {
-      name: 'Zyra',
-      tagline: 'Operations and workflow clarity',
-      description: 'A system designed for operational clarity—workflow mapping, process visibility, staff accountability, and SOPs in one place. Order before expansion.',
-      highlight: 'Order before scale',
-      href: '/operations-workflow',
-      color: 'from-[var(--cres-electric-teal)]/20 to-teal-600/10',
-      border: 'border-[var(--cres-electric-teal)]/30',
-    },
-  ];
+interface Project {
+  id: string;
+  title: string;
+  industry: string;
+  problem: string;
+  solution: string;
+  outcome: string;
+  liveUrl: string;
+  caseStudySlug: string;
+  images: string[];
+}
+
+const projects: Project[] = [
+  {
+    id: 'stems-flowers',
+    title: 'The Stems Flowers',
+    industry: 'Florist · E-commerce (Nairobi CBD)',
+    problem: 'Strong in-store trade but invisible online — no reorder path or M-Pesa checkout',
+    solution: 'Next.js e-commerce, M-Pesa, SEO, same-day delivery UX — live in 4 weeks',
+    outcome: 'Full catalogue live; organic & order metrics tracked from Month 2',
+    liveUrl: 'https://thestemsflowers.co.ke',
+    caseStudySlug: 'the-stems-flowers',
+    images: [
+      '/The-ai-event-the-future-of-ai-in-business.jpg', // placeholder - replace with actual screenshots
+      '/cresOs.businessoperatingsystem.png',
+      '/01_who_we_are.jpg'
+    ]
+  },
+  {
+    id: 'floral-whispers',
+    title: 'Floral Whispers Gifts',
+    industry: 'Florist · E-commerce (Referral Engine)',
+    problem: 'Premium bouquets & hampers with almost no digital discoverability',
+    solution: 'Premium e-commerce, WhatsApp + M-Pesa, SEO — full catalogue indexed',
+    outcome: '100+ monthly organic visitors; referral win → The Stems Flowers project',
+    liveUrl: 'https://floralwhispersgifts.co.ke',
+    caseStudySlug: 'floral-whispers-gifts',
+    images: [
+      '/The-ai-event-the-future-of-ai-in-business.jpg',
+      '/cresOs.businessoperatingsystem.png',
+      '/01_who_we_are.jpg'
+    ]
+  },
+  {
+    id: 'whitelight-store',
+    title: 'White Light Store',
+    industry: 'Fitness Retail · E-commerce + SEO',
+    problem: 'Strong product range but no digital storefront or search visibility',
+    solution: 'New e-commerce build, category architecture, and Nairobi-focused SEO',
+    outcome: 'Live indexed store; month-2 tracking for traffic, orders, and top categories',
+    liveUrl: 'https://whitelightstore.co.ke',
+    caseStudySlug: 'whitelight-store',
+    images: [
+      '/The-ai-event-the-future-of-ai-in-business.jpg',
+      '/cresOs.businessoperatingsystem.png',
+      '/01_who_we_are.jpg'
+    ]
+  },
+  {
+    id: 'mohaa-finest',
+    title: 'Mohaa Finest',
+    industry: 'Home Decor · Website + SEO',
+    problem: 'Trusted in Eastleigh but invisible to online curtain searches',
+    solution: 'New website, product sections, and Nairobi/Eastleigh local SEO targeting',
+    outcome: 'Live indexed site; month-2 tracking for WhatsApp inquiries and conversions',
+    liveUrl: 'https://mohaafinestcurtains.co.ke',
+    caseStudySlug: 'mohaa-finest',
+    images: [
+      '/The-ai-event-the-future-of-ai-in-business.jpg',
+      '/cresOs.businessoperatingsystem.png',
+      '/01_who_we_are.jpg'
+    ]
+  },
+  {
+    id: 'spark-lights',
+    title: 'Spark Lights 254',
+    industry: 'Lighting Retail · Website + SEO',
+    problem: 'Large lighting showroom but no Google visibility for Nairobi buyers',
+    solution: 'SEO-first site with 7 product categories, local search targeting, and WhatsApp flow',
+    outcome: '11.7k impressions, 281 clicks, and 2.4% CTR from organic search',
+    liveUrl: '#', // add real link when available
+    caseStudySlug: 'spark-lights-254',
+    images: [
+      '/The-ai-event-the-future-of-ai-in-business.jpg',
+      '/cresOs.businessoperatingsystem.png',
+      '/01_who_we_are.jpg'
+    ]
+  }
+];
+
+function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
+  const [current, setCurrent] = useState(0);
+
+  const goTo = (index: number) => {
+    setCurrent(index);
+  };
+
+  const next = () => {
+    setCurrent((prev) => (prev + 1) % images.length);
+  };
+
+  const prev = () => {
+    setCurrent((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
-    <div className="min-h-screen bg-[#0B0F14] text-white">
+    <div className="relative group overflow-hidden rounded-xl border border-white/10 bg-black/20">
+      <div className="relative h-56 md:h-64 overflow-hidden">
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`${alt} screenshot ${index + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              index === current ? 'opacity-100' : 'opacity-0'
+            }`}
+            loading="lazy"
+          />
+        ))}
+      </div>
+
+      {/* Carousel Controls */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+            aria-label="Previous image"
+          >
+            ←
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+            aria-label="Next image"
+          >
+            →
+          </button>
+
+          {/* Dots */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goTo(index)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === current 
+                    ? 'bg-[var(--orange-energy)] w-4' 
+                    : 'bg-white/40 hover:bg-white/60'
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default function ProjectsPage() {
+  return (
+    <div className="min-h-screen bg-[var(--neutral-bg)]">
       <Header />
 
-      <main className="pt-24">
-        <section className="relative py-20 md:py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--cres-primary-bg)] via-[#0D1B2A] to-[#020611]" />
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-            <h1 className="text-3xl md:text-5xl font-black mb-6">
-              <span className="text-[var(--cres-orange-primary)]">Projects</span>
-            </h1>
-            <p className="text-white/80 text-lg md:text-xl mb-8">
-              Systems and products we build and run. Highlighting Optiohire, CresOS, and Zyra.
-            </p>
+      {/* Hero */}
+      <section className="pt-20 pb-12 px-6 border-b border-white/10">
+        <div className="max-w-5xl mx-auto text-center">
+          <div className="inline-block px-4 py-1 rounded-full bg-[var(--orange-energy)]/10 text-[var(--orange-energy)] text-xs font-semibold tracking-[2px] mb-4">
+            CLIENT PROJECTS
           </div>
-        </section>
+          <h1 className="text-4xl md:text-6xl font-black text-[var(--navy-primary)] tracking-[-1.5px] mb-4">
+            Real Results.<br />Real Businesses.
+          </h1>
+          <p className="max-w-2xl mx-auto text-lg text-[var(--navy-primary)]/70">
+            Production systems we have delivered for Kenyan businesses — websites, e-commerce, and growth infrastructure that drive measurable outcomes.
+          </p>
+        </div>
+      </section>
 
-        <section className="relative py-16 md:py-20 bg-[var(--cres-primary-bg)]">
-          <div className="relative z-10 max-w-5xl mx-auto px-6">
-            <div className="grid gap-8 md:gap-10">
-              {projects.map((project, i) => (
-                <div
-                  key={project.name}
-                  className={`rounded-2xl border bg-gradient-to-br ${project.color} ${project.border} p-8 md:p-10 hover:border-white/20 transition-colors`}
-                >
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                    <div className="flex-1">
-                      <span className="text-xs font-bold tracking-widest text-[var(--cres-orange-primary)] uppercase">
-                        Featured project
-                      </span>
-                      <h2 className="text-2xl md:text-3xl font-black text-white mt-2 mb-1">
-                        {project.name}
-                      </h2>
-                      <p className="text-white/90 font-semibold text-lg mb-4">
-                        {project.tagline}
-                      </p>
-                      <p className="text-white/80 text-sm md:text-base leading-relaxed mb-4">
-                        {project.description}
-                      </p>
-                      <p className="text-[var(--cres-electric-teal)] font-semibold text-sm">
-                        {project.highlight}
-                      </p>
+      {/* Projects Grid */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <Link 
+              key={project.id} 
+              href={`/case-studies/${project.caseStudySlug}`}
+              className="group block rounded-3xl border border-white/10 bg-white hover:border-[var(--orange-energy)]/40 transition-all duration-200 overflow-hidden shadow-sm hover:shadow-xl"
+            >
+              {/* Carousel */}
+              <div className="p-5 pb-0">
+                <ImageCarousel images={project.images} alt={project.title} />
+              </div>
+
+              <div className="p-6 pt-5">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <div className="text-xs uppercase tracking-[1.5px] text-[var(--orange-energy)] font-semibold">
+                      {project.industry}
                     </div>
-                    <div className="shrink-0">
-                      <Link
-                        href={project.href}
-                        className="inline-flex items-center gap-2 bg-white/10 hover:bg-[var(--cres-orange-primary)] text-white font-bold text-sm px-5 py-2.5 rounded-lg uppercase tracking-wide transition-colors"
-                      >
-                        Learn more
-                        <i className="fas fa-chevron-right text-xs" />
-                      </Link>
+                    <h3 className="text-2xl font-black text-[var(--navy-primary)] group-hover:text-[var(--orange-energy)] transition-colors">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[10px] text-gray-400">LIVE</div>
+                    <div className="text-xs text-[var(--teal-accent)] font-mono truncate max-w-[120px]">
+                      {project.liveUrl.replace('https://', '')}
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        <section className="relative py-16 bg-[var(--cres-secondary-bg)]">
-          <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
-            <p className="text-white/80 mb-6">Want to build something with us?</p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-[var(--cres-orange-primary)] hover:bg-[var(--cres-orange-hover)] text-white font-bold text-sm px-6 py-3 rounded-lg uppercase tracking-wide"
-            >
-              Get in touch
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <span className="font-semibold text-[var(--navy-primary)]">Problem: </span>
+                    <span className="text-[var(--navy-primary)]/80">{project.problem}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[var(--navy-primary)]">Solution: </span>
+                    <span className="text-[var(--navy-primary)]/80">{project.solution}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[var(--navy-primary)]">Outcome: </span>
+                    <span className="text-[var(--navy-primary)]/80">{project.outcome}</span>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex items-center justify-between">
+                  <div className="inline-flex items-center gap-2 text-sm font-bold text-[var(--orange-energy)] group-hover:underline">
+                    View Full Case Study 
+                    <span className="transition group-hover:translate-x-0.5">→</span>
+                  </div>
+                  <a 
+                    href={project.liveUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-xs px-3 py-1 border border-gray-200 rounded-full hover:bg-gray-50"
+                  >
+                    Visit Live Site
+                  </a>
+                </div>
+              </div>
             </Link>
-          </div>
-        </section>
-      </main>
+          ))}
+        </div>
+      </section>
 
       <Footer />
     </div>
