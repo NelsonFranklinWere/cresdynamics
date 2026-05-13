@@ -9,7 +9,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-br bg-[url('/backround.png')] bg-repeat bg-cover bg-center from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-gradient-to-br bg-texture bg-cover from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -34,7 +34,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 1: BUSINESS CONTEXT */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
             The Business
@@ -70,7 +70,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 2: THE REAL PROBLEM */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
             The Challenge
@@ -110,7 +110,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 3: WHY PREVIOUS ATTEMPTS FAILED */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
             Why Previous Solutions Didn't Work
@@ -148,7 +148,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 4: THE CRES APPROACH */}
-      <section className="py-16 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-[var(--cres-deep-navy)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">
             Our Thinking & Strategy
@@ -188,7 +188,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 5: THE SYSTEM BUILT */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
             The System We Implemented
@@ -251,7 +251,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 6: RESULTS & IMPACT */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
             The Impact
@@ -282,7 +282,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 7: KEY INSIGHTS */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
             What This Case Teaches
@@ -325,7 +325,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 8: RELEVANCE CHECK */}
-      <section className="py-16 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-[var(--cres-electric-teal)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">
             Is This Similar to Your Business?

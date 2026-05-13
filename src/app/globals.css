@@ -1,8 +1,16 @@
 @import "tailwindcss";
+@source not "../../.claude";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Background texture — used across many pages at low opacity */
+.bg-texture {
+  background-image: url(/backround.png);
+  background-repeat: repeat;
+  background-position: center;
+}
 
 :root {
   /* ─── CRES Dynamics Brand Palette (official) ─── */

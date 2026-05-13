@@ -8,7 +8,7 @@ export default function RealEstateCaseStudyPage() {
     <div className="min-h-screen">
       <Header />
 
-      <section className="py-12 md:py-20 bg-gradient-to-br bg-[url('/backround.png')] bg-repeat bg-cover bg-center from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-gradient-to-br bg-texture bg-cover from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -32,7 +32,7 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Business</h2>
           <div className="space-y-6 text-white">
@@ -49,7 +49,7 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Challenge</h2>
           <div className="space-y-6">
@@ -81,7 +81,7 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">Why Previous Solutions Didn't Work</h2>
           <div className="space-y-6">
@@ -110,7 +110,7 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-[var(--cres-deep-navy)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">Our Thinking & Strategy</h2>
           <div className="space-y-6 text-gray-300">
@@ -142,7 +142,7 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The System We Implemented</h2>
           <div className="space-y-8">
@@ -192,7 +192,7 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Impact</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -216,7 +216,7 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">What This Case Teaches</h2>
           <div className="space-y-4">
@@ -252,7 +252,7 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-[var(--cres-electric-teal)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">Is This Similar to Your Business?</h2>
           <div className="grid md:grid-cols-2 gap-8 mb-12">

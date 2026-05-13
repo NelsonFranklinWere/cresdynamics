@@ -68,7 +68,7 @@ export default function ContactPage() {
 
       {/* 1️⃣ HERO SECTION (Above the Fold) */}
       <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         {/* Subtle Electric Teal glow lines */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -95,7 +95,7 @@ export default function ContactPage() {
 
       {/* 2️⃣ CONTACT FORM SECTION (Matching Image Layout) */}
       <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         {/* Dimmed background overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
@@ -291,7 +291,7 @@ export default function ContactPage() {
       </section>
 
       {/* 3️⃣ TRUST + AUTHORITY SECTION */}
-      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl font-black text-white mb-12 underline-custom">
             Why businesses choose CRES Dynamics
@@ -340,7 +340,7 @@ export default function ContactPage() {
       </section>
 
       {/* 4️⃣ DIRECT CONTACT (FOR FAST MOVERS) */}
-      <section className="py-16 bg-[var(--cres-electric-teal)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-16 bg-[var(--cres-electric-teal)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-3xl font-black text-white mb-8 underline-custom">
             🚀 FAST TRACK
@@ -379,7 +379,7 @@ export default function ContactPage() {
       </section>
 
       {/* 5️⃣ FINAL PUSH (Bottom Section) */}
-      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-[url('/backround.png')] bg-repeat bg-cover bg-center">
+      <section className="py-12 md:py-12 md:py-20 bg-[var(--cres-deep-navy)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-8 underline-custom">
             Your business needs systems.

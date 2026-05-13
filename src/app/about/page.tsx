@@ -10,7 +10,7 @@ export default function AboutPage() {
 
       {/* SECTION 1: OPENING STATEMENT (WHY WE EXIST) */}
       <section className="py-12 md:py-12 md:py-12 md:py-20 bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -46,7 +46,7 @@ export default function AboutPage() {
 
       {/* SECTION 2: CRES DYNAMICS — MISSION, VISION, CULTURE, THEME */}
       <section className="py-8 md:py-12 bg-white relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             <h2 className="text-lg md:text-2xl font-black text-[var(--cres-deep-navy)] mb-6 md:mb-8 text-center underline-custom">
@@ -127,7 +127,7 @@ export default function AboutPage() {
 
       {/* SECTION 3: THE PROBLEM WE SAW (THE "WHY") */}
       <section className="py-8 md:py-12 bg-white relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
           <h2 className="text-base md:text-xl font-black text-[var(--cres-deep-navy)] mb-4 md:mb-6 text-center underline-custom">
@@ -177,7 +177,7 @@ export default function AboutPage() {
 
       {/* SECTION 4: OUR PHILOSOPHY (HOW WE THINK) */}
       <section className="py-8 md:py-12 bg-[var(--cres-light-grey)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
         <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
           <h2 className="text-base md:text-xl font-black text-[var(--cres-deep-navy)] mb-4 md:mb-8 underline-custom">
@@ -223,7 +223,7 @@ export default function AboutPage() {
 
       {/* SECTION 5: WHAT MAKES US DIFFERENT (WHY US) */}
       <section id="why-us" className="py-12 md:py-20 bg-[var(--cres-deep-navy)] relative scroll-mt-20">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
           <h2 className="text-2xl font-black text-white mb-10 text-center underline-custom">
@@ -273,7 +273,7 @@ export default function AboutPage() {
 
       {/* SECTION 6: OUR CULTURE (HOW WE OPERATE) */}
       <section className="py-12 md:py-20 bg-white relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
         <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
           <h2 className="text-lg md:text-2xl font-black text-[var(--cres-deep-navy)] mb-6 md:mb-10 text-center underline-custom">
@@ -322,7 +322,7 @@ export default function AboutPage() {
 
       {/* SECTION 7: OUR LANGUAGE (HOW WE COMMUNICATE) */}
       <section className="py-12 md:py-20 bg-[var(--cres-light-grey)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
         <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
           <h2 className="text-lg md:text-2xl font-black text-[var(--cres-deep-navy)] mb-6 md:mb-10 underline-custom">
@@ -367,7 +367,7 @@ export default function AboutPage() {
 
       {/* SECTION 8: THE IMPACT WE AIM FOR */}
       <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6">
           <h2 className="text-2xl font-black text-white mb-10 text-center underline-custom">
@@ -417,7 +417,7 @@ export default function AboutPage() {
 
       {/* SECTION 9: WHO WE WORK WITH */}
       <section className="py-12 md:py-20 bg-white relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
           <h2 className="text-lg md:text-2xl font-black text-[var(--cres-deep-navy)] mb-6 md:mb-10 underline-custom">
@@ -460,7 +460,7 @@ export default function AboutPage() {
 
       {/* SECTION 10: CLOSING STATEMENT (SUBTLE CTA) */}
       <section className="py-12 md:py-20 bg-[var(--cres-light-grey)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-40 md:opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-40 md:opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-4 md:px-6 text-center">
           <h2 className="text-3xl font-black text-[var(--cres-deep-navy)] mb-8 underline-custom">
