@@ -1,0 +1,9 @@
+:HL["/_next/static/chunks/3044d96b4e4453b0.css","style"]
+:Hm"/_next/static/chunks/webpack.js"
+:Hm"/_next/static/chunks/main.js"
+:HL["https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuDyfAZ9hjp-Ek-_EeA.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/favicon-circular.png","image",{"fetchPriority":"high"}]
+:HL["https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap","style"]
+:HL["https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css","style"]
+0:{"buildId":"rSHGl-ie31s2fYh-WTwpL","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"cresos","paramType":null,"paramKey":"cresos","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
