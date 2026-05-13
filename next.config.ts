@@ -1,118 +1,60 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Performance Optimizations
+  // Image optimisation
   images: {
-    formats: ['image/webp', 'image/avif'], // Modern image formats
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840], // Responsive breakpoints
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384], // Size variations
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days cache
-    unoptimized: false, // Enable optimization in development
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    unoptimized: false,
   },
 
-  // Compression and optimization
-  compress: true, // Enable gzip compression
-  poweredByHeader: false, // Remove X-Powered-By header
+  // Server-side gzip compression
+  compress: true,
+  poweredByHeader: false,
 
-  // Turbopack configuration for Next.js 16 (omit to use webpack if SWC native binary has issues)
+  // Turbopack (Next.js 16 default bundler)
   turbopack: {},
 
-  // Bundle analysis and optimization - only for production builds
-  ...(process.env.NODE_ENV === 'production' ? {
-    webpack: (config: any, { dev, isServer }: any) => {
-      // Optimize bundle size
-      if (!dev && !isServer) {
-        config.optimization.splitChunks.cacheGroups = {
-          ...config.optimization.splitChunks.cacheGroups,
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-            priority: 10,
-          },
-        };
-      }
-      return config;
-    },
-  } : {}),
-
-  // Headers for performance - only in production
+  // Security + cache headers (production only)
   ...(process.env.NODE_ENV === 'production' ? {
     async headers() {
       return [
         {
           source: '/(.*)',
           headers: [
-            {
-              key: 'X-Frame-Options',
-              value: 'DENY',
-            },
-            {
-              key: 'X-Content-Type-Options',
-              value: 'nosniff',
-            },
-            {
-              key: 'Referrer-Policy',
-              value: 'origin-when-cross-origin',
-            },
-            {
-              key: 'X-DNS-Prefetch-Control',
-              value: 'on',
-            },
+            { key: 'X-Frame-Options',           value: 'DENY' },
+            { key: 'X-Content-Type-Options',     value: 'nosniff' },
+            { key: 'Referrer-Policy',            value: 'origin-when-cross-origin' },
+            { key: 'X-DNS-Prefetch-Control',     value: 'on' },
           ],
         },
         {
-          source: '/backround.png',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, max-age=31536000, immutable',
-            },
-          ],
-        },
-        {
-          source: '/logo.png',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, max-age=31536000, immutable',
-            },
-          ],
-        },
-        {
-          source: '/static/(.*)',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, max-age=31536000, immutable',
-            },
-          ],
+          source: '/_next/static/(.*)',
+          headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
         },
         {
           source: '/_next/image(.*)',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, max-age=31536000, immutable',
-            },
-          ],
+          headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+        },
+        {
+          source: '/:file(.*\\.(?:png|jpg|jpeg|webp|avif|svg|ico|gif))',
+          headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
         },
       ];
     },
   } : {}),
 
-  // Redirect /finance to main finance service page; /data-security → /data-security/ (canonical trailing slash)
+  // Canonical redirects
   async redirects() {
     return [
-      // With trailingSlash: true, crawlers often hit /finance/ — must match or you get 404 + chain noise
-      { source: '/finance', destination: '/finance-platforms/', permanent: true },
-      { source: '/finance/', destination: '/finance-platforms/', permanent: true },
-      { source: '/data-security', destination: '/data-security/', permanent: true },
+      { source: '/finance',       destination: '/finance-platforms/', permanent: true },
+      { source: '/finance/',      destination: '/finance-platforms/', permanent: true },
+      { source: '/data-security', destination: '/data-security/',     permanent: true },
     ];
   },
 
-  // Note: Removed static export to support API routes on Vercel
-  // Vercel will handle deployment automatically
   trailingSlash: true,
 };
 

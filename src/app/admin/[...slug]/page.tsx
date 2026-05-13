@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation';
 
-export const runtime = 'nodejs';
+export async function generateStaticParams() {
+  return [];
+}
 
 export default function AdminCatchAllRedirectPage() {
   redirect('/');
 }
-

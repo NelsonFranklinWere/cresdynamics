@@ -10,7 +10,7 @@ export default function FloristCaseStudyPage() {
 
       {/* SECTION 1: Quiet Authority Hero */}
       <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
           <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -30,7 +30,7 @@ export default function FloristCaseStudyPage() {
 
       {/* SECTION 2: Pattern Recognition */}
       <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-[var(--cres-white)] mb-6 md:mb-8">
@@ -52,7 +52,7 @@ export default function FloristCaseStudyPage() {
 
       {/* CASE STUDY CARD STRUCTURE */}
       <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
 
@@ -163,7 +163,7 @@ export default function FloristCaseStudyPage() {
 
       {/* FINAL SECTION: Silent Urgency Close */}
       <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-6 md:mb-8">

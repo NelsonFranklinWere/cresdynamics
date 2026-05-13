@@ -85,7 +85,7 @@ export default function CaseStudiesPage() {
 
       {/* 1️⃣ HERO SECTION – AUTHORITY FIRST */}
       <section className="pt-12 md:pt-16 pb-0 flex flex-col justify-end bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-3/4 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute top-0 left-0 right-0 h-3/4 bg-texture bg-cover opacity-20"></div>
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
@@ -134,7 +134,7 @@ export default function CaseStudiesPage() {
 
       {/* 2️⃣ HOW TO READ OUR CASE STUDIES */}
       <section className="pt-0 pb-12 md:pb-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-[var(--cres-white)] mb-6 md:mb-8 underline-custom">
@@ -182,7 +182,7 @@ export default function CaseStudiesPage() {
 
       {/* 3️⃣ CASE STUDY GRID / LIST VIEW */}
       <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-[var(--cres-white)] text-center mb-8 md:mb-12 underline-custom">
@@ -228,7 +228,7 @@ export default function CaseStudiesPage() {
 
       {/* 6️⃣ FINAL CTA – STRATEGIC, NOT PUSHY */}
       <section className="py-12 md:py-20 bg-[var(--cres-electric-teal)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-6 md:mb-8 underline-custom">

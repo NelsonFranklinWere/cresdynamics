@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next';
 
+export const dynamic = 'force-static';
+
 const BASE = 'https://cresdynamics.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {

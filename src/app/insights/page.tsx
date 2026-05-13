@@ -24,7 +24,7 @@ export default function InsightsPage() {
 
       {/* 1️⃣ HERO SECTION (ABOVE THE FOLD) */}
       <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         {/* Dimmed background overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
@@ -111,7 +111,7 @@ export default function InsightsPage() {
 
       {/* 2️⃣ THE PROBLEM SECTION — "THE SILENT LEAKS" */}
       <section id="silent-leaks" className="py-12 md:py-20 bg-gray-800 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
           <h2 className="text-2xl md:text-3xl font-black text-center mb-6 md:mb-10 underline-custom">
@@ -184,7 +184,7 @@ export default function InsightsPage() {
 
       {/* 3️⃣ INSIGHT CATEGORIES (CONTENT STRUCTURE) */}
       <section className="py-12 md:py-20 bg-gray-900 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
           <h2 className="text-3xl font-black text-center mb-10 underline-custom">
@@ -228,7 +228,7 @@ export default function InsightsPage() {
 
       {/* 4️⃣ FEATURED INSIGHT CARDS (HIGH-IMPACT) */}
       <section className="py-12 md:py-20 bg-gray-800 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             <h2 className="text-3xl font-black text-center mb-10 underline-custom">Featured Insights</h2>
@@ -288,7 +288,7 @@ export default function InsightsPage() {
 
       {/* 5️⃣ REALITY CHECK SECTION (URGENCY CREATOR) */}
       <section className="py-12 md:py-20 bg-gray-900 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-3xl font-black mb-10">
@@ -338,7 +338,7 @@ export default function InsightsPage() {
 
       {/* 6️⃣ THE OUTCOME SECTION — "WHAT CHANGES" */}
       <section className="py-12 md:py-20 bg-gray-800 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
           <h2 className="text-3xl font-black text-center mb-10 underline-custom">
@@ -404,7 +404,7 @@ export default function InsightsPage() {
 
       {/* 7️⃣ AUTHORITY POSITIONING (WHY CRES) */}
       <section className="py-12 md:py-20 bg-gray-900 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl font-black mb-8">
@@ -447,7 +447,7 @@ export default function InsightsPage() {
 
       {/* 8️⃣ SOFT CASE PROOF (WITHOUT NUMBERS) */}
       <section className="py-12 md:py-20 bg-gray-800 relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-4xl font-black mb-12">
@@ -491,7 +491,7 @@ export default function InsightsPage() {
 
       {/* 9️⃣ LATEST INSIGHTS SECTION */}
       <section className="py-20 bg-gradient-to-br from-[var(--cres-primary-bg)] to-[var(--cres-secondary-bg)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
         {/* Dimmed background overlay */}
         <div className="absolute inset-0 bg-black/40"></div>

@@ -166,7 +166,7 @@ export default function ERPPage() {
 
       {/* PHASED ERP APPROACH */}
       <section className="py-16 md:py-20 bg-[var(--cres-secondary-bg)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-10"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -280,7 +280,7 @@ export default function ERPPage() {
 
       {/* GOVERNANCE & SECURITY */}
       <section className="py-16 md:py-20 bg-[var(--cres-primary-bg)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-10"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -327,7 +327,7 @@ export default function ERPPage() {
 
       {/* REAL USE CASES */}
       <section className="py-16 md:py-20 bg-[var(--cres-secondary-bg)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-10"></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -382,7 +382,7 @@ export default function ERPPage() {
 
       {/* CTA SECTION */}
       <section className="py-16 md:py-20 bg-gradient-to-r from-[var(--cres-primary-bg)] via-[#0D1520] to-[var(--cres-primary-bg)] relative">
-        <div className="absolute inset-0 bg-[url('/backround.png')] bg-repeat bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-black text-[var(--cres-white)] mb-6 underline-custom">
