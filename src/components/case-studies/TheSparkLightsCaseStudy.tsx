@@ -126,7 +126,7 @@ export default function TheSparkLightsCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: amber }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: amber }} />
               02 · The Solution
@@ -149,7 +149,7 @@ export default function TheSparkLightsCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <StemsScreenshotCarousel
               title="Live build — product categories & mobile UX"
               subtitle="Screenshots from sparklights.co.ke showing category pages, product presentation, and conversion flow."
@@ -158,7 +158,7 @@ export default function TheSparkLightsCaseStudy() {
             />
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: amber }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: amber }} />
               03 · The Results
@@ -199,7 +199,7 @@ export default function TheSparkLightsCaseStudy() {
                 { tf: 'Growing', num: '2.4%', label: 'Click-through rate from Google — 281 buyers clicked through to the site from search', pending: false },
                 { tf: 'Next milestone', num: 'Scaling', label: 'Impressions and clicks growing month-on-month as domain authority builds', pending: true },
               ].map((card) => (
-                <div key={card.tf} className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+                <div key={card.tf} className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                   <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: card.pending ? amber : teal }} />
                   <div className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.08em]" style={{ color: amber }}>
                     {card.tf}
@@ -218,7 +218,7 @@ export default function TheSparkLightsCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: amber }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: amber }} />
               04 · The Proof
@@ -229,7 +229,7 @@ export default function TheSparkLightsCaseStudy() {
             </p>
 
             <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Live website
                 </div>
@@ -241,7 +241,7 @@ export default function TheSparkLightsCaseStudy() {
                 </p>
               </div>
 
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Why they came to us
                 </div>
@@ -250,7 +250,7 @@ export default function TheSparkLightsCaseStudy() {
                 </p>
               </div>
 
-              <div className="md:col-span-2 rounded-xl border p-6" style={{ borderColor: border }}>
+              <div className="md:col-span-2 rounded-xl border p-6">
                 <div className="mb-2 flex items-start gap-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-lg text-xl" style={{ background: amberLight }}>
                     📊
@@ -280,7 +280,7 @@ export default function TheSparkLightsCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pb-8 pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pb-8 pt-14">
             <StemsScreenshotCarousel
               title="More live screenshots — store pages and SERP-ready structure"
               subtitle="Additional captures from sparklights.co.ke and category sections."
@@ -289,7 +289,7 @@ export default function TheSparkLightsCaseStudy() {
             />
           </section>
 
-          <footer className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center" style={{ borderColor: border }}>
+          <footer className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center">
             <div className="text-[13px] font-medium tracking-wide text-white">
               CRES <span style={{ color: amber }}>DYNAMICS</span>
             </div>

@@ -109,7 +109,7 @@ export default function TheWhitelightCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: electric }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: electric }} />
               02 · The Solution
@@ -126,11 +126,11 @@ export default function TheWhitelightCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <StemsScreenshotCarousel title="Live build — catalogue & performance layout" subtitle="Screenshots from whitelightstore.co.ke — category architecture, PDPs, and mobile presentation." images={carouselA} autoplayMs={6000} accent="electric" />
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: electric }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: electric }} />
               03 · The Results
@@ -144,7 +144,7 @@ export default function TheWhitelightCaseStudy() {
                 { tf: 'Month 2 target', num: '150+', label: 'Monthly organic visitors from fitness and footwear search queries in Kenya', pending: false },
                 { tf: 'Tracking from Month 2', num: 'In progress', label: 'Order volume, top-selling categories, and customer acquisition cost data', pending: true },
               ].map((card) => (
-                <div key={card.tf} className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+                <div key={card.tf} className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                   <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: card.pending ? orange : electric }} />
                   <div className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.08em]" style={{ color: card.pending ? orange : electric }}>{card.tf}</div>
                   <div className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#c45c10]' : 'text-4xl text-[#1a3fb5]'}`}>{card.num}</div>
@@ -158,7 +158,7 @@ export default function TheWhitelightCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: electric }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: electric }} />
               04 · The Proof
@@ -166,7 +166,7 @@ export default function TheWhitelightCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>See it live</h2>
             <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">The store is live, indexed, and open for business — serving Nairobi&apos;s fitness community with premium footwear and gym accessories online.</p>
             <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>Live website</div>
                 <a href="https://whitelightstore.co.ke" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-b border-[rgba(26,63,181,0.25)] pb-0.5 text-[15px] font-medium hover:border-[#1a3fb5]" style={{ color: electric }}>
                   whitelightstore.co.ke <span className="-rotate-45 text-sm not-italic">→</span>
@@ -174,18 +174,18 @@ export default function TheWhitelightCaseStudy() {
                 <p className="mt-3.5 text-[13.5px] leading-relaxed" style={{ color: muted }}>Running shoes · Trail shoes · Gym footwear · Shorts · Sweatpants · Yoga accessories · M-Pesa checkout</p>
               </div>
 
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>Why they came to us</div>
                 <p className="text-[13.5px] leading-relaxed" style={{ color: muted }}>Whitelight Store came to Cres Dynamics with a clear goal — grow their client base and reach customers beyond their existing audience. Every decision in the build, from SEO keyword targeting to category structure, was made with that single objective in mind.</p>
               </div>
             </div>
           </section>
 
-          <section className="mt-14 border-t pb-8 pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pb-8 pt-14">
             <StemsScreenshotCarousel title="Checkout flow, mobile UX & product discovery" subtitle="More views from whitelightstore.co.ke — conversion flow and responsive product browsing." images={carouselB} autoplayMs={6500} accent="electric" />
           </section>
 
-          <footer className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center" style={{ borderColor: border }}>
+          <footer className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center">
             <div className="text-[13px] font-medium tracking-wide text-white">CRES <span style={{ color: electric }}>DYNAMICS</span></div>
             <div className="text-xs" style={{ color: muted }}>Nairobi, Kenya · Building systems that make businesses run better</div>
             <a href="https://cresdynamics.com/" className="text-[13px] font-medium" style={{ color: electric }}>cresdynamics.com</a>

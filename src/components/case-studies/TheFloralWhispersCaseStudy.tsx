@@ -140,7 +140,7 @@ export default function TheFloralWhispersCaseStudy() {
           </section>
 
           {/* 02 SOLUTION */}
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: rose }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: rose }} />
               02 · The Solution
@@ -187,7 +187,7 @@ export default function TheFloralWhispersCaseStudy() {
           </section>
 
           {/* Carousel 1 */}
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <StemsScreenshotCarousel
               title="Live build — catalogue & brand"
               subtitle="Screenshots from floralwhispersgifts.co.ke — collections, product pages, and premium presentation."
@@ -198,7 +198,7 @@ export default function TheFloralWhispersCaseStudy() {
           </section>
 
           {/* 03 RESULTS */}
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: rose }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: rose }} />
               03 · The Results
@@ -241,8 +241,8 @@ export default function TheFloralWhispersCaseStudy() {
               ].map((card) => (
                 <div
                   key={card.tf}
-                  className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}
-                  style={{ borderColor: border }}
+                  className="relative overflow-hidden rounded-xl border p-6"
+                  style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}
                 >
                   <div
                     className="absolute left-0 right-0 top-0 h-[3px]"
@@ -279,7 +279,7 @@ export default function TheFloralWhispersCaseStudy() {
           </section>
 
           {/* 04 PROOF */}
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: rose }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: rose }} />
               04 · The Proof
@@ -293,7 +293,7 @@ export default function TheFloralWhispersCaseStudy() {
             </p>
 
             <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Live website
                 </div>
@@ -311,7 +311,7 @@ export default function TheFloralWhispersCaseStudy() {
                 </p>
               </div>
 
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   What this project led to
                 </div>
@@ -332,7 +332,7 @@ export default function TheFloralWhispersCaseStudy() {
 
               <div
                 className="flex items-center gap-4 rounded-xl border bg-[var(--cres-secondary-bg)] px-6 py-5 md:col-span-2"
-                style={{ borderColor: border }}
+               
               >
                 <div
                   className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-base"
@@ -358,7 +358,7 @@ export default function TheFloralWhispersCaseStudy() {
           </section>
 
           {/* Carousel 2 */}
-          <section className="mt-14 border-t pb-8 pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pb-8 pt-14">
             <StemsScreenshotCarousel
               title="Checkout, mobile & delivery UX"
               subtitle="Additional views from the live build — ordering flow, M-Pesa path, and responsive layouts."
@@ -370,7 +370,7 @@ export default function TheFloralWhispersCaseStudy() {
 
           <footer
             className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center"
-            style={{ borderColor: border }}
+           
           >
             <div className="text-[13px] font-medium tracking-wide text-white">
               CRES <span style={{ color: rose }}>DYNAMICS</span>

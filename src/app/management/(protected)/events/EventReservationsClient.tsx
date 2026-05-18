@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-payments';
+import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import { lanyardLabel } from '@/lib/event-lanyards';
 
 export type EventReservationView = {

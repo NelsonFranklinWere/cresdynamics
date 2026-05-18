@@ -112,7 +112,7 @@ export default function TheMohaaFinestCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: gold }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: gold }} />
               02 · The Solution
@@ -135,7 +135,7 @@ export default function TheMohaaFinestCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <StemsScreenshotCarousel
               title="Live build — homepage, catalogue & mobile"
               subtitle="Screenshots from mohaafinestcurtains.co.ke showing the new digital storefront and category presentation."
@@ -144,7 +144,7 @@ export default function TheMohaaFinestCaseStudy() {
             />
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: gold }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: gold }} />
               03 · The Results
@@ -163,7 +163,7 @@ export default function TheMohaaFinestCaseStudy() {
                 { tf: 'Month 2 target', num: '100+', label: 'Monthly visitors from organic Nairobi search queries', pending: false },
                 { tf: 'Tracking from Month 2', num: 'In progress', label: 'WhatsApp inquiry volume, lead conversions, and repeat customer data', pending: true },
               ].map((card) => (
-                <div key={card.tf} className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+                <div key={card.tf} className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                   <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: card.pending ? gold : teal }} />
                   <div className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.08em]" style={{ color: gold }}>
                     {card.tf}
@@ -182,7 +182,7 @@ export default function TheMohaaFinestCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: gold }}>
               <span className="h-px w-12 max-w-[48px] opacity-20" style={{ background: gold }} />
               04 · The Proof
@@ -193,7 +193,7 @@ export default function TheMohaaFinestCaseStudy() {
             </p>
 
             <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Live website
                 </div>
@@ -205,7 +205,7 @@ export default function TheMohaaFinestCaseStudy() {
                 </p>
               </div>
 
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Why they came to us
                 </div>
@@ -216,7 +216,7 @@ export default function TheMohaaFinestCaseStudy() {
             </div>
           </section>
 
-          <section className="mt-14 border-t pb-8 pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pb-8 pt-14">
             <StemsScreenshotCarousel
               title="More live screenshots — product sections & inquiry paths"
               subtitle="Additional page captures from mohaafinestcurtains.co.ke, including mobile-ready layouts."
@@ -225,7 +225,7 @@ export default function TheMohaaFinestCaseStudy() {
             />
           </section>
 
-          <footer className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center" style={{ borderColor: border }}>
+          <footer className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center">
             <div className="text-[13px] font-medium tracking-wide text-white">
               CRES <span style={{ color: teal }}>DYNAMICS</span>
             </div>

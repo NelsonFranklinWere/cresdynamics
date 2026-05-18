@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { insertEventReservation } from '@/lib/db';
-import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-payments';
+import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import { EVENT_LANYARDS, lanyardLabel } from '@/lib/event-lanyards';
 
 export const runtime = 'nodejs';

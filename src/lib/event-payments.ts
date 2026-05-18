@@ -1,5 +1,8 @@
 import { attachPaymentCheckoutDetails, createPayment } from '@/lib/db';
+import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import { resolvePesapalNotificationId, submitPesapalOrder } from '@/lib/pesapal';
+
+export { EVENT_TICKET_AMOUNTS_KES };
 
 export type InitiatePesapalInput = {
   amountKes: number;
@@ -82,10 +85,3 @@ export async function initiatePesapalCheckout(
 
   return { paymentId, redirectUrl, orderTrackingId: orderTrackingId || null };
 }
-
-export const EVENT_TICKET_AMOUNTS_KES: Record<string, number> = {
-  economy: 1500,
-  standard: 2500,
-  vip: 3500,
-  virtual: 0,
-};

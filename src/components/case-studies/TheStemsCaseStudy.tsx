@@ -136,7 +136,7 @@ export default function TheStemsCaseStudy() {
           </section>
 
           {/* 02 SOLUTION */}
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: blush }}>
               <span className="h-px w-12 max-w-[48px] opacity-25" style={{ background: blush }} />
               02 · The Solution
@@ -181,7 +181,7 @@ export default function TheStemsCaseStudy() {
           </section>
 
           {/* Carousel 1 — lower section: storefront & catalogue */}
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <StemsScreenshotCarousel
               title="Live build — storefront & catalogue"
               subtitle="Screenshots from thestemsflowers.co.ke — product grids, collections, and mobile layout."
@@ -191,7 +191,7 @@ export default function TheStemsCaseStudy() {
           </section>
 
           {/* 03 RESULTS */}
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: blush }}>
               <span className="h-px w-12 max-w-[48px] opacity-25" style={{ background: blush }} />
               03 · The Results
@@ -224,7 +224,7 @@ export default function TheStemsCaseStudy() {
                 <div
                   key={card.tf}
                   className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}
-                  style={{ borderColor: border }}
+                 
                 >
                   <div
                     className="absolute left-0 right-0 top-0 h-[3px]"
@@ -258,7 +258,7 @@ export default function TheStemsCaseStudy() {
           </section>
 
           {/* 04 PROOF */}
-          <section className="mt-14 border-t pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pt-14">
             <div className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.14em]" style={{ color: blush }}>
               <span className="h-px w-12 max-w-[48px] opacity-25" style={{ background: blush }} />
               04 · The Proof
@@ -271,7 +271,7 @@ export default function TheStemsCaseStudy() {
             </p>
 
             <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Live website
                 </div>
@@ -288,7 +288,7 @@ export default function TheStemsCaseStudy() {
                 </p>
               </div>
 
-              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Previous work that won this client
                 </div>
@@ -311,7 +311,7 @@ export default function TheStemsCaseStudy() {
 
               <div
                 className="flex items-center gap-4 rounded-xl border bg-[var(--cres-secondary-bg)] px-6 py-5 md:col-span-2"
-                style={{ borderColor: border }}
+               
               >
                 <div
                   className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-base"
@@ -338,7 +338,7 @@ export default function TheStemsCaseStudy() {
           </section>
 
           {/* Carousel 2 — checkout & product detail */}
-          <section className="mt-14 border-t pb-8 pt-14" style={{ borderColor: border }}>
+          <section className="mt-14 border-t pb-8 pt-14">
             <StemsScreenshotCarousel
               title="Checkout, product detail & mobile"
               subtitle="Additional views from the live build — cart flow, PDP, and responsive UI."
@@ -350,7 +350,7 @@ export default function TheStemsCaseStudy() {
           {/* Local footer strip (editorial) */}
           <footer
             className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center"
-            style={{ borderColor: border }}
+           
           >
             <div className="text-[13px] font-medium tracking-wide text-white">
               CRES <span style={{ color: sage }}>DYNAMICS</span>
