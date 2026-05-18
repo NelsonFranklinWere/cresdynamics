@@ -215,8 +215,12 @@ export default function Header() {
               </svg>
             </button>
           </li>
-          <li>
-            <Link href="/case-studies" prefetch={false} className={`${navLinkClass('')} ${navLinkActiveClass(pathname, '/case-studies')}`}>
+          <li className="flex items-center gap-4 shrink-0">
+            <Link
+              href="/case-studies"
+              prefetch={false}
+              className={`${navLinkClass('')} text-[11px] whitespace-nowrap ${navLinkActiveClass(pathname, '/case-studies')}`}
+            >
               Case Proof
             </Link>
             <Link href="/projects" prefetch={false} className={`${navLinkClass('')} ${navLinkActiveClass(pathname, '/projects')}`}>

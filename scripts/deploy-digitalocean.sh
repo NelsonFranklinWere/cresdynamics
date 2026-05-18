@@ -17,7 +17,7 @@
 set -euo pipefail
 
 SSH_USER="${SSH_USER:-root}"
-SSH_HOST="${SSH_HOST:-159.223.137.21}"
+SSH_HOST="${SSH_HOST:-137.184.201.42}"
 REMOTE_DIR="${REMOTE_DIR:-/var/www/cresdynamics}"
 GIT_BRANCH="${GIT_BRANCH:-main}"
 PM2_APP="${PM2_APP:-cresdynamics}"
