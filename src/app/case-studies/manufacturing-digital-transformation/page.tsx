@@ -2,10 +2,12 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CaseStudyHeadline from '@/components/case-studies/CaseStudyHeadline';
+import { CASE_STUDY_HEADLINES } from '@/lib/caseStudyHeadlines';
 
 export default function ManufacturingCaseStudyPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--cres-primary-bg)] text-white">
       <Header />
 
       <section className="py-12 md:py-20 bg-gradient-to-br bg-texture bg-cover from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
@@ -15,12 +17,11 @@ export default function ManufacturingCaseStudyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">
-            Manufacturing Digital Transformation
-          </h1>
-          <p className="text-xl text-gray-300 mb-8">
-            From traditional operations to digital growth
-          </p>
+          <CaseStudyHeadline
+            {...CASE_STUDY_HEADLINES['manufacturing-digital-transformation']}
+            centered
+            className="mb-8 max-w-4xl"
+          />
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
               Request a Growth Audit
@@ -32,26 +33,26 @@ export default function ManufacturingCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Business</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The Business</h2>
           <div className="space-y-6 text-white">
             <div className="grid md:grid-cols-2 gap-8">
-              <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Industry</h3><p>Manufacturing company producing industrial equipment</p></div>
-              <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Business Size</h3><p>Established manufacturer with traditional operations</p></div>
-              <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Market Situation</h3><p>Growing East African industrial market with increasing demand</p></div>
-              <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Growth Stage</h3><p>Operationally sound but digitally disconnected from market</p></div>
+              <div><h3 className="font-bold text-white mb-2">Industry</h3><p>Manufacturing company producing industrial equipment</p></div>
+              <div><h3 className="font-bold text-white mb-2">Business Size</h3><p>Established manufacturer with traditional operations</p></div>
+              <div><h3 className="font-bold text-white mb-2">Market Situation</h3><p>Growing East African industrial market with increasing demand</p></div>
+              <div><h3 className="font-bold text-white mb-2">Growth Stage</h3><p>Operationally sound but digitally disconnected from market</p></div>
             </div>
-            <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+            <div className="mt-8 p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
               <p className="text-lg">This manufacturing company was operationally excellent but digitally invisible, missing growth opportunities in an increasingly digital marketplace.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Challenge</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The Challenge</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
@@ -73,32 +74,32 @@ export default function ManufacturingCaseStudyPage() {
                 </ul>
               </div>
             </div>
-            <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
-              <p className="font-semibold text-[var(--cres-deep-navy)] mb-2">The Root Issue</p>
+            <div className="mt-8 p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
+              <p className="font-semibold text-white mb-2">The Root Issue</p>
               <p className="text-white">They were manufacturing leaders in their field but operating in a digital world. Modern industrial buyers research, compare, and purchase online, but this company was invisible in digital channels.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">Why Previous Solutions Didn't Work</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">Why Previous Solutions Didn't Work</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+              <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">📞</div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Trade Show Focus</h3>
+                <h3 className="font-bold text-white mb-3">Trade Show Focus</h3>
                 <p className="text-white text-sm">Excellent at industry events but missing the digital buyers who research online first.</p>
               </div>
-              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+              <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">🤝</div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Relationship Selling</h3>
+                <h3 className="font-bold text-white mb-3">Relationship Selling</h3>
                 <p className="text-white text-sm">Strong network but couldn't scale beyond personal relationships in a growing market.</p>
               </div>
-              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+              <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">📋</div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Basic Website</h3>
+                <h3 className="font-bold text-white mb-3">Basic Website</h3>
                 <p className="text-white text-sm">Had a "brochure website" but it didn't convert inquiries or showcase their manufacturing expertise.</p>
               </div>
             </div>
@@ -112,7 +113,7 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-deep-navy)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">Our Thinking & Strategy</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">Our Thinking & Strategy</h2>
           <div className="space-y-6 text-gray-300">
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -142,14 +143,14 @@ export default function ManufacturingCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The System We Implemented</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The System We Implemented</h2>
           <div className="space-y-8">
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">1</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Technical Authority Website</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Technical Authority Website</h3>
                 <p className="text-white mb-3">A website that showcases manufacturing expertise and provides the technical information industrial buyers need.</p>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Detailed product specifications and technical data</li>
@@ -162,7 +163,7 @@ export default function ManufacturingCaseStudyPage() {
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">2</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Digital Sales Enablement</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Digital Sales Enablement</h3>
                 <p className="text-white mb-3">Tools and systems that support the entire B2B sales process from inquiry to delivery.</p>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Automated inquiry response and qualification</li>
@@ -175,7 +176,7 @@ export default function ManufacturingCaseStudyPage() {
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">3</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Content & Thought Leadership</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Content & Thought Leadership</h3>
                 <p className="text-white mb-3">Strategic content that positions them as industrial manufacturing experts in East Africa.</p>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Industry insights and manufacturing trends</li>
@@ -186,29 +187,29 @@ export default function ManufacturingCaseStudyPage() {
               </div>
             </div>
             <div className="mt-8 p-6 bg-[var(--cres-electric-teal)]/10 rounded-lg border border-[var(--cres-electric-teal)]/20">
-              <p className="text-[var(--cres-deep-navy)] font-semibold">System Integration: Digital presence enhances manufacturing operations while opening new markets and customer relationships.</p>
+              <p className="text-white font-semibold">System Integration: Digital presence enhances manufacturing operations while opening new markets and customer relationships.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Impact</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The Impact</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">New Market Opportunities</h3>
               <p className="text-white">Access to digital-native industrial buyers and new geographic markets beyond traditional networks.</p>
             </div>
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Lead Quality Improvement</h3>
               <p className="text-white">Digital inquiries are more qualified and ready to purchase, reducing sales cycle time.</p>
             </div>
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Operational Efficiency</h3>
               <p className="text-white">Automated processes handle routine inquiries, allowing technical staff to focus on complex customer needs.</p>
             </div>
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Market Position</h3>
               <p className="text-white">Established as a forward-thinking manufacturer that understands modern industrial buying processes.</p>
             </div>
@@ -216,35 +217,35 @@ export default function ManufacturingCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">What This Case Teaches</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">What This Case Teaches</h2>
           <div className="space-y-4">
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">1</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Traditional excellence needs digital presence</h3>
+                <h3 className="font-bold text-white mb-1">Traditional excellence needs digital presence</h3>
                 <p className="text-white">Even the best manufacturing operations remain limited without digital visibility and modern sales processes.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">2</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">B2B buyers are digital first</h3>
+                <h3 className="font-bold text-white mb-1">B2B buyers are digital first</h3>
                 <p className="text-white">Industrial buyers research extensively online. Manufacturing companies need digital credibility to compete.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">3</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Technical authority drives sales</h3>
+                <h3 className="font-bold text-white mb-1">Technical authority drives sales</h3>
                 <p className="text-white">Industrial buyers need detailed technical information. Authority content converts browsers into buyers.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">4</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Digital enhances operations</h3>
+                <h3 className="font-bold text-white mb-1">Digital enhances operations</h3>
                 <p className="text-white">Digital systems don't replace manufacturing excellence — they amplify it and open new opportunities.</p>
               </div>
             </div>
@@ -254,9 +255,9 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-electric-teal)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">Is This Similar to Your Business?</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">Is This Similar to Your Business?</h2>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20/10 p-6 rounded-lg">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20/10 p-6 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">This applies to you if:</h3>
               <ul className="text-white space-y-2 text-left">
                 <li>• You're operationally excellent but digitally invisible</li>
@@ -266,7 +267,7 @@ export default function ManufacturingCaseStudyPage() {
                 <li>• You're ready to modernize your sales and marketing</li>
               </ul>
             </div>
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20/10 p-6 rounded-lg">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20/10 p-6 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">Let's discuss your situation:</h3>
               <ul className="text-white space-y-2 text-left">
                 <li>• Manufacturing or industrial companies</li>
@@ -278,10 +279,10 @@ export default function ManufacturingCaseStudyPage() {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-black/70 backdrop-blur-sm border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/70 backdrop-blur-sm border border-white/20 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+            <a href="/contact" className="bg-[var(--cres-secondary-bg)] border border-white/20 text-[var(--cres-electric-teal)] hover:bg-white/10 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Let's Map Your Growth System
             </a>
-            <a href="/case-studies" className="border-2 border-white text-white hover:bg-black/70 backdrop-blur-sm border border-white/20 hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/case-studies" className="border-2 border-white text-white hover:bg-white/10 hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
               View More Case Studies
             </a>
           </div>

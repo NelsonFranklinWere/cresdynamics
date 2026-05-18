@@ -2,10 +2,12 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CaseStudyHeadline from '@/components/case-studies/CaseStudyHeadline';
+import { CASE_STUDY_HEADLINES } from '@/lib/caseStudyHeadlines';
 
 export default function FloristCaseStudyPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--cres-primary-bg)] text-white">
       <Header />
 
       {/* SECTION 1: Quiet Authority Hero */}
@@ -17,19 +19,16 @@ export default function FloristCaseStudyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black underline-custom text-white leading-tight mb-6 md:mb-8">
-            Businesses don't fail from lack of effort<br />
-            <span className="text-[var(--cres-electric-teal)]">— they fail from lack of systems.</span>
-          </h1>
-
-          <p className="text-base md:text-lg lg:text-xl text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto">
-            These case studies show how growth stalls silently, and how the right infrastructure unlocks scale.
-          </p>
+          <CaseStudyHeadline
+            {...CASE_STUDY_HEADLINES['florist-growth-system']}
+            centered
+            className="mb-8 md:mb-12 max-w-4xl"
+          />
         </div>
       </section>
 
       {/* SECTION 2: Pattern Recognition */}
-      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
+      <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
@@ -41,7 +40,7 @@ export default function FloristCaseStudyPage() {
             Most businesses face structural problems, not effort problems. Growth becomes tied to the owner, opportunities slip away after hours, visibility depends entirely on paid advertising, and there's no predictability in the business model.
           </p>
 
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-8 rounded-lg">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-8 rounded-lg">
               <p className="text-sm md:text-lg text-[var(--cres-white)] font-medium">
                 This creates a ceiling effect. The business can grow to a certain point through effort and hustle, but then stalls because the foundational systems can't support further expansion.
               </p>
@@ -51,7 +50,7 @@ export default function FloristCaseStudyPage() {
       </section>
 
       {/* CASE STUDY CARD STRUCTURE */}
-      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
+      <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
@@ -64,7 +63,7 @@ export default function FloristCaseStudyPage() {
           </div>
 
           {/* Problem (Reality-Based) */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-8 rounded-lg shadow-sm mb-6 md:mb-8">
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-8 rounded-lg shadow-sm mb-6 md:mb-8">
             <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-orange-primary)] mb-4 md:mb-6">The Situation</h3>
             <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed mb-4 md:mb-6">
               The business operated successfully within its local market, with consistent orders and satisfied customers. However, expansion efforts consistently stalled at the point where growth would require additional staff or new locations.
@@ -86,7 +85,7 @@ export default function FloristCaseStudyPage() {
           </div>
 
           {/* Our Approach (Architectural) */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-8 rounded-lg shadow-sm mb-6 md:mb-8">
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-8 rounded-lg shadow-sm mb-6 md:mb-8">
             <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-orange-primary)] mb-4 md:mb-6">The Business Operations System Built</h3>
             <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed mb-6 md:mb-8">
               We built a Business Operations System that allowed customer acquisition and order processing to operate independently of direct owner involvement, while maintaining the personal service quality that drove customer loyalty.
@@ -116,8 +115,8 @@ export default function FloristCaseStudyPage() {
           </div>
 
           {/* Production System Metrics */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">Production System Metrics</h3>
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg mb-8">
+            <h3 className="text-2xl font-bold text-white mb-6">Production System Metrics</h3>
             <p className="text-white text-lg leading-relaxed mb-6">
               The Business Operations System is now in production, providing clear visibility into customer demand patterns and operational processes that scale beyond a single location or owner involvement.
             </p>

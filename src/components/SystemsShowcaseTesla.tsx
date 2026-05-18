@@ -6,6 +6,7 @@
  */
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const SYSTEMS = [
@@ -77,13 +78,13 @@ function SystemBlock({
       <div className="relative w-full md:w-1/2 min-h-[40vh] md:min-h-full flex items-center justify-center bg-[var(--cres-secondary-bg)]">
         <div className="relative w-[82%] md:w-[78%] aspect-[4/3] rounded-2xl border border-white/10 bg-gradient-to-br from-[var(--cres-primary-bg)] via-[#141b26] to-[var(--cres-secondary-bg)] shadow-[0_18px_45px_rgba(0,0,0,0.6)] overflow-hidden">
           <div className="absolute inset-0 opacity-60 bg-[radial-gradient(circle_at_20%_20%,rgba(244,122,42,0.35),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(79,179,184,0.28),transparent_55%)]" />
-          <img
+          <Image
             src={image}
             alt={title}
-            className="relative z-10 w-full h-full object-contain mix-blend-screen"
-            loading={isFirst ? 'eager' : 'lazy'}
-            fetchPriority={isFirst ? 'high' : undefined}
-            decoding="async"
+            fill
+            sizes="(max-width: 768px) 90vw, 45vw"
+            className="relative z-10 object-contain mix-blend-screen"
+            priority={isFirst}
           />
         </div>
       </div>

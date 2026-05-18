@@ -79,7 +79,7 @@ export default function HomepageSystemsGrid() {
             const initialX = fromLeft ? -32 : 32;
 
             return (
-              <Link key={card.id} href={card.href} prefetch={true}>
+              <Link key={card.id} href={card.href} prefetch={false}>
                 <motion.div
                   className="relative bg-black/30 px-6 py-8 md:px-7 md:py-9 rounded-2xl border border-white/15 shadow-[0_24px_80px_rgba(0,0,0,0.35)] flex flex-col gap-4 overflow-hidden transition-all duration-300 hover:shadow-[0_24px_90px_rgba(0,0,0,0.45)] hover:border-[var(--teal-accent)]/35"
                   initial={{ opacity: 0, x: initialX, y: 18 }}

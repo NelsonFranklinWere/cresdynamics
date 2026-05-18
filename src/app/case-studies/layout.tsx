@@ -18,6 +18,7 @@ export default function CaseStudiesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <div className="min-h-screen bg-[var(--cres-primary-bg)] text-white">{children}</div>
+  );
 }
-

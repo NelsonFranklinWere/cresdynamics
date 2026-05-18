@@ -1,17 +1,19 @@
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import HeroTesla from '@/components/HeroTesla';
-import HeroCarousels from '@/components/HeroCarousels';
-import HomepageStatsMarquee from '@/components/HomepageStatsMarquee';
-import HomepageProblemSection from '@/components/HomepageProblemSection';
-import HomepageMarketingWebsitesSection from '@/components/HomepageMarketingWebsitesSection';
-import SystemsShowcaseTesla from '@/components/SystemsShowcaseTesla';
-import LiveSystemsProof from '@/components/LiveSystemsProof';
-import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
-import HomepageSystemsGrid from '@/components/HomepageSystemsGrid';
-import HomepageHowWeBuild from '@/components/HomepageHowWeBuild';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+
+const HeroCarousels = dynamic(() => import('@/components/HeroCarousels'));
+const HomepageStatsMarquee = dynamic(() => import('@/components/HomepageStatsMarquee'));
+const HomepageProblemSection = dynamic(() => import('@/components/HomepageProblemSection'));
+const HomepageMarketingWebsitesSection = dynamic(() => import('@/components/HomepageMarketingWebsitesSection'));
+const SystemsShowcaseTesla = dynamic(() => import('@/components/SystemsShowcaseTesla'));
+const LiveSystemsProof = dynamic(() => import('@/components/LiveSystemsProof'));
+const FinalCTA = dynamic(() => import('@/components/FinalCTA'));
+const HomepageSystemsGrid = dynamic(() => import('@/components/HomepageSystemsGrid'));
+const HomepageHowWeBuild = dynamic(() => import('@/components/HomepageHowWeBuild'));
 
 export const metadata: Metadata = {
   title: 'Cres Dynamics | Business Systems, Websites & ERP — Nairobi Kenya',

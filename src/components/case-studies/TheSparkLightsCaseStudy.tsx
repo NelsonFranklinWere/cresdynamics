@@ -5,7 +5,10 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StemsScreenshotCarousel from '@/components/case-studies/StemsScreenshotCarousel';
 import { sparkLightsImageItems } from '@/lib/sparkLightsCaseStudyAssets';
+import CaseStudyHeadline from '@/components/case-studies/CaseStudyHeadline';
+import { CASE_STUDY_HEADLINES } from '@/lib/caseStudyHeadlines';
 import { Playfair_Display, DM_Sans } from 'next/font/google';
+import { CASE_STUDY_PAGE_BG, CASE_STUDY_INK, CASE_STUDY_MUTED, CASE_STUDY_BORDER, CASE_STUDY_CARD_BG, CASE_STUDY_QUOTE_BG } from '@/lib/caseStudyTheme';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -20,14 +23,15 @@ const dmSans = DM_Sans({
   variable: '--font-sl-dm',
 });
 
-const cream = 'var(--neutral-bg)';
-const ink = 'var(--cres-deep-navy)';
+
+const cream = CASE_STUDY_PAGE_BG;
+const ink = CASE_STUDY_INK;
 const amber = 'var(--cres-orange-primary)';
 const amberLight = 'rgba(243, 156, 36, 0.12)';
 const amberDeep = 'var(--cres-orange-hover)';
 const teal = 'var(--cres-teal-secondary)';
-const muted = 'rgba(47, 59, 82, 0.72)';
-const border = 'rgba(47, 59, 82, 0.18)';
+const muted = CASE_STUDY_MUTED;
+const border = CASE_STUDY_BORDER;
 
 export default function TheSparkLightsCaseStudy() {
   const all = sparkLightsImageItems();
@@ -58,12 +62,11 @@ export default function TheSparkLightsCaseStudy() {
               <span className="inline-block h-px w-6 bg-[rgba(250,248,244,0.25)]" />
               Cres Dynamics · Case Study
             </div>
-            <h1 className={`${playfair.className} mb-5 max-w-[640px] text-[clamp(36px,5vw,54px)] font-semibold leading-[1.15] text-[#faf8f4]`}>
-              11,700 Nairobi eyes searching for lights — <em className="italic text-[#f0c96a]">finding Spark Lights 254</em>
-            </h1>
-            <p className="mb-11 max-w-[500px] text-[17px] font-light text-[rgba(250,248,244,0.55)]">
-              A website and SEO build that put a Nyamakima lighting store in front of thousands of buyers actively searching Google for chandeliers and ceiling lights in Nairobi.
-            </p>
+            <CaseStudyHeadline
+              {...CASE_STUDY_HEADLINES['spark-lights-254']}
+              className="mb-8 max-w-[720px]"
+              titleClassName="!text-[clamp(1.75rem,4.5vw,2.65rem)]"
+            />
 
             <div className="mb-11 flex flex-wrap gap-3">
               {[
@@ -110,10 +113,10 @@ export default function TheSparkLightsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               A full lighting showroom at Nyamakima — unknown to anyone online
             </h2>
-            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               Spark Lights 254 stocked one of Nairobi&apos;s widest selections of chandeliers, ceiling lights, pendant lights, wall lights, bedroom lights, and outdoor lighting — all available for same-day delivery. But without a website, none of that catalogue existed to a customer searching Google for &ldquo;chandeliers Nairobi&rdquo; or &ldquo;ceiling lights Karen.&rdquo;
             </p>
-            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               Interior designers sourcing lights for a Karen project, homeowners renovating in Kilimani, and landlords furnishing apartments in Westlands — all of them were searching online and finding competitors. Spark Lights had the stock, the prices, and the delivery speed. What they didn&apos;t have was digital visibility.
             </p>
             <div className="mt-8 rounded-r-lg border-l-[3px] px-4 py-5 md:py-6 md:pl-7 md:pr-7" style={{ background: amberLight, borderColor: amber }}>
@@ -131,10 +134,10 @@ export default function TheSparkLightsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               A structured website engineered to rank for lighting searches across Nairobi
             </h2>
-            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               Cres Dynamics built Spark Lights 254 a full website with seven dedicated product category pages — Chandeliers, Ceiling Lights, Pendant Lights, Dining Room Lights, Wall Lights, Outdoor Lights, and Bedroom Lights. Each page was individually optimised for the exact search terms Nairobi buyers use, with room-specific targeting to capture searches at every stage of a home renovation.
             </p>
-            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               The site was built around a WhatsApp-first ordering flow — matching how Nairobi buyers prefer to transact — with same-day delivery prominently communicated throughout. A Lighting Guide blog was added to capture additional search traffic from informational queries, and Google Business Profile was optimised to surface the Nyamakima location for local searches.
             </p>
             <div className="mt-7 flex flex-wrap gap-2">
@@ -163,7 +166,7 @@ export default function TheSparkLightsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               Real numbers. Verified from Google Search Console.
             </h2>
-            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               These are not projections. These are live figures pulled directly from Google Search Console — showing exactly how many Nairobi buyers the website is now reaching through organic search.
             </p>
 
@@ -196,7 +199,7 @@ export default function TheSparkLightsCaseStudy() {
                 { tf: 'Growing', num: '2.4%', label: 'Click-through rate from Google — 281 buyers clicked through to the site from search', pending: false },
                 { tf: 'Next milestone', num: 'Scaling', label: 'Impressions and clicks growing month-on-month as domain authority builds', pending: true },
               ].map((card) => (
-                <div key={card.tf} className="relative overflow-hidden rounded-xl border bg-white p-6" style={{ borderColor: border }}>
+                <div key={card.tf} className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
                   <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: card.pending ? amber : teal }} />
                   <div className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.08em]" style={{ color: amber }}>
                     {card.tf}
@@ -221,12 +224,12 @@ export default function TheSparkLightsCaseStudy() {
               04 · The Proof
             </div>
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>See it live — and see the numbers</h2>
-            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3428]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               The website is fully live, ranking across multiple lighting categories in Nairobi. The Google Search Console data is available for any prospect who wants to see it.
             </p>
 
             <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-xl border bg-white p-6" style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Live website
                 </div>
@@ -238,7 +241,7 @@ export default function TheSparkLightsCaseStudy() {
                 </p>
               </div>
 
-              <div className="rounded-xl border bg-white p-6" style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Why they came to us
                 </div>
@@ -247,13 +250,13 @@ export default function TheSparkLightsCaseStudy() {
                 </p>
               </div>
 
-              <div className="md:col-span-2 rounded-xl border bg-white p-6" style={{ borderColor: border }}>
+              <div className="md:col-span-2 rounded-xl border p-6" style={{ borderColor: border }}>
                 <div className="mb-2 flex items-start gap-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-lg text-xl" style={{ background: amberLight }}>
                     📊
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-[#18140a]">Verified · Google Search Console data</div>
+                    <div className="text-sm font-medium text-white">Verified · Google Search Console data</div>
                     <div className="mt-1 text-[13.5px] leading-relaxed" style={{ color: muted }}>
                       These numbers are pulled directly from Google Search Console — the same dashboard Google provides to verify organic search performance. Not estimated. Not projected. Measured.
                     </div>
@@ -287,7 +290,7 @@ export default function TheSparkLightsCaseStudy() {
           </section>
 
           <footer className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center" style={{ borderColor: border }}>
-            <div className="text-[13px] font-medium tracking-wide text-[#18140a]">
+            <div className="text-[13px] font-medium tracking-wide text-white">
               CRES <span style={{ color: amber }}>DYNAMICS</span>
             </div>
             <div className="text-xs" style={{ color: muted }}>

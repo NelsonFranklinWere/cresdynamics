@@ -1,13 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-scroll-area'],
+  },
+
   // Image optimisation
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
-    unoptimized: false,
+    // Serve /public files directly — avoids _next/image 400 with trailingSlash + Turbopack
+    unoptimized: true,
   },
 
   // Server-side gzip compression

@@ -1,4 +1,10 @@
 import { Pool } from 'pg';
+import {
+  attachPaymentCheckoutDetailsLocal,
+  createPaymentLocal,
+  insertEventReservationLocal,
+  isLocalEventStoreEnabled,
+} from '@/lib/local-event-store';
 
 let pool: Pool | null = null;
 
@@ -176,43 +182,65 @@ export type EventReservationInput = {
   company?: string;
   ticketType?: string;
   attendanceType?: string;
+  lanyardCategory?: string;
+  bookingStatus?: string;
 };
 
 export async function insertEventReservation(
   input: EventReservationInput
 ): Promise<number | null> {
   const p = getPool();
-  if (!p) return null;
+  if (p) {
+    try {
+      const r = await p.query(
+        `
+        INSERT INTO event_reservations
+          (event_title, event_date, first_name, last_name, email, phone, company, ticket_type, attendance_type, lanyard_category, booking_status)
+        VALUES
+          ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+        ON CONFLICT (event_title, event_date, email) DO UPDATE SET
+          last_name = EXCLUDED.last_name,
+          phone = EXCLUDED.phone,
+          company = EXCLUDED.company,
+          ticket_type = EXCLUDED.ticket_type,
+          attendance_type = EXCLUDED.attendance_type,
+          lanyard_category = EXCLUDED.lanyard_category,
+          booking_status = CASE
+            WHEN event_reservations.booking_status = 'paid' THEN event_reservations.booking_status
+            ELSE EXCLUDED.booking_status
+          END,
+          updated_at = now()
+        RETURNING id
+        `,
+        [
+          input.eventTitle,
+          input.eventDate,
+          input.firstName,
+          input.lastName ?? null,
+          input.email,
+          input.phone ?? null,
+          input.company ?? null,
+          input.ticketType ?? null,
+          input.attendanceType ?? null,
+          input.lanyardCategory ?? null,
+          input.bookingStatus ?? 'pending',
+        ]
+      );
+      return Number(r.rows[0].id);
+    } catch (err) {
+      console.error('event_reservations postgres insert failed:', err);
+      if (!isLocalEventStoreEnabled()) return null;
+    }
+  } else if (!isLocalEventStoreEnabled()) {
+    return null;
+  }
 
-  const r = await p.query(
-    `
-    INSERT INTO event_reservations
-      (event_title, event_date, first_name, last_name, email, phone, company, ticket_type, attendance_type)
-    VALUES
-      ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-    ON CONFLICT (event_title, event_date, email) DO UPDATE SET
-      last_name = EXCLUDED.last_name,
-      phone = EXCLUDED.phone,
-      company = EXCLUDED.company,
-      ticket_type = EXCLUDED.ticket_type,
-      attendance_type = EXCLUDED.attendance_type,
-      updated_at = now()
-    RETURNING id
-    `,
-    [
-      input.eventTitle,
-      input.eventDate,
-      input.firstName,
-      input.lastName ?? null,
-      input.email,
-      input.phone ?? null,
-      input.company ?? null,
-      input.ticketType ?? null,
-      input.attendanceType ?? null,
-    ]
-  );
-
-  return Number(r.rows[0].id);
+  try {
+    return await insertEventReservationLocal(input);
+  } catch (err) {
+    console.error('event_reservations local store failed:', err);
+    return null;
+  }
 }
 
 export type EventReservationRow = {
@@ -226,10 +254,25 @@ export type EventReservationRow = {
   company: string | null;
   ticketType: string | null;
   attendanceType: string | null;
+  lanyardCategory: string | null;
+  bookingStatus: string;
   createdAt: string; // ISO
   updatedAt: string; // ISO
   paymentStatus: string | null; // pending | paid | failed etc. from linked payment
 };
+
+export async function updateEventReservationBookingStatus(
+  id: number,
+  bookingStatus: 'pending' | 'paid' | 'cancelled'
+): Promise<boolean> {
+  const p = getPool();
+  if (!p) return false;
+  const r = await p.query(
+    `UPDATE event_reservations SET booking_status = $2, updated_at = now() WHERE id = $1`,
+    [id, bookingStatus]
+  );
+  return (r.rowCount ?? 0) > 0;
+}
 
 export async function listEventReservations(limit = 200): Promise<EventReservationRow[]> {
   const p = getPool();
@@ -247,6 +290,8 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
       er.company,
       er.ticket_type,
       er.attendance_type,
+      er.lanyard_category,
+      er.booking_status,
       er.created_at,
       er.updated_at,
       (
@@ -273,9 +318,11 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
     company: row.company ? String(row.company) : null,
     ticketType: row.ticket_type ? String(row.ticket_type) : null,
     attendanceType: row.attendance_type ? String(row.attendance_type) : null,
+    lanyardCategory: row.lanyard_category ? String(row.lanyard_category) : null,
+    bookingStatus: String(row.booking_status || 'pending'),
     createdAt: new Date(row.created_at).toISOString(),
     updatedAt: new Date(row.updated_at).toISOString(),
-    paymentStatus: row.payment_status ? String(row.payment_status) : 'pending',
+    paymentStatus: row.payment_status ? String(row.payment_status) : null,
   }));
 }
 
@@ -374,34 +421,49 @@ export type CreatePaymentInput = {
 
 export async function createPayment(input: CreatePaymentInput): Promise<number | null> {
   const p = getPool();
-  if (!p) return null;
-  const r = await p.query(
-    `
-    INSERT INTO payments
-      (source, reference, provider_tracking_id, merchant_reference, payment_link_token, payment_link_active, email, phone, amount_kes, currency, status, purpose, event_title, event_date, metadata_json, updated_at)
-    VALUES
-      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, now())
-    RETURNING id
-    `,
-    [
-      input.source,
-      input.reference ?? null,
-      input.providerTrackingId ?? null,
-      input.merchantReference ?? null,
-      input.paymentLinkToken ?? null,
-      input.paymentLinkActive ?? true,
-      input.email ?? null,
-      input.phone ?? null,
-      input.amountKes ?? null,
-      input.currency ?? 'KES',
-      input.status ?? 'pending',
-      input.purpose ?? null,
-      input.eventTitle ?? null,
-      input.eventDate ?? null,
-      input.metadata ?? null,
-    ]
-  );
-  return Number(r.rows[0].id);
+  if (p) {
+    try {
+      const r = await p.query(
+        `
+        INSERT INTO payments
+          (source, reference, provider_tracking_id, merchant_reference, payment_link_token, payment_link_active, email, phone, amount_kes, currency, status, purpose, event_title, event_date, metadata_json, updated_at)
+        VALUES
+          ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, now())
+        RETURNING id
+        `,
+        [
+          input.source,
+          input.reference ?? null,
+          input.providerTrackingId ?? null,
+          input.merchantReference ?? null,
+          input.paymentLinkToken ?? null,
+          input.paymentLinkActive ?? true,
+          input.email ?? null,
+          input.phone ?? null,
+          input.amountKes ?? null,
+          input.currency ?? 'KES',
+          input.status ?? 'pending',
+          input.purpose ?? null,
+          input.eventTitle ?? null,
+          input.eventDate ?? null,
+          input.metadata ?? null,
+        ]
+      );
+      return Number(r.rows[0].id);
+    } catch (err) {
+      console.error('payments postgres insert failed:', err);
+      if (!isLocalEventStoreEnabled()) return null;
+    }
+  } else if (!isLocalEventStoreEnabled()) {
+    return null;
+  }
+
+  try {
+    return await createPaymentLocal(input);
+  } catch (err) {
+    console.error('payments local store failed:', err);
+    return null;
+  }
 }
 
 export type UpdatePaymentStatusInput = {
@@ -504,28 +566,43 @@ export type AttachCheckoutDetailsInput = {
 
 export async function attachPaymentCheckoutDetails(input: AttachCheckoutDetailsInput): Promise<void> {
   const p = getPool();
-  if (!p) return;
-  await p.query(
-    `
-    update payments
-    set email = $2,
-        phone = $3,
-        merchant_reference = $4,
-        provider_tracking_id = $5,
-        status = 'pending',
-        metadata_json = COALESCE($6, metadata_json),
-        updated_at = now()
-    where id = $1
-    `,
-    [
-      input.paymentId,
-      input.email,
-      input.phone,
-      input.merchantReference,
-      input.providerTrackingId ?? null,
-      input.metadata ?? null,
-    ]
-  );
+  if (p) {
+    try {
+      await p.query(
+        `
+        update payments
+        set email = $2,
+            phone = $3,
+            merchant_reference = $4,
+            provider_tracking_id = $5,
+            status = 'pending',
+            metadata_json = COALESCE($6, metadata_json),
+            updated_at = now()
+        where id = $1
+        `,
+        [
+          input.paymentId,
+          input.email,
+          input.phone,
+          input.merchantReference,
+          input.providerTrackingId ?? null,
+          input.metadata ?? null,
+        ]
+      );
+      return;
+    } catch (err) {
+      console.error('payments postgres update failed:', err);
+      if (!isLocalEventStoreEnabled()) return;
+    }
+  } else if (!isLocalEventStoreEnabled()) {
+    return;
+  }
+
+  try {
+    await attachPaymentCheckoutDetailsLocal(input);
+  } catch (err) {
+    console.error('payments local store update failed:', err);
+  }
 }
 
 export async function getPaymentByReferences(

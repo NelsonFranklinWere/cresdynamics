@@ -69,6 +69,8 @@ CREATE TABLE IF NOT EXISTS event_reservations (
   company TEXT,
   ticket_type TEXT,
   attendance_type TEXT,
+  lanyard_category TEXT,
+  booking_status TEXT NOT NULL DEFAULT 'pending',
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (event_title, event_date, email)
@@ -98,18 +100,21 @@ CREATE TABLE IF NOT EXISTS payments (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-CREATE INDEX IF NOT EXISTS idx_payments_created_at ON payments (created_at DESC);
-CREATE INDEX IF NOT EXISTS idx_payments_provider_tracking_id ON payments (provider_tracking_id);
-CREATE INDEX IF NOT EXISTS idx_payments_merchant_reference ON payments (merchant_reference);
-CREATE INDEX IF NOT EXISTS idx_payments_payment_link_token ON payments (payment_link_token);
-
--- Backward compatibility for existing databases
+-- Backward compatibility: add columns before indexes (existing DBs may lack these)
 ALTER TABLE payments ADD COLUMN IF NOT EXISTS provider_tracking_id TEXT;
 ALTER TABLE payments ADD COLUMN IF NOT EXISTS merchant_reference TEXT;
-ALTER TABLE payments ADD COLUMN IF NOT EXISTS payment_link_token TEXT UNIQUE;
+ALTER TABLE payments ADD COLUMN IF NOT EXISTS payment_link_token TEXT;
 ALTER TABLE payments ADD COLUMN IF NOT EXISTS payment_link_active BOOLEAN NOT NULL DEFAULT true;
 ALTER TABLE payments ADD COLUMN IF NOT EXISTS metadata_json JSONB;
 ALTER TABLE payments ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT now();
+ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS lanyard_category TEXT;
+ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS booking_status TEXT NOT NULL DEFAULT 'pending';
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_payments_payment_link_token ON payments (payment_link_token)
+  WHERE payment_link_token IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_payments_created_at ON payments (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_payments_provider_tracking_id ON payments (provider_tracking_id);
+CREATE INDEX IF NOT EXISTS idx_payments_merchant_reference ON payments (merchant_reference);
 
 -- Speaker applications (events)
 CREATE TABLE IF NOT EXISTS speaker_applications (

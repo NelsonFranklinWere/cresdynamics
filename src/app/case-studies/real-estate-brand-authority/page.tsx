@@ -2,10 +2,12 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CaseStudyHeadline from '@/components/case-studies/CaseStudyHeadline';
+import { CASE_STUDY_HEADLINES } from '@/lib/caseStudyHeadlines';
 
 export default function RealEstateCaseStudyPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--cres-primary-bg)] text-white">
       <Header />
 
       <section className="py-12 md:py-20 bg-gradient-to-br bg-texture bg-cover from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
@@ -15,12 +17,11 @@ export default function RealEstateCaseStudyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">
-            Real Estate Brand Authority
-          </h1>
-          <p className="text-xl text-gray-300 mb-8">
-            From commodity to premium positioning
-          </p>
+          <CaseStudyHeadline
+            {...CASE_STUDY_HEADLINES['real-estate-brand-authority']}
+            centered
+            className="mb-8 max-w-4xl"
+          />
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
               Request a Growth Audit
@@ -32,26 +33,26 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Business</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The Business</h2>
           <div className="space-y-6 text-white">
             <div className="grid md:grid-cols-2 gap-8">
-              <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Industry</h3><p>Real estate agency specializing in luxury properties</p></div>
-              <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Business Size</h3><p>Established agency with premium client base</p></div>
-              <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Market Situation</h3><p>Competitive Nairobi luxury real estate market</p></div>
-              <div><h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Growth Stage</h3><p>Premium positioning but price-driven competition</p></div>
+              <div><h3 className="font-bold text-white mb-2">Industry</h3><p>Real estate agency specializing in luxury properties</p></div>
+              <div><h3 className="font-bold text-white mb-2">Business Size</h3><p>Established agency with premium client base</p></div>
+              <div><h3 className="font-bold text-white mb-2">Market Situation</h3><p>Competitive Nairobi luxury real estate market</p></div>
+              <div><h3 className="font-bold text-white mb-2">Growth Stage</h3><p>Premium positioning but price-driven competition</p></div>
             </div>
-            <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+            <div className="mt-8 p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
               <p className="text-lg">This luxury real estate agency had excellent properties but struggled to justify premium pricing due to lack of perceived authority and trust.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Challenge</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The Challenge</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
@@ -73,32 +74,32 @@ export default function RealEstateCaseStudyPage() {
                 </ul>
               </div>
             </div>
-            <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
-              <p className="font-semibold text-[var(--cres-deep-navy)] mb-2">The Root Issue</p>
+            <div className="mt-8 p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
+              <p className="font-semibold text-white mb-2">The Root Issue</p>
               <p className="text-white">They were offering luxury services but competing on price because they hadn't established the brand authority and trust required for premium positioning.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">Why Previous Solutions Didn't Work</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">Why Previous Solutions Didn't Work</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+              <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">📸</div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Property Photography</h3>
+                <h3 className="font-bold text-white mb-3">Property Photography</h3>
                 <p className="text-white text-sm">Beautiful photos helped but didn't address the brand perception problem.</p>
               </div>
-              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+              <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">📋</div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Listing Platforms</h3>
+                <h3 className="font-bold text-white mb-3">Listing Platforms</h3>
                 <p className="text-white text-sm">More exposure helped but made them look like every other agent online.</p>
               </div>
-              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+              <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">🎨</div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Logo & Branding</h3>
+                <h3 className="font-bold text-white mb-3">Logo & Branding</h3>
                 <p className="text-white text-sm">Visual identity helped but didn't create the authority and trust needed for premium pricing.</p>
               </div>
             </div>
@@ -112,7 +113,7 @@ export default function RealEstateCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-deep-navy)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">Our Thinking & Strategy</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">Our Thinking & Strategy</h2>
           <div className="space-y-6 text-gray-300">
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -142,14 +143,14 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The System We Implemented</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The System We Implemented</h2>
           <div className="space-y-8">
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">1</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Authority-Driven Website</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Authority-Driven Website</h3>
                 <p className="text-white mb-3">A website that positions them as luxury real estate experts, not just property listings.</p>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Market insights and luxury property trends</li>
@@ -162,7 +163,7 @@ export default function RealEstateCaseStudyPage() {
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">2</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Thought Leadership Content</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Thought Leadership Content</h3>
                 <p className="text-white mb-3">Regular content that establishes them as Nairobi's premier luxury real estate authority.</p>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Luxury market analysis and predictions</li>
@@ -175,7 +176,7 @@ export default function RealEstateCaseStudyPage() {
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">3</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Premium Client Experience</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Premium Client Experience</h3>
                 <p className="text-white mb-3">End-to-end luxury experience that justifies premium pricing and builds lifetime loyalty.</p>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Personalized property search and recommendations</li>
@@ -186,29 +187,29 @@ export default function RealEstateCaseStudyPage() {
               </div>
             </div>
             <div className="mt-8 p-6 bg-[var(--cres-electric-teal)]/10 rounded-lg border border-[var(--cres-electric-teal)]/20">
-              <p className="text-[var(--cres-deep-navy)] font-semibold">System Integration: Every touchpoint reinforces their luxury positioning and authority in the premium real estate market.</p>
+              <p className="text-white font-semibold">System Integration: Every touchpoint reinforces their luxury positioning and authority in the premium real estate market.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">The Impact</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The Impact</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Premium Pricing Power</h3>
               <p className="text-white">Clients now willingly pay premium commissions because they see the exceptional value and authority.</p>
             </div>
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Client Retention</h3>
               <p className="text-white">High-net-worth clients return for multiple transactions and refer others within their network.</p>
             </div>
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Market Authority</h3>
               <p className="text-white">Recognized as Nairobi's premier luxury real estate experts by both clients and industry peers.</p>
             </div>
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Referral Business</h3>
               <p className="text-white">Premium clients become brand ambassadors, generating high-quality referrals from their networks.</p>
             </div>
@@ -216,35 +217,35 @@ export default function RealEstateCaseStudyPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">What This Case Teaches</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">What This Case Teaches</h2>
           <div className="space-y-4">
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">1</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Authority creates pricing power</h3>
+                <h3 className="font-bold text-white mb-1">Authority creates pricing power</h3>
                 <p className="text-white">When clients perceive you as the authoritative expert, price becomes secondary to the value you provide.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">2</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Content builds credibility</h3>
+                <h3 className="font-bold text-white mb-1">Content builds credibility</h3>
                 <p className="text-white">Regular, valuable content establishes expertise and trust faster than any advertising campaign.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">3</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Luxury requires luxury positioning</h3>
+                <h3 className="font-bold text-white mb-1">Luxury requires luxury positioning</h3>
                 <p className="text-white">Premium services need premium positioning. Generic marketing undermines luxury perception.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">4</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Trust drives premium decisions</h3>
+                <h3 className="font-bold text-white mb-1">Trust drives premium decisions</h3>
                 <p className="text-white">High-value purchases require high levels of trust. Authority and credibility are the foundation.</p>
               </div>
             </div>
@@ -254,9 +255,9 @@ export default function RealEstateCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-electric-teal)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">Is This Similar to Your Business?</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">Is This Similar to Your Business?</h2>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20/10 p-6 rounded-lg">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20/10 p-6 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">This applies to you if:</h3>
               <ul className="text-white space-y-2 text-left">
                 <li>• You offer premium services but compete on price</li>
@@ -266,7 +267,7 @@ export default function RealEstateCaseStudyPage() {
                 <li>• You want to command premium pricing</li>
               </ul>
             </div>
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20/10 p-6 rounded-lg">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20/10 p-6 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">Let's discuss your situation:</h3>
               <ul className="text-white space-y-2 text-left">
                 <li>• Professional services requiring credibility</li>
@@ -278,10 +279,10 @@ export default function RealEstateCaseStudyPage() {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-black/70 backdrop-blur-sm border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/70 backdrop-blur-sm border border-white/20 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+            <a href="/contact" className="bg-[var(--cres-secondary-bg)] border border-white/20 text-[var(--cres-electric-teal)] hover:bg-white/10 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Let's Map Your Growth System
             </a>
-            <a href="/case-studies" className="border-2 border-white text-white hover:bg-black/70 backdrop-blur-sm border border-white/20 hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/case-studies" className="border-2 border-white text-white hover:bg-white/10 hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
               View More Case Studies
             </a>
           </div>

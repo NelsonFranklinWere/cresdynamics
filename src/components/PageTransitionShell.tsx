@@ -1,36 +1,12 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
 
 type Props = {
   children: ReactNode;
 };
 
+/** Instant route changes — no animation blocking paint */
 export default function PageTransitionShell({ children }: Props) {
-  const pathname = usePathname();
-  const isAdmin = pathname?.startsWith('/management');
-
-  // Skip fancy transitions and animations on admin/management routes
-  // to avoid client-side exceptions and keep the dashboard clean.
-  if (isAdmin) {
-    return <>{children}</>;
-  }
-
-  return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 1, y: 0 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -16 }}
-        transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
-        className="will-change-transform min-h-screen"
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
-  );
+  return <>{children}</>;
 }
-

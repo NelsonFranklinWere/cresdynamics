@@ -33,12 +33,18 @@ export async function GET(req: Request) {
     }
 
     const payment = await getPaymentByReferences(orderTrackingId || null, merchantReference || null, null);
-    const isEventTicket = Boolean(payment?.purpose?.startsWith('event_ticket_'));
-    const redirectTo = isEventTicket
+    const isEventRelated =
+      Boolean(payment?.purpose?.startsWith('event_ticket_')) ||
+      Boolean(payment?.purpose?.startsWith('sponsor_')) ||
+      payment?.source === 'sponsor_application';
+    const redirectTo = isEventRelated
       ? new URL('/events/', url.origin)
       : new URL('/management/payments', url.origin);
-    if (isEventTicket) {
+    if (isEventRelated) {
       redirectTo.searchParams.set('payment', normalized === 'paid' ? 'success' : 'pending');
+      if (payment?.purpose?.startsWith('sponsor_')) {
+        redirectTo.searchParams.set('sponsor', '1');
+      }
     } else {
       if (merchantReference) redirectTo.searchParams.set('ref', merchantReference);
       if (orderTrackingId) redirectTo.searchParams.set('trackingId', orderTrackingId);

@@ -2,6 +2,7 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { CASE_STUDY_HEADLINES } from '@/lib/caseStudyHeadlines';
 
 export default function CaseStudiesPage() {
   const caseStudies = [
@@ -80,7 +81,7 @@ export default function CaseStudiesPage() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--cres-primary-bg)] text-white">
       <Header />
 
       {/* 1️⃣ HERO SECTION – AUTHORITY FIRST */}
@@ -133,7 +134,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* 2️⃣ HOW TO READ OUR CASE STUDIES */}
-      <section className="pt-0 pb-12 md:pb-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
+      <section className="pt-0 pb-12 md:pb-20 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
@@ -146,32 +147,32 @@ export default function CaseStudiesPage() {
           </p>
 
             <div className="grid grid-cols-3 gap-6 md:gap-8 text-left">
-              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
+              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
                 <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Business Context</h3>
                 <p className="text-xs md:text-sm text-white">Understanding the industry, market situation, and growth stage before any recommendations.</p>
               </div>
 
-              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
+              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
                 <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Growth Challenge</h3>
                 <p className="text-xs md:text-sm text-white">Identifying the real bottleneck preventing sustainable growth, not just surface symptoms.</p>
               </div>
 
-              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
+              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
                 <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">System Built</h3>
                 <p className="text-xs md:text-sm text-white">The business system we built—ERP, finance platform, or automation—with architecture, modules, and production metrics.</p>
               </div>
 
-              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
+              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
                 <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Measurable Impact</h3>
                 <p className="text-xs md:text-sm text-white">Real business outcomes that prove the system's effectiveness beyond vanity metrics.</p>
               </div>
 
-              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
+              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
                 <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Lessons Learned</h3>
                 <p className="text-xs md:text-sm text-white">Key insights that apply to similar businesses facing the same challenges.</p>
               </div>
 
-              <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
+              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
                 <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Decision Framework</h3>
                 <p className="text-xs md:text-sm text-white">How we made strategic choices and what factors influenced our recommendations.</p>
               </div>
@@ -181,7 +182,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* 3️⃣ CASE STUDY GRID / LIST VIEW */}
-      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
+      <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
@@ -191,20 +192,27 @@ export default function CaseStudiesPage() {
 
             <div className="grid grid-cols-3 gap-6 md:gap-8">
               {caseStudies.map((study) => (
-                <div key={study.id} className="bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg shadow-lg p-4 md:p-6 hover:shadow-xl transition-all duration-300">
+                <div key={study.id} className="bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg shadow-lg p-4 md:p-6 hover:shadow-xl transition-all duration-300">
                   <div className="mb-3 md:mb-4">
                     <span className="inline-block bg-[var(--cres-electric-teal)] text-white text-xs md:text-sm font-semibold px-2 md:px-3 py-1 rounded-full">
                       {study.industry}
                     </span>
                   </div>
 
+                  <h3 className="text-sm md:text-base font-black text-white leading-snug mb-2">
+                    {CASE_STUDY_HEADLINES[study.slug].title}
+                  </h3>
+                  <p className="text-xs text-[var(--cres-electric-teal)] font-semibold mb-3 md:mb-4">
+                    {CASE_STUDY_HEADLINES[study.slug].subtitle}
+                  </p>
+
                   <div className="mb-3 md:mb-4">
-                    <h3 className="text-xs md:text-sm font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">Problem</h3>
+                    <h4 className="text-xs md:text-sm font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">Problem</h4>
                     <p className="text-xs md:text-sm text-white">{study.problem}</p>
                   </div>
 
                   <div className="mb-3 md:mb-4">
-                    <h3 className="text-xs md:text-sm font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">Solution</h3>
+                    <h4 className="text-xs md:text-sm font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">Solution</h4>
                     <p className="text-xs md:text-sm text-white">{study.solution}</p>
                   </div>
 
@@ -242,18 +250,18 @@ export default function CaseStudiesPage() {
           </p>
 
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center mb-6 md:mb-8">
-              <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="bg-black/70 backdrop-blur-sm border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/80 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+              <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="bg-[var(--cres-secondary-bg)] border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/80 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
                 Book a Systems Discovery Session
               </a>
-              <a href="tel:+254708805496" className="border-2 border-white/40 text-white hover:bg-white/10 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 ml-3">
+              <a href="tel:+254708805496" className="border-2 border-white/40 text-white hover:bg-[var(--cres-secondary-bg)]/10 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 ml-3">
                 Call 0708 805 496
               </a>
-              <a href="/how-we-build" className="border-2 border-white text-white hover:bg-white hover:text-[var(--cres-electric-teal)] font-bold text-sm md:text-lg py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300">
+              <a href="/how-we-build" className="border-2 border-white text-white hover:bg-[var(--cres-secondary-bg)] hover:text-[var(--cres-electric-teal)] font-bold text-sm md:text-lg py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300">
                 See How We Build Systems
               </a>
             </div>
 
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-lg">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
               <p className="text-sm md:text-base text-white font-semibold">
                 CRES Dynamics builds business systems for companies that are serious about scale, visibility, and control.
                 <br />

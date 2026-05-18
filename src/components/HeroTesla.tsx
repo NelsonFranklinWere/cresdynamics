@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CAROUSEL_SLIDES = [
@@ -98,21 +99,21 @@ export default function HeroTesla() {
               next.
             </motion.p>
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 sm:justify-start"
+              className="flex flex-row flex-wrap gap-2 sm:gap-4 sm:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
             >
               <Link
                 href="/how-we-build"
-                className="inline-flex items-center justify-center gap-2 bg-[var(--orange-energy)] hover:bg-[var(--orange-energy-hover)] text-white font-bold text-sm px-8 py-3.5 rounded-lg transition-colors uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 bg-[var(--orange-energy)] hover:bg-[var(--orange-energy-hover)] text-white font-bold text-xs sm:text-sm px-4 sm:px-8 py-3 sm:py-3.5 rounded-lg transition-colors uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent whitespace-nowrap"
               >
                 How We Build
                 <i className="fas fa-chevron-right text-xs" aria-hidden />
               </Link>
               <Link
                 href="/proof-of-work"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[var(--teal-accent)] text-white hover:bg-[var(--teal-accent)]/20 font-bold text-sm px-8 py-3.5 rounded-lg transition-colors uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-[var(--teal-accent)] focus:ring-offset-2 focus:ring-offset-transparent"
+                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 border-2 border-[var(--teal-accent)] text-white hover:bg-[var(--teal-accent)]/20 font-bold text-xs sm:text-sm px-4 sm:px-8 py-3 sm:py-3.5 rounded-lg transition-colors uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-[var(--teal-accent)] focus:ring-offset-2 focus:ring-offset-transparent whitespace-nowrap"
               >
                 Our Work
               </Link>
@@ -140,11 +141,14 @@ export default function HeroTesla() {
                   transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }}
                 >
                   {!imgFailed ? (
-                    <img
+                    <Image
                       src={slide.src}
                       alt={slide.alt}
-                      className="absolute inset-0 w-full h-full object-cover object-left-top"
-                      onError={() => setImgFailed(true)}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 1024px) 100vw, 640px"
+                      className="object-cover object-left-top"
+                      priority={index === 0}
                     />
                   ) : (
                     <div

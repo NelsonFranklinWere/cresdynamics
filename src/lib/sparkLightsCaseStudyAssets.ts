@@ -1,3 +1,5 @@
+import { publicAssetPath } from '@/lib/public-asset';
+
 /** Screenshots in /public/sparklights — Spark Lights 254 case study */
 export const SPARK_LIGHTS_SCREENSHOT_FILES = [
   'Screenshot 2026-03-21 at 16.01.25.png',
@@ -13,7 +15,7 @@ export const SPARK_LIGHTS_SCREENSHOT_FILES = [
 ] as const;
 
 export function sparkLightsPublicPath(filename: string): string {
-  return `/sparklights/${filename}`;
+  return publicAssetPath('sparklights', filename);
 }
 
 export function sparkLightsImageItems() {

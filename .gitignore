@@ -20,6 +20,9 @@
 # production
 /build
 
+# local dev fallback when Postgres is down
+.data/
+
 # misc
 .DS_Store
 *.pem

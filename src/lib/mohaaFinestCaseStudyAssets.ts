@@ -1,3 +1,5 @@
+import { publicAssetPath } from '@/lib/public-asset';
+
 /** Screenshots in /public/mohaafinest — Mohaa Finest case study */
 export const MOHAA_FINEST_SCREENSHOT_FILES = [
   'Screenshot 2026-03-21 at 16.08.19.png',
@@ -16,7 +18,7 @@ export const MOHAA_FINEST_SCREENSHOT_FILES = [
 ] as const;
 
 export function mohaaFinestPublicPath(filename: string): string {
-  return `/mohaafinest/${filename}`;
+  return publicAssetPath('mohaafinest', filename);
 }
 
 export function mohaaFinestImageItems() {

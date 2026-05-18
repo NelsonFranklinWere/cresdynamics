@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import {
-  hasRecentSponsorApplicationByEmail,
-  insertSponsorApplication,
-  type SponsorPackageTier,
-} from '@/lib/db';
+import { hasRecentSponsorApplicationByEmail, insertSponsorApplication } from '@/lib/db';
+import type { SponsorPackageTier } from '@/lib/sponsor-packages';
+import { initiatePesapalCheckout } from '@/lib/event-payments';
+import { getSponsorPackage } from '@/lib/sponsor-packages';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -18,6 +17,9 @@ const TIERS = new Set<SponsorPackageTier>([
   'community_inkind',
   'custom',
 ]);
+
+const EVENT_TITLE = 'The Future of AI in Business';
+const EVENT_DATE = 'Saturday, 20 June 2026';
 
 type Body = {
   companyName?: string;
@@ -93,6 +95,8 @@ export async function POST(request: Request) {
       );
     }
 
+    const pkg = getSponsorPackage(packageTierRaw);
+
     const id = await insertSponsorApplication({
       companyName,
       contactFullName,
@@ -100,7 +104,7 @@ export async function POST(request: Request) {
       email,
       phone,
       companyWebsite: websiteNormalized,
-      packageSelected,
+      packageSelected: packageSelected || pkg.label,
       packageTier: packageTierRaw,
       whySponsor,
       howHeard: howHeard || null,
@@ -122,11 +126,11 @@ export async function POST(request: Request) {
       await resend.emails.send({
         from: `CRES Events <${senderEmail}>`,
         to: [recipientEmail],
-        subject: `New sponsor application: ${companyName} · ${packageSelected}`,
+        subject: `New sponsor application: ${companyName} · ${pkg.label}`,
         html: `
           <p><strong>New sponsor application</strong> (record #${id})</p>
           <p><strong>Company:</strong> ${escapeHtml(companyName)}</p>
-          <p><strong>Package:</strong> ${escapeHtml(packageSelected)}</p>
+          <p><strong>Package:</strong> ${escapeHtml(pkg.label)} (${escapeHtml(pkg.priceLabel)})</p>
           <p><strong>WhatsApp / phone:</strong> ${escapeHtml(phone)}
             ${waHref ? `<br><a href="${escapeHtml(waHref)}">Open WhatsApp</a>` : ''}
           </p>
@@ -138,16 +142,46 @@ export async function POST(request: Request) {
       });
     }
 
+    if (!pkg.requiresPayment || pkg.amountKes <= 0) {
+      return NextResponse.json({
+        success: true,
+        id,
+        requiresPayment: false,
+        message:
+          'Thank you. Your application is saved. Our team will contact you within 48 hours to finalize your package.',
+      });
+    }
+
+    const [firstName, ...rest] = contactFullName.split(/\s+/);
+    const checkout = await initiatePesapalCheckout({
+      amountKes: pkg.amountKes,
+      description: `${EVENT_TITLE} — ${pkg.label}`,
+      email,
+      phone,
+      firstName: firstName || companyName,
+      lastName: rest.join(' ') || '-',
+      source: 'sponsor_application',
+      purpose: `sponsor_${packageTierRaw}`,
+      eventTitle: EVENT_TITLE,
+      eventDate: EVENT_DATE,
+      metadata: {
+        sponsorApplicationId: id,
+        packageTier: packageTierRaw,
+        companyName,
+      },
+    });
+
     return NextResponse.json({
       success: true,
-      message:
-        'Thank you. We have received your application and will be in touch within 48 hours via WhatsApp or email.',
       id,
+      requiresPayment: true,
+      paymentId: checkout.paymentId,
+      redirectUrl: checkout.redirectUrl,
+      message: 'Application saved. Complete payment on Pesapal to confirm your sponsorship.',
     });
   } catch (error) {
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Failed to submit sponsor application' },
-      { status: 500 }
-    );
+    const message = error instanceof Error ? error.message : 'Failed to submit sponsor application';
+    const status = message.includes('not configured') ? 503 : 500;
+    return NextResponse.json({ error: message }, { status });
   }
 }

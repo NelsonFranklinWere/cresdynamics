@@ -1,3 +1,8 @@
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+
+const IPN_CACHE_FILE = join(process.cwd(), '.data', 'pesapal_ipn.json');
+
 type PesapalTokenResponse = {
   token: string;
   expiryDate?: string;
@@ -79,6 +84,56 @@ export async function registerPesapalIpn(ipnUrl: string, notificationType: 'GET'
   });
 }
 
+function extractIpnId(result: Record<string, unknown>): string | null {
+  const id =
+    result.ipn_id ??
+    result.ipnId ??
+    (result as { data?: { ipn_id?: string } }).data?.ipn_id;
+  return id != null ? String(id) : null;
+}
+
+async function readCachedIpnId(): Promise<string | null> {
+  try {
+    const raw = await readFile(IPN_CACHE_FILE, 'utf8');
+    const parsed = JSON.parse(raw) as { ipnId?: string };
+    return parsed.ipnId ?? null;
+  } catch {
+    return null;
+  }
+}
+
+async function cacheIpnId(ipnId: string, ipnUrl: string): Promise<void> {
+  await mkdir(join(process.cwd(), '.data'), { recursive: true });
+  await writeFile(
+    IPN_CACHE_FILE,
+    JSON.stringify({ ipnId, ipnUrl, cachedAt: new Date().toISOString() }, null, 2),
+    'utf8'
+  );
+}
+
+/** Resolves Pesapal notification_id from env, cache, or live IPN registration. */
+export async function resolvePesapalNotificationId(): Promise<string> {
+  if (process.env.PESAPAL_IPN_ID) {
+    return process.env.PESAPAL_IPN_ID;
+  }
+
+  const cached = await readCachedIpnId();
+  if (cached) return cached;
+
+  const ipnUrl = getPesapalIpnRegistrationUrl();
+  const result = await registerPesapalIpn(ipnUrl, 'POST');
+  const ipnId = extractIpnId(result);
+  if (!ipnId) {
+    throw new Error(
+      'Pesapal IPN registration did not return an ipn_id. Set PESAPAL_IPN_ID in .env.local or call POST /api/payments/pesapal/register-ipn.'
+    );
+  }
+
+  await cacheIpnId(ipnId, ipnUrl);
+  console.info('[pesapal] Registered IPN; cached ipn_id in .data/pesapal_ipn.json — add PESAPAL_IPN_ID=%s to .env.local for production.', ipnId);
+  return ipnId;
+}
+
 export type SubmitPesapalOrderInput = {
   amountKes: number;
   description: string;
@@ -93,7 +148,7 @@ export type SubmitPesapalOrderInput = {
 
 export async function submitPesapalOrder(input: SubmitPesapalOrderInput) {
   const token = await getPesapalAuthToken();
-  return pesapalFetch<Record<string, unknown>>('/api/Transactions/SubmitOrderRequest', {
+  const body = await pesapalFetch<Record<string, unknown>>('/api/Transactions/SubmitOrderRequest', {
     method: 'POST',
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify({
@@ -111,6 +166,19 @@ export async function submitPesapalOrder(input: SubmitPesapalOrderInput) {
       },
     }),
   });
+
+  const err = body.error as Record<string, unknown> | undefined;
+  if (err?.message) {
+    const msg = String(err.message);
+    if (err.code === 'amount_exceeds_default_limit') {
+      throw new Error(
+        `${msg} Your Pesapal merchant account must allow KES ${input.amountKes} per transaction — contact Pesapal support to raise the limit.`
+      );
+    }
+    throw new Error(msg);
+  }
+
+  return body;
 }
 
 export async function getPesapalTransactionStatus(orderTrackingId: string) {

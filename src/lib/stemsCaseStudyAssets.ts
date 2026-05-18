@@ -1,3 +1,5 @@
+import { publicAssetPath } from '@/lib/public-asset';
+
 /** Screenshots in /public/thestems — used by The Stems Flowers case study */
 export const STEMS_SCREENSHOT_FILES = [
   'Screenshot 2026-03-21 at 15.01.39.png',
@@ -11,7 +13,7 @@ export const STEMS_SCREENSHOT_FILES = [
 ] as const;
 
 export function stemsPublicPath(filename: string): string {
-  return `/thestems/${filename}`;
+  return publicAssetPath('thestems', filename);
 }
 
 export function stemsImageItems() {

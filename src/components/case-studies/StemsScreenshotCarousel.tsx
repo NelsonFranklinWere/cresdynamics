@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type StemsScreenshotCarouselProps = {
@@ -26,7 +27,7 @@ const ACCENT = {
     dotInactive: 'bg-[color:rgba(243,156,36,0.28)] hover:bg-[color:rgba(243,156,36,0.5)]',
   },
   electric: {
-    btn: 'text-[var(--cres-deep-navy)] hover:bg-[color:rgba(47,59,82,0.12)]',
+    btn: 'text-white hover:bg-[color:rgba(47,59,82,0.12)]',
     dot: 'bg-[var(--cres-deep-navy)]',
     dotInactive: 'bg-[color:rgba(47,59,82,0.25)] hover:bg-[color:rgba(47,59,82,0.45)]',
   },
@@ -69,15 +70,15 @@ export default function StemsScreenshotCarousel({
   const slide = images[index];
 
   return (
-    <div className={`rounded-xl border border-[color:rgba(47,59,82,0.18)] bg-white p-4 md:p-6 shadow-sm ${className}`}>
+    <div className={`rounded-xl border border-white/20 bg-[var(--cres-secondary-bg)] p-4 md:p-6 shadow-sm ${className}`}>
       <div className="mb-4">
-        <h3 className="font-serif text-lg font-semibold text-[var(--cres-deep-navy)] md:text-xl">
+        <h3 className="font-serif text-lg font-semibold text-white md:text-xl">
           {title}
         </h3>
         {subtitle ? <p className="mt-1 text-sm text-[color:rgba(47,59,82,0.72)]">{subtitle}</p> : null}
       </div>
 
-      <div className="relative overflow-hidden rounded-lg border border-[color:rgba(47,59,82,0.18)] bg-[var(--neutral-bg)]">
+      <div className="relative overflow-hidden rounded-lg border border-[color:rgba(47,59,82,0.18)] bg-[var(--cres-primary-bg)]">
         <div className="relative aspect-[16/10] w-full md:aspect-[1280/800]">
           <AnimatePresence initial={false} mode="wait">
             <motion.div
@@ -88,17 +89,19 @@ export default function StemsScreenshotCarousel({
               transition={{ duration: 0.3 }}
               className="absolute inset-0"
             >
-              <img
+              <Image
                 src={slide.src}
                 alt={slide.alt}
-                className="h-full w-full object-contain object-top"
-                loading="eager"
+                fill
+                sizes="(max-width: 768px) 100vw, 800px"
+                className="object-contain object-top"
+                priority={index === 0}
               />
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <div className="flex items-center justify-between gap-2 border-t border-[color:rgba(47,59,82,0.18)] bg-white/90 px-3 py-2 backdrop-blur-sm">
+        <div className="flex items-center justify-between gap-2 border-t border-[color:rgba(47,59,82,0.18)] bg-[var(--cres-secondary-bg)]/90 px-3 py-2 backdrop-blur-sm">
           <button
             type="button"
             onClick={prev}

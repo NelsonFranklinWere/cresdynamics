@@ -5,7 +5,10 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StemsScreenshotCarousel from '@/components/case-studies/StemsScreenshotCarousel';
 import { stemsImageItems } from '@/lib/stemsCaseStudyAssets';
+import CaseStudyHeadline from '@/components/case-studies/CaseStudyHeadline';
+import { CASE_STUDY_HEADLINES } from '@/lib/caseStudyHeadlines';
 import { Playfair_Display, DM_Sans } from 'next/font/google';
+import { CASE_STUDY_PAGE_BG, CASE_STUDY_INK, CASE_STUDY_MUTED, CASE_STUDY_BORDER, CASE_STUDY_CARD_BG, CASE_STUDY_QUOTE_BG } from '@/lib/caseStudyTheme';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -20,12 +23,13 @@ const dmSans = DM_Sans({
   variable: '--font-stems-dm',
 });
 
-const cream = 'var(--neutral-bg)';
-const ink = 'var(--cres-deep-navy)';
+
+const cream = CASE_STUDY_PAGE_BG;
+const ink = CASE_STUDY_INK;
 const blush = 'var(--cres-orange-primary)';
 const sage = 'var(--cres-teal-secondary)';
-const muted = 'rgba(47, 59, 82, 0.72)';
-const border = 'rgba(47, 59, 82, 0.18)';
+const muted = CASE_STUDY_MUTED;
+const border = CASE_STUDY_BORDER;
 
 export default function TheStemsCaseStudy() {
   const all = stemsImageItems();
@@ -43,7 +47,7 @@ export default function TheStemsCaseStudy() {
         <div className="mx-auto max-w-[860px] px-6 pb-4 md:px-12">
           <Link
             href="/case-studies/"
-            className="text-sm font-medium text-[#4a6741] underline-offset-4 hover:underline"
+            className="text-sm font-medium text-[var(--cres-electric-teal)] underline-offset-4 hover:underline"
           >
             ← Case studies
           </Link>
@@ -63,14 +67,11 @@ export default function TheStemsCaseStudy() {
               <span className="inline-block h-px w-6 bg-[rgba(250,247,242,0.35)]" />
               Cres Dynamics · Case Study
             </div>
-            <h1
-              className={`${playfair.className} mb-5 max-w-[600px] text-[clamp(36px,5vw,54px)] font-semibold leading-[1.15] text-[#faf7f2]`}
-            >
-              From walk-ins only to <em className="italic text-[#c9b89a]">ordering online</em> — The Stems Flowers
-            </h1>
-            <p className="mb-11 max-w-[480px] text-[17px] font-light text-[rgba(250,247,242,0.65)]">
-              A full e-commerce revamp for Nairobi&apos;s premier CBD florist, delivered in under 4 weeks.
-            </p>
+            <CaseStudyHeadline
+              {...CASE_STUDY_HEADLINES['the-stems-flowers']}
+              className="mb-11 max-w-[720px]"
+              titleClassName="!text-[clamp(1.75rem,4.5vw,2.65rem)]"
+            />
             <div className="flex flex-col gap-5 border-t border-[rgba(250,247,242,0.12)] pt-8 md:flex-row md:flex-wrap md:gap-0">
               {[
                 { label: 'Client', value: 'The Stems Flowers' },
@@ -114,12 +115,12 @@ export default function TheStemsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               A great shop, invisible online
             </h2>
-            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               The Stems Flowers had built a loyal customer base at their Delta Hotel location on University Way, Nairobi CBD
               — but their digital presence was practically non-existent. Customers who discovered them in person had no easy
               way to reorder, and anyone searching online for flower delivery in Nairobi found their competitors instead.
             </p>
-            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               Without an online shop or M-Pesa payment integration, every order required a phone call or an in-person visit.
               Same-day delivery — one of their strongest offerings — had no professional platform to communicate it from.
             </p>
@@ -143,12 +144,12 @@ export default function TheStemsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               A full e-commerce platform, built for Nairobi
             </h2>
-            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               Cres Dynamics rebuilt The Stems Flowers from the ground up — a fast, mobile-first e-commerce website with a
               structured product catalogue across four collections: Flower Bouquets, Teddy Bears, Gift Hampers, and Cards. The
               site handles online orders end-to-end, from browsing to M-Pesa checkout.
             </p>
-            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
+            <p className="mt-3.5 max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               We layered in on-page SEO targeting high-intent searches like &ldquo;florist Nairobi CBD&rdquo; and
               &ldquo;same-day flower delivery Nairobi,&rdquo; and structured the site architecture to rank for anniversary,
               birthday, and surprise gift occasions year-round.
@@ -198,7 +199,7 @@ export default function TheStemsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               Early signals, metrics in motion
             </h2>
-            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               The site launched last month. Baseline metrics are being established now — full reporting begins at Month 2.
               The indicators below reflect what we expect to track and what&apos;s already visible from the live site.
             </p>
@@ -222,7 +223,7 @@ export default function TheStemsCaseStudy() {
               ].map((card) => (
                 <div
                   key={card.tf}
-                  className="relative overflow-hidden rounded-xl border bg-white p-6"
+                  className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}
                   style={{ borderColor: border }}
                 >
                   <div
@@ -233,7 +234,7 @@ export default function TheStemsCaseStudy() {
                     {card.tf}
                   </div>
                   <div
-                    className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#b8935a]' : 'text-4xl text-[#4a6741]'}`}
+                    className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#b8935a]' : 'text-4xl text-[var(--cres-electric-teal)]'}`}
                   >
                     {card.num}
                   </div>
@@ -265,12 +266,12 @@ export default function TheStemsCaseStudy() {
             <h2 className={`${playfair.className} mb-5 text-[clamp(26px,3.5vw,34px)] font-semibold leading-tight`}>
               See it live
             </h2>
-            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-[#3a3a34]">
+            <p className="max-w-full md:max-w-[640px] text-[15px] md:text-[16.5px] leading-[1.72] md:leading-[1.78] text-white/85">
               The site is fully live, SEO-indexed, and accepting M-Pesa orders across all Nairobi areas.
             </p>
 
             <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-xl border bg-white p-6" style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Live website
                 </div>
@@ -278,7 +279,7 @@ export default function TheStemsCaseStudy() {
                   href="https://thestemsflowers.co.ke"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border-b border-[rgba(74,103,65,0.25)] pb-0.5 text-[15px] font-medium text-[#4a6741] hover:border-[#4a6741]"
+                  className="inline-flex items-center gap-2 border-b border-[rgba(74,103,65,0.25)] pb-0.5 text-[15px] font-medium text-[var(--cres-electric-teal)] hover:border-[#4a6741]"
                 >
                   thestemsflowers.co.ke <span className="-rotate-45 text-sm not-italic">→</span>
                 </a>
@@ -287,7 +288,7 @@ export default function TheStemsCaseStudy() {
                 </p>
               </div>
 
-              <div className="rounded-xl border bg-white p-6" style={{ borderColor: border }}>
+              <div className="rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }} style={{ borderColor: border }}>
                 <div className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em]" style={{ color: muted }}>
                   Previous work that won this client
                 </div>
@@ -295,13 +296,13 @@ export default function TheStemsCaseStudy() {
                   href="https://floralwhispersgifts.co.ke"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border-b border-[rgba(74,103,65,0.25)] pb-0.5 text-[15px] font-medium text-[#4a6741] hover:border-[#4a6741]"
+                  className="inline-flex items-center gap-2 border-b border-[rgba(74,103,65,0.25)] pb-0.5 text-[15px] font-medium text-[var(--cres-electric-teal)] hover:border-[#4a6741]"
                 >
                   floralwhispersgifts.co.ke <span className="-rotate-45 text-sm not-italic">→</span>
                 </a>
                 <p className="mt-3.5 text-[13.5px] leading-relaxed" style={{ color: muted }}>
                   The client discovered Cres Dynamics through our work on{' '}
-                  <a href="https://floralwhispersgifts.co.ke" target="_blank" rel="noopener noreferrer" className="text-[#4a6741] hover:underline">
+                  <a href="https://floralwhispersgifts.co.ke" target="_blank" rel="noopener noreferrer" className="text-[var(--cres-electric-teal)] hover:underline">
                     Floral Whispers Gifts
                   </a>{' '}
                   and reached out directly for his own revamp.
@@ -309,7 +310,7 @@ export default function TheStemsCaseStudy() {
               </div>
 
               <div
-                className="flex items-center gap-4 rounded-xl border bg-white px-6 py-5 md:col-span-2"
+                className="flex items-center gap-4 rounded-xl border bg-[var(--cres-secondary-bg)] px-6 py-5 md:col-span-2"
                 style={{ borderColor: border }}
               >
                 <div
@@ -318,14 +319,14 @@ export default function TheStemsCaseStudy() {
                 >
                   🌸
                 </div>
-                <p className="text-sm leading-relaxed text-[#3a3a34]">
-                  <strong className="font-medium text-[#1c2018]">Referral-driven project.</strong> The Stems Flowers owner saw
+                <p className="text-sm leading-relaxed text-white/85">
+                  <strong className="font-medium text-white">Referral-driven project.</strong> The Stems Flowers owner saw
                   our work on{' '}
                   <a
                     href="https://floralwhispersgifts.co.ke"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-[#4a6741] hover:underline"
+                    className="font-medium text-[var(--cres-electric-teal)] hover:underline"
                   >
                     floralwhispersgifts.co.ke
                   </a>{' '}
@@ -351,7 +352,7 @@ export default function TheStemsCaseStudy() {
             className="mt-4 flex flex-col items-start justify-between gap-4 border-t pt-8 md:flex-row md:items-center"
             style={{ borderColor: border }}
           >
-            <div className="text-[13px] font-medium tracking-wide text-[#1c2018]">
+            <div className="text-[13px] font-medium tracking-wide text-white">
               CRES <span style={{ color: sage }}>DYNAMICS</span>
             </div>
             <div className="text-xs" style={{ color: muted }}>

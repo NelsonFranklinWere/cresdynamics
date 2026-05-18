@@ -2,10 +2,12 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CaseStudyHeadline from '@/components/case-studies/CaseStudyHeadline';
+import { CASE_STUDY_HEADLINES } from '@/lib/caseStudyHeadlines';
 
 export default function RestaurantAutomationCaseStudyPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--cres-primary-bg)] text-white">
       <Header />
 
       {/* Hero Section */}
@@ -16,12 +18,11 @@ export default function RestaurantAutomationCaseStudyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">
-            Restaurant Automation System
-          </h1>
-          <p className="text-xl text-gray-300 mb-8">
-            From chaos to seamless operations
-          </p>
+          <CaseStudyHeadline
+            {...CASE_STUDY_HEADLINES['restaurant-automation-system']}
+            centered
+            className="mb-8 max-w-4xl"
+          />
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
               Book ERP Discovery Session
@@ -34,33 +35,33 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 1: BUSINESS CONTEXT */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             The Business
           </h2>
 
           <div className="space-y-6 text-white">
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Industry</h3>
+                <h3 className="font-bold text-white mb-2">Industry</h3>
                 <p>Quick-service restaurant chain in Nairobi</p>
               </div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Business Size</h3>
+                <h3 className="font-bold text-white mb-2">Business Size</h3>
                 <p>3 locations, growing fast with high customer demand</p>
               </div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Market Situation</h3>
+                <h3 className="font-bold text-white mb-2">Market Situation</h3>
                 <p>Competitive Nairobi food delivery market with increasing demand for convenience</p>
               </div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-2">Growth Stage</h3>
+                <h3 className="font-bold text-white mb-2">Growth Stage</h3>
                 <p>Popular but operationally overwhelmed by manual processes</p>
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+            <div className="mt-8 p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
               <p className="text-lg">
                 This restaurant was beloved by customers but drowning in manual work. Orders were coming in faster than they could process them, leading to delays, errors, and frustrated customers.
               </p>
@@ -70,9 +71,9 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 2: THE REAL PROBLEM */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             The Challenge
           </h2>
 
@@ -99,8 +100,8 @@ export default function RestaurantAutomationCaseStudyPage() {
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
-              <p className="font-semibold text-[var(--cres-deep-navy)] mb-2">The Root Issue</p>
+            <div className="mt-8 p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg border-l-4 border-[var(--cres-electric-teal)]">
+              <p className="font-semibold text-white mb-2">The Root Issue</p>
               <p className="text-white">
                 They had great food and loyal customers but their operational systems couldn't handle the volume. Every order required manual intervention, creating bottlenecks that hurt both customer experience and business growth.
               </p>
@@ -110,29 +111,29 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 3: WHY PREVIOUS ATTEMPTS FAILED */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             Why Previous Solutions Didn't Work
           </h2>
 
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+              <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">📱</div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Generic POS Systems</h3>
+                <h3 className="font-bold text-white mb-3">Generic POS Systems</h3>
                 <p className="text-white text-sm">Expensive international systems that didn't understand Kenyan payment methods or restaurant workflows.</p>
               </div>
 
-              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+              <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">📊</div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">Isolated Apps</h3>
+                <h3 className="font-bold text-white mb-3">Isolated Apps</h3>
                 <p className="text-white text-sm">Different apps for orders, payments, and delivery that didn't communicate with each other.</p>
               </div>
 
-              <div className="text-center p-6 bg-black/70 backdrop-blur-sm border border-white/20 rounded-lg">
+              <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
                 <div className="text-4xl mb-4">🛠️</div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-3">DIY Solutions</h3>
+                <h3 className="font-bold text-white mb-3">DIY Solutions</h3>
                 <p className="text-white text-sm">Spreadsheets and manual processes that worked for small volume but collapsed under growth.</p>
               </div>
             </div>
@@ -150,7 +151,7 @@ export default function RestaurantAutomationCaseStudyPage() {
       {/* 🔹 SECTION 4: THE CRES APPROACH */}
       <section className="py-16 bg-[var(--cres-deep-navy)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             Our Thinking & Strategy
           </h2>
 
@@ -188,9 +189,9 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 5: THE SYSTEM BUILT */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             The System We Implemented
           </h2>
 
@@ -198,7 +199,7 @@ export default function RestaurantAutomationCaseStudyPage() {
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">1</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">AI-Powered Order Management</h3>
+                <h3 className="text-xl font-bold text-white mb-2">AI-Powered Order Management</h3>
                 <p className="text-white mb-3">Intelligent system that handles orders across all channels with natural language processing.</p>
                 <ul className="text-white text-sm space-y-1">
                   <li>• WhatsApp order processing with AI understanding</li>
@@ -212,7 +213,7 @@ export default function RestaurantAutomationCaseStudyPage() {
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">2</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Customer Experience Platform</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Customer Experience Platform</h3>
                 <p className="text-white mb-3">Unified system for order tracking, updates, and customer communication.</p>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Real-time order status updates via WhatsApp</li>
@@ -226,7 +227,7 @@ export default function RestaurantAutomationCaseStudyPage() {
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">3</div>
               <div>
-                <h3 className="text-xl font-bold text-[var(--cres-deep-navy)] mb-2">Operational Dashboard</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Operational Dashboard</h3>
                 <p className="text-white mb-3">Management tools for monitoring performance and making data-driven decisions.</p>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Real-time order volume monitoring</li>
@@ -238,7 +239,7 @@ export default function RestaurantAutomationCaseStudyPage() {
             </div>
 
             <div className="mt-8 p-6 bg-[var(--cres-electric-teal)]/10 rounded-lg border border-[var(--cres-electric-teal)]/20">
-              <p className="text-[var(--cres-deep-navy)] font-semibold mb-4">
+              <p className="text-white font-semibold mb-4">
                 System Integration: Orders flow seamlessly from customer to kitchen to delivery, with every step tracked and optimized automatically.
               </p>
               <div className="bg-[var(--cres-deep-navy)] p-4 rounded-lg mt-4">
@@ -251,29 +252,29 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 6: RESULTS & IMPACT */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             The Impact
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Processing Efficiency</h3>
               <p className="text-white">Reduced order processing time by 70%, allowing staff to focus on food quality and customer service rather than administrative tasks.</p>
             </div>
 
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Customer Satisfaction</h3>
               <p className="text-white">Eliminated order errors and delays, with customers receiving accurate status updates throughout their order journey.</p>
             </div>
 
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Scalable Operations</h3>
               <p className="text-white">Created processes that work whether handling 50 orders/day or 500, with systems that grow with demand.</p>
             </div>
 
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-6 rounded-lg shadow-sm">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Data-Driven Decisions</h3>
               <p className="text-white">Real-time insights into customer preferences, peak hours, and operational efficiency for continuous improvement.</p>
             </div>
@@ -282,9 +283,9 @@ export default function RestaurantAutomationCaseStudyPage() {
       </section>
 
       {/* 🔹 SECTION 7: KEY INSIGHTS */}
-      <section className="py-16 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             What This Case Teaches
           </h2>
 
@@ -292,7 +293,7 @@ export default function RestaurantAutomationCaseStudyPage() {
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">1</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Manual processes don't scale</h3>
+                <h3 className="font-bold text-white mb-1">Manual processes don't scale</h3>
                 <p className="text-white">What works for 10 orders/day fails spectacularly at 100. Businesses need systems that grow with demand.</p>
               </div>
             </div>
@@ -300,7 +301,7 @@ export default function RestaurantAutomationCaseStudyPage() {
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">2</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Customer experience is multichannel</h3>
+                <h3 className="font-bold text-white mb-1">Customer experience is multichannel</h3>
                 <p className="text-white">Modern customers expect seamless experiences across phone, WhatsApp, and in-person channels.</p>
               </div>
             </div>
@@ -308,7 +309,7 @@ export default function RestaurantAutomationCaseStudyPage() {
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">3</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Data enables better operations</h3>
+                <h3 className="font-bold text-white mb-1">Data enables better operations</h3>
                 <p className="text-white">Real-time data about orders, preferences, and performance allows businesses to optimize continuously.</p>
               </div>
             </div>
@@ -316,7 +317,7 @@ export default function RestaurantAutomationCaseStudyPage() {
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">4</div>
               <div>
-                <h3 className="font-bold text-[var(--cres-deep-navy)] mb-1">Automation reduces risk</h3>
+                <h3 className="font-bold text-white mb-1">Automation reduces risk</h3>
                 <p className="text-white">Automated systems eliminate human error in order processing, payment handling, and customer communication.</p>
               </div>
             </div>
@@ -327,12 +328,12 @@ export default function RestaurantAutomationCaseStudyPage() {
       {/* 🔹 SECTION 8: RELEVANCE CHECK */}
       <section className="py-16 bg-[var(--cres-electric-teal)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             Is This Similar to Your Business?
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20/10 p-6 rounded-lg">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20/10 p-6 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">This applies to you if:</h3>
               <ul className="text-white space-y-2 text-left">
                 <li>• You handle high-volume orders or inquiries</li>
@@ -343,7 +344,7 @@ export default function RestaurantAutomationCaseStudyPage() {
               </ul>
             </div>
 
-            <div className="bg-black/70 backdrop-blur-sm border border-white/20/10 p-6 rounded-lg">
+            <div className="bg-[var(--cres-secondary-bg)] border border-white/20/10 p-6 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">Let's discuss your situation:</h3>
               <ul className="text-white space-y-2 text-left">
                 <li>• Service-based business with booking complexity</li>
@@ -356,10 +357,10 @@ export default function RestaurantAutomationCaseStudyPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-black/70 backdrop-blur-sm border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/70 backdrop-blur-sm border border-white/20 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+            <a href="/contact" className="bg-[var(--cres-secondary-bg)] border border-white/20 text-[var(--cres-electric-teal)] hover:bg-white/10 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Let's Map Your Growth System
             </a>
-            <a href="/case-studies" className="border-2 border-white text-white hover:bg-black/70 backdrop-blur-sm border border-white/20 hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/case-studies" className="border-2 border-white text-white hover:bg-white/10 hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
               View More Case Studies
             </a>
           </div>

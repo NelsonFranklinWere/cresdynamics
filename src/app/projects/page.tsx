@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { publicAssetPath } from '@/lib/public-asset';
 
 interface Project {
   id: string;
@@ -28,11 +30,11 @@ const projects: Project[] = [
     liveUrl: 'https://thestemsflowers.co.ke',
     caseStudySlug: 'the-stems-flowers',
     images: [
-      '/thestems/Screenshot 2026-03-21 at 15.01.39.png',
-      '/thestems/Screenshot 2026-03-21 at 15.02.13.png',
-      '/thestems/Screenshot 2026-03-21 at 15.02.48.png',
-      '/thestems/Screenshot 2026-03-21 at 15.03.40.png'
-    ]
+      publicAssetPath('thestems', 'Screenshot 2026-03-21 at 15.01.39.png'),
+      publicAssetPath('thestems', 'Screenshot 2026-03-21 at 15.02.13.png'),
+      publicAssetPath('thestems', 'Screenshot 2026-03-21 at 15.02.48.png'),
+      publicAssetPath('thestems', 'Screenshot 2026-03-21 at 15.03.40.png'),
+    ],
   },
   {
     id: 'floral-whispers',
@@ -44,11 +46,11 @@ const projects: Project[] = [
     liveUrl: 'https://floralwhispersgifts.co.ke',
     caseStudySlug: 'floral-whispers-gifts',
     images: [
-      '/floralwhispers/Screenshot 2026-03-21 at 15.41.27.png',
-      '/floralwhispers/Screenshot 2026-03-21 at 15.41.37.png',
-      '/floralwhispers/Screenshot 2026-03-21 at 15.41.53.png',
-      '/floralwhispers/Screenshot 2026-03-21 at 15.44.16.png'
-    ]
+      publicAssetPath('floralwhispers', 'Screenshot 2026-03-21 at 15.41.27.png'),
+      publicAssetPath('floralwhispers', 'Screenshot 2026-03-21 at 15.41.37.png'),
+      publicAssetPath('floralwhispers', 'Screenshot 2026-03-21 at 15.41.53.png'),
+      publicAssetPath('floralwhispers', 'Screenshot 2026-03-21 at 15.44.16.png'),
+    ],
   },
   {
     id: 'whitelight-store',
@@ -60,11 +62,11 @@ const projects: Project[] = [
     liveUrl: 'https://whitelightstore.co.ke',
     caseStudySlug: 'whitelight-store',
     images: [
-      '/whitelight/Screenshot 2026-03-21 at 16.04.27.png',
-      '/whitelight/Screenshot 2026-03-21 at 16.04.42.png',
-      '/whitelight/Screenshot 2026-03-21 at 16.05.08.png',
-      '/whitelight/Screenshot 2026-03-21 at 16.05.58.png'
-    ]
+      publicAssetPath('whitelight', 'Screenshot 2026-03-21 at 16.04.27.png'),
+      publicAssetPath('whitelight', 'Screenshot 2026-03-21 at 16.04.42.png'),
+      publicAssetPath('whitelight', 'Screenshot 2026-03-21 at 16.05.08.png'),
+      publicAssetPath('whitelight', 'Screenshot 2026-03-21 at 16.05.58.png'),
+    ],
   },
   {
     id: 'mohaa-finest',
@@ -76,11 +78,11 @@ const projects: Project[] = [
     liveUrl: 'https://mohaafinestcurtains.co.ke',
     caseStudySlug: 'mohaa-finest',
     images: [
-      '/mohaafinest/Screenshot 2026-03-21 at 16.08.19.png',
-      '/mohaafinest/Screenshot 2026-03-21 at 16.08.28.png',
-      '/mohaafinest/Screenshot 2026-03-21 at 16.08.43.png',
-      '/mohaafinest/Screenshot 2026-03-21 at 16.08.49.png'
-    ]
+      publicAssetPath('mohaafinest', 'Screenshot 2026-03-21 at 16.08.19.png'),
+      publicAssetPath('mohaafinest', 'Screenshot 2026-03-21 at 16.08.28.png'),
+      publicAssetPath('mohaafinest', 'Screenshot 2026-03-21 at 16.08.43.png'),
+      publicAssetPath('mohaafinest', 'Screenshot 2026-03-21 at 16.08.49.png'),
+    ],
   },
   {
     id: 'spark-lights',
@@ -92,11 +94,11 @@ const projects: Project[] = [
     liveUrl: 'https://sparklights.co.ke',
     caseStudySlug: 'spark-lights-254',
     images: [
-      '/sparklights/Screenshot 2026-03-21 at 16.01.25.png',
-      '/sparklights/Screenshot 2026-03-21 at 16.01.33.png',
-      '/sparklights/Screenshot 2026-03-21 at 16.01.46.png',
-      '/sparklights/Screenshot 2026-03-21 at 16.02.24.png'
-    ]
+      publicAssetPath('sparklights', 'Screenshot 2026-03-21 at 16.01.25.png'),
+      publicAssetPath('sparklights', 'Screenshot 2026-03-21 at 16.01.33.png'),
+      publicAssetPath('sparklights', 'Screenshot 2026-03-21 at 16.01.46.png'),
+      publicAssetPath('sparklights', 'Screenshot 2026-03-21 at 16.02.24.png'),
+    ],
   }
 ];
 
@@ -122,14 +124,15 @@ function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
     <div className="relative group overflow-hidden rounded-xl border border-white/10 bg-black/20">
       <div className="relative h-56 md:h-64 overflow-hidden">
         {images.map((img, index) => (
-          <img
-            key={index}
+          <Image
+            key={img}
             src={img}
             alt={`${alt} screenshot ${index + 1}`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+            fill
+            sizes="(max-width: 768px) 100vw, 400px"
+            className={`object-cover transition-opacity duration-500 ${
               index === current ? 'opacity-100' : 'opacity-0'
             }`}
-            loading="lazy"
           />
         ))}
       </div>

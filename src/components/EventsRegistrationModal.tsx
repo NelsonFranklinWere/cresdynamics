@@ -2,17 +2,18 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import EventLanyardPicker from '@/components/EventLanyardPicker';
+import { DEFAULT_LANYARD, lanyardLabel, type LanyardCategory } from '@/lib/event-lanyards';
 
 const EVENT_TITLE = 'The Future of AI in Business';
 const EVENT_DATE  = 'Saturday, 20 June 2026';
 
-type TicketType = 'economy' | 'standard' | 'vip' | 'virtual';
+type TicketType = 'economy' | 'standard' | 'vip';
 
 const TICKET_OPTIONS: { value: TicketType; label: string; price: string; accentColor: string }[] = [
-  { value: 'virtual',  label: 'Virtual — Free',        price: 'Free',      accentColor: '#2FA6B3' },
-  { value: 'economy',  label: 'General — In-Person',   price: 'KES 1,500', accentColor: 'rgba(255,255,255,0.7)' },
-  { value: 'standard', label: 'Standard — In-Person',  price: 'KES 2,500', accentColor: '#2FA6B3' },
-  { value: 'vip',      label: 'VIP — In-Person',       price: 'KES 3,500', accentColor: '#F39C24' },
+  { value: 'standard', label: 'Standard — In-Person', price: 'KES 2,500', accentColor: '#2FA6B3' },
+  { value: 'economy', label: 'General — In-Person', price: 'KES 1,500', accentColor: 'rgba(255,255,255,0.7)' },
+  { value: 'vip', label: 'VIP — In-Person', price: 'KES 3,500', accentColor: '#F39C24' },
 ];
 
 export type Props = {
@@ -24,7 +25,6 @@ export type Props = {
 
 type SuccessData = {
   reservationId: number;
-  paybill?: { number: string; account: string };
 };
 
 const inputStyle: React.CSSProperties = {
@@ -51,13 +51,19 @@ export default function EventsRegistrationModal({
   defaultTicket = 'standard',
 }: Props) {
   const [ticket, setTicket]           = useState<TicketType>(defaultTicket);
+  const [lanyard, setLanyard]         = useState<LanyardCategory>(DEFAULT_LANYARD);
   const [sending, setSending]         = useState(false);
   const [error, setError]             = useState<string | null>(null);
   const [success, setSuccess]         = useState<SuccessData | null>(null);
   const formRef                       = useRef<HTMLFormElement>(null);
 
   /* sync ticket when parent changes which button was clicked */
-  useEffect(() => { setTicket(defaultTicket); }, [defaultTicket, isOpen]);
+  useEffect(() => {
+    if (isOpen) {
+      setTicket(defaultTicket);
+      setLanyard(DEFAULT_LANYARD);
+    }
+  }, [defaultTicket, isOpen]);
 
   /* lock body scroll */
   useEffect(() => {
@@ -83,8 +89,8 @@ export default function EventsRegistrationModal({
     const fname = (form.elements.namedItem('fname') as HTMLInputElement).value.trim();
     const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
     const phone = (form.elements.namedItem('phone') as HTMLInputElement).value.trim();
-    if (!fname || !email || !phone) {
-      setError('First name, email and phone are required.');
+    if (!fname || !email || !phone || !lanyard) {
+      setError('First name, email, phone and lanyard colour are required.');
       return;
     }
     setSending(true);
@@ -98,21 +104,22 @@ export default function EventsRegistrationModal({
           email,
           phone,
           company:       (form.elements.namedItem('company') as HTMLInputElement).value.trim(),
-          type:          ticket === 'virtual' ? 'virtual' : 'in-person',
-          ticket:        ticket === 'virtual' ? 'standard' : ticket,
-          paymentMethod: 'paybill',
+          type:          'in-person',
+          ticket,
+          lanyard,
           eventTitle:    EVENT_TITLE,
           eventDate:     EVENT_DATE,
         }),
       });
       const data = await res.json();
       if (!res.ok) { setError(data?.error || 'Registration failed. Please try again.'); return; }
-      /* Pesapal redirect if provided */
-      if (data.redirectUrl) { window.location.href = data.redirectUrl; return; }
-      setSuccess({
-        reservationId: data.reservationId,
-        paybill: data.paybill ?? { number: '542542', account: '43869' },
-      });
+
+      if (data.success && data.reservationId) {
+        setSuccess({ reservationId: data.reservationId });
+        return;
+      }
+
+      setError(data?.error || 'Registration failed. Please try again.');
     } catch {
       setError('Network error — please check your connection and try again.');
     } finally {
@@ -122,7 +129,7 @@ export default function EventsRegistrationModal({
 
   if (!isOpen) return null;
 
-  const opt = TICKET_OPTIONS.find(o => o.value === ticket) ?? TICKET_OPTIONS[2];
+  const opt = TICKET_OPTIONS.find(o => o.value === ticket) ?? TICKET_OPTIONS[0];
 
   return createPortal(
     <div
@@ -149,7 +156,7 @@ export default function EventsRegistrationModal({
 
               {/* Ticket picker */}
               <p className="text-[10px] font-black uppercase tracking-widest mb-2.5" style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'monospace' }}>Ticket Type</p>
-              <div className="grid grid-cols-2 gap-2 mb-7">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-7">
                 {TICKET_OPTIONS.map(o => (
                   <button
                     key={o.value}
@@ -187,13 +194,13 @@ export default function EventsRegistrationModal({
                   <input name="company" placeholder="Optional" className="w-full px-4 py-3 rounded-lg text-sm focus:outline-none" style={inputStyle} />
                 </Field>
 
+                <EventLanyardPicker value={lanyard} onChange={setLanyard} compact />
+
                 {/* Summary pill */}
                 <div className="rounded-xl px-5 py-4" style={{ background: 'rgba(243,156,36,0.07)', border: '1px solid rgba(243,156,36,0.18)' }}>
                   <p className="text-xs font-bold text-white">Selected: {opt.label}</p>
                   <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.45)' }}>
-                    {ticket === 'virtual'
-                      ? 'Free virtual livestream — no payment required.'
-                      : `${opt.price} · Pay via M-Pesa Paybill after confirming.`}
+                    {`${opt.price} · Lanyard: ${lanyardLabel(lanyard)} · We will contact you to complete payment.`}
                   </p>
                 </div>
 
@@ -208,7 +215,7 @@ export default function EventsRegistrationModal({
                     Cancel
                   </button>
                   <button type="submit" disabled={sending} className="flex-[2] py-3.5 rounded-xl text-sm font-black disabled:opacity-50 transition-all" style={{ background: '#F39C24', color: '#080F1C' }}>
-                    {sending ? 'Registering…' : 'Confirm Registration →'}
+                    {sending ? 'Processing…' : `Book — ${opt.price}`}
                   </button>
                 </div>
               </form>
@@ -221,32 +228,12 @@ export default function EventsRegistrationModal({
               <p className="text-sm mb-1" style={{ color: 'rgba(255,255,255,0.55)' }}>
                 Reservation <strong className="text-white">#{success.reservationId}</strong> confirmed.
               </p>
+              <p className="text-sm mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                Our team will contact you by phone or email with M-Pesa / Paybill details (542542 / Acc 43869) to confirm your ticket.
+              </p>
               <p className="text-sm mb-7" style={{ color: 'rgba(255,255,255,0.55)' }}>
                 See you on <strong className="text-white">20 June 2026</strong> at Sarit Expo Centre, Westlands.
               </p>
-
-              {ticket !== 'virtual' && success.paybill && (
-                <div className="rounded-xl p-5 mb-7 text-left" style={{ background: 'rgba(47,166,179,0.08)', border: '1px solid rgba(47,166,179,0.25)' }}>
-                  <p className="text-[10px] font-black uppercase tracking-widest mb-4" style={{ color: '#2FA6B3', fontFamily: 'monospace' }}>Complete Payment via M-Pesa Paybill</p>
-                  <div className="space-y-2.5 text-sm">
-                    <div className="flex justify-between">
-                      <span style={{ color: 'rgba(255,255,255,0.45)' }}>Paybill Number</span>
-                      <strong className="text-white text-base">{success.paybill.number}</strong>
-                    </div>
-                    <div className="flex justify-between">
-                      <span style={{ color: 'rgba(255,255,255,0.45)' }}>Account Number</span>
-                      <strong className="text-white text-base">{success.paybill.account}</strong>
-                    </div>
-                    <div className="flex justify-between">
-                      <span style={{ color: 'rgba(255,255,255,0.45)' }}>Amount</span>
-                      <strong className="font-black" style={{ color: '#F39C24' }}>{opt.price}</strong>
-                    </div>
-                  </div>
-                  <p className="text-[11px] mt-4" style={{ color: 'rgba(255,255,255,0.35)' }}>
-                    Use your name as the M-Pesa reference. Your seat is reserved — we will confirm once payment clears.
-                  </p>
-                </div>
-              )}
 
               <button onClick={handleClose} className="w-full py-3.5 rounded-xl font-black text-sm" style={{ background: '#F39C24', color: '#080F1C' }}>
                 Done

@@ -1,611 +1,895 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EventsRegistrationModal from '@/components/EventsRegistrationModal';
 import EventsSponsorModal from '@/components/EventsSponsorModal';
-
-/* ─── Data ─────────────────────────────────────────────────────────── */
+import EventsRegisterSection from '@/components/EventsRegisterSection';
+import type { SponsorPackageTier } from '@/lib/sponsor-packages';
+import { EVENT_LANYARDS } from '@/lib/event-lanyards';
 
 const EVENT_DATE = new Date('2026-06-20T14:00:00+03:00');
 
+/** All photos from public/events/ — only reference these paths on the events page */
+const EVENT_PHOTOS = {
+  hero: '/events/hero-stage.jpg',
+  crowd: '/events/conference-crowd.jpg',
+  gallery: '/events/gallery-4.jpg',
+  speaker1: '/events/speaker-1.jpg',
+  speaker2: '/events/speaker-2.jpg',
+  venue: '/events/saritbeforearena.jpg',
+  meetingNetwork: '/events/saritmeetingnetworkingsession.jpg',
+  oneOnOne: '/events/one-on-one-networking.jpg',
+} as const;
+
+const MAPS_EMBED =
+  'https://maps.google.com/maps?q=Sarit+Expo+Centre+Westlands+Nairobi+Kenya&z=15&output=embed';
+
 const AGENDA = [
-  { time: '14:00', label: 'Doors Open · Registration & Networking' },
-  { time: '14:30', label: 'Opening Keynote: AI & The African Business Landscape' },
-  { time: '15:30', label: 'Panel: AI in Hiring & Operations — Live Demo' },
-  { time: '16:15', label: 'Break · Exhibition Floor & Live Demos' },
+  { time: '14:00', label: 'Doors Open · Registration & Colour Lanyards', highlight: true },
+  { time: '14:30', label: 'Opening Keynote — AI & The African Business Landscape' },
+  { time: '15:30', label: 'Panel: AI in Hiring & Operations' },
+  { time: '16:15', label: 'Exhibition Floor · Networking & Partner Booths' },
   { time: '16:45', label: 'Workshop: Building AI-Powered Business Systems' },
   { time: '17:30', label: 'Fireside Chat: Scaling Tech in East Africa' },
-  { time: '18:30', label: 'Closing Remarks · Networking Reception' },
+  { time: '18:30', label: 'Closing · Networking Reception' },
 ];
 
 const TOPICS = [
-  { num: '01', title: 'AI Integration for SMEs', desc: 'Practical frameworks for embedding AI into everyday business operations without a big tech team.' },
-  { num: '02', title: 'AI-Powered Hiring & Ops', desc: 'How modern tools are transforming talent and operations — live demo included.' },
-  { num: '03', title: 'Business Intelligence & Data', desc: 'Turn raw business data into real-time strategic advantage you can act on today.' },
-  { num: '04', title: 'AI Ethics & Security', desc: 'Bias, data privacy, and compliance — what every business leader must know.' },
-  { num: '05', title: 'Scaling Tech in East Africa', desc: 'The real playbook for building and growing in the age of AI on the continent.' },
-  { num: '06', title: "Africa's Digital Future", desc: 'Why Africa is the next major frontier for AI adoption and what that means for you.' },
+  { num: '01', title: 'AI Integration for SMEs', desc: 'Embed AI into daily operations without a large tech team.' },
+  { num: '02', title: 'AI-Powered Hiring & Ops', desc: 'Transform talent and operations with tools you can deploy Monday.' },
+  { num: '03', title: 'Business Intelligence', desc: 'Turn raw data into decisions — dashboards that executives actually use.' },
+  { num: '04', title: 'AI Ethics & Security', desc: 'Privacy, compliance, and bias — what leaders must know now.' },
+  { num: '05', title: 'Scaling Tech in East Africa', desc: 'The playbook for building and growing on the continent.' },
+  { num: '06', title: "Africa's Digital Future", desc: 'Why Africa is the next major frontier for AI adoption.' },
 ];
 
 const FOR_WHO = [
   {
     icon: '⚙️',
     audience: 'Developers & Engineers',
-    headline: 'Build things that actually ship.',
-    bullets: [
-      'See live AI integrations — not slides, real code in production',
-      'Understand which tools are worth your time and which are hype',
-      'Connect with hiring managers, CTOs, and founders building in Africa',
-      'Learn how to position your skills for the AI-first job market',
-      'Walk away with frameworks you can open your laptop and start using',
-    ],
+    headline: 'Ship AI that works in production.',
+    image: EVENT_PHOTOS.speaker1,
+    bullets: ['Live code & integrations — not theory', 'Tools worth your time vs hype', 'CTOs and founders hiring in the room'],
   },
   {
     icon: '📈',
-    audience: 'Business Owners & Executives',
+    audience: 'Business Owners',
     headline: 'Cut costs. Move faster. Stay ahead.',
-    bullets: [
-      'Discover where AI creates the highest ROI in your business right now',
-      'See how competitors are automating what used to take full-time staff',
-      "Get a clear picture of what's possible — without the technical jargon",
-      'Make informed decisions about AI vendors, tools, and investments',
-      'Leave with an action plan you can brief your team on Monday morning',
-    ],
+    image: EVENT_PHOTOS.meetingNetwork,
+    bullets: ['Highest-ROI AI use cases for your business', 'See competitors automating in real time', 'Action plan for your team on Monday'],
   },
   {
     icon: '🚀',
-    audience: 'Aspiring Tech Individuals',
-    headline: 'Find your path into the future.',
-    bullets: [
-      'Understand exactly what the tech industry looks like today in Africa',
-      'Hear from builders who started where you are — and what they did next',
-      'Learn which skills are in demand and how to build them fast',
-      'Connect with mentors, communities, and opportunities in the room',
-      'Get the clarity and confidence to take your first real step in tech',
-    ],
+    audience: 'Builders & Students',
+    headline: 'Find your path into tech.',
+    image: EVENT_PHOTOS.oneOnOne,
+    bullets: ['East Africa ecosystem map from practitioners', 'Skills in demand right now', 'Mentors and communities in the room'],
+  },
+];
+
+const OPERATIONAL_PAINS = [
+  {
+    title: 'The Sales Leak',
+    desc: 'Your team spends 70% of their day manually typing orders from WhatsApp into legacy accounting software instead of closing enterprise deals.',
+  },
+  {
+    title: 'The Hiring Trap',
+    desc: 'You struggle to hire top talent because high-tier performers refuse to work in chaotic environments that lack automated workflows and clear role-based tracking.',
+  },
+  {
+    title: 'The Management Blind Spot',
+    desc: 'As a founder, you are forced to be in every micro-decision because you lack unified cashflow dashboards that show who owns what and where projects are stuck.',
   },
 ];
 
 const TICKET_TIERS = [
   {
     name: 'General',
+    emoji: '🎟️',
     price: '1,500',
+    key: 'economy' as const,
     tag: null,
-    color: 'rgba(255,255,255,0.06)',
-    border: 'rgba(255,255,255,0.1)',
-    includes: [
-      'Full access to all sessions & keynotes',
-      'Exhibition floor & live demos',
-      'Networking reception',
-      'Event materials & resources',
-      'Virtual stream access',
-    ],
+    border: 'rgba(255,255,255,0.12)',
+    bg: 'rgba(255,255,255,0.03)',
+    audience: 'Built for Managers & Marketers',
+    value:
+      'Master the exact AI tools to optimize your customer acquisition loops, compress project delivery times by 40%, and automate multi-channel marketing workflows.',
   },
   {
     name: 'Standard',
+    emoji: '📦',
     price: '2,500',
+    key: 'standard' as const,
     tag: 'MOST POPULAR',
-    color: 'rgba(47,166,179,0.08)',
-    border: 'rgba(47,166,179,0.4)',
-    includes: [
-      'Everything in General',
-      'Priority seating — front & centre',
-      'Workshop session access',
-      'Lunch & refreshments included',
-      'Digital recap & session recordings',
-    ],
+    border: 'rgba(47,166,179,0.45)',
+    bg: 'rgba(47,166,179,0.08)',
+    audience: 'Built for Technical Builders & Engineers',
+    value:
+      'Step-by-step technical workshops on building custom AI internal systems. Learn how to move past basic code templates to engineer zero-trust, enterprise-grade business architecture that commands premium marketplace value.',
   },
   {
-    name: 'VIP',
+    name: 'VIP Executive',
+    emoji: '👑',
     price: '3,500',
+    key: 'vip' as const,
     tag: 'FULL ACCESS',
-    color: 'rgba(243,156,36,0.07)',
-    border: 'rgba(243,156,36,0.4)',
-    includes: [
-      'Everything in Standard',
-      'VIP lounge access throughout the day',
-      'Exclusive speaker & panelist meet',
-      'Reserved front-row table for your team',
-      'Post-event VIP networking dinner',
-    ],
+    border: 'rgba(243,156,36,0.45)',
+    bg: 'rgba(243,156,36,0.07)',
+    audience: 'Built for CEOs, Founders & COOs',
+    value:
+      'Direct access to real execution playbooks. Learn how to tie automated payment layers (M-Pesa and bank APIs) into a single system ledger to eliminate manual reconciliation leaks.',
+    bonus:
+      'Exclusive VIP bonus: post-event 90-minute Systems Discovery & AI Audit for your company by the Cres Dynamics engineering team — map bottlenecks before you write any code.',
   },
 ];
 
-const SPEAK_PERKS = [
-  { icon: '🎙️', title: 'Stage in front of 300+', desc: 'Keynote, panel, fireside, or workshop — multiple formats available to suit your expertise.' },
-  { icon: '📡', title: 'Live-streamed reach', desc: 'Your session goes beyond the room — streamed live to virtual attendees across East Africa and beyond.' },
-  { icon: '🤝', title: 'Direct audience access', desc: 'Founders, executives, developers, and decision-makers. The people who act on what they hear.' },
-  { icon: '📰', title: 'Feature on all promo channels', desc: 'Your name, company, and session featured across email, social, and the event site pre-event.' },
+const LANYARD_SHOWCASE = [
+  { id: 'business_owner', label: 'Business Owner', color: '#3B82F6', hint: 'Blue lanyard · Founders & executives' },
+  { id: 'developer', label: 'Developer', color: '#22C55E', hint: 'Green lanyard · Engineers & builders' },
+  { id: 'investor', label: 'Investor', color: '#F97316', hint: 'Orange lanyard · Capital & partners' },
+  { id: 'hiring', label: 'Hiring', color: '#A855F7', hint: 'Purple lanyard · Recruiters & HR' },
 ];
 
-const SPONSOR_TIERS = [
-  { level: 'Bronze', benefit: 'Logo on all event materials, virtual shoutout, 2 tickets included.' },
-  { level: 'Silver', benefit: 'Exhibition table, branded session segment, 5 tickets, social feature.' },
-  { level: 'Gold', benefit: 'Speaking slot, prime exhibition space, 10 tickets, full brand integration.' },
+const FAQ = [
+  { q: 'Where exactly is the event?', a: 'Sarit Expo Centre, inside the Sarit Centre complex in Westlands, Nairobi. Registration opens at 1:45 PM — we recommend arriving early for parking and lanyard pickup.' },
+  { q: 'What happens on the exhibition floor?', a: 'After the main sessions, the floor opens for networking, partner booths, and informal Q&A with speakers and founders. It is designed for conversations, not product pitches.' },
+  { q: 'How do I pay?', a: 'Book online first — no payment required on the form. Our team will contact you with M-Pesa or Paybill 542542 / Account 43869. Your seat is confirmed once payment is received.' },
+  { q: 'What is the colour lanyard system?', a: 'Pick your category at registration — developer, business owner, hiring, investor, or student. Your lanyard colour lets everyone know who you are instantly. Networking becomes targeted, not random.' },
+  { q: 'Will sessions be recorded?', a: 'Yes. Registered attendees receive recordings within 7 days. VIP includes priority access and extended materials.' },
+  { q: 'Can I speak or sponsor?', a: 'Speaker applications at /events/speak/. For sponsorship, use the sponsor form on this page or WhatsApp +254 708 805 496.' },
 ];
 
-/* ─── Countdown ─────────────────────────────────────────────────────── */
+const GALLERY = [
+  { src: EVENT_PHOTOS.hero, alt: 'AI in Business event — Nairobi', caption: 'The Future of AI in Business', featured: true },
+  { src: EVENT_PHOTOS.venue, alt: 'Sarit Expo Centre', caption: 'Sarit Expo Centre, Westlands' },
+  { src: EVENT_PHOTOS.meetingNetwork, alt: 'Meeting and networking at Sarit', caption: 'Meeting & networking' },
+  { src: EVENT_PHOTOS.oneOnOne, alt: 'One-on-one networking', caption: 'One-on-one connections' },
+  { src: EVENT_PHOTOS.crowd, alt: 'Conference crowd', caption: 'Conference energy' },
+  { src: EVENT_PHOTOS.gallery, alt: 'Event gallery', caption: 'On the exhibition floor' },
+  { src: EVENT_PHOTOS.speaker1, alt: 'Speaker on stage', caption: 'Keynotes & panels' },
+  { src: EVENT_PHOTOS.speaker2, alt: 'Speaker session', caption: 'Sessions that ship Monday' },
+];
+
+type TicketType = 'economy' | 'standard' | 'vip';
+type SponsorTier = SponsorPackageTier;
 
 function useCountdown(target: Date) {
   const calc = () => {
     const diff = target.getTime() - Date.now();
-    if (diff <= 0) return { days: 0, hours: 0, mins: 0, secs: 0 };
+    if (diff <= 0) return { days: 0, hours: 0, mins: 0, secs: 0, live: true };
     return {
       days: Math.floor(diff / 86400000),
       hours: Math.floor((diff % 86400000) / 3600000),
       mins: Math.floor((diff % 3600000) / 60000),
       secs: Math.floor((diff % 60000) / 1000),
+      live: false,
     };
   };
-  // Start with zeros so SSR and client hydration always agree
-  const [tick, setTick] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
+  const [tick, setTick] = useState({ days: 0, hours: 0, mins: 0, secs: 0, live: false });
   useEffect(() => {
     setTick(calc());
     const id = setInterval(() => setTick(calc()), 1000);
     return () => clearInterval(id);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return tick;
 }
 
 function CountUnit({ value, label }: { value: number; label: string }) {
   return (
-    <div className="flex flex-col items-center min-w-[60px]">
-      <span className="tabular-nums font-black leading-none" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: '#F39C24' }}>
-        {String(value).padStart(2, '0')}
-      </span>
-      <span className="text-xs uppercase tracking-widest mt-1" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'monospace' }}>
-        {label}
-      </span>
+    <div className="flex flex-col items-center min-w-[52px] md:min-w-[64px]">
+      <span className="tabular-nums font-black text-3xl md:text-5xl text-[#2FA6B3]">{String(value).padStart(2, '0')}</span>
+      <span className="text-[10px] md:text-xs uppercase tracking-widest mt-1 text-white/40 font-mono">{label}</span>
     </div>
   );
 }
 
-/* ─── Component ─────────────────────────────────────────────────────── */
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#2FA6B3] mb-3 font-mono">{children}</p>;
+}
 
-type TicketType = 'economy' | 'standard' | 'vip' | 'virtual';
-type SponsorTier = 'community' | 'silver' | 'gold' | 'custom';
+function PaymentStatusBanner() {
+  const searchParams = useSearchParams();
+  const payment = searchParams.get('payment');
+  const sponsor = searchParams.get('sponsor');
+  if (!payment) return null;
+  const ok = payment === 'success';
+  return (
+    <div
+      className={`relative z-20 mx-4 sm:mx-6 lg:mx-8 mt-4 max-w-7xl lg:mx-auto rounded-xl px-4 py-3 text-sm font-medium border ${
+        ok ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-100' : 'bg-amber-500/15 border-amber-500/40 text-amber-100'
+      }`}
+    >
+      {ok
+        ? sponsor
+          ? 'Thank you — your sponsorship payment was received. We will confirm your package shortly.'
+          : 'Thank you — your ticket payment was received. See you at Sarit Expo Centre on 20 June.'
+        : 'Payment is pending. If you completed checkout, confirmation may take a few minutes.'}
+    </div>
+  );
+}
 
-export default function EventsContent() {
-  const [modalOpen, setModalOpen]         = useState(false);
+function EventsContentInner() {
+  const [modalOpen, setModalOpen] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState<TicketType>('standard');
-  const [sponsorOpen, setSponsorOpen]     = useState(false);
-  const [sponsorTier, setSponsorTier]     = useState<SponsorTier>('silver');
-  const [quickEmail, setQuickEmail]       = useState('');
+  const [sponsorOpen, setSponsorOpen] = useState(false);
+  const [sponsorTier, setSponsorTier] = useState<SponsorTier>('silver');
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const countdown = useCountdown(EVENT_DATE);
 
-  const openModal = (ticket: TicketType = 'standard') => {
+  const openModal = useCallback((ticket: TicketType = 'standard') => {
     setSelectedTicket(ticket);
     setModalOpen(true);
-  };
-
-  const openSponsor = (tier: SponsorTier = 'silver') => {
-    setSponsorTier(tier);
-    setSponsorOpen(true);
-  };
+  }, []);
 
   return (
-    <div className="min-h-screen" style={{ background: '#080F1C', color: '#fff' }}>
+    <div className="min-h-screen bg-[#060B18] text-white overflow-x-hidden pb-24 md:pb-0">
+      {/* Tech grid overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(47,166,179,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(47,166,179,0.06) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+
       <Header />
+      <Suspense fallback={null}>
+        <PaymentStatusBanner />
+      </Suspense>
 
-      {/* ── HERO ───────────────────────────────────────────────────────── */}
-      <section className="relative flex flex-col justify-center overflow-hidden" style={{ minHeight: '100svh', paddingTop: '5rem' }}>
+      {/* ── HERO ── */}
+      <section className="relative z-10 flex flex-col justify-end min-h-[100svh] pt-20 pb-12 md:pb-16">
         <div className="absolute inset-0">
-          <img src="/events/hero-stage.jpg" alt="Conference audience" className="w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(145deg, rgba(8,15,28,0.93) 0%, rgba(8,15,28,0.80) 50%, rgba(8,15,28,0.88) 100%)' }} />
-          <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(47,166,179,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(47,166,179,0.07) 1px, transparent 1px)', backgroundSize: '64px 64px' }} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={EVENT_PHOTOS.hero}
+            alt="The Future of AI in Business — Sarit Expo Centre Nairobi"
+            className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#060B18]/95 via-[#0A2540]/88 to-[#060B18]/92" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(47,166,179,0.25),transparent_55%)]" />
         </div>
-        <div className="absolute pointer-events-none" style={{ top: '15%', right: '0', width: '520px', height: '520px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(47,166,179,0.14) 0%, transparent 70%)' }} />
-        <div className="absolute pointer-events-none" style={{ bottom: '10%', left: '0', width: '400px', height: '400px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(243,156,36,0.1) 0%, transparent 70%)' }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 w-full">
-          <div className="flex flex-wrap items-center gap-3 mb-10">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase border" style={{ border: '1px solid rgba(47,166,179,0.45)', color: '#2FA6B3', background: 'rgba(47,166,179,0.1)', fontFamily: 'monospace' }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2FA6B3] animate-pulse inline-block" />
-              Nairobi · 20 June 2026 · Sarit Expo Centre, Westlands
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider border border-[#2FA6B3]/40 bg-[#2FA6B3]/10 text-[#2FA6B3] font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2FA6B3] animate-pulse" />
+              AI in Business · Nairobi
             </span>
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase border" style={{ border: '1px solid rgba(243,156,36,0.35)', color: '#F39C24', background: 'rgba(243,156,36,0.08)', fontFamily: 'monospace' }}>
-              Limited Seats Available
+            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider border border-[#F39C24]/35 bg-[#F39C24]/10 text-[#F39C24] font-mono">
+              20 June 2026 · Westlands
             </span>
           </div>
 
-          <h1 className="font-black uppercase leading-[0.9] mb-8" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)', letterSpacing: '-0.02em', maxWidth: '950px' }}>
-            The Future <span style={{ color: '#F39C24' }}>of AI</span><br />in Business.
+          <h1 className="font-black uppercase leading-[0.92] tracking-tight mb-5 md:mb-6" style={{ fontSize: 'clamp(2.25rem, 8vw, 5.5rem)' }}>
+            The Future <span className="text-[#F39C24]">of AI</span>
+            <br />
+            in Business.
           </h1>
-          <p className="mb-12 max-w-xl leading-relaxed" style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: 'rgba(255,255,255,0.65)' }}>
-            Nairobi&apos;s premier AI summit for founders, executives, and builders ready to move fast. One day. Real demos. Conversations that change how you run your business.
+          <p className="text-base md:text-lg text-white/65 max-w-xl mb-4 leading-relaxed">
+            Nairobi&apos;s practical AI summit for founders, operators, and builders — keynotes, panels, workshops, and{' '}
+            <strong className="text-white">targeted networking</strong> at Sarit Expo Centre, Westlands.
+          </p>
+          <p className="text-sm md:text-base text-white/75 max-w-2xl mb-6 leading-relaxed border-l-2 border-[#F39C24] pl-4">
+            Stop wasting hundreds of hours on manual workflows, broken spreadsheets, and duplicate data entry. This is
+            Nairobi&apos;s <strong className="text-white">zero-fluff, production-ready systems summit</strong>. Leave Sarit
+            Expo Centre with the exact blueprint to deploy automated pipelines, eliminate revenue leaks, and run your
+            business predictably on <strong className="text-white">Monday morning</strong>.
           </p>
 
-          <div className="flex items-center gap-4 md:gap-8 mb-12">
-            <CountUnit value={countdown.days} label="Days" />
-            <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '2rem', fontWeight: 900 }}>:</span>
-            <CountUnit value={countdown.hours} label="Hours" />
-            <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '2rem', fontWeight: 900 }}>:</span>
-            <CountUnit value={countdown.mins} label="Mins" />
-            <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '2rem', fontWeight: 900 }}>:</span>
-            <CountUnit value={countdown.secs} label="Secs" />
+          <div className="grid md:grid-cols-2 gap-3 mb-8 max-w-3xl rounded-2xl overflow-hidden border border-white/10">
+            <div className="relative h-[200px] md:h-[240px] bg-[#1a0a0a] isolate overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={EVENT_PHOTOS.crowd}
+                alt="Operational friction — manual workflows and scattered data"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                loading="eager"
+                decoding="async"
+              />
+              <div
+                className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-t from-[#060B18] via-[#060B18]/50 to-transparent"
+                aria-hidden
+              />
+              <div className="absolute bottom-0 left-0 right-0 z-[2] p-3 bg-gradient-to-t from-[#060B18] to-transparent pt-10">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-red-400 mb-1">The pain</p>
+                <p className="text-xs text-white/90">Spreadsheets, WhatsApp follow-ups, duplicate entry, revenue leaks.</p>
+              </div>
+            </div>
+            <div className="relative h-[200px] md:h-[240px] bg-[#0A2540] isolate overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={EVENT_PHOTOS.gallery}
+                alt="Cres Core Engine — automated pipelines and live dashboards"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                loading="eager"
+                decoding="async"
+              />
+              <div
+                className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-t from-[#060B18] via-[#060B18]/45 to-transparent"
+                aria-hidden
+              />
+              <div className="absolute bottom-0 left-0 right-0 z-[2] p-3 bg-gradient-to-t from-[#060B18] to-transparent pt-10">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 mb-1">The solution</p>
+                <p className="text-xs text-white/90">Live pipelines, role-based approvals, real-time revenue visibility.</p>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-wrap gap-4 mb-20">
-            <button type="button" onClick={() => openModal('standard')} className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-lg transition-all" style={{ background: '#F39C24', color: '#080F1C', fontSize: '1rem' }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#E48B18')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#F39C24')}>
+          {!countdown.live ? (
+            <div className="flex items-center gap-2 md:gap-4 mb-8 flex-wrap">
+              <CountUnit value={countdown.days} label="Days" />
+              <span className="text-white/20 text-2xl font-black">:</span>
+              <CountUnit value={countdown.hours} label="Hrs" />
+              <span className="text-white/20 text-2xl font-black">:</span>
+              <CountUnit value={countdown.mins} label="Min" />
+              <span className="text-white/20 text-2xl font-black">:</span>
+              <CountUnit value={countdown.secs} label="Sec" />
+            </div>
+          ) : (
+            <p className="text-[#F39C24] font-mono text-sm font-bold mb-8 uppercase tracking-widest">Event day — see you at Sarit!</p>
+          )}
+
+          <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-10 md:mb-14">
+            <button
+              type="button"
+              onClick={() => openModal('standard')}
+              className="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 font-bold px-4 sm:px-8 py-3 sm:py-4 rounded-xl bg-[#F39C24] text-[#060B18] hover:bg-[#E48B18] transition-colors text-xs sm:text-base whitespace-nowrap"
+            >
               Reserve My Seat
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              <span aria-hidden>→</span>
             </button>
-            <a href="#agenda" className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-lg transition-all" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.75)', fontSize: '1rem' }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#2FA6B3'; e.currentTarget.style.color = '#2FA6B3'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = 'rgba(255,255,255,0.75)'; }}>
+            <a
+              href="#agenda"
+              className="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 font-semibold px-4 sm:px-8 py-3 sm:py-4 rounded-xl border border-white/15 text-white/80 hover:border-[#2FA6B3] hover:text-[#2FA6B3] transition-colors text-xs sm:text-base whitespace-nowrap"
+            >
               View Agenda
             </a>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4" style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', overflow: 'hidden', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)' }}>
-            {[{ value: '300+', label: 'Seats Available' }, { value: '8+', label: 'Expert Speakers' }, { value: '5hrs', label: 'Immersive Content' }, { value: 'Free', label: 'Virtual Access' }].map((s, i) => (
-              <div key={s.label} className="flex flex-col items-center justify-center py-5 px-4" style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                <span className="font-black text-3xl md:text-4xl" style={{ color: '#2FA6B3' }}>{s.value}</span>
-                <span className="text-xs mt-1 uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'monospace' }}>{s.label}</span>
+          <div className="grid grid-cols-2 md:grid-cols-4 rounded-xl border border-white/10 overflow-hidden bg-white/[0.04] backdrop-blur-md">
+            {[
+              { v: '300', l: 'In-person seats' },
+              { v: '6', l: 'Deep-dives' },
+              { v: '5hr', l: 'Programme' },
+              { v: 'Sarit', l: 'Expo Centre' },
+            ].map((s, i) => (
+              <div key={s.l} className={`py-4 px-3 text-center ${i < 3 ? 'border-r border-white/10' : ''}`}>
+                <p className="font-black text-xl md:text-2xl text-[#2FA6B3]">{s.v}</p>
+                <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-wider font-mono mt-0.5">{s.l}</p>
               </div>
             ))}
           </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style={{ opacity: 0.35 }}>
-          <span className="text-xs tracking-widest uppercase" style={{ fontFamily: 'monospace' }}>Scroll</span>
-          <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="6" y="2" width="4" height="8" rx="2" fill="white" /><path d="M8 16l-4 6h8l-4-6z" fill="white" /></svg>
         </div>
       </section>
 
-      {/* ── EVENT DETAILS STRIP ─────────────────────────────────────────── */}
-      <div style={{ background: '#0D1526', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            {[{ label: 'Date', value: 'Saturday, 20 June 2026' }, { label: 'Time', value: '14:00 — 19:00 EAT' }, { label: 'Venue', value: 'Sarit Expo Centre, Westlands' }, { label: 'Format', value: 'In-Person + Live Stream' }].map((d, i) => (
-              <div key={d.label} className="py-7 px-6 md:px-10" style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                <p className="text-xs mb-2 uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.3)', fontFamily: 'monospace' }}>{d.label}</p>
-                <p className="font-semibold text-sm md:text-base" style={{ color: 'rgba(255,255,255,0.9)' }}>{d.value}</p>
-              </div>
-            ))}
-          </div>
+      {/* ── DETAILS STRIP ── */}
+      <div className="relative z-10 border-y border-white/10 bg-[#0A1628]/90 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 lg:grid-cols-4">
+          {[
+            { label: 'Date', value: 'Sat, 20 June 2026' },
+            { label: 'Time', value: '2:00 PM — 7:00 PM' },
+            { label: 'Venue', value: 'Sarit Expo Centre' },
+            { label: 'Area', value: 'Westlands, Nairobi' },
+          ].map((d, i) => (
+            <div key={d.label} className={`py-5 px-4 md:px-6 ${i < 3 ? 'border-r border-white/10' : ''}`}>
+              <p className="text-[10px] uppercase tracking-widest text-white/35 font-mono mb-1">{d.label}</p>
+              <p className="font-semibold text-sm text-white/90">{d.value}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* ── WHO THIS IS FOR ────────────────────────────────────────────── */}
-      <section className="py-32" style={{ background: '#080F1C' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#2FA6B3', fontFamily: 'monospace' }}>Who This Is For</p>
-          <h2 className="font-black mb-6" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}>
-            Built for every person who wants to{' '}
-            <span style={{ color: '#F39C24' }}>move with AI.</span>
+      {/* ── VALUE ── */}
+      <section id="why-attend" className="relative z-10 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel>Why attend</SectionLabel>
+          <h2 className="font-black text-3xl md:text-5xl mb-4 leading-tight">
+            Practical AI for <span className="text-[#2FA6B3]">Kenyan business.</span>
           </h2>
-          <p className="mb-20 max-w-2xl text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
-            Whether you write code, run a business, or are just starting to figure out where you fit in the tech economy — this event was designed around you.
+          <p className="text-white/55 max-w-2xl mb-10 md:mb-12 text-sm md:text-base">
+            One afternoon at Sarit Expo Centre — learn what is working now, meet founders and engineers in the room, and leave with ideas you can act on Monday. No fluff, no generic keynotes.
           </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {FOR_WHO.map((w) => (
-              <div key={w.audience} className="rounded-2xl p-8 flex flex-col gap-6" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                <div>
-                  <span className="text-3xl mb-4 block">{w.icon}</span>
-                  <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full" style={{ background: 'rgba(47,166,179,0.1)', border: '1px solid rgba(47,166,179,0.25)', color: '#2FA6B3', fontFamily: 'monospace' }}>
-                    {w.audience}
-                  </span>
-                </div>
-                <h3 className="font-black text-2xl text-white leading-tight">{w.headline}</h3>
-                <ul className="flex flex-col gap-3">
-                  {w.bullets.map((b) => (
-                    <li key={b} className="flex gap-3 items-start text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>
-                      <span className="mt-1 shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-black" style={{ background: 'rgba(243,156,36,0.15)', color: '#F39C24' }}>✓</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { title: 'Actionable sessions', desc: 'Keynotes and panels on hiring, ops, BI, ethics, and scaling — built for decision-makers.' },
+              { title: 'Right people in the room', desc: 'Colour-coded lanyards so developers, founders, investors, and students find each other fast.' },
+              { title: 'Westlands, easy access', desc: 'Sarit Expo Centre — parking, Uber, and matatu links. Doors 1:45 PM, programme 2:00 PM.' },
+            ].map((item) => (
+              <div key={item.title} className="rounded-xl p-5 border border-white/10 bg-white/[0.02]">
+                <h3 className="font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-sm text-white/50">{item.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <button type="button" onClick={() => openModal('standard')} className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-lg transition-all" style={{ background: '#F39C24', color: '#080F1C', fontSize: '1rem' }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#E48B18')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#F39C24')}>
-              This Is Me — Reserve My Seat
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ── PHOTO GALLERY ──────────────────────────────────────────────── */}
-      <section className="pb-32" style={{ background: '#080F1C' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#2FA6B3', fontFamily: 'monospace' }}>Feel the Room</p>
-          <h2 className="font-black mb-12" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}>
-            What 300+ people in one room{' '}
-            <span style={{ color: '#F39C24' }}>feels like.</span>
-          </h2>
-          <div className="grid grid-cols-12 grid-rows-2 gap-4" style={{ height: 'clamp(380px, 55vw, 600px)' }}>
-            <div className="col-span-12 md:col-span-7 row-span-2 rounded-2xl overflow-hidden relative" style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
-              <img src="/events/gallery-3.jpg" alt="Keynote presentation on main stage" className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute bottom-0 left-0 right-0 p-5" style={{ background: 'linear-gradient(to top, rgba(8,15,28,0.85) 0%, transparent 100%)' }}>
-                <p className="text-sm font-semibold text-white">Main Stage Keynote</p>
-                <p className="text-xs" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'monospace' }}>300+ in attendance · Sarit Expo Centre</p>
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-5 row-span-1 rounded-2xl overflow-hidden relative" style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
-              <img src="/events/hero-stage.jpg" alt="Engaged conference audience" className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute bottom-0 left-0 right-0 p-4" style={{ background: 'linear-gradient(to top, rgba(8,15,28,0.8) 0%, transparent 100%)' }}>
-                <p className="text-xs font-semibold text-white">Packed house, electric atmosphere</p>
-              </div>
-            </div>
-            <div className="col-span-6 md:col-span-3 row-span-1 rounded-2xl overflow-hidden relative" style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
-              <img src="/events/keynote.jpg" alt="Engaged tech audience" className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute inset-0 flex items-end p-4" style={{ background: 'linear-gradient(to top, rgba(8,15,28,0.75) 0%, transparent 70%)' }}>
-                <p className="text-xs font-semibold text-white">Focused. Taking notes.</p>
-              </div>
-            </div>
-            <div className="col-span-6 md:col-span-2 row-span-1 rounded-2xl overflow-hidden relative" style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
-              <img src="/events/gallery-4.jpg" alt="Conference workshop session" className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute inset-0 flex items-end p-4" style={{ background: 'linear-gradient(to top, rgba(8,15,28,0.8) 0%, transparent 70%)' }}>
-                <p className="text-xs font-semibold text-white">Live Demos</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── AGENDA ─────────────────────────────────────────────────────── */}
-      <section id="agenda" className="py-32" style={{ background: '#0D1526' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#2FA6B3', fontFamily: 'monospace' }}>Day Agenda</p>
-          <h2 className="font-black mb-20" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}>
-            One day.{' '}
-            <span style={{ color: '#F39C24' }}>Zero filler.</span>
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            <div className="relative">
-              <div className="absolute left-[72px] top-0 bottom-0 w-px hidden md:block" style={{ background: 'rgba(47,166,179,0.2)' }} />
-              <div className="flex flex-col gap-5">
-                {AGENDA.map((item, i) => (
-                  <div key={item.time} className="flex gap-6 md:gap-10 items-start">
-                    <div className="shrink-0 w-[72px] text-right">
-                      <span className="font-bold text-sm" style={{ color: '#2FA6B3', fontFamily: 'monospace' }}>{item.time}</span>
-                    </div>
-                    <div className="hidden md:flex shrink-0 w-3 h-3 rounded-full mt-1 relative z-10" style={{ background: i === 0 ? '#F39C24' : '#2FA6B3', marginLeft: '-6px', boxShadow: i === 0 ? '0 0 14px rgba(243,156,36,0.7)' : 'none' }} />
-                    <div className="flex-1 rounded-xl px-6 py-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                      <p className="font-semibold text-white">{item.label}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-col gap-6">
-              <div className="rounded-2xl overflow-hidden relative" style={{ border: '1px solid rgba(255,255,255,0.08)', height: '340px' }}>
-                <img src="/events/sarit-event.jpg" alt="Event at Sarit Expo Centre, Westlands Nairobi" className="w-full h-full object-cover" loading="lazy" />
-                <div className="absolute bottom-0 left-0 right-0 px-5 py-4" style={{ background: 'linear-gradient(to top, rgba(8,15,28,0.85) 0%, transparent 100%)' }}>
-                  <p className="text-xs font-semibold text-white" style={{ fontFamily: 'monospace' }}>📍 Sarit Expo Centre · Westlands, Nairobi</p>
-                </div>
-              </div>
-              <div className="rounded-2xl p-7" style={{ background: 'rgba(243,156,36,0.07)', border: '1px solid rgba(243,156,36,0.2)' }}>
-                <p className="font-bold text-white text-lg mb-2">Tickets from KES 1,500</p>
-                <p className="text-sm mb-5" style={{ color: 'rgba(255,255,255,0.55)' }}>Virtual streaming is free. In-person tickets include full session access, networking, and more. Choose your tier below.</p>
-                <a href="#tickets" className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-lg transition-all text-sm" style={{ background: '#F39C24', color: '#080F1C' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = '#E48B18')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = '#F39C24')}>
-                  View Ticket Options
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── TOPICS ────────────────────────────────────────────────────── */}
-      <section className="py-32" style={{ background: '#080F1C' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#2FA6B3', fontFamily: 'monospace' }}>What You&apos;ll Learn</p>
-          <h2 className="font-black mb-20" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}>
-            Six deep-dives.{' '}
-            <span style={{ color: '#F39C24' }}>Zero theory.</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {TOPICS.map((t) => (
-              <div key={t.num} className="rounded-2xl p-7 relative overflow-hidden" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                <span className="absolute top-5 right-6 text-6xl font-black leading-none pointer-events-none" style={{ color: 'rgba(47,166,179,0.08)', fontFamily: 'monospace' }}>{t.num}</span>
-                <h4 className="font-bold text-lg text-white mb-3 relative z-10">{t.title}</h4>
-                <p className="text-sm leading-relaxed relative z-10" style={{ color: 'rgba(255,255,255,0.5)' }}>{t.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── TICKET TIERS ──────────────────────────────────────────────── */}
-      <section id="tickets" className="py-32" style={{ background: '#0D1526' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#2FA6B3', fontFamily: 'monospace' }}>Get Your Ticket</p>
-          <h2 className="font-black mb-6" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}>
-            Choose your experience.
-          </h2>
-          <p className="mb-16 max-w-xl text-base" style={{ color: 'rgba(255,255,255,0.5)' }}>
-            Pick your tier at registration. Virtual access is always free. In-person seats are limited — secure yours early.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {TICKET_TIERS.map((t) => (
-              <div key={t.name} className="rounded-2xl p-8 flex flex-col gap-6 relative" style={{ background: t.color, border: `1px solid ${t.border}` }}>
-                {t.tag && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-black tracking-widest uppercase px-4 py-1.5 rounded-full" style={{ background: t.name === 'Standard' ? '#2FA6B3' : '#F39C24', color: '#080F1C' }}>
-                    {t.tag}
-                  </span>
-                )}
-                <div>
-                  <p className="text-xs uppercase tracking-widest mb-2" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'monospace' }}>{t.name}</p>
-                  <div className="flex items-end gap-2">
-                    <span className="font-black text-4xl text-white">KES {t.price}</span>
-                    <span className="text-sm mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>/ person</span>
-                  </div>
-                </div>
-                <ul className="flex flex-col gap-3 flex-1">
-                  {t.includes.map((item) => (
-                    <li key={item} className="flex gap-3 items-start text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-                      <span className="shrink-0 mt-0.5" style={{ color: t.name === 'VIP' ? '#F39C24' : '#2FA6B3' }}>✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  type="button"
-                  onClick={() => openModal(t.name === 'General' ? 'economy' : t.name === 'Standard' ? 'standard' : 'vip')}
-                  className="w-full font-bold py-3.5 rounded-lg transition-all text-sm mt-2"
-                  style={{ background: t.name === 'VIP' ? '#F39C24' : t.name === 'Standard' ? '#2FA6B3' : 'rgba(255,255,255,0.08)', color: t.name === 'General' ? 'rgba(255,255,255,0.85)' : '#080F1C', border: t.name === 'General' ? '1px solid rgba(255,255,255,0.12)' : 'none' }}
-                  onMouseEnter={(e) => { if (t.name === 'General') e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; }}
-                  onMouseLeave={(e) => { if (t.name === 'General') e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; }}>
-                  Get {t.name} Ticket
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <div className="rounded-2xl p-6 text-center" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-            <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              Virtual attendance is <strong className="text-white">100% free</strong> — stream all keynotes and panels live from anywhere.{' '}
-              <button type="button" onClick={() => openModal('virtual')} style={{ color: '#2FA6B3', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer', fontSize: 'inherit' }}>Register for free virtual access →</button>
+          <div className="mt-16 md:mt-20 pt-12 border-t border-white/10">
+            <SectionLabel>What is broken behind the scenes?</SectionLabel>
+            <h3 className="font-black text-2xl md:text-4xl mb-4 leading-tight">
+              What Is <span className="text-[#F39C24]">Silently Killing</span> Your Growth?
+            </h3>
+            <p className="text-white/55 max-w-2xl mb-8 text-sm md:text-base">
+              Most growing enterprises in Kenya aren&apos;t failing due to product quality; they are hitting a ceiling
+              because their internal operations are stuck in the past. At this summit, we pull back the curtain on live,
+              active systems built to solve these exact local problems.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── APPLY TO SPEAK ─────────────────────────────────────────────── */}
-      <section className="py-32" style={{ background: '#080F1C' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left — value copy */}
-            <div>
-              <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#F39C24', fontFamily: 'monospace' }}>Apply to Speak</p>
-              <h2 className="font-black mb-6" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}>
-                Got something worth<br />
-                <span style={{ color: '#F39C24' }}>300 people hearing?</span>
-              </h2>
-              <p className="text-base leading-relaxed mb-10" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                We&apos;re building a lineup of builders, practitioners, and leaders who are actually doing the work. No fluff, no generic decks. We want real insights, live demos, and lessons from the field.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
-                {SPEAK_PERKS.map((p) => (
-                  <div key={p.title} className="rounded-xl p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                    <span className="text-2xl mb-3 block">{p.icon}</span>
-                    <h4 className="font-bold text-white text-sm mb-2">{p.title}</h4>
-                    <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>{p.desc}</p>
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="space-y-4">
+                {OPERATIONAL_PAINS.map((p) => (
+                  <div key={p.title} className="rounded-xl p-4 border border-red-500/20 bg-red-500/5">
+                    <p className="text-sm font-bold text-white mb-1">
+                      <span className="text-red-400 mr-1">🔴</span> {p.title}
+                    </p>
+                    <p className="text-sm text-white/55">{p.desc}</p>
                   </div>
                 ))}
               </div>
-              <div className="rounded-xl p-5 mb-8" style={{ background: 'rgba(243,156,36,0.07)', border: '1px solid rgba(243,156,36,0.2)' }}>
-                <p className="text-sm font-semibold text-white mb-1">Topics we&apos;re looking for</p>
-                <p className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                  AI in business operations · Practical ML · East Africa tech ecosystem · Startup growth · Data strategy · Future of work · Developer tooling · Digital finance
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 h-[280px] md:h-[320px] isolate">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={EVENT_PHOTOS.speaker1}
+                  alt="Executive presentation — Nairobi business summit"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 z-[1] h-2/3 pointer-events-none bg-gradient-to-t from-[#060B18] via-[#060B18]/50 to-transparent"
+                  aria-hidden
+                />
+                <p className="absolute bottom-4 left-4 right-4 z-[2] text-xs text-white/90 font-medium drop-shadow-md">
+                  High-level corporate authority — operators taking notes, not passive audiences.
                 </p>
               </div>
-              <a href="/events/speak" className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-lg transition-all" style={{ background: '#F39C24', color: '#080F1C', fontSize: '1rem', textDecoration: 'none' }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#E48B18')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#F39C24')}>
-                Apply to Speak
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VENUE: SARIT ── */}
+      <section id="venue" className="relative z-10 py-16 md:py-24 bg-[#0A1628] border-y border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+            <div>
+              <SectionLabel>Venue</SectionLabel>
+              <h2 className="font-black text-3xl md:text-5xl mb-5 leading-tight">
+                Sarit <span className="text-[#F39C24]">Expo Centre</span>
+              </h2>
+              <div className="grid sm:grid-cols-2 gap-4 md:gap-5 mb-6 items-stretch">
+                <p className="text-white/55 text-sm md:text-base leading-relaxed">
+                  Hosted inside the <strong className="text-white">Sarit Centre</strong> complex in Westlands — Nairobi&apos;s established hub for conferences, exhibitions, and business events. Same compound as Sarit Centre mall: easy parking, Uber drop-off, and matatu access from Westlands roundabout.
+                </p>
+                <div className="relative h-[200px] sm:h-auto sm:min-h-[200px] rounded-2xl overflow-hidden border border-white/10 isolate">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={EVENT_PHOTOS.meetingNetwork}
+                    alt="Meeting and networking at Sarit Expo Centre"
+                    className="absolute inset-0 h-full w-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+              <ul className="space-y-3 mb-8">
+                {[
+                  'Sarit Expo Centre, Westlands, Nairobi',
+                  'Parking: Sarit Centre parking complex',
+                  'Matatu 106, 107, 108 → Westlands (3 min walk)',
+                  'Doors 1:45 PM · Programme starts 2:00 PM',
+                ].map((line) => (
+                  <li key={line} className="flex gap-3 text-sm text-white/70">
+                    <span className="text-[#2FA6B3] shrink-0">▸</span>
+                    {line}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://maps.google.com/?q=Sarit+Expo+Centre+Westlands+Nairobi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#2FA6B3] hover:underline"
+              >
+                Open in Google Maps →
               </a>
             </div>
+            <div className="flex flex-col gap-4">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 h-[180px] md:h-[200px] isolate">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={EVENT_PHOTOS.venue}
+                  alt="Sarit Expo Centre — Westlands Nairobi"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:min-h-[240px] relative bg-[#060B18]">
+                <iframe
+                  title="Sarit Expo Centre map"
+                  src={MAPS_EMBED}
+                  className="absolute inset-0 w-full h-full min-h-[240px] border-0 grayscale-[20%] contrast-[1.1]"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Right — sponsor */}
+      {/* ── WHO + LANYARDS ── */}
+      <section className="relative z-10 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel>Who attends</SectionLabel>
+          <h2 className="font-black text-3xl md:text-5xl mb-12">Built for builders & decision-makers.</h2>
+          <div className="grid md:grid-cols-3 gap-5 mb-16">
+            {FOR_WHO.map((w) => (
+              <div key={w.audience} className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
+                <div className="relative h-[140px] isolate">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={w.image}
+                    alt={w.audience}
+                    className="absolute inset-0 h-full w-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060B18] via-[#060B18]/40 to-transparent" aria-hidden />
+                </div>
+                <div className="p-6">
+                  <span className="text-2xl mb-3 block">{w.icon}</span>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-[#2FA6B3] font-mono mb-2">{w.audience}</p>
+                  <h3 className="font-black text-lg text-white mb-4">{w.headline}</h3>
+                  <ul className="space-y-2">
+                    {w.bullets.map((b) => (
+                      <li key={b} className="text-sm text-white/55 flex gap-2">
+                        <span className="text-[#F39C24]">✓</span> {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-2xl p-6 md:p-8 border border-[#2FA6B3]/20 bg-[#0A2540]/50">
+            <SectionLabel>Smart networking</SectionLabel>
+            <h3 className="font-black text-xl md:text-2xl mb-4">Colour-coded lanyards at registration</h3>
+            <p className="text-sm text-white/55 mb-6 max-w-2xl">
+              Pick your category when you register. Your lanyard colour signals who you are — developers find developers, founders find founders, in seconds.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {EVENT_LANYARDS.map((l) => (
+                <div
+                  key={l.id}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/[0.03]"
+                >
+                  <span className="w-3 h-3 rounded-full shrink-0" style={{ background: l.color }} />
+                  <div>
+                    <p className="text-xs font-bold text-white">{l.label}</p>
+                    <p className="text-[10px] text-white/40">{l.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── GALLERY ── */}
+      <section className="relative z-10 py-16 md:py-24 bg-[#0A1628]/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel>On the day</SectionLabel>
+          <h2 className="font-black text-3xl md:text-5xl mb-8">Tech conference energy at Sarit.</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {GALLERY.map((g) => (
+              <div
+                key={g.src}
+                className={`relative rounded-xl overflow-hidden border border-white/10 isolate ${
+                  g.featured
+                    ? 'col-span-2 row-span-2 h-[240px] sm:h-[300px] md:h-[380px]'
+                    : 'h-[140px] sm:h-[160px] md:h-[185px]'
+                }`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  loading={g.featured ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 z-[1] h-2/3 pointer-events-none bg-gradient-to-t from-[#060B18] via-[#060B18]/55 to-transparent"
+                  aria-hidden
+                />
+                <p className="absolute bottom-3 left-3 right-3 z-[2] text-xs font-semibold text-white drop-shadow-md">
+                  {g.caption}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── AGENDA ── */}
+      <section id="agenda" className="relative z-10 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel>Agenda</SectionLabel>
+          <h2 className="font-black text-3xl md:text-5xl mb-10">One afternoon. Zero filler.</h2>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div className="max-w-2xl space-y-3">
+              {AGENDA.map((item) => (
+                <div
+                  key={item.time}
+                  className={`flex gap-4 md:gap-6 items-start rounded-xl p-4 border ${
+                    item.highlight ? 'border-[#F39C24]/30 bg-[#F39C24]/5' : 'border-white/10 bg-white/[0.02]'
+                  }`}
+                >
+                  <span className="font-mono text-sm font-bold text-[#2FA6B3] shrink-0 w-12">{item.time}</span>
+                  <p className="text-sm md:text-base text-white/85 font-medium">{item.label}</p>
+                </div>
+              ))}
+            </div>
+            <div className="relative h-[280px] lg:min-h-[320px] rounded-2xl overflow-hidden border border-white/10 isolate">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={EVENT_PHOTOS.crowd}
+                alt="Afternoon programme at Sarit Expo Centre"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TOPICS ── */}
+      <section className="relative z-10 py-16 md:py-24 bg-[#0A1628] border-y border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel>Programme themes</SectionLabel>
+          <h2 className="font-black text-3xl md:text-5xl mb-10">Six deep-dives.</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {TOPICS.map((t) => (
+              <div key={t.num} className="rounded-xl p-5 border border-white/10 bg-white/[0.02] relative overflow-hidden">
+                <span className="absolute top-3 right-4 text-5xl font-black text-[#2FA6B3]/10 font-mono">{t.num}</span>
+                <h4 className="font-bold text-white mb-2 relative z-10">{t.title}</h4>
+                <p className="text-sm text-white/50 relative z-10">{t.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── LIVE PRODUCTION PROOF ── */}
+      <section id="live-proof" className="relative z-10 py-16 md:py-24 bg-[#0A1628] border-y border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel>Monday action plan</SectionLabel>
+          <h2 className="font-black text-3xl md:text-5xl mb-4 leading-tight">
+            Real Systems. Real Production. <span className="text-[#2FA6B3]">Zero Decks.</span>
+          </h2>
+          <p className="text-white/55 max-w-2xl mb-10 text-sm md:text-base">
+            We don&apos;t do theoretical PowerPoint presentations. During the{' '}
+            <strong className="text-white">16:45 Systems Workshop</strong>, we open live development servers to
+            demonstrate:
+          </p>
+          <ul className="space-y-3 mb-10 max-w-2xl">
+            <li className="flex gap-3 text-sm text-white/70">
+              <span className="text-[#2FA6B3] shrink-0">▸</span>
+              How to architect an automated invoicing script that triggers text alerts the second an account falls
+              behind.
+            </li>
+            <li className="flex gap-3 text-sm text-white/70">
+              <span className="text-[#2FA6B3] shrink-0">▸</span>
+              How to structure an AI-driven data layer that pulls raw operational metrics into a clean executive
+              dashboard your leadership team can read in 5 seconds.
+            </li>
+          </ul>
+          <div className="grid lg:grid-cols-2 gap-6 items-stretch">
+            <div className="relative rounded-2xl overflow-hidden border border-[#2FA6B3]/25 bg-[#060B18] h-[240px] md:h-[280px] isolate">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={EVENT_PHOTOS.speaker2}
+                alt="Live automation systems — production code"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="absolute top-4 left-4 z-[2] px-3 py-1.5 rounded-lg bg-[#F39C24] text-[#060B18] text-[10px] font-black uppercase tracking-wider">
+                Live production demo — no fluff
+              </span>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 h-[240px] md:h-[280px] isolate">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={EVENT_PHOTOS.oneOnOne}
+                alt="Mobile-responsive business application"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="absolute inset-x-0 bottom-0 z-[1] h-2/3 pointer-events-none bg-gradient-to-t from-[#060B18] via-[#060B18]/55 to-transparent" aria-hidden />
+              <p className="absolute bottom-4 left-4 right-4 text-xs text-white/80">
+                IDE-grade automation next to production mobile views — what you ship Monday, not slides.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TICKETS + REGISTER ── */}
+      <section id="register" className="relative z-10 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
-              <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#2FA6B3', fontFamily: 'monospace' }}>Sponsor the Event</p>
-              <h2 className="font-black mb-6" style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', lineHeight: 1.1 }}>
-                Put your brand in front of the people{' '}
-                <span style={{ color: '#2FA6B3' }}>who build things.</span>
-              </h2>
-              <p className="text-base leading-relaxed mb-10" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                300+ founders, developers, and executives in one room — an audience that makes purchasing decisions and shapes technology for East African businesses. Sponsoring gives you direct access, not just a logo.
+              <SectionLabel>Tickets</SectionLabel>
+              <h2 className="font-black text-3xl md:text-5xl mb-4">Choose your experience.</h2>
+              <p className="text-sm text-white/50 mb-6 max-w-lg">
+                Know exactly what you are paying for — each tier is built for a specific role in the room.
               </p>
 
-              <div className="flex flex-col gap-4 mb-10">
-                {SPONSOR_TIERS.map((s, i) => (
-                  <div key={s.level} className="rounded-xl p-5 flex gap-4 items-start" style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${i === 2 ? 'rgba(243,156,36,0.3)' : i === 1 ? 'rgba(192,192,192,0.2)' : 'rgba(205,127,50,0.2)'}` }}>
-                    <span className="font-black text-2xl shrink-0" style={{ color: i === 2 ? '#F39C24' : i === 1 ? '#C0C0C0' : '#CD7F32' }}>
-                      {i === 2 ? '🥇' : i === 1 ? '🥈' : '🥉'}
-                    </span>
-                    <div>
-                      <p className="font-bold text-white mb-1">{s.level} Sponsor</p>
-                      <p className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>{s.benefit}</p>
+              <div className="rounded-2xl p-5 md:p-6 border border-[#2FA6B3]/20 bg-[#0A2540]/40 mb-8">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-[#2FA6B3] mb-3">Smart networking</p>
+                <p className="text-sm text-white/55 mb-4">
+                  Pick up your colour-coded lanyard at registration — instantly see who to talk to without awkward
+                  icebreakers.
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {LANYARD_SHOWCASE.map((l) => (
+                    <div key={l.id} className="text-center rounded-xl p-3 border border-white/10 bg-white/[0.03]">
+                      <span
+                        className="inline-block w-10 h-10 rounded-full mb-2 ring-2 ring-white/20"
+                        style={{ background: l.color }}
+                      />
+                      <p className="text-xs font-bold text-white">{l.label}</p>
+                      <p className="text-[9px] text-white/40 mt-1 leading-tight">{l.hint}</p>
                     </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-4 mb-8">
+                {TICKET_TIERS.map((t) => (
+                  <div
+                    key={t.name}
+                    className="rounded-xl p-5 md:p-6 border"
+                    style={{ borderColor: t.border, background: t.bg }}
+                  >
+                    <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
+                      <div>
+                        {t.tag && (
+                          <span className="text-[9px] font-black uppercase tracking-widest text-[#2FA6B3] font-mono block mb-1">
+                            {t.tag}
+                          </span>
+                        )}
+                        <p className="text-lg font-black text-white">
+                          {t.emoji} {t.name} Ticket — KES {t.price}
+                        </p>
+                        <p className="text-xs text-[#F39C24] font-semibold mt-1">{t.audience}</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => openModal(t.key)}
+                        className="px-5 py-2.5 rounded-lg text-sm font-bold bg-[#2FA6B3] text-[#060B18] hover:bg-[#268F9A] shrink-0"
+                      >
+                        Book
+                      </button>
+                    </div>
+                    <p className="text-sm text-white/60 leading-relaxed">
+                      <strong className="text-white/90">The value:</strong> {t.value}
+                    </p>
+                    {'bonus' in t && t.bonus ? (
+                      <p className="text-xs text-[#F39C24]/90 mt-3 pt-3 border-t border-white/10 leading-relaxed">
+                        {t.bonus}
+                      </p>
+                    ) : null}
                   </div>
                 ))}
               </div>
-
-              <button
-                type="button"
-                onClick={() => openSponsor('silver')}
-                className="inline-flex items-center gap-2 font-bold px-8 py-4 rounded-lg transition-all w-full justify-center"
-                style={{ border: '1px solid rgba(47,166,179,0.4)', color: '#2FA6B3', fontSize: '1rem', background: 'transparent' }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(47,166,179,0.08)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}>
-                Apply to Sponsor
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </button>
             </div>
+            <EventsRegisterSection />
           </div>
         </div>
       </section>
 
-      {/* ── REGISTER CTA ──────────────────────────────────────────────── */}
-      <section id="register" className="py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0D2040 0%, #112233 50%, #0D2040 100%)' }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(47,166,179,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(47,166,179,0.07) 1px, transparent 1px)', backgroundSize: '64px 64px' }} />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-12 text-center">
-          <p className="text-xs uppercase tracking-widest mb-6" style={{ color: '#F39C24', fontFamily: 'monospace' }}>Limited Seats Available</p>
-          <h2 className="font-black mb-6" style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', lineHeight: 1.1 }}>
-            Don&apos;t watch the future<br />
-            <span style={{ color: '#F39C24' }}>happen to someone else.</span>
-          </h2>
-          <p className="mb-12 text-lg" style={{ color: 'rgba(255,255,255,0.6)' }}>
-            300 in-person seats. 20 June 2026. Sarit Expo Centre, Westlands, Nairobi.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6">
-            <input type="email" placeholder="Your email address" value={quickEmail} onChange={(e) => setQuickEmail(e.target.value)} className="flex-1 px-5 py-4 rounded-lg font-medium focus:outline-none" style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', fontSize: '0.9375rem' }} />
-            <button type="button" onClick={() => openModal('standard')} className="font-bold px-7 py-4 rounded-lg whitespace-nowrap transition-all" style={{ background: '#F39C24', color: '#080F1C', fontSize: '0.9375rem' }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#E48B18')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#F39C24')}>
-              Register Now →
+      {/* ── SPEAK / SPONSOR ── */}
+      <section className="relative z-10 py-16 md:py-24 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10">
+          <div>
+            <SectionLabel>Speakers</SectionLabel>
+            <h3 className="font-black text-2xl md:text-3xl mb-4">Apply to speak</h3>
+            <p className="text-sm text-white/55 mb-6">Practical talks and field lessons preferred over generic decks.</p>
+            <Link
+              href="/events/speak/"
+              className="inline-flex font-bold px-6 py-3 rounded-xl bg-[#F39C24] text-[#060B18] hover:bg-[#E48B18] text-sm"
+            >
+              Apply to Speak →
+            </Link>
+          </div>
+          <div>
+            <SectionLabel>Sponsors</SectionLabel>
+            <h3 className="font-black text-2xl md:text-3xl mb-4">Partner with the event</h3>
+            <p className="text-sm text-white/55 mb-6">Brand visibility, session segments, and direct access to 300+ decision-makers in Nairobi.</p>
+            <button
+              type="button"
+              onClick={() => setSponsorOpen(true)}
+              className="inline-flex font-bold px-6 py-3 rounded-xl border border-[#2FA6B3]/40 text-[#2FA6B3] hover:bg-[#2FA6B3]/10 text-sm"
+            >
+              Apply to Sponsor →
             </button>
           </div>
-          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.35)' }}>
-            General: KES 1,500 &nbsp;·&nbsp; Standard: KES 2,500 &nbsp;·&nbsp; VIP: KES 3,500 &nbsp;·&nbsp; Virtual: Free
-          </p>
         </div>
       </section>
 
-      {/* ── CONTACT STRIP ──────────────────────────────────────────────── */}
-      <section className="py-20" style={{ background: '#0D1526', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
-          <p className="font-semibold text-lg text-white mb-2">Have questions?</p>
-          <p className="mb-8 text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>Reach us directly — we respond fast.</p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <a href="https://wa.me/254708805496?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20the%20CRES%20Dynamics%20AI%20Event." target="_blank" rel="noopener noreferrer" className="font-semibold text-sm" style={{ color: '#2FA6B3' }}>WhatsApp Us</a>
-            <a href="mailto:info@cresdynamics.com" className="font-semibold text-sm" style={{ color: '#2FA6B3' }}>info@cresdynamics.com</a>
-            <a href="tel:+254708805496" className="font-semibold text-sm" style={{ color: '#2FA6B3' }}>+254 708 805 496</a>
+      {/* ── FAQ ── */}
+      <section className="relative z-10 py-16 md:py-24 bg-[#0A1628]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <SectionLabel>FAQ</SectionLabel>
+          <h2 className="font-black text-3xl mb-8">Before you register</h2>
+          <div className="space-y-2">
+            {FAQ.map((item, i) => (
+              <div key={item.q} className="rounded-xl border border-white/10 overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex justify-between items-center gap-4 p-4 md:p-5 text-left font-semibold text-white hover:bg-white/[0.03]"
+                >
+                  {item.q}
+                  <span className="text-[#2FA6B3] text-xl shrink-0">{openFaq === i ? '−' : '+'}</span>
+                </button>
+                {openFaq === i && <p className="px-4 md:px-5 pb-4 md:pb-5 text-sm text-white/55 leading-relaxed">{item.a}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONTACT ── */}
+      <section className="relative z-10 py-12 border-t border-white/10">
+        <div className="max-w-xl mx-auto px-4 text-center">
+          <p className="font-semibold text-white mb-2">Questions? Talk to Nelson</p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <a href="https://wa.me/254708805496" className="text-[#2FA6B3] font-semibold hover:underline" target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
+            <a href="mailto:info@cresdynamics.com" className="text-[#2FA6B3] font-semibold hover:underline">
+              info@cresdynamics.com
+            </a>
           </div>
         </div>
       </section>
 
       <Footer />
 
-      <EventsRegistrationModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        prefilledEmail={quickEmail}
-        defaultTicket={selectedTicket}
-      />
-      <EventsSponsorModal
-        isOpen={sponsorOpen}
-        onClose={() => setSponsorOpen(false)}
-        defaultTier={sponsorTier}
-      />
+      {/* Sticky mobile CTA */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-3 md:hidden bg-[#060B18]/95 border-t border-white/10 backdrop-blur-md safe-area-pb">
+        <button
+          type="button"
+          onClick={() => openModal('standard')}
+          className="w-full py-3.5 rounded-xl font-black text-sm bg-[#F39C24] text-[#060B18]"
+        >
+          Register — From KES 1,500
+        </button>
+      </div>
+
+      <EventsRegistrationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} defaultTicket={selectedTicket} />
+      <EventsSponsorModal isOpen={sponsorOpen} onClose={() => setSponsorOpen(false)} defaultTier={sponsorTier} />
     </div>
+  );
+}
+
+export default function EventsContent() {
+  return (
+    <Suspense fallback={null}>
+      <EventsContentInner />
+    </Suspense>
   );
 }

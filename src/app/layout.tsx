@@ -1,8 +1,19 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import PerformanceMonitor from "@/components/PerformanceMonitor";
-import AIChatWidget from "@/components/AIChatWidget";
+import DeferredClientWidgets from "@/components/DeferredClientWidgets";
 import PageTransitionShell from "@/components/PageTransitionShell";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  preload: true,
+});
+
+/** Marketing pages: pre-rendered static HTML at build; dynamic routes override below */
+export const dynamic = "force-static";
+export const revalidate = false;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://cresdynamics.com'),
@@ -162,7 +173,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2WR5M5FGH"></script>
@@ -186,19 +197,6 @@ export default function RootLayout({
         {/* Preconnect to critical origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-
-        {/* Resource hints for performance */}
-        <link rel="modulepreload" href="/_next/static/chunks/webpack.js" />
-        <link rel="modulepreload" href="/_next/static/chunks/main.js" />
-
-        {/* Prefetch likely navigation targets */}
-        <link rel="prefetch" href="/about" />
-        <link rel="prefetch" href="/contact" />
-        <link rel="prefetch" href="/cresos" />
-        <link rel="prefetch" href="/how-we-build" />
-        <link rel="prefetch" href="/how-we-work" />
-        <link rel="prefetch" href="/marketing" />
-        <link rel="prefetch" href="/case-studies" />
 
         {/* Favicon and App Icons - Circular Logo as favicon */}
         <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
@@ -242,30 +240,8 @@ export default function RootLayout({
         <meta name="ai.integration" content="AI-powered automation, AI decision support, Intelligent workflows" />
         <meta name="speed.focus" content="Fast ERP development, Quick implementation, Rapid deployment" />
 
-        {/* Preload critical fonts - multiple weights for hero */}
-        <link
-          rel="preload"
-          href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuDyfAZ9hjp-Ek-_EeA.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin=""
-        />
-        
         {/* Preload logo for instant display */}
         <link rel="preload" href="/favicon-circular.png" as="image" fetchPriority="high" />
-        
-        {/* Optimized font loading with display=swap for instant FCP */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
 
         {/* Font Awesome - deferred loading for better FCP */}
         <link
@@ -453,47 +429,18 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased">
-        <PerformanceMonitor />
+      <body className={`${inter.className} antialiased`}>
         <PageTransitionShell>{children}</PageTransitionShell>
-        <AIChatWidget />
+        <DeferredClientWidgets />
 
-        {/* Performance optimizations */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              // Critical resource loading optimization
-              window.addEventListener('load', function() {
-                // Preload likely user interactions
-                const links = document.querySelectorAll('a[href^="/"]');
-                links.forEach(link => {
-                  const href = link.getAttribute('href');
-                  if (href && href !== '/' && !href.includes('#')) {
-                    const linkEl = document.createElement('link');
-                    linkEl.rel = 'prefetch';
-                    linkEl.href = href;
-                    document.head.appendChild(linkEl);
-                  }
-                });
-              });
-
-              // Service worker cleanup: old cached bundles can break Next.js server actions
               if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.getRegistrations()
-                    .then(function(registrations) {
-                      registrations.forEach(function(reg) { reg.unregister(); });
-                    })
+                    .then(function(regs) { regs.forEach(function(r) { r.unregister(); }); })
                     .catch(function() {});
-                  if ('caches' in window) {
-                    caches.keys()
-                      .then(function(keys) {
-                        keys.forEach(function(key) {
-                          if (key.indexOf('cres-') === 0) caches.delete(key);
-                        });
-                      })
-                      .catch(function() {});
-                  }
                 });
               }
             `,

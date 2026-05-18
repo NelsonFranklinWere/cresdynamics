@@ -1,3 +1,5 @@
+import { publicAssetPath } from '@/lib/public-asset';
+
 /** Screenshots in /public/whitelight — Whitelight Store case study */
 export const WHITELIGHT_SCREENSHOT_FILES = [
   'Screenshot 2026-03-21 at 16.04.27.png',
@@ -17,7 +19,7 @@ export const WHITELIGHT_SCREENSHOT_FILES = [
 ] as const;
 
 export function whitelightPublicPath(filename: string): string {
-  return `/whitelight/${filename}`;
+  return publicAssetPath('whitelight', filename);
 }
 
 export function whitelightImageItems() {

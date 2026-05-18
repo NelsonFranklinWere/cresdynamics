@@ -2,10 +2,12 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CaseStudyHeadline from '@/components/case-studies/CaseStudyHeadline';
+import { CASE_STUDY_HEADLINES } from '@/lib/caseStudyHeadlines';
 
 export default function BoutiqueCaseStudyPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--cres-primary-bg)] text-white">
       <Header />
 
       {/* SECTION 1: Quiet Authority Hero */}
@@ -16,21 +18,18 @@ export default function BoutiqueCaseStudyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-[0-9]xl md:text-[0-9]xl lg:text-[0-9]xl font-black underline-custom text-white leading-tight mb-8">
-            When your business exists<br />
-            <span className="text-[var(--cres-electric-teal)]">— but customers can't find it.</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-            This boutique had quality products and loyal walk-in customers, but struggled with online visibility.
-          </p>
+          <CaseStudyHeadline
+            {...CASE_STUDY_HEADLINES['karen-boutique-retail']}
+            centered
+            className="mb-12 max-w-4xl"
+          />
         </div>
       </section>
 
       {/* SECTION 2: Pattern Recognition */}
-      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 relative">
+      <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             Different industries. The same hidden problems.
           </h2>
 
@@ -38,7 +37,7 @@ export default function BoutiqueCaseStudyPage() {
             Most businesses face structural problems, not effort problems. Growth becomes tied to the owner, opportunities slip away after hours, visibility depends entirely on paid advertising, and there's no predictability in the business model.
           </p>
 
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg">
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg">
             <p className="text-lg text-white font-medium">
               This creates a ceiling effect. The business can grow to a certain point through effort and hustle, but then stalls because the foundational systems can't support further expansion.
             </p>
@@ -47,7 +46,7 @@ export default function BoutiqueCaseStudyPage() {
       </section>
 
       {/* CASE STUDY CARD STRUCTURE */}
-      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20">
+      <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
 
           {/* Industry Label */}
@@ -58,8 +57,8 @@ export default function BoutiqueCaseStudyPage() {
           </div>
 
           {/* The Situation (Reality-Based) */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">The Situation</h3>
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg shadow-sm mb-8">
+            <h3 className="text-2xl font-bold text-white mb-6">The Situation</h3>
             <p className="text-white text-lg leading-relaxed mb-6">
               The boutique depended on occasional Instagram ads, inconsistent traffic patterns, and had no predictable lead flow. Sales fluctuated significantly, and growth felt uncertain despite quality products and a desirable location.
             </p>
@@ -80,8 +79,8 @@ export default function BoutiqueCaseStudyPage() {
           </div>
 
           {/* The Strategic Rethink */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">The Strategic Rethink</h3>
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg shadow-sm mb-8">
+            <h3 className="text-2xl font-bold text-white mb-6">The Strategic Rethink</h3>
             <p className="text-white text-lg leading-relaxed mb-8">
               Instead of chasing attention through ads, the focus shifted to building a system that attracts customers before they're ready to buy. Visibility needed to compound over time rather than reset with each advertising campaign.
             </p>
@@ -110,8 +109,8 @@ export default function BoutiqueCaseStudyPage() {
           </div>
 
           {/* Production System Metrics */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">Production System Metrics</h3>
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg mb-8">
+            <h3 className="text-2xl font-bold text-white mb-6">Production System Metrics</h3>
             <p className="text-white text-lg leading-relaxed mb-6">
               The Business Operations System is now in production, providing predictable monthly lead flow with reduced dependency on paid advertising. Customer behavior became visible and measurable, with clear insights into shopping patterns and preferences.
             </p>
@@ -157,7 +156,7 @@ export default function BoutiqueCaseStudyPage() {
       {/* FINAL SECTION: Silent Urgency Close */}
       <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)]">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             Growth doesn't break businesses.<br />
             <span className="text-[var(--cres-electric-teal)]">Weak systems do.</span>
           </h2>

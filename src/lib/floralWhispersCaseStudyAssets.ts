@@ -1,3 +1,5 @@
+import { publicAssetPath } from '@/lib/public-asset';
+
 /** Screenshots in /public/floralwhispers — Floral Whispers Gifts case study */
 export const FLORAL_WHISPERS_SCREENSHOT_FILES = [
   'Screenshot 2026-03-21 at 15.41.27.png',
@@ -11,7 +13,7 @@ export const FLORAL_WHISPERS_SCREENSHOT_FILES = [
 ] as const;
 
 export function floralWhispersPublicPath(filename: string): string {
-  return `/floralwhispers/${filename}`;
+  return publicAssetPath('floralwhispers', filename);
 }
 
 export function floralWhispersImageItems() {

@@ -2,10 +2,12 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CaseStudyHeadline from '@/components/case-studies/CaseStudyHeadline';
+import { CASE_STUDY_HEADLINES } from '@/lib/caseStudyHeadlines';
 
 export default function SaccoCaseStudyPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--cres-primary-bg)] text-white">
       <Header />
 
       {/* SECTION 1: Quiet Authority Hero */}
@@ -16,21 +18,18 @@ export default function SaccoCaseStudyPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-[0-9]xl md:text-[0-9]xl lg:text-[0-9]xl font-black underline-custom text-white leading-tight mb-8">
-            When opportunity arrives after hours<br />
-            <span className="text-[var(--cres-electric-teal)]">— and no one is there to receive it.</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-            This SACCO had demand, inquiries, and interest — but lost momentum outside working hours.
-          </p>
+          <CaseStudyHeadline
+            {...CASE_STUDY_HEADLINES['sacco-financial-services']}
+            centered
+            className="mb-12 max-w-4xl"
+          />
         </div>
       </section>
 
       {/* SECTION 2: Pattern Recognition */}
-      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20 bg-texture bg-cover">
+      <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-[0-9]xl font-black underline-custom text-[var(--cres-deep-navy)] mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             Different industries. The same hidden problems.
           </h2>
 
@@ -38,8 +37,8 @@ export default function SaccoCaseStudyPage() {
             Most businesses face structural problems, not effort problems. Growth becomes tied to the owner, opportunities slip away after hours, visibility depends entirely on paid advertising, and there's no predictability in the business model.
           </p>
 
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg">
-            <p className="text-lg text-[var(--cres-deep-navy)] font-medium">
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg">
+            <p className="text-lg text-white font-medium">
               This creates a ceiling effect. The business can grow to a certain point through effort and hustle, but then stalls because the foundational systems can't support further expansion.
             </p>
           </div>
@@ -47,7 +46,7 @@ export default function SaccoCaseStudyPage() {
       </section>
 
       {/* CASE STUDY CARD STRUCTURE */}
-      <section className="py-12 md:py-20 bg-black/70 backdrop-blur-sm border border-white/20">
+      <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
 
           {/* Industry Label */}
@@ -58,8 +57,8 @@ export default function SaccoCaseStudyPage() {
           </div>
 
           {/* The Situation (Reality-Based) */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">The Situation</h3>
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg shadow-sm mb-8">
+            <h3 className="text-2xl font-bold text-white mb-6">The Situation</h3>
             <p className="text-white text-lg leading-relaxed mb-6">
               The SACCO relied on manual WhatsApp responses, office-hour follow-ups, and staff-dependent engagement. Leads came in consistently, but many went cold before any response could be provided.
             </p>
@@ -80,8 +79,8 @@ export default function SaccoCaseStudyPage() {
           </div>
 
           {/* The System Built */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">The System Built</h3>
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg shadow-sm mb-8">
+            <h3 className="text-2xl font-bold text-white mb-6">The System Built</h3>
             <p className="text-white text-lg leading-relaxed mb-8">
               We built an AI & Automation System that never sleeps, never forgets, and never delays. This wasn't about replacing people — it was about building a system that protects opportunity and ensures consistent service quality.
             </p>
@@ -110,8 +109,8 @@ export default function SaccoCaseStudyPage() {
           </div>
 
           {/* Production Metrics */}
-          <div className="bg-black/70 backdrop-blur-sm border border-white/20 p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-deep-navy)] mb-6">Production System Metrics</h3>
+          <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg mb-8">
+            <h3 className="text-2xl font-bold text-white mb-6">Production System Metrics</h3>
             <p className="text-white text-lg leading-relaxed mb-6">
               The automation system is now in production, providing 24/7 lead engagement with consistent application flow processing. The system runs in the background without disrupting existing operations or requiring additional staffing.
             </p>
@@ -157,7 +156,7 @@ export default function SaccoCaseStudyPage() {
       {/* FINAL SECTION: Silent Urgency Close */}
       <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)]">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-[0-9]xl font-black underline-custom text-white mb-8">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
             Growth doesn't break businesses.<br />
             <span className="text-[var(--cres-electric-teal)]">Missing systems do.</span>
           </h2>
