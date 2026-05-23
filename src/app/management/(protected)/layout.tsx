@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { cookies, headers } from 'next/headers';
+import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { connection } from 'next/server';
-import { ADMIN_COOKIE_NAME, verifyAdminSessionToken } from '@/lib/adminAuth';
-import { getAdminSessionFromCookieHeader } from '@/lib/adminSessionFromHeaders';
+import { ADMIN_VERIFIED_HEADER } from '@/lib/adminSessionEdge';
 import LogoutButton from '@/app/management/LogoutButton';
 
 export const runtime = 'nodejs';
@@ -33,12 +32,8 @@ export default async function ManagementProtectedLayout({
   children: React.ReactNode;
 }) {
   await connection();
-  const cookieStore = await cookies();
-  const token = cookieStore.get(ADMIN_COOKIE_NAME)?.value;
-  const session =
-    verifyAdminSessionToken(token) ??
-    getAdminSessionFromCookieHeader((await headers()).get('cookie'));
-  if (!session) {
+  const adminEmail = (await headers()).get(ADMIN_VERIFIED_HEADER);
+  if (!adminEmail) {
     redirect('/management/login/');
   }
 
@@ -52,7 +47,7 @@ export default async function ManagementProtectedLayout({
                 Management
               </p>
               <p className="text-sm text-white/70 mt-1">
-                Signed in as <span className="text-white/90 font-semibold">{session.email}</span>
+                Signed in as <span className="text-white/90 font-semibold">{adminEmail}</span>
               </p>
             </div>
 
@@ -83,4 +78,3 @@ export default async function ManagementProtectedLayout({
     </div>
   );
 }
-
