@@ -153,3 +153,24 @@ CREATE TABLE IF NOT EXISTS sponsors_applications (
 
 CREATE INDEX IF NOT EXISTS idx_sponsors_applications_created_at ON sponsors_applications (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_sponsors_applications_email_lower ON sponsors_applications (lower(email));
+
+-- Blog posts (CMS — publish from /management/blog)
+CREATE TABLE IF NOT EXISTS blog_posts (
+  id SERIAL PRIMARY KEY,
+  slug TEXT NOT NULL UNIQUE,
+  title TEXT NOT NULL,
+  excerpt TEXT,
+  category TEXT,
+  body TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published')),
+  meta_title TEXT,
+  meta_description TEXT,
+  author TEXT NOT NULL DEFAULT 'CRES Dynamics',
+  published_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_blog_posts_status_published ON blog_posts (status, published_at DESC NULLS LAST);
+CREATE INDEX IF NOT EXISTS idx_blog_posts_slug ON blog_posts (slug);
+CREATE INDEX IF NOT EXISTS idx_blog_posts_updated_at ON blog_posts (updated_at DESC);

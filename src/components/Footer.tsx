@@ -67,7 +67,8 @@ export default function Footer() {
               <li><a href="/proof-of-work" className={linkClass}>Proof of Work</a></li>
               <li><a href="/marketing" className={linkClass}>Marketing</a></li>
               <li><a href="/projects" className={linkClass}>Projects</a></li>
-              <li><a href="/insights" className={linkClass}>Insights / Blog</a></li>
+              <li><a href="/blog" className={linkClass}>Blog</a></li>
+              <li><a href="/insights" className={linkClass}>Insights</a></li>
               <li><a href="/case-studies" className={linkClass}>Case Studies</a></li>
               <li><a href="/growth-guides" className={linkClass}>Growth Guides</a></li>
             </ul>

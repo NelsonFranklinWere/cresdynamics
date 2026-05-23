@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
+        allow: ['/', '/blog/', '/insights/'],
         disallow: ['/api/', '/_next/', '/management/'],
       },
     ],
@@ -15,4 +15,3 @@ export default function robots(): MetadataRoute.Robots {
     host: 'https://cresdynamics.com',
   };
 }
-

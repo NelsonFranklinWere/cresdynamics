@@ -5,6 +5,18 @@ import {
   insertEventReservationLocal,
   isLocalEventStoreEnabled,
 } from '@/lib/local-event-store';
+import {
+  createBlogPostLocal,
+  deleteBlogPostLocal,
+  getBlogPostByIdLocal,
+  getBlogPostBySlugLocal,
+  isLocalBlogStoreEnabled,
+  listBlogPostsLocal,
+  updateBlogPostLocal,
+} from '@/lib/local-blog-store';
+import type { BlogPostInput, BlogPostRow, BlogPostStatus } from '@/lib/blog-utils';
+
+export type { BlogPostInput, BlogPostRow, BlogPostStatus };
 
 let pool: Pool | null = null;
 
@@ -1048,5 +1060,182 @@ export async function updateSponsorApplicationFields(
     `update sponsors_applications set ${updates.join(', ')} where id = $${i}`,
     vals
   );
+  return (r.rowCount ?? 0) > 0;
+}
+
+function mapBlogPostRow(row: Record<string, unknown>): BlogPostRow {
+  return {
+    id: Number(row.id),
+    slug: String(row.slug),
+    title: String(row.title),
+    excerpt: row.excerpt != null ? String(row.excerpt) : null,
+    category: row.category != null ? String(row.category) : null,
+    body: String(row.body),
+    status: String(row.status) as BlogPostStatus,
+    metaTitle: row.meta_title != null ? String(row.meta_title) : null,
+    metaDescription: row.meta_description != null ? String(row.meta_description) : null,
+    author: String(row.author ?? 'CRES Dynamics'),
+    publishedAt: row.published_at ? new Date(String(row.published_at)).toISOString() : null,
+    createdAt: new Date(String(row.created_at)).toISOString(),
+    updatedAt: new Date(String(row.updated_at)).toISOString(),
+  };
+}
+
+export async function listBlogPosts(includeDrafts = false): Promise<BlogPostRow[]> {
+  const p = getPool();
+  if (!p) {
+    if (isLocalBlogStoreEnabled()) return listBlogPostsLocal(includeDrafts);
+    return [];
+  }
+  const r = await p.query(
+    `
+    SELECT id, slug, title, excerpt, category, body, status, meta_title, meta_description, author,
+           published_at, created_at, updated_at
+    FROM blog_posts
+    ${includeDrafts ? '' : "WHERE status = 'published'"}
+    ORDER BY COALESCE(published_at, created_at) DESC
+    `
+  );
+  return r.rows.map(mapBlogPostRow);
+}
+
+export async function getBlogPostBySlug(slug: string, includeDrafts = false): Promise<BlogPostRow | null> {
+  const p = getPool();
+  if (!p) {
+    if (isLocalBlogStoreEnabled()) {
+      const post = await getBlogPostBySlugLocal(slug);
+      if (!post) return null;
+      if (!includeDrafts && post.status !== 'published') return null;
+      return post;
+    }
+    return null;
+  }
+  const r = await p.query(
+    `
+    SELECT id, slug, title, excerpt, category, body, status, meta_title, meta_description, author,
+           published_at, created_at, updated_at
+    FROM blog_posts
+    WHERE slug = $1 ${includeDrafts ? '' : "AND status = 'published'"}
+  `,
+    [slug]
+  );
+  if (!r.rows[0]) return null;
+  return mapBlogPostRow(r.rows[0]);
+}
+
+export async function getBlogPostById(id: number): Promise<BlogPostRow | null> {
+  const p = getPool();
+  if (!p) {
+    if (isLocalBlogStoreEnabled()) return getBlogPostByIdLocal(id);
+    return null;
+  }
+  const r = await p.query(
+    `
+    SELECT id, slug, title, excerpt, category, body, status, meta_title, meta_description, author,
+           published_at, created_at, updated_at
+    FROM blog_posts
+    WHERE id = $1
+  `,
+    [id]
+  );
+  if (!r.rows[0]) return null;
+  return mapBlogPostRow(r.rows[0]);
+}
+
+export async function createBlogPost(input: BlogPostInput): Promise<number | null> {
+  const p = getPool();
+  if (!p) {
+    if (isLocalBlogStoreEnabled()) return createBlogPostLocal(input);
+    return null;
+  }
+  const publishedAt =
+    input.status === 'published' ? input.publishedAt ?? new Date().toISOString() : input.publishedAt ?? null;
+  try {
+    const r = await p.query(
+      `
+      INSERT INTO blog_posts (
+        slug, title, excerpt, category, body, status, meta_title, meta_description, author, published_at
+      )
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      RETURNING id
+      `,
+      [
+        input.slug,
+        input.title,
+        input.excerpt ?? null,
+        input.category ?? null,
+        input.body,
+        input.status,
+        input.metaTitle ?? null,
+        input.metaDescription ?? null,
+        input.author ?? 'CRES Dynamics',
+        publishedAt,
+      ]
+    );
+    return Number(r.rows[0].id);
+  } catch (e: unknown) {
+    if (e && typeof e === 'object' && 'code' in e && (e as { code: string }).code === '23505') {
+      return null;
+    }
+    throw e;
+  }
+}
+
+export async function updateBlogPost(id: number, input: Partial<BlogPostInput>): Promise<boolean> {
+  const p = getPool();
+  if (!p) {
+    if (isLocalBlogStoreEnabled()) return updateBlogPostLocal(id, input);
+    return false;
+  }
+  const current = await getBlogPostById(id);
+  if (!current) return false;
+  const nextStatus = input.status ?? current.status;
+  const publishedAt =
+    nextStatus === 'published'
+      ? input.publishedAt ?? current.publishedAt ?? new Date().toISOString()
+      : input.publishedAt === null
+        ? null
+        : input.publishedAt ?? current.publishedAt;
+
+  const r = await p.query(
+    `
+    UPDATE blog_posts SET
+      slug = $2,
+      title = $3,
+      excerpt = $4,
+      category = $5,
+      body = $6,
+      status = $7,
+      meta_title = $8,
+      meta_description = $9,
+      author = $10,
+      published_at = $11,
+      updated_at = now()
+    WHERE id = $1
+    `,
+    [
+      id,
+      input.slug ?? current.slug,
+      input.title ?? current.title,
+      input.excerpt !== undefined ? input.excerpt : current.excerpt,
+      input.category !== undefined ? input.category : current.category,
+      input.body ?? current.body,
+      nextStatus,
+      input.metaTitle !== undefined ? input.metaTitle : current.metaTitle,
+      input.metaDescription !== undefined ? input.metaDescription : current.metaDescription,
+      input.author ?? current.author,
+      publishedAt,
+    ]
+  );
+  return (r.rowCount ?? 0) > 0;
+}
+
+export async function deleteBlogPost(id: number): Promise<boolean> {
+  const p = getPool();
+  if (!p) {
+    if (isLocalBlogStoreEnabled()) return deleteBlogPostLocal(id);
+    return false;
+  }
+  const r = await p.query(`DELETE FROM blog_posts WHERE id = $1`, [id]);
   return (r.rowCount ?? 0) > 0;
 }

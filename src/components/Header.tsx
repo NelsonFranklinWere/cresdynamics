@@ -32,6 +32,10 @@ function eventsNavActive(pathname: string) {
   return pathname === '/events' || pathname.startsWith('/events/');
 }
 
+function blogNavActive(pathname: string) {
+  return pathname === '/blog' || pathname.startsWith('/blog/');
+}
+
 export default function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -216,6 +220,13 @@ export default function Header() {
             </button>
           </li>
           <li className="flex items-center gap-4 shrink-0">
+            <Link
+              href="/blog"
+              prefetch={false}
+              className={`${navLinkClass('')} text-[11px] whitespace-nowrap ${blogNavActive(pathname) ? 'border-b-2 border-[var(--orange-energy)]' : ''}`}
+            >
+              Blog
+            </Link>
             <Link
               href="/case-studies"
               prefetch={false}
@@ -504,6 +515,9 @@ export default function Header() {
             )}
           </div>
 
+          <Link href="/blog" prefetch={false} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+            Blog
+          </Link>
           <Link href="/case-studies" prefetch={false} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Case Proof
           </Link>
