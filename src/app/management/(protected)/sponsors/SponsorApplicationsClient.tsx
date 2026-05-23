@@ -9,6 +9,8 @@ import {
   AdminEmpty,
   AdminField,
   AdminFields,
+  AdminStatCard,
+  AdminStatsGrid,
 } from '@/components/management/ManagementUI';
 
 const STATUSES = ['New', 'Contacted', 'In Discussion', 'Confirmed', 'Declined'] as const;
@@ -87,33 +89,16 @@ export default function SponsorApplicationsClient({
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-2 border-b border-white/10 p-4 sm:grid-cols-2 sm:gap-3 sm:p-5 lg:grid-cols-4">
-        <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-3 sm:px-4">
-          <p className="text-[10px] font-semibold uppercase tracking-wide text-white/50">Applications</p>
-          <p className="text-xl font-black text-white sm:text-2xl">{summary.totalApplications}</p>
-        </div>
-        <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-3 sm:px-4">
-          <p className="text-[10px] font-semibold uppercase tracking-wide text-amber-200/80">Gold left</p>
-          <p className="text-xl font-black text-amber-100 sm:text-2xl">
-            {summary.goldRemaining}
-            <span className="text-sm font-semibold text-white/50"> / 1</span>
-          </p>
-        </div>
-        <div className="rounded-xl border border-teal-500/30 bg-teal-500/10 px-3 py-3 sm:px-4">
-          <p className="text-[10px] font-semibold uppercase tracking-wide text-teal-200/80">Silver left</p>
-          <p className="text-xl font-black text-teal-100 sm:text-2xl">
-            {summary.silverRemaining}
-            <span className="text-sm font-semibold text-white/50"> / 3</span>
-          </p>
-        </div>
-        <div className="rounded-xl border border-white/15 bg-white/5 px-3 py-3 sm:px-4 col-span-2 lg:col-span-1">
-          <p className="text-[10px] font-semibold uppercase tracking-wide text-white/50">Community left</p>
-          <p className="text-xl font-black text-white sm:text-2xl">
-            {summary.communityRemaining}
-            <span className="text-sm font-semibold text-white/50"> / 10</span>
-          </p>
-        </div>
-      </div>
+      <AdminStatsGrid>
+        <AdminStatCard label="Total applications" value={summary.totalApplications} />
+        <AdminStatCard label="Gold slots left" value={summary.goldRemaining} suffix="/ 1" tone="gold" />
+        <AdminStatCard label="Silver slots left" value={summary.silverRemaining} suffix="/ 3" tone="teal" />
+        <AdminStatCard
+          label="Community slots left"
+          value={summary.communityRemaining}
+          suffix="/ 10"
+        />
+      </AdminStatsGrid>
 
       {rows.length === 0 ? (
         <AdminEmpty>No sponsor applications yet.</AdminEmpty>

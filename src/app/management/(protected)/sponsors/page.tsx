@@ -22,7 +22,7 @@ export default async function ManagementSponsorsPage() {
   return (
     <ManagementSection
       title="Sponsor applications"
-      subtitle="Event sponsor leads and package interest"
+      subtitle={`${rows.length} leads · package interest for the event`}
     >
       <SponsorApplicationsClient initialRows={rows} slotSummary={slotSummary} />
     </ManagementSection>
