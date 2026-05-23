@@ -2,9 +2,11 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import {
   ADMIN_COOKIE_NAME,
-  ADMIN_VERIFIED_HEADER,
-  verifyAdminSessionTokenEdge,
-} from '@/lib/adminSessionEdge';
+  verifyAdminSessionToken,
+} from '@/lib/adminAuth';
+import { ADMIN_VERIFIED_HEADER } from '@/lib/adminSessionEdge';
+
+export const runtime = 'nodejs';
 
 const CANONICAL_HOST = 'cresdynamics.com';
 const HTTPS = 'https';
@@ -15,7 +17,7 @@ function isProtectedManagementPath(pathname: string): boolean {
   return true;
 }
 
-export async function middleware(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const host = request.headers.get('host') || '';
   const hostLower = host.toLowerCase();
@@ -40,9 +42,8 @@ export async function middleware(request: NextRequest) {
   }
 
   if (isProtectedManagementPath(request.nextUrl.pathname)) {
-    const secret = process.env.ADMIN_SESSION_SECRET?.trim() || '';
     const token = request.cookies.get(ADMIN_COOKIE_NAME)?.value;
-    const session = await verifyAdminSessionTokenEdge(token, secret);
+    const session = verifyAdminSessionToken(token);
 
     if (!session) {
       const login = request.nextUrl.clone();

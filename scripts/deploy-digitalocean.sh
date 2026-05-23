@@ -55,6 +55,12 @@ git pull --ff-only origin "${GIT_BRANCH}"
 # are required to load next.config.ts during next build.
 npm ci
 export NODE_ENV=production
+if [ -f .env.production ]; then
+  set -a
+  # shellcheck disable=SC1091
+  source .env.production
+  set +a
+fi
 NEXT_DISABLE_ESLINT=1 npm run build
 if command -v pm2 >/dev/null 2>&1; then
   # Restart without injecting stale shell env — Next.js reads .env.production at runtime.
