@@ -64,6 +64,13 @@ export default async function BlogIndexPage() {
   const [featured, ...rest] = articles;
   const hasContent = articles.length > 0;
 
+  const topics = [
+    'ERP & finance platforms',
+    'M-Pesa & reconciliation',
+    'Websites that convert',
+    'Beyond WhatsApp & Excel',
+  ];
+
   return (
     <div className="min-h-screen bg-[var(--navy-dark)] text-white">
       <Header />
@@ -76,34 +83,39 @@ export default async function BlogIndexPage() {
                 'radial-gradient(ellipse 70% 50% at 50% -20%, rgba(47,166,179,0.18), transparent 60%), radial-gradient(ellipse 40% 30% at 100% 50%, rgba(232,117,40,0.08), transparent 50%)',
             }}
           />
-          <div className="relative max-w-6xl mx-auto px-6 py-14 md:py-20">
-            <p className="text-xs uppercase tracking-[0.22em] text-[var(--teal-accent)] mb-3">Blog</p>
-            <h1 className="text-3xl md:text-5xl font-black leading-tight mb-4 max-w-3xl">
-              Systems, software & growth for Kenyan businesses
-            </h1>
-            <p className="text-white/75 max-w-2xl text-lg">
-              Practical articles on ERP, websites, M-Pesa, SEO, and operational systems — from the Cres
-              Dynamics team.
+          <div className="relative max-w-6xl mx-auto px-6 py-14 md:py-16">
+            <p className="text-xs uppercase tracking-[0.22em] text-[var(--teal-accent)] mb-3">
+              Cres Dynamics · Nairobi
             </p>
+            <h1 className="text-3xl md:text-[2.75rem] font-black leading-[1.12] mb-4 max-w-3xl">
+              What it costs, what to integrate, and when manual ops stop working
+            </h1>
+            <p className="text-white/75 max-w-2xl text-base md:text-lg leading-relaxed mb-6">
+              We publish the questions clients ask before we scope an ERP, wire M-Pesa into finance, or
+              replace a spreadsheet workflow — with numbers, trade-offs, and Kenya-specific context from
+              projects we deliver, not generic marketing tips.
+            </p>
+            <ul className="flex flex-wrap gap-2 mb-2">
+              {topics.map((topic) => (
+                <li
+                  key={topic}
+                  className="rounded-full border border-white/15 bg-white/[0.05] px-3 py-1 text-[11px] font-semibold text-white/70"
+                >
+                  {topic}
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
         <section className="max-w-6xl mx-auto px-6 py-12 md:py-16">
           {hasContent ? (
             <>
-              <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
-                <div>
-                  <h2 className="text-xl md:text-2xl font-black text-white">Latest posts</h2>
-                  <p className="text-sm text-white/55 mt-1">
-                    {articles.length} article{articles.length === 1 ? '' : 's'} · ERP, payments, websites & operations
-                  </p>
-                </div>
-                <Link
-                  href="/contact"
-                  className="text-sm font-semibold text-[var(--teal-accent)] hover:underline"
-                >
-                  Need a system built? Talk to us →
-                </Link>
+              <div className="mb-8 border-b border-white/10 pb-6">
+                <h2 className="text-lg font-bold text-white">Articles</h2>
+                <p className="text-sm text-white/50 mt-1">
+                  {articles.length} guide{articles.length === 1 ? '' : 's'} — pricing, payments, websites, operations
+                </p>
               </div>
 
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
