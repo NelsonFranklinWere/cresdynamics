@@ -57,12 +57,12 @@ npm ci
 export NODE_ENV=production
 NEXT_DISABLE_ESLINT=1 npm run build
 if command -v pm2 >/dev/null 2>&1; then
-  if pm2 describe "${PM2_APP}" >/dev/null 2>&1; then
-    pm2 restart "${PM2_APP}" --update-env
-  else
-    pm2 start npm --name "${PM2_APP}" -- start
-    pm2 save
-  fi
+  # Restart without injecting stale shell env — Next.js reads .env.production at runtime.
+  env -u ADMIN_EMAIL -u ADMIN_PASSWORD -u ADMIN_SESSION_SECRET \
+    pm2 restart "${PM2_APP}" --update-env 2>/dev/null || \
+    env -u ADMIN_EMAIL -u ADMIN_PASSWORD -u ADMIN_SESSION_SECRET \
+      NODE_ENV=production pm2 start npm --name "${PM2_APP}" -- start
+  pm2 save
 else
   echo "pm2 not installed. Install: sudo npm install -g pm2"
   echo "Or run once: cd ${REMOTE_DIR} && PORT=3000 npm run start"

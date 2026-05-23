@@ -1,8 +1,5 @@
 import Link from 'next/link';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import { connection } from 'next/server';
-import { ADMIN_COOKIE_NAME, verifyAdminSessionToken } from '@/lib/adminAuth';
 import LogoutButton from '@/app/management/LogoutButton';
 
 export const runtime = 'nodejs';
@@ -32,11 +29,6 @@ export default async function ManagementProtectedLayout({
   children: React.ReactNode;
 }) {
   await connection();
-  const token = (await cookies()).get(ADMIN_COOKIE_NAME)?.value;
-  const session = verifyAdminSessionToken(token);
-  if (!session) {
-    redirect('/management/login');
-  }
 
   return (
     <div className="min-h-screen bg-[var(--navy-dark)] text-white">
@@ -48,7 +40,7 @@ export default async function ManagementProtectedLayout({
                 Management
               </p>
               <p className="text-sm text-white/70 mt-1">
-                Signed in as <span className="text-white/90 font-semibold">{session.email}</span>
+                Signed in to management
               </p>
             </div>
 
