@@ -4,7 +4,9 @@ import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogBody from '@/components/blog/BlogBody';
+import BlogPostCard from '@/components/blog/BlogPostCard';
 import { getBlogPostBySlug, listBlogPosts } from '@/lib/db';
+import { blogCardExcerpt, estimateReadTimeMinutes } from '@/lib/blog-utils';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -50,6 +52,11 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const related = (await listBlogPosts(false)).filter((p) => p.slug !== post.slug).slice(0, 3);
+  const lead =
+    post.excerpt && post.excerpt.length <= 320
+      ? post.excerpt
+      : blogCardExcerpt(post.excerpt, post.body, 280);
+  const readMin = estimateReadTimeMinutes(post.body);
 
   return (
     <div className="min-h-screen bg-[var(--navy-dark)] text-white">
@@ -65,9 +72,9 @@ export default async function BlogPostPage({ params }: Props) {
           ) : null}
           <h1 className="text-3xl md:text-5xl font-black leading-tight mb-4">{post.title}</h1>
           <p className="text-white/60 text-sm mb-8">
-            {formatDate(post.publishedAt)} · {post.author}
+            {formatDate(post.publishedAt)} · {post.author} · {readMin} min read
           </p>
-          {post.excerpt ? <p className="text-white/80 text-lg mb-10">{post.excerpt}</p> : null}
+          {lead ? <p className="text-white/80 text-lg leading-relaxed mb-10 max-w-3xl">{lead}</p> : null}
 
           <BlogBody body={post.body} />
 
@@ -85,17 +92,18 @@ export default async function BlogPostPage({ params }: Props) {
           </section>
 
           {related.length > 0 ? (
-            <section className="mt-10">
-              <p className="text-xs uppercase tracking-[0.2em] text-white/60 mb-3">Related posts</p>
-              <div className="flex flex-wrap gap-2">
+            <section className="mt-12 border-t border-white/10 pt-10">
+              <h2 className="text-lg font-bold mb-5">Related posts</h2>
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {related.map((r) => (
-                  <Link
+                  <BlogPostCard
                     key={r.id}
                     href={`/blog/${r.slug}`}
-                    className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:border-[var(--teal-accent)]"
-                  >
-                    {r.title}
-                  </Link>
+                    title={r.title}
+                    category={r.category}
+                    excerpt={blogCardExcerpt(r.excerpt, r.body)}
+                    meta={`${formatDate(r.publishedAt)} · ${estimateReadTimeMinutes(r.body)} min read`}
+                  />
                 ))}
               </div>
             </section>
