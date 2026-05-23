@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { cookies, headers } from 'next/headers';
 import { connection } from 'next/server';
+import { ADMIN_COOKIE_NAME, verifyAdminSessionToken } from '@/lib/adminAuth';
 import { ADMIN_VERIFIED_HEADER } from '@/lib/adminSessionEdge';
 import LogoutButton from '@/app/management/LogoutButton';
 
@@ -32,10 +32,11 @@ export default async function ManagementProtectedLayout({
   children: React.ReactNode;
 }) {
   await connection();
-  const adminEmail = (await headers()).get(ADMIN_VERIFIED_HEADER);
-  if (!adminEmail) {
-    redirect('/management/login/');
-  }
+  const headerEmail = (await headers()).get(ADMIN_VERIFIED_HEADER);
+  const cookieEmail = verifyAdminSessionToken(
+    (await cookies()).get(ADMIN_COOKIE_NAME)?.value
+  )?.email;
+  const adminEmail = headerEmail ?? cookieEmail ?? 'Admin';
 
   return (
     <div className="min-h-screen bg-[var(--navy-dark)] text-white">
