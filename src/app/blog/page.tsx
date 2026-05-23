@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import BlogActionCards from '@/components/blog/BlogActionCards';
 import BlogPostCard from '@/components/blog/BlogPostCard';
 import { listBlogPosts } from '@/lib/db';
 import { INSIGHTS_ARTICLES } from '@/lib/insightsArticles';
@@ -138,19 +139,7 @@ export default async function BlogIndexPage() {
             </div>
           )}
 
-          <div className="mt-16 rounded-2xl border border-white/10 bg-gradient-to-br from-black/50 to-[var(--teal-accent)]/5 p-8 md:p-10 text-center">
-            <h2 className="text-xl md:text-2xl font-black mb-2">Ready to implement what you read?</h2>
-            <p className="text-white/70 text-sm md:text-base max-w-xl mx-auto mb-6">
-              Book a systems discovery session — we map your workflows and build ERP, finance, and web
-              systems that fit how you operate.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex rounded-xl bg-[var(--orange-energy)] px-6 py-3 text-sm font-bold uppercase tracking-wide hover:brightness-110 transition"
-            >
-              Book a discovery session
-            </Link>
-          </div>
+          {hasContent ? <BlogActionCards className="mt-12 max-w-md" /> : null}
         </section>
       </main>
       <Footer />

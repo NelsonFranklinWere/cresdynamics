@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogBody from '@/components/blog/BlogBody';
+import BlogActionCards from '@/components/blog/BlogActionCards';
 import BlogPostCard from '@/components/blog/BlogPostCard';
 import { getBlogPostBySlug, listBlogPosts } from '@/lib/db';
 import { blogCardExcerpt, estimateReadTimeMinutes } from '@/lib/blog-utils';
@@ -78,18 +79,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           <BlogBody body={post.body} />
 
-          <section className="mt-12 rounded-2xl border border-white/15 bg-black/30 p-6">
-            <h2 className="text-xl font-bold mb-2">Need help implementing this?</h2>
-            <p className="text-white/80 mb-4">Book a systems discovery session with Cres Dynamics.</p>
-            <div className="flex flex-wrap gap-2">
-              <Link href="/contact" className="rounded-lg bg-[var(--orange-energy)] px-4 py-2 text-sm font-bold">
-                Contact us
-              </Link>
-              <Link href="/blog" className="rounded-lg border border-white/25 px-4 py-2 text-sm font-bold">
-                More articles
-              </Link>
-            </div>
-          </section>
+          <BlogActionCards className="mt-10 max-w-md" />
 
           {related.length > 0 ? (
             <section className="mt-12 border-t border-white/10 pt-10">
