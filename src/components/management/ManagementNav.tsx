@@ -23,7 +23,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
       className={`flex items-center justify-between rounded-lg border px-3 py-2.5 text-sm font-semibold transition-colors ${
         active
           ? 'border-[var(--teal-accent)]/50 bg-[var(--teal-accent)]/10 text-white'
-          : 'border-white/10 bg-white/5 text-white/85 hover:bg-white/10'
+          : 'border-transparent bg-transparent text-white/80 hover:border-white/10 hover:bg-white/5'
       }`}
     >
       <span>{label}</span>
@@ -34,7 +34,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
 
 export default function ManagementNav() {
   return (
-    <nav className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-1 lg:gap-2">
+    <nav className="flex w-full flex-col gap-1">
       {LINKS.map((link) => (
         <NavLink key={link.href} href={link.href} label={link.label} />
       ))}

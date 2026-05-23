@@ -21,7 +21,7 @@ export default function LogoutButton() {
           setBusy(false);
         }
       }}
-      className="inline-flex items-center justify-center rounded-lg bg-[var(--orange-energy)] hover:bg-[var(--orange-energy-hover)] px-4 py-2 text-xs font-bold uppercase tracking-wide disabled:opacity-60"
+      className="inline-flex w-full items-center justify-center rounded-lg bg-[var(--orange-energy)] px-4 py-2 text-xs font-bold uppercase tracking-wide hover:bg-[var(--orange-energy-hover)] disabled:opacity-60"
     >
       {busy ? 'Logging out…' : 'Logout'}
     </button>

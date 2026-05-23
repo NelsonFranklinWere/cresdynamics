@@ -22,38 +22,36 @@ export default async function ManagementProtectedLayout({
   const adminEmail = headerEmail ?? cookieEmail ?? 'Admin';
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[var(--navy-dark)] text-white">
-      <div className="mx-auto flex min-h-screen w-full max-w-[1600px] flex-col lg:flex-row">
-        <aside className="shrink-0 border-b border-white/10 bg-black/35 lg:w-[260px] lg:border-b-0 lg:border-r">
-          <div className="p-4 sm:p-5 lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto lg:flex lg:flex-col">
-            <div className="mb-4">
-              <p className="text-[11px] font-semibold tracking-[0.24em] uppercase text-white/60">
-                Management
-              </p>
-              <p className="mt-1 text-sm text-white/70 break-words">
-                <span className="text-white/50">Signed in as </span>
-                <span className="font-semibold text-white/90">{adminEmail}</span>
-              </p>
-            </div>
-
-            <ManagementNav />
-
-            <div className="mt-4 flex gap-2 border-t border-white/10 pt-4 lg:mt-auto">
-              <Link
-                href="/events/"
-                className="inline-flex flex-1 items-center justify-center rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-bold uppercase tracking-wide hover:bg-white/10"
-              >
-                View site
-              </Link>
-              <LogoutButton />
-            </div>
+    <div className="flex min-h-screen overflow-x-hidden bg-[var(--navy-dark)] text-white">
+      <aside className="flex w-[220px] shrink-0 flex-col border-r border-white/10 bg-black/40">
+        <div className="flex flex-1 flex-col p-4">
+          <div className="mb-5 border-b border-white/10 pb-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50">
+              Management
+            </p>
+            <p className="mt-2 text-xs leading-snug text-white/55">
+              Signed in as
+            </p>
+            <p className="mt-0.5 break-words text-sm font-semibold text-white">{adminEmail}</p>
           </div>
-        </aside>
 
-        <main className="min-w-0 flex-1 overflow-x-hidden px-3 py-4 sm:px-5 sm:py-6 lg:px-8">
-          {children}
-        </main>
-      </div>
+          <ManagementNav />
+
+          <div className="mt-auto space-y-2 border-t border-white/10 pt-4">
+            <Link
+              href="/events/"
+              className="flex w-full items-center justify-center rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-[11px] font-bold uppercase tracking-wide hover:bg-white/10"
+            >
+              View site
+            </Link>
+            <LogoutButton />
+          </div>
+        </div>
+      </aside>
+
+      <main className="min-w-0 flex-1 overflow-x-hidden px-4 py-5 sm:px-6 sm:py-6 lg:px-8">
+        {children}
+      </main>
     </div>
   );
 }

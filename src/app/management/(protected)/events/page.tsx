@@ -14,10 +14,8 @@ export default async function ManagementEventsPage() {
     <ManagementSection
       title="Event bookings"
       subtitle={`${rows.length} registered · ${pending} awaiting payment`}
+      note="Paybill 542542 · Acc 43869 · WhatsApp 0708 805 496"
     >
-      <p className="border-b border-white/10 px-4 py-2 text-xs font-mono text-white/50 sm:px-5">
-        Paybill 542542 · Acc 43869 · WhatsApp 0708 805 496
-      </p>
       <EventReservationsClient rows={rows} />
     </ManagementSection>
   );

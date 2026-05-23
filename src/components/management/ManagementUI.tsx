@@ -3,25 +3,39 @@ import type { ReactNode } from 'react';
 export function ManagementSection({
   title,
   subtitle,
+  note,
   actions,
   children,
 }: {
   title: string;
   subtitle?: string;
+  note?: string;
   actions?: ReactNode;
   children: ReactNode;
 }) {
   return (
-    <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-white/10 bg-black/25">
-      <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/10 px-4 py-4 sm:px-5 md:px-6">
-        <div className="min-w-0">
-          <h1 className="text-lg font-black sm:text-xl md:text-2xl">{title}</h1>
-          {subtitle ? <p className="mt-1 text-sm text-white/70">{subtitle}</p> : null}
+    <div className="w-full min-w-0 max-w-full">
+      <header className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1">
+          <h1 className="text-xl font-black text-white md:text-2xl">{title}</h1>
+          {subtitle ? (
+            <>
+              <span className="hidden text-white/25 sm:inline" aria-hidden>
+                |
+              </span>
+              <p className="text-sm text-white/60">{subtitle}</p>
+            </>
+          ) : null}
         </div>
         {actions ? <div className="shrink-0">{actions}</div> : null}
+      </header>
+
+      {note ? <p className="mb-3 text-xs font-mono text-white/45">{note}</p> : null}
+
+      <div className="min-w-0 max-w-full overflow-hidden rounded-xl border border-white/10 bg-black/25">
+        {children}
       </div>
-      <div className="min-w-0 max-w-full">{children}</div>
-    </section>
+    </div>
   );
 }
 
@@ -47,8 +61,8 @@ export function AdminCardHeader({
   return (
     <div className="mb-3 flex flex-wrap items-start justify-between gap-2 border-b border-white/10 pb-3">
       <div className="min-w-0 flex-1">
-        <div className="font-semibold text-white break-words">{title}</div>
-        {meta ? <div className="mt-1 text-xs text-white/50 break-words">{meta}</div> : null}
+        <div className="break-words font-semibold text-white">{title}</div>
+        {meta ? <div className="mt-1 break-words text-xs text-white/50">{meta}</div> : null}
       </div>
       {badge ? <div className="shrink-0">{badge}</div> : null}
     </div>
@@ -71,7 +85,7 @@ export function AdminField({
   return (
     <div className={className}>
       <dt className="text-[10px] font-semibold uppercase tracking-wide text-white/45">{label}</dt>
-      <dd className="mt-0.5 text-sm text-white/90 break-words">{children}</dd>
+      <dd className="mt-0.5 break-words text-sm text-white/90">{children}</dd>
     </div>
   );
 }
