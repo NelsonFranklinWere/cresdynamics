@@ -1,10 +1,8 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function AdminLoginPage() {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -18,6 +16,7 @@ export default function AdminLoginPage() {
       const res = await fetch('/api/admin/login/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
         body: JSON.stringify({ email, password }),
       });
       const data = (await res.json()) as { success?: boolean; error?: string };
@@ -25,8 +24,7 @@ export default function AdminLoginPage() {
         setError(data.error || 'Login failed.');
         return;
       }
-      router.push('/management');
-      router.refresh();
+      window.location.assign('/management/events/');
     } catch (err) {
       console.error(err);
       setError('Login failed.');
@@ -39,14 +37,16 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-[var(--navy-dark)] text-white flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-md rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
         <h1 className="text-2xl font-black mb-2">Admin Login</h1>
-        <p className="text-white/70 text-sm mb-6">Sign in to view event reservations.</p>
+        <p className="text-white/70 text-sm mb-6">
+          Sign in with the admin email configured on this server (<code className="text-white/80">ADMIN_EMAIL</code>).
+        </p>
 
         <form onSubmit={onSubmit} className="space-y-4">
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Admin email (ADMIN_EMAIL on server)"
+            placeholder="Admin email"
             required
             className="w-full rounded-lg border border-white/15 bg-black/40 px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[var(--teal-accent)]"
           />

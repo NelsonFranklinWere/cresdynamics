@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { connection } from 'next/server';
 import { ADMIN_COOKIE_NAME, verifyAdminSessionToken } from '@/lib/adminAuth';
 import LogoutButton from '@/app/management/LogoutButton';
 
@@ -30,6 +31,7 @@ export default async function ManagementProtectedLayout({
 }: {
   children: React.ReactNode;
 }) {
+  await connection();
   const token = (await cookies()).get(ADMIN_COOKIE_NAME)?.value;
   const session = verifyAdminSessionToken(token);
   if (!session) {

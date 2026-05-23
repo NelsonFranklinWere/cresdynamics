@@ -1087,16 +1087,23 @@ export async function listBlogPosts(includeDrafts = false): Promise<BlogPostRow[
     if (isLocalBlogStoreEnabled()) return listBlogPostsLocal(includeDrafts);
     return [];
   }
-  const r = await p.query(
-    `
+  try {
+    const r = await p.query(
+      `
     SELECT id, slug, title, excerpt, category, body, status, meta_title, meta_description, author,
            published_at, created_at, updated_at
     FROM blog_posts
     ${includeDrafts ? '' : "WHERE status = 'published'"}
     ORDER BY COALESCE(published_at, created_at) DESC
     `
-  );
-  return r.rows.map(mapBlogPostRow);
+    );
+    return r.rows.map(mapBlogPostRow);
+  } catch (e: unknown) {
+    if (e && typeof e === 'object' && 'code' in e && (e as { code: string }).code === '42P01') {
+      return [];
+    }
+    throw e;
+  }
 }
 
 export async function getBlogPostBySlug(slug: string, includeDrafts = false): Promise<BlogPostRow | null> {
