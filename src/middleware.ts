@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { ADMIN_COOKIE_NAME, verifyAdminSessionToken } from '@/lib/adminAuth';
 
 const CANONICAL_HOST = 'cresdynamics.com';
 const HTTPS = 'https';
@@ -11,16 +10,6 @@ export function middleware(request: NextRequest) {
   const hostLower = host.toLowerCase();
   const forwardedProto = (request.headers.get('x-forwarded-proto') || '').toLowerCase();
   const isLocalhost = /^(localhost|127\.0\.0\.1)(:\d+)?$/i.test(host);
-  const pathname = request.nextUrl.pathname;
-
-  // Protect management routes (except login)
-  if (pathname.startsWith('/management') && !pathname.startsWith('/management/login')) {
-    const session = verifyAdminSessionToken(request.cookies.get(ADMIN_COOKIE_NAME)?.value);
-    if (!session) {
-      url.pathname = '/management/login/';
-      return NextResponse.redirect(url);
-    }
-  }
 
   // In local dev, don't redirect http → https (dev server is HTTP only)
   if (isLocalhost) return NextResponse.next();

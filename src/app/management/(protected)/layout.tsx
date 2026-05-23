@@ -1,5 +1,8 @@
 import Link from 'next/link';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { connection } from 'next/server';
+import { getAdminSessionFromCookieHeader } from '@/lib/adminSessionFromHeaders';
 import LogoutButton from '@/app/management/LogoutButton';
 
 export const runtime = 'nodejs';
@@ -29,6 +32,11 @@ export default async function ManagementProtectedLayout({
   children: React.ReactNode;
 }) {
   await connection();
+  const cookieHeader = (await headers()).get('cookie');
+  const session = getAdminSessionFromCookieHeader(cookieHeader);
+  if (!session) {
+    redirect('/management/login/');
+  }
 
   return (
     <div className="min-h-screen bg-[var(--navy-dark)] text-white">
@@ -40,7 +48,7 @@ export default async function ManagementProtectedLayout({
                 Management
               </p>
               <p className="text-sm text-white/70 mt-1">
-                Signed in to management
+                Signed in as <span className="text-white/90 font-semibold">{session.email}</span>
               </p>
             </div>
 
