@@ -3,6 +3,7 @@ import {
   listSponsorApplications,
   type SponsorSlotSummary,
 } from '@/lib/db';
+import { ManagementSection } from '@/components/management/ManagementUI';
 import SponsorApplicationsClient from './SponsorApplicationsClient';
 
 export const runtime = 'nodejs';
@@ -19,14 +20,11 @@ export default async function ManagementSponsorsPage() {
   };
 
   return (
-    <section className="w-full border border-white/10 bg-black/25">
-      <div className="px-5 py-4 border-b border-white/10 md:px-6">
-        <h1 className="text-xl md:text-2xl font-black">Sponsor applications</h1>
-        <p className="text-white/70 text-sm mt-1">Event sponsor leads and package interest.</p>
-      </div>
-      <div className="px-4 py-4 md:px-6 md:py-5">
-        <SponsorApplicationsClient initialRows={rows} slotSummary={slotSummary} />
-      </div>
-    </section>
+    <ManagementSection
+      title="Sponsor applications"
+      subtitle="Event sponsor leads and package interest"
+    >
+      <SponsorApplicationsClient initialRows={rows} slotSummary={slotSummary} />
+    </ManagementSection>
   );
 }

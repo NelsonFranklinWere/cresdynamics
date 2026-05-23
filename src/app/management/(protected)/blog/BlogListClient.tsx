@@ -4,6 +4,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import type { BlogPostRow } from '@/lib/blog-utils';
+import {
+  AdminCard,
+  AdminCardHeader,
+  AdminCardList,
+  AdminEmpty,
+  AdminField,
+  AdminFields,
+} from '@/components/management/ManagementUI';
 
 function formatDate(iso: string | null): string {
   if (!iso) return '—';
@@ -34,79 +42,68 @@ export default function BlogListClient({ posts }: { posts: BlogPostRow[] }) {
     }
   };
 
+  if (posts.length === 0) {
+    return (
+      <AdminEmpty>
+        No posts yet.{' '}
+        <Link href="/management/blog/new" className="text-[var(--teal-accent)] underline">
+          Create your first post
+        </Link>
+        .
+      </AdminEmpty>
+    );
+  }
+
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full min-w-[900px] text-left text-sm">
-        <thead className="bg-black/35 text-white/70 text-xs uppercase tracking-wider">
-          <tr>
-            <th className="px-4 py-3">Title</th>
-            <th className="px-4 py-3">Status</th>
-            <th className="px-4 py-3">Published</th>
-            <th className="px-4 py-3">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {posts.length === 0 ? (
-            <tr>
-              <td colSpan={4} className="px-4 py-8 text-white/60">
-                No posts yet.{' '}
-                <Link href="/management/blog/new" className="text-[var(--teal-accent)] underline">
-                  Create your first post
-                </Link>
-                .
-              </td>
-            </tr>
-          ) : (
-            posts.map((post) => (
-              <tr key={post.id} className="border-t border-white/10 hover:bg-white/5">
-                <td className="px-4 py-3">
-                  <div className="font-semibold text-white">{post.title}</div>
-                  <div className="text-xs text-white/50 font-mono">/blog/{post.slug}/</div>
-                </td>
-                <td className="px-4 py-3">
-                  <span
-                    className={`inline-block rounded-full px-2 py-0.5 text-xs font-bold ${
-                      post.status === 'published'
-                        ? 'bg-emerald-500/20 text-emerald-300'
-                        : 'bg-amber-500/20 text-amber-200'
-                    }`}
-                  >
-                    {post.status}
-                  </span>
-                </td>
-                <td className="px-4 py-3 text-white/70">{formatDate(post.publishedAt)}</td>
-                <td className="px-4 py-3">
-                  <div className="flex flex-wrap gap-2">
-                    <Link
-                      href={`/management/blog/${post.id}/edit`}
-                      className="rounded border border-white/20 px-2 py-1 text-xs font-semibold hover:bg-white/10"
-                    >
-                      Edit
-                    </Link>
-                    <button
-                      type="button"
-                      disabled={updating === post.id}
-                      onClick={() => togglePublish(post)}
-                      className="rounded border border-white/20 px-2 py-1 text-xs font-semibold hover:bg-white/10 disabled:opacity-50"
-                    >
-                      {updating === post.id ? '…' : post.status === 'published' ? 'Unpublish' : 'Publish'}
-                    </button>
-                    {post.status === 'published' ? (
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        target="_blank"
-                        className="rounded border border-white/20 px-2 py-1 text-xs font-semibold hover:bg-white/10"
-                      >
-                        View
-                      </Link>
-                    ) : null}
-                  </div>
-                </td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-    </div>
+    <AdminCardList>
+      {posts.map((post) => (
+        <AdminCard key={post.id}>
+          <AdminCardHeader
+            title={post.title}
+            meta={<span className="font-mono">/blog/{post.slug}/</span>}
+            badge={
+              <span
+                className={`inline-block rounded-full px-2 py-0.5 text-xs font-bold ${
+                  post.status === 'published'
+                    ? 'bg-emerald-500/20 text-emerald-300'
+                    : 'bg-amber-500/20 text-amber-200'
+                }`}
+              >
+                {post.status}
+              </span>
+            }
+          />
+          <AdminFields>
+            <AdminField label="Published">{formatDate(post.publishedAt)}</AdminField>
+            {post.category ? <AdminField label="Category">{post.category}</AdminField> : null}
+          </AdminFields>
+          <div className="mt-4 flex flex-wrap gap-2 border-t border-white/10 pt-3">
+            <Link
+              href={`/management/blog/${post.id}/edit`}
+              className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10"
+            >
+              Edit
+            </Link>
+            <button
+              type="button"
+              disabled={updating === post.id}
+              onClick={() => togglePublish(post)}
+              className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10 disabled:opacity-50"
+            >
+              {updating === post.id ? '…' : post.status === 'published' ? 'Unpublish' : 'Publish'}
+            </button>
+            {post.status === 'published' ? (
+              <Link
+                href={`/blog/${post.slug}`}
+                target="_blank"
+                className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10"
+              >
+                View
+              </Link>
+            ) : null}
+          </div>
+        </AdminCard>
+      ))}
+    </AdminCardList>
   );
 }
