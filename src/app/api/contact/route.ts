@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { insertContactLead } from '@/lib/db';
 import { escapeHtml, nlToBr } from '@/lib/escapeHtml';
+import { generateInquiryAutoReply } from '@/lib/aiAutoReply';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const DEFAULT_INBOX = 'cresdynamics@gmail.com';
+const DEFAULT_INBOX = 'info@cresdynamics.com';
 
 export async function POST(request: NextRequest) {
   try {
@@ -57,13 +58,21 @@ export async function POST(request: NextRequest) {
       console.error('contact_leads insert failed:', dbErr);
     }
 
-    const recipientEmail = process.env.CONTACT_FORM_EMAIL || DEFAULT_INBOX;
+    const recipientEmail = process.env.CONTACT_FORM_EMAIL || process.env.INFO_EMAIL || DEFAULT_INBOX;
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
 
     const safe = escapeHtml;
     const detailHtml = nlToBr(projectDetail);
 
     const mailtoHref = `mailto:${encodeURIComponent(email)}`;
+
+    const autoReplyBody = await generateInquiryAutoReply({
+      name: fullName,
+      email,
+      phone: contactPhone,
+      subject: projectTitle,
+      details: projectDetail,
+    });
 
     const { error } = await resend.emails.send({
       from: `CRES Dynamics <${senderEmail}>`,
@@ -130,6 +139,51 @@ export async function POST(request: NextRequest) {
         errorMessage += 'Please try again later or contact support.';
       }
       return NextResponse.json({ error: errorMessage }, { status: 500 });
+    }
+
+    try {
+      await resend.emails.send({
+        from: `CRES Dynamics <${senderEmail}>`,
+        to: [email],
+        subject: `Re: ${projectTitle}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 20px;">
+            <h2 style="color:#1A2433; margin-top:0;">Thanks for contacting Cres Dynamics</h2>
+            <div style="border:1px solid #e3e8ea; border-radius:10px; padding:16px; background:#f9fbfc;">
+              <p style="margin:0; white-space:pre-line; color:#26313f; line-height:1.6;">${nlToBr(autoReplyBody)}</p>
+            </div>
+            <p style="margin-top:16px; color:#4a5568; font-size:13px;">
+              Inquiry reference: ${dbId ?? 'n/a'} · Phone: ${safe(contactPhone)}
+            </p>
+          </div>
+        `,
+      });
+    } catch (replyErr) {
+      console.error('Failed to send contact auto-reply:', replyErr);
+    }
+
+    // Share full conversation copy with internal team mailbox
+    try {
+      await resend.emails.send({
+        from: `CRES Dynamics <${senderEmail}>`,
+        to: [recipientEmail],
+        replyTo: email,
+        subject: `Conversation copy — inquiry #${dbId ?? 'n/a'} — ${safe(fullName)}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; padding: 20px; background:#f7fafc;">
+            <h2 style="margin:0 0 14px 0; color:#1A2433;">Conversation copy (user + AI reply)</h2>
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px;">
+              <p style="margin:0 0 10px 0; font-size:13px; color:#4a5568;"><strong>Client:</strong> ${safe(fullName)} (${safe(email)})</p>
+              <h3 style="margin:8px 0 6px 0; color:#1A2433; font-size:14px;">User message</h3>
+              <p style="margin:0; color:#2d3748; line-height:1.6;">${detailHtml}</p>
+              <h3 style="margin:16px 0 6px 0; color:#1A2433; font-size:14px;">AI reply sent to user</h3>
+              <p style="margin:0; color:#2d3748; line-height:1.6;">${nlToBr(autoReplyBody)}</p>
+            </div>
+          </div>
+        `,
+      });
+    } catch (copyErr) {
+      console.error('Failed to send conversation copy email:', copyErr);
     }
 
     if (subscribe) {

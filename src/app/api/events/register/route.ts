@@ -46,14 +46,17 @@ export async function POST(request: NextRequest) {
 
     const recipientEmail =
       process.env.EVENTS_FORM_EMAIL ||
+      process.env.INFO_EMAIL ||
       process.env.CAREERS_FORM_EMAIL ||
-      'cresdynamics@gmail.com';
+      'info@cresdynamics.com';
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
     const eventTitle = body.eventTitle || 'The Future of AI in Business';
     const eventDate = body.eventDate || 'Saturday, 20 June 2026';
     const selectedTicket = String(ticket || 'standard').toLowerCase();
     const amountKes = EVENT_TICKET_AMOUNTS_KES[selectedTicket] ?? 2500;
     const ticketLabel = TICKET_LABELS[selectedTicket] ?? selectedTicket;
+    const paybillNumber = process.env.EVENT_PAYBILL || '542542';
+    const paybillAccount = process.env.EVENT_PAYBILL_ACCOUNT || '43869';
 
     let dbId: number | null = null;
     try {
@@ -89,6 +92,7 @@ export async function POST(request: NextRequest) {
       const { error } = await resend.emails.send({
         from: `CRES Events <${senderEmail}>`,
         to: [recipientEmail],
+        replyTo: email,
         subject: `New event booking #${dbId} — ${fname} (${ticketLabel}, pay pending)`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 20px;">
@@ -100,11 +104,42 @@ export async function POST(request: NextRequest) {
             <p><strong>Ticket:</strong> ${safe(ticketLabel)} (KES ${amountKes.toLocaleString()})</p>
             <p><strong>Lanyard:</strong> ${safe(lanyardLabel(lanyardCategory))}</p>
             <p><strong>Record ID:</strong> ${dbId}</p>
-            <p style="margin-top:16px;color:#555;">Contact the guest to complete payment (M-Pesa / Paybill).</p>
+            <p style="margin-top:16px;color:#555;">Payment instructions sent to attendee by email.</p>
           </div>
         `,
       });
       if (error) console.error('Resend events error:', error);
+
+      try {
+        await resend.emails.send({
+          from: `CRES Events <${senderEmail}>`,
+          to: [email],
+          subject: `Complete your booking — ${eventTitle}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 20px; background:#f8fafc;">
+              <div style="background: linear-gradient(135deg, #0D1B2A 0%, #4FB3A9 100%); color:white; border-radius:10px; padding:22px;">
+                <h2 style="margin:0; font-size:22px;">Your seat is reserved</h2>
+                <p style="margin:8px 0 0 0; opacity:0.95;">Booking ref #${dbId} · ${safe(eventTitle)}</p>
+              </div>
+              <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; margin-top:16px; padding:18px;">
+                <p style="margin:0 0 12px 0; color:#2d3748;">Hi ${safe(fname)}, complete payment below to confirm your ticket.</p>
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                  <tr><td style="padding:8px 0; color:#4a5568;">Event</td><td style="padding:8px 0; color:#1a202c; font-weight:600;">${safe(eventTitle)}</td></tr>
+                  <tr><td style="padding:8px 0; color:#4a5568;">Date</td><td style="padding:8px 0; color:#1a202c; font-weight:600;">${safe(eventDate)}</td></tr>
+                  <tr><td style="padding:8px 0; color:#4a5568;">Ticket</td><td style="padding:8px 0; color:#1a202c; font-weight:600;">${safe(ticketLabel)}</td></tr>
+                  <tr><td style="padding:8px 0; color:#4a5568;">Amount</td><td style="padding:8px 0; color:#1a202c; font-weight:700;">KES ${amountKes.toLocaleString()}</td></tr>
+                  <tr><td style="padding:8px 0; color:#4a5568;">M-Pesa Paybill</td><td style="padding:8px 0; color:#1a202c; font-weight:700;">${safe(paybillNumber)}</td></tr>
+                  <tr><td style="padding:8px 0; color:#4a5568;">Account</td><td style="padding:8px 0; color:#1a202c; font-weight:700;">${safe(paybillAccount)}</td></tr>
+                </table>
+                <p style="margin:14px 0 0 0; color:#4a5568; font-size:13px;">After payment, reply with your M-Pesa confirmation message to speed up verification.</p>
+              </div>
+              <p style="margin-top:12px; color:#4a5568; font-size:12px;">Need help? Reply to this email or contact +254 708 805 496.</p>
+            </div>
+          `,
+        });
+      } catch (attendeeErr) {
+        console.error('Failed to send attendee booking email:', attendeeErr);
+      }
     }
 
     return NextResponse.json({
