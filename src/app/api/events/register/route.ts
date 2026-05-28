@@ -3,6 +3,8 @@ import { Resend } from 'resend';
 import { insertEventReservation } from '@/lib/db';
 import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import { EVENT_LANYARDS, lanyardLabel } from '@/lib/event-lanyards';
+import { generateInquiryAutoReply } from '@/lib/aiAutoReply';
+import { nlToBr } from '@/lib/escapeHtml';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -89,6 +91,19 @@ export async function POST(request: NextRequest) {
     }
 
     if (resend) {
+      const attendeeReply = await generateInquiryAutoReply({
+        name: String(fname || '').trim() || 'Guest',
+        email: String(email || '').trim(),
+        phone: String(phone || '').trim(),
+        subject: `Event booking: ${eventTitle}`,
+        details: `Signed up for ${eventTitle} (${eventDate}), ticket ${ticketLabel}, amount KES ${amountKes.toLocaleString()}.`,
+        mode: 'event_signup',
+        eventTitle,
+        eventDate,
+        ticketLabel,
+        amountKes,
+      });
+
       const { error } = await resend.emails.send({
         from: `CRES Events <${senderEmail}>`,
         to: [recipientEmail],
@@ -122,7 +137,7 @@ export async function POST(request: NextRequest) {
                 <p style="margin:8px 0 0 0; opacity:0.95;">Booking ref #${dbId} · ${safe(eventTitle)}</p>
               </div>
               <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; margin-top:16px; padding:18px;">
-                <p style="margin:0 0 12px 0; color:#2d3748;">Hi ${safe(fname)}, complete payment below to confirm your ticket.</p>
+                <p style="margin:0 0 12px 0; color:#2d3748; white-space:pre-line;">${nlToBr(attendeeReply)}</p>
                 <table style="width:100%; border-collapse:collapse; font-size:14px;">
                   <tr><td style="padding:8px 0; color:#4a5568;">Event</td><td style="padding:8px 0; color:#1a202c; font-weight:600;">${safe(eventTitle)}</td></tr>
                   <tr><td style="padding:8px 0; color:#4a5568;">Date</td><td style="padding:8px 0; color:#1a202c; font-weight:600;">${safe(eventDate)}</td></tr>
@@ -134,6 +149,31 @@ export async function POST(request: NextRequest) {
                 <p style="margin:14px 0 0 0; color:#4a5568; font-size:13px;">After payment, reply with your M-Pesa confirmation message to speed up verification.</p>
               </div>
               <p style="margin-top:12px; color:#4a5568; font-size:12px;">Need help? Reply to this email or contact +254 708 805 496.</p>
+            </div>
+          `,
+        });
+
+        await resend.emails.send({
+          from: `CRES Events <${senderEmail}>`,
+          to: [recipientEmail],
+          replyTo: email,
+          subject: `Conversation copy — event booking #${dbId} — ${safe(fname)}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; padding: 20px; background:#f7fafc;">
+              <h2 style="margin:0 0 14px 0; color:#1A2433;">Conversation copy (signup + AI reply)</h2>
+              <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px;">
+                <p style="margin:0 0 10px 0; font-size:13px; color:#4a5568;"><strong>Client:</strong> ${safe(fname)} ${safe(lname)} (${safe(email)})</p>
+                <h3 style="margin:8px 0 6px 0; color:#1A2433; font-size:14px;">User signup context</h3>
+                <p style="margin:0; color:#2d3748; line-height:1.6;">
+                  Event: ${safe(eventTitle)}<br>
+                  Date: ${safe(eventDate)}<br>
+                  Ticket: ${safe(ticketLabel)}<br>
+                  Amount: KES ${amountKes.toLocaleString()}<br>
+                  Lanyard: ${safe(lanyardLabel(lanyardCategory))}
+                </p>
+                <h3 style="margin:16px 0 6px 0; color:#1A2433; font-size:14px;">AI reply sent to attendee</h3>
+                <p style="margin:0; color:#2d3748; line-height:1.6; white-space:pre-line;">${nlToBr(attendeeReply)}</p>
+              </div>
             </div>
           `,
         });

@@ -72,6 +72,7 @@ export async function POST(request: NextRequest) {
       phone: contactPhone,
       subject: projectTitle,
       details: projectDetail,
+      mode: 'contact',
     });
 
     const { error } = await resend.emails.send({

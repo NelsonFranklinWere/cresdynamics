@@ -4,18 +4,23 @@ type ReplyContext = {
   phone?: string;
   subject: string;
   details: string;
+  mode?: 'contact' | 'event_signup';
+  eventTitle?: string;
+  eventDate?: string;
+  ticketLabel?: string;
+  amountKes?: number;
 };
 
 const FALLBACK_REPLY = (ctx: ReplyContext) =>
   [
     `Hi ${ctx.name},`,
     '',
-    `Thanks for reaching out about "${ctx.subject}". We have received your message and logged it with our team.`,
-    'A specialist from Cres Dynamics will review your requirements and get back to you shortly with clear next steps.',
+    `Thanks for the clear note on "${ctx.subject}". We have reviewed your message and assigned it for immediate follow-up.`,
+    'From a delivery standpoint, we will return with a practical next-step recommendation based on your exact context.',
     '',
-    'If you want to add context, just reply to this email.',
+    'If there is any additional context that affects timelines or priorities, reply directly to this thread.',
     '',
-    'Cres Dynamics',
+    'Nelson\nCEO, Cres Dynamics',
   ].join('\n');
 
 function sanitize(input: string, max = 1200): string {
@@ -24,18 +29,28 @@ function sanitize(input: string, max = 1200): string {
 
 async function replyWithGroq(ctx: ReplyContext, apiKey: string): Promise<string | null> {
   const system =
-    'You write concise client acknowledgement emails for Cres Dynamics. Tone: professional, warm, brief, no hype. 5-8 short lines max.';
-  const prompt = `Client name: ${sanitize(ctx.name, 80)}
+    'You are the CEO of Cres Dynamics replying to inbound client emails. Voice: calm executive clarity, decisive, practical, no fluff, no hype, no sales clichés. Keep concise and specific.';
+  const prompt = `Context mode: ${ctx.mode || 'contact'}
+Client name: ${sanitize(ctx.name, 80)}
 Client email: ${sanitize(ctx.email, 160)}
 Client phone: ${sanitize(ctx.phone || 'Not provided', 80)}
 Subject: ${sanitize(ctx.subject, 220)}
 Details: ${sanitize(ctx.details, 900)}
+Event title (if signup): ${sanitize(ctx.eventTitle || '', 120)}
+Event date (if signup): ${sanitize(ctx.eventDate || '', 120)}
+Ticket (if signup): ${sanitize(ctx.ticketLabel || '', 60)}
+Amount KES (if signup): ${String(ctx.amountKes ?? '')}
 
-Write only the body text. Include:
-- acknowledgement
-- that team will review and respond
-- invite them to reply with extra context
-- sign off as "Cres Dynamics".`;
+Write only the email body text and sign off exactly as:
+Nelson
+CEO, Cres Dynamics
+
+Requirements:
+- Customized to what they said (mention their specific subject/problem).
+- 5-9 short lines.
+- Professional CEO tone, human, thoughtful.
+- No generic "thank you for contacting us" template wording.
+- For event_signup mode: confirm reservation and that payment instructions appear below in the same email.`;
 
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
@@ -62,14 +77,21 @@ Write only the body text. Include:
 
 async function replyWithGemini(ctx: ReplyContext, apiKey: string): Promise<string | null> {
   const model = 'gemini-2.0-flash';
-  const prompt = `Write a concise email reply body for a website inquiry.
+  const prompt = `Write a concise CEO-style email reply body for a website inquiry.
+Mode: ${ctx.mode || 'contact'}
 Client: ${sanitize(ctx.name, 80)}
 Subject: ${sanitize(ctx.subject, 220)}
 Details: ${sanitize(ctx.details, 900)}
+Event title: ${sanitize(ctx.eventTitle || '', 120)}
+Event date: ${sanitize(ctx.eventDate || '', 120)}
+Ticket: ${sanitize(ctx.ticketLabel || '', 60)}
+Amount KES: ${String(ctx.amountKes ?? '')}
 
-Style: professional, clear, Kenyan business context, no exaggerated promises.
-Length: 5-8 short lines.
-Close with "Cres Dynamics".`;
+Style: CEO tone, clear, thoughtful, practical, no exaggerated promises.
+Length: 5-9 short lines.
+Sign off exactly:
+Nelson
+CEO, Cres Dynamics`;
 
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
