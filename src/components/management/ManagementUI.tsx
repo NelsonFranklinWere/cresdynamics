@@ -15,24 +15,24 @@ export function ManagementSection({
 }) {
   return (
     <div className="w-full min-w-0 max-w-full">
-      <header className="mb-5 border-b border-white/15 pb-4">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="min-w-0 flex-1 space-y-2">
+      <header className="mb-6 space-y-2 border-b border-white/15 pb-5">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0 flex-1 space-y-1.5">
             <h1 className="text-xl font-black leading-tight text-white md:text-2xl">{title}</h1>
             {subtitle ? (
-              <p className="text-sm font-medium leading-snug text-[var(--teal-accent)]">{subtitle}</p>
+              <p className="text-sm font-medium leading-relaxed text-[var(--teal-accent)]">{subtitle}</p>
             ) : null}
           </div>
-          {actions ? <div className="shrink-0 pt-0.5">{actions}</div> : null}
+          {actions ? <div className="w-full shrink-0 sm:w-auto">{actions}</div> : null}
         </div>
         {note ? (
-          <p className="mt-3 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-mono text-white/70">
+          <p className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-mono leading-relaxed text-white/70">
             {note}
           </p>
         ) : null}
       </header>
 
-      <div className="min-w-0 max-w-full overflow-hidden rounded-xl border border-white/15 bg-black/30">
+      <div className="min-w-0 max-w-full overflow-x-hidden rounded-xl border border-white/15 bg-black/30">
         {children}
       </div>
     </div>
@@ -102,12 +102,12 @@ export function AdminCardHeader({
   meta?: ReactNode;
 }) {
   return (
-    <div className="mb-3 flex flex-col gap-2 border-b border-white/10 pb-3 sm:flex-row sm:items-start sm:justify-between">
-      <div className="min-w-0 flex-1">
-        <div className="break-words font-semibold text-white">{title}</div>
-        {meta ? <div className="mt-1 break-words text-xs text-white/55">{meta}</div> : null}
+    <div className="mb-4 flex flex-col gap-2.5 border-b border-white/10 pb-3">
+      <div className="min-w-0 w-full">
+        <div className="break-words text-base font-semibold leading-snug text-white">{title}</div>
+        {meta ? <div className="mt-1.5 break-words text-xs leading-relaxed text-white/55">{meta}</div> : null}
       </div>
-      {badge ? <div className="shrink-0">{badge}</div> : null}
+      {badge ? <div className="w-full min-w-0 sm:w-auto sm:self-start">{badge}</div> : null}
     </div>
   );
 }
@@ -128,7 +128,7 @@ export function AdminField({
   return (
     <div className={className}>
       <dt className="text-[10px] font-semibold uppercase tracking-wide text-white/50">{label}</dt>
-      <dd className="mt-0.5 break-words text-sm text-white">{children}</dd>
+      <dd className="mt-1 break-words text-sm leading-relaxed text-white">{children}</dd>
     </div>
   );
 }

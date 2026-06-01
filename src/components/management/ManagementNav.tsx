@@ -20,21 +20,21 @@ function NavLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className={`flex items-center justify-between rounded-lg border px-3 py-2.5 text-sm font-semibold transition-colors ${
+      className={`flex shrink-0 items-center justify-between gap-2 rounded-lg border px-3 py-2.5 text-sm font-semibold whitespace-nowrap transition-colors lg:w-full ${
         active
           ? 'border-[var(--teal-accent)]/50 bg-[var(--teal-accent)]/10 text-white'
           : 'border-transparent bg-transparent text-white/80 hover:border-white/10 hover:bg-white/5'
       }`}
     >
       <span>{label}</span>
-      <span className="text-white/35">→</span>
+      <span className="hidden text-white/35 lg:inline">→</span>
     </Link>
   );
 }
 
 export default function ManagementNav() {
   return (
-    <nav className="flex w-full flex-col gap-1">
+    <nav className="flex gap-1.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex-col lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
       {LINKS.map((link) => (
         <NavLink key={link.href} href={link.href} label={link.label} />
       ))}

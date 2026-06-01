@@ -111,7 +111,7 @@ export default function SponsorApplicationsClient({
                 meta={`${r.contactFullName} · ${new Date(r.createdAt).toLocaleString()}`}
                 badge={
                   <select
-                    className="max-w-[9rem] rounded-lg border border-white/15 bg-black/40 px-2 py-1 text-xs text-white"
+                    className="w-full max-w-full rounded-lg border border-white/15 bg-black/40 px-2 py-1.5 text-xs text-white sm:max-w-[12rem]"
                     value={r.status}
                     disabled={busyId === r.id}
                     onChange={async (e) => {
