@@ -290,6 +290,21 @@ function ticketAmountFromType(ticketType: string | null): number {
   return EVENT_TICKET_AMOUNTS_KES[ticketType.toLowerCase()] ?? 0;
 }
 
+function isPgUndefinedColumn(err: unknown): boolean {
+  return (
+    typeof err === 'object' &&
+    err !== null &&
+    'code' in err &&
+    (err as { code: string }).code === '42703'
+  );
+}
+
+function normalizeBookingStatus(status: string): 'pending' | 'paid' | 'cancelled' {
+  const s = status.trim().toLowerCase();
+  if (s === 'paid' || s === 'cancelled') return s;
+  return 'pending';
+}
+
 async function syncReservationPaymentsForStatus(
   reservationId: number,
   bookingStatus: 'pending' | 'paid' | 'cancelled',
@@ -319,13 +334,43 @@ async function syncReservationPaymentsForStatus(
           payment_link_active = false,
           updated_at = now(),
           metadata_json = COALESCE(metadata_json, '{}'::jsonb) || $2::jsonb
-      WHERE (metadata_json->>'reservationId')::int = $1
+      WHERE (
+          (metadata_json->>'reservationId')::int = $1
+          OR metadata_json->>'reservationId' = $1::text
+        )
         AND status IS DISTINCT FROM 'paid'
       `,
       [reservationId, JSON.stringify(metaMarked)]
     );
 
-    if ((updated.rowCount ?? 0) === 0 && reservation) {
+    let linkedCount = updated.rowCount ?? 0;
+
+    if (linkedCount === 0 && reservation) {
+      const byEmail = await p.query(
+        `
+        UPDATE payments
+        SET status = 'paid',
+            payment_link_active = false,
+            updated_at = now(),
+            metadata_json = COALESCE(metadata_json, '{}'::jsonb) || $3::jsonb
+        WHERE lower(email) = lower($2)
+          AND event_title = $4
+          AND event_date = $5
+          AND purpose = 'event_ticket'
+          AND status IS DISTINCT FROM 'paid'
+        `,
+        [
+          reservationId,
+          reservation.email,
+          JSON.stringify(metaMarked),
+          reservation.eventTitle,
+          reservation.eventDate,
+        ]
+      );
+      linkedCount = byEmail.rowCount ?? 0;
+    }
+
+    if (linkedCount === 0 && reservation) {
       await createPayment({
         source: 'manual',
         status: 'paid',
@@ -386,50 +431,95 @@ export async function updateEventReservationBookingStatus(
   if (!existing.rows[0]) return { ok: false };
 
   const row = existing.rows[0];
+  const reservationCtx = {
+    email: String(row.email),
+    phone: row.phone ? String(row.phone) : null,
+    ticketType: row.ticket_type ? String(row.ticket_type) : null,
+    eventTitle: String(row.event_title),
+    eventDate: String(row.event_date),
+  };
 
-  const r = await p.query(
-    `
-    UPDATE event_reservations
-    SET booking_status = $2,
-        updated_at = now(),
-        paid_at = CASE WHEN $2 = 'paid' THEN now() ELSE NULL END,
-        paid_by = CASE WHEN $2 = 'paid' THEN $3 ELSE NULL END,
-        paid_source = CASE WHEN $2 = 'paid' THEN 'manual' ELSE NULL END
-    WHERE id = $1
-    RETURNING booking_status, paid_at, paid_by
-    `,
-    [id, bookingStatus, markedBy]
-  );
+  let r;
+  try {
+    r = await p.query(
+      `
+      UPDATE event_reservations
+      SET booking_status = $2,
+          updated_at = now(),
+          paid_at = CASE WHEN $2 = 'paid' THEN now() ELSE NULL END,
+          paid_by = CASE WHEN $2 = 'paid' THEN $3 ELSE NULL END,
+          paid_source = CASE WHEN $2 = 'paid' THEN 'manual' ELSE NULL END
+      WHERE id = $1
+      RETURNING booking_status, paid_at, paid_by
+      `,
+      [id, bookingStatus, markedBy]
+    );
+  } catch (err) {
+    if (!isPgUndefinedColumn(err)) throw err;
+    r = await p.query(
+      `
+      UPDATE event_reservations
+      SET booking_status = $2, updated_at = now()
+      WHERE id = $1
+      RETURNING booking_status, NULL::timestamptz AS paid_at, NULL::text AS paid_by
+      `,
+      [id, bookingStatus]
+    );
+  }
 
   if ((r.rowCount ?? 0) === 0) return { ok: false };
 
-  await syncReservationPaymentsForStatus(
-    id,
-    bookingStatus,
-    markedBy,
-    {
-      email: String(row.email),
-      phone: row.phone ? String(row.phone) : null,
-      ticketType: row.ticket_type ? String(row.ticket_type) : null,
-      eventTitle: String(row.event_title),
-      eventDate: String(row.event_date),
-    }
-  );
+  try {
+    await syncReservationPaymentsForStatus(id, bookingStatus, markedBy, reservationCtx);
+  } catch (syncErr) {
+    console.error('syncReservationPaymentsForStatus failed (reservation still updated):', syncErr);
+  }
 
   const out = r.rows[0];
   return {
     ok: true,
-    bookingStatus: String(out.booking_status),
-    paidAt: out.paid_at ? new Date(out.paid_at).toISOString() : null,
-    paidBy: out.paid_by ? String(out.paid_by) : null,
+    bookingStatus: normalizeBookingStatus(String(out.booking_status)),
+    paidAt: out.paid_at ? new Date(out.paid_at).toISOString() : bookingStatus === 'paid' ? new Date().toISOString() : null,
+    paidBy: out.paid_by ? String(out.paid_by) : markedBy,
   };
 }
 
 export async function listEventReservations(limit = 200): Promise<EventReservationRow[]> {
   const p = getPool();
   if (!p) return [];
-  const r = await p.query(
-    `
+
+  const baseSelect = `
+    select
+      er.id,
+      er.event_title,
+      er.event_date,
+      er.first_name,
+      er.last_name,
+      er.email,
+      er.phone,
+      er.company,
+      er.ticket_type,
+      er.attendance_type,
+      er.lanyard_category,
+      er.booking_status,
+      er.created_at,
+      er.updated_at,
+      (
+        select p.status
+        from payments p
+        where (
+          (p.metadata_json->>'reservationId')::int = er.id
+          OR p.metadata_json->>'reservationId' = er.id::text
+        )
+        order by p.created_at desc
+        limit 1
+      ) as payment_status
+    from event_reservations er
+    order by er.created_at desc
+    limit $1
+  `;
+
+  const selectWithPaidCols = `
     select
       er.id,
       er.event_title,
@@ -451,16 +541,26 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
       (
         select p.status
         from payments p
-        where (p.metadata_json->>'reservationId')::int = er.id
+        where (
+          (p.metadata_json->>'reservationId')::int = er.id
+          OR p.metadata_json->>'reservationId' = er.id::text
+        )
         order by p.created_at desc
         limit 1
       ) as payment_status
     from event_reservations er
     order by er.created_at desc
     limit $1
-    `,
-    [limit]
-  );
+  `;
+
+  let r;
+  try {
+    r = await p.query(selectWithPaidCols, [limit]);
+  } catch (err) {
+    if (!isPgUndefinedColumn(err)) throw err;
+    r = await p.query(baseSelect, [limit]);
+  }
+
   return r.rows.map((row) => ({
     id: Number(row.id),
     eventTitle: String(row.event_title),
@@ -473,10 +573,10 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
     ticketType: row.ticket_type ? String(row.ticket_type) : null,
     attendanceType: row.attendance_type ? String(row.attendance_type) : null,
     lanyardCategory: row.lanyard_category ? String(row.lanyard_category) : null,
-    bookingStatus: String(row.booking_status || 'pending'),
+    bookingStatus: normalizeBookingStatus(String(row.booking_status || 'pending')),
     createdAt: new Date(row.created_at).toISOString(),
     updatedAt: new Date(row.updated_at).toISOString(),
-    paymentStatus: row.payment_status ? String(row.payment_status) : null,
+    paymentStatus: row.payment_status ? String(row.payment_status).toLowerCase() : null,
     paidAt: row.paid_at ? new Date(row.paid_at).toISOString() : null,
     paidBy: row.paid_by ? String(row.paid_by) : null,
     paidSource: row.paid_source ? String(row.paid_source) : null,

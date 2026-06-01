@@ -101,7 +101,7 @@ export async function updateEventReservationBookingStatusLocal(
   const item = store.items.find((r) => r.id === id);
   if (!item) return { ok: false };
 
-  item.bookingStatus = bookingStatus;
+  item.bookingStatus = bookingStatus.toLowerCase();
   if (bookingStatus === 'paid') {
     item.paidAt = new Date().toISOString();
     item.paidBy = markedBy ?? undefined;

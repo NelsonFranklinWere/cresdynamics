@@ -44,7 +44,10 @@ function ticketAmount(ticketType: string | null): number | null {
 }
 
 function isPaid(r: EventReservationView): boolean {
-  return r.bookingStatus === 'paid' || r.paymentStatus === 'paid';
+  return (
+    r.bookingStatus.toLowerCase() === 'paid' ||
+    r.paymentStatus?.toLowerCase() === 'paid'
+  );
 }
 
 function whatsAppUrl(phone: string, message: string): string {
@@ -101,7 +104,7 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
   const markStatus = async (id: number, bookingStatus: 'pending' | 'paid' | 'cancelled') => {
     setUpdating(id);
     try {
-      const res = await fetch(`/api/admin/events/reservations/${id}`, {
+      const res = await fetch(`/api/admin/events/reservations/${id}/`, {
         method: 'PATCH',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -118,16 +121,19 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
         alert(data.error || 'Could not update status');
         return;
       }
+      const nextStatus = (data.bookingStatus ?? bookingStatus).toLowerCase();
       setLocalRows((prev) =>
         prev.map((r) =>
           r.id === id
             ? {
                 ...r,
-                bookingStatus: data.bookingStatus ?? bookingStatus,
-                paymentStatus: bookingStatus === 'paid' ? 'paid' : r.paymentStatus,
-                paidAt: data.paidAt ?? (bookingStatus === 'paid' ? new Date().toISOString() : null),
-                paidBy: data.paidBy ?? r.paidBy,
-                paidSource: bookingStatus === 'paid' ? 'manual' : null,
+                bookingStatus: nextStatus,
+                paymentStatus: nextStatus === 'paid' ? 'paid' : nextStatus === 'pending' ? null : r.paymentStatus,
+                paidAt:
+                  data.paidAt ??
+                  (nextStatus === 'paid' ? new Date().toISOString() : null),
+                paidBy: data.paidBy ?? (nextStatus === 'paid' ? r.paidBy : null),
+                paidSource: nextStatus === 'paid' ? 'manual' : null,
               }
             : r
         )

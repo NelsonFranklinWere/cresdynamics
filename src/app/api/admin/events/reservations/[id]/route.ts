@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 import { getAdminSessionFromRequest } from '@/lib/adminAuth';
 import { updateEventReservationBookingStatus } from '@/lib/db';
@@ -31,9 +32,11 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
       return NextResponse.json({ ok: false, error: 'Reservation not found' }, { status: 404 });
     }
 
+    revalidatePath('/management/events');
+
     return NextResponse.json({
       ok: true,
-      bookingStatus: result.bookingStatus ?? status,
+      bookingStatus: (result.bookingStatus ?? status).toLowerCase(),
       paidAt: result.paidAt ?? null,
       paidBy: result.paidBy ?? null,
     });
