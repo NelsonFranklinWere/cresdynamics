@@ -14,27 +14,36 @@ export function ManagementSection({
   children: ReactNode;
 }) {
   return (
-    <div className="w-full min-w-0 max-w-full">
-      <header className="mb-6 space-y-2 border-b border-white/15 pb-5">
+    <div className="flex w-full min-w-0 max-w-full flex-col gap-8">
+      <div className="shrink-0 space-y-4 bg-[var(--navy-dark)]">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div className="min-w-0 flex-1 space-y-1.5">
-            <h1 className="text-xl font-black leading-tight text-white md:text-2xl">{title}</h1>
+          <div className="min-w-0 space-y-2">
+            <h1 className="text-xl font-black leading-snug text-white md:text-2xl">{title}</h1>
             {subtitle ? (
-              <p className="text-sm font-medium leading-relaxed text-[var(--teal-accent)]">{subtitle}</p>
+              <p className="block text-sm font-medium leading-relaxed text-[var(--teal-accent)]">
+                {subtitle}
+              </p>
             ) : null}
           </div>
           {actions ? <div className="w-full shrink-0 sm:w-auto">{actions}</div> : null}
         </div>
-        {note ? (
-          <p className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-mono leading-relaxed text-white/70">
-            {note}
-          </p>
-        ) : null}
-      </header>
-
-      <div className="min-w-0 max-w-full overflow-x-hidden rounded-xl border border-white/15 bg-black/30">
-        {children}
       </div>
+
+      <section
+        aria-label={`${title} records`}
+        className="min-w-0 rounded-xl border border-white/15 bg-black/30 shadow-sm"
+      >
+        {note ? <ManagementInfoBar>{note}</ManagementInfoBar> : null}
+        <div className="min-w-0">{children}</div>
+      </section>
+    </div>
+  );
+}
+
+export function ManagementInfoBar({ children }: { children: ReactNode }) {
+  return (
+    <div className="border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs leading-relaxed text-white/75 sm:px-5">
+      {children}
     </div>
   );
 }
@@ -82,13 +91,18 @@ export function AdminStatCard({
   );
 }
 
-export function AdminCardList({ children }: { children: ReactNode }) {
-  return <div className="space-y-3 p-4 sm:p-5">{children}</div>;
+export function AdminCardList({ children, label = 'Records' }: { children: ReactNode; label?: string }) {
+  return (
+    <div className="p-4 sm:p-5">
+      <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.15em] text-white/45">{label}</p>
+      <div className="space-y-4">{children}</div>
+    </div>
+  );
 }
 
 export function AdminCard({ children }: { children: ReactNode }) {
   return (
-    <article className="rounded-xl border border-white/15 bg-black/25 p-4 sm:p-5">{children}</article>
+    <article className="rounded-xl border border-white/15 bg-[#0f1118] p-4 sm:p-5">{children}</article>
   );
 }
 
@@ -102,18 +116,20 @@ export function AdminCardHeader({
   meta?: ReactNode;
 }) {
   return (
-    <div className="mb-4 flex flex-col gap-2.5 border-b border-white/10 pb-3">
-      <div className="min-w-0 w-full">
-        <div className="break-words text-base font-semibold leading-snug text-white">{title}</div>
-        {meta ? <div className="mt-1.5 break-words text-xs leading-relaxed text-white/55">{meta}</div> : null}
+    <div className="space-y-3 border-b border-white/10 pb-4">
+      <div className="min-w-0">
+        <div className="break-words text-lg font-semibold leading-snug text-white">{title}</div>
+        {meta ? (
+          <div className="mt-2 break-words text-xs leading-relaxed text-white/55">{meta}</div>
+        ) : null}
       </div>
-      {badge ? <div className="w-full min-w-0 sm:w-auto sm:self-start">{badge}</div> : null}
+      {badge ? <div className="min-w-0 pt-0.5">{badge}</div> : null}
     </div>
   );
 }
 
 export function AdminFields({ children }: { children: ReactNode }) {
-  return <dl className="grid grid-cols-1 gap-x-4 gap-y-3 sm:grid-cols-2">{children}</dl>;
+  return <dl className="mt-1 grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2">{children}</dl>;
 }
 
 export function AdminField({
@@ -127,8 +143,8 @@ export function AdminField({
 }) {
   return (
     <div className={className}>
-      <dt className="text-[10px] font-semibold uppercase tracking-wide text-white/50">{label}</dt>
-      <dd className="mt-1 break-words text-sm leading-relaxed text-white">{children}</dd>
+      <dt className="mb-1 text-[10px] font-semibold uppercase tracking-wide text-white/50">{label}</dt>
+      <dd className="break-words text-sm leading-relaxed text-white">{children}</dd>
     </div>
   );
 }

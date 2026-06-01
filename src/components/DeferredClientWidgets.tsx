@@ -18,11 +18,16 @@ function isEventsRoute(pathname: string | null) {
   return pathname === '/events' || pathname.startsWith('/events/');
 }
 
+function isManagementRoute(pathname: string | null) {
+  if (!pathname) return false;
+  return pathname.startsWith('/management');
+}
+
 /** Load non-critical client widgets after first paint / idle (no AI chat on /events). */
 export default function DeferredClientWidgets() {
   const pathname = usePathname();
   const [chatReady, setChatReady] = useState(false);
-  const hideChat = isEventsRoute(pathname);
+  const hideChat = isEventsRoute(pathname) || isManagementRoute(pathname);
 
   useEffect(() => {
     if (hideChat) {

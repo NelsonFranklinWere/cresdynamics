@@ -99,7 +99,7 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
   }
 
   return (
-    <AdminCardList>
+    <AdminCardList label="Registrations">
       {rows.map((r) => {
         const amount = ticketAmount(r.ticketType);
         const paid = isPaid(r);
