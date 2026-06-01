@@ -24,7 +24,7 @@ export default function AdminLoginPage() {
         setError(data.error || 'Login failed.');
         return;
       }
-      window.location.assign('/management/events/');
+      window.location.assign('/management/dashboard/');
     } catch (err) {
       console.error(err);
       setError('Login failed.');

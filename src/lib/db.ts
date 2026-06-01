@@ -1,9 +1,11 @@
 import { Pool } from 'pg';
+import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import {
   attachPaymentCheckoutDetailsLocal,
   createPaymentLocal,
   insertEventReservationLocal,
   isLocalEventStoreEnabled,
+  updateEventReservationBookingStatusLocal,
 } from '@/lib/local-event-store';
 import {
   createBlogPostLocal,
@@ -271,19 +273,156 @@ export type EventReservationRow = {
   createdAt: string; // ISO
   updatedAt: string; // ISO
   paymentStatus: string | null; // pending | paid | failed etc. from linked payment
+  paidAt: string | null;
+  paidBy: string | null;
+  paidSource: string | null;
 };
+
+export type UpdateEventReservationResult = {
+  ok: boolean;
+  bookingStatus?: string;
+  paidAt?: string | null;
+  paidBy?: string | null;
+};
+
+function ticketAmountFromType(ticketType: string | null): number {
+  if (!ticketType) return 0;
+  return EVENT_TICKET_AMOUNTS_KES[ticketType.toLowerCase()] ?? 0;
+}
+
+async function syncReservationPaymentsForStatus(
+  reservationId: number,
+  bookingStatus: 'pending' | 'paid' | 'cancelled',
+  markedByEmail: string | null,
+  reservation?: {
+    email: string;
+    phone: string | null;
+    ticketType: string | null;
+    eventTitle: string;
+    eventDate: string;
+  }
+): Promise<void> {
+  const p = getPool();
+  if (!p) return;
+
+  if (bookingStatus === 'paid') {
+    const metaMarked = {
+      reservationId,
+      markedBy: markedByEmail,
+      markedAt: new Date().toISOString(),
+      manualAdminMark: true,
+    };
+    const updated = await p.query(
+      `
+      UPDATE payments
+      SET status = 'paid',
+          payment_link_active = false,
+          updated_at = now(),
+          metadata_json = COALESCE(metadata_json, '{}'::jsonb) || $2::jsonb
+      WHERE (metadata_json->>'reservationId')::int = $1
+        AND status IS DISTINCT FROM 'paid'
+      `,
+      [reservationId, JSON.stringify(metaMarked)]
+    );
+
+    if ((updated.rowCount ?? 0) === 0 && reservation) {
+      await createPayment({
+        source: 'manual',
+        status: 'paid',
+        email: reservation.email,
+        phone: reservation.phone,
+        amountKes: ticketAmountFromType(reservation.ticketType),
+        currency: 'KES',
+        purpose: 'event_ticket',
+        eventTitle: reservation.eventTitle,
+        eventDate: reservation.eventDate,
+        metadata: metaMarked,
+      });
+    }
+    return;
+  }
+
+  if (bookingStatus === 'pending') {
+    await p.query(
+      `
+      UPDATE payments
+      SET status = 'pending', updated_at = now()
+      WHERE (metadata_json->>'reservationId')::int = $1
+        AND source = 'manual'
+        AND status = 'paid'
+      `,
+      [reservationId]
+    );
+  }
+}
 
 export async function updateEventReservationBookingStatus(
   id: number,
-  bookingStatus: 'pending' | 'paid' | 'cancelled'
-): Promise<boolean> {
+  bookingStatus: 'pending' | 'paid' | 'cancelled',
+  options?: { markedByEmail?: string | null }
+): Promise<UpdateEventReservationResult> {
+  const markedBy = options?.markedByEmail?.trim() || null;
+
+  if (isLocalEventStoreEnabled() && !getPool()) {
+    const local = await updateEventReservationBookingStatusLocal(id, bookingStatus, markedBy);
+    return local;
+  }
+
   const p = getPool();
-  if (!p) return false;
-  const r = await p.query(
-    `UPDATE event_reservations SET booking_status = $2, updated_at = now() WHERE id = $1`,
-    [id, bookingStatus]
+  if (!p) {
+    if (isLocalEventStoreEnabled()) {
+      return updateEventReservationBookingStatusLocal(id, bookingStatus, markedBy);
+    }
+    return { ok: false };
+  }
+
+  const existing = await p.query(
+    `
+    SELECT id, email, phone, ticket_type, event_title, event_date
+    FROM event_reservations WHERE id = $1
+    `,
+    [id]
   );
-  return (r.rowCount ?? 0) > 0;
+  if (!existing.rows[0]) return { ok: false };
+
+  const row = existing.rows[0];
+
+  const r = await p.query(
+    `
+    UPDATE event_reservations
+    SET booking_status = $2,
+        updated_at = now(),
+        paid_at = CASE WHEN $2 = 'paid' THEN now() ELSE NULL END,
+        paid_by = CASE WHEN $2 = 'paid' THEN $3 ELSE NULL END,
+        paid_source = CASE WHEN $2 = 'paid' THEN 'manual' ELSE NULL END
+    WHERE id = $1
+    RETURNING booking_status, paid_at, paid_by
+    `,
+    [id, bookingStatus, markedBy]
+  );
+
+  if ((r.rowCount ?? 0) === 0) return { ok: false };
+
+  await syncReservationPaymentsForStatus(
+    id,
+    bookingStatus,
+    markedBy,
+    {
+      email: String(row.email),
+      phone: row.phone ? String(row.phone) : null,
+      ticketType: row.ticket_type ? String(row.ticket_type) : null,
+      eventTitle: String(row.event_title),
+      eventDate: String(row.event_date),
+    }
+  );
+
+  const out = r.rows[0];
+  return {
+    ok: true,
+    bookingStatus: String(out.booking_status),
+    paidAt: out.paid_at ? new Date(out.paid_at).toISOString() : null,
+    paidBy: out.paid_by ? String(out.paid_by) : null,
+  };
 }
 
 export async function listEventReservations(limit = 200): Promise<EventReservationRow[]> {
@@ -306,6 +445,9 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
       er.booking_status,
       er.created_at,
       er.updated_at,
+      er.paid_at,
+      er.paid_by,
+      er.paid_source,
       (
         select p.status
         from payments p
@@ -335,6 +477,9 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
     createdAt: new Date(row.created_at).toISOString(),
     updatedAt: new Date(row.updated_at).toISOString(),
     paymentStatus: row.payment_status ? String(row.payment_status) : null,
+    paidAt: row.paid_at ? new Date(row.paid_at).toISOString() : null,
+    paidBy: row.paid_by ? String(row.paid_by) : null,
+    paidSource: row.paid_source ? String(row.paid_source) : null,
   }));
 }
 
@@ -1245,4 +1390,143 @@ export async function deleteBlogPost(id: number): Promise<boolean> {
   }
   const r = await p.query(`DELETE FROM blog_posts WHERE id = $1`, [id]);
   return (r.rowCount ?? 0) > 0;
+}
+
+export type ManagementDashboardStats = {
+  generatedAt: string;
+  events: {
+    total: number;
+    paid: number;
+    pending: number;
+    cancelled: number;
+    last7Days: number;
+    revenueCollectedKes: number;
+    revenueExpectedKes: number;
+  };
+  messages: { total: number; subscribed: number; last7Days: number };
+  applications: { total: number; last7Days: number };
+  speakers: { total: number; last7Days: number };
+  sponsors: {
+    total: number;
+    confirmed: number;
+    inPipeline: number;
+    newLeads: number;
+    goldRemaining: number;
+    silverRemaining: number;
+    communityRemaining: number;
+  };
+  payments: { total: number; paid: number; pending: number; amountPaidKes: number };
+  blog: { total: number; published: number; drafts: number };
+};
+
+export async function getManagementDashboardStatsFromDb(): Promise<ManagementDashboardStats | null> {
+  const p = getPool();
+  if (!p) return null;
+
+  let blogTotal = 0;
+  let blogPublished = 0;
+  let blogDrafts = 0;
+  try {
+    const blogR = await p.query(`
+      SELECT
+        count(*)::int AS total,
+        count(*) FILTER (WHERE status = 'published')::int AS published,
+        count(*) FILTER (WHERE status = 'draft')::int AS drafts
+      FROM blog_posts
+    `);
+    blogTotal = Number(blogR.rows[0]?.total) || 0;
+    blogPublished = Number(blogR.rows[0]?.published) || 0;
+    blogDrafts = Number(blogR.rows[0]?.drafts) || 0;
+  } catch {
+    /* blog_posts table may not exist on older databases */
+  }
+
+  const r = await p.query(`
+    SELECT
+      (SELECT count(*)::int FROM event_reservations) AS events_total,
+      (SELECT count(*)::int FROM event_reservations WHERE booking_status = 'paid') AS events_paid,
+      (SELECT count(*)::int FROM event_reservations WHERE booking_status NOT IN ('paid', 'cancelled')) AS events_pending,
+      (SELECT count(*)::int FROM event_reservations WHERE booking_status = 'cancelled') AS events_cancelled,
+      (SELECT count(*)::int FROM event_reservations WHERE created_at >= now() - interval '7 days') AS events_last7,
+      (SELECT coalesce(sum(
+        CASE lower(coalesce(ticket_type, ''))
+          WHEN 'economy' THEN 1500
+          WHEN 'standard' THEN 2500
+          WHEN 'vip' THEN 3500
+          ELSE 0
+        END
+      ), 0)::int FROM event_reservations WHERE booking_status = 'paid') AS events_revenue_collected,
+      (SELECT coalesce(sum(
+        CASE lower(coalesce(ticket_type, ''))
+          WHEN 'economy' THEN 1500
+          WHEN 'standard' THEN 2500
+          WHEN 'vip' THEN 3500
+          ELSE 0
+        END
+      ), 0)::int FROM event_reservations WHERE booking_status != 'cancelled') AS events_revenue_expected,
+      (SELECT count(*)::int FROM contact_leads) AS messages_total,
+      (SELECT count(*)::int FROM contact_leads WHERE subscribe = true) AS messages_subscribed,
+      (SELECT count(*)::int FROM contact_leads WHERE created_at >= now() - interval '7 days') AS messages_last7,
+      (SELECT count(*)::int FROM career_applications) AS applications_total,
+      (SELECT count(*)::int FROM career_applications WHERE created_at >= now() - interval '7 days') AS applications_last7,
+      (SELECT count(*)::int FROM speaker_applications) AS speakers_total,
+      (SELECT count(*)::int FROM speaker_applications WHERE created_at >= now() - interval '7 days') AS speakers_last7,
+      (SELECT count(*)::int FROM sponsors_applications) AS sponsors_total,
+      (SELECT count(*)::int FROM sponsors_applications WHERE status = 'Confirmed') AS sponsors_confirmed,
+      (SELECT count(*)::int FROM sponsors_applications WHERE status IN ('Contacted', 'In Discussion')) AS sponsors_pipeline,
+      (SELECT count(*)::int FROM sponsors_applications WHERE status = 'New') AS sponsors_new,
+      (SELECT count(*)::int FROM payments) AS payments_total,
+      (SELECT count(*)::int FROM payments WHERE status = 'paid') AS payments_paid,
+      (SELECT count(*)::int FROM payments WHERE status = 'pending') AS payments_pending,
+      (SELECT coalesce(sum(amount_kes), 0)::int FROM payments WHERE status = 'paid') AS payments_amount_paid
+  `);
+
+  const slots = await getSponsorSlotSummary();
+  const row = r.rows[0];
+
+  return {
+    generatedAt: new Date().toISOString(),
+    events: {
+      total: Number(row.events_total) || 0,
+      paid: Number(row.events_paid) || 0,
+      pending: Number(row.events_pending) || 0,
+      cancelled: Number(row.events_cancelled) || 0,
+      last7Days: Number(row.events_last7) || 0,
+      revenueCollectedKes: Number(row.events_revenue_collected) || 0,
+      revenueExpectedKes: Number(row.events_revenue_expected) || 0,
+    },
+    messages: {
+      total: Number(row.messages_total) || 0,
+      subscribed: Number(row.messages_subscribed) || 0,
+      last7Days: Number(row.messages_last7) || 0,
+    },
+    applications: {
+      total: Number(row.applications_total) || 0,
+      last7Days: Number(row.applications_last7) || 0,
+    },
+    speakers: {
+      total: Number(row.speakers_total) || 0,
+      last7Days: Number(row.speakers_last7) || 0,
+    },
+    sponsors: {
+      total: Number(row.sponsors_total) || 0,
+      confirmed: Number(row.sponsors_confirmed) || 0,
+      inPipeline: Number(row.sponsors_pipeline) || 0,
+      newLeads: Number(row.sponsors_new) || 0,
+      goldRemaining: slots?.goldRemaining ?? 1,
+      silverRemaining: slots?.silverRemaining ?? 3,
+      communityRemaining: slots?.communityRemaining ?? 10,
+    },
+    payments: {
+      total: Number(row.payments_total) || 0,
+      paid: Number(row.payments_paid) || 0,
+      pending: Number(row.payments_pending) || 0,
+      amountPaidKes: Number(row.payments_amount_paid) || 0,
+    },
+    blog: {
+      total: blogTotal,
+      published: blogPublished,
+      drafts: blogDrafts,
+    },
+  };
 }

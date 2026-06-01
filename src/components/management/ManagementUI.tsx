@@ -152,3 +152,77 @@ export function AdminField({
 export function AdminEmpty({ children }: { children: ReactNode }) {
   return <p className="p-8 text-center text-sm text-white/65">{children}</p>;
 }
+
+export function AdminDashboardGrid({ children }: { children: ReactNode }) {
+  return (
+    <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 sm:p-5 xl:grid-cols-3">{children}</div>
+  );
+}
+
+export function AdminDashboardCard({
+  title,
+  href,
+  children,
+}: {
+  title: string;
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      className="block rounded-xl border border-white/15 bg-black/25 p-4 transition-colors hover:border-[var(--teal-accent)]/40 hover:bg-black/35 sm:p-5"
+    >
+      <div className="mb-4 flex items-center justify-between gap-2">
+        <h2 className="text-sm font-bold uppercase tracking-wide text-white">{title}</h2>
+        <span className="text-xs text-[var(--teal-accent)]">View →</span>
+      </div>
+      {children}
+    </a>
+  );
+}
+
+export function AdminProgressRow({
+  label,
+  value,
+  target,
+  tone = 'default',
+}: {
+  label: string;
+  value: number;
+  target: number;
+  tone?: 'default' | 'gold' | 'teal';
+}) {
+  const pct = target > 0 ? Math.min(100, Math.round((value / target) * 100)) : 0;
+  const bar =
+    tone === 'gold'
+      ? 'bg-amber-500'
+      : tone === 'teal'
+        ? 'bg-[var(--teal-accent)]'
+        : 'bg-white/40';
+
+  return (
+    <div className="space-y-1.5">
+      <div className="flex items-baseline justify-between gap-2 text-xs">
+        <span className="text-white/60">{label}</span>
+        <span className="font-semibold text-white">
+          {value.toLocaleString()}
+          <span className="font-normal text-white/45"> / {target.toLocaleString()}</span>
+          <span className="ml-1 text-white/40">({pct}%)</span>
+        </span>
+      </div>
+      <div className="h-2 overflow-hidden rounded-full bg-white/10">
+        <div className={`h-full rounded-full transition-all ${bar}`} style={{ width: `${pct}%` }} />
+      </div>
+    </div>
+  );
+}
+
+export function AdminMetricLine({ label, value }: { label: string; value: ReactNode }) {
+  return (
+    <div className="flex items-baseline justify-between gap-3 border-b border-white/5 py-2 text-sm last:border-0">
+      <span className="text-white/55">{label}</span>
+      <span className="text-right font-semibold text-white">{value}</span>
+    </div>
+  );
+}

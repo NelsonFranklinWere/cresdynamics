@@ -24,12 +24,19 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
       return NextResponse.json({ ok: false, error: 'Invalid booking status' }, { status: 400 });
     }
 
-    const ok = await updateEventReservationBookingStatus(id, status);
-    if (!ok) {
+    const result = await updateEventReservationBookingStatus(id, status, {
+      markedByEmail: session.email,
+    });
+    if (!result.ok) {
       return NextResponse.json({ ok: false, error: 'Reservation not found' }, { status: 404 });
     }
 
-    return NextResponse.json({ ok: true, bookingStatus: status });
+    return NextResponse.json({
+      ok: true,
+      bookingStatus: result.bookingStatus ?? status,
+      paidAt: result.paidAt ?? null,
+      paidBy: result.paidBy ?? null,
+    });
   } catch (e) {
     console.error('admin event reservation patch:', e);
     return NextResponse.json({ ok: false, error: 'Update failed' }, { status: 500 });

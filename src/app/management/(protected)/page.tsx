@@ -3,6 +3,6 @@ import { redirect } from 'next/navigation';
 export const runtime = 'nodejs';
 
 export default function ManagementIndexPage() {
-  redirect('/management/events');
+  redirect('/management/dashboard');
 }
 

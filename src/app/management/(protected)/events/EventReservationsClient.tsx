@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import { lanyardLabel } from '@/lib/event-lanyards';
 import {
@@ -27,6 +27,9 @@ export type EventReservationView = {
   bookingStatus: string;
   createdAt: string;
   paymentStatus: string | null;
+  paidAt: string | null;
+  paidBy: string | null;
+  paidSource: string | null;
 };
 
 function ticketAmount(ticketType: string | null): number | null {
@@ -54,6 +57,7 @@ function StatusBadge({ r }: { r: EventReservationView }) {
     return (
       <span className="inline-block rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-400">
         Paid
+        {r.paidSource === 'manual' ? ' (manual)' : r.paymentStatus === 'paid' ? ' (gateway)' : ''}
       </span>
     );
   }
@@ -71,36 +75,71 @@ function StatusBadge({ r }: { r: EventReservationView }) {
   );
 }
 
+function reservationMeta(r: EventReservationView): string {
+  const base = `#${r.id} · Registered ${new Date(r.createdAt).toLocaleString()}`;
+  if (isPaid(r) && r.paidAt) {
+    const by = r.paidBy ? ` · Marked by ${r.paidBy}` : '';
+    return `${base} · Paid ${new Date(r.paidAt).toLocaleString()}${by}`;
+  }
+  return base;
+}
+
 export default function EventReservationsClient({ rows }: { rows: EventReservationView[] }) {
   const router = useRouter();
+  const [localRows, setLocalRows] = useState(rows);
   const [updating, setUpdating] = useState<number | null>(null);
+
+  useEffect(() => {
+    setLocalRows(rows);
+  }, [rows]);
 
   const markStatus = async (id: number, bookingStatus: 'pending' | 'paid' | 'cancelled') => {
     setUpdating(id);
     try {
       const res = await fetch(`/api/admin/events/reservations/${id}`, {
         method: 'PATCH',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bookingStatus }),
       });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+        bookingStatus?: string;
+        paidAt?: string | null;
+        paidBy?: string | null;
+      };
+      if (!res.ok || !data.ok) {
         alert(data.error || 'Could not update status');
         return;
       }
+      setLocalRows((prev) =>
+        prev.map((r) =>
+          r.id === id
+            ? {
+                ...r,
+                bookingStatus: data.bookingStatus ?? bookingStatus,
+                paymentStatus: bookingStatus === 'paid' ? 'paid' : bookingStatus === 'pending' ? r.paymentStatus : r.paymentStatus,
+                paidAt: data.paidAt ?? (bookingStatus === 'paid' ? new Date().toISOString() : null),
+                paidBy: data.paidBy ?? r.paidBy,
+                paidSource: bookingStatus === 'paid' ? 'manual' : null,
+              }
+            : r
+        )
+      );
       router.refresh();
     } finally {
       setUpdating(null);
     }
   };
 
-  if (rows.length === 0) {
+  if (localRows.length === 0) {
     return <AdminEmpty>No event registrations yet.</AdminEmpty>;
   }
 
   return (
     <AdminCardList label="Registrations">
-      {rows.map((r) => {
+      {localRows.map((r) => {
         const amount = ticketAmount(r.ticketType);
         const paid = isPaid(r);
         const payMessage = `Hi ${r.firstName}, thanks for booking The Future of AI in Business (ref #${r.id}). Your ${r.ticketType || 'ticket'} is KES ${amount?.toLocaleString() ?? '—'}. Please complete payment via Paybill 542542 / Acc 43869 or reply here for M-Pesa details.`;
@@ -116,7 +155,7 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
                   ) : null}
                 </>
               }
-              meta={`#${r.id} · ${new Date(r.createdAt).toLocaleString()}`}
+              meta={reservationMeta(r)}
               badge={<StatusBadge r={r} />}
             />
             <AdminFields>

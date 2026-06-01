@@ -109,6 +109,9 @@ ALTER TABLE payments ADD COLUMN IF NOT EXISTS metadata_json JSONB;
 ALTER TABLE payments ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT now();
 ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS lanyard_category TEXT;
 ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS booking_status TEXT NOT NULL DEFAULT 'pending';
+ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS paid_at TIMESTAMPTZ;
+ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS paid_by TEXT;
+ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS paid_source TEXT;
 
 CREATE UNIQUE INDEX IF NOT EXISTS idx_payments_payment_link_token ON payments (payment_link_token)
   WHERE payment_link_token IS NOT NULL;

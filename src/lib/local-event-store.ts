@@ -83,6 +83,74 @@ export async function insertEventReservationLocal(input: EventReservationInput):
   return id;
 }
 
+export type UpdateReservationResult = {
+  ok: boolean;
+  bookingStatus?: string;
+  paidAt?: string | null;
+  paidBy?: string | null;
+};
+
+export async function updateEventReservationBookingStatusLocal(
+  id: number,
+  bookingStatus: 'pending' | 'paid' | 'cancelled',
+  markedBy: string | null
+): Promise<UpdateReservationResult> {
+  const store = await readStore<
+    LocalReservation & { bookingStatus?: string; paidAt?: string; paidBy?: string; paidSource?: string }
+  >(RESERVATIONS_FILE);
+  const item = store.items.find((r) => r.id === id);
+  if (!item) return { ok: false };
+
+  item.bookingStatus = bookingStatus;
+  if (bookingStatus === 'paid') {
+    item.paidAt = new Date().toISOString();
+    item.paidBy = markedBy ?? undefined;
+    item.paidSource = 'manual';
+  } else {
+    item.paidAt = undefined;
+    item.paidBy = undefined;
+    item.paidSource = undefined;
+  }
+
+  await writeStore(RESERVATIONS_FILE, store);
+
+  const payStore = await readStore<LocalPayment>(PAYMENTS_FILE);
+  const linked = payStore.items.filter(
+    (p) => p.metadata && Number((p.metadata as { reservationId?: number }).reservationId) === id
+  );
+  if (bookingStatus === 'paid') {
+    if (linked.length === 0 && item.email) {
+      const payId = payStore.nextId++;
+      payStore.items.push({
+        source: 'manual',
+        status: 'paid',
+        email: item.email,
+        phone: item.phone ?? null,
+        amountKes: null,
+        purpose: 'event_ticket',
+        eventTitle: item.eventTitle,
+        eventDate: item.eventDate,
+        metadata: { reservationId: id, markedBy, manualAdminMark: true },
+        id: payId,
+        createdAt: new Date().toISOString(),
+      });
+      await writeStore(PAYMENTS_FILE, payStore);
+    } else {
+      for (const p of linked) {
+        p.status = 'paid';
+      }
+      await writeStore(PAYMENTS_FILE, payStore);
+    }
+  }
+
+  return {
+    ok: true,
+    bookingStatus,
+    paidAt: item.paidAt ?? null,
+    paidBy: item.paidBy ?? null,
+  };
+}
+
 export async function createPaymentLocal(input: CreatePaymentInput): Promise<number> {
   const store = await readStore<LocalPayment>(PAYMENTS_FILE);
   const id = store.nextId++;
