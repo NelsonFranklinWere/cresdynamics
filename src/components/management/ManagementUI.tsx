@@ -31,10 +31,10 @@ export function ManagementSection({
 
       <section
         aria-label={`${title} records`}
-        className="min-w-0 rounded-xl border border-white/15 bg-black/30 shadow-sm"
+        className="w-full min-w-0 overflow-hidden rounded-lg border border-white/15 bg-[#0d0f14]"
       >
         {note ? <ManagementInfoBar>{note}</ManagementInfoBar> : null}
-        <div className="min-w-0">{children}</div>
+        <div className="w-full min-w-0">{children}</div>
       </section>
     </div>
   );
@@ -91,19 +91,87 @@ export function AdminStatCard({
   );
 }
 
-export function AdminCardList({ children, label = 'Records' }: { children: ReactNode; label?: string }) {
+/** Full-width data table — one row per record across the content area */
+export function AdminDataTable({ caption, children }: { caption?: string; children: ReactNode }) {
   return (
-    <div className="p-4 sm:p-5">
-      <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.15em] text-white/45">{label}</p>
-      <div className="space-y-4">{children}</div>
+    <div className="w-full overflow-x-auto">
+      {caption ? (
+        <div className="border-b border-white/10 bg-white/[0.03] px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white/45">
+          {caption}
+        </div>
+      ) : null}
+      <table className="w-full min-w-full border-collapse text-sm">{children}</table>
     </div>
   );
 }
 
-export function AdminCard({ children }: { children: ReactNode }) {
+export function AdminDataHead({ children }: { children: ReactNode }) {
   return (
-    <article className="rounded-xl border border-white/15 bg-[#0f1118] p-4 sm:p-5">{children}</article>
+    <thead className="border-b border-white/15 bg-white/[0.06] text-[10px] font-bold uppercase tracking-wide text-white/50">
+      {children}
+    </thead>
   );
+}
+
+export function AdminDataTh({
+  children,
+  className = '',
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <th className={`whitespace-nowrap px-3 py-3 text-left font-semibold first:pl-4 last:pr-4 sm:px-4 ${className}`}>
+      {children}
+    </th>
+  );
+}
+
+export function AdminDataBody({ children }: { children: ReactNode }) {
+  return <tbody className="divide-y divide-white/10">{children}</tbody>;
+}
+
+export function AdminDataRow({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return (
+    <tr className={`align-top transition-colors hover:bg-white/[0.04] ${className}`}>{children}</tr>
+  );
+}
+
+export function AdminDataTd({
+  children,
+  className = '',
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <td className={`px-3 py-3 text-sm leading-snug text-white/90 first:pl-4 last:pr-4 sm:px-4 ${className}`}>
+      {children}
+    </td>
+  );
+}
+
+export function AdminRowActions({ children }: { children: ReactNode }) {
+  return <div className="flex flex-wrap items-center gap-1.5">{children}</div>;
+}
+
+export const adminBtn =
+  'inline-flex items-center rounded border px-2 py-1 text-[11px] font-semibold leading-tight transition-colors disabled:opacity-50';
+export const adminBtnMuted = `${adminBtn} border-white/15 text-white/70 hover:bg-white/10`;
+export const adminBtnPrimary = `${adminBtn} border-emerald-500/40 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20`;
+export const adminBtnTeal = `${adminBtn} border-[#2FA6B3]/40 bg-[#2FA6B3]/10 text-[#2FA6B3] hover:bg-[#2FA6B3]/20`;
+export const adminBtnDanger = `${adminBtn} border-white/15 text-white/50 hover:border-red-400/40 hover:text-red-300`;
+
+export function AdminCardList({ children, label = 'Records' }: { children: ReactNode; label?: string }) {
+  return (
+    <AdminDataTable caption={label}>
+      <AdminDataBody>{children}</AdminDataBody>
+    </AdminDataTable>
+  );
+}
+
+export function AdminCard({ children }: { children: ReactNode }) {
+  return <AdminDataRow>{children}</AdminDataRow>;
 }
 
 export function AdminCardHeader({

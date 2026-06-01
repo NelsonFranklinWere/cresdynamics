@@ -5,12 +5,15 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import type { BlogPostRow } from '@/lib/blog-utils';
 import {
-  AdminCard,
-  AdminCardHeader,
-  AdminCardList,
+  AdminDataBody,
+  AdminDataHead,
+  AdminDataRow,
+  AdminDataTable,
+  AdminDataTd,
+  AdminDataTh,
   AdminEmpty,
-  AdminField,
-  AdminFields,
+  AdminRowActions,
+  adminBtnMuted,
 } from '@/components/management/ManagementUI';
 
 function formatDate(iso: string | null): string {
@@ -29,6 +32,7 @@ export default function BlogListClient({ posts }: { posts: BlogPostRow[] }) {
       const res = await fetch(`/api/admin/blog/${post.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ status: next }),
       });
       if (!res.ok) {
@@ -55,13 +59,25 @@ export default function BlogListClient({ posts }: { posts: BlogPostRow[] }) {
   }
 
   return (
-    <AdminCardList>
-      {posts.map((post) => (
-        <AdminCard key={post.id}>
-          <AdminCardHeader
-            title={post.title}
-            meta={<span className="font-mono">/blog/{post.slug}/</span>}
-            badge={
+    <AdminDataTable caption={`${posts.length} posts`}>
+      <AdminDataHead>
+        <tr>
+          <AdminDataTh>#</AdminDataTh>
+          <AdminDataTh>Title</AdminDataTh>
+          <AdminDataTh>Slug</AdminDataTh>
+          <AdminDataTh>Status</AdminDataTh>
+          <AdminDataTh>Category</AdminDataTh>
+          <AdminDataTh>Published</AdminDataTh>
+          <AdminDataTh>Actions</AdminDataTh>
+        </tr>
+      </AdminDataHead>
+      <AdminDataBody>
+        {posts.map((post) => (
+          <AdminDataRow key={post.id}>
+            <AdminDataTd className="font-mono text-xs text-white/50">{post.id}</AdminDataTd>
+            <AdminDataTd className="max-w-md font-semibold text-white">{post.title}</AdminDataTd>
+            <AdminDataTd className="font-mono text-xs text-white/55">/blog/{post.slug}/</AdminDataTd>
+            <AdminDataTd>
               <span
                 className={`inline-block rounded-full px-2 py-0.5 text-xs font-bold ${
                   post.status === 'published'
@@ -71,39 +87,32 @@ export default function BlogListClient({ posts }: { posts: BlogPostRow[] }) {
               >
                 {post.status}
               </span>
-            }
-          />
-          <AdminFields>
-            <AdminField label="Published">{formatDate(post.publishedAt)}</AdminField>
-            {post.category ? <AdminField label="Category">{post.category}</AdminField> : null}
-          </AdminFields>
-          <div className="mt-4 flex flex-wrap gap-2 border-t border-white/10 pt-3">
-            <Link
-              href={`/management/blog/${post.id}/edit`}
-              className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10"
-            >
-              Edit
-            </Link>
-            <button
-              type="button"
-              disabled={updating === post.id}
-              onClick={() => togglePublish(post)}
-              className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10 disabled:opacity-50"
-            >
-              {updating === post.id ? '…' : post.status === 'published' ? 'Unpublish' : 'Publish'}
-            </button>
-            {post.status === 'published' ? (
-              <Link
-                href={`/blog/${post.slug}`}
-                target="_blank"
-                className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold hover:bg-white/10"
-              >
-                View
-              </Link>
-            ) : null}
-          </div>
-        </AdminCard>
-      ))}
-    </AdminCardList>
+            </AdminDataTd>
+            <AdminDataTd className="text-white/70">{post.category || '—'}</AdminDataTd>
+            <AdminDataTd className="text-xs text-white/55">{formatDate(post.publishedAt)}</AdminDataTd>
+            <AdminDataTd>
+              <AdminRowActions>
+                <Link href={`/management/blog/${post.id}/edit`} className={adminBtnMuted}>
+                  Edit
+                </Link>
+                <button
+                  type="button"
+                  disabled={updating === post.id}
+                  onClick={() => togglePublish(post)}
+                  className={adminBtnMuted}
+                >
+                  {updating === post.id ? '…' : post.status === 'published' ? 'Unpublish' : 'Publish'}
+                </button>
+                {post.status === 'published' ? (
+                  <Link href={`/blog/${post.slug}`} target="_blank" className={adminBtnMuted}>
+                    View
+                  </Link>
+                ) : null}
+              </AdminRowActions>
+            </AdminDataTd>
+          </AdminDataRow>
+        ))}
+      </AdminDataBody>
+    </AdminDataTable>
   );
 }

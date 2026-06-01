@@ -1,11 +1,12 @@
 import { listContactLeads } from '@/lib/db';
 import {
-  AdminCard,
-  AdminCardHeader,
-  AdminCardList,
+  AdminDataBody,
+  AdminDataHead,
+  AdminDataRow,
+  AdminDataTable,
+  AdminDataTd,
+  AdminDataTh,
   AdminEmpty,
-  AdminField,
-  AdminFields,
   ManagementSection,
 } from '@/components/management/ManagementUI';
 
@@ -20,30 +21,40 @@ export default async function ManagementMessagesPage() {
       {rows.length === 0 ? (
         <AdminEmpty>No contact messages yet.</AdminEmpty>
       ) : (
-        <AdminCardList>
-          {rows.map((r) => (
-            <AdminCard key={r.id}>
-              <AdminCardHeader
-                title={r.fullName}
-                meta={new Date(r.createdAt).toLocaleString()}
-                badge={
-                  <span className="text-xs text-white/50">{r.subscribe ? 'Subscribed' : 'No list'}</span>
-                }
-              />
-              <AdminFields>
-                <AdminField label="Email">
-                  <a className="hover:underline" href={`mailto:${r.email}`}>
+        <AdminDataTable caption={`${rows.length} messages`}>
+          <AdminDataHead>
+            <tr>
+              <AdminDataTh>#</AdminDataTh>
+              <AdminDataTh>Name</AdminDataTh>
+              <AdminDataTh>Email</AdminDataTh>
+              <AdminDataTh>Phone</AdminDataTh>
+              <AdminDataTh>Project</AdminDataTh>
+              <AdminDataTh>List</AdminDataTh>
+              <AdminDataTh>Received</AdminDataTh>
+            </tr>
+          </AdminDataHead>
+          <AdminDataBody>
+            {rows.map((r) => (
+              <AdminDataRow key={r.id}>
+                <AdminDataTd className="font-mono text-xs text-white/50">{r.id}</AdminDataTd>
+                <AdminDataTd className="font-semibold text-white">{r.fullName}</AdminDataTd>
+                <AdminDataTd>
+                  <a className="text-[#2FA6B3] hover:underline" href={`mailto:${r.email}`}>
                     {r.email}
                   </a>
-                </AdminField>
-                <AdminField label="Phone">{r.contactPhone}</AdminField>
-                <AdminField label="Project" className="sm:col-span-2">
-                  {r.projectTitle}
-                </AdminField>
-              </AdminFields>
-            </AdminCard>
-          ))}
-        </AdminCardList>
+                </AdminDataTd>
+                <AdminDataTd>{r.contactPhone}</AdminDataTd>
+                <AdminDataTd className="max-w-md">{r.projectTitle}</AdminDataTd>
+                <AdminDataTd className="text-white/60">
+                  {r.subscribe ? 'Subscribed' : 'No list'}
+                </AdminDataTd>
+                <AdminDataTd className="whitespace-nowrap text-xs text-white/55">
+                  {new Date(r.createdAt).toLocaleString()}
+                </AdminDataTd>
+              </AdminDataRow>
+            ))}
+          </AdminDataBody>
+        </AdminDataTable>
       )}
     </ManagementSection>
   );

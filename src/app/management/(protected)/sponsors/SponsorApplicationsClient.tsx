@@ -3,14 +3,18 @@
 import { useState } from 'react';
 import type { SponsorApplicationRow, SponsorSlotSummary } from '@/lib/db';
 import {
-  AdminCard,
-  AdminCardHeader,
-  AdminCardList,
+  AdminDataBody,
+  AdminDataHead,
+  AdminDataRow,
+  AdminDataTable,
+  AdminDataTd,
+  AdminDataTh,
   AdminEmpty,
   AdminField,
-  AdminFields,
+  AdminRowActions,
   AdminStatCard,
   AdminStatsGrid,
+  adminBtnMuted,
 } from '@/components/management/ManagementUI';
 
 const STATUSES = ['New', 'Contacted', 'In Discussion', 'Confirmed', 'Declined'] as const;
@@ -103,15 +107,36 @@ export default function SponsorApplicationsClient({
       {rows.length === 0 ? (
         <AdminEmpty>No sponsor applications yet.</AdminEmpty>
       ) : (
-        <AdminCardList>
-          {rows.map((r) => (
-            <AdminCard key={r.id}>
-              <AdminCardHeader
-                title={r.companyName}
-                meta={`${r.contactFullName} · ${new Date(r.createdAt).toLocaleString()}`}
-                badge={
+        <AdminDataTable caption={`${rows.length} sponsors`}>
+          <AdminDataHead>
+            <tr>
+              <AdminDataTh>#</AdminDataTh>
+              <AdminDataTh>Company</AdminDataTh>
+              <AdminDataTh>Contact</AdminDataTh>
+              <AdminDataTh>Package</AdminDataTh>
+              <AdminDataTh>Email</AdminDataTh>
+              <AdminDataTh>Phone</AdminDataTh>
+              <AdminDataTh>Status</AdminDataTh>
+              <AdminDataTh>Submitted</AdminDataTh>
+              <AdminDataTh>Actions</AdminDataTh>
+            </tr>
+          </AdminDataHead>
+          <AdminDataBody>
+            {rows.map((r) => (
+              <AdminDataRow key={r.id}>
+                <AdminDataTd className="font-mono text-xs text-white/50">{r.id}</AdminDataTd>
+                <AdminDataTd className="font-semibold text-white">{r.companyName}</AdminDataTd>
+                <AdminDataTd>{r.contactFullName}</AdminDataTd>
+                <AdminDataTd className="text-white/70">{r.packageSelected}</AdminDataTd>
+                <AdminDataTd>
+                  <a className="text-[#2FA6B3] hover:underline" href={`mailto:${r.email}`}>
+                    {r.email}
+                  </a>
+                </AdminDataTd>
+                <AdminDataTd>{r.phone}</AdminDataTd>
+                <AdminDataTd>
                   <select
-                    className="w-full max-w-full rounded-lg border border-white/15 bg-black/40 px-2 py-1.5 text-xs text-white sm:max-w-[12rem]"
+                    className="w-full min-w-[8.5rem] rounded border border-white/15 bg-black/40 px-2 py-1 text-xs text-white"
                     value={r.status}
                     disabled={busyId === r.id}
                     onChange={async (e) => {
@@ -124,37 +149,29 @@ export default function SponsorApplicationsClient({
                       </option>
                     ))}
                   </select>
-                }
-              />
-              <AdminFields>
-                <AdminField label="Package">{r.packageSelected}</AdminField>
-                <AdminField label="Email">
-                  <a className="hover:underline" href={`mailto:${r.email}`}>
-                    {r.email}
-                  </a>
-                </AdminField>
-                <AdminField label="Phone">{r.phone}</AdminField>
-              </AdminFields>
-              <div className="mt-4 flex flex-wrap gap-2 border-t border-white/10 pt-3">
-                <button
-                  type="button"
-                  className="rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold hover:bg-white/15"
-                  onClick={() => openModal(r)}
-                >
-                  Full details
-                </button>
-                <button
-                  type="button"
-                  className="rounded-lg border border-amber-500/40 bg-amber-500/15 px-3 py-1.5 text-xs font-semibold text-amber-100 hover:bg-amber-500/25 disabled:opacity-50"
-                  disabled={busyId === r.id}
-                  onClick={() => patchRow(r.id, { status: 'Contacted' })}
-                >
-                  Mark contacted
-                </button>
-              </div>
-            </AdminCard>
-          ))}
-        </AdminCardList>
+                </AdminDataTd>
+                <AdminDataTd className="whitespace-nowrap text-xs text-white/55">
+                  {new Date(r.createdAt).toLocaleString()}
+                </AdminDataTd>
+                <AdminDataTd>
+                  <AdminRowActions>
+                    <button type="button" className={adminBtnMuted} onClick={() => openModal(r)}>
+                      Details
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex items-center rounded border border-amber-500/40 bg-amber-500/15 px-2 py-1 text-[11px] font-semibold text-amber-100 hover:bg-amber-500/25 disabled:opacity-50"
+                      disabled={busyId === r.id}
+                      onClick={() => patchRow(r.id, { status: 'Contacted' })}
+                    >
+                      Contacted
+                    </button>
+                  </AdminRowActions>
+                </AdminDataTd>
+              </AdminDataRow>
+            ))}
+          </AdminDataBody>
+        </AdminDataTable>
       )}
 
       {modalRow ? (

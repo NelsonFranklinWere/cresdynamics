@@ -1,11 +1,12 @@
 import { listCareerApplications } from '@/lib/db';
 import {
-  AdminCard,
-  AdminCardHeader,
-  AdminCardList,
+  AdminDataBody,
+  AdminDataHead,
+  AdminDataRow,
+  AdminDataTable,
+  AdminDataTd,
+  AdminDataTh,
   AdminEmpty,
-  AdminField,
-  AdminFields,
   ManagementSection,
 } from '@/components/management/ManagementUI';
 
@@ -20,26 +21,38 @@ export default async function ManagementApplicationsPage() {
       {rows.length === 0 ? (
         <AdminEmpty>No applications yet.</AdminEmpty>
       ) : (
-        <AdminCardList>
-          {rows.map((r) => (
-            <AdminCard key={r.id}>
-              <AdminCardHeader
-                title={r.fullName}
-                meta={new Date(r.createdAt).toLocaleString()}
-                badge={<span className="text-xs font-semibold text-white/70">{r.role}</span>}
-              />
-              <AdminFields>
-                <AdminField label="Email">
-                  <a className="hover:underline" href={`mailto:${r.email}`}>
+        <AdminDataTable caption={`${rows.length} applications`}>
+          <AdminDataHead>
+            <tr>
+              <AdminDataTh>#</AdminDataTh>
+              <AdminDataTh>Name</AdminDataTh>
+              <AdminDataTh>Role</AdminDataTh>
+              <AdminDataTh>Email</AdminDataTh>
+              <AdminDataTh>Phone</AdminDataTh>
+              <AdminDataTh>CV</AdminDataTh>
+              <AdminDataTh>Submitted</AdminDataTh>
+            </tr>
+          </AdminDataHead>
+          <AdminDataBody>
+            {rows.map((r) => (
+              <AdminDataRow key={r.id}>
+                <AdminDataTd className="font-mono text-xs text-white/50">{r.id}</AdminDataTd>
+                <AdminDataTd className="font-semibold text-white">{r.fullName}</AdminDataTd>
+                <AdminDataTd>{r.role}</AdminDataTd>
+                <AdminDataTd>
+                  <a className="text-[#2FA6B3] hover:underline" href={`mailto:${r.email}`}>
                     {r.email}
                   </a>
-                </AdminField>
-                <AdminField label="Phone">{r.phone || '—'}</AdminField>
-                <AdminField label="CV file">{r.cvOriginalFilename || '—'}</AdminField>
-              </AdminFields>
-            </AdminCard>
-          ))}
-        </AdminCardList>
+                </AdminDataTd>
+                <AdminDataTd>{r.phone || '—'}</AdminDataTd>
+                <AdminDataTd className="text-white/70">{r.cvOriginalFilename || '—'}</AdminDataTd>
+                <AdminDataTd className="whitespace-nowrap text-xs text-white/55">
+                  {new Date(r.createdAt).toLocaleString()}
+                </AdminDataTd>
+              </AdminDataRow>
+            ))}
+          </AdminDataBody>
+        </AdminDataTable>
       )}
     </ManagementSection>
   );

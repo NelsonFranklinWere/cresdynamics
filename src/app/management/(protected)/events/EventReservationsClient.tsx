@@ -5,12 +5,18 @@ import { useEffect, useState } from 'react';
 import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import { lanyardLabel } from '@/lib/event-lanyards';
 import {
-  AdminCard,
-  AdminCardHeader,
-  AdminCardList,
+  AdminDataBody,
+  AdminDataHead,
+  AdminDataRow,
+  AdminDataTable,
+  AdminDataTd,
+  AdminDataTh,
   AdminEmpty,
-  AdminField,
-  AdminFields,
+  AdminRowActions,
+  adminBtnDanger,
+  adminBtnMuted,
+  adminBtnPrimary,
+  adminBtnTeal,
 } from '@/components/management/ManagementUI';
 
 export type EventReservationView = {
@@ -56,8 +62,7 @@ function StatusBadge({ r }: { r: EventReservationView }) {
   if (paid) {
     return (
       <span className="inline-block rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-400">
-        Paid
-        {r.paidSource === 'manual' ? ' (manual)' : r.paymentStatus === 'paid' ? ' (gateway)' : ''}
+        Paid{r.paidSource === 'manual' ? ' · manual' : ''}
       </span>
     );
   }
@@ -75,13 +80,13 @@ function StatusBadge({ r }: { r: EventReservationView }) {
   );
 }
 
-function reservationMeta(r: EventReservationView): string {
-  const base = `#${r.id} · Registered ${new Date(r.createdAt).toLocaleString()}`;
-  if (isPaid(r) && r.paidAt) {
-    const by = r.paidBy ? ` · Marked by ${r.paidBy}` : '';
-    return `${base} · Paid ${new Date(r.paidAt).toLocaleString()}${by}`;
-  }
-  return base;
+function shortDate(iso: string) {
+  return new Date(iso).toLocaleString('en-KE', {
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 }
 
 export default function EventReservationsClient({ rows }: { rows: EventReservationView[] }) {
@@ -119,7 +124,7 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
             ? {
                 ...r,
                 bookingStatus: data.bookingStatus ?? bookingStatus,
-                paymentStatus: bookingStatus === 'paid' ? 'paid' : bookingStatus === 'pending' ? r.paymentStatus : r.paymentStatus,
+                paymentStatus: bookingStatus === 'paid' ? 'paid' : r.paymentStatus,
                 paidAt: data.paidAt ?? (bookingStatus === 'paid' ? new Date().toISOString() : null),
                 paidBy: data.paidBy ?? r.paidBy,
                 paidSource: bookingStatus === 'paid' ? 'manual' : null,
@@ -138,33 +143,40 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
   }
 
   return (
-    <AdminCardList label="Registrations">
-      {localRows.map((r) => {
-        const amount = ticketAmount(r.ticketType);
-        const paid = isPaid(r);
-        const payMessage = `Hi ${r.firstName}, thanks for booking The Future of AI in Business (ref #${r.id}). Your ${r.ticketType || 'ticket'} is KES ${amount?.toLocaleString() ?? '—'}. Please complete payment via Paybill 542542 / Acc 43869 or reply here for M-Pesa details.`;
+    <AdminDataTable caption={`${localRows.length} registrations`}>
+      <AdminDataHead>
+        <tr>
+          <AdminDataTh>#</AdminDataTh>
+          <AdminDataTh>Name</AdminDataTh>
+          <AdminDataTh>Company</AdminDataTh>
+          <AdminDataTh>Email</AdminDataTh>
+          <AdminDataTh>Phone</AdminDataTh>
+          <AdminDataTh>Ticket</AdminDataTh>
+          <AdminDataTh>Lanyard</AdminDataTh>
+          <AdminDataTh>Status</AdminDataTh>
+          <AdminDataTh>Timeline</AdminDataTh>
+          <AdminDataTh className="min-w-[11rem]">Actions</AdminDataTh>
+        </tr>
+      </AdminDataHead>
+      <AdminDataBody>
+        {localRows.map((r) => {
+          const amount = ticketAmount(r.ticketType);
+          const paid = isPaid(r);
+          const payMessage = `Hi ${r.firstName}, thanks for booking The Future of AI in Business (ref #${r.id}). Your ${r.ticketType || 'ticket'} is KES ${amount?.toLocaleString() ?? '—'}. Please complete payment via Paybill 542542 / Acc 43869 or reply here for M-Pesa details.`;
 
-        return (
-          <AdminCard key={r.id}>
-            <AdminCardHeader
-              title={
-                <>
-                  {r.firstName} {r.lastName || ''}
-                  {r.company ? (
-                    <span className="mt-0.5 block text-sm font-normal text-white/55">{r.company}</span>
-                  ) : null}
-                </>
-              }
-              meta={reservationMeta(r)}
-              badge={<StatusBadge r={r} />}
-            />
-            <AdminFields>
-              <AdminField label="Email">
+          return (
+            <AdminDataRow key={r.id}>
+              <AdminDataTd className="font-mono text-xs text-white/50">{r.id}</AdminDataTd>
+              <AdminDataTd className="font-semibold text-white">
+                {r.firstName} {r.lastName || ''}
+              </AdminDataTd>
+              <AdminDataTd className="text-white/60">{r.company || '—'}</AdminDataTd>
+              <AdminDataTd>
                 <a className="text-[#2FA6B3] hover:underline" href={`mailto:${r.email}`}>
                   {r.email}
                 </a>
-              </AdminField>
-              <AdminField label="Phone">
+              </AdminDataTd>
+              <AdminDataTd>
                 {r.phone ? (
                   <a
                     className="hover:underline"
@@ -177,64 +189,78 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
                 ) : (
                   '—'
                 )}
-              </AdminField>
-              <AdminField label="Ticket">
+              </AdminDataTd>
+              <AdminDataTd>
                 <span className="capitalize">{r.ticketType || '—'}</span>
                 {amount != null ? (
                   <span className="mt-0.5 block text-xs font-bold text-[#F39C24]">
                     KES {amount.toLocaleString()}
                   </span>
                 ) : null}
-              </AdminField>
-              <AdminField label="Lanyard">
+              </AdminDataTd>
+              <AdminDataTd className="text-white/70">
                 {r.lanyardCategory ? lanyardLabel(r.lanyardCategory) : '—'}
-              </AdminField>
-            </AdminFields>
-            <div className="mt-4 flex flex-wrap gap-2 border-t border-white/10 pt-3">
-              {r.phone && !paid ? (
-                <a
-                  href={whatsAppUrl(r.phone, payMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-lg border border-[#2FA6B3]/40 bg-[#2FA6B3]/10 px-3 py-1.5 text-xs font-bold text-[#2FA6B3]"
-                >
-                  WhatsApp
-                </a>
-              ) : null}
-              {!paid && r.bookingStatus !== 'cancelled' ? (
-                <button
-                  type="button"
-                  disabled={updating === r.id}
-                  onClick={() => markStatus(r.id, 'paid')}
-                  className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-bold text-emerald-400 disabled:opacity-50"
-                >
-                  {updating === r.id ? 'Saving…' : 'Mark paid'}
-                </button>
-              ) : null}
-              {!paid && r.bookingStatus !== 'cancelled' ? (
-                <button
-                  type="button"
-                  disabled={updating === r.id}
-                  onClick={() => markStatus(r.id, 'cancelled')}
-                  className="rounded-lg border border-white/15 px-3 py-1.5 text-xs text-white/50 hover:text-red-300 disabled:opacity-50"
-                >
-                  Cancel
-                </button>
-              ) : null}
-              {paid ? (
-                <button
-                  type="button"
-                  disabled={updating === r.id}
-                  onClick={() => markStatus(r.id, 'pending')}
-                  className="rounded-lg border border-white/15 px-3 py-1.5 text-xs text-white/50 hover:underline disabled:opacity-50"
-                >
-                  Mark pending
-                </button>
-              ) : null}
-            </div>
-          </AdminCard>
-        );
-      })}
-    </AdminCardList>
+              </AdminDataTd>
+              <AdminDataTd>
+                <StatusBadge r={r} />
+              </AdminDataTd>
+              <AdminDataTd className="text-xs text-white/55">
+                <div>Reg {shortDate(r.createdAt)}</div>
+                {paid && r.paidAt ? (
+                  <div className="mt-1 text-emerald-400/90">
+                    Paid {shortDate(r.paidAt)}
+                    {r.paidBy ? <span className="block text-white/40">by {r.paidBy}</span> : null}
+                  </div>
+                ) : null}
+              </AdminDataTd>
+              <AdminDataTd>
+                <AdminRowActions>
+                  {r.phone && !paid ? (
+                    <a
+                      href={whatsAppUrl(r.phone, payMessage)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={adminBtnTeal}
+                    >
+                      WhatsApp
+                    </a>
+                  ) : null}
+                  {!paid && r.bookingStatus !== 'cancelled' ? (
+                    <button
+                      type="button"
+                      disabled={updating === r.id}
+                      onClick={() => markStatus(r.id, 'paid')}
+                      className={adminBtnPrimary}
+                    >
+                      {updating === r.id ? '…' : 'Mark paid'}
+                    </button>
+                  ) : null}
+                  {!paid && r.bookingStatus !== 'cancelled' ? (
+                    <button
+                      type="button"
+                      disabled={updating === r.id}
+                      onClick={() => markStatus(r.id, 'cancelled')}
+                      className={adminBtnDanger}
+                    >
+                      Cancel
+                    </button>
+                  ) : null}
+                  {paid ? (
+                    <button
+                      type="button"
+                      disabled={updating === r.id}
+                      onClick={() => markStatus(r.id, 'pending')}
+                      className={adminBtnMuted}
+                    >
+                      Pending
+                    </button>
+                  ) : null}
+                </AdminRowActions>
+              </AdminDataTd>
+            </AdminDataRow>
+          );
+        })}
+      </AdminDataBody>
+    </AdminDataTable>
   );
 }

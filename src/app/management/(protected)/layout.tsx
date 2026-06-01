@@ -51,7 +51,7 @@ export default async function ManagementProtectedLayout({
         </div>
       </aside>
 
-      <main className="min-w-0 flex-1 px-4 py-5 sm:px-6 sm:py-6 lg:px-10 lg:pb-10">
+      <main className="min-w-0 w-full max-w-none flex-1 px-3 py-4 sm:px-4 sm:py-5 lg:px-5 lg:py-6">
         {children}
       </main>
     </div>
