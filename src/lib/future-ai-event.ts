@@ -193,7 +193,7 @@ export const FUTURE_AI_PROGRAMME: ProgrammeSession[] = [
     time: '4:40 PM',
     title: 'Fireside Chat: Building Systems That Scale — Lessons from the Field',
     host: 'Nelson Were',
-    guest: 'Senior technology or business leader — TBC',
+    guest: 'Morara Kebaso',
     duration: '20 minutes',
     body: [
       'An informal conversation on stage. Two chairs. Honest dialogue. The guest shares their experience building operational infrastructure for a growing African business. What they got wrong. What they would do differently. What the systems that changed their business actually looked like before they were built and after.',
