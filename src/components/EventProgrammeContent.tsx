@@ -290,8 +290,12 @@ export default function EventProgrammeContent() {
                 <br />
                 in Business
               </h1>
-              <p className="text-sm sm:text-base text-[#F39C24] font-semibold tracking-wide">
+              <p className="text-sm sm:text-base text-[#F39C24] font-semibold tracking-wide mb-3">
                 {FUTURE_AI_EVENT.tagline}
+              </p>
+              <p className="text-sm text-white/55 leading-relaxed max-w-2xl">
+                Official programme for Nairobi&apos;s AI business conference — {FUTURE_AI_EVENT.dateLabel},{' '}
+                {FUTURE_AI_EVENT.venue}. Keynotes, breakout tracks, live AI challenge, and The Open Table finale.
               </p>
             </div>
 
@@ -314,10 +318,10 @@ export default function EventProgrammeContent() {
           {/* Meta grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { label: 'Date', value: FUTURE_AI_EVENT.dateLabel, icon: '📅' },
-              { label: 'Time', value: FUTURE_AI_EVENT.timeRange, icon: '⏱' },
-              { label: 'Venue', value: FUTURE_AI_EVENT.venueShort, icon: '📍' },
-              { label: 'Organiser', value: FUTURE_AI_EVENT.organiser, icon: '◆' },
+              { label: 'Date', value: FUTURE_AI_EVENT.dateLabel, icon: '📅', dateTime: '2026-06-20' },
+              { label: 'Time', value: FUTURE_AI_EVENT.timeRange, icon: '⏱', dateTime: undefined },
+              { label: 'Venue', value: FUTURE_AI_EVENT.venueShort, icon: '📍', dateTime: undefined },
+              { label: 'Organiser', value: FUTURE_AI_EVENT.organiser, icon: '◆', dateTime: undefined },
             ].map((item) => (
               <div
                 key={item.label}
@@ -329,7 +333,13 @@ export default function EventProgrammeContent() {
                 <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-white/35 font-mono mb-1">
                   {item.label}
                 </p>
-                <p className="text-xs sm:text-sm font-semibold text-white/90 leading-snug">{item.value}</p>
+                {item.dateTime ? (
+                  <time dateTime={item.dateTime} className="text-xs sm:text-sm font-semibold text-white/90 leading-snug">
+                    {item.value}
+                  </time>
+                ) : (
+                  <p className="text-xs sm:text-sm font-semibold text-white/90 leading-snug">{item.value}</p>
+                )}
               </div>
             ))}
           </div>

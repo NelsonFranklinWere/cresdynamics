@@ -1,13 +1,23 @@
 import EventProgrammeContent from '@/components/EventProgrammeContent';
-import type { Metadata } from 'next';
-import { FUTURE_AI_EVENT, FUTURE_AI_PATHS } from '@/lib/future-ai-event';
+import {
+  futureAiProgrammeJsonLd,
+  futureAiProgrammeMetadata,
+} from '@/lib/future-ai-event-seo';
 
-export const metadata: Metadata = {
-  title: `Official Programme | ${FUTURE_AI_EVENT.title} | 20 June 2026`,
-  description: `Full official programme for ${FUTURE_AI_EVENT.title} — ${FUTURE_AI_EVENT.dateLabel}, ${FUTURE_AI_EVENT.venue}. ${FUTURE_AI_EVENT.timeRange}.`,
-  alternates: { canonical: `https://cresdynamics.com${FUTURE_AI_PATHS.programme}` },
-};
+export const metadata = futureAiProgrammeMetadata();
 
 export default function FutureAiProgrammePage() {
-  return <EventProgrammeContent />;
+  const schemas = futureAiProgrammeJsonLd();
+  return (
+    <>
+      <EventProgrammeContent />
+      {schemas.map((schema, i) => (
+        <script
+          key={`${schema['@type']}-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+    </>
+  );
 }
