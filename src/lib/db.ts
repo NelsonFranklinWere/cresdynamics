@@ -3,10 +3,15 @@ import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import {
   attachPaymentCheckoutDetailsLocal,
   createPaymentLocal,
+  deleteEventReservationLocal,
   insertEventReservationLocal,
   isLocalEventStoreEnabled,
   updateEventReservationBookingStatusLocal,
 } from '@/lib/local-event-store';
+import {
+  renumberConfirmedEventTicketsPg,
+  sendConfirmationForReservationPg,
+} from '@/lib/event-reservation-confirm';
 import {
   createBlogPostLocal,
   deleteBlogPostLocal,
@@ -276,6 +281,8 @@ export type EventReservationRow = {
   paidAt: string | null;
   paidBy: string | null;
   paidSource: string | null;
+  ticketNumber: string | null;
+  confirmationSentAt: string | null;
 };
 
 export type UpdateEventReservationResult = {
@@ -283,6 +290,8 @@ export type UpdateEventReservationResult = {
   bookingStatus?: string;
   paidAt?: string | null;
   paidBy?: string | null;
+  ticketNumber?: string | null;
+  confirmationEmailSent?: boolean;
 };
 
 function ticketAmountFromType(ticketType: string | null): number {
@@ -410,7 +419,14 @@ export async function updateEventReservationBookingStatus(
 
   if (isLocalEventStoreEnabled() && !getPool()) {
     const local = await updateEventReservationBookingStatusLocal(id, bookingStatus, markedBy);
-    return local;
+    return {
+      ok: local.ok,
+      bookingStatus: local.bookingStatus,
+      paidAt: local.paidAt,
+      paidBy: local.paidBy,
+      ticketNumber: local.ticketNumber,
+      confirmationEmailSent: local.confirmationEmailSent,
+    };
   }
 
   const p = getPool();
@@ -431,6 +447,7 @@ export async function updateEventReservationBookingStatus(
   if (!existing.rows[0]) return { ok: false };
 
   const row = existing.rows[0];
+  const wasPaid = normalizeBookingStatus(String(row.booking_status || 'pending')) === 'paid';
   const reservationCtx = {
     email: String(row.email),
     phone: row.phone ? String(row.phone) : null,
@@ -438,6 +455,13 @@ export async function updateEventReservationBookingStatus(
     eventTitle: String(row.event_title),
     eventDate: String(row.event_date),
   };
+
+  const paidSource =
+    bookingStatus === 'paid'
+      ? markedBy?.toLowerCase().includes('pesapal')
+        ? 'pesapal'
+        : 'manual'
+      : null;
 
   let r;
   try {
@@ -448,11 +472,11 @@ export async function updateEventReservationBookingStatus(
           updated_at = now(),
           paid_at = CASE WHEN $2 = 'paid' THEN now() ELSE NULL END,
           paid_by = CASE WHEN $2 = 'paid' THEN $3 ELSE NULL END,
-          paid_source = CASE WHEN $2 = 'paid' THEN 'manual' ELSE NULL END
+          paid_source = CASE WHEN $2 = 'paid' THEN $4 ELSE NULL END
       WHERE id = $1
       RETURNING booking_status, paid_at, paid_by
       `,
-      [id, bookingStatus, markedBy]
+      [id, bookingStatus, markedBy, paidSource]
     );
   } catch (err) {
     if (!isPgUndefinedColumn(err)) throw err;
@@ -475,12 +499,46 @@ export async function updateEventReservationBookingStatus(
     console.error('syncReservationPaymentsForStatus failed (reservation still updated):', syncErr);
   }
 
+  if (bookingStatus === 'paid' || wasPaid) {
+    try {
+      await renumberConfirmedEventTicketsPg(p, reservationCtx.eventTitle, reservationCtx.eventDate);
+    } catch (renumErr) {
+      console.error('renumberConfirmedEventTickets failed:', renumErr);
+    }
+  }
+
+  let confirmationEmailSent = false;
+  let ticketNumber: string | null = null;
+  if (bookingStatus === 'paid' && !wasPaid) {
+    try {
+      const confirm = await sendConfirmationForReservationPg(p, id);
+      confirmationEmailSent = confirm.sent;
+      ticketNumber = confirm.ticketNumber ?? null;
+      if (!confirm.sent && confirm.error && confirm.error !== 'Already sent') {
+        console.error('confirmation email not sent:', confirm.error);
+      }
+    } catch (confirmErr) {
+      console.error('sendConfirmationForReservation failed:', confirmErr);
+    }
+  }
+
+  if (bookingStatus === 'paid' && !ticketNumber) {
+    try {
+      const tn = await p.query(`SELECT ticket_number FROM event_reservations WHERE id = $1`, [id]);
+      ticketNumber = tn.rows[0]?.ticket_number ? String(tn.rows[0].ticket_number) : null;
+    } catch {
+      /* column may not exist yet */
+    }
+  }
+
   const out = r.rows[0];
   return {
     ok: true,
     bookingStatus: normalizeBookingStatus(String(out.booking_status)),
     paidAt: out.paid_at ? new Date(out.paid_at).toISOString() : bookingStatus === 'paid' ? new Date().toISOString() : null,
     paidBy: out.paid_by ? String(out.paid_by) : markedBy,
+    ticketNumber,
+    confirmationEmailSent,
   };
 }
 
@@ -538,6 +596,8 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
       er.paid_at,
       er.paid_by,
       er.paid_source,
+      er.ticket_number,
+      er.confirmation_sent_at,
       (
         select p.status
         from payments p
@@ -580,7 +640,45 @@ export async function listEventReservations(limit = 200): Promise<EventReservati
     paidAt: row.paid_at ? new Date(row.paid_at).toISOString() : null,
     paidBy: row.paid_by ? String(row.paid_by) : null,
     paidSource: row.paid_source ? String(row.paid_source) : null,
+    ticketNumber: row.ticket_number ? String(row.ticket_number) : null,
+    confirmationSentAt: row.confirmation_sent_at
+      ? new Date(row.confirmation_sent_at).toISOString()
+      : null,
   }));
+}
+
+export async function deleteEventReservation(id: number): Promise<{ ok: boolean; error?: string }> {
+  if (isLocalEventStoreEnabled() && !getPool()) {
+    return deleteEventReservationLocal(id);
+  }
+
+  const p = getPool();
+  if (!p) {
+    if (isLocalEventStoreEnabled()) return deleteEventReservationLocal(id);
+    return { ok: false, error: 'Database unavailable' };
+  }
+
+  const existing = await p.query(
+    `SELECT id, event_title, event_date, booking_status FROM event_reservations WHERE id = $1`,
+    [id]
+  );
+  if (!existing.rows[0]) return { ok: false, error: 'Not found' };
+
+  const eventTitle = String(existing.rows[0].event_title);
+  const eventDate = String(existing.rows[0].event_date);
+  const wasPaid = String(existing.rows[0].booking_status) === 'paid';
+
+  await p.query(`DELETE FROM event_reservations WHERE id = $1`, [id]);
+
+  if (wasPaid) {
+    try {
+      await renumberConfirmedEventTicketsPg(p, eventTitle, eventDate);
+    } catch (err) {
+      console.error('renumber after delete failed:', err);
+    }
+  }
+
+  return { ok: true };
 }
 
 export type PaymentRow = {

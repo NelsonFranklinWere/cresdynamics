@@ -1,7 +1,7 @@
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 import { getAdminSessionFromRequest } from '@/lib/adminAuth';
-import { updateEventReservationBookingStatus } from '@/lib/db';
+import { deleteEventReservation, updateEventReservationBookingStatus } from '@/lib/db';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -39,9 +39,36 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
       bookingStatus: (result.bookingStatus ?? status).toLowerCase(),
       paidAt: result.paidAt ?? null,
       paidBy: result.paidBy ?? null,
+      ticketNumber: result.ticketNumber ?? null,
+      confirmationEmailSent: result.confirmationEmailSent ?? false,
     });
   } catch (e) {
     console.error('admin event reservation patch:', e);
     return NextResponse.json({ ok: false, error: 'Update failed' }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
+  const session = getAdminSessionFromRequest(req);
+  if (!session) {
+    return NextResponse.json({ ok: false, error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const { id: idStr } = await ctx.params;
+  const id = Number(idStr);
+  if (!Number.isFinite(id) || id <= 0) {
+    return NextResponse.json({ ok: false, error: 'Invalid id' }, { status: 400 });
+  }
+
+  try {
+    const result = await deleteEventReservation(id);
+    if (!result.ok) {
+      return NextResponse.json({ ok: false, error: result.error || 'Delete failed' }, { status: 404 });
+    }
+    revalidatePath('/management/events');
+    return NextResponse.json({ ok: true });
+  } catch (e) {
+    console.error('admin event reservation delete:', e);
+    return NextResponse.json({ ok: false, error: 'Delete failed' }, { status: 500 });
   }
 }

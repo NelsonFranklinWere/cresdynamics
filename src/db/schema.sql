@@ -112,6 +112,12 @@ ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS booking_status TEXT NOT 
 ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS paid_at TIMESTAMPTZ;
 ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS paid_by TEXT;
 ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS paid_source TEXT;
+ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS ticket_number TEXT;
+ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS confirmation_sent_at TIMESTAMPTZ;
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_event_reservations_ticket_number
+  ON event_reservations (ticket_number)
+  WHERE ticket_number IS NOT NULL;
 
 CREATE UNIQUE INDEX IF NOT EXISTS idx_payments_payment_link_token ON payments (payment_link_token)
   WHERE payment_link_token IS NOT NULL;

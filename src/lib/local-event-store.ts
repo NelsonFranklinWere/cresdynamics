@@ -1,5 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { formatEventTicketNumber } from '@/lib/event-confirmation-email';
+import { sendEventConfirmationEmail } from '@/lib/send-event-confirmation';
+import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 
 type EventReservationInput = {
   eventTitle: string;
@@ -39,7 +42,16 @@ const PAYMENTS_FILE = join(DATA_DIR, 'payments.json');
 
 type StoreFile<T> = { nextId: number; items: T[] };
 
-type LocalReservation = EventReservationInput & { id: number; createdAt: string };
+type LocalReservation = EventReservationInput & {
+  id: number;
+  createdAt: string;
+  bookingStatus?: string;
+  paidAt?: string;
+  paidBy?: string;
+  paidSource?: string;
+  ticketNumber?: string;
+  confirmationSentAt?: string;
+};
 type LocalPayment = CreatePaymentInput & {
   id: number;
   merchantReference?: string | null;
@@ -88,7 +100,48 @@ export type UpdateReservationResult = {
   bookingStatus?: string;
   paidAt?: string | null;
   paidBy?: string | null;
+  ticketNumber?: string | null;
+  confirmationEmailSent?: boolean;
 };
+
+function renumberLocalTickets(store: StoreFile<LocalReservation>, eventTitle: string, eventDate: string) {
+  const paid = store.items
+    .filter((r) => r.eventTitle === eventTitle && r.eventDate === eventDate && r.bookingStatus === 'paid')
+    .sort((a, b) => {
+      const ta = a.paidAt ? new Date(a.paidAt).getTime() : a.id;
+      const tb = b.paidAt ? new Date(b.paidAt).getTime() : b.id;
+      return ta - tb || a.id - b.id;
+    });
+  for (const item of store.items) {
+    if (item.eventTitle === eventTitle && item.eventDate === eventDate && item.bookingStatus !== 'paid') {
+      item.ticketNumber = undefined;
+    }
+  }
+  paid.forEach((item, i) => {
+    item.ticketNumber = formatEventTicketNumber(i + 1);
+  });
+}
+
+async function sendLocalConfirmation(item: LocalReservation): Promise<boolean> {
+  if (!item.ticketNumber || !item.email) return false;
+  const amount = EVENT_TICKET_AMOUNTS_KES[(item.ticketType || 'standard').toLowerCase()] ?? 2500;
+  const paybill = process.env.EVENT_PAYBILL || '542542';
+  const account = process.env.EVENT_PAYBILL_ACCOUNT || '43869';
+  const result = await sendEventConfirmationEmail({
+    firstName: item.firstName,
+    lastName: item.lastName ?? null,
+    email: item.email,
+    ticketType: item.ticketType ?? null,
+    ticketNumber: item.ticketNumber,
+    amountPaidKes: amount,
+    paymentReference: `Paybill ${paybill} / Acc ${account}`,
+    paymentDate: item.paidAt || new Date().toISOString(),
+    lanyardCategory: item.lanyardCategory ?? null,
+    isVip: (item.ticketType || '').toLowerCase() === 'vip',
+  });
+  if (result.sent) item.confirmationSentAt = new Date().toISOString();
+  return result.sent;
+}
 
 export async function updateEventReservationBookingStatusLocal(
   id: number,
@@ -101,6 +154,7 @@ export async function updateEventReservationBookingStatusLocal(
   const item = store.items.find((r) => r.id === id);
   if (!item) return { ok: false };
 
+  const wasPaid = item.bookingStatus === 'paid';
   item.bookingStatus = bookingStatus.toLowerCase();
   if (bookingStatus === 'paid') {
     item.paidAt = new Date().toISOString();
@@ -110,9 +164,18 @@ export async function updateEventReservationBookingStatusLocal(
     item.paidAt = undefined;
     item.paidBy = undefined;
     item.paidSource = undefined;
+    item.ticketNumber = undefined;
+    item.confirmationSentAt = undefined;
   }
 
+  renumberLocalTickets(store, item.eventTitle, item.eventDate);
   await writeStore(RESERVATIONS_FILE, store);
+
+  let confirmationEmailSent = false;
+  if (bookingStatus === 'paid' && !wasPaid && !item.confirmationSentAt) {
+    confirmationEmailSent = await sendLocalConfirmation(item);
+    await writeStore(RESERVATIONS_FILE, store);
+  }
 
   const payStore = await readStore<LocalPayment>(PAYMENTS_FILE);
   const linked = payStore.items.filter(
@@ -148,7 +211,22 @@ export async function updateEventReservationBookingStatusLocal(
     bookingStatus,
     paidAt: item.paidAt ?? null,
     paidBy: item.paidBy ?? null,
+    ticketNumber: item.ticketNumber ?? null,
+    confirmationEmailSent,
   };
+}
+
+export async function deleteEventReservationLocal(id: number): Promise<{ ok: boolean; error?: string }> {
+  const store = await readStore<LocalReservation>(RESERVATIONS_FILE);
+  const idx = store.items.findIndex((r) => r.id === id);
+  if (idx === -1) return { ok: false, error: 'Not found' };
+  const removed = store.items[idx];
+  store.items.splice(idx, 1);
+  if (removed.bookingStatus === 'paid') {
+    renumberLocalTickets(store, removed.eventTitle, removed.eventDate);
+  }
+  await writeStore(RESERVATIONS_FILE, store);
+  return { ok: true };
 }
 
 export async function createPaymentLocal(input: CreatePaymentInput): Promise<number> {
