@@ -36,7 +36,7 @@ export default function LiveSystemsProof() {
                 roles: 'Admin, Finance, Viewer',
                 description: 'Live production system serving 127 active users, tracking KES 4.97M in revenue with role-based access.',
                 features: ['Billing & subscriptions', 'Invoice management', 'Revenue dashboards', 'Role-based access'],
-                stack: 'Next.js • PostgreSQL • Stripe • RBAC',
+                stack: 'Node.js • PostgreSQL • Stripe • RBAC',
                 uptime: '99.9%'
               },
               {

@@ -67,7 +67,7 @@ if [ -n "${DATABASE_URL:-}" ] && command -v psql >/dev/null 2>&1 && [ -f src/db/
 fi
 NEXT_DISABLE_ESLINT=1 npm run build
 if command -v pm2 >/dev/null 2>&1; then
-  # Restart without injecting stale shell env — Next.js reads .env.production at runtime.
+  # Restart without injecting stale shell env — Node.js app reads .env.production at runtime.
   env -u ADMIN_EMAIL -u ADMIN_PASSWORD -u ADMIN_SESSION_SECRET \
     pm2 restart "${PM2_APP}" --update-env 2>/dev/null || \
     env -u ADMIN_EMAIL -u ADMIN_PASSWORD -u ADMIN_SESSION_SECRET \

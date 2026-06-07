@@ -3,7 +3,7 @@
 Completed in code (no visual or content changes except PART 6):
 
 ## PART 1 — Technical ✅
-- [x] **Canonical URL**: Every updated page has `<link rel="canonical" href="https://cresdynamics.com/[path]/" />` via Next.js `metadata.alternates.canonical` (home, erp, websites, e-commerce, solutions/ai-automation, solutions/digital-sales, finance-platforms, operations-workflow, cresos, data-security, case-studies, contact, about, pricing).
+- [x] **Canonical URL**: Every updated page has `<link rel="canonical" href="https://cresdynamics.com/[path]/" />` via app `metadata.alternates.canonical` (home, erp, websites, e-commerce, solutions/ai-automation, solutions/digital-sales, finance-platforms, operations-workflow, cresos, data-security, case-studies, contact, about, pricing).
 - [x] **301 redirects**: `src/middleware.ts` — www.cresdynamics.com → https://cresdynamics.com; http → https. (Host-level redirects may still be needed on Vercel/host if the request never hits Next.)
 - [x] **data-security**: `next.config.ts` redirect `/data-security` → `/data-security/` (301). Canonical on `/data-security/` page.
 - [x] **Sitemap**: `src/app/sitemap.ts` — all main pages including /, /solutions/, /erp/, /websites/, /e-commerce/, /cresos/, /case-studies/, /finance-platforms/, /operations-workflow/, /data-security/, /contact/, plus case studies, pricing, careers, events, services, etc. URLs use trailing slashes. Live at https://cresdynamics.com/sitemap.xml

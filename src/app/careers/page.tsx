@@ -317,7 +317,7 @@ export default function CareersPage() {
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">Modern Stack &amp; Craft</h3>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                  Next.js, disciplined design, automation where it saves time. We invest in tools and skills that raise the bar.
+                  Node.js, disciplined design, automation where it saves time. We invest in tools and skills that raise the bar.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.45)]">

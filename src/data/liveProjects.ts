@@ -119,12 +119,12 @@ export const LIVE_PROJECTS: LiveProject[] = [
         'Physical retail in Nairobi CBD — high footfall but geographically constrained. No ability to serve Westlands, Karen, or Kilimani buyers who wouldn\'t travel to Moi Avenue.',
       realConstraint: 'Inventory was strong but invisible to anyone outside walking distance.',
       whatWeBuilt:
-        'Next.js e-commerce site with Supabase image storage, collection pages per shoe category, contact and blog pages, WhatsApp checkout flow, and case studies section.',
+        'Node.js e-commerce site with Supabase image storage, collection pages per shoe category, contact and blog pages, WhatsApp checkout flow, and case studies section.',
       outcomeInDetail:
         'Online storefront enabling buyers across Nairobi to browse and purchase without visiting CBD. Collections browsable by category with direct WhatsApp checkout.',
       whatMadeItHard:
         'Consistent product photography at scale. Each shoe required individual images in multiple angles.',
-      stack: ['Next.js', 'Supabase storage', 'WhatsApp integration', 'Collection-based catalogue'],
+      stack: ['Node.js', 'Supabase storage', 'WhatsApp integration', 'Collection-based catalogue'],
     },
   },
   {
@@ -148,12 +148,12 @@ export const LIVE_PROJECTS: LiveProject[] = [
       realConstraint:
         'Orders came through DMs with no structure — no product photos with prices, no confirmation system, no delivery address capture. Every order required manual back-and-forth.',
       whatWeBuilt:
-        'Next.js e-commerce site with product collection pages, image-led browsing, contact page, and WhatsApp-integrated order flow with clear delivery zone communication.',
+        'Node.js e-commerce site with product collection pages, image-led browsing, contact page, and WhatsApp-integrated order flow with clear delivery zone communication.',
       outcomeInDetail:
         'Buyers across Nairobi CBD, Westlands, Karen, and Lavington can now browse, select, and order without requiring a phone call or DM thread. Delivery coverage communicated clearly on site.',
       whatMadeItHard:
         'Perishable inventory means pricing and availability change frequently. The system needed to be manageable by the owner without developer support for updates.',
-      stack: ['Next.js', 'Product catalogue', 'WhatsApp order flow', 'Delivery zone positioning'],
+      stack: ['Node.js', 'Product catalogue', 'WhatsApp order flow', 'Delivery zone positioning'],
     },
   },
   {
@@ -308,12 +308,12 @@ export const LIVE_PROJECTS: LiveProject[] = [
       realConstraint:
         'No brand-owned web presence. Entirely dependent on third-party platforms for discovery.',
       whatWeBuilt:
-        'Next.js restaurant site with menu pages, gallery, events calendar, contact, and a reservations flow. Integrated Bolt Food link for delivery orders. Google Maps integration for directions. Premium photography-led visual design.',
+        'Node.js restaurant site with menu pages, gallery, events calendar, contact, and a reservations flow. Integrated Bolt Food link for delivery orders. Google Maps integration for directions. Premium photography-led visual design.',
       outcomeInDetail:
         'Restaurant now has a brand-owned digital touchpoint separate from third-party delivery platforms. Table reservations bookable directly. Premium positioning communicated before guests arrive.',
       whatMadeItHard:
         'Fine dining photography and copy standards are high — the site had to feel as premium as the in-restaurant experience.',
-      stack: ['Next.js', 'Vercel deployment', 'Bolt Food integration', 'Google Maps', 'Reservation flow'],
+      stack: ['Node.js', 'Cloud deployment', 'Bolt Food integration', 'Google Maps', 'Reservation flow'],
     },
   },
   {

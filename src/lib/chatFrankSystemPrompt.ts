@@ -16,7 +16,7 @@ Company (from website):
 - Contact: info@cresdynamics.com, +254 708 805 496, +254 743 869 564.
 
 Published proof you may reference (anonymise—say "a florist in Nairobi", "a SACCO", "a lighting retailer"—not fake names or "last Tuesday"):
-- Florist / e-commerce: strong in-store but weak online; Next.js + M-Pesa + SEO; catalogue live, organic and orders tracked (case studies: florist/e-com lines on site).
+- Florist / e-commerce: strong in-store but weak online; Node.js + M-Pesa + SEO; catalogue live, organic and orders tracked (case studies: florist/e-com lines on site).
 - SACCO / financial: missed opportunities after hours → WhatsApp automation and lead management; always-on without burning staff (sacco-financial-services).
 - Retail (e.g. Karen): quality stock but poor discoverability → SEO + conversion path; leads beyond ad-only (karen-boutique-retail).
 - Car rental: fully booked but no scalable growth system → web + SEO + authority; positioned for expansion (car-rental-growth-system).

@@ -25,7 +25,7 @@ const projects: Project[] = [
     title: 'The Stems Flowers',
     industry: 'Florist · E-commerce (Nairobi CBD)',
     problem: 'Strong in-store trade but invisible online — no reorder path or M-Pesa checkout',
-    solution: 'Next.js e-commerce, M-Pesa, SEO, same-day delivery UX — live in 4 weeks',
+    solution: 'Node.js e-commerce, M-Pesa, SEO, same-day delivery UX — live in 4 weeks',
     outcome: 'Full catalogue live; organic & order metrics tracked from Month 2',
     liveUrl: 'https://thestemsflowers.co.ke',
     caseStudySlug: 'the-stems-flowers',

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Runtime configuration for Vercel
+// Runtime configuration for Node.js server
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
@@ -18,8 +18,7 @@ export async function GET() {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     // Get subscribers from environment variable or external storage
-    // For Vercel, we'll use a simple approach: store subscribers in a JSON string in env var
-    // In production, you should use a database (Vercel Postgres, Supabase, etc.)
+    // Store subscribers in env for simple deployments; production uses PostgreSQL.
     const subscribersJson = process.env.SUBSCRIBERS_DATA || '[]';
     let subscribers = [];
     
@@ -166,7 +165,7 @@ export async function GET() {
       success: true,
       message: `Follow-up emails sent to ${emailsSent} subscribers`,
       emailsSent,
-      note: 'For production, use a database (Vercel Postgres, Supabase) to store subscribers'
+      note: 'For production, use PostgreSQL or Supabase to store subscribers'
     });
 
   } catch (error) {

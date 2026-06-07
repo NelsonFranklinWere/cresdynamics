@@ -23,7 +23,7 @@ export const CAREER_ROLES: CareerRole[] = [
     department: 'Engineering',
     location: 'Westlands, Nairobi (Hybrid)',
     commitment: 'Full-time · Competitive + performance',
-    tags: ['React', 'Node.js', 'PostgreSQL', 'Next.js'],
+    tags: ['React', 'Node.js', 'PostgreSQL'],
     summary: 'Ship production systems—CresOS, finance tooling, and client platforms—with ownership from schema to UI.',
     focus: [
       'Comfort owning features end-to-end: APIs, data, and interfaces',

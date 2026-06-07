@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import DeferredAnalytics from "@/components/DeferredAnalytics";
 import DeferredClientWidgets from "@/components/DeferredClientWidgets";
 import PageTransitionShell from "@/components/PageTransitionShell";
+import { SITE_STACK_KEYWORDS, SITE_STACK_LINE } from "@/lib/siteTech";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
   preload: true,
+  adjustFontFallback: true,
 });
 
 /** Marketing pages: pre-rendered static HTML at build; dynamic routes override below */
@@ -18,8 +21,11 @@ export const revalidate = false;
 export const metadata: Metadata = {
   metadataBase: new URL('https://cresdynamics.com'),
   title: { default: 'Cres Dynamics | Nairobi, Kenya', template: '%s' },
-  description: 'Cres Dynamics — Custom ERP, business systems and web development in Nairobi, Kenya.',
+  description: 'Cres Dynamics — Custom ERP, business systems and Node.js web development in Nairobi, Kenya.',
   keywords: [
+    'Node.js development Kenya',
+    'Node.js web development Nairobi',
+    'Node.js business systems Kenya',
     'ERP systems Nairobi',
     'ERP development Kenya',
     'custom ERP systems Nairobi',
@@ -39,8 +45,12 @@ export const metadata: Metadata = {
     'off-the-shelf ERP failed',
     'custom finance platform Nairobi',
     'AI-powered business systems Kenya',
-    'scalable ERP systems Nairobi'
+    'scalable ERP systems Nairobi',
+    ...SITE_STACK_KEYWORDS,
   ],
+  other: {
+    'technology-stack': SITE_STACK_LINE,
+  },
   icons: {
     icon: [
       { url: '/favicon-circular.png?v=2', sizes: '32x32', type: 'image/png' },
@@ -175,28 +185,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2WR5M5FGH"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-P2WR5M5FGH');
-            `,
-          }}
-        />
-
-        {/* DNS prefetch for external resources */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
-        <link rel="dns-prefetch" href="//www.google-analytics.com" />
-
-        {/* Preconnect to critical origins */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
 
         {/* Favicon and App Icons - Circular Logo as favicon */}
         <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
@@ -431,6 +421,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <PageTransitionShell>{children}</PageTransitionShell>
+        <DeferredAnalytics />
         <DeferredClientWidgets />
 
         <script

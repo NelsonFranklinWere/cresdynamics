@@ -1,7 +1,7 @@
 {
   "name": "CRES Dynamics - Digital Growth Agency",
   "short_name": "CRES Dynamics",
-  "description": "Websites, SEO & AI Solutions for Kenyan Businesses",
+  "description": "Node.js-powered websites, ERP, SEO and AI solutions for Kenyan businesses",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0D1B2A",

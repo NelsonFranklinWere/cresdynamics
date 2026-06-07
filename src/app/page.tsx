@@ -8,7 +8,9 @@ import Link from 'next/link';
 const HeroCarousels = dynamic(() => import('@/components/HeroCarousels'));
 const HomepageStatsMarquee = dynamic(() => import('@/components/HomepageStatsMarquee'));
 const HomepageProblemSection = dynamic(() => import('@/components/HomepageProblemSection'));
-const HomepageMarketingWebsitesSection = dynamic(() => import('@/components/HomepageMarketingWebsitesSection'));
+const HomepageMarketingWebsitesSection = dynamic(
+  () => import('@/components/HomepageMarketingWebsitesSection')
+);
 const SystemsShowcaseTesla = dynamic(() => import('@/components/SystemsShowcaseTesla'));
 const LiveSystemsProof = dynamic(() => import('@/components/LiveSystemsProof'));
 const FinalCTA = dynamic(() => import('@/components/FinalCTA'));

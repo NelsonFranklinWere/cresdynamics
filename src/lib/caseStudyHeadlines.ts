@@ -21,14 +21,14 @@ export const CASE_STUDY_SUBTITLE_CLASS =
 export const CASE_STUDY_HEADLINES: Record<string, CaseStudyHeadline> = {
   'the-stems-flowers': {
     title: 'Nairobi Florist E-Commerce, M-Pesa Checkout & Product SEO',
-    subtitle: 'The Stems Flowers · Next.js · Supabase · Nairobi CBD',
+    subtitle: 'The Stems Flowers · Node.js · Supabase · Nairobi CBD',
     metaTitle: 'Nairobi Florist E-Commerce & M-Pesa SEO | The Stems Flowers | Cres Dynamics',
     metaDescription:
-      'Next.js florist shop with M-Pesa checkout, product catalogue, and Nairobi CBD SEO. Built for The Stems Flowers by Cres Dynamics.',
+      'Node.js florist shop with M-Pesa checkout, product catalogue, and Nairobi CBD SEO. Built for The Stems Flowers by Cres Dynamics.',
   },
   'floral-whispers-gifts': {
     title: 'Gift Shop E-Commerce & Nairobi Florist SEO for M-Pesa Orders',
-    subtitle: 'Floral Whispers Gifts · Next.js · Supabase · Kenya-wide delivery',
+    subtitle: 'Floral Whispers Gifts · Node.js · Supabase · Kenya-wide delivery',
     metaTitle: 'Gift Shop E-Commerce & Florist SEO Nairobi | Floral Whispers | Cres Dynamics',
     metaDescription:
       'E-commerce and on-page SEO for Floral Whispers Gifts — collections, M-Pesa checkout, and local search visibility in Nairobi.',
@@ -42,7 +42,7 @@ export const CASE_STUDY_HEADLINES: Record<string, CaseStudyHeadline> = {
   },
   'whitelight-store': {
     title: 'Fitness & Footwear E-Commerce with Nairobi Product SEO',
-    subtitle: 'Whitelight Store · Next.js · Running, trail & gym categories',
+    subtitle: 'Whitelight Store · Node.js · Running, trail & gym categories',
     metaTitle: 'Fitness E-Commerce & Product SEO Nairobi | Whitelight Store | Cres Dynamics',
     metaDescription:
       'E-commerce store and product SEO for Whitelight Store — running shoes, gym gear, and fitness accessories in Nairobi.',

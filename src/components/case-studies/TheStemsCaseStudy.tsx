@@ -156,7 +156,7 @@ export default function TheStemsCaseStudy() {
             </p>
             <div className="mt-7 flex flex-wrap gap-2">
               {[
-                'Next.js E-commerce',
+                'Node.js E-commerce',
                 'M-Pesa Integration',
                 'Product Catalogue',
                 'Same-day Delivery UX',
