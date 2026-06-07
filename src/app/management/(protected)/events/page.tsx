@@ -15,7 +15,7 @@ export default async function ManagementEventsPage() {
     <ManagementSection
       title="Event bookings"
       subtitle={`${confirmed} confirmed · ${pending} awaiting payment · ${rows.length} total registrations`}
-      note="Mark paid sends confirmation email with ticket number (FoAIB-2026-001). Delete removes non-serious registrations. Paybill 542542 · Acc 43869"
+      fillScreen
     >
       <EventReservationsClient rows={rows} />
     </ManagementSection>

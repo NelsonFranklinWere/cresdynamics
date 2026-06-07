@@ -149,7 +149,7 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
         const ticketMsg = data.ticketNumber ? `\nTicket: ${data.ticketNumber}` : '';
         const emailMsg = data.confirmationEmailSent
           ? 'Confirmation email sent to the attendee.'
-          : 'Marked paid. Confirmation email could not be sent — check RESEND_API_KEY or resend manually.';
+          : 'Marked paid. Confirmation email could not be sent — check Resend API keys or resend manually.';
         alert(`Payment confirmed.${ticketMsg}\n${emailMsg}`);
       }
       router.refresh();
@@ -183,12 +183,7 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
   }
 
   return (
-    <div className="space-y-3">
-      <p className="text-xs text-white/50 font-mono">
-        {confirmedCount} confirmed attendee{confirmedCount === 1 ? '' : 's'} · ticket numbers assigned to paid
-        registrations only
-      </p>
-      <AdminDataTable caption={`${localRows.length} registrations · ${confirmedCount} confirmed`}>
+    <AdminDataTable caption={`${localRows.length} registrations · ${confirmedCount} confirmed`} fillHeight>
         <AdminDataHead>
           <tr>
             <AdminDataTh>Ticket #</AdminDataTh>
@@ -325,6 +320,5 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
           })}
         </AdminDataBody>
       </AdminDataTable>
-    </div>
   );
 }

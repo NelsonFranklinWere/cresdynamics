@@ -6,18 +6,22 @@ export function ManagementSection({
   note,
   actions,
   children,
+  fillScreen = false,
 }: {
   title: string;
   subtitle?: string;
   note?: string;
   actions?: ReactNode;
   children: ReactNode;
+  fillScreen?: boolean;
 }) {
   return (
-    <div className="flex w-full min-w-0 max-w-full flex-col gap-8">
-      <div className="shrink-0 space-y-4 bg-[var(--navy-dark)]">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div className="min-w-0 space-y-2">
+    <div
+      className={`flex w-full min-w-0 max-w-full flex-col ${fillScreen ? 'min-h-0 flex-1 gap-3' : 'gap-8'}`}
+    >
+      <div className="shrink-0 space-y-1 bg-[var(--navy-dark)]">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0 space-y-1">
             <h1 className="text-xl font-black leading-snug text-white md:text-2xl">{title}</h1>
             {subtitle ? (
               <p className="block text-sm font-medium leading-relaxed text-[var(--teal-accent)]">
@@ -31,10 +35,14 @@ export function ManagementSection({
 
       <section
         aria-label={`${title} records`}
-        className="w-full min-w-0 overflow-hidden rounded-lg border border-white/15 bg-[#0d0f14]"
+        className={`w-full min-w-0 overflow-hidden rounded-lg border border-white/15 bg-[#0d0f14] ${
+          fillScreen ? 'flex min-h-0 flex-1 flex-col' : ''
+        }`}
       >
         {note ? <ManagementInfoBar>{note}</ManagementInfoBar> : null}
-        <div className="w-full min-w-0">{children}</div>
+        <div className={`w-full min-w-0 ${fillScreen ? 'flex min-h-0 flex-1 flex-col overflow-hidden' : ''}`}>
+          {children}
+        </div>
       </section>
     </div>
   );
@@ -92,22 +100,34 @@ export function AdminStatCard({
 }
 
 /** Full-width data table — one row per record across the content area */
-export function AdminDataTable({ caption, children }: { caption?: string; children: ReactNode }) {
+export function AdminDataTable({
+  caption,
+  children,
+  fillHeight = false,
+}: {
+  caption?: string;
+  children: ReactNode;
+  fillHeight?: boolean;
+}) {
   return (
-    <div className="w-full overflow-x-auto">
+    <div
+      className={`w-full ${fillHeight ? 'flex min-h-0 flex-1 flex-col overflow-hidden' : 'overflow-x-auto'}`}
+    >
       {caption ? (
-        <div className="border-b border-white/10 bg-white/[0.03] px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white/45">
+        <div className="shrink-0 border-b border-white/10 bg-white/[0.03] px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white/45">
           {caption}
         </div>
       ) : null}
-      <table className="w-full min-w-full border-collapse text-sm">{children}</table>
+      <div className={fillHeight ? 'min-h-0 flex-1 overflow-auto' : 'overflow-x-auto'}>
+        <table className="w-full min-w-full border-collapse text-sm">{children}</table>
+      </div>
     </div>
   );
 }
 
 export function AdminDataHead({ children }: { children: ReactNode }) {
   return (
-    <thead className="border-b border-white/15 bg-white/[0.06] text-[10px] font-bold uppercase tracking-wide text-white/50">
+    <thead className="sticky top-0 z-10 border-b border-white/15 bg-[#12151c] text-[10px] font-bold uppercase tracking-wide text-white/50">
       {children}
     </thead>
   );
