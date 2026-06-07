@@ -1,83 +1,89 @@
-import EventsContent from '@/components/EventsContent';
+import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { FUTURE_AI_EVENT, FUTURE_AI_PATHS } from '@/lib/future-ai-event';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AI Events Nairobi 2026 | The Future of AI in Business – 20 June | Westlands',
+  title: 'Events Nairobi 2026 | Cres Dynamics',
   description:
-    "Nairobi's leading AI event for business owners and developers. The Future of AI in Business, Saturday 20 June 2026 at Sarit Expo Centre, Westlands. Practical AI strategies, live demos, panels & networking.",
-  keywords: [
-    'events nairobi',
-    'events in nairobi 2026',
-    'ai events nairobi',
-    'business events nairobi',
-    'events westlands',
-    'sarit expo centre events',
-    'ai events in nairobi',
-    'future of ai in business',
-    'events nairobi june 2026',
-  ],
+    'Upcoming Cres Dynamics events in Nairobi — AI, business systems, and practical growth for founders, developers, and teams.',
   alternates: { canonical: 'https://cresdynamics.com/events/' },
-  openGraph: {
-    title: 'The Future of AI in Business | AI Events Nairobi 2026',
-    description:
-      "Join 300 business leaders and developers at Nairobi's premier practical AI event. 20 June 2026 · Sarit Expo Centre, Westlands. Keynotes, live AI demos, panels, and networking.",
-    url: 'https://cresdynamics.com/events/',
-    images: [
-      {
-        url: '/events/hero-stage.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'The Future of AI in Business — CRES Dynamics Event, Nairobi June 2026',
-      },
-    ],
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AI Events Nairobi 2026 | Future of AI in Business',
-    description: 'Practical AI strategies for Kenyan businesses. 20 June 2026, Sarit Expo Centre, Westlands.',
-    images: ['/events/hero-stage.jpg'],
-  },
 };
 
-const eventSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Event',
-  name: 'The Future of AI in Business',
-  description:
-    'Practical AI event for business owners and developers in Nairobi. Keynotes, live demos, panels on how to use AI for client acquisition, automation, and growth.',
-  startDate: '2026-06-20T14:00:00+03:00',
-  endDate: '2026-06-20T19:00:00+03:00',
-  eventStatus: 'https://schema.org/EventScheduled',
-  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-  location: {
-    '@type': 'Place',
-    name: 'Sarit Expo Centre',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Sarit Centre, Westlands',
-      addressLocality: 'Nairobi',
-      addressRegion: 'Nairobi County',
-      addressCountry: 'KE',
-    },
-  },
-  image: 'https://cresdynamics.com/events/hero-stage.jpg',
-  organizer: { '@type': 'Organization', name: 'CRES Dynamics', url: 'https://cresdynamics.com' },
-  offers: {
-    '@type': 'Offer',
-    url: 'https://cresdynamics.com/events/',
-    availability: 'https://schema.org/LimitedAvailability',
-    price: '2500',
-    priceCurrency: 'KES',
-    validFrom: '2026-05-01T00:00:00+03:00',
-  },
-};
+const EVENT_PHOTO = '/events/hero-stage.jpg';
 
-export default function EventsPage() {
+export default function EventsHubPage() {
   return (
-    <>
-      <EventsContent />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }} />
-    </>
+    <div className="min-h-screen bg-[#060B18] text-white">
+      <Header />
+      <main className="pt-24 pb-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#2FA6B3] mb-3 font-mono">
+            Cres Dynamics Events
+          </p>
+          <h1 className="text-3xl md:text-5xl font-black leading-tight mb-4">Events in Nairobi</h1>
+          <p className="text-white/60 text-base md:text-lg max-w-2xl mb-10">
+            Practical sessions for business owners, developers, and teams — built by Cres Dynamics. Pick an event below
+            to view details, programme, and registration.
+          </p>
+
+          <div className="grid gap-6">
+            <article className="group rounded-2xl border border-white/15 bg-white/[0.03] overflow-hidden hover:border-[#2FA6B3]/40 transition-colors">
+              <div className="grid md:grid-cols-[1.2fr_1fr]">
+                <div className="relative min-h-[200px] md:min-h-full bg-[#0A2540]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={EVENT_PHOTO}
+                    alt={FUTURE_AI_EVENT.title}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060B18] via-[#060B18]/40 to-transparent md:bg-gradient-to-r" />
+                </div>
+                <div className="p-6 md:p-8 flex flex-col justify-center">
+                  <span className="inline-flex w-fit mb-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-[#F39C24]/40 text-[#F39C24]">
+                    Featured · {FUTURE_AI_EVENT.dateLabel}
+                  </span>
+                  <h2 className="text-xl md:text-2xl font-black mb-2 group-hover:text-[#2FA6B3] transition-colors">
+                    {FUTURE_AI_EVENT.title}
+                  </h2>
+                  <p className="text-sm text-white/55 mb-1">{FUTURE_AI_EVENT.venue}</p>
+                  <p className="text-sm text-white/55 mb-6">
+                    {FUTURE_AI_EVENT.timeRange} · Doors {FUTURE_AI_EVENT.doorsOpen}
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      href={FUTURE_AI_PATHS.event}
+                      className="inline-flex items-center justify-center rounded-xl bg-[#F39C24] px-5 py-2.5 text-sm font-bold text-[#060B18] hover:bg-[#E48B18]"
+                    >
+                      Event details &amp; register
+                    </Link>
+                    <Link
+                      href={FUTURE_AI_PATHS.programme}
+                      className="inline-flex items-center justify-center rounded-xl border border-white/20 px-5 py-2.5 text-sm font-semibold text-white/85 hover:border-[#2FA6B3] hover:text-[#2FA6B3]"
+                    >
+                      Full programme
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <p className="mt-10 text-center text-sm text-white/45">
+            Questions?{' '}
+            <a href="mailto:info@cresdynamics.com" className="text-[#2FA6B3] hover:underline">
+              info@cresdynamics.com
+            </a>{' '}
+            ·{' '}
+            <a href="https://wa.me/254708805496" className="text-[#2FA6B3] hover:underline" target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
+          </p>
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }

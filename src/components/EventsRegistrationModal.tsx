@@ -5,8 +5,10 @@ import { createPortal } from 'react-dom';
 import EventLanyardPicker from '@/components/EventLanyardPicker';
 import { DEFAULT_LANYARD, lanyardLabel, type LanyardCategory } from '@/lib/event-lanyards';
 
-const EVENT_TITLE = 'The Future of AI in Business';
-const EVENT_DATE  = 'Saturday, 20 June 2026';
+import { FUTURE_AI_EVENT } from '@/lib/future-ai-event';
+
+const EVENT_TITLE = FUTURE_AI_EVENT.title;
+const EVENT_DATE = FUTURE_AI_EVENT.dateLabel;
 
 type TicketType = 'economy' | 'standard' | 'vip';
 

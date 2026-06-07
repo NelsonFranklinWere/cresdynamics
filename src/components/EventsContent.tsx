@@ -10,8 +10,13 @@ import EventsSponsorModal from '@/components/EventsSponsorModal';
 import EventsRegisterSection from '@/components/EventsRegisterSection';
 import type { SponsorPackageTier } from '@/lib/sponsor-packages';
 import { EVENT_LANYARDS } from '@/lib/event-lanyards';
+import {
+  FUTURE_AI_AGENDA_PREVIEW,
+  FUTURE_AI_EVENT,
+  FUTURE_AI_PATHS,
+} from '@/lib/future-ai-event';
 
-const EVENT_DATE = new Date('2026-06-20T14:00:00+03:00');
+const EVENT_DATE = new Date(FUTURE_AI_EVENT.dateIso);
 
 /** All photos from public/events/ — only reference these paths on the events page */
 const EVENT_PHOTOS = {
@@ -28,15 +33,11 @@ const EVENT_PHOTOS = {
 const MAPS_EMBED =
   'https://maps.google.com/maps?q=Sarit+Expo+Centre+Westlands+Nairobi+Kenya&z=15&output=embed';
 
-const AGENDA = [
-  { time: '14:00', label: 'Doors Open · Registration & Colour Lanyards', highlight: true },
-  { time: '14:30', label: 'Opening Keynote — AI & The African Business Landscape' },
-  { time: '15:30', label: 'Panel: AI in Hiring & Operations' },
-  { time: '16:15', label: 'Exhibition Floor · Networking & Partner Booths' },
-  { time: '16:45', label: 'Workshop: Building AI-Powered Business Systems' },
-  { time: '17:30', label: 'Fireside Chat: Scaling Tech in East Africa' },
-  { time: '18:30', label: 'Closing · Networking Reception' },
-];
+const AGENDA = FUTURE_AI_AGENDA_PREVIEW.map((s, i) => ({
+  time: s.time,
+  label: s.title,
+  highlight: i === 0,
+}));
 
 const TOPICS = [
   { num: '01', title: 'AI Integration for SMEs', desc: 'Embed AI into daily operations without a large tech team.' },
@@ -127,18 +128,11 @@ const TICKET_TIERS = [
   },
 ];
 
-const LANYARD_SHOWCASE = [
-  { id: 'business_owner', label: 'Business Owner', color: '#3B82F6', hint: 'Blue lanyard · Founders & executives' },
-  { id: 'developer', label: 'Developer', color: '#22C55E', hint: 'Green lanyard · Engineers & builders' },
-  { id: 'investor', label: 'Investor', color: '#F97316', hint: 'Orange lanyard · Capital & partners' },
-  { id: 'hiring', label: 'Hiring', color: '#A855F7', hint: 'Purple lanyard · Recruiters & HR' },
-];
-
 const FAQ = [
-  { q: 'Where exactly is the event?', a: 'Sarit Expo Centre, inside the Sarit Centre complex in Westlands, Nairobi. Registration opens at 1:45 PM — we recommend arriving early for parking and lanyard pickup.' },
+  { q: 'Where exactly is the event?', a: 'Sarit Expo Centre, inside the Sarit Centre complex in Westlands, Nairobi. Doors open at 1:30 PM — we recommend arriving early for parking and lanyard pickup.' },
   { q: 'What happens on the exhibition floor?', a: 'After the main sessions, the floor opens for networking, partner booths, and informal Q&A with speakers and founders. It is designed for conversations, not product pitches.' },
   { q: 'How do I pay?', a: 'Book online first — no payment required on the form. Our team will contact you with M-Pesa or Paybill 542542 / Account 43869. Your seat is confirmed once payment is received.' },
-  { q: 'What is the colour lanyard system?', a: 'Pick your category at registration — developer, business owner, hiring, investor, or student. Your lanyard colour lets everyone know who you are instantly. Networking becomes targeted, not random.' },
+  { q: 'What is the colour lanyard system?', a: 'Pick your category at registration — business owner, developer, investor, hiring, job seeker, student, or VIP. Your lanyard colour lets everyone know who you are instantly. See the full lanyard guide on the official programme page.' },
   { q: 'Will sessions be recorded?', a: 'Yes. Registered attendees receive recordings within 7 days. VIP includes priority access and extended materials.' },
   { q: 'Can I speak or sponsor?', a: 'Speaker applications at /events/speak/. For sponsorship, use the sponsor form on this page or WhatsApp +254 708 805 496.' },
 ];
@@ -242,6 +236,16 @@ function EventsContentInner() {
         <PaymentStatusBanner />
       </Suspense>
 
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+        <nav className="flex flex-wrap items-center gap-2 text-xs text-white/45 mb-4 font-mono">
+          <Link href={FUTURE_AI_PATHS.hub} className="hover:text-[#2FA6B3]">
+            Events
+          </Link>
+          <span>/</span>
+          <span className="text-white/70">{FUTURE_AI_EVENT.title}</span>
+        </nav>
+      </div>
+
       {/* ── HERO ── */}
       <section className="relative z-10 flex flex-col justify-end min-h-[100svh] pt-20 pb-12 md:pb-16">
         <div className="absolute inset-0">
@@ -264,7 +268,7 @@ function EventsContentInner() {
               AI in Business · Nairobi
             </span>
             <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider border border-[#F39C24]/35 bg-[#F39C24]/10 text-[#F39C24] font-mono">
-              20 June 2026 · Westlands
+              {FUTURE_AI_EVENT.dateLabel.replace('th ', ' ')} · Westlands
             </span>
           </div>
 
@@ -346,12 +350,12 @@ function EventsContentInner() {
               Reserve My Seat
               <span aria-hidden>→</span>
             </button>
-            <a
-              href="#agenda"
+            <Link
+              href={FUTURE_AI_PATHS.programme}
               className="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 font-semibold px-4 sm:px-8 py-3 sm:py-4 rounded-xl border border-white/15 text-white/80 hover:border-[#2FA6B3] hover:text-[#2FA6B3] transition-colors text-xs sm:text-base whitespace-nowrap"
             >
-              View Agenda
-            </a>
+              Full Programme
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 rounded-xl border border-white/10 overflow-hidden bg-white/[0.04] backdrop-blur-md">
@@ -374,10 +378,10 @@ function EventsContentInner() {
       <div className="relative z-10 border-y border-white/10 bg-[#0A1628]/90 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 lg:grid-cols-4">
           {[
-            { label: 'Date', value: 'Sat, 20 June 2026' },
-            { label: 'Time', value: '2:00 PM — 7:00 PM' },
-            { label: 'Venue', value: 'Sarit Expo Centre' },
-            { label: 'Area', value: 'Westlands, Nairobi' },
+            { label: 'Date', value: FUTURE_AI_EVENT.dateLabel },
+            { label: 'Time', value: FUTURE_AI_EVENT.timeRange },
+            { label: 'Venue', value: FUTURE_AI_EVENT.venueShort },
+            { label: 'Doors', value: FUTURE_AI_EVENT.doorsOpen },
           ].map((d, i) => (
             <div key={d.label} className={`py-5 px-4 md:px-6 ${i < 3 ? 'border-r border-white/10' : ''}`}>
               <p className="text-[10px] uppercase tracking-widest text-white/35 font-mono mb-1">{d.label}</p>
@@ -401,7 +405,7 @@ function EventsContentInner() {
             {[
               { title: 'Actionable sessions', desc: 'Keynotes and panels on hiring, ops, BI, ethics, and scaling — built for decision-makers.' },
               { title: 'Right people in the room', desc: 'Colour-coded lanyards so developers, founders, investors, and students find each other fast.' },
-              { title: 'Westlands, easy access', desc: 'Sarit Expo Centre — parking, Uber, and matatu links. Doors 1:45 PM, programme 2:00 PM.' },
+              { title: 'Westlands, easy access', desc: `Sarit Expo Centre — parking, Uber, and matatu links. Doors ${FUTURE_AI_EVENT.doorsOpen}, programme ${FUTURE_AI_EVENT.timeRange.split(' — ')[0]}.` },
             ].map((item) => (
               <div key={item.title} className="rounded-xl p-5 border border-white/10 bg-white/[0.02]">
                 <h3 className="font-bold text-white mb-2">{item.title}</h3>
@@ -482,7 +486,7 @@ function EventsContentInner() {
                   'Sarit Expo Centre, Westlands, Nairobi',
                   'Parking: Sarit Centre parking complex',
                   'Matatu 106, 107, 108 → Westlands (3 min walk)',
-                  'Doors 1:45 PM · Programme starts 2:00 PM',
+                  'Doors 1:30 PM · Programme starts 2:00 PM',
                 ].map((line) => (
                   <li key={line} className="flex gap-3 text-sm text-white/70">
                     <span className="text-[#2FA6B3] shrink-0">▸</span>
@@ -622,8 +626,14 @@ function EventsContentInner() {
       {/* ── AGENDA ── */}
       <section id="agenda" className="relative z-10 py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionLabel>Agenda</SectionLabel>
-          <h2 className="font-black text-3xl md:text-5xl mb-10">One afternoon. Zero filler.</h2>
+          <SectionLabel>Programme preview</SectionLabel>
+          <h2 className="font-black text-3xl md:text-5xl mb-4">One afternoon. Zero filler.</h2>
+          <p className="text-sm text-white/55 mb-8 max-w-xl">
+            {FUTURE_AI_EVENT.theme}{' '}
+            <Link href={FUTURE_AI_PATHS.programme} className="text-[#2FA6B3] font-semibold hover:underline">
+              View the full official programme →
+            </Link>
+          </p>
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             <div className="max-w-2xl space-y-3">
               {AGENDA.map((item) => (
@@ -633,7 +643,7 @@ function EventsContentInner() {
                     item.highlight ? 'border-[#F39C24]/30 bg-[#F39C24]/5' : 'border-white/10 bg-white/[0.02]'
                   }`}
                 >
-                  <span className="font-mono text-sm font-bold text-[#2FA6B3] shrink-0 w-12">{item.time}</span>
+                  <span className="font-mono text-sm font-bold text-[#2FA6B3] shrink-0 w-16">{item.time}</span>
                   <p className="text-sm md:text-base text-white/85 font-medium">{item.label}</p>
                 </div>
               ))}
@@ -678,7 +688,7 @@ function EventsContentInner() {
           </h2>
           <p className="text-white/55 max-w-2xl mb-10 text-sm md:text-base">
             We don&apos;t do theoretical PowerPoint presentations. During the{' '}
-            <strong className="text-white">16:45 Systems Workshop</strong>, we open live development servers to
+            <strong className="text-white">Developer Track breakout</strong>, we open live development workflows to
             demonstrate:
           </p>
           <ul className="space-y-3 mb-10 max-w-2xl">
@@ -743,17 +753,20 @@ function EventsContentInner() {
                   icebreakers.
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {LANYARD_SHOWCASE.map((l) => (
+                  {EVENT_LANYARDS.slice(0, 4).map((l) => (
                     <div key={l.id} className="text-center rounded-xl p-3 border border-white/10 bg-white/[0.03]">
                       <span
                         className="inline-block w-10 h-10 rounded-full mb-2 ring-2 ring-white/20"
                         style={{ background: l.color }}
                       />
                       <p className="text-xs font-bold text-white">{l.label}</p>
-                      <p className="text-[9px] text-white/40 mt-1 leading-tight">{l.hint}</p>
+                      <p className="text-[9px] text-white/40 mt-1 leading-tight">{l.role}</p>
                     </div>
                   ))}
                 </div>
+                <Link href={FUTURE_AI_PATHS.programme} className="inline-block mt-4 text-xs font-semibold text-[#2FA6B3] hover:underline">
+                  See all 7 lanyard colours on the programme →
+                </Link>
               </div>
 
               <div className="space-y-4 mb-8">

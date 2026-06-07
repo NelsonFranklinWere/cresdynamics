@@ -5,6 +5,7 @@ import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import { EVENT_LANYARDS, lanyardLabel } from '@/lib/event-lanyards';
 import { generateInquiryAutoReply } from '@/lib/aiAutoReply';
 import { nlToBr } from '@/lib/escapeHtml';
+import { FUTURE_AI_EVENT } from '@/lib/future-ai-event';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -52,8 +53,8 @@ export async function POST(request: NextRequest) {
       process.env.CAREERS_FORM_EMAIL ||
       'info@cresdynamics.com';
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
-    const eventTitle = body.eventTitle || 'The Future of AI in Business';
-    const eventDate = body.eventDate || 'Saturday, 20 June 2026';
+    const eventTitle = body.eventTitle || FUTURE_AI_EVENT.title;
+    const eventDate = body.eventDate || FUTURE_AI_EVENT.dateLabel;
     const selectedTicket = String(ticket || 'standard').toLowerCase();
     const amountKes = EVENT_TICKET_AMOUNTS_KES[selectedTicket] ?? 2500;
     const ticketLabel = TICKET_LABELS[selectedTicket] ?? selectedTicket;

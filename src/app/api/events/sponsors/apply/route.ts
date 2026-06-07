@@ -4,6 +4,7 @@ import { hasRecentSponsorApplicationByEmail, insertSponsorApplication } from '@/
 import type { SponsorPackageTier } from '@/lib/sponsor-packages';
 import { initiatePesapalCheckout } from '@/lib/event-payments';
 import { getSponsorPackage } from '@/lib/sponsor-packages';
+import { FUTURE_AI_EVENT } from '@/lib/future-ai-event';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -18,8 +19,8 @@ const TIERS = new Set<SponsorPackageTier>([
   'custom',
 ]);
 
-const EVENT_TITLE = 'The Future of AI in Business';
-const EVENT_DATE = 'Saturday, 20 June 2026';
+const EVENT_TITLE = FUTURE_AI_EVENT.title;
+const EVENT_DATE = FUTURE_AI_EVENT.dateLabel;
 
 type Body = {
   companyName?: string;

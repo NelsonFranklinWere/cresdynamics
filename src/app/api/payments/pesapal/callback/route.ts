@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { FUTURE_AI_PATHS } from '@/lib/future-ai-event';
 import { getPaymentByReferences, updatePaymentStatus } from '@/lib/db';
 import { getPesapalTransactionStatus } from '@/lib/pesapal';
 
@@ -38,7 +39,7 @@ export async function GET(req: Request) {
       Boolean(payment?.purpose?.startsWith('sponsor_')) ||
       payment?.source === 'sponsor_application';
     const redirectTo = isEventRelated
-      ? new URL('/events/', url.origin)
+      ? new URL(FUTURE_AI_PATHS.event, url.origin)
       : new URL('/management/payments', url.origin);
     if (isEventRelated) {
       redirectTo.searchParams.set('payment', normalized === 'paid' ? 'success' : 'pending');
