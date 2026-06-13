@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { insertEventReservation } from '@/lib/db';
 import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
 import { EVENT_LANYARDS, lanyardLabel } from '@/lib/event-lanyards';
 import { generateInquiryAutoReply } from '@/lib/aiAutoReply';
 import { nlToBr } from '@/lib/escapeHtml';
 import { FUTURE_AI_EVENT } from '@/lib/future-ai-event';
+import { hasResendConfigured, sendResendEmail } from '@/lib/resend-fallback';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const resendConfigured = hasResendConfigured();
 
 const safe = (value?: string) =>
   (value || '—').toString().replace(/[<>]/g, (c) => (c === '<' ? '&lt;' : '&gt;'));
@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (resend) {
+    if (resendConfigured) {
       const attendeeReply = await generateInquiryAutoReply({
         name: String(fname || '').trim() || 'Guest',
         email: String(email || '').trim(),
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
         amountKes,
       });
 
-      const { error } = await resend.emails.send({
+      const adminNotify = await sendResendEmail({
         from: `CRES Events <${senderEmail}>`,
         to: [recipientEmail],
         replyTo: email,
@@ -124,10 +124,10 @@ export async function POST(request: NextRequest) {
           </div>
         `,
       });
-      if (error) console.error('Resend events error:', error);
+      if (!adminNotify.sent) console.error('Resend events error:', adminNotify.error);
 
       try {
-        await resend.emails.send({
+        await sendResendEmail({
           from: `CRES Events <${senderEmail}>`,
           to: [email],
           subject: `Complete your booking — ${eventTitle}`,
@@ -154,7 +154,7 @@ export async function POST(request: NextRequest) {
           `,
         });
 
-        await resend.emails.send({
+        await sendResendEmail({
           from: `CRES Events <${senderEmail}>`,
           to: [recipientEmail],
           replyTo: email,

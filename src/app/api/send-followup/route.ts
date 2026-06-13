@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { hasResendConfigured, sendResendEmail } from '@/lib/resend-fallback';
 
 // Runtime configuration for Node.js server
 export const runtime = 'nodejs';
@@ -8,15 +8,14 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     // Check if API key is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is missing');
+    if (!hasResendConfigured()) {
+      console.error('Resend API keys not configured');
       return NextResponse.json(
         { error: 'Email service is not configured' },
         { status: 500 }
       );
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
     // Get subscribers from environment variable or external storage
     // Store subscribers in env for simple deployments; production uses PostgreSQL.
     const subscribersJson = process.env.SUBSCRIBERS_DATA || '[]';
@@ -43,8 +42,8 @@ export async function GET() {
           // Send follow-up email
           const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
           
-          const { data: emailData, error } = await resend.emails.send({
-            from: `CRES Dynamics <${senderEmail}>`, // Use Resend's default domain for testing
+          const result = await sendResendEmail({
+            from: `CRES Dynamics <${senderEmail}>`,
             to: [subscriber.email],
             subject: `Your Free Digital Growth Checklist - CRES Dynamics`,
             html: `
@@ -140,8 +139,8 @@ export async function GET() {
             `,
           });
 
-          if (error) {
-            console.error(`Failed to send follow-up to ${subscriber.email}:`, error);
+          if (!result.sent) {
+            console.error(`Failed to send follow-up to ${subscriber.email}:`, result.error);
           } else {
             console.log(`Follow-up email sent to ${subscriber.email}`);
             emailsSent++;

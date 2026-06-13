@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { insertSpeakerApplication } from '@/lib/db';
+import { hasResendConfigured, sendResendEmail } from '@/lib/resend-fallback';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const resendConfigured = hasResendConfigured();
 
 export async function POST(request: Request) {
   try {
@@ -49,13 +49,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Database unavailable.' }, { status: 503 });
     }
 
-    if (resend) {
+    if (resendConfigured) {
       const recipientEmail =
         process.env.EVENTS_FORM_EMAIL || process.env.CAREERS_FORM_EMAIL || 'cresdynamics@gmail.com';
       const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
       const bioBuf = Buffer.from(await bioPdf.arrayBuffer());
       const imageBuf = Buffer.from(await image.arrayBuffer());
-      await resend.emails.send({
+      const notify = await sendResendEmail({
         from: `CRES Events <${senderEmail}>`,
         to: [recipientEmail],
         subject: `Speaker Application: ${fullName}`,
@@ -74,6 +74,7 @@ export async function POST(request: Request) {
           { filename: image.name || 'speaker-image', content: imageBuf.toString('base64') },
         ],
       });
+      if (!notify.sent) console.error('Resend speaker notify error:', notify.error);
     }
 
     return NextResponse.json({ success: true, id });

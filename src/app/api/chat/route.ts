@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { ensureChatSession, insertChatMessage } from '@/lib/db';
 import { FRANK_SYSTEM_INSTRUCTION } from '@/lib/chatFrankSystemPrompt';
+import { hasResendConfigured, sendResendEmail } from '@/lib/resend-fallback';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// Optional email client for chat-triggered actions
-const resendApiKey = process.env.RESEND_API_KEY;
-const resend = resendApiKey ? new Resend(resendApiKey) : null;
+// Optional email for chat-triggered actions (primary + fallback keys)
+const resendConfigured = hasResendConfigured();
 
 type ClientDetails = {
   name?: string;
@@ -98,7 +97,7 @@ async function executeActions(
   actions: AssistantAction[],
   opts: { clientDetails?: ClientDetails; latestUserMessage: string; conversationHistory?: ChatMessage[] }
 ) {
-  if (!actions.length || !resend) return;
+  if (!actions.length || !resendConfigured) return;
 
   const recipientEmail = 'cresdynamics@gmail.com';
   const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
@@ -155,7 +154,7 @@ async function executeActions(
       : '';
 
     try {
-      await resend.emails.send({
+      const result = await sendResendEmail({
         from: `CRES Dynamics Chat Assistant <${senderEmail}>`,
         to: [recipientEmail],
         subject,
@@ -179,6 +178,9 @@ async function executeActions(
           </div>
         `,
       });
+      if (!result.sent) {
+        console.error('Failed to execute chat action (send_email_to_team):', result.error);
+      }
     } catch (error) {
       console.error('Failed to execute chat action (send_email_to_team):', error);
     }

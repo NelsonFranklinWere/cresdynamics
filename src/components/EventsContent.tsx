@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import EventRescheduleBanner from '@/components/EventRescheduleBanner';
 import EventsRegistrationModal from '@/components/EventsRegistrationModal';
 import EventsSponsorModal from '@/components/EventsSponsorModal';
 import EventsRegisterSection from '@/components/EventsRegisterSection';
@@ -232,6 +233,7 @@ function EventsContentInner() {
       />
 
       <Header />
+      <EventRescheduleBanner />
       <Suspense fallback={null}>
         <PaymentStatusBanner />
       </Suspense>
@@ -268,7 +270,7 @@ function EventsContentInner() {
               AI in Business · Nairobi
             </span>
             <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider border border-[#F39C24]/35 bg-[#F39C24]/10 text-[#F39C24] font-mono">
-              {FUTURE_AI_EVENT.dateLabel.replace('th ', ' ')} · Westlands
+              {FUTURE_AI_EVENT.dateCheckout} · Nairobi
             </span>
           </div>
 
@@ -378,7 +380,7 @@ function EventsContentInner() {
       <div className="relative z-10 border-y border-white/10 bg-[#0A1628]/90 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 lg:grid-cols-4">
           {[
-            { label: 'Date', value: FUTURE_AI_EVENT.dateLabel },
+            { label: 'Date', value: FUTURE_AI_EVENT.dateCheckout },
             { label: 'Time', value: FUTURE_AI_EVENT.timeRange },
             { label: 'Venue', value: FUTURE_AI_EVENT.venueShort },
             { label: 'Doors', value: FUTURE_AI_EVENT.doorsOpen },

@@ -13,6 +13,7 @@
     "performance": "next build && next export",
     "generate-favicons": "node generate-favicons.js",
     "send-followups": "node send-followup-emails.js",
+    "send-reschedule": "node scripts/send-event-reschedule-update.mjs",
     "compress-images": "node scripts/compress-images.mjs",
     "db:init": "node scripts/init-db.mjs",
     "db:up": "docker compose up -d --wait && npm run db:init"

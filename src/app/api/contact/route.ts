@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { insertContactLead } from '@/lib/db';
 import { escapeHtml, nlToBr } from '@/lib/escapeHtml';
 import { generateInquiryAutoReply } from '@/lib/aiAutoReply';
+import { hasResendConfigured, sendResendEmail } from '@/lib/resend-fallback';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -11,15 +11,13 @@ const DEFAULT_INBOX = 'info@cresdynamics.com';
 
 export async function POST(request: NextRequest) {
   try {
-    if (!process.env.RESEND_API_KEY) {
+    if (!hasResendConfigured()) {
       console.error('RESEND_API_KEY is missing');
       return NextResponse.json(
         { error: 'Email service is not configured. Please contact the administrator.' },
         { status: 500 }
       );
     }
-
-    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const body = await request.json();
     const fullName = typeof body.fullName === 'string' ? body.fullName.trim() : '';
@@ -75,7 +73,7 @@ export async function POST(request: NextRequest) {
       mode: 'contact',
     });
 
-    const { error } = await resend.emails.send({
+    const result = await sendResendEmail({
       from: `CRES Dynamics <${senderEmail}>`,
       to: [recipientEmail],
       replyTo: email,
@@ -129,13 +127,11 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    if (error) {
-      console.error('Resend error:', error);
+    if (!result.sent) {
+      console.error('Resend error:', result.error);
       let errorMessage = 'Failed to send email. ';
-      if (error.message) {
-        errorMessage += error.message;
-      } else if (error.name === 'validation_error') {
-        errorMessage += 'Please verify that the sender email is verified in Resend.';
+      if (result.error) {
+        errorMessage += result.error;
       } else {
         errorMessage += 'Please try again later or contact support.';
       }
@@ -143,7 +139,7 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      await resend.emails.send({
+      await sendResendEmail({
         from: `CRES Dynamics <${senderEmail}>`,
         to: [email],
         subject: `Re: ${projectTitle}`,
@@ -165,7 +161,7 @@ export async function POST(request: NextRequest) {
 
     // Share full conversation copy with internal team mailbox
     try {
-      await resend.emails.send({
+      await sendResendEmail({
         from: `CRES Dynamics <${senderEmail}>`,
         to: [recipientEmail],
         replyTo: email,
@@ -189,7 +185,7 @@ export async function POST(request: NextRequest) {
 
     if (subscribe) {
       try {
-        await resend.emails.send({
+        await sendResendEmail({
           from: `CRES Dynamics <${senderEmail}>`,
           to: [email],
           subject: 'Welcome to CRES Dynamics Newsletter!',

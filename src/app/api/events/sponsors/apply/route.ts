@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { hasRecentSponsorApplicationByEmail, insertSponsorApplication } from '@/lib/db';
 import type { SponsorPackageTier } from '@/lib/sponsor-packages';
 import { initiatePesapalCheckout } from '@/lib/event-payments';
 import { getSponsorPackage } from '@/lib/sponsor-packages';
 import { FUTURE_AI_EVENT } from '@/lib/future-ai-event';
+import { hasResendConfigured, sendResendEmail } from '@/lib/resend-fallback';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const resendConfigured = hasResendConfigured();
 
 const TIERS = new Set<SponsorPackageTier>([
   'gold',
@@ -115,7 +115,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Database unavailable.' }, { status: 503 });
     }
 
-    if (resend) {
+    if (resendConfigured) {
       const recipientEmail =
         process.env.EVENTS_FORM_EMAIL || process.env.CAREERS_FORM_EMAIL || 'cresdynamics@gmail.com';
       const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
@@ -124,7 +124,7 @@ export async function POST(request: Request) {
       else if (waDigits.length === 9 && waDigits.startsWith('7')) waDigits = '254' + waDigits;
       const waHref = waDigits.length >= 11 ? `https://wa.me/${waDigits}` : '';
 
-      await resend.emails.send({
+      const notify = await sendResendEmail({
         from: `CRES Events <${senderEmail}>`,
         to: [recipientEmail],
         subject: `New sponsor application: ${companyName} · ${pkg.label}`,
@@ -141,6 +141,7 @@ export async function POST(request: Request) {
           <p><strong>Why sponsor:</strong><br>${escapeHtml(whySponsor).replace(/\n/g, '<br>')}</p>
         `,
       });
+      if (!notify.sent) console.error('Resend sponsor notify error:', notify.error);
     }
 
     if (!pkg.requiresPayment || pkg.amountKes <= 0) {

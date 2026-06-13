@@ -12,7 +12,7 @@ export const FUTURE_AI_OG_IMAGE = {
   url: '/events/hero-stage.jpg',
   width: 1200,
   height: 630,
-  alt: `${FUTURE_AI_EVENT.title} — AI business conference at Sarit Expo Centre, Nairobi, June 2026`,
+  alt: `${FUTURE_AI_EVENT.title} — AI business conference in Nairobi, July 2026`,
 } as const;
 
 export const FUTURE_AI_KEYWORDS = [
@@ -42,7 +42,7 @@ export const FUTURE_AI_KEYWORDS = [
   'AI talent Kenya event',
 ] as const;
 
-const doorsIso = '2026-06-20T13:30:00+03:00';
+const doorsIso = '2026-07-18T13:30:00+03:00';
 
 function absolute(path: string) {
   return `${FUTURE_AI_SITE}${path}`;
@@ -83,7 +83,7 @@ const ROBOTS: Metadata['robots'] = {
 export function futureAiHubMetadata(): Metadata {
   const title = 'Events Nairobi 2026 | AI & Business Conferences | Cres Dynamics';
   const description =
-    'Upcoming Cres Dynamics events in Nairobi — including The Future of AI in Business, Saturday 20 June 2026 at Sarit Expo Centre, Westlands. Register for keynotes, panels, and networking.';
+    'Upcoming Cres Dynamics events in Nairobi — including The Future of AI in Business, rescheduled to July 2026. Register for keynotes, panels, and networking.';
   return {
     title,
     description,
@@ -96,7 +96,7 @@ export function futureAiHubMetadata(): Metadata {
 }
 
 export function futureAiEventMetadata(): Metadata {
-  const title = `AI Events Nairobi 2026 | ${FUTURE_AI_EVENT.title} – Saturday 20 June | Sarit Expo`;
+  const title = `AI Events Nairobi 2026 | ${FUTURE_AI_EVENT.title} – July 2026 | Nairobi`;
   const description = `Nairobi's practical AI conference for business owners, developers, and founders. ${FUTURE_AI_EVENT.title}, ${FUTURE_AI_EVENT.dateLabel}, ${FUTURE_AI_EVENT.venue}. Keynotes, breakout tracks, live AI challenge, The Open Table & networking. Tickets from KES 1,500.`;
   return {
     title,
@@ -114,7 +114,7 @@ export function futureAiEventMetadata(): Metadata {
 }
 
 export function futureAiProgrammeMetadata(): Metadata {
-  const title = `Official Programme | ${FUTURE_AI_EVENT.title} | Saturday 20 June 2026 | Nairobi`;
+  const title = `Official Programme | ${FUTURE_AI_EVENT.title} | July 2026 | Nairobi`;
   const description = `Full official programme for ${FUTURE_AI_EVENT.title} — ${FUTURE_AI_EVENT.dateLabel}, ${FUTURE_AI_EVENT.venue}. ${FUTURE_AI_EVENT.timeRange}. Keynotes, business & developer tracks, VIP roundtable, live AI challenge, and The Open Table finale.`;
   return {
     title,

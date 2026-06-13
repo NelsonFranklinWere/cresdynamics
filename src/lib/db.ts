@@ -439,7 +439,7 @@ export async function updateEventReservationBookingStatus(
 
   const existing = await p.query(
     `
-    SELECT id, email, phone, ticket_type, event_title, event_date
+    SELECT id, email, phone, ticket_type, event_title, event_date, booking_status
     FROM event_reservations WHERE id = $1
     `,
     [id]

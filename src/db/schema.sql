@@ -183,3 +183,55 @@ CREATE TABLE IF NOT EXISTS blog_posts (
 CREATE INDEX IF NOT EXISTS idx_blog_posts_status_published ON blog_posts (status, published_at DESC NULLS LAST);
 CREATE INDEX IF NOT EXISTS idx_blog_posts_slug ON blog_posts (slug);
 CREATE INDEX IF NOT EXISTS idx_blog_posts_updated_at ON blog_posts (updated_at DESC);
+
+-- Event catalogue (metadata for landing pages, rescheduling, etc.)
+CREATE TABLE IF NOT EXISTS events (
+  id SERIAL PRIMARY KEY,
+  slug TEXT NOT NULL UNIQUE,
+  title TEXT NOT NULL,
+  date_label TEXT NOT NULL,
+  date_short TEXT,
+  status TEXT NOT NULL DEFAULT 'confirmed',
+  note TEXT,
+  venue TEXT,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_events_slug ON events (slug);
+
+INSERT INTO events (slug, title, date_label, date_short, status, note, venue)
+VALUES (
+  'the-future-of-ai-in-business',
+  'The Future of AI in Business',
+  'TBC July 2026',
+  'July 2026 — Exact Date To Be Confirmed',
+  'rescheduled',
+  'Venue conflict at Sarit Expo Centre. Boxing match double booking. New venue and date being confirmed. Breakout sessions to be added to programme.',
+  'Venue TBC — Nairobi'
+)
+ON CONFLICT (slug) DO UPDATE SET
+  date_label = EXCLUDED.date_label,
+  date_short = EXCLUDED.date_short,
+  status = EXCLUDED.status,
+  note = EXCLUDED.note,
+  venue = EXCLUDED.venue,
+  updated_at = now();
+
+-- Log for bulk / automated attendee communications
+CREATE TABLE IF NOT EXISTS event_communication_log (
+  id SERIAL PRIMARY KEY,
+  event_slug TEXT NOT NULL,
+  communication_type TEXT NOT NULL,
+  reservation_id INTEGER REFERENCES event_reservations (id) ON DELETE SET NULL,
+  email TEXT NOT NULL,
+  first_name TEXT,
+  success BOOLEAN NOT NULL DEFAULT false,
+  error_message TEXT,
+  sent_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_event_communication_log_event ON event_communication_log (event_slug, communication_type, sent_at DESC);
+CREATE INDEX IF NOT EXISTS idx_event_communication_log_email ON event_communication_log (email);
+
+ALTER TABLE event_reservations ADD COLUMN IF NOT EXISTS reschedule_email_sent_at TIMESTAMPTZ;

@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { upsertChatSessionFromLead, insertFrankGreetingIfEmpty } from '@/lib/db';
 import { CHAT_FRANK_GREETING } from '@/lib/chatConstants';
+import { hasResendConfigured, sendResendEmail } from '@/lib/resend-fallback';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const resendApiKey = process.env.RESEND_API_KEY;
-const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function POST(request: NextRequest) {
   try {
@@ -51,8 +49,8 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    if (!resend) {
-      console.warn('RESEND_API_KEY not set; chat session saved but no notification email sent.');
+    if (!hasResendConfigured()) {
+      console.warn('Resend not configured; chat session saved but no notification email sent.');
       return NextResponse.json({
         success: true,
         message: 'Lead captured; email notifications disabled',
@@ -64,7 +62,7 @@ export async function POST(request: NextRequest) {
     const recipientEmail = 'cresdynamics@gmail.com';
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
 
-    const { data, error } = await resend.emails.send({
+    const result = await sendResendEmail({
       from: `CRES Dynamics Chat Bot <${senderEmail}>`,
       to: [recipientEmail],
       subject: `New Chat Visitor - ${name}`,
@@ -123,8 +121,8 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    if (error) {
-      console.error('Resend error:', error);
+    if (!result.sent) {
+      console.error('Resend error:', result.error);
       return NextResponse.json(
         { error: 'Failed to send notification email' },
         { status: 500 }

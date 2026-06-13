@@ -8,7 +8,7 @@ import { DEFAULT_LANYARD, lanyardLabel, type LanyardCategory } from '@/lib/event
 import { FUTURE_AI_EVENT } from '@/lib/future-ai-event';
 
 const EVENT_TITLE = FUTURE_AI_EVENT.title;
-const EVENT_DATE = FUTURE_AI_EVENT.dateLabel;
+const EVENT_DATE = FUTURE_AI_EVENT.dateCheckout;
 
 type TicketType = 'economy' | 'standard' | 'vip';
 

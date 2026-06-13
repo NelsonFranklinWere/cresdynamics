@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { insertCareerApplication } from '@/lib/db';
 import { escapeHtml, nlToBr } from '@/lib/escapeHtml';
+import { hasResendConfigured, sendResendEmail } from '@/lib/resend-fallback';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -37,15 +37,13 @@ function parseJsonBody(body: Record<string, unknown>) {
 
 export async function POST(request: NextRequest) {
   try {
-    if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is missing');
+    if (!hasResendConfigured()) {
+      console.error('Resend API keys not configured');
       return NextResponse.json(
         { error: 'Email service is not configured. Please contact the administrator.' },
         { status: 500 }
       );
     }
-
-    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const contentType = request.headers.get('content-type') || '';
     let fullName: string;
@@ -155,7 +153,7 @@ export async function POST(request: NextRequest) {
       ? `<p style="margin: 12px 0 0 0; color: #0D1B2A; font-size: 14px;"><strong>CV:</strong> attached (${safe(cvOriginalFilename)})</p>`
       : '<p style="margin: 12px 0 0 0; color: #856404; font-size: 13px;"><strong>CV:</strong> not attached (legacy JSON submit)</p>';
 
-    const { error } = await resend.emails.send({
+    const result = await sendResendEmail({
       from: `CRES Careers <${senderEmail}>`,
       to: [recipientEmail],
       replyTo: email,
@@ -225,8 +223,8 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    if (error) {
-      console.error('Resend careers error:', error);
+    if (!result.sent) {
+      console.error('Resend careers error:', result.error);
       return NextResponse.json(
         { error: 'Failed to submit application. Please try again later.' },
         { status: 500 }

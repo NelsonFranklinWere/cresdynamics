@@ -91,7 +91,7 @@ VIP check-in is at a dedicated desk separate from general registration. Please l
 
 Your seat is reserved.
 
-Thank you for registering for ${FUTURE_AI_EVENT.title}. Your payment has been received and your place at Sarit Expo Centre on ${FUTURE_AI_EVENT.dateLabel} is confirmed.
+Thank you for registering for ${FUTURE_AI_EVENT.title}. Your payment has been received and your seat for ${FUTURE_AI_EVENT.title} is confirmed.
 
 Here is everything you need to know before the day.
 
@@ -105,10 +105,10 @@ Date of Payment: ${formatPaymentDate(payload.paymentDate)}
 
 EVENT DETAILS
 Event: ${FUTURE_AI_EVENT.title}
-Date: ${FUTURE_AI_EVENT.dateLabel}
+Date: ${FUTURE_AI_EVENT.dateShort}
+${FUTURE_AI_EVENT.dateConfirmFollowUp}
 Time: Doors open at ${FUTURE_AI_EVENT.doorsOpen}. Programme begins at 2:00 PM. Close at 7:00 PM.
 Venue: ${FUTURE_AI_EVENT.venue}
-Address: Sarit Centre, Karuna Road, Westlands, Nairobi
 
 YOUR LANYARD COLOUR
 At registration you will receive your colour coded lanyard based on your category. This is how every person in the room knows who you are and who to connect with instantly.
@@ -131,10 +131,7 @@ Two — Your national ID or any valid identification.
 Three — Your business cards if you have them. The networking in this room will be intentional and valuable. Come prepared.
 ${vipBlock}
 GETTING THERE
-Sarit Expo Centre is located inside Sarit Centre on Karuna Road, Westlands, Nairobi.
-By car — Paid parking is available at Sarit Centre. Enter via the Karuna Road entrance.
-By matatu — Routes serving Westlands stop directly outside Sarit Centre.
-By taxi or ride hailing — Drop off at Sarit Centre, Westlands. The Expo Centre entrance is clearly signposted inside the mall.
+Venue details will be confirmed and emailed to you within 48 hours of registration. The event will be held in Nairobi.
 
 FREQUENTLY ASKED QUESTIONS
 Can I transfer my ticket to someone else?
@@ -169,7 +166,7 @@ Forward this email or share the registration link — cresdynamics.com/events
 Every person you bring into that room makes your network stronger.
 
 ${FUTURE_AI_EVENT.title}
-${FUTURE_AI_EVENT.dateLabel} · Sarit Expo Centre · Westlands · Nairobi
+${FUTURE_AI_EVENT.dateShort} · ${FUTURE_AI_EVENT.venue}
 2PM — 7PM
 ${FUTURE_AI_EVENT.organiser} · cresdynamics.com · ${FUTURE_AI_EVENT.contactEmail} · ${FUTURE_AI_EVENT.contactPhone}
 © 2026 ${FUTURE_AI_EVENT.organiser}. All rights reserved.`;
@@ -184,7 +181,7 @@ ${FUTURE_AI_EVENT.organiser} · cresdynamics.com · ${FUTURE_AI_EVENT.contactEma
   <div style="padding: 28px 24px; background: #ffffff;">
     <p>Dear <strong>${escapeHtml(payload.firstName)}</strong>,</p>
     <p><strong>Your seat is reserved.</strong></p>
-    <p>Thank you for registering for <strong>${escapeHtml(FUTURE_AI_EVENT.title)}</strong>. Your payment has been received and your place at Sarit Expo Centre on <strong>${escapeHtml(FUTURE_AI_EVENT.dateLabel)}</strong> is confirmed.</p>
+    <p>Thank you for registering for <strong>${escapeHtml(FUTURE_AI_EVENT.title)}</strong>. Your payment has been received and your seat is confirmed.</p>
     <p>Here is everything you need to know before the day.</p>
 
     <h2 style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #2FA6B3; border-bottom: 2px solid #2FA6B3; padding-bottom: 6px; margin-top: 28px; font-family: Arial, sans-serif;">Your booking details</h2>
@@ -200,10 +197,10 @@ ${FUTURE_AI_EVENT.organiser} · cresdynamics.com · ${FUTURE_AI_EVENT.contactEma
     <h2 style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #2FA6B3; border-bottom: 2px solid #2FA6B3; padding-bottom: 6px; margin-top: 28px; font-family: Arial, sans-serif;">Event details</h2>
     <p style="margin: 8px 0; font-family: Arial, sans-serif; font-size: 14px;">
       <strong>Event:</strong> ${escapeHtml(FUTURE_AI_EVENT.title)}<br/>
-      <strong>Date:</strong> ${escapeHtml(FUTURE_AI_EVENT.dateLabel)}<br/>
+      <strong>Date:</strong> ${escapeHtml(FUTURE_AI_EVENT.dateShort)}<br/>
+      <em style="color:#555;">${escapeHtml(FUTURE_AI_EVENT.dateConfirmFollowUp)}</em><br/>
       <strong>Time:</strong> Doors open at ${escapeHtml(FUTURE_AI_EVENT.doorsOpen)}. Programme begins at 2:00 PM. Close at 7:00 PM.<br/>
-      <strong>Venue:</strong> ${escapeHtml(FUTURE_AI_EVENT.venue)}<br/>
-      <strong>Address:</strong> Sarit Centre, Karuna Road, Westlands, Nairobi
+      <strong>Venue:</strong> ${escapeHtml(FUTURE_AI_EVENT.venue)}
     </p>
 
     <h2 style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #2FA6B3; border-bottom: 2px solid #2FA6B3; padding-bottom: 6px; margin-top: 28px; font-family: Arial, sans-serif;">Your lanyard colour</h2>
@@ -263,7 +260,7 @@ ${FUTURE_AI_EVENT.organiser} · cresdynamics.com · ${FUTURE_AI_EVENT.contactEma
   </div>
   <div style="background: #060B18; padding: 20px 24px; text-align: center; font-family: Arial, sans-serif; font-size: 12px; color: rgba(255,255,255,0.65);">
     <p style="margin: 0 0 4px; color: #fff; font-weight: 700;">${escapeHtml(FUTURE_AI_EVENT.title)}</p>
-    <p style="margin: 0;">${escapeHtml(FUTURE_AI_EVENT.dateLabel)} · Sarit Expo Centre · Westlands · Nairobi · 2PM — 7PM</p>
+    <p style="margin: 0;">${escapeHtml(FUTURE_AI_EVENT.dateShort)} · ${escapeHtml(FUTURE_AI_EVENT.venue)} · 2PM — 7PM</p>
     <p style="margin: 8px 0 0;">${escapeHtml(FUTURE_AI_EVENT.organiser)} · <a href="${FUTURE_AI_SITE}" style="color: #2FA6B3;">cresdynamics.com</a></p>
     <p style="margin: 4px 0 0;">© 2026 ${escapeHtml(FUTURE_AI_EVENT.organiser)}. All rights reserved.</p>
   </div>

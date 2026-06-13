@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import EventRescheduleBanner from '@/components/EventRescheduleBanner';
 import {
   FUTURE_AI_EVENT,
   FUTURE_AI_LANYARDS,
@@ -260,6 +261,7 @@ export default function EventProgrammeContent() {
       </div>
 
       <Header />
+      <EventRescheduleBanner />
 
       {/* Hero */}
       <section id="overview" className="relative z-10 pt-24 pb-6 md:pb-8 scroll-mt-24">
@@ -294,7 +296,7 @@ export default function EventProgrammeContent() {
                 {FUTURE_AI_EVENT.tagline}
               </p>
               <p className="text-sm text-white/55 leading-relaxed max-w-2xl">
-                Official programme for Nairobi&apos;s AI business conference — {FUTURE_AI_EVENT.dateLabel},{' '}
+                Official programme for Nairobi&apos;s AI business conference — {FUTURE_AI_EVENT.dateCheckout},{' '}
                 {FUTURE_AI_EVENT.venue}. Keynotes, breakout tracks, live AI challenge, and The Open Table finale.
               </p>
             </div>
@@ -318,7 +320,7 @@ export default function EventProgrammeContent() {
           {/* Meta grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { label: 'Date', value: FUTURE_AI_EVENT.dateLabel, icon: '📅', dateTime: '2026-06-20' },
+              { label: 'Date', value: FUTURE_AI_EVENT.dateCheckout, icon: '📅', dateTime: '2026-07-18' },
               { label: 'Time', value: FUTURE_AI_EVENT.timeRange, icon: '⏱', dateTime: undefined },
               { label: 'Venue', value: FUTURE_AI_EVENT.venueShort, icon: '📍', dateTime: undefined },
               { label: 'Organiser', value: FUTURE_AI_EVENT.organiser, icon: '◆', dateTime: undefined },
