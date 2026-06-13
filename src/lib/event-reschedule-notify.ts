@@ -32,6 +32,9 @@ export type RescheduleNotifyReport = {
   skipped: number;
   results: RescheduleSendResult[];
   eventRecordUpdated: boolean;
+  teamCopyEmail: string;
+  teamCopySent: boolean;
+  teamCopyError?: string;
 };
 
 const COMMUNICATION_TYPE = 'reschedule_july_2026';
@@ -116,7 +119,7 @@ async function alreadySentRescheduleEmail(p: NonNullable<ReturnType<typeof getPo
 async function logCommunication(
   p: NonNullable<ReturnType<typeof getPool>>,
   row: {
-    reservationId: number;
+    reservationId: number | null;
     email: string;
     firstName: string;
     success: boolean;
@@ -140,7 +143,7 @@ async function logCommunication(
     ]
   );
 
-  if (row.success) {
+  if (row.success && row.reservationId) {
     try {
       await p.query(
         `UPDATE event_reservations SET reschedule_email_sent_at = now() WHERE id = $1`,
@@ -182,6 +185,9 @@ export async function sendFutureAiRescheduleUpdates(options?: {
         error: 'Resend API keys not configured',
       })),
       eventRecordUpdated: false,
+      teamCopyEmail: FUTURE_AI_EVENT.contactEmail,
+      teamCopySent: false,
+      teamCopyError: 'Resend API keys not configured',
     };
   }
 
@@ -192,6 +198,7 @@ export async function sendFutureAiRescheduleUpdates(options?: {
   }
 
   const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+  const teamCopyEmail = (process.env.INFO_EMAIL || FUTURE_AI_EVENT.contactEmail).trim();
 
   for (const attendee of attendees) {
     if (p && skipAlreadySent && (await alreadySentRescheduleEmail(p, attendee.email))) {
@@ -254,6 +261,32 @@ export async function sendFutureAiRescheduleUpdates(options?: {
     });
   }
 
+  let teamCopySent = false;
+  let teamCopyError: string | undefined;
+  if (!dryRun) {
+    const { subject, html, text } = buildEventRescheduleEmail('Team');
+    const teamResult = await sendResendEmail({
+      from: `Nelson Were <${senderEmail}>`,
+      to: [teamCopyEmail],
+      replyTo: FUTURE_AI_EVENT.contactEmail,
+      subject: `[Team copy] ${subject}`,
+      html: `<p style="font-family:Arial,sans-serif;font-size:12px;color:#666;margin:0 0 16px;">Internal copy — same email sent individually to each registered attendee.</p>${html}`,
+      text: `[Team copy — sent to all attendees individually]\n\n${text}`,
+    });
+    teamCopySent = teamResult.sent;
+    teamCopyError = teamResult.error;
+    if (p && teamCopySent) {
+      await logCommunication(p, {
+        reservationId: null,
+        email: teamCopyEmail,
+        firstName: 'Team',
+        success: true,
+      });
+    }
+  } else {
+    teamCopySent = true;
+  }
+
   return {
     eventTitle: FUTURE_AI_EVENT.title,
     totalEligible: attendees.length,
@@ -263,6 +296,9 @@ export async function sendFutureAiRescheduleUpdates(options?: {
     skipped,
     results,
     eventRecordUpdated,
+    teamCopyEmail,
+    teamCopySent,
+    teamCopyError,
   };
 }
 
