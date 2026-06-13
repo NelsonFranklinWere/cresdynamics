@@ -260,11 +260,11 @@ export default function EventProgrammeContent() {
         <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] rounded-full bg-[#6366F1]/8 blur-[90px]" />
       </div>
 
-      <Header />
       <EventRescheduleBanner />
+      <Header />
 
       {/* Hero */}
-      <section id="overview" className="relative z-10 pt-24 pb-6 md:pb-8 scroll-mt-24">
+      <section id="overview" className="relative z-10 pt-[calc(6rem+var(--event-banner-height,0px))] pb-6 md:pb-8 scroll-mt-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-white/40 mb-6 font-mono">
             <Link href={FUTURE_AI_PATHS.hub} className="hover:text-[#2FA6B3] transition-colors">

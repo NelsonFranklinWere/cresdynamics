@@ -37,7 +37,7 @@ export type RescheduleNotifyReport = {
   teamCopyError?: string;
 };
 
-const COMMUNICATION_TYPE = 'reschedule_july_2026';
+const COMMUNICATION_TYPE = 'july_2026_honest_story';
 
 export async function listFutureAiAttendeesForReschedule(): Promise<RescheduleAttendee[]> {
   const p = getPool();
@@ -56,12 +56,14 @@ export async function listFutureAiAttendeesForReschedule(): Promise<RescheduleAt
     FROM event_reservations
     WHERE event_title = $1
       AND booking_status IN ('pending', 'paid')
-    ORDER BY lower(email), id DESC
+    ORDER BY lower(email),
+      CASE WHEN booking_status = 'paid' THEN 0 ELSE 1 END,
+      id DESC
     `,
     [FUTURE_AI_EVENT.title]
   );
 
-  return r.rows.map((row) => ({
+  const rows = r.rows.map((row) => ({
     id: Number(row.id),
     firstName: String(row.first_name),
     lastName: row.last_name ? String(row.last_name) : null,
@@ -70,6 +72,12 @@ export async function listFutureAiAttendeesForReschedule(): Promise<RescheduleAt
     ticketType: row.ticket_type ? String(row.ticket_type) : null,
     bookingStatus: String(row.booking_status),
   }));
+
+  return rows.sort((a, b) => {
+    const aPaid = a.bookingStatus === 'paid' ? 0 : 1;
+    const bPaid = b.bookingStatus === 'paid' ? 0 : 1;
+    return aPaid - bPaid;
+  });
 }
 
 export async function upsertFutureAiEventRecord(): Promise<boolean> {
@@ -261,7 +269,7 @@ export async function sendFutureAiRescheduleUpdates(options?: {
     });
 
     if (!dryRun) {
-      await new Promise((r) => setTimeout(r, 400));
+      await new Promise((r) => setTimeout(r, 550));
     }
   }
 

@@ -232,13 +232,13 @@ function EventsContentInner() {
         }}
       />
 
-      <Header />
       <EventRescheduleBanner />
+      <Header />
       <Suspense fallback={null}>
         <PaymentStatusBanner />
       </Suspense>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(6rem+var(--event-banner-height,0px))]">
         <nav className="flex flex-wrap items-center gap-2 text-xs text-white/45 mb-4 font-mono">
           <Link href={FUTURE_AI_PATHS.hub} className="hover:text-[#2FA6B3]">
             Events

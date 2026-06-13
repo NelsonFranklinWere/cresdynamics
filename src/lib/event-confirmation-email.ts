@@ -13,7 +13,7 @@ export function formatEventTicketNumber(sequence: number): string {
   return `${EVENT_TICKET_NUMBER_PREFIX}-${String(sequence).padStart(3, '0')}`;
 }
 
-export const EVENT_CONFIRMATION_SUBJECT = `You are confirmed — ${FUTURE_AI_EVENT.title} — ${FUTURE_AI_EVENT.dateShort}`;
+export const EVENT_CONFIRMATION_SUBJECT = `You are confirmed — ${FUTURE_AI_EVENT.title} — July 2026`;
 
 export type EventConfirmationPayload = {
   firstName: string;
@@ -105,8 +105,7 @@ Date of Payment: ${formatPaymentDate(payload.paymentDate)}
 
 EVENT DETAILS
 Event: ${FUTURE_AI_EVENT.title}
-Date: ${FUTURE_AI_EVENT.dateShort}
-${FUTURE_AI_EVENT.dateConfirmFollowUp}
+Date: ${FUTURE_AI_EVENT.confirmationDateLine}
 Time: Doors open at ${FUTURE_AI_EVENT.doorsOpen}. Programme begins at 2:00 PM. Close at 7:00 PM.
 Venue: ${FUTURE_AI_EVENT.venue}
 
@@ -150,7 +149,7 @@ Who do I contact if I have a question before the event?
 Email ${FUTURE_AI_EVENT.contactEmail} or WhatsApp ${FUTURE_AI_EVENT.contactPhone}. We respond within 2 hours during working hours.
 
 A NOTE FROM NELSON
-You made a decision to be in that room on ${FUTURE_AI_EVENT.dateShort}. That decision already puts you ahead of everyone who said they would think about it.
+You made a decision to be in that room in July 2026. That decision already puts you ahead of everyone who said they would think about it.
 
 The value of this afternoon is not in what you hear from the stage. It is in what you do with it the following Monday. Come ready to listen. Come ready to connect. Come ready to leave with something you can act on immediately.
 
@@ -166,7 +165,7 @@ Forward this email or share the registration link — cresdynamics.com/events
 Every person you bring into that room makes your network stronger.
 
 ${FUTURE_AI_EVENT.title}
-${FUTURE_AI_EVENT.dateShort} · ${FUTURE_AI_EVENT.venue}
+${FUTURE_AI_EVENT.confirmationDateLine}
 2PM — 7PM
 ${FUTURE_AI_EVENT.organiser} · cresdynamics.com · ${FUTURE_AI_EVENT.contactEmail} · ${FUTURE_AI_EVENT.contactPhone}
 © 2026 ${FUTURE_AI_EVENT.organiser}. All rights reserved.`;
@@ -197,8 +196,7 @@ ${FUTURE_AI_EVENT.organiser} · cresdynamics.com · ${FUTURE_AI_EVENT.contactEma
     <h2 style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #2FA6B3; border-bottom: 2px solid #2FA6B3; padding-bottom: 6px; margin-top: 28px; font-family: Arial, sans-serif;">Event details</h2>
     <p style="margin: 8px 0; font-family: Arial, sans-serif; font-size: 14px;">
       <strong>Event:</strong> ${escapeHtml(FUTURE_AI_EVENT.title)}<br/>
-      <strong>Date:</strong> ${escapeHtml(FUTURE_AI_EVENT.dateShort)}<br/>
-      <em style="color:#555;">${escapeHtml(FUTURE_AI_EVENT.dateConfirmFollowUp)}</em><br/>
+      <strong>Date:</strong> ${escapeHtml(FUTURE_AI_EVENT.confirmationDateLine)}<br/>
       <strong>Time:</strong> Doors open at ${escapeHtml(FUTURE_AI_EVENT.doorsOpen)}. Programme begins at 2:00 PM. Close at 7:00 PM.<br/>
       <strong>Venue:</strong> ${escapeHtml(FUTURE_AI_EVENT.venue)}
     </p>
@@ -246,7 +244,7 @@ ${FUTURE_AI_EVENT.organiser} · cresdynamics.com · ${FUTURE_AI_EVENT.contactEma
 
     <h2 style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #2FA6B3; border-bottom: 2px solid #2FA6B3; padding-bottom: 6px; margin-top: 28px; font-family: Arial, sans-serif;">A note from Nelson</h2>
     <blockquote style="margin: 0; padding: 16px 20px; background: #fafafa; border-left: 4px solid #F39C24; font-style: italic;">
-      You made a decision to be in that room on ${escapeHtml(FUTURE_AI_EVENT.dateShort)}. That decision already puts you ahead of everyone who said they would think about it.<br/><br/>
+      You made a decision to be in that room in July 2026. That decision already puts you ahead of everyone who said they would think about it.<br/><br/>
       The value of this afternoon is not in what you hear from the stage. It is in what you do with it the following Monday. Come ready to listen. Come ready to connect. Come ready to leave with something you can act on immediately.<br/><br/>
       I will see you there.<br/><br/>
       <strong>Nelson Were</strong><br/>
@@ -260,7 +258,7 @@ ${FUTURE_AI_EVENT.organiser} · cresdynamics.com · ${FUTURE_AI_EVENT.contactEma
   </div>
   <div style="background: #060B18; padding: 20px 24px; text-align: center; font-family: Arial, sans-serif; font-size: 12px; color: rgba(255,255,255,0.65);">
     <p style="margin: 0 0 4px; color: #fff; font-weight: 700;">${escapeHtml(FUTURE_AI_EVENT.title)}</p>
-    <p style="margin: 0;">${escapeHtml(FUTURE_AI_EVENT.dateShort)} · ${escapeHtml(FUTURE_AI_EVENT.venue)} · 2PM — 7PM</p>
+    <p style="margin: 0;">${escapeHtml(FUTURE_AI_EVENT.confirmationDateLine)}</p>
     <p style="margin: 8px 0 0;">${escapeHtml(FUTURE_AI_EVENT.organiser)} · <a href="${FUTURE_AI_SITE}" style="color: #2FA6B3;">cresdynamics.com</a></p>
     <p style="margin: 4px 0 0;">© 2026 ${escapeHtml(FUTURE_AI_EVENT.organiser)}. All rights reserved.</p>
   </div>

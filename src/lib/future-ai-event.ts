@@ -21,6 +21,8 @@ export const FUTURE_AI_EVENT = {
     'Important Update — The Future of AI in Business has been rescheduled to July 2026. Your registration remains valid. New date and venue being confirmed within 48 hours. Questions — email info@cresdynamics.com or WhatsApp +254 708 805 496.',
   dateConfirmFollowUp:
     'We will email you the confirmed date and venue within 48 hours of your registration.',
+  confirmationDateLine:
+    'The Future of AI in Business — July 2026. Exact date and venue to be confirmed within 48 hours of your registration. You will receive an email with full details the moment the new date is locked.',
   previousDateLabel: 'Saturday 20th June 2026',
   organiser: 'Cres Dynamics Ltd',
   contactEmail: 'info@cresdynamics.com',

@@ -103,7 +103,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-white border-b border-[var(--neutral-bg)] shadow-sm">
+    <header className="fixed top-[var(--event-banner-height,0px)] w-full z-50 bg-white border-b border-[var(--neutral-bg)] shadow-sm">
       <nav className="max-w-7xl mx-auto px-4 lg:px-6 py-3 flex items-center justify-between">
         {/* LOGO: Cres Dynamics */}
         <div className="flex items-center space-x-1 md:space-x-2">
@@ -247,7 +247,7 @@ export default function Header() {
 
       {/* Who We Are – full-width dropdown (brand dark panel) */}
       <div
-        className={`hidden lg:block fixed left-0 right-0 top-[57px] z-40 bg-[var(--navy-dark)] border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
+        className={`hidden lg:block fixed left-0 right-0 top-[calc(var(--event-banner-height,0px)+57px)] z-40 bg-[var(--navy-dark)] border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
           isWhoWeAreDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'
         }`}
         onMouseEnter={openWhoWeAreDropdown}
@@ -289,7 +289,7 @@ export default function Header() {
 
       {/* Systems – full-width dropdown (brand dark panel) */}
       <div
-        className={`hidden lg:block fixed left-0 right-0 top-[57px] z-40 bg-[var(--navy-dark)] border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
+        className={`hidden lg:block fixed left-0 right-0 top-[calc(var(--event-banner-height,0px)+57px)] z-40 bg-[var(--navy-dark)] border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
           isSolutionsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'
         }`}
         onMouseEnter={openSystemsDropdown}
@@ -328,7 +328,7 @@ export default function Header() {
 
       {/* Services – full-width dropdown */}
       <div
-        className={`hidden lg:block fixed left-0 right-0 top-[57px] z-40 bg-[var(--navy-dark)] border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
+        className={`hidden lg:block fixed left-0 right-0 top-[calc(var(--event-banner-height,0px)+57px)] z-40 bg-[var(--navy-dark)] border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
           isServicesDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'
         }`}
         onMouseEnter={openServicesDropdown}

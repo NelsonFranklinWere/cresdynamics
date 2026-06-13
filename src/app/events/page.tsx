@@ -20,9 +20,9 @@ export default function EventsHubPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
-      <Header />
       <EventRescheduleBanner />
-      <main className="pt-24 pb-16">
+      <Header />
+      <main className="pt-[calc(6rem+var(--event-banner-height,0px))] pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#2FA6B3] mb-3 font-mono">
             Cres Dynamics Events
