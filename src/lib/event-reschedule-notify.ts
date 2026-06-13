@@ -259,6 +259,10 @@ export async function sendFutureAiRescheduleUpdates(options?: {
       sent: result.sent,
       error: result.error,
     });
+
+    if (!dryRun) {
+      await new Promise((r) => setTimeout(r, 400));
+    }
   }
 
   let teamCopySent = false;
