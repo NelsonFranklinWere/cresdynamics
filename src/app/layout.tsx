@@ -257,7 +257,7 @@ export default function RootLayout({
           __html: `
             /* Critical CSS for instant render - prevents FCP delay */
             body{margin:0;padding:0;background:#F5F7FA;color:#2F3B52;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-            header{position:fixed;top:0;width:100%;z-index:50;background:#fff;border-bottom:1px solid rgba(245,247,250,1);box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+            header{position:fixed;top:0;width:100%;z-index:50;background:transparent;border-bottom:none;box-shadow:none}
             nav{max-width:1280px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
             /* Prevent layout shift for logo */
             img[src="/logo.png"]{width:32px;height:32px;border-radius:50%;object-fit:cover;display:block}

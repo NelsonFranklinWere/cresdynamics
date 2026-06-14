@@ -1,95 +1,42 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import ImageSection from '@/components/ImageSection';
+import TypewriterBoard from '@/components/TypewriterBoard';
+import { HOMEPAGE_SECTION_IMAGES } from '@/lib/section-backgrounds';
+
+const PROBLEMS = [
+  'You spend hours every day answering the same WhatsApp messages from customers who want to know your prices, your stock availability, and how to pay.',
+  'Your team runs on verbal instructions and gut feel because there is no system showing who owns what and what is stuck.',
+  'You find out about a revenue problem at the end of the month when the damage is already done.',
+  'Your website exists but it does not bring in customers because nobody can find it on Google and nobody knows what to do when they land on it.',
+  'You have tried generic software that was built for a different market and forced your business to adapt to it.',
+] as const;
 
 export default function HomepageProblemSection() {
-  const problems = [
-    {
-      icon: '📱',
-      title: "You're invisible to clients who are searching for you right now",
-      description:
-        "Every day, potential clients search for what you offer in Nairobi and find your competitors instead. Not because you're worse – because you're not findable.",
-      num: '01',
-    },
-    {
-      icon: '💸',
-      title: "Money is leaking from gaps you can't see",
-      description:
-        'Stock that disappears without trace. Invoices that never get sent. Orders lost in WhatsApp threads. The leakage is real — you just do not have a system to show you where it is happening.',
-      num: '02',
-    },
-    {
-      icon: '⛔',
-      title: "Corporate clients won't engage businesses without a credible presence",
-      description:
-        'Before a corporate client calls you, they Google you. What they find determines whether they call at all. An Instagram page is not enough for a KES 500K order.',
-      num: '03',
-    },
-    {
-      icon: '🔄',
-      title: 'You are the system — and that has a ceiling',
-      description:
-        'Every decision, every approval, every operational question flows through you. When you max out, the business maxes out. You cannot scale what you are personally running.',
-      num: '04',
-    },
-  ];
-
   return (
-    <motion.section
-      className="bg-white text-[var(--navy-primary)]"
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+    <ImageSection
+      imageSrc={HOMEPAGE_SECTION_IMAGES.problem}
+      imageAlt="Business team collaborating around operational challenges"
+      overlay="dark"
     >
-      <div className="max-w-6xl mx-auto px-6 py-8 md:py-24">
-        <div className="mb-6">
-          <div className="flex items-center gap-3 text-[10px] md:text-xs font-mono tracking-[0.25em] uppercase text-[var(--teal-accent)]">
-            <span className="inline-block h-px w-7 bg-[var(--teal-accent)]" />
-            <span>The Problem We Solve</span>
-          </div>
-        </div>
-        <div className="max-w-3xl mb-10">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-4 text-[var(--navy-primary)]">
-            Your Business Has
-            <br />
-            Outgrown Its Infrastructure.
-          </h2>
-          <p className="text-sm md:text-base text-[var(--navy-primary)]/80 leading-relaxed">
-            You are making sales. You have clients. The work is good. But everything still runs
-            through WhatsApp groups, Excel sheets, and one person who holds it all together. That
-            person is usually you.
-          </p>
-        </div>
+      <motion.div
+        className="max-w-4xl mx-auto px-4 sm:px-6 py-14 md:py-24"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-8 md:mb-10 text-white text-center">
+          Does this sound familiar?
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {problems.map((p, idx) => {
-            const fromLeft = idx % 2 === 0;
-            const initialX = fromLeft ? -40 : 40;
+        <TypewriterBoard items={PROBLEMS} />
 
-            return (
-            <motion.div
-              key={p.num}
-              className="relative bg-[var(--neutral-bg)] px-6 py-8 md:px-8 md:py-10 rounded-2xl border border-[#E5E7EB] shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-              initial={{ opacity: 0, x: initialX }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
-            >
-              <div className="text-2xl mb-3">{p.icon}</div>
-              <h3 className="text-base md:text-lg font-semibold mb-2 text-[var(--navy-primary)]">
-                {p.title}
-              </h3>
-              <p className="text-xs md:text-sm text-[var(--navy-primary)]/75 leading-relaxed">{p.description}</p>
-              <div className="pointer-events-none select-none absolute -top-2 right-4 text-[72px] font-black text-[var(--teal-accent)]/10 leading-none">
-                {p.num}
-              </div>
-            </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </motion.section>
+        <p className="text-base md:text-lg font-semibold text-white/90 text-center mt-8 md:mt-10">
+          If any of these are true you are in the right place.
+        </p>
+      </motion.div>
+    </ImageSection>
   );
 }
-

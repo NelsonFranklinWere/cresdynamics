@@ -33,6 +33,22 @@ export const FUTURE_AI_EVENT = {
   tagline: 'Structured Growth Through Technology',
 } as const;
 
+/** Full reschedule letter — shown inline on event pages (not a fixed banner). */
+export const FUTURE_AI_RESCHEDULE_NOTICE = {
+  lead: 'Here is the honest story.',
+  paragraphs: [
+    'Registrations for this event exceeded 300 people faster than we anticipated. When we went back to Sarit Expo Centre to expand the space and accommodate everyone — we were told the halls are fully booked for a boxing match on 20th June.',
+    'We are not squeezing 300 plus people into a space that cannot hold them properly. We are not rushing a last minute venue and compromising the experience. We are moving to July with a larger venue and breakout sessions that the original space could not accommodate.',
+    'Your registration is fully valid. Your seat is reserved. No action needed from your side.',
+    'New date and venue will be confirmed within 48 hours. Watch your email for the update.',
+  ],
+  refundLead: 'If the new date does not work for you email',
+  refundTail: 'and we will process your refund immediately. No questions asked.',
+  closing: 'Thank you for your patience and for making this event bigger than we planned.',
+  signoff: 'Nelson Were',
+  signoffRole: 'Director, Cres Dynamics Ltd',
+} as const;
+
 export const FUTURE_AI_PATHS = {
   hub: '/events/',
   event: `/events/${FUTURE_AI_EVENT_SLUG}/`,

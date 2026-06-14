@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -21,12 +21,10 @@ function DropdownImage({ src, alt = '' }: { src: string; alt?: string }) {
   );
 }
 
-const navLinkClass = (path: string) => {
-  const base = 'text-[13px] font-medium transition-colors duration-200 py-2 flex items-center gap-1';
-  return `${base} text-[var(--navy-primary)] hover:text-[var(--teal-accent)]`;
+const navLinkClass = (active?: boolean) => {
+  const base = 'nav-link-glass';
+  return active ? `${base} nav-link-glass-active` : base;
 };
-const navLinkActiveClass = (current: string, path: string) =>
-  current === path ? 'border-b-2 border-[var(--orange-energy)]' : '';
 
 function eventsNavActive(pathname: string) {
   return pathname === '/events' || pathname.startsWith('/events/');
@@ -38,6 +36,7 @@ function blogNavActive(pathname: string) {
 
 export default function Header() {
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSolutionsDropdownOpen, setIsSolutionsDropdownOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
@@ -102,8 +101,27 @@ export default function Header() {
     whoWeAreCloseTimer.current = setTimeout(() => setIsWhoWeAreDropdownOpen(false), 120);
   };
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [pathname]);
+
+  const isEventsRoute = eventsNavActive(pathname);
+  const headerSurface = isEventsRoute
+    ? scrolled
+      ? 'nav-glass-events nav-glass-events-scrolled'
+      : 'nav-glass-events'
+    : scrolled
+      ? 'nav-glass nav-glass-scrolled'
+      : 'nav-glass';
+
+  const brandTextClass = 'text-white';
+  const menuIconClass = 'text-white';
+
   return (
-    <header className="fixed top-[var(--event-banner-height,0px)] w-full z-50 bg-white border-b border-[var(--neutral-bg)] shadow-sm">
+    <header className={`fixed top-0 w-full z-50 ${headerSurface}`}>
       <nav className="max-w-7xl mx-auto px-4 lg:px-6 py-3 flex items-center justify-between">
         {/* LOGO: Cres Dynamics */}
         <div className="flex items-center space-x-1 md:space-x-2">
@@ -116,14 +134,13 @@ export default function Header() {
             width={32}
             height={32}
           />
-          <span className="text-[var(--navy-primary)] font-bold text-xs md:text-sm uppercase tracking-wide">
+          <span className={`${brandTextClass} font-bold text-xs md:text-sm uppercase tracking-wide transition-colors duration-300`}>
             <span className="font-black">CRES</span> Dynamics
           </span>
         </div>
 
-        {/* Mobile Menu Button - show on tablet/iPad and below (lg breakpoint = 1024px) */}
         <button
-          className="lg:hidden text-[var(--navy-primary)]"
+          className={`lg:hidden ${menuIconClass} p-2 rounded-lg hover:bg-white/10 transition-colors`}
           onClick={() => {
             setIsMobileMenuOpen(!isMobileMenuOpen);
             if (isMobileMenuOpen) {
@@ -137,15 +154,14 @@ export default function Header() {
           </svg>
         </button>
 
-        {/* NAV: Brand palette – white bg, navy text, teal hover, active orange underline */}
-        <ul className="hidden lg:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-2 xl:gap-3">
           <li>
-            <Link href="/" prefetch={false} className={`${navLinkClass('')} ${pathname === '/' ? 'border-b-2 border-[var(--orange-energy)]' : ''}`}>
+            <Link href="/" prefetch={false} className={navLinkClass( pathname === '/')}>
               Home
             </Link>
           </li>
           <li>
-            <Link href="/events" prefetch={false} className={`${navLinkClass('')} ${eventsNavActive(pathname) ? 'border-b-2 border-[var(--orange-energy)]' : ''}`}>
+            <Link href="/events" prefetch={false} className={navLinkClass( eventsNavActive(pathname))}>
               Events
             </Link>
           </li>
@@ -156,7 +172,7 @@ export default function Header() {
           >
             <button
               type="button"
-              className={navLinkClass('')}
+              className={navLinkClass()}
               aria-expanded={isWhoWeAreDropdownOpen}
               aria-haspopup="true"
             >
@@ -167,7 +183,7 @@ export default function Header() {
             </button>
           </li>
           <li>
-            <Link href="/cresos" prefetch={false} className={`${navLinkClass('')} ${navLinkActiveClass(pathname, '/cresos')}`}>
+            <Link href="/cresos" prefetch={false} className={navLinkClass( pathname === '/cresos')}>
               CresOS
             </Link>
           </li>
@@ -178,7 +194,7 @@ export default function Header() {
           >
             <button
               type="button"
-              className={navLinkClass('')}
+              className={navLinkClass()}
               onClick={() => {
                 if (isSolutionsDropdownOpen) {
                   closeSystemsDropdown();
@@ -202,7 +218,7 @@ export default function Header() {
           >
             <button
               type="button"
-              className={navLinkClass('')}
+              className={navLinkClass()}
               onClick={() => {
                 if (isServicesDropdownOpen) {
                   closeServicesDropdown();
@@ -219,35 +235,40 @@ export default function Header() {
               </svg>
             </button>
           </li>
-          <li className="flex items-center gap-4 shrink-0">
+          <li className="flex items-center gap-1 shrink-0">
             <Link
               href="/blog"
               prefetch={false}
-              className={`${navLinkClass('')} text-[11px] whitespace-nowrap ${blogNavActive(pathname) ? 'border-b-2 border-[var(--orange-energy)]' : ''}`}
+              className={`${navLinkClass( blogNavActive(pathname))} text-[11px] whitespace-nowrap`}
             >
               Blog
             </Link>
             <Link
               href="/case-studies"
               prefetch={false}
-              className={`${navLinkClass('')} text-[11px] whitespace-nowrap ${navLinkActiveClass(pathname, '/case-studies')}`}
+              className={`${navLinkClass( pathname.startsWith('/case-studies'))} text-[11px] whitespace-nowrap`}
             >
               Case Proof
             </Link>
-            <Link href="/projects" prefetch={false} className={`${navLinkClass('')} ${navLinkActiveClass(pathname, '/projects')}`}>
+            <Link href="/projects" prefetch={false} className={navLinkClass( pathname === '/projects')}>
               Projects
             </Link>
           </li>
         </ul>
 
-        <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20strategy%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="hidden lg:inline-flex items-center bg-[var(--orange-energy)] hover:bg-[var(--orange-energy-hover)] text-white font-bold px-4 py-2 rounded text-[11px] tracking-wide whitespace-nowrap transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--teal-accent)] focus:ring-offset-2">
+        <a
+          href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20strategy%20session%20with%20CRES%20Dynamics."
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`hidden lg:inline-flex nav-cta-glass whitespace-nowrap`}
+        >
           Book Session
         </a>
       </nav>
 
       {/* Who We Are – full-width dropdown (brand dark panel) */}
       <div
-        className={`hidden lg:block fixed left-0 right-0 top-[calc(var(--event-banner-height,0px)+57px)] z-40 bg-[var(--navy-dark)] border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
+        className={`hidden lg:block fixed left-0 right-0 top-[57px] z-40 bg-black/75 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
           isWhoWeAreDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'
         }`}
         onMouseEnter={openWhoWeAreDropdown}
@@ -257,12 +278,12 @@ export default function Header() {
         <div className="max-w-6xl mx-auto px-6 py-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-10">
             {[
-              { name: 'Who We Are', href: '/about', desc: 'Our story and mission', image: '/01_who_we_are.jpg' },
-              { name: 'Why Us', href: '/why-us', desc: 'Why serious businesses choose us', image: '/02_why_us.jpg' },
-              { name: 'How We Work', href: '/how-we-work', desc: 'Discovery to go-live — our delivery process', image: '/03_how_we_work.jpg' },
-              { name: 'How We Build', href: '/how-we-build', desc: 'Our system engineering framework', image: '/04_how_we_build.jpg' },
-              { name: 'Events', href: '/events', desc: 'Upcoming events and registrations', image: '/The-ai-event-the-future-of-ai-in-business.jpg' },
-              { name: 'Contact', href: 'https://wa.me/254708805496?text=Hi%2C%20I\'d%20like%20to%20book%20a%20systems%20discovery%20session.', desc: 'Book a systems discovery session (WhatsApp)', image: '/05_contact.jpg' },
+              { name: 'Who We Are', href: '/about', desc: 'Our story and mission', image: '/wh0-we-wre.jpg' },
+              { name: 'Why Us', href: '/why-us', desc: 'Why serious businesses choose us', image: '/why-us-us.jpg' },
+              { name: 'How We Work', href: '/how-we-work', desc: 'Discovery to go-live — our delivery process', image: '/how-we-work.jpg' },
+              { name: 'How We Build', href: '/how-we-build', desc: 'Our system engineering framework', image: '/how-we-build.jpg' },
+              { name: 'Events', href: '/events', desc: 'Upcoming events and registrations', image: '/events-westlands.jpg' },
+              { name: 'Contact', href: 'https://wa.me/254708805496?text=Hi%2C%20I\'d%20like%20to%20book%20a%20systems%20discovery%20session.', desc: 'Book a systems discovery session (WhatsApp)', image: '/contact-us.jpg' },
             ].map((item) => (
               <Link
                 key={item.name}
@@ -289,7 +310,7 @@ export default function Header() {
 
       {/* Systems – full-width dropdown (brand dark panel) */}
       <div
-        className={`hidden lg:block fixed left-0 right-0 top-[calc(var(--event-banner-height,0px)+57px)] z-40 bg-[var(--navy-dark)] border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
+        className={`hidden lg:block fixed left-0 right-0 top-[57px] z-40 bg-black/75 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
           isSolutionsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'
         }`}
         onMouseEnter={openSystemsDropdown}
@@ -299,11 +320,11 @@ export default function Header() {
         <div className="max-w-6xl mx-auto px-6 py-6">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 pb-1">
             {[
-              { name: 'CresOS', href: '/cresos', desc: 'Business operating system', image: '/cresOs.businessoperatingsystem.png' },
-              { name: 'Finance Platforms', href: '/finance-platforms', desc: 'Revenue, invoices, dashboards', image: '/09_finance.jpg' },
-              { name: 'Operations & Workflow', href: '/operations-workflow', desc: 'Projects, approvals, reporting', image: '/10_operations_workflow.jpg' },
-              { name: 'AI & Automation', href: '/ai-automation', desc: 'Workflows, triggers, intelligence', image: '/11_ai_automation.jpg' },
-              { name: 'Custom ERP', href: '/erp', desc: 'Modular ERP & governance', image: '/06_custom_erp.jpg' },
+              { name: 'CresOS', href: '/cresos', desc: 'Business operating system', image: '/business-operating system.jpg' },
+              { name: 'Finance Platforms', href: '/finance-platforms', desc: 'Revenue, invoices, dashboards', image: '/finance-plartforms.jpg' },
+              { name: 'Operations & Workflow', href: '/operations-workflow', desc: 'Projects, approvals, reporting', image: '/streamline-your-workflow.jpg' },
+              { name: 'AI & Automation', href: '/ai-automation', desc: 'Workflows, triggers, intelligence', image: '/workflow-automation.jpg' },
+              { name: 'Custom ERP', href: '/erp', desc: 'Modular ERP & governance', image: '/modern-erp.jpg' },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -328,7 +349,7 @@ export default function Header() {
 
       {/* Services – full-width dropdown */}
       <div
-        className={`hidden lg:block fixed left-0 right-0 top-[calc(var(--event-banner-height,0px)+57px)] z-40 bg-[var(--navy-dark)] border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
+        className={`hidden lg:block fixed left-0 right-0 top-[57px] z-40 bg-black/75 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-200 ease-out ${
           isServicesDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'
         }`}
         onMouseEnter={openServicesDropdown}
@@ -342,37 +363,37 @@ export default function Header() {
                 name: 'Websites',
                 href: '/websites',
                 desc: 'Professional websites that convert, not just look good',
-                image: '/07_websites.jpg',
+                image: '/websites.jpg',
               },
               {
                 name: 'E-Commerce',
                 href: '/e-commerce',
                 desc: 'Online stores built for Kenyan businesses',
-                image: '/08_ecommerce.jpg',
+                image: '/e-commerce.jpg',
               },
               {
                 name: 'Finance',
                 href: '/finance-platforms',
                 desc: 'Revenue, invoices, and dashboards as a service',
-                image: '/09_finance.jpg',
+                image: '/finance.jpg',
               },
               {
                 name: 'Operations & Workflow',
                 href: '/operations-workflow',
                 desc: 'Projects, approvals, and reporting',
-                image: '/10_operations_workflow.jpg',
+                image: '/streamline-your-workflow.jpg',
               },
               {
                 name: 'AI & Automation',
                 href: '/ai-automation',
                 desc: 'Automation and intelligence on top of your systems',
-                image: '/11_ai_automation.jpg',
+                image: '/time-automation.jpg',
               },
               {
                 name: 'Custom Software',
                 href: '/software',
                 desc: 'Portals, dashboards, booking and internal tools',
-                image: '/10_operations_workflow.jpg',
+                image: '/custome-software.jpg',
               },
             ].map((item) => (
               <Link
@@ -399,11 +420,11 @@ export default function Header() {
       {/* Mobile Menu Overlay – brand: light bg, navy text, teal hover */}
       {isMobileMenuOpen && (
         <div className="mobile-menu open lg:hidden">
-          <Link href="/" prefetch={false} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Home
           </Link>
 
-          <Link href="/events" prefetch={false} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/events" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Events
           </Link>
 
@@ -411,7 +432,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setIsMobileWhoWeAreOpen(!isMobileWhoWeAreOpen)}
-              className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 flex items-center justify-between w-full text-left"
+              className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 flex items-center justify-between w-full text-left"
             >
               <span>Who We Are</span>
               <svg className={`w-4 h-4 transition-transform duration-200 ${isMobileWhoWeAreOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -428,7 +449,7 @@ export default function Header() {
                   { name: 'Events', href: '/events' },
                   { name: 'Contact', href: '/contact' },
                 ].map((link) => (
-                  <Link key={link.href} href={link.href} prefetch={false} className="text-[var(--navy-primary)]/90 text-sm font-medium hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => { setIsMobileMenuOpen(false); setIsMobileWhoWeAreOpen(false); }}>
+                  <Link key={link.href} href={link.href} prefetch={false} className="text-white/75 text-sm font-medium hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => { setIsMobileMenuOpen(false); setIsMobileWhoWeAreOpen(false); }}>
                     {link.name}
                   </Link>
                 ))}
@@ -436,7 +457,7 @@ export default function Header() {
             )}
           </div>
 
-          <Link href="/cresos" prefetch={false} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/cresos" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             CresOS
           </Link>
 
@@ -444,7 +465,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-              className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 flex items-center justify-between w-full text-left"
+              className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 flex items-center justify-between w-full text-left"
             >
               <span>Services</span>
               <svg className={`w-4 h-4 transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -465,7 +486,7 @@ export default function Header() {
                     key={service.href}
                     href={service.href}
                     prefetch={false}
-                    className="text-[var(--navy-primary)]/90 text-sm font-medium hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left"
+                    className="text-white/75 text-sm font-medium hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left"
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       setIsMobileServicesOpen(false);
@@ -482,7 +503,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setIsMobileSolutionsOpen(!isMobileSolutionsOpen)}
-              className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 flex items-center justify-between w-full text-left"
+              className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 flex items-center justify-between w-full text-left"
             >
               <span>Systems</span>
               <svg className={`w-4 h-4 transition-transform duration-200 ${isMobileSolutionsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -502,7 +523,7 @@ export default function Header() {
                     key={solution.href}
                     href={solution.href}
                     prefetch={false}
-                    className="text-[var(--navy-primary)]/90 text-sm font-medium hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left"
+                    className="text-white/75 text-sm font-medium hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left"
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       setIsMobileSolutionsOpen(false);
@@ -515,13 +536,13 @@ export default function Header() {
             )}
           </div>
 
-          <Link href="/blog" prefetch={false} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/blog" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Blog
           </Link>
-          <Link href="/case-studies" prefetch={false} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/case-studies" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Case Proof
           </Link>
-          <Link href="/projects" prefetch={false} className="text-[var(--navy-primary)] text-base font-medium uppercase hover:text-[var(--teal-accent)] transition-all duration-300 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/projects" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Projects
           </Link>
         </div>

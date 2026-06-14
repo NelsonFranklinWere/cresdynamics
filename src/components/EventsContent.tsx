@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import EventRescheduleBanner from '@/components/EventRescheduleBanner';
+import EventRescheduleNotice from '@/components/EventRescheduleNotice';
 import EventsRegistrationModal from '@/components/EventsRegistrationModal';
 import EventsSponsorModal from '@/components/EventsSponsorModal';
 import EventsRegisterSection from '@/components/EventsRegisterSection';
@@ -232,13 +232,15 @@ function EventsContentInner() {
         }}
       />
 
-      <EventRescheduleBanner />
       <Header />
       <Suspense fallback={null}>
         <PaymentStatusBanner />
       </Suspense>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(6rem+var(--event-banner-height,0px))]">
+      <div className="relative z-10">
+        <EventRescheduleNotice />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex flex-wrap items-center gap-2 text-xs text-white/45 mb-4 font-mono">
           <Link href={FUTURE_AI_PATHS.hub} className="hover:text-[#2FA6B3]">
             Events
@@ -246,6 +248,7 @@ function EventsContentInner() {
           <span>/</span>
           <span className="text-white/70">{FUTURE_AI_EVENT.title}</span>
         </nav>
+        </div>
       </div>
 
       {/* ── HERO ── */}

@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Cres Dynamics | ERP & Business Systems Company Nairobi, Kenya',
-  description: 'Cres Dynamics is a Nairobi-based business systems company building ERP platforms, finance systems and AI automation for growing Kenyan businesses. Westlands, Nairobi. Est. 2024.',
+  title: 'About Cres Dynamics — Custom Software & ERP Nairobi Kenya',
+  description:
+    'When WhatsApp and Excel stop working, Kenyan businesses need custom infrastructure. Cres Dynamics builds ERP systems, finance platforms, and AI automation in Nairobi — designed around how you operate.',
   alternates: { canonical: 'https://cresdynamics.com/about/' },
   robots: { index: true, follow: true },
   openGraph: {

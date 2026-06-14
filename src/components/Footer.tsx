@@ -13,10 +13,10 @@ export default function Footer() {
               CRES<span className="text-[var(--teal-accent)]"> Dynamics</span>
             </div>
             <p className="text-white font-semibold text-sm mb-2">
-              Business Systems That Run Companies
+              Systems businesses run on.
             </p>
             <p className="text-white/80 text-xs mb-2">
-              ERPs, finance platforms, and automation systems designed for scale, visibility, and control.
+              Custom ERP Kenya, business software Nairobi, M-Pesa integration, and e-commerce systems built for how you operate.
             </p>
           </div>
 
@@ -27,7 +27,7 @@ export default function Footer() {
               <li><a href="/pricing" className={linkClass}>Pricing</a></li>
               <li><a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20strategy%20call%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className={linkClass}>Book Strategy Call</a></li>
               <li><a href="tel:+254708805496" className={linkClass}>Call 0708 805 496</a></li>
-              <li><a href="/contact" className={linkClass}>Contact form</a></li>
+              <li><a href="/contact" className={linkClass}>Start the conversation</a></li>
               <li><a href="/how-we-work" className={linkClass}>How We Work</a></li>
               <li><a href="/how-we-build" className={linkClass}>How We Build</a></li>
             </ul>
@@ -76,9 +76,9 @@ export default function Footer() {
 
           {/* CONTACT & LEGAL */}
           <div>
-            <h3 className={headingClass}>Contact Us</h3>
+            <h3 className={headingClass}>Reach us</h3>
             <p className="text-white/70 text-xs mb-3">
-              Reach out to discuss your system needs. We respond within 24 hours.
+              Tell us what you are dealing with. We respond within 2 hours during working hours.
             </p>
             <div className="space-y-2 mb-4">
               <a href="tel:+254708805496" className={linkClass}>+254 708 805 496</a>
@@ -108,7 +108,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
             <p className="text-white/70 text-xs">© 2026 CRES Dynamics. All rights reserved.</p>
-            <p className="text-[var(--teal-accent)] text-xs font-medium">Business systems that companies actually run on.</p>
+            <p className="text-[var(--teal-accent)] text-xs font-medium">Systems businesses run on.</p>
           </div>
         </div>
       </div>

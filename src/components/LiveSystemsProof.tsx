@@ -1,126 +1,58 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import ImageSection from '@/components/ImageSection';
+import { HOMEPAGE_SECTION_IMAGES } from '@/lib/section-backgrounds';
+
+const PROOF_CARDS = [
+  {
+    title: 'Finance Platform',
+    stats: '127 active users. KES 4.97 million in revenue tracked. Real-time dashboards. M-Pesa billing. Live in production.',
+  },
+  {
+    title: 'Business Operations ERP',
+    stats: '89 active users. KES 2.3 million in project value tracked. Approval workflows. Full audit logging. Live in production.',
+  },
+  {
+    title: 'OCH Platform',
+    stats: 'Multi-role cybersecurity talent platform. AI-powered profiling. Certificate generation. M-Pesa billing. Live in production.',
+  },
+];
 
 export default function LiveSystemsProof() {
   return (
-    <section className="py-8 md:py-20 relative" style={{ background: 'var(--cres-gradient-bg)' }}>
-      <div className="absolute inset-0 bg-black/20" aria-hidden />
-      <div className="relative z-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="text-center mb-6 md:mb-16">
-            <h2
-              className="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-4 md:mb-5"
-              style={{ textShadow: '0 2px 12px rgba(0,0,0,0.3)' }}
-            >
-              Live in <span className="text-[var(--orange-energy)]">Production</span>
-            </h2>
-            <p
-              className="text-lg md:text-2xl text-white max-w-3xl mx-auto mb-3"
-            >
-              Real Systems. Real Businesses. Real Numbers.
-            </p>
-            <p className="text-sm md:text-base text-white/85 max-w-3xl mx-auto">
-              These are not demos. Not mockups. Live systems running in production today, serving real users and real
-              businesses in Kenya.
-            </p>
-          </div>
-
-          {/* PROOF CARDS: active users, revenue, roles, stack, uptime/performance where possible */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-16">
-            {[
-              {
-                title: 'Finance & Revenue Platform',
-                users: '127',
-                revenue: 'KES 4.97M',
-                roles: 'Admin, Finance, Viewer',
-                description: 'Live production system serving 127 active users, tracking KES 4.97M in revenue with role-based access.',
-                features: ['Billing & subscriptions', 'Invoice management', 'Revenue dashboards', 'Role-based access'],
-                stack: 'Node.js • PostgreSQL • Stripe • RBAC',
-                uptime: '99.9%'
-              },
-              {
-                title: 'Business Operations ERP',
-                users: '89',
-                revenue: 'KES 2.3M',
-                roles: 'Manager, Member, Auditor',
-                description: 'Operations system with 89 users, KES 2.3M tracked project value, approval chains, and audit trails.',
-                features: ['Project workflows', 'Approval chains', 'Performance analytics', 'Audit trails'],
-                stack: 'React • Node.js • MongoDB • Redis',
-                uptime: '99.5%'
-              },
-              {
-                title: 'Automation & AI System',
-                users: '156',
-                revenue: 'KES 1.8M',
-                roles: 'Operator, Analyst, Admin',
-                description: 'Automation platform with 156 users, KES 1.8M in automated transaction volume, workflow triggers, and decision support.',
-                features: ['Automated follow-ups', 'Workflow automation', 'Decision support', 'Analytics pipelines'],
-                stack: 'Python • FastAPI • PostgreSQL • AI/ML',
-                uptime: '99.7%'
-              }
-            ].map((system, i) => (
-              <motion.div
-                key={i}
-                className="bg-black/80 backdrop-blur-sm border border-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: 0.12 * i, ease: [0.22, 0.61, 0.36, 1] }}
-              >
-                <h3 className="text-lg md:text-xl font-bold text-white mb-4 group-hover:text-[var(--teal-accent)] transition-colors">
-                  {system.title}
-                </h3>
-                <div className="mb-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs md:text-sm text-white/70">Active users</span>
-                    <span className="text-xl md:text-2xl font-black text-[var(--orange-energy)]">{system.users}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs md:text-sm text-white/70">Revenue tracked</span>
-                    <span className="text-lg md:text-xl font-bold text-[var(--teal-accent)]">{system.revenue}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs md:text-sm text-white/70">Roles</span>
-                    <span className="text-sm font-medium text-white/90">{system.roles}</span>
-                  </div>
-                  {system.uptime && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs md:text-sm text-white/70">Uptime</span>
-                      <span className="text-sm font-medium text-green-400">{system.uptime}</span>
-                    </div>
-                  )}
-                </div>
-                <p className="text-sm md:text-base text-white/90 mb-4 leading-relaxed">
-                  {system.description}
-                </p>
-                <div className="mb-4">
-                  <p className="text-xs md:text-sm font-bold text-[var(--orange-energy)] mb-2">Capabilities</p>
-                  <ul className="space-y-1">
-                    {system.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <span className="text-[var(--teal-accent)] text-xs">•</span>
-                        <span className="text-xs md:text-sm text-white/80">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="pt-4 border-t border-white/10">
-                  <p className="text-xs text-white/60 font-mono">{system.stack}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <a href="/case-studies" className="inline-flex items-center gap-2 bg-[var(--orange-energy)] hover:bg-[var(--orange-energy-hover)] text-white font-bold text-base md:text-lg px-6 md:px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-500 uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent">
-              View Case Proof
-              <i className="fas fa-chevron-right text-sm"></i>
-            </a>
-          </div>
+    <ImageSection
+      imageSrc={HOMEPAGE_SECTION_IMAGES.proof}
+      imageAlt="Technology team planning live production systems"
+      overlay="medium"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-24 text-white">
+        <div className="max-w-3xl mb-10 md:mb-14">
+          <h2 className="text-2xl md:text-4xl font-black mb-4 leading-tight">
+            Systems we have shipped that are live right now.
+          </h2>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-10">
+          {PROOF_CARDS.map((system, i) => (
+            <motion.div
+              key={system.title}
+              className="border border-white/15 bg-black/45 backdrop-blur-sm p-6 md:p-8 rounded-xl"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.1 * i }}
+            >
+              <h3 className="text-lg md:text-xl font-bold text-white mb-4">{system.title}</h3>
+              <p className="text-sm md:text-base text-white/80 leading-relaxed">{system.stats}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <p className="text-base md:text-lg font-semibold text-white/90">
+          These are not demos. These are live systems running for real businesses in Kenya today.
+        </p>
       </div>
-    </section>
+    </ImageSection>
   );
 }

@@ -1,223 +1,167 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Playfair_Display } from 'next/font/google';
 
-const CAROUSEL_SLIDES = [
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['600', '700', '800'],
+  display: 'swap',
+});
+
+const HERO_BACKGROUNDS = [
+  { id: 'team', src: '/devs-teams-techies-discussing.jpg' },
+  { id: 'data', src: '/data-connected-analysis.jpg' },
+  { id: 'nairobi', src: '/connecting-nairobi.jpg' },
+  { id: 'growth', src: '/tech-growth.jpg' },
+] as const;
+
+const HERO_PREVIEWS = [
   {
     id: 'finance',
-    src: '/image1.jpg',
+    src: '/finance.and.revenue.png',
     alt: 'Finance and revenue platform dashboard',
-    caption: 'Finance platforms',
+    caption: 'Finance',
     href: '/finance-platforms',
   },
   {
-    id: 'erp',
-    src: '/image2.jpg',
-    alt: 'Custom ERP system interface',
-    caption: 'Custom ERP',
-    href: '/erp',
-  },
-  {
     id: 'cresos',
-    src: '/image3.jpg',
+    src: '/cresOs.businessoperatingsystem.png',
     alt: 'CresOS business operating system',
     caption: 'CresOS',
     href: '/cresos',
   },
+  {
+    id: 'ai',
+    src: '/ai.automation.png',
+    alt: 'AI automation system',
+    caption: 'AI Automation',
+    href: '/ai-automation',
+  },
 ] as const;
 
-const INTERVAL_MS = 5500;
+const BG_INTERVAL_MS = 8000;
 
 export default function HeroTesla() {
-  const [index, setIndex] = useState(0);
-  const [imgFailed, setImgFailed] = useState(false);
-
-  const go = useCallback(
-    (dir: -1 | 1) => {
-      setIndex((current) => {
-        const next = current + dir;
-        if (next < 0) return CAROUSEL_SLIDES.length - 1;
-        if (next >= CAROUSEL_SLIDES.length) return 0;
-        return next;
-      });
-    },
-    []
-  );
+  const [bgIndex, setBgIndex] = useState(0);
 
   useEffect(() => {
-    setImgFailed(false);
-  }, [index]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((current) => (current + 1) % CAROUSEL_SLIDES.length);
-    }, INTERVAL_MS);
-    return () => clearInterval(interval);
+    const bgTimer = setInterval(() => {
+      setBgIndex((i) => (i + 1) % HERO_BACKGROUNDS.length);
+    }, BG_INTERVAL_MS);
+    return () => clearInterval(bgTimer);
   }, []);
 
-  const slide = CAROUSEL_SLIDES[index];
+  const bg = HERO_BACKGROUNDS[bgIndex];
 
   return (
     <motion.section
-      className="relative min-h-[70vh] md:min-h-screen flex flex-col justify-center overflow-hidden py-6 md:py-20"
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
-      style={{ background: 'var(--cres-gradient-bg)' }}
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden py-16 md:py-24"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
     >
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center">
-          <div className="text-left">
-            <motion.div
-              className="text-[11px] md:text-xs font-semibold tracking-[0.24em] uppercase text-white/70 mb-4"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 0.61, 0.36, 1] }}
-            >
-              Nairobi, Kenya · Est. 2024
-            </motion.div>
-            <motion.h1
-              className="text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-black text-white leading-[1.05] tracking-tight mb-6"
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 0.61, 0.36, 1] }}
-              style={{ textShadow: '0 2px 12px rgba(0,0,0,0.3)' }}
-            >
-              <span className="text-[var(--orange-energy)]">Systems</span> Businesses Run On.
-            </motion.h1>
-            <motion.p
-              className="text-lg md:text-xl text-white/90 max-w-xl mb-10 font-medium leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
-            >
-              We build the operational infrastructure that growing Kenyan businesses run on – websites, ERPs,
-              finance platforms, and AI automation. When you&apos;ve outgrown WhatsApp and Excel, this is what comes
-              next.
-            </motion.p>
-            <motion.div
-              className="flex flex-row flex-wrap gap-2 sm:gap-4 sm:justify-start"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
-            >
-              <Link
-                href="/how-we-build"
-                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 bg-[var(--orange-energy)] hover:bg-[var(--orange-energy-hover)] text-white font-bold text-xs sm:text-sm px-4 sm:px-8 py-3 sm:py-3.5 rounded-lg transition-colors uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent whitespace-nowrap"
-              >
-                How We Build
-                <i className="fas fa-chevron-right text-xs" aria-hidden />
-              </Link>
-              <Link
-                href="/proof-of-work"
-                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 border-2 border-[var(--teal-accent)] text-white hover:bg-[var(--teal-accent)]/20 font-bold text-xs sm:text-sm px-4 sm:px-8 py-3 sm:py-3.5 rounded-lg transition-colors uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-[var(--teal-accent)] focus:ring-offset-2 focus:ring-offset-transparent whitespace-nowrap"
-              >
-                Our Work
-              </Link>
-            </motion.div>
-          </div>
+      <div className="absolute inset-0" aria-hidden>
+        <AnimatePresence mode="sync">
+          <motion.div
+            key={bg.id}
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.03 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+          >
+            <Image
+              src={bg.src}
+              alt=""
+              fill
+              unoptimized
+              priority={bgIndex === 0}
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </motion.div>
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-black/72" />
+      </div>
+
+      <div className="relative z-10 w-full px-6 md:px-10">
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+          <motion.h1
+            className={`${playfair.className} text-[1.75rem] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-white leading-[1.18] tracking-[-0.02em] mb-5 md:mb-6`}
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            <span className="block hero-title-underline pb-2">
+              Your business is leaking money
+            </span>
+            <span className="block hero-title-underline pb-2 mt-1 md:mt-2">
+              through systems that were never built for it.
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-xs sm:text-sm text-white/75 max-w-xl leading-snug mb-8 md:mb-9 font-normal tracking-normal"
+            style={{ fontFamily: 'var(--font-inter), system-ui, sans-serif' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            Manual invoicing. WhatsApp order management. Stock on spreadsheets. Revenue you cannot see
+            in real time. We build custom systems that fix all of that — designed around how your
+            business actually works.
+          </motion.p>
 
           <motion.div
-            className="w-full max-w-xl mx-auto lg:max-w-none lg:mx-0"
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.75, delay: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
+            className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 md:mb-9"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div
-              className="relative rounded-2xl border border-white/15 bg-black/25 shadow-[0_24px_80px_rgba(0,0,0,0.35)] overflow-hidden aspect-[4/3] sm:aspect-[16/10]"
-              aria-roledescription="carousel"
-              aria-label="Finance, ERP, and CresOS product previews"
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={slide.id}
-                  className="absolute inset-0"
-                  initial={{ opacity: 0, x: 28 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -28 }}
-                  transition={{ duration: 0.45, ease: [0.22, 0.61, 0.36, 1] }}
-                >
-                  {!imgFailed ? (
-                    <Image
-                      src={slide.src}
-                      alt={slide.alt}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 1024px) 100vw, 640px"
-                      className="object-cover object-left-top"
-                      priority={index === 0}
-                    />
-                  ) : (
-                    <div
-                      className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-[var(--navy-primary)]/90 to-black/80 px-6 text-center"
-                      aria-hidden
-                    >
-                      <span className="text-white/50 text-xs font-semibold tracking-[0.2em] uppercase">
-                        Preview
-                      </span>
-                      <span className="text-white text-lg font-bold">{slide.caption}</span>
-                      <span className="text-white/55 text-xs max-w-xs leading-relaxed">
-                        Add <span className="text-white/75">image1.jpg</span>,{' '}
-                        <span className="text-white/75">image2.jpg</span>, or{' '}
-                        <span className="text-white/75">image3.jpg</span> in the public folder.
-                      </span>
-                    </div>
-                  )}
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
-                    <Link
-                      href={slide.href}
-                      className="text-white text-sm font-semibold tracking-wide drop-shadow-md hover:text-[var(--orange-energy)] transition-colors focus:outline-none focus:ring-2 focus:ring-white rounded"
-                    >
-                      {slide.caption}
-                      <span className="ml-1" aria-hidden>
-                        →
-                      </span>
-                    </Link>
+            <Link href="/contact" className="hero-btn-primary">
+              Show me what this looks like
+              <span className="hero-btn-arrow" aria-hidden>→</span>
+            </Link>
+            <Link href="/case-studies" className="hero-btn-glass">
+              See what we have built
+              <span className="hero-btn-arrow" aria-hidden>→</span>
+            </Link>
+          </motion.div>
+
+          <motion.div
+            className="flex flex-wrap items-end justify-center gap-3 md:gap-4"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            aria-label="Live system previews"
+          >
+            {HERO_PREVIEWS.map((preview) => (
+              <Link
+                key={preview.id}
+                href={preview.href}
+                className="group block w-[7.5rem] sm:w-[8.5rem] md:w-[9.5rem] shrink-0"
+              >
+                <div className="relative aspect-[4/3] rounded-lg overflow-hidden ring-1 ring-white/25 shadow-lg group-hover:ring-white/50 group-hover:scale-[1.03] transition-all duration-300">
+                  <Image
+                    src={preview.src}
+                    alt={preview.alt}
+                    fill
+                    unoptimized
+                    sizes="120px"
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-black/65 px-2 py-1">
+                    <span className="text-[10px] sm:text-[11px] font-medium text-white/95 truncate block">
+                      {preview.caption}
+                    </span>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-
-              <button
-                type="button"
-                onClick={() => go(-1)}
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/45 hover:bg-black/60 text-white flex items-center justify-center border border-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                aria-label="Previous slide"
-              >
-                <i className="fas fa-chevron-left text-sm" aria-hidden />
-              </button>
-              <button
-                type="button"
-                onClick={() => go(1)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/45 hover:bg-black/60 text-white flex items-center justify-center border border-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                aria-label="Next slide"
-              >
-                <i className="fas fa-chevron-right text-sm" aria-hidden />
-              </button>
-            </div>
-
-            <div
-              className="flex justify-center gap-2 mt-5"
-              role="tablist"
-              aria-label="Carousel slides"
-            >
-              {CAROUSEL_SLIDES.map((s, i) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={i === index}
-                  aria-label={`Show ${s.caption}`}
-                  onClick={() => setIndex(i)}
-                  className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent ${
-                    i === index ? 'w-8 bg-[var(--orange-energy)]' : 'w-2 bg-white/35 hover:bg-white/55'
-                  }`}
-                />
-              ))}
-            </div>
+                </div>
+              </Link>
+            ))}
           </motion.div>
         </div>
       </div>

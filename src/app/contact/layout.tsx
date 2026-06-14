@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact Cres Dynamics | Web Development & ERP Company Nairobi Kenya',
-  description: 'Contact Cres Dynamics — Nairobi\'s custom ERP, business systems and web development company. Call +254 708 805 496 or email info@cresdynamics.com. Kivuli Tower, Westlands, Nairobi.',
+  title: 'Tell Us What You Are Dealing With — Cres Dynamics Nairobi',
+  description:
+    'Tell Cres Dynamics what operational problem you are facing. Custom ERP, e-commerce, finance platforms, and AI automation for Kenyan businesses. We respond within 2 hours. Nairobi Kenya.',
   alternates: { canonical: 'https://cresdynamics.com/contact/' },
   robots: { index: true, follow: true },
   openGraph: {

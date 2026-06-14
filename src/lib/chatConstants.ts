@@ -2,19 +2,21 @@
 
 /** First assistant line in the chat after the visitor submits their details (also stored in DB via chat-lead). */
 export const CHAT_FRANK_GREETING =
-  "Thanks — let's talk. What's the main thing you want to move forward on?";
+  "Asante — good to meet you. What's the one thing you want to move forward on in the next six months?";
 
-/** Teaser when the widget is closed. */
-export const CHAT_FRANK_TEASER =
-  "Jambo! Frank from CRES — where do you see your business in six months? Open chat.";
+/** Compact popup — first touch before the full chat panel opens. */
+export const CHAT_FRANK_PEEK =
+  "Hey — I'm Frank from CRES Dynamics. Where do you see your business in six months?";
 
-/** Lead step: short message-style copy (shown as Frank's bubble before the form). */
+export const CHAT_FRANK_PEEK_CTA = "Let's chat";
+
+/** Lead step: single message-style intro (shown as Frank's bubble before the form). */
 export const CHAT_FRANK_LEAD_INTRO =
   "Jambo — I'm Frank from CRES Dynamics. Where do you see your business in six months?";
 
-export const CHAT_FRANK_LEAD_CTA =
-  "Share your name and contact below — I want to know you, then we can keep talking from there.";
+export const CHAT_FRANK_LEAD_SUB =
+  'Share your name and number below — takes ten seconds, then we can talk properly.';
 
-/** Insist on full name (shown in the same bubble). */
-export const CHAT_FRANK_INSIST_NAME =
-  "Please add your full name below — so I know who I'm talking to.";
+/** Header subtitles */
+export const CHAT_FRANK_HEADER_LEAD = 'Quick intro · then we chat';
+export const CHAT_FRANK_HEADER_ACTIVE = 'CRES Dynamics · Growth advisor';

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import EventRescheduleBanner from '@/components/EventRescheduleBanner';
+import EventRescheduleNotice from '@/components/EventRescheduleNotice';
 import { FUTURE_AI_EVENT, FUTURE_AI_PATHS } from '@/lib/future-ai-event';
 import { futureAiHubJsonLd, futureAiHubMetadata } from '@/lib/future-ai-event-seo';
 
@@ -20,9 +20,9 @@ export default function EventsHubPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
-      <EventRescheduleBanner />
       <Header />
-      <main className="pt-[calc(6rem+var(--event-banner-height,0px))] pb-16">
+      <EventRescheduleNotice />
+      <main className="pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#2FA6B3] mb-3 font-mono">
             Cres Dynamics Events
