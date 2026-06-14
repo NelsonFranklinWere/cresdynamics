@@ -13,8 +13,8 @@ const SYSTEM_CARDS = [
     title: 'Custom ERP Systems',
     body: 'Finance, inventory, approvals, HR, and operations in one platform — built around your workflows, not a vendor template.',
     href: '/erp',
-    image: '/cards/erp-data-dashboard.jpg',
-    alt: 'Business analytics dashboard with charts and KPI metrics',
+    image: '/modern-erp.jpg',
+    alt: 'Modern ERP platform for operations and business management',
     accent: 'from-[#2FA6B3] to-[#1A3A8A]',
   },
   {
@@ -23,8 +23,8 @@ const SYSTEM_CARDS = [
     title: 'E-Commerce Platforms',
     body: 'Full product catalogue online with M-Pesa and card payments, automated orders, and real-time stock across every channel.',
     href: '/e-commerce',
-    image: '/cards/ecommerce-mobile-payments.jpg',
-    alt: 'Mobile payment and online checkout on a smartphone',
+    image: '/e-commerce.jpg',
+    alt: 'E-commerce website built to convert and accept payments',
     accent: 'from-[#F39C24] to-[#EA580C]',
   },
   {
@@ -33,8 +33,8 @@ const SYSTEM_CARDS = [
     title: 'Finance & Revenue Platforms',
     body: 'Live revenue visibility, automated M-Pesa reconciliation, invoice management, and dashboards that update in real time.',
     href: '/finance-platforms',
-    image: '/cards/finance-analytics-dashboard.jpg',
-    alt: 'Finance analytics dashboard with revenue and performance graphs',
+    image: '/finance-plartforms.jpg',
+    alt: 'Finance platform with revenue, balance, and management dashboards',
     accent: 'from-[#6366F1] to-[#2FA6B3]',
   },
   {
@@ -43,8 +43,8 @@ const SYSTEM_CARDS = [
     title: 'AI & Automation',
     body: 'Automated follow-ups, workflow triggers, and intelligent routing — systems that handle repetitive work while you sleep.',
     href: '/ai-automation',
-    image: '/cards/ai-automation-neural.jpg',
-    alt: 'Abstract AI neural network visualization representing intelligent automation',
+    image: '/workflow-automation.jpg',
+    alt: 'AI workflow automation for modern business operations',
     accent: 'from-[#10B981] to-[#2FA6B3]',
   },
 ] as const;
