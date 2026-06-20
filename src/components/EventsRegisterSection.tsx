@@ -152,7 +152,7 @@ export default function EventsRegisterSection({ defaultTicket = 'standard' }: { 
       >
         {sending ? 'Booking…' : `Book — ${selected.price}`}
       </button>
-      <p className="text-[11px] text-white/35 mt-3 text-center">Pay after we contact you · Sarit Expo Centre · 20 June 2026</p>
+      <p className="text-[11px] text-white/35 mt-3 text-center">Pay after we contact you · {FUTURE_AI_EVENT.venueShort} · {FUTURE_AI_EVENT.dateShort}</p>
     </form>
   );
 }

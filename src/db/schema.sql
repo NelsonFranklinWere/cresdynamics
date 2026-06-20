@@ -204,11 +204,11 @@ INSERT INTO events (slug, title, date_label, date_short, status, note, venue)
 VALUES (
   'the-future-of-ai-in-business',
   'The Future of AI in Business',
-  'TBC July 2026',
-  'July 2026 — Exact Date To Be Confirmed',
-  'rescheduled',
-  'Venue conflict at Sarit Expo Centre. Boxing match double booking. New venue and date being confirmed. Breakout sessions to be added to programme.',
-  'Venue TBC — Nairobi'
+  'Thursday 25th June 2026',
+  '25 June 2026',
+  'confirmed',
+  '',
+  'Sarit Expo Centre, Westlands, Nairobi'
 )
 ON CONFLICT (slug) DO UPDATE SET
   date_label = EXCLUDED.date_label,

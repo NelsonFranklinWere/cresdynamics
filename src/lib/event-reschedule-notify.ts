@@ -102,7 +102,7 @@ export async function upsertFutureAiEventRecord(): Promise<boolean> {
       FUTURE_AI_EVENT.dateLabel,
       FUTURE_AI_EVENT.dateShort,
       FUTURE_AI_EVENT.status,
-      FUTURE_AI_EVENT.rescheduleNote,
+      FUTURE_AI_EVENT.note,
       FUTURE_AI_EVENT.venue,
     ]
   );

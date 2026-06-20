@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import EventRescheduleNotice from '@/components/EventRescheduleNotice';
 import EventsRegistrationModal from '@/components/EventsRegistrationModal';
 import EventsSponsorModal from '@/components/EventsSponsorModal';
 import EventsRegisterSection from '@/components/EventsRegisterSection';
@@ -201,7 +200,7 @@ function PaymentStatusBanner() {
       {ok
         ? sponsor
           ? 'Thank you — your sponsorship payment was received. We will confirm your package shortly.'
-          : 'Thank you — your ticket payment was received. See you at Sarit Expo Centre on 20 June.'
+          : `Thank you — your ticket payment was received. See you at Sarit Expo Centre on ${FUTURE_AI_EVENT.dateShort}.`
         : 'Payment is pending. If you completed checkout, confirmation may take a few minutes.'}
     </div>
   );
@@ -238,8 +237,6 @@ function EventsContentInner() {
       </Suspense>
 
       <div className="relative z-10">
-        <EventRescheduleNotice />
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex flex-wrap items-center gap-2 text-xs text-white/45 mb-4 font-mono">
           <Link href={FUTURE_AI_PATHS.hub} className="hover:text-[#2FA6B3]">

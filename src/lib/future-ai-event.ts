@@ -5,25 +5,19 @@ export const FUTURE_AI_EVENT_SLUG = 'the-future-of-ai-in-business';
 export const FUTURE_AI_EVENT = {
   title: 'The Future of AI in Business',
   slug: FUTURE_AI_EVENT_SLUG,
-  dateLabel: 'TBC July 2026',
-  dateCheckout: 'July 2026 — Date To Be Confirmed',
-  dateShort: 'July 2026 — Exact Date To Be Confirmed',
-  dateIso: '2026-07-18T14:00:00+03:00',
-  endIso: '2026-07-18T19:00:00+03:00',
+  dateLabel: 'Thursday 25th June 2026',
+  dateCheckout: 'Thursday, 25th June 2026',
+  dateShort: '25 June 2026',
+  dateIso: '2026-06-25T14:00:00+03:00',
+  endIso: '2026-06-25T19:00:00+03:00',
   doorsOpen: '1:30 PM',
   timeRange: '2:00 PM — 7:00 PM',
-  venue: 'Venue TBC — Nairobi',
-  venueShort: 'Venue TBC',
-  status: 'rescheduled' as const,
-  rescheduleNote:
-    'Venue conflict at Sarit Expo Centre. Boxing match double booking. New venue and date being confirmed. Breakout sessions to be added to programme.',
-  rescheduleBanner:
-    'Important Update — The Future of AI in Business has been rescheduled to July 2026. Your registration remains valid. New date and venue being confirmed within 48 hours. Questions — email info@cresdynamics.com or WhatsApp +254 708 805 496.',
-  dateConfirmFollowUp:
-    'We will email you the confirmed date and venue within 48 hours of your registration.',
+  venue: 'Sarit Expo Centre, Westlands, Nairobi',
+  venueShort: 'Sarit Expo Centre',
+  status: 'confirmed' as const,
+  note: '',
   confirmationDateLine:
-    'The Future of AI in Business — July 2026. Exact date and venue to be confirmed within 48 hours of your registration. You will receive an email with full details the moment the new date is locked.',
-  previousDateLabel: 'Saturday 20th June 2026',
+    'The Future of AI in Business — Thursday 25th June 2026 at Sarit Expo Centre, Westlands, Nairobi.',
   organiser: 'Cres Dynamics Ltd',
   contactEmail: 'info@cresdynamics.com',
   contactPhone: '+254 0708 805 496',
@@ -31,22 +25,6 @@ export const FUTURE_AI_EVENT = {
   theme:
     'AI is not coming. It is already here. This afternoon is about what you do with it starting Monday.',
   tagline: 'Structured Growth Through Technology',
-} as const;
-
-/** Full reschedule letter — shown inline on event pages (not a fixed banner). */
-export const FUTURE_AI_RESCHEDULE_NOTICE = {
-  lead: 'Here is the honest story.',
-  paragraphs: [
-    'Registrations for this event exceeded 300 people faster than we anticipated. When we went back to Sarit Expo Centre to expand the space and accommodate everyone — we were told the halls are fully booked for a boxing match on 20th June.',
-    'We are not squeezing 300 plus people into a space that cannot hold them properly. We are not rushing a last minute venue and compromising the experience. We are moving to July with a larger venue and breakout sessions that the original space could not accommodate.',
-    'Your registration is fully valid. Your seat is reserved. No action needed from your side.',
-    'New date and venue will be confirmed within 48 hours. Watch your email for the update.',
-  ],
-  refundLead: 'If the new date does not work for you email',
-  refundTail: 'and we will process your refund immediately. No questions asked.',
-  closing: 'Thank you for your patience and for making this event bigger than we planned.',
-  signoff: 'Nelson Were',
-  signoffRole: 'Director, Cres Dynamics Ltd',
 } as const;
 
 export const FUTURE_AI_PATHS = {

@@ -151,7 +151,7 @@ export default function EventsRegistrationModal({
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: '#2FA6B3', fontFamily: 'monospace' }}>Reserve Your Seat</p>
                   <h3 className="text-xl font-black text-white">{EVENT_TITLE}</h3>
-                  <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.42)' }}>20 June 2026 · Sarit Expo Centre, Westlands</p>
+                  <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.42)' }}>{FUTURE_AI_EVENT.dateShort} · {FUTURE_AI_EVENT.venueShort}, Westlands</p>
                 </div>
                 <button onClick={handleClose} className="shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center text-xs" style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.45)' }}>✕</button>
               </div>
@@ -234,7 +234,7 @@ export default function EventsRegistrationModal({
                 Our team will contact you by phone or email with M-Pesa / Paybill details (542542 / Acc 43869) to confirm your ticket.
               </p>
               <p className="text-sm mb-7" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                See you on <strong className="text-white">20 June 2026</strong> at Sarit Expo Centre, Westlands.
+                See you on <strong className="text-white">{FUTURE_AI_EVENT.dateCheckout}</strong> at {FUTURE_AI_EVENT.venueShort}, Westlands.
               </p>
 
               <button onClick={handleClose} className="w-full py-3.5 rounded-xl font-black text-sm" style={{ background: '#F39C24', color: '#080F1C' }}>

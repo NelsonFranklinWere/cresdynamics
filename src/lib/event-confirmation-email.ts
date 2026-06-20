@@ -13,7 +13,7 @@ export function formatEventTicketNumber(sequence: number): string {
   return `${EVENT_TICKET_NUMBER_PREFIX}-${String(sequence).padStart(3, '0')}`;
 }
 
-export const EVENT_CONFIRMATION_SUBJECT = `You are confirmed — ${FUTURE_AI_EVENT.title} — July 2026`;
+export const EVENT_CONFIRMATION_SUBJECT = `You are confirmed — ${FUTURE_AI_EVENT.title} — ${FUTURE_AI_EVENT.dateShort}`;
 
 export type EventConfirmationPayload = {
   firstName: string;
@@ -149,7 +149,7 @@ Who do I contact if I have a question before the event?
 Email ${FUTURE_AI_EVENT.contactEmail} or WhatsApp ${FUTURE_AI_EVENT.contactPhone}. We respond within 2 hours during working hours.
 
 A NOTE FROM NELSON
-You made a decision to be in that room in July 2026. That decision already puts you ahead of everyone who said they would think about it.
+You made a decision to be in that room on ${FUTURE_AI_EVENT.dateCheckout}. That decision already puts you ahead of everyone who said they would think about it.
 
 The value of this afternoon is not in what you hear from the stage. It is in what you do with it the following Monday. Come ready to listen. Come ready to connect. Come ready to leave with something you can act on immediately.
 
@@ -244,7 +244,7 @@ ${FUTURE_AI_EVENT.organiser} · cresdynamics.com · ${FUTURE_AI_EVENT.contactEma
 
     <h2 style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #2FA6B3; border-bottom: 2px solid #2FA6B3; padding-bottom: 6px; margin-top: 28px; font-family: Arial, sans-serif;">A note from Nelson</h2>
     <blockquote style="margin: 0; padding: 16px 20px; background: #fafafa; border-left: 4px solid #F39C24; font-style: italic;">
-      You made a decision to be in that room in July 2026. That decision already puts you ahead of everyone who said they would think about it.<br/><br/>
+      You made a decision to be in that room on ${FUTURE_AI_EVENT.dateCheckout}. That decision already puts you ahead of everyone who said they would think about it.<br/><br/>
       The value of this afternoon is not in what you hear from the stage. It is in what you do with it the following Monday. Come ready to listen. Come ready to connect. Come ready to leave with something you can act on immediately.<br/><br/>
       I will see you there.<br/><br/>
       <strong>Nelson Were</strong><br/>

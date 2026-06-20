@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import EventRescheduleNotice from '@/components/EventRescheduleNotice';
 import { FUTURE_AI_EVENT, FUTURE_AI_PATHS } from '@/lib/future-ai-event';
 import { futureAiHubJsonLd, futureAiHubMetadata } from '@/lib/future-ai-event-seo';
 
@@ -21,7 +20,6 @@ export default function EventsHubPage() {
         />
       ))}
       <Header />
-      <EventRescheduleNotice />
       <main className="pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#2FA6B3] mb-3 font-mono">
@@ -58,10 +56,10 @@ export default function EventsHubPage() {
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
                   <time
-                    dateTime="2026-07-18"
+                    dateTime="2026-06-25"
                     className="inline-flex w-fit mb-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-[#F39C24]/40 text-[#F39C24]"
                   >
-                    Rescheduled · {FUTURE_AI_EVENT.dateCheckout}
+                    {FUTURE_AI_EVENT.dateCheckout}
                   </time>
                   <h2 className="text-xl md:text-2xl font-black mb-2 group-hover:text-[#2FA6B3] transition-colors" itemProp="name">
                     {FUTURE_AI_EVENT.title}
