@@ -318,7 +318,7 @@ export default function EventProgrammeContent() {
           {/* Meta grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { label: 'Date', value: FUTURE_AI_EVENT.dateCheckout, icon: '📅', dateTime: '2026-06-25' },
+              { label: 'Date', value: FUTURE_AI_EVENT.dateCheckout, icon: '📅', dateTime: '2026-07-25' },
               { label: 'Time', value: FUTURE_AI_EVENT.timeRange, icon: '⏱', dateTime: undefined },
               { label: 'Venue', value: FUTURE_AI_EVENT.venueShort, icon: '📍', dateTime: undefined },
               { label: 'Organiser', value: FUTURE_AI_EVENT.organiser, icon: '◆', dateTime: undefined },

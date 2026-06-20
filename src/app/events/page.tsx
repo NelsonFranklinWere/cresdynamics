@@ -47,7 +47,7 @@ export default function EventsHubPage() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={EVENT_PHOTO}
-                    alt={`${FUTURE_AI_EVENT.title} — AI conference at Sarit Expo Centre, Westlands Nairobi, June 2026`}
+                    alt={`${FUTURE_AI_EVENT.title} — AI conference at Sarit Expo Centre, Westlands Nairobi, July 2026`}
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="eager"
                     itemProp="image"
@@ -56,7 +56,7 @@ export default function EventsHubPage() {
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
                   <time
-                    dateTime="2026-06-25"
+                    dateTime="2026-07-25"
                     className="inline-flex w-fit mb-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-[#F39C24]/40 text-[#F39C24]"
                   >
                     {FUTURE_AI_EVENT.dateCheckout}

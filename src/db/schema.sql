@@ -204,8 +204,8 @@ INSERT INTO events (slug, title, date_label, date_short, status, note, venue)
 VALUES (
   'the-future-of-ai-in-business',
   'The Future of AI in Business',
-  'Thursday 25th June 2026',
-  '25 June 2026',
+  'Saturday 25th July 2026',
+  '25 July 2026',
   'confirmed',
   '',
   'Sarit Expo Centre, Westlands, Nairobi'
