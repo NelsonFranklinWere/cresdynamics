@@ -108,7 +108,7 @@ export type UpdateReservationResult = {
 
 function renumberLocalTickets(store: StoreFile<LocalReservation>, eventTitle: string, eventDate: string) {
   for (const item of store.items) {
-    if (item.eventTitle === eventTitle && item.eventDate === eventDate && item.bookingStatus === 'cancelled') {
+    if (item.eventTitle === eventTitle && item.eventDate === eventDate) {
       item.ticketNumber = undefined;
     }
   }
