@@ -24,16 +24,16 @@ export function ManagementSection({
 
   return (
     <div
-      className={`flex w-full min-w-0 max-w-full flex-col ${fillScreen ? 'min-h-0 flex-1 gap-3' : 'gap-8'}`}
+      className={`flex w-full min-w-0 max-w-full flex-col ${fillScreen ? 'gap-3 lg:min-h-0 lg:flex-1' : 'gap-8'}`}
     >
       <div
-        className={`shrink-0 space-y-1 ${isNeu ? 'rounded-2xl px-4 py-3 admin-neu-surface sm:px-5 sm:py-4' : 'bg-[var(--navy-dark)]'}`}
+        className={`shrink-0 space-y-1 ${isNeu ? 'rounded-2xl px-3 py-2.5 admin-neu-surface sm:px-5 sm:py-4' : 'bg-[var(--navy-dark)]'}`}
       >
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="min-w-0 space-y-1">
-            <h1 className="text-xl font-black leading-snug text-white md:text-2xl">{title}</h1>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+          <div className="min-w-0 space-y-0.5 sm:space-y-1">
+            <h1 className="text-lg font-black leading-snug text-white sm:text-xl md:text-2xl">{title}</h1>
             {subtitle ? (
-              <p className="block text-sm font-medium leading-relaxed text-[var(--teal-accent)]">
+              <p className="line-clamp-2 block text-xs font-medium leading-relaxed text-[var(--teal-accent)] sm:line-clamp-none sm:text-sm">
                 {subtitle}
               </p>
             ) : null}
@@ -45,11 +45,13 @@ export function ManagementSection({
       <section
         aria-label={`${title} records`}
         className={`w-full min-w-0 overflow-hidden ${sectionClass} ${
-          fillScreen ? 'flex min-h-0 flex-1 flex-col' : ''
+          fillScreen ? 'lg:flex lg:min-h-0 lg:flex-1 lg:flex-col' : ''
         }`}
       >
         {note ? <ManagementInfoBar>{note}</ManagementInfoBar> : null}
-        <div className={`w-full min-w-0 ${fillScreen ? 'flex min-h-0 flex-1 flex-col overflow-hidden' : ''}`}>
+        <div
+          className={`w-full min-w-0 ${fillScreen ? 'lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:overflow-hidden' : ''}`}
+        >
           {children}
         </div>
       </section>
@@ -120,14 +122,20 @@ export function AdminDataTable({
 }) {
   return (
     <div
-      className={`w-full ${fillHeight ? 'flex min-h-0 flex-1 flex-col overflow-hidden' : 'overflow-x-auto'}`}
+      className={`w-full overflow-x-auto ${
+        fillHeight ? 'lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:overflow-hidden' : ''
+      }`}
     >
       {caption ? (
         <div className="shrink-0 border-b border-white/10 bg-white/[0.03] px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-white/45">
           {caption}
         </div>
       ) : null}
-      <div className={fillHeight ? 'min-h-0 flex-1 overflow-auto' : 'overflow-x-auto'}>
+      <div
+        className={
+          fillHeight ? 'overflow-x-auto lg:min-h-0 lg:flex-1 lg:overflow-auto' : 'overflow-x-auto'
+        }
+      >
         <table className="w-full min-w-full border-collapse text-sm">{children}</table>
       </div>
     </div>

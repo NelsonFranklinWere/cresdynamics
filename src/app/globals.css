@@ -602,12 +602,43 @@
 
 .admin-neu-scroll {
   min-height: 0;
-  flex: 1 1 auto;
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   scrollbar-color: rgba(47, 166, 179, 0.45) rgba(255, 255, 255, 0.06);
   scrollbar-width: thin;
+}
+
+@media (min-width: 1024px) {
+  .admin-neu-scroll {
+    flex: 1 1 0%;
+  }
+}
+
+.admin-neu-action-bar {
+  flex-shrink: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(20, 27, 38, 0.96);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1rem;
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 639px) {
+  .admin-neu-action-bar--mobile-fixed {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .admin-blog-editor-spacer {
+    height: calc(5.5rem + env(safe-area-inset-bottom));
+  }
 }
 
 .admin-neu-scroll::-webkit-scrollbar {

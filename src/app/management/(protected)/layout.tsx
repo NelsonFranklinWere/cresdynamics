@@ -23,7 +23,7 @@ export default async function ManagementProtectedLayout({
     <div className="flex h-screen flex-col overflow-hidden bg-[var(--navy-dark)] text-white lg:flex-row">
       <ManagementSidebar adminEmail={adminEmail} />
 
-      <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden px-3 py-3 sm:px-4 sm:py-4 lg:px-5 lg:py-4">
+      <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto overscroll-y-contain px-3 py-3 sm:px-4 sm:py-4 lg:overflow-hidden lg:px-5 lg:py-4">
         {children}
       </main>
     </div>
