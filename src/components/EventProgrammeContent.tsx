@@ -25,7 +25,6 @@ const SECTIONS = [
 ] as const;
 
 const TICKET_STYLE: Record<string, { accent: string; glow: string; tag?: string }> = {
-  economy: { accent: 'rgba(255,255,255,0.2)', glow: 'rgba(255,255,255,0.06)' },
   standard: { accent: 'rgba(47,166,179,0.55)', glow: 'rgba(47,166,179,0.12)', tag: 'Most popular' },
   vip: { accent: 'rgba(243,156,36,0.55)', glow: 'rgba(243,156,36,0.1)', tag: 'Full access' },
 };
@@ -494,7 +493,7 @@ export default function EventProgrammeContent() {
           {/* Tickets */}
           <section id="tickets" className="py-12 md:py-16 scroll-mt-36">
             <SectionLabel>Ticket Tiers and What Each Includes</SectionLabel>
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 max-w-3xl">
               {FUTURE_AI_TICKETS.map((t) => {
                 const style = TICKET_STYLE[t.key];
                 return (
@@ -621,7 +620,7 @@ export default function EventProgrammeContent() {
           href={`${FUTURE_AI_PATHS.event}#register`}
           className="flex items-center justify-center w-full py-3.5 rounded-xl font-black text-sm bg-[#F39C24] text-[#060B18] shadow-[0_0_20px_rgba(243,156,36,0.25)]"
         >
-          Register — From KES 1,500
+          Register — From KES 2,500
         </Link>
       </div>
 

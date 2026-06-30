@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { insertEventReservation } from '@/lib/db';
-import { EVENT_TICKET_AMOUNTS_KES } from '@/lib/event-tickets';
+import { EVENT_TICKET_AMOUNTS_KES, isActiveEventTicketType } from '@/lib/event-tickets';
 import { EVENT_LANYARDS, lanyardLabel } from '@/lib/event-lanyards';
 import { generateInquiryAutoReply } from '@/lib/aiAutoReply';
 import { nlToBr } from '@/lib/escapeHtml';
@@ -56,6 +56,12 @@ export async function POST(request: NextRequest) {
     const eventTitle = body.eventTitle || FUTURE_AI_EVENT.title;
     const eventDate = body.eventDate || FUTURE_AI_EVENT.dateLabel;
     const selectedTicket = String(ticket || 'standard').toLowerCase();
+    if (!isActiveEventTicketType(selectedTicket)) {
+      return NextResponse.json(
+        { error: 'Invalid ticket type. Please choose Standard or VIP.' },
+        { status: 400 }
+      );
+    }
     const amountKes = EVENT_TICKET_AMOUNTS_KES[selectedTicket] ?? 2500;
     const ticketLabel = TICKET_LABELS[selectedTicket] ?? selectedTicket;
     const paybillNumber = process.env.EVENT_PAYBILL || '542542';

@@ -207,7 +207,7 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
             return (
               <AdminDataRow key={r.id}>
                 <AdminDataTd className="font-mono text-xs">
-                  {paid && r.ticketNumber ? (
+                  {r.ticketNumber ? (
                     <span className="font-bold text-[#F39C24]">{r.ticketNumber}</span>
                   ) : (
                     <span className="text-white/30">—</span>

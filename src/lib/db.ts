@@ -9,7 +9,7 @@ import {
   updateEventReservationBookingStatusLocal,
 } from '@/lib/local-event-store';
 import {
-  renumberConfirmedEventTicketsPg,
+  renumberEventRegistrationTicketsPg,
   sendConfirmationForReservationPg,
 } from '@/lib/event-reservation-confirm';
 import {
@@ -245,7 +245,13 @@ export async function insertEventReservation(
           input.bookingStatus ?? 'pending',
         ]
       );
-      return Number(r.rows[0].id);
+      const id = Number(r.rows[0].id);
+      try {
+        await renumberEventRegistrationTicketsPg(p, input.eventTitle, input.eventDate);
+      } catch (renumErr) {
+        console.error('renumber after registration failed:', renumErr);
+      }
+      return id;
     } catch (err) {
       console.error('event_reservations postgres insert failed:', err);
       if (!isLocalEventStoreEnabled()) return null;
@@ -501,9 +507,9 @@ export async function updateEventReservationBookingStatus(
 
   if (bookingStatus === 'paid' || wasPaid) {
     try {
-      await renumberConfirmedEventTicketsPg(p, reservationCtx.eventTitle, reservationCtx.eventDate);
+      await renumberEventRegistrationTicketsPg(p, reservationCtx.eventTitle, reservationCtx.eventDate);
     } catch (renumErr) {
-      console.error('renumberConfirmedEventTickets failed:', renumErr);
+      console.error('renumberEventRegistrationTickets failed:', renumErr);
     }
   }
 
@@ -666,16 +672,13 @@ export async function deleteEventReservation(id: number): Promise<{ ok: boolean;
 
   const eventTitle = String(existing.rows[0].event_title);
   const eventDate = String(existing.rows[0].event_date);
-  const wasPaid = String(existing.rows[0].booking_status) === 'paid';
 
   await p.query(`DELETE FROM event_reservations WHERE id = $1`, [id]);
 
-  if (wasPaid) {
-    try {
-      await renumberConfirmedEventTicketsPg(p, eventTitle, eventDate);
-    } catch (err) {
-      console.error('renumber after delete failed:', err);
-    }
+  try {
+    await renumberEventRegistrationTicketsPg(p, eventTitle, eventDate);
+  } catch (err) {
+    console.error('renumber after delete failed:', err);
   }
 
   return { ok: true };
@@ -1650,7 +1653,7 @@ export async function getManagementDashboardStatsFromDb(): Promise<ManagementDas
         CASE lower(coalesce(ticket_type, ''))
           WHEN 'economy' THEN 1500
           WHEN 'standard' THEN 2500
-          WHEN 'vip' THEN 3500
+          WHEN 'vip' THEN 4000
           ELSE 0
         END
       ), 0)::int FROM event_reservations WHERE booking_status = 'paid') AS events_revenue_collected,
@@ -1658,7 +1661,7 @@ export async function getManagementDashboardStatsFromDb(): Promise<ManagementDas
         CASE lower(coalesce(ticket_type, ''))
           WHEN 'economy' THEN 1500
           WHEN 'standard' THEN 2500
-          WHEN 'vip' THEN 3500
+          WHEN 'vip' THEN 4000
           ELSE 0
         END
       ), 0)::int FROM event_reservations WHERE booking_status != 'cancelled') AS events_revenue_expected,

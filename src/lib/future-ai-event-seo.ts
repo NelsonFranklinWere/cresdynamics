@@ -97,7 +97,7 @@ export function futureAiHubMetadata(): Metadata {
 
 export function futureAiEventMetadata(): Metadata {
   const title = `AI Events Nairobi 2026 | ${FUTURE_AI_EVENT.title} – 25 July 2026 | Nairobi`;
-  const description = `Nairobi's practical AI conference for business owners, developers, and founders. ${FUTURE_AI_EVENT.title}, ${FUTURE_AI_EVENT.dateLabel}, ${FUTURE_AI_EVENT.venue}. Keynotes, breakout tracks, live AI challenge, The Open Table & networking. Tickets from KES 1,500.`;
+  const description = `Nairobi's practical AI conference for business owners, developers, and founders. ${FUTURE_AI_EVENT.title}, ${FUTURE_AI_EVENT.dateLabel}, ${FUTURE_AI_EVENT.venue}. Keynotes, breakout tracks, live AI challenge, The Open Table & networking. Tickets from KES 2,500.`;
   return {
     title,
     description,
@@ -328,7 +328,7 @@ function futureAiFaqJsonLd() {
         name: 'How much are tickets for The Future of AI in Business?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'General KES 1,500, Standard KES 2,500, VIP KES 3,500. Register at cresdynamics.com/events.',
+          text: 'Standard KES 2,500, VIP KES 4,000. Register at cresdynamics.com/events.',
         },
       },
       {

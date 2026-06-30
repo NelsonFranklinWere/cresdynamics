@@ -65,31 +65,22 @@ export const FUTURE_AI_LANYARDS = [
 
 export const FUTURE_AI_TICKETS = [
   {
-    key: 'economy' as const,
-    name: 'General',
-    price: '1,500',
-    includes: [
-      'Full afternoon programme access',
-      'All keynotes and panel discussions',
-      'Lanyard networking system',
-      'Certificate of attendance',
-      'Refreshments during networking breaks',
-    ],
-  },
-  {
     key: 'standard' as const,
     name: 'Standard',
     price: '2,500',
     includes: [
-      'Everything in General plus priority seating in the main hall',
+      'Full afternoon programme access',
+      'Priority seating in the main hall',
       'Access to both breakout tracks — Business and Developer',
+      'Lanyard networking system',
       'Post-event resources and session summaries sent to your email',
+      'Certificate of attendance',
     ],
   },
   {
     key: 'vip' as const,
     name: 'VIP',
-    price: '3,500',
+    price: '4,000',
     includes: [
       'Everything in Standard plus front row seating',
       'Exclusive VIP Roundtable session with Nelson and senior business leaders',

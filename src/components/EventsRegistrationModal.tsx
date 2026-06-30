@@ -10,12 +10,11 @@ import { FUTURE_AI_EVENT } from '@/lib/future-ai-event';
 const EVENT_TITLE = FUTURE_AI_EVENT.title;
 const EVENT_DATE = FUTURE_AI_EVENT.dateCheckout;
 
-type TicketType = 'economy' | 'standard' | 'vip';
+type TicketType = 'standard' | 'vip';
 
 const TICKET_OPTIONS: { value: TicketType; label: string; price: string; accentColor: string }[] = [
   { value: 'standard', label: 'Standard — In-Person', price: 'KES 2,500', accentColor: '#2FA6B3' },
-  { value: 'economy', label: 'General — In-Person', price: 'KES 1,500', accentColor: 'rgba(255,255,255,0.7)' },
-  { value: 'vip', label: 'VIP — In-Person', price: 'KES 3,500', accentColor: '#F39C24' },
+  { value: 'vip', label: 'VIP — In-Person', price: 'KES 4,000', accentColor: '#F39C24' },
 ];
 
 export type Props = {
@@ -158,7 +157,7 @@ export default function EventsRegistrationModal({
 
               {/* Ticket picker */}
               <p className="text-[10px] font-black uppercase tracking-widest mb-2.5" style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'monospace' }}>Ticket Type</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-7">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-7">
                 {TICKET_OPTIONS.map(o => (
                   <button
                     key={o.value}

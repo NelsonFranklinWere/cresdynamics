@@ -65,6 +65,10 @@ if [ -n "${DATABASE_URL:-}" ] && command -v psql >/dev/null 2>&1 && [ -f src/db/
   echo "==> Applying database schema migrations..."
   psql "$DATABASE_URL" -v ON_ERROR_STOP=0 -f src/db/schema.sql || true
 fi
+if [ -n "${DATABASE_URL:-}" ] && command -v node >/dev/null 2>&1 && [ -f scripts/renumber-event-tickets.mjs ]; then
+  echo "==> Renumbering event registration tickets..."
+  node scripts/renumber-event-tickets.mjs || true
+fi
 NEXT_DISABLE_ESLINT=1 npm run build
 if command -v pm2 >/dev/null 2>&1; then
   # Restart without injecting stale shell env — Node.js app reads .env.production at runtime.

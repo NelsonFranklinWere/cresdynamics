@@ -37,7 +37,7 @@ function isUndefinedColumn(err: unknown): boolean {
   );
 }
 
-export async function renumberConfirmedEventTicketsPg(
+export async function renumberEventRegistrationTicketsPg(
   p: Pool,
   eventTitle: string,
   eventDate: string
@@ -47,24 +47,24 @@ export async function renumberConfirmedEventTicketsPg(
       `
       UPDATE event_reservations
       SET ticket_number = NULL
-      WHERE event_title = $1 AND event_date = $2 AND booking_status IS DISTINCT FROM 'paid'
+      WHERE event_title = $1 AND event_date = $2 AND booking_status = 'cancelled'
       `,
       [eventTitle, eventDate]
     );
 
-    const paid = await p.query(
+    const registered = await p.query(
       `
       SELECT id FROM event_reservations
-      WHERE event_title = $1 AND event_date = $2 AND booking_status = 'paid'
-      ORDER BY paid_at ASC NULLS LAST, id ASC
+      WHERE event_title = $1 AND event_date = $2 AND booking_status != 'cancelled'
+      ORDER BY created_at ASC, id ASC
       `,
       [eventTitle, eventDate]
     );
 
-    for (let i = 0; i < paid.rows.length; i++) {
+    for (let i = 0; i < registered.rows.length; i++) {
       const ticketNumber = formatEventTicketNumber(i + 1);
       await p.query(`UPDATE event_reservations SET ticket_number = $2 WHERE id = $1`, [
-        paid.rows[i].id,
+        registered.rows[i].id,
         ticketNumber,
       ]);
     }
@@ -72,6 +72,9 @@ export async function renumberConfirmedEventTicketsPg(
     if (!isUndefinedColumn(err)) throw err;
   }
 }
+
+/** @deprecated Use renumberEventRegistrationTicketsPg */
+export const renumberConfirmedEventTicketsPg = renumberEventRegistrationTicketsPg;
 
 export async function getReservationForConfirmPg(
   p: Pool,
@@ -174,7 +177,7 @@ export async function sendConfirmationForReservationPg(
     return { sent: false, ticketNumber: reservation.ticketNumber ?? undefined, error: 'Already sent' };
   }
   if (!reservation.ticketNumber) {
-    await renumberConfirmedEventTicketsPg(p, reservation.eventTitle, reservation.eventDate);
+    await renumberEventRegistrationTicketsPg(p, reservation.eventTitle, reservation.eventDate);
   }
   const refreshed = await getReservationForConfirmPg(p, reservationId);
   if (!refreshed?.ticketNumber) {

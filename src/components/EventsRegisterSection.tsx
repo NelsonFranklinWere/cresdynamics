@@ -9,12 +9,11 @@ import { FUTURE_AI_EVENT } from '@/lib/future-ai-event';
 const EVENT_TITLE = FUTURE_AI_EVENT.title;
 const EVENT_DATE = FUTURE_AI_EVENT.dateCheckout;
 
-type TicketType = 'economy' | 'standard' | 'vip';
+type TicketType = 'standard' | 'vip';
 
 const TICKETS: { value: TicketType; label: string; price: string }[] = [
   { value: 'standard', label: 'Standard', price: 'KES 2,500' },
-  { value: 'economy', label: 'General', price: 'KES 1,500' },
-  { value: 'vip', label: 'VIP', price: 'KES 3,500' },
+  { value: 'vip', label: 'VIP', price: 'KES 4,000' },
 ];
 
 const inputCls =

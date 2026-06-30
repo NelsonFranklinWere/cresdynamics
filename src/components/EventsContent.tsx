@@ -89,18 +89,6 @@ const OPERATIONAL_PAINS = [
 
 const TICKET_TIERS = [
   {
-    name: 'General',
-    emoji: '🎟️',
-    price: '1,500',
-    key: 'economy' as const,
-    tag: null,
-    border: 'rgba(255,255,255,0.12)',
-    bg: 'rgba(255,255,255,0.03)',
-    audience: 'Built for Managers & Marketers',
-    value:
-      'Master the exact AI tools to optimize your customer acquisition loops, compress project delivery times by 40%, and automate multi-channel marketing workflows.',
-  },
-  {
     name: 'Standard',
     emoji: '📦',
     price: '2,500',
@@ -115,7 +103,7 @@ const TICKET_TIERS = [
   {
     name: 'VIP Executive',
     emoji: '👑',
-    price: '3,500',
+    price: '4,000',
     key: 'vip' as const,
     tag: 'FULL ACCESS',
     border: 'rgba(243,156,36,0.45)',
@@ -148,7 +136,7 @@ const GALLERY = [
   { src: EVENT_PHOTOS.speaker2, alt: 'Speaker session', caption: 'Sessions that ship Monday' },
 ];
 
-type TicketType = 'economy' | 'standard' | 'vip';
+type TicketType = 'standard' | 'vip';
 type SponsorTier = SponsorPackageTier;
 
 function useCountdown(target: Date) {
@@ -891,7 +879,7 @@ function EventsContentInner() {
           onClick={() => openModal('standard')}
           className="w-full py-3.5 rounded-xl font-black text-sm bg-[#F39C24] text-[#060B18]"
         >
-          Register — From KES 1,500
+          Register — From KES 2,500
         </button>
       </div>
 

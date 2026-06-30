@@ -86,11 +86,13 @@ export async function insertEventReservationLocal(input: EventReservationInput):
   );
   if (existing) {
     Object.assign(existing, input);
+    renumberLocalTickets(store, input.eventTitle, input.eventDate);
     await writeStore(RESERVATIONS_FILE, store);
     return existing.id;
   }
   const id = store.nextId++;
   store.items.push({ ...input, id, createdAt: new Date().toISOString() });
+  renumberLocalTickets(store, input.eventTitle, input.eventDate);
   await writeStore(RESERVATIONS_FILE, store);
   return id;
 }
@@ -105,19 +107,21 @@ export type UpdateReservationResult = {
 };
 
 function renumberLocalTickets(store: StoreFile<LocalReservation>, eventTitle: string, eventDate: string) {
-  const paid = store.items
-    .filter((r) => r.eventTitle === eventTitle && r.eventDate === eventDate && r.bookingStatus === 'paid')
-    .sort((a, b) => {
-      const ta = a.paidAt ? new Date(a.paidAt).getTime() : a.id;
-      const tb = b.paidAt ? new Date(b.paidAt).getTime() : b.id;
-      return ta - tb || a.id - b.id;
-    });
   for (const item of store.items) {
-    if (item.eventTitle === eventTitle && item.eventDate === eventDate && item.bookingStatus !== 'paid') {
+    if (item.eventTitle === eventTitle && item.eventDate === eventDate && item.bookingStatus === 'cancelled') {
       item.ticketNumber = undefined;
     }
   }
-  paid.forEach((item, i) => {
+
+  const registered = store.items
+    .filter((r) => r.eventTitle === eventTitle && r.eventDate === eventDate && r.bookingStatus !== 'cancelled')
+    .sort((a, b) => {
+      const ta = a.createdAt ? new Date(a.createdAt).getTime() : a.id;
+      const tb = b.createdAt ? new Date(b.createdAt).getTime() : b.id;
+      return ta - tb || a.id - b.id;
+    });
+
+  registered.forEach((item, i) => {
     item.ticketNumber = formatEventTicketNumber(i + 1);
   });
 }
