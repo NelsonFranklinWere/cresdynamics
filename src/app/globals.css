@@ -534,3 +534,92 @@
     animation: none;
   }
 }
+
+/* Admin blog — dark neumorphism */
+.admin-neu-surface {
+  background: linear-gradient(145deg, #1f2a3c 0%, #171f2b 100%);
+  box-shadow:
+    10px 10px 22px rgba(0, 0, 0, 0.55),
+    -8px -8px 18px rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-neu-inset {
+  background: #131a24;
+  box-shadow:
+    inset 5px 5px 10px rgba(0, 0, 0, 0.52),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.admin-neu-inset:focus-within {
+  box-shadow:
+    inset 5px 5px 10px rgba(0, 0, 0, 0.52),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.03),
+    0 0 0 2px rgba(47, 166, 179, 0.35);
+  border-color: rgba(47, 166, 179, 0.45);
+}
+
+.admin-neu-btn {
+  background: linear-gradient(145deg, #253044, #1a2230);
+  box-shadow:
+    5px 5px 12px rgba(0, 0, 0, 0.45),
+    -4px -4px 10px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.admin-neu-btn:hover:not(:disabled) {
+  box-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.5),
+    -2px -2px 6px rgba(255, 255, 255, 0.06);
+}
+
+.admin-neu-btn:active:not(:disabled) {
+  box-shadow:
+    inset 3px 3px 8px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.03);
+  transform: translateY(1px);
+}
+
+.admin-neu-btn-primary {
+  background: linear-gradient(145deg, #f5a832, #d98a18);
+  color: #1a2433;
+  box-shadow:
+    5px 5px 14px rgba(0, 0, 0, 0.4),
+    -3px -3px 10px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.admin-neu-btn-danger {
+  background: linear-gradient(145deg, #3a2228, #241419);
+  color: #fca5a5;
+  box-shadow:
+    5px 5px 12px rgba(0, 0, 0, 0.45),
+    -4px -4px 10px rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+}
+
+.admin-neu-scroll {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: rgba(47, 166, 179, 0.45) rgba(255, 255, 255, 0.06);
+  scrollbar-width: thin;
+}
+
+.admin-neu-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admin-neu-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+}
+
+.admin-neu-scroll::-webkit-scrollbar-thumb {
+  background: rgba(47, 166, 179, 0.45);
+  border-radius: 999px;
+}

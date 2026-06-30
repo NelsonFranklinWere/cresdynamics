@@ -7,6 +7,7 @@ export function ManagementSection({
   actions,
   children,
   fillScreen = false,
+  variant = 'default',
 }: {
   title: string;
   subtitle?: string;
@@ -14,12 +15,20 @@ export function ManagementSection({
   actions?: ReactNode;
   children: ReactNode;
   fillScreen?: boolean;
+  variant?: 'default' | 'neu';
 }) {
+  const isNeu = variant === 'neu';
+  const sectionClass = isNeu
+    ? 'admin-neu-surface rounded-2xl border-0'
+    : 'rounded-lg border border-white/15 bg-[#0d0f14]';
+
   return (
     <div
       className={`flex w-full min-w-0 max-w-full flex-col ${fillScreen ? 'min-h-0 flex-1 gap-3' : 'gap-8'}`}
     >
-      <div className="shrink-0 space-y-1 bg-[var(--navy-dark)]">
+      <div
+        className={`shrink-0 space-y-1 ${isNeu ? 'rounded-2xl px-4 py-3 admin-neu-surface sm:px-5 sm:py-4' : 'bg-[var(--navy-dark)]'}`}
+      >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0 space-y-1">
             <h1 className="text-xl font-black leading-snug text-white md:text-2xl">{title}</h1>
@@ -35,7 +44,7 @@ export function ManagementSection({
 
       <section
         aria-label={`${title} records`}
-        className={`w-full min-w-0 overflow-hidden rounded-lg border border-white/15 bg-[#0d0f14] ${
+        className={`w-full min-w-0 overflow-hidden ${sectionClass} ${
           fillScreen ? 'flex min-h-0 flex-1 flex-col' : ''
         }`}
       >

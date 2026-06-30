@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getBlogPostById } from '@/lib/db';
+import { ManagementSection } from '@/components/management/ManagementUI';
 import BlogEditorClient from '../../BlogEditorClient';
 
 export const runtime = 'nodejs';
@@ -16,8 +18,24 @@ export default async function EditBlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <section className="w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-white/10 bg-black/25 p-4 sm:p-5 md:p-6">
+    <ManagementSection
+      title="Edit post"
+      subtitle={post.title}
+      fillScreen
+      variant="neu"
+      actions={
+        post.status === 'published' ? (
+          <Link
+            href={`/blog/${post.slug}`}
+            target="_blank"
+            className="admin-neu-btn inline-flex rounded-xl px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-[var(--teal-accent)]"
+          >
+            View live ↗
+          </Link>
+        ) : undefined
+      }
+    >
       <BlogEditorClient post={post} />
-    </section>
+    </ManagementSection>
   );
 }

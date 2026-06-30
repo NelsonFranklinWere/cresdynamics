@@ -14,10 +14,12 @@ export default async function ManagementBlogPage() {
     <ManagementSection
       title="Blog"
       subtitle={`${posts.length} posts · ${published} published`}
+      fillScreen
+      variant="neu"
       actions={
         <Link
           href="/management/blog/new"
-          className="inline-flex rounded-lg bg-[var(--orange-energy)] px-4 py-2 text-xs font-bold uppercase tracking-wide"
+          className="admin-neu-btn-primary inline-flex rounded-xl px-4 py-2.5 text-xs font-bold uppercase tracking-wide"
         >
           New post
         </Link>
