@@ -47,9 +47,9 @@ export async function renumberEventRegistrationTicketsPg(
       `
       UPDATE event_reservations
       SET ticket_number = NULL
-      WHERE event_title = $1 AND event_date = $2
+      WHERE event_title = $1
       `,
-      [eventTitle, eventDate]
+      [eventTitle]
     );
 
     const registered = await p.query(

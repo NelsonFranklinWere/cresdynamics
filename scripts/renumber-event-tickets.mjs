@@ -48,11 +48,7 @@ if (!url) {
 const pool = new pg.Pool({ connectionString: url });
 
 try {
-  await pool.query(
-    `UPDATE event_reservations SET ticket_number = NULL
-     WHERE event_title = $1 AND event_date = $2`,
-    [EVENT_TITLE, EVENT_DATE]
-  );
+  await pool.query(`UPDATE event_reservations SET ticket_number = NULL WHERE event_title = $1`, [EVENT_TITLE]);
 
   const { rows } = await pool.query(
     `SELECT id FROM event_reservations
