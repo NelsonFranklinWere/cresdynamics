@@ -183,7 +183,7 @@ export default function EventReservationsClient({ rows }: { rows: EventReservati
   }
 
   return (
-    <AdminDataTable caption={`${localRows.length} registrations · ${confirmedCount} confirmed`} fillHeight>
+    <AdminDataTable caption={`${localRows.length} registrations · ${confirmedCount} confirmed`}>
         <AdminDataHead>
           <tr>
             <AdminDataTh>Ticket #</AdminDataTh>

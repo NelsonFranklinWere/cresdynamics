@@ -16,7 +16,6 @@ export default async function ManagementEventsPage() {
     <ManagementSection
       title="Event bookings"
       subtitle={`${confirmed} confirmed · ${pending} awaiting payment · ${rows.length} total registrations`}
-      fillScreen
     >
       <EventRescheduleTools />
       <EventReservationsClient rows={rows} />
