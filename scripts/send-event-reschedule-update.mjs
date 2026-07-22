@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Send July 2026 reschedule update emails to Future of AI attendees.
+ * Send October 2026 reschedule update emails to Future of AI attendees.
  *
  * Usage (on server with .env.production):
  *   ADMIN_EMAIL=... ADMIN_PASSWORD=... node scripts/send-event-reschedule-update.mjs

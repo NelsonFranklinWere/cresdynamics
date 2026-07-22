@@ -204,10 +204,10 @@ INSERT INTO events (slug, title, date_label, date_short, status, note, venue)
 VALUES (
   'the-future-of-ai-in-business',
   'The Future of AI in Business',
-  'Saturday 25th July 2026',
-  '25 July 2026',
+  'Saturday 31st October 2026',
+  '31 October 2026',
   'confirmed',
-  '',
+  'Rescheduled from Saturday, 25th July 2026 to Saturday, 31st October 2026. Existing registrations remain valid.',
   'Sarit Expo Centre, Westlands, Nairobi'
 )
 ON CONFLICT (slug) DO UPDATE SET

@@ -12,7 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 const PREFIX = 'FoAIB-2026';
 const EVENT_TITLE = 'The Future of AI in Business';
-const EVENT_DATE = 'Saturday, 25th July 2026';
+const EVENT_DATE = 'Saturday, 31st October 2026';
 
 function loadEnvFile(name) {
   const p = join(root, name);

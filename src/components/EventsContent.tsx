@@ -364,6 +364,24 @@ function EventsContentInner() {
         </div>
       </section>
 
+      {/* ── RESCHEDULE NOTICE ── */}
+      <aside
+        className="relative z-10 border-b border-amber-500/30 bg-amber-500/10"
+        role="status"
+        aria-label="Event reschedule notice"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5">
+          <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.18em] text-amber-200/90 font-mono mb-1.5">
+            Date update
+          </p>
+          <p className="text-sm md:text-base text-white/90 leading-relaxed max-w-4xl">
+            This event has been rescheduled to <strong className="text-white">Saturday, 31st October 2026</strong>.
+            All existing registrations remain valid — no action needed unless you wish to update your ticket tier or
+            request a refund.
+          </p>
+        </div>
+      </aside>
+
       {/* ── DETAILS STRIP ── */}
       <div className="relative z-10 border-y border-white/10 bg-[#0A1628]/90 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 lg:grid-cols-4">

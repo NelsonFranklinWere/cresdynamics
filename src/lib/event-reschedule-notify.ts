@@ -37,7 +37,7 @@ export type RescheduleNotifyReport = {
   teamCopyError?: string;
 };
 
-const COMMUNICATION_TYPE = 'july_2026_honest_story';
+const COMMUNICATION_TYPE = 'october_2026_reschedule';
 
 export async function listFutureAiAttendeesForReschedule(): Promise<RescheduleAttendee[]> {
   const p = getPool();
@@ -236,7 +236,7 @@ export async function sendFutureAiRescheduleUpdates(options?: {
 
     const { subject, html, text } = buildEventRescheduleEmail(attendee.firstName);
     const result = await sendResendEmail({
-      from: `Nelson Were <${senderEmail}>`,
+      from: `Cres Dynamics Events <${senderEmail}>`,
       to: [attendee.email],
       replyTo: FUTURE_AI_EVENT.contactEmail,
       subject,
@@ -278,7 +278,7 @@ export async function sendFutureAiRescheduleUpdates(options?: {
   if (!dryRun) {
     const { subject, html, text } = buildEventRescheduleEmail('Team');
     const teamResult = await sendResendEmail({
-      from: `Nelson Were <${senderEmail}>`,
+      from: `Cres Dynamics Events <${senderEmail}>`,
       to: [teamCopyEmail],
       replyTo: FUTURE_AI_EVENT.contactEmail,
       subject: `[Team copy] ${subject}`,

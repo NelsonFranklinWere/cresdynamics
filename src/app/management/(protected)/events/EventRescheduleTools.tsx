@@ -78,9 +78,9 @@ export default function EventRescheduleTools() {
 
   return (
     <div className="mb-4 rounded-lg border border-amber-500/30 bg-amber-500/10 p-4 text-sm">
-      <p className="text-xs font-bold uppercase tracking-wide text-amber-200/90">July 2026 reschedule</p>
+      <p className="text-xs font-bold uppercase tracking-wide text-amber-200/90">October 2026 reschedule</p>
       <p className="mt-1 text-white/75">
-        Send personalised reschedule emails to registered &amp; paid attendees (individual sends, not BCC).
+        Send personalised reschedule emails to registered attendees (individual sends, not BCC).
       </p>
       {summary ? (
         <p className="mt-2 font-mono text-xs text-white/55">
