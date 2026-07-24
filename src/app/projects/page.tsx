@@ -15,7 +15,7 @@ interface Project {
   solution: string;
   outcome: string;
   liveUrl: string;
-  caseStudySlug: string;
+  caseStudySlug?: string;
   images: string[];
 }
 
@@ -99,7 +99,25 @@ const projects: Project[] = [
       publicAssetPath('sparklights', 'Screenshot 2026-03-21 at 16.01.46.png'),
       publicAssetPath('sparklights', 'Screenshot 2026-03-21 at 16.02.24.png'),
     ],
-  }
+  },
+  {
+    id: 'och-platform',
+    title: 'OCH Platform',
+    industry: 'Cybersecurity Talent · Multi-country Platform',
+    problem:
+      'Cybersecurity talent, mentors, and programmes across Africa were fragmented — no single place to profile skills, match mentors, certify, or collect payments',
+    solution:
+      'Multi-role platform with AI profiling, mentor matching, certificates, community tools, and M-Pesa billing — built by Cres Dynamics',
+    outcome:
+      '10,000+ users, 20+ mentors, and presence in 10+ African countries — live in production',
+    liveUrl: 'https://och-waitlist.cresdynamics.com',
+    images: [
+      '/events/hero-stage.jpg',
+      '/events/conference-crowd.jpg',
+      '/cresOs.businessoperatingsystem.png',
+      '/data-connected-analysis.jpg',
+    ],
+  },
 ];
 
 function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
@@ -199,10 +217,19 @@ export default function ProjectsPage() {
       {/* Projects Grid */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project) => (
+          {projects.map((project) => {
+            const detailHref = project.caseStudySlug
+              ? `/case-studies/${project.caseStudySlug}`
+              : project.liveUrl;
+            const detailIsExternal = !project.caseStudySlug;
+
+            return (
             <Link 
               key={project.id} 
-              href={`/case-studies/${project.caseStudySlug}`}
+              href={detailHref}
+              {...(detailIsExternal
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
               className="group block rounded-3xl border border-white/10 bg-white hover:border-[var(--orange-energy)]/40 transition-all duration-200 overflow-hidden shadow-sm hover:shadow-xl"
             >
               {/* Carousel */}
@@ -245,7 +272,7 @@ export default function ProjectsPage() {
 
                 <div className="mt-6 flex items-center gap-3">
                   <div className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--orange-energy)] px-5 py-2.5 text-sm font-bold text-white group-hover:bg-[#E87528] transition">
-                    View Case Study 
+                    {project.caseStudySlug ? 'View Case Study' : 'Open Platform'}
                     <span className="transition group-hover:translate-x-0.5">→</span>
                   </div>
                   <a 
@@ -260,7 +287,8 @@ export default function ProjectsPage() {
                 </div>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
       </section>
 
