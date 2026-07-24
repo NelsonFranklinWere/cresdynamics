@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogActionCards from '@/components/blog/BlogActionCards';
@@ -10,6 +11,21 @@ import { blogCardExcerpt, estimateReadTimeMinutes } from '@/lib/blog-utils';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: 'Blog | AI, Logistics & Business Systems Kenya | Cres Dynamics',
+  description:
+    'Long-form guides from Cres Dynamics on AI workflows, logistics systems, ERP, realtime tracking, and field operations for Kenyan businesses.',
+  alternates: { canonical: 'https://cresdynamics.com/blog/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Cres Dynamics Blog',
+    description:
+      'Practical writing on AI, logistics software, and business operating systems built for Kenya.',
+    url: 'https://cresdynamics.com/blog/',
+    type: 'website',
+  },
+};
 
 type BlogListItem = {
   key: string;
@@ -65,41 +81,56 @@ export default async function BlogIndexPage() {
   const hasContent = articles.length > 0;
 
   const topics = [
-    'ERP & finance platforms',
-    'M-Pesa & reconciliation',
-    'Websites that convert',
-    'Beyond WhatsApp & Excel',
+    'AI & predictions',
+    'Logistics systems',
+    'Workflow automation',
+    'Realtime tracking & alerts',
+    'Field feedback',
+    'ERP & finance',
   ];
+
+  const collectionLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Cres Dynamics Blog',
+    description:
+      'Guides on AI, logistics, and business systems for Kenyan companies from Cres Dynamics.',
+    url: 'https://cresdynamics.com/blog/',
+    isPartOf: { '@type': 'WebSite', name: 'Cres Dynamics', url: 'https://cresdynamics.com' },
+  };
 
   return (
     <div className="min-h-screen bg-[var(--navy-dark)] text-white">
       <Header />
-      <main className="pt-24">
-        <section className="relative overflow-hidden border-b border-white/10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
+      />
+      <main className="w-full pt-20 md:pt-24">
+        <section className="relative w-full overflow-hidden border-b border-white/10">
           <div
-            className="pointer-events-none absolute inset-0 opacity-60"
+            className="pointer-events-none absolute inset-0 opacity-70"
             style={{
               background:
                 'radial-gradient(ellipse 70% 50% at 50% -20%, rgba(47,166,179,0.18), transparent 60%), radial-gradient(ellipse 40% 30% at 100% 50%, rgba(232,117,40,0.08), transparent 50%)',
             }}
           />
-          <div className="relative max-w-6xl mx-auto px-6 py-14 md:py-16">
+          <div className="relative mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-12 xl:px-16 py-12 md:py-16">
             <p className="text-xs uppercase tracking-[0.22em] text-[var(--teal-accent)] mb-3">
-              Cres Dynamics · Nairobi
+              Cres Dynamics · Blog
             </p>
-            <h1 className="text-3xl md:text-[2.75rem] font-black leading-[1.12] mb-4 max-w-3xl">
-              What it costs, what to integrate, and when manual ops stop working
+            <h1 className="text-3xl md:text-5xl xl:text-6xl font-black leading-[1.08] mb-5 max-w-5xl tracking-tight">
+              AI, logistics, and the systems that keep Kenyan operations moving
             </h1>
-            <p className="text-white/75 max-w-2xl text-base md:text-lg leading-relaxed mb-6">
-              We publish the questions clients ask before we scope an ERP, wire M-Pesa into finance, or
-              replace a spreadsheet workflow — with numbers, trade-offs, and Kenya-specific context from
-              projects we deliver, not generic marketing tips.
+            <p className="text-white/75 max-w-3xl text-base md:text-xl leading-relaxed mb-7">
+              Long-form writing from live projects — predictions, automation, realtime tracking, credits,
+              and field feedback for sales, marketing, and procurement teams.
             </p>
-            <ul className="flex flex-wrap gap-2 mb-2">
+            <ul className="flex flex-wrap gap-2">
               {topics.map((topic) => (
                 <li
                   key={topic}
-                  className="rounded-full border border-white/15 bg-white/[0.05] px-3 py-1 text-[11px] font-semibold text-white/70"
+                  className="rounded-full border border-white/15 bg-white/[0.05] px-3 py-1.5 text-[11px] font-semibold text-white/70"
                 >
                   {topic}
                 </li>
@@ -108,17 +139,19 @@ export default async function BlogIndexPage() {
           </div>
         </section>
 
-        <section className="max-w-6xl mx-auto px-6 py-12 md:py-16">
+        <section className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-12 xl:px-16 py-12 md:py-16">
           {hasContent ? (
             <>
-              <div className="mb-8 border-b border-white/10 pb-6">
-                <h2 className="text-lg font-bold text-white">Articles</h2>
-                <p className="text-sm text-white/50 mt-1">
-                  {articles.length} guide{articles.length === 1 ? '' : 's'} — pricing, payments, websites, operations
-                </p>
+              <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-white/10 pb-6">
+                <div>
+                  <h2 className="text-xl md:text-2xl font-black text-white">All articles</h2>
+                  <p className="text-sm text-white/50 mt-1">
+                    {articles.length} guides · roughly six-minute reads
+                  </p>
+                </div>
               </div>
 
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid w-full gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                 {featured ? (
                   <BlogPostCard
                     key={featured.key}
@@ -151,7 +184,7 @@ export default async function BlogIndexPage() {
             </div>
           )}
 
-          {hasContent ? <BlogActionCards className="mt-12 max-w-md" /> : null}
+          {hasContent ? <BlogActionCards className="mt-12 w-full max-w-xl" /> : null}
         </section>
       </main>
       <Footer />

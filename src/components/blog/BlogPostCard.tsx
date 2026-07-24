@@ -6,12 +6,18 @@ const CATEGORY_STYLES: Record<string, string> = {
   operations: 'bg-[var(--orange-energy)]/15 text-[var(--orange-energy)] border-[var(--orange-energy)]/30',
   seo: 'bg-sky-500/15 text-sky-300 border-sky-500/30',
   website: 'bg-sky-500/15 text-sky-300 border-sky-500/30',
+  ai: 'bg-violet-500/15 text-violet-300 border-violet-500/30',
+  logistics: 'bg-amber-500/15 text-amber-200 border-amber-500/30',
+  cresos: 'bg-[var(--teal-accent)]/15 text-[var(--teal-accent)] border-[var(--teal-accent)]/30',
   default: 'bg-white/10 text-white/80 border-white/20',
 };
 
 function categoryStyle(category: string | null | undefined): string {
   if (!category) return CATEGORY_STYLES.default;
   const key = category.toLowerCase();
+  if (key.includes('logistics')) return CATEGORY_STYLES.logistics;
+  if (key === 'ai' || key.includes('artificial')) return CATEGORY_STYLES.ai;
+  if (key.includes('cresos')) return CATEGORY_STYLES.cresos;
   if (key.includes('erp')) return CATEGORY_STYLES.erp;
   if (key.includes('m-pesa') || key.includes('mpesa') || key.includes('integrat')) {
     return CATEGORY_STYLES.integration;
@@ -47,7 +53,7 @@ export default function BlogPostCard({
     return (
       <Link
         href={href}
-        className="group relative col-span-1 md:col-span-2 flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-black/40 p-8 md:p-10 transition-all duration-300 hover:border-[var(--teal-accent)]/50 hover:shadow-[0_20px_60px_-20px_rgba(47,166,179,0.35)]"
+        className="group relative col-span-1 sm:col-span-2 xl:col-span-2 2xl:col-span-2 flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-black/40 p-8 md:p-10 transition-all duration-300 hover:border-[var(--teal-accent)]/50 hover:shadow-[0_20px_60px_-20px_rgba(47,166,179,0.35)]"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
