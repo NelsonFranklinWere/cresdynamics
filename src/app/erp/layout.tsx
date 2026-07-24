@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Custom ERP System Nairobi | ERP Development Kenya — Cres Dynamics',
-  description: 'Custom ERP systems for growing businesses in Nairobi. Built on the Cres Core Engine — finance, operations, inventory and M-Pesa in one platform. 500+ active users, KES 8.3M tracked.',
+  description: 'Custom ERP systems for growing businesses in Nairobi. Built on the Cres Core Engine — finance, operations, inventory and M-Pesa in one platform. 800+ active users, KES 6.8B project value tracked.',
   alternates: { canonical: 'https://cresdynamics.com/erp/' },
   robots: { index: true, follow: true },
   openGraph: {

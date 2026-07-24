@@ -16,8 +16,8 @@ export const CRESOS_PAGE = {
     background: '/sections/analytics-workspace.jpg',
   },
   stats: [
-    { value: '500+', label: 'Active users' },
-    { value: '8.3M', label: 'KES revenue tracked' },
+    { value: '1,500+', label: 'Active users' },
+    { value: '6.8B+', label: 'KES value tracked' },
     { value: 'AI', label: 'RAG & voice ready' },
     { value: 'M-Pesa', label: 'Native integration' },
   ],

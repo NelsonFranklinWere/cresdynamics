@@ -96,7 +96,7 @@ export default function InsightsPage() {
               'Week 6: What is an ERP System and Does Your Kenyan Business Need One?',
               'Week 7: How to Choose a Web Developer in Nairobi — What to Look for and What to Avoid',
               'Week 8: AI for Kenyan Businesses — What It Actually Means and What You Can Do With It Today',
-              'Week 9: How We Built a Finance Platform Tracking KES 8.3M for a Kenyan Business',
+              'Week 9: How We Built a Finance Platform Tracking KES 8.3B for a Kenyan Business',
               "Week 10: How We Replaced a Client's WhatsApp Operations with a Custom ERP — Before and After",
               'Week 11: How a Nairobi Business Went From Zero Online Presence to Daily Leads After a Website Rebuild',
               'Week 12: The Cres Dynamics Build Process — How We Go From Discovery to Live System in Weeks',

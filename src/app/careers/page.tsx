@@ -116,7 +116,7 @@ export default function CareersPage() {
                 <div className="text-white/70 text-xs md:text-sm">Systems in production</div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-4 md:p-5 text-center">
-                <div className="text-2xl font-black text-[var(--cres-orange-primary)] mb-1">500+</div>
+                <div className="text-2xl font-black text-[var(--cres-orange-primary)] mb-1">1,500+</div>
                 <div className="text-white/70 text-xs md:text-sm">Daily active users (our stack)</div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/40 p-4 md:p-5 text-center">

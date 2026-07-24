@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Case Studies & Proof of Work | Real Business Results Nairobi — Cres Dynamics',
-  description: 'Real production results — 500+ active users, KES 8.3M tracked, 99.9% uptime. See how Nairobi businesses run faster and more profitably on systems built by Cres Dynamics.',
+  description: 'Real production results — 1,500+ active users, KES 6.8B+ tracked, 99.9% uptime. See how Nairobi businesses run faster and more profitably on systems built by Cres Dynamics.',
   alternates: { canonical: 'https://cresdynamics.com/case-studies/' },
   robots: { index: true, follow: true },
   openGraph: {
     title: 'Case Studies — Real Results from Cres Dynamics Nairobi',
-    description: '500+ active users, KES 8.3M tracked, 99.9% uptime. Real production systems running in Kenya.',
+    description: '1,500+ active users, KES 6.8B+ tracked, 99.9% uptime. Real production systems running in Kenya.',
     url: 'https://cresdynamics.com/case-studies/',
     type: 'website',
   },

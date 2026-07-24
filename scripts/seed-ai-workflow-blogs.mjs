@@ -207,7 +207,7 @@ They keep the speed of chat without losing accountability. A message can sit bes
 
 ## The Cres Dynamics standard
 
-We have shipped production systems across finance, operations, talent platforms like OCH, and CresOS for growing companies — now tracking 500+ active users and KES 8.3M in revenue on live stacks. The next step for most teams is the same: put communication, delivery, people, and AI in one place.`,
+We have shipped production systems across finance, operations, talent platforms like OCH, and CresOS for growing companies — now tracking 1,500+ active users, with finance platforms at 1,245+ users and KES 8.3 billion in revenue tracked, plus ERP stacks at 800+ users and KES 6.8 billion in project value. The next step for most teams is the same: put communication, delivery, people, and AI in one place.`,
   },
 ];
 

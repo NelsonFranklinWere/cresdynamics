@@ -15,8 +15,8 @@ export default function HomepageStatsMarquee() {
         {/* Stats bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 border border-white/10 bg-black/40">
           {[
-            { label: 'Active Users', value: '500+' },
-            { label: 'Revenue Tracked', value: 'KES 8.3M' },
+            { label: 'Active Users', value: '1,500+' },
+            { label: 'Value Tracked', value: 'KES 6.8B+' },
             { label: 'System Uptime', value: '99.9%' },
             { label: 'Verticals Served', value: '5+' },
           ].map((stat, index) => (

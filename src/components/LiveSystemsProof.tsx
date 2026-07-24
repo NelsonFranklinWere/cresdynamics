@@ -7,11 +7,13 @@ import { HOMEPAGE_SECTION_IMAGES } from '@/lib/section-backgrounds';
 const PROOF_CARDS = [
   {
     title: 'Finance Platform',
-    stats: '500+ active users. KES 8.3 million in revenue tracked. Real-time dashboards. M-Pesa billing. Live in production.',
+    stats:
+      '1,245+ active users. KES 8.3 billion in revenue tracked. Real-time dashboards. M-Pesa billing. Live in production.',
   },
   {
     title: 'Business Operations ERP',
-    stats: '89 active users. KES 2.3 million in project value tracked. Approval workflows. Full audit logging. Live in production.',
+    stats:
+      '800+ active users. KES 6.8 billion in project value tracked. Approval workflows. Full audit logging. Live in production.',
   },
   {
     title: 'OCH Platform',
