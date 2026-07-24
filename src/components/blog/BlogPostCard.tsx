@@ -15,6 +15,9 @@ const CATEGORY_STYLES: Record<string, string> = {
 function categoryStyle(category: string | null | undefined): string {
   if (!category) return CATEGORY_STYLES.default;
   const key = category.toLowerCase();
+  if (key.includes('leadership') || key.includes('rank') || key.includes('#1')) {
+    return CATEGORY_STYLES.ai;
+  }
   if (key.includes('logistics')) return CATEGORY_STYLES.logistics;
   if (key === 'ai' || key.includes('artificial')) return CATEGORY_STYLES.ai;
   if (key.includes('cresos')) return CATEGORY_STYLES.cresos;

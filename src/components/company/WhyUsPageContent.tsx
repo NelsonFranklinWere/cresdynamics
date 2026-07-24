@@ -23,8 +23,12 @@ const WHY_POINTS = [
     body: 'Before any code is written, we understand how your business actually operates — decisions, approvals, money flows, edge cases.',
   },
   {
+    title: 'Ranked #1 for digital innovation in Nairobi',
+    body: 'Top-ranked in Kenya for AI workflow integration, high-performing websites, and predictive analysis — ahead of generic tech and AI vendors who stop at demos.',
+  },
+  {
     title: 'We have proof in the Nairobi market',
-    body: '1,500+ active users. KES 6.8B+ value tracked across finance and ERP platforms. Live systems across logistics, church management, finance, operations, and AI-powered workflows.',
+    body: '1,500+ active users. KES 6.8B+ value tracked. More than five companies recovered over KES 5B previously lost to broken processes, with ~30% productivity lifts — one firm added KES 600M in three months after automation.',
   },
   {
     title: 'We understand Kenyan business realities',
@@ -37,11 +41,11 @@ const WHY_POINTS = [
 ];
 
 const DIFFERENTIATORS = [
+  { icon: '🥇', title: '#1 AI & workflow automation', body: 'Nairobi’s top-ranked team for integrating AI models into real company workflows that cut cost and raise throughput.' },
+  { icon: '🌐', title: '#1 performing websites', body: 'Website development built so Nairobi businesses stand out, rank, and convert — not static brochure sites.' },
+  { icon: '📈', title: 'Predictive analysis that pays', body: 'Best-in-class implementation of predictive systems operators act on — demand, risk, credits, and exceptions.' },
   { icon: '🧱', title: 'System-first thinking', body: 'We start with operations and data, not a template. Every build fits your business logic and growth path.' },
   { icon: '⚡', title: 'Speed without compromise', body: 'Phased delivery so you see value early. Production-ready modules, then iteration.' },
-  { icon: '📈', title: 'Revenue-focused builds', body: 'Dashboards that answer where you are and what is next — not just pretty charts.' },
-  { icon: '🤝', title: 'Long-term partnership', body: 'We support, extend, and optimize. Your system evolves with your business.' },
-  { icon: '🔧', title: 'In-house technical depth', body: 'Architecture, backend, integrations, and security under one roof.' },
   { icon: '🛡️', title: 'Infrastructure-level security', body: 'RBAC, audit trails, encryption, and governance from day one.' },
 ];
 
@@ -66,12 +70,12 @@ export default function WhyUsPageContent() {
             <span className="block text-[var(--teal-accent)] mt-1">choose us.</span>
           </>
         }
-        subtitle="We do not build websites. We build operational systems that drive growth, visibility, and measurable business control."
+        subtitle="Kenya and Nairobi’s #1 digital innovation company for AI workflow integration, high-performing websites, and predictive systems that recover lost value."
         imageSrc={COMPANY_PAGE_IMAGES.whyUs}
-        imageAlt="Why businesses choose Cres Dynamics"
+        imageAlt="Why businesses choose Cres Dynamics — #1 digital innovation Kenya"
         primaryLabel="Book strategy call"
-        secondaryHref="/how-we-build"
-        secondaryLabel="How we build"
+        secondaryHref="/blog/cres-dynamics-number-one-digital-innovation-company-kenya"
+        secondaryLabel="Why we rank #1"
       />
 
       <CompanyPhotoSection imageSrc={COMPANY_PAGE_IMAGES.workspace} imageAlt="Business systems workspace">

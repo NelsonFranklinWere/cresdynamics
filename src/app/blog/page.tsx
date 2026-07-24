@@ -81,6 +81,7 @@ export default async function BlogIndexPage() {
   const hasContent = articles.length > 0;
 
   const topics = [
+    '#1 digital innovation Kenya',
     'AI & predictions',
     'Logistics systems',
     'Workflow automation',

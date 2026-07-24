@@ -20,6 +20,11 @@ const PROOF_CARDS = [
     stats:
       '10,000+ users across 10+ African countries. 20+ mentors. Multi-role cybersecurity talent platform with AI profiling, certificates, and M-Pesa billing — live in production.',
   },
+  {
+    title: '#1 outcomes for Kenyan operators',
+    stats:
+      'More than five companies recovered over KES 5 billion previously lost to broken processes. ~30% productivity lifts. One firm added KES 600 million in three months after automation — Cres Dynamics ranked top for digital innovation in Nairobi.',
+  },
 ];
 
 export default function LiveSystemsProof() {
@@ -36,7 +41,7 @@ export default function LiveSystemsProof() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6 mb-10">
           {PROOF_CARDS.map((system, i) => (
             <motion.div
               key={system.title}
