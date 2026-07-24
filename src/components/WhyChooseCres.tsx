@@ -20,13 +20,13 @@ export default function WhyChooseCres() {
             {
               icon: <i className="fas fa-cubes"></i>,
               title: 'CresOS – Business Operating System',
-              subtitle: 'Identity & Access (RBAC/ABAC) • Operations Management • Finance Visibility • Client & Engagement Tracking • Analytics & Dashboards',
+              subtitle: 'Project management • HR • Finance • Team community • RAG & AI voice • Reporting',
               problem: 'What business problem it solves:',
-              problemText: 'Replaces fragmented tools with a single modular ERP: one identity layer, one operations layer, one finance layer.',
+              problemText: 'Replaces fragmented tools with one system: projects, people, money, chat, and AI in a single operating layer.',
               data: 'What data it centralizes:',
-              dataText: 'Users, roles, permissions, projects, tasks, financial metrics, client records, engagement data.',
+              dataText: 'Users, roles, projects, due work, HR records, financial metrics, team messages, company knowledge for RAG.',
               decisions: 'What decisions it enables:',
-              decisionsText: 'Who can see what; resource allocation; cash position; pipeline and performance at a glance.'
+              decisionsText: 'What is due today; who owns what; cash position; team capacity; answers from your own documents via AI.'
             },
             {
               icon: <i className="fas fa-dollar-sign"></i>,
@@ -42,9 +42,9 @@ export default function WhyChooseCres() {
             {
               icon: <i className="fas fa-project-diagram"></i>,
               title: 'Operations & Workflow Systems',
-              subtitle: 'Project tracking • Task ownership • Approvals • Team performance dashboards',
+              subtitle: 'Project tracking • Due-date flags • Approvals • Team performance • In-app reporting',
               problem: 'What business problem it solves:',
-              problemText: 'Removes blind spots in who owns what, what is stuck, and how teams perform.',
+              problemText: 'Removes blind spots in who owns what, what is overdue, and how teams perform.',
               data: 'What data it centralizes:',
               dataText: 'Projects, tasks, assignees, approval chains, status, deadlines, performance metrics.',
               decisions: 'What decisions it enables:',
@@ -53,13 +53,13 @@ export default function WhyChooseCres() {
             {
               icon: <i className="fas fa-robot"></i>,
               title: 'AI & Automation Infrastructure',
-              subtitle: 'Automated follow-ups • Workflow triggers • Decision support systems • CRM automation',
+              subtitle: 'RAG knowledge systems • AI voice commands • Workflow triggers • Decision support • CRM automation',
               problem: 'What business problem it solves:',
-              problemText: 'Reduces manual, repetitive work and ensures consistent execution of follow-ups and workflows.',
+              problemText: 'Cuts typing and hunting for answers — teams speak updates, and AI works from your company knowledge.',
               data: 'What data it centralizes:',
-              dataText: 'Customer interactions, workflow states, triggers, automation logs, CRM activity.',
+              dataText: 'Documents for RAG, voice transcripts, workflow states, automation logs, CRM activity.',
               decisions: 'What decisions it enables:',
-              decisionsText: 'Next-best action, lead routing, prioritization, and exception handling.'
+              decisionsText: 'Next-best action, instant answers from internal docs, faster status capture, and exception handling.'
             }
           ].map((system, i) => (
             <div key={i} className="group bg-black/80 backdrop-blur-sm border border-white/20 p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">

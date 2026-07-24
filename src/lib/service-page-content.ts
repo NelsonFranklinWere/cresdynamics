@@ -87,9 +87,9 @@ export const SERVICE_PAGES: Record<string, ServicePageContent> = {
   ai: {
     slug: 'ai-automation',
     path: '/ai-automation',
-    metaTitle: 'AI Automation Kenya — Replace Manual Work Your Team Does Every Day | Cres Dynamics',
+    metaTitle: 'AI Automation Kenya — RAG, Voice Commands & Workflow AI | Cres Dynamics',
     metaDescription:
-      'Your team repeats the same manual tasks every day — follow-ups, data entry, status updates. Cres Dynamics builds AI automation systems for Kenyan businesses that work while you sleep.',
+      'Integrate AI into your workflows — RAG knowledge systems, voice commands, and automation for Kenyan businesses. Cres Dynamics has live AI integrations with industrial-area companies and growing teams.',
     h1Keyword: 'AI Automation Kenya',
     problemHeadline:
       'Your team spends hours every day on repetitive work that a system should handle automatically.',
@@ -100,11 +100,11 @@ export const SERVICE_PAGES: Record<string, ServicePageContent> = {
       'Growth means hiring more people to do the same manual tasks instead of fixing the process.',
     ],
     whatWeBuild:
-      'AI automation Kenya businesses use to replace repetitive manual work — automated follow-ups, workflow triggers, intelligent routing, and decision support that runs while your team focuses on what only humans can do.',
+      'AI systems Kenyan businesses use to work faster — RAG over company documents, voice commands so people speak instead of type, workflow automation, and decision support wired into real operations.',
     whatChanges: [
+      'Ask your own documents — RAG answers from company knowledge, not generic internet chat.',
+      'Speak updates and commands when time is short — AI turns voice into tasks and records.',
       'Follow-ups, reminders, and status updates happen automatically without human chasing.',
-      'Data flows once into one system — no duplicate entry across tools.',
-      'Workflows trigger the next step the moment conditions are met.',
       'Your team scales output without scaling headcount on manual tasks.',
     ],
   },

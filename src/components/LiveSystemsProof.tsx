@@ -7,7 +7,7 @@ import { HOMEPAGE_SECTION_IMAGES } from '@/lib/section-backgrounds';
 const PROOF_CARDS = [
   {
     title: 'Finance Platform',
-    stats: '127 active users. KES 4.97 million in revenue tracked. Real-time dashboards. M-Pesa billing. Live in production.',
+    stats: '500+ active users. KES 8.3 million in revenue tracked. Real-time dashboards. M-Pesa billing. Live in production.',
   },
   {
     title: 'Business Operations ERP',
@@ -15,7 +15,8 @@ const PROOF_CARDS = [
   },
   {
     title: 'OCH Platform',
-    stats: 'Multi-role cybersecurity talent platform. AI-powered profiling. Certificate generation. M-Pesa billing. Live in production.',
+    stats:
+      '10,000+ users across 10+ African countries. 20+ mentors. Multi-role cybersecurity talent platform with AI profiling, certificates, and M-Pesa billing — live in production.',
   },
 ];
 

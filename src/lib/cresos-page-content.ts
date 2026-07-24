@@ -4,21 +4,21 @@ export const CRESOS_PAGE = {
   metaTitle:
     'CresOS — Business Operating System Kenya | ERP, Finance & Operations in One | Cres Dynamics',
   metaDescription:
-    'CresOS is a modular business operating system for Kenyan companies — identity, operations, finance, clients, and analytics in one platform. Built on the Cres Core Engine with M-Pesa, RBAC, and API-first architecture.',
+    'CresOS is a modular business operating system for Kenyan companies — project management, HR, finance, team chat, RAG knowledge, and AI voice commands in one platform. Built on the Cres Core Engine with M-Pesa and RBAC.',
   hero: {
     eyebrow: 'Flagship platform · Cres Dynamics',
     titleLine1: 'One operating system',
     titleLine2: 'for your entire business.',
     subtitle:
-      'Finance, operations, sales, inventory, and approvals in a single platform — built around how you work, not a vendor template. Modular, role-based, and ready for M-Pesa.',
+      'Project management, HR, finance, team communication, and AI — including RAG knowledge search and voice commands — in a single platform built around how Kenyan teams actually work.',
     image: '/cresOs.businessoperatingsystem.png',
     imageAlt: 'CresOS business operating system dashboard',
     background: '/sections/analytics-workspace.jpg',
   },
   stats: [
-    { value: '6', label: 'Core modules' },
-    { value: '1', label: 'Source of truth' },
-    { value: 'API', label: 'First architecture' },
+    { value: '500+', label: 'Active users' },
+    { value: '8.3M', label: 'KES revenue tracked' },
+    { value: 'AI', label: 'RAG & voice ready' },
     { value: 'M-Pesa', label: 'Native integration' },
   ],
   problem: {
@@ -44,10 +44,10 @@ export const CRESOS_PAGE = {
         tags: ['RBAC', 'Audit trails', 'Multi-branch'],
       },
       {
-        icon: '⚙️',
-        title: 'Operations',
-        body: 'Projects, tasks, approvals, and workflows. Know who owns what and what is stuck without chasing people.',
-        tags: ['Approvals', 'Task routing', 'Status tracking'],
+        icon: '📋',
+        title: 'Project Management',
+        body: 'Projects, tasks, due dates, and ownership in one place. The system flags what is up, what is overdue, and who needs to act — without chasing people on WhatsApp.',
+        tags: ['Due-date flags', 'Task ownership', 'Status tracking'],
       },
       {
         icon: '💰',
@@ -63,27 +63,39 @@ export const CRESOS_PAGE = {
       },
       {
         icon: '📊',
-        title: 'Analytics',
-        body: 'Executive dashboards that leadership actually uses — revenue, operations, and team performance at a glance.',
-        tags: ['Live KPIs', 'Exports', 'Role views'],
+        title: 'Reporting & Analytics',
+        body: 'Teams report progress where work already lives. Leadership sees revenue, delivery, and people performance on live dashboards.',
+        tags: ['Live KPIs', 'Team reports', 'Exports'],
       },
       {
         icon: '👥',
         title: 'People & HR',
-        body: 'Staff records, leave, payroll hooks, and team structure — integrated with operations and finance.',
-        tags: ['Staff records', 'Leave', 'Org structure'],
+        body: 'Staff records, leave, payroll hooks, and org structure — fully integrated with project management so people and delivery stay aligned.',
+        tags: ['HR module', 'Leave', 'Org structure'],
+      },
+      {
+        icon: '💬',
+        title: 'Team Community',
+        body: 'In-system messaging for teams — like WhatsApp, but tied to projects, tasks, and roles so conversations stay inside the work, not scattered across personal chats.',
+        tags: ['Internal chat', 'Channels', 'Work context'],
+      },
+      {
+        icon: '🎙️',
+        title: 'AI Voice & RAG',
+        body: 'Speak instead of typing when time is short — AI turns voice into tasks, updates, and searches. RAG connects your company documents so answers come from your own knowledge, not generic chatbots.',
+        tags: ['Voice commands', 'RAG', 'Company knowledge'],
       },
     ],
   },
   engine: {
     eyebrow: 'Cres Core Engine',
     headline: 'Not a template. Infrastructure you own.',
-    body: 'CresOS runs on the Cres Core Engine — our proprietary foundation for identity, data, workflows, and integrations. You get production-grade architecture without licensing fees to third-party ERP vendors or surprise deprecations.',
+    body: 'CresOS runs on the Cres Core Engine — our proprietary foundation for identity, data, workflows, AI integrations, and payments. You get production-grade architecture without licensing fees to third-party ERP vendors or surprise deprecations.',
     points: [
       'Customised to your workflows — not forced into a generic chart of accounts or approval chain.',
-      'API-first design so new modules and integrations plug in without rebuilding from scratch.',
+      'API-first design so RAG, voice, and new modules plug in without rebuilding from scratch.',
       'Secure cloud deployment with encryption, RBAC, and audit trails from day one.',
-      'Full relationship after launch — monitoring, improvements, and support as your business evolves.',
+      'Full relationship after launch — monitoring, AI improvements, and support as your business evolves.',
     ],
     image: '/data-connected-analysis.jpg',
   },
@@ -91,10 +103,10 @@ export const CRESOS_PAGE = {
     eyebrow: 'After go-live',
     headline: 'What changes when everything runs on one system',
     items: [
-      'One login, one dashboard, one source of truth across finance, operations, and sales.',
-      'Data entered once flows everywhere it needs to — no duplicate entry across tools.',
-      'Leadership sees revenue, operations, and team performance on a live unified dashboard.',
-      'Your business runs on infrastructure designed for growth — not a patchwork of disconnected apps.',
+      'One login for projects, HR, finance, chat, and AI — one source of truth.',
+      'Due work is flagged automatically; people report and communicate without leaving the system.',
+      'Voice and RAG cut the time spent typing status updates and hunting for documents.',
+      'Leadership sees delivery, people, and revenue on a live unified dashboard.',
     ],
   },
   audiences: {
@@ -102,9 +114,9 @@ export const CRESOS_PAGE = {
     headline: 'Growing businesses that have outgrown spreadsheets',
     items: [
       { label: 'SMEs & scaling companies', desc: 'Replace WhatsApp ops and spreadsheet chaos with one system.' },
+      { label: 'Industrial & operations teams', desc: 'Flag due work, report fast, and keep floor-to-office aligned.' },
       { label: 'Training institutions', desc: 'Students, fees, schedules, and reporting unified.' },
       { label: 'Fintech & services', desc: 'Revenue tracking, client management, and compliance-ready audit trails.' },
-      { label: 'NGOs & organisations', desc: 'Programmes, donors, finance, and field operations in sync.' },
     ],
   },
   pricing: {
@@ -112,10 +124,10 @@ export const CRESOS_PAGE = {
     from: '200K',
     note: 'Starting from KES 200,000 · scope confirmed in discovery',
     includes: [
-      'Operations management module',
+      'Project management & HR modules',
       'Finance & invoice tracking',
-      'Client & team management',
-      'Analytics dashboard & M-Pesa integration',
+      'Team community & reporting',
+      'AI voice, RAG & M-Pesa integration',
     ],
   },
 } as const;

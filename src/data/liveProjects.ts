@@ -157,27 +157,40 @@ export const LIVE_PROJECTS: LiveProject[] = [
     },
   },
   {
-    id: 'och-waitlist',
-    industryTag: 'Internal / Platform',
-    deliverableType: 'Waitlist System',
+    id: 'och-platform',
+    industryTag: 'Cybersecurity / Talent',
+    deliverableType: 'Multi-role Platform',
     status: 'live',
-    clientName: 'OCH Waitlist',
-    oneLiner: 'Pre-launch waitlist — structured sign-up before full public launch.',
-    problem: 'New product or service needed a structured way to capture and manage early interest before full launch.',
-    solution: 'Dedicated waitlist landing page with sign-up capture, deployed on CRES infrastructure.',
-    outcome: 'Pre-launch interest captured in a structured pipeline rather than through informal channels.',
+    clientName: 'OCH Platform',
+    oneLiner:
+      'Africa-wide cybersecurity talent platform — 10,000+ users, 20+ mentors, 10+ countries.',
+    problem:
+      'Cybersecurity talent, mentors, and opportunities across Africa were fragmented — no single place to profile skills, match mentors, issue certificates, or collect payments.',
+    solution:
+      'Built a multi-role OCH platform with AI-powered profiling, mentor matching, certificate generation, community tools, and M-Pesa billing — deployed for production use across Africa.',
+    outcome:
+      'More than 10,000 users, 20+ mentors, and presence in 10+ African countries. Live talent, learning, and billing workflows running on Cres Dynamics infrastructure.',
     liveUrl: 'https://och-waitlist.cresdynamics.com',
-    filters: ['websites'],
+    filters: ['websites', 'erp'],
     expanded: {
       businessContext:
-        'Pre-launch phase for a new offering requiring controlled access and interest management before public release.',
-      realConstraint: 'No system to capture early adopters or manage launch sequencing.',
+        'OCH needed a production-grade platform to connect cybersecurity learners, mentors, and programmes across Africa — not a brochure site.',
+      realConstraint:
+        'Multi-country scale, role-based access (learners, mentors, admins), payments, certificates, and AI-assisted profiling had to work together from day one.',
       whatWeBuilt:
-        'Waitlist landing page with sign-up form, hosted on CRES Dynamics subdomain, structured for data capture and pre-launch communication.',
+        'Full OCH platform: AI-powered talent profiling, mentor network, certificate generation, community communication, M-Pesa billing, and admin controls — built and shipped by Cres Dynamics.',
       outcomeInDetail:
-        'Pre-launch interest captured in a structured pipeline rather than through informal channels.',
-      whatMadeItHard: '',
-      stack: ['CRES infrastructure', 'Sign-up capture', 'Waitlist management'],
+        'Platform now serves 10,000+ users with 20+ mentors across 10+ African countries. Talent discovery, mentoring, certification, and payments run in one system.',
+      whatMadeItHard:
+        'Balancing multi-role permissions, African payment realities (M-Pesa), and AI profiling quality while keeping the product usable on everyday devices.',
+      stack: [
+        'AI profiling',
+        'Mentor matching',
+        'Certificate generation',
+        'M-Pesa billing',
+        'Multi-country RBAC',
+        'Community messaging',
+      ],
     },
   },
   {

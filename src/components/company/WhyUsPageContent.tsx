@@ -24,7 +24,7 @@ const WHY_POINTS = [
   },
   {
     title: 'We have proof in the Nairobi market',
-    body: '127 active users. KES 4.97M tracked. Live systems across logistics, church management, finance, and operations.',
+    body: '500+ active users. KES 8.3M tracked. Live systems across logistics, church management, finance, operations, and AI-powered workflows.',
   },
   {
     title: 'We understand Kenyan business realities',
