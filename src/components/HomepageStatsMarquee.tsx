@@ -47,7 +47,7 @@ export default function HomepageStatsMarquee() {
             'ERP Systems',
             'Finance Platforms',
             'AI Automation',
-            '#1 Digital Innovation Kenya',
+            '#1 Verified by Clutch AI May 2026',
             'RAG Systems',
             'AI Voice Commands',
             'Predictive Analysis',

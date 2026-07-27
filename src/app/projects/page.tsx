@@ -139,7 +139,7 @@ function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
   };
 
   return (
-    <div className="relative group overflow-hidden rounded-xl border border-white/10 bg-black/20">
+    <div className="relative group overflow-hidden rounded-xl border border-white/15 bg-black/40">
       <div className="relative h-56 md:h-64 overflow-hidden">
         {images.map((img, index) => (
           <Image
@@ -153,70 +153,78 @@ function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
             }`}
           />
         ))}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--navy-dark)]/50 via-transparent to-transparent" />
       </div>
 
-      {/* Carousel Controls */}
-      {images.length > 1 && (
+      {images.length > 1 ? (
         <>
           <button
+            type="button"
             onClick={prev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+            className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-[var(--navy-dark)]/80 p-2 text-white opacity-0 transition hover:border-[var(--teal-accent)]/50 hover:bg-black/90 group-hover:opacity-100"
             aria-label="Previous image"
           >
             ←
           </button>
           <button
+            type="button"
             onClick={next}
-            className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-[var(--navy-dark)]/80 p-2 text-white opacity-0 transition hover:border-[var(--teal-accent)]/50 hover:bg-black/90 group-hover:opacity-100"
             aria-label="Next image"
           >
             →
           </button>
-
-          {/* Dots */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
             {images.map((_, index) => (
               <button
                 key={index}
+                type="button"
                 onClick={(e) => goTo(e, index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === current 
-                    ? 'bg-[var(--orange-energy)] w-4' 
-                    : 'bg-white/40 hover:bg-white/60'
+                className={`h-2 rounded-full transition-all ${
+                  index === current
+                    ? 'w-4 bg-[var(--orange-energy)]'
+                    : 'w-2 bg-white/40 hover:bg-white/70'
                 }`}
                 aria-label={`Go to image ${index + 1}`}
               />
             ))}
           </div>
         </>
-      )}
+      ) : null}
     </div>
   );
 }
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-[var(--neutral-bg)]">
+    <div className="min-h-screen bg-[var(--navy-dark)] text-white">
       <Header />
 
-      {/* Hero */}
-      <section className="pt-20 pb-12 px-6 border-b border-white/10">
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-block px-4 py-1 rounded-full bg-[var(--orange-energy)]/10 text-[var(--orange-energy)] text-xs font-semibold tracking-[2px] mb-4">
-            CLIENT PROJECTS
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black text-[var(--navy-primary)] tracking-[-1.5px] mb-4">
-            Real Results.<br />Real Businesses.
+      <section className="relative overflow-hidden border-b border-white/10 pt-24 pb-14">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-70"
+          style={{
+            background:
+              'radial-gradient(ellipse 70% 50% at 50% -20%, rgba(47,166,179,0.18), transparent 60%), radial-gradient(ellipse 40% 30% at 100% 40%, rgba(243,156,36,0.1), transparent 50%)',
+          }}
+        />
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 text-center">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-[var(--teal-accent)]">
+            Client projects
+          </p>
+          <h1 className="mb-4 text-4xl font-black leading-[1.08] tracking-tight md:text-6xl">
+            Real results.
+            <span className="block text-[var(--orange-energy)]">Real businesses.</span>
           </h1>
-          <p className="max-w-2xl mx-auto text-lg text-[var(--navy-primary)]/70">
-            Production systems we have delivered for Kenyan businesses — websites, e-commerce, and growth infrastructure that drive measurable outcomes.
+          <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
+            Production systems delivered for Kenyan businesses — websites, e-commerce, platforms, and
+            growth infrastructure with outcomes you can see.
           </p>
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 py-14 md:py-16">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           {projects.map((project) => {
             const detailHref = project.caseStudySlug
               ? `/case-studies/${project.caseStudySlug}`
@@ -224,69 +232,68 @@ export default function ProjectsPage() {
             const detailIsExternal = !project.caseStudySlug;
 
             return (
-            <Link 
-              key={project.id} 
-              href={detailHref}
-              {...(detailIsExternal
-                ? { target: '_blank', rel: 'noopener noreferrer' }
-                : {})}
-              className="group block rounded-3xl border border-white/10 bg-white hover:border-[var(--orange-energy)]/40 transition-all duration-200 overflow-hidden shadow-sm hover:shadow-xl"
-            >
-              {/* Carousel */}
-              <div className="p-5 pb-0">
-                <ImageCarousel images={project.images} alt={project.title} />
-              </div>
+              <Link
+                key={project.id}
+                href={detailHref}
+                {...(detailIsExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className="group block overflow-hidden rounded-2xl border border-white/12 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--teal-accent)]/45 hover:bg-white/[0.07] hover:shadow-[0_20px_50px_-20px_rgba(47,166,179,0.35)]"
+              >
+                <div className="p-4 pb-0 sm:p-5 sm:pb-0">
+                  <ImageCarousel images={project.images} alt={project.title} />
+                </div>
 
-              <div className="p-6 pt-5">
-                <div className="flex items-center justify-between mb-3">
-                  <div>
-                    <div className="text-xs uppercase tracking-[1.5px] text-[var(--orange-energy)] font-semibold">
-                      {project.industry}
+                <div className="p-5 sm:p-6">
+                  <div className="mb-4 flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--orange-energy)]">
+                        {project.industry}
+                      </p>
+                      <h3 className="text-xl font-black leading-snug text-white transition-colors group-hover:text-[var(--teal-accent)] sm:text-2xl">
+                        {project.title}
+                      </h3>
                     </div>
-                    <h3 className="text-2xl font-black text-[var(--navy-primary)] group-hover:text-[var(--orange-energy)] transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-[10px] text-gray-400">LIVE</div>
-                    <div className="text-xs text-[var(--teal-accent)] font-mono truncate max-w-[120px]">
-                      {project.liveUrl.replace('https://', '')}
+                    <div className="shrink-0 text-right">
+                      <span className="inline-flex rounded-full border border-emerald-400/35 bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-300">
+                        Live
+                      </span>
+                      <p className="mt-1 max-w-[120px] truncate font-mono text-[10px] text-[var(--teal-accent)]/90">
+                        {project.liveUrl.replace(/^https?:\/\//, '')}
+                      </p>
                     </div>
                   </div>
-                </div>
 
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <span className="font-semibold text-[var(--navy-primary)]">Problem: </span>
-                    <span className="text-[var(--navy-primary)]/80">{project.problem}</span>
+                  <div className="space-y-3 text-sm leading-relaxed">
+                    <p>
+                      <span className="font-semibold text-[var(--teal-accent)]">Problem: </span>
+                      <span className="text-white/75">{project.problem}</span>
+                    </p>
+                    <p>
+                      <span className="font-semibold text-[var(--teal-accent)]">Solution: </span>
+                      <span className="text-white/75">{project.solution}</span>
+                    </p>
+                    <p>
+                      <span className="font-semibold text-[var(--orange-energy)]">Outcome: </span>
+                      <span className="text-white/85">{project.outcome}</span>
+                    </p>
                   </div>
-                  <div>
-                    <span className="font-semibold text-[var(--navy-primary)]">Solution: </span>
-                    <span className="text-[var(--navy-primary)]/80">{project.solution}</span>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-[var(--navy-primary)]">Outcome: </span>
-                    <span className="text-[var(--navy-primary)]/80">{project.outcome}</span>
-                  </div>
-                </div>
 
-                <div className="mt-6 flex items-center gap-3">
-                  <div className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--orange-energy)] px-5 py-2.5 text-sm font-bold text-white group-hover:bg-[#E87528] transition">
-                    {project.caseStudySlug ? 'View Case Study' : 'Open Platform'}
-                    <span className="transition group-hover:translate-x-0.5">→</span>
+                  <div className="mt-6 flex flex-wrap items-center gap-3">
+                    <div className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-[var(--orange-energy)] px-5 py-2.5 text-sm font-bold text-[var(--navy-dark)] transition group-hover:bg-[var(--orange-energy-hover)] min-w-[10rem]">
+                      {project.caseStudySlug ? 'View case study' : 'Open platform'}
+                      <span aria-hidden>→</span>
+                    </div>
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/[0.04] px-4 py-2.5 text-xs font-semibold text-white/85 transition hover:border-[var(--teal-accent)]/50 hover:bg-white/[0.08] hover:text-white"
+                    >
+                      Visit live site
+                    </a>
                   </div>
-                  <a 
-                    href={project.liveUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-4 py-2.5 text-xs font-semibold text-[var(--navy-primary)] hover:bg-gray-50 transition"
-                  >
-                    Visit Live Site
-                  </a>
                 </div>
-              </div>
-            </Link>
+              </Link>
             );
           })}
         </div>

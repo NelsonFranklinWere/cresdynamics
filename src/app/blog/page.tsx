@@ -81,7 +81,7 @@ export default async function BlogIndexPage() {
   const hasContent = articles.length > 0;
 
   const topics = [
-    '#1 digital innovation Kenya',
+    '#1 Clutch AI-verified May 2026',
     'AI & predictions',
     'Logistics systems',
     'Workflow automation',

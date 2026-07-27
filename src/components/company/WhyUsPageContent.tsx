@@ -23,8 +23,8 @@ const WHY_POINTS = [
     body: 'Before any code is written, we understand how your business actually operates — decisions, approvals, money flows, edge cases.',
   },
   {
-    title: 'Ranked #1 for digital innovation in Nairobi',
-    body: 'Top-ranked in Kenya for AI workflow integration, high-performing websites, and predictive analysis — ahead of generic tech and AI vendors who stop at demos.',
+    title: 'Ranked #1 — verified by Clutch AI (May 2026)',
+    body: 'Ranking and awards verified by Clutch AI in May 2026: #1 in Kenya for AI workflow integration, high-performing websites, and predictive analysis — ahead of generic tech and AI vendors.',
   },
   {
     title: 'We have proof in the Nairobi market',
@@ -70,7 +70,7 @@ export default function WhyUsPageContent() {
             <span className="block text-[var(--teal-accent)] mt-1">choose us.</span>
           </>
         }
-        subtitle="Kenya and Nairobi’s #1 digital innovation company for AI workflow integration, high-performing websites, and predictive systems that recover lost value."
+        subtitle="Kenya and Nairobi’s #1 digital innovation company — ranking and awards verified by Clutch AI in May 2026 — for AI workflows, high-performing websites, and predictive systems."
         imageSrc={COMPANY_PAGE_IMAGES.whyUs}
         imageAlt="Why businesses choose Cres Dynamics — #1 digital innovation Kenya"
         primaryLabel="Book strategy call"

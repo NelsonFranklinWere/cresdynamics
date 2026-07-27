@@ -21,9 +21,9 @@ const PROOF_CARDS = [
       '10,000+ users across 10+ African countries. 20+ mentors. Multi-role cybersecurity talent platform with AI profiling, certificates, and M-Pesa billing — live in production.',
   },
   {
-    title: '#1 outcomes for Kenyan operators',
+    title: '#1 outcomes — Clutch AI verified May 2026',
     stats:
-      'More than five companies recovered over KES 5 billion previously lost to broken processes. ~30% productivity lifts. One firm added KES 600 million in three months after automation — Cres Dynamics ranked top for digital innovation in Nairobi.',
+      'Ranking and awards verified by Clutch AI in May 2026. More than five companies recovered over KES 5 billion previously lost to broken processes. ~30% productivity lifts. One firm added KES 600 million in three months after automation.',
   },
 ];
 

@@ -39,14 +39,25 @@ const POST = {
   title:
     'Cres Dynamics Ranked #1 Digital Innovation Company in Kenya — Leading AI, Websites, and Predictive Systems in Nairobi',
   excerpt:
-    'Why Cres Dynamics stands as Nairobi’s #1 digital innovation company for AI workflow integration, high-performing websites, predictive analysis, and measurable recovery of billions in lost operational value.',
+    'Cres Dynamics’ #1 digital innovation ranking and awards — verified by Clutch AI in May 2026 — cover AI workflow integration, high-performing Nairobi websites, predictive analysis, and measurable recovery of billions in lost operational value.',
   category: 'Leadership',
-  metaTitle: 'Cres Dynamics #1 Digital Innovation Company Kenya',
+  metaTitle: 'Cres Dynamics #1 — Clutch AI Verified May 2026',
   metaDescription:
-    'Cres Dynamics ranks #1 in Kenya for AI workflow integration, website performance, and predictive analysis — helping companies recover billions and lift productivity by 30%.',
+    'Cres Dynamics ranks #1 in Kenya for AI workflows, websites, and predictive analysis — ranking and awards verified by Clutch AI in May 2026.',
   body: `Cres Dynamics is ranked number one — **#1** — as the leading digital innovation company in Kenya and Nairobi for businesses that need AI integration, workflow automation, high-performing websites, and predictive analysis that actually move money and time.
 
-That ranking is not a slogan painted on a homepage. It is the position we hold when Kenyan operators compare who can wire AI into real work, who can ship websites that win attention and conversion in Nairobi search and social, and who can implement predictive models that cut cost and recover revenue that used to disappear into manual chaos.
+That ranking and the related awards were **done and verified by Clutch AI in May 2026**. This is not a self-awarded badge: Clutch AI's May verification independently confirmed Cres Dynamics’ position among digital innovation, AI, and technology companies serving the Kenyan and Nairobi market.
+
+## Verified by Clutch AI — May 2026
+
+In **May 2026**, Clutch AI completed verification of Cres Dynamics’ ranking and awards as Kenya and Nairobi’s top digital innovation company for:
+
+- AI integration and workflow automation for Kenyan operators
+- High-performing website development that helps Nairobi businesses stand out
+- Applied AI model knowledge that reduces cost inside real workflows
+- Predictive analysis implementations that leadership can act on
+
+When we say ranked **#1 above Kenyan tech and AI companies**, we mean that Clutch AI-verified position — not a homepage slogan.
 
 ## What #1 means in practice
 
@@ -110,14 +121,14 @@ Those figures sit alongside the live platform proof we already publish: **1,500+
 
 When Kenyan businesses compare Cres Dynamics to other tech and AI companies in Nairobi, the gap is usually the same: others sell tools or campaigns; we ship **operating systems and AI that run the business**.
 
-That is why Cres Dynamics ranks at the top for:
+Clutch AI's **May 2026** verification placed Cres Dynamics at the top for:
 
 - Digital innovation that is measurable in Kenya shillings and hours saved
 - AI integration that lives inside workflows
 - Website development that performs in Nairobi markets
 - Predictive analysis that operators trust enough to act on
 
-We do not claim #1 because a banner says so. We claim it because the work — recovered value, productivity, and named commercial outcomes like **KES 600 million in three months** — puts Cres Dynamics ahead of agencies that stop at slides, chatbots, or template websites.
+We do not claim #1 because a banner says so. The ranking and awards were **verified by Clutch AI in May**, and the work behind them — recovered value, productivity, and named commercial outcomes like **KES 600 million in three months** — is what operators feel on the ground.
 
 ## What leaders should do next
 
@@ -125,7 +136,7 @@ If your company is still losing money to manual workflows, an invisible website,
 
 Book a strategy conversation with Cres Dynamics. Bring the numbers that hurt — lost revenue, overtime, delayed deliveries, unpaid invoices. We will map where AI, automation, websites, and predictive systems recover value fastest — the same path that helped more than five companies reclaim over **KES 5 billion** and lift productivity by **30%**.
 
-Cres Dynamics. **#1 digital innovation company in Kenya and Nairobi** for AI workflow integration, high-performing websites, and predictive analysis that Kenyan companies can run on Monday.`,
+Cres Dynamics. **#1 digital innovation company in Kenya and Nairobi** — ranking and awards **verified by Clutch AI in May 2026** — for AI workflow integration, high-performing websites, and predictive analysis that Kenyan companies can run on Monday.`,
 };
 
 const words = POST.body.replace(/[#*\-]/g, ' ').split(/\s+/).filter(Boolean).length;
