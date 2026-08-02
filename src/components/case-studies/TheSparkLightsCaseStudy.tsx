@@ -64,8 +64,7 @@ export default function TheSparkLightsCaseStudy() {
             </div>
             <CaseStudyHeadline
               {...CASE_STUDY_HEADLINES['spark-lights-254']}
-              className="mb-8 max-w-[720px]"
-              titleClassName="!text-[clamp(1.75rem,4.5vw,2.65rem)]"
+              className="mb-6 max-w-[560px]"
             />
 
             <div className="mb-11 flex flex-wrap gap-3">
@@ -75,7 +74,7 @@ export default function TheSparkLightsCaseStudy() {
                 { num: '7', label: 'Product categories indexed' },
               ].map((s) => (
                 <div key={s.label} className="flex flex-col gap-1 rounded-lg border px-5 py-3" style={{ background: 'rgba(196,124,10,0.15)', borderColor: 'rgba(196,124,10,0.3)' }}>
-                  <span className={`${playfair.className} text-3xl leading-none text-[#f0c96a]`}>{s.num}</span>
+                  <span className={`${playfair.className} text-xl leading-none text-[#f0c96a]`}>{s.num}</span>
                   <span className="text-xs text-[rgba(250,248,244,0.55)]">{s.label}</span>
                 </div>
               ))}
@@ -204,7 +203,7 @@ export default function TheSparkLightsCaseStudy() {
                   <div className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.08em]" style={{ color: amber }}>
                     {card.tf}
                   </div>
-                  <div className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#c47c0a]' : 'text-4xl text-[#0f5c52]'}`}>{card.num}</div>
+                  <div className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#c47c0a]' : 'text-2xl text-[#0f5c52]'}`}>{card.num}</div>
                   <div className="text-[13px] leading-relaxed" style={{ color: muted }}>
                     {card.label}
                   </div>
@@ -269,7 +268,7 @@ export default function TheSparkLightsCaseStudy() {
                     { num: '2.4%', label: 'CTR' },
                   ].map((s) => (
                     <div key={s.label} className="flex flex-col gap-1">
-                      <span className={`${playfair.className} text-3xl leading-none text-[#c47c0a]`}>{s.num}</span>
+                      <span className={`${playfair.className} text-xl leading-none text-[#c47c0a]`}>{s.num}</span>
                       <span className="text-[11px] uppercase tracking-[0.08em]" style={{ color: muted }}>
                         {s.label}
                       </span>

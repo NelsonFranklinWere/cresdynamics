@@ -21,13 +21,13 @@ export default function ConsultingSEOCaseStudyPage() {
           <CaseStudyHeadline
             {...CASE_STUDY_HEADLINES['consulting-seo-growth']}
             centered
-            className="mb-8 max-w-4xl"
+            className="mb-6 max-w-2xl"
           />
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
+            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-xs py-1.5 px-3 md:px-6 rounded-lg transition-all duration-300">
               Request a Growth Audit
             </a>
-            <a href="/case-studies" className="border border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
+            <a href="/case-studies" className="border border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-xs py-1.5 px-3 md:px-6 rounded-lg transition-all duration-300">
               ← Back to Case Studies
             </a>
           </div>
@@ -37,7 +37,7 @@ export default function ConsultingSEOCaseStudyPage() {
       {/* 🔹 SECTION 1: BUSINESS CONTEXT */}
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             The Business
           </h2>
 
@@ -73,14 +73,14 @@ export default function ConsultingSEOCaseStudyPage() {
       {/* 🔹 SECTION 2: THE REAL PROBLEM */}
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             The Challenge
           </h2>
 
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-[var(--cres-electric-teal)]">What Was Broken</h3>
+                <h3 className="text-sm font-bold text-[var(--cres-electric-teal)]">What Was Broken</h3>
                 <ul className="space-y-2 text-white">
                   <li>• No online presence for their specialty services</li>
                   <li>• Generic website that didn't showcase expertise</li>
@@ -90,7 +90,7 @@ export default function ConsultingSEOCaseStudyPage() {
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-[var(--cres-electric-teal)]">What Was Costing Growth</h3>
+                <h3 className="text-sm font-bold text-[var(--cres-electric-teal)]">What Was Costing Growth</h3>
                 <ul className="space-y-2 text-white">
                   <li>• Clients finding competitors instead</li>
                   <li>• Difficulty attracting ideal client types</li>
@@ -113,26 +113,26 @@ export default function ConsultingSEOCaseStudyPage() {
       {/* 🔹 SECTION 3: WHY PREVIOUS ATTEMPTS FAILED */}
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             Why Previous Solutions Didn't Work
           </h2>
 
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
-                <div className="text-4xl mb-4">🎨</div>
+                <div className="text-2xl mb-3">🎨</div>
                 <h3 className="font-bold text-white mb-3">Generic Website Builders</h3>
                 <p className="text-white text-sm">Created a "professional-looking" site but didn't address SEO or content strategy for their specific consulting niche.</p>
               </div>
 
               <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
-                <div className="text-4xl mb-4">📊</div>
+                <div className="text-2xl mb-3">📊</div>
                 <h3 className="font-bold text-white mb-3">Basic SEO Services</h3>
                 <p className="text-white text-sm">Generic SEO packages that improved rankings but didn't establish them as thought leaders in their consulting specialty.</p>
               </div>
 
               <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
-                <div className="text-4xl mb-4">📝</div>
+                <div className="text-2xl mb-3">📝</div>
                 <h3 className="font-bold text-white mb-3">No Content Strategy</h3>
                 <p className="text-white text-sm">Posted occasional blog posts but had no systematic approach to content marketing or authority building.</p>
               </div>
@@ -151,7 +151,7 @@ export default function ConsultingSEOCaseStudyPage() {
       {/* 🔹 SECTION 4: THE CRES APPROACH */}
       <section className="py-16 bg-[var(--cres-deep-navy)] relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             Our Thinking & Strategy
           </h2>
 
@@ -179,7 +179,7 @@ export default function ConsultingSEOCaseStudyPage() {
             </div>
 
             <div className="mt-8 p-6 bg-gray-800/50 rounded-lg">
-              <p className="text-lg text-white font-semibold mb-3">Our Strategic Decision</p>
+              <p className="text-sm text-white font-semibold mb-3">Our Strategic Decision</p>
               <p className="text-gray-300">
                 Instead of chasing generic search terms, we positioned them as the authoritative consulting voice in their specialty. SEO became a tool for authority building, not just traffic generation.
               </p>
@@ -191,7 +191,7 @@ export default function ConsultingSEOCaseStudyPage() {
       {/* 🔹 SECTION 5: THE SYSTEM BUILT */}
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             The System We Implemented
           </h2>
 
@@ -250,28 +250,28 @@ export default function ConsultingSEOCaseStudyPage() {
       {/* 🔹 SECTION 6: RESULTS & IMPACT */}
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             The Impact
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Qualified Traffic</h3>
+              <h3 className="text-sm font-bold text-[var(--cres-electric-teal)] mb-3">Qualified Traffic</h3>
               <p className="text-white">Consistent flow of potential clients actively searching for their specific consulting services, not random website visitors.</p>
             </div>
 
             <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Market Positioning</h3>
+              <h3 className="text-sm font-bold text-[var(--cres-electric-teal)] mb-3">Market Positioning</h3>
               <p className="text-white">Established as the authoritative consulting voice in their specialty, making competitors' generic approaches less appealing.</p>
             </div>
 
             <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Client Quality</h3>
+              <h3 className="text-sm font-bold text-[var(--cres-electric-teal)] mb-3">Client Quality</h3>
               <p className="text-white">Attracting clients who understand their value and are willing to invest in quality consulting rather than seeking the lowest price.</p>
             </div>
 
             <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Sustainable Growth</h3>
+              <h3 className="text-sm font-bold text-[var(--cres-electric-teal)] mb-3">Sustainable Growth</h3>
               <p className="text-white">Built a foundation that continues to attract ideal clients without ongoing paid advertising dependency.</p>
             </div>
           </div>
@@ -281,7 +281,7 @@ export default function ConsultingSEOCaseStudyPage() {
       {/* 🔹 SECTION 7: KEY INSIGHTS */}
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             What This Case Teaches
           </h2>
 
@@ -324,7 +324,7 @@ export default function ConsultingSEOCaseStudyPage() {
       {/* 🔹 SECTION 8: RELEVANCE CHECK */}
       <section className="py-16 bg-[var(--cres-electric-teal)] relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             Is This Similar to Your Business?
           </h2>
 
@@ -356,7 +356,7 @@ export default function ConsultingSEOCaseStudyPage() {
             <a href="/contact" className="bg-[var(--cres-secondary-bg)] border border-white/20 text-[var(--cres-electric-teal)] hover:bg-white/10 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Let's Map Your Growth System
             </a>
-            <a href="/case-studies" className="border-2 border-white text-white hover:bg-white/10 hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/case-studies" className="border-2 border-white text-white hover:bg-white/10 hover:text-[var(--cres-electric-teal)] font-bold text-xs py-2 px-4 rounded-lg transition-all duration-300">
               View More Case Studies
             </a>
           </div>

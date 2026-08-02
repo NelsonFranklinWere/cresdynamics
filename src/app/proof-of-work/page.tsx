@@ -52,25 +52,22 @@ export default function ProofOfWorkPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0B0F14] text-white">
+    <div className="min-h-screen bg-white text-[var(--navy-primary)]">
       <Header />
 
       <main className="pt-24">
         {/* HERO */}
-        <section className="relative py-20 md:py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--cres-primary-bg)] via-[#101927] to-[#020611]" />
-          <div className="absolute inset-0 bg-black/40" />
-
+        <section className="relative py-14 md:py-20 overflow-hidden bg-white">
           <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-            <h1 className="text-3xl md:text-5xl font-black mb-8">
+            <h1 className="text-2xl md:text-4xl font-black mb-5 text-[var(--navy-primary)]">
               Proof of <span className="text-[var(--cres-orange-primary)]">Work</span>
             </h1>
-            <p className="text-white/85 text-lg md:text-xl leading-relaxed">
+            <p className="text-[var(--navy-primary)]/80 text-sm md:text-base leading-relaxed">
               Every case study needs four things a buyer can&apos;t argue with — the exact before state (in numbers or
               specifics), what was built (named, not described), the exact after state (in numbers or specifics), and one
               honest sentence about what made it hard.
             </p>
-            <p className="mt-6 text-[var(--cres-electric-teal)] text-base md:text-lg font-semibold tracking-tight">
+            <p className="mt-4 text-[var(--cres-electric-teal)] text-xs md:text-sm font-semibold tracking-tight">
               No adjectives. No hype. Just what happened.
             </p>
           </div>
@@ -79,45 +76,50 @@ export default function ProofOfWorkPage() {
         <LiveProjectsSection />
 
         {/* CASE STUDIES GRID */}
-        <section className="relative py-16 bg-[var(--cres-primary-bg)]">
+        <section className="relative py-12 bg-white">
           <div className="relative z-10 max-w-5xl mx-auto px-6">
-            <div className="mb-8 rounded-xl border border-white/10 bg-black/40 p-6 md:p-8">
-              <h2 className="text-2xl md:text-3xl font-black mb-3">Case Studies on This Page</h2>
-              <p className="text-white/80">
+            <div className="mb-6 rounded-lg border border-white/10 bg-black p-4 md:p-6 text-white">
+              <h2 className="text-lg md:text-2xl font-black mb-2 text-white">
+                Case Studies on This Page
+              </h2>
+              <p className="text-xs md:text-sm text-white/75">
                 Featured here are only the newly added case studies with live production links. The full archive remains on the case studies page.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {caseStudies.map((study) => (
-                <div key={study.id} className="rounded-xl border border-white/10 bg-black/40 p-5">
-                  <div className="mb-3">
-                    <span className="inline-block rounded-full bg-[var(--cres-electric-teal)] px-3 py-1 text-xs font-semibold text-white">
+                <div
+                  key={study.id}
+                  className="rounded-lg border border-white/10 bg-black p-4 text-white shadow-sm transition-shadow hover:shadow-md hover:border-white/20"
+                >
+                  <div className="mb-2">
+                    <span className="inline-block rounded-full bg-[var(--cres-electric-teal)]/20 px-2 py-0.5 text-[10px] font-semibold text-[var(--cres-electric-teal)]">
                       {study.industry}
                     </span>
                   </div>
 
-                  <div className="mb-3">
-                    <h3 className="text-sm font-bold text-[var(--cres-orange-primary)] mb-1">Problem</h3>
-                    <p className="text-sm text-white/90">{study.problem}</p>
+                  <div className="mb-2">
+                    <h3 className="text-[11px] font-bold text-[var(--cres-orange-primary)] mb-0.5">Problem</h3>
+                    <p className="text-[11px] md:text-xs text-white/80">{study.problem}</p>
+                  </div>
+
+                  <div className="mb-2">
+                    <h3 className="text-[11px] font-bold text-[var(--cres-orange-primary)] mb-0.5">Solution</h3>
+                    <p className="text-[11px] md:text-xs text-white/80">{study.solution}</p>
                   </div>
 
                   <div className="mb-3">
-                    <h3 className="text-sm font-bold text-[var(--cres-orange-primary)] mb-1">Solution</h3>
-                    <p className="text-sm text-white/90">{study.solution}</p>
+                    <h3 className="text-[11px] font-bold text-[var(--cres-orange-primary)] mb-0.5">Outcome</h3>
+                    <p className="text-[11px] md:text-xs text-white/80">{study.outcome}</p>
                   </div>
-
-                  <div className="mb-4">
-                    <h3 className="text-sm font-bold text-[var(--cres-orange-primary)] mb-1">Outcome</h3>
-                    <p className="text-sm text-white/90">{study.outcome}</p>
-                  </div>
-                  <div className="mb-4 text-xs font-semibold tracking-wide text-[var(--cres-electric-teal)]">
+                  <div className="mb-3 text-[10px] font-semibold tracking-wide text-[var(--cres-electric-teal)]">
                     Live: {study.liveUrl.replace('https://', '')}
                   </div>
 
                   <a
                     href={`/case-studies/${study.slug}`}
-                    className="inline-flex items-center gap-2 rounded-lg bg-[var(--cres-orange-primary)] px-4 py-2 text-xs font-bold uppercase tracking-wide text-white hover:bg-[var(--cres-orange-hover)] transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-md bg-white px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wide text-black hover:bg-white/90 transition-colors"
                   >
                     View Case Study
                   </a>

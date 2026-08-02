@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ensureChatSession, insertChatMessage } from '@/lib/db';
 import { FRANK_SYSTEM_INSTRUCTION } from '@/lib/chatFrankSystemPrompt';
 import { hasResendConfigured, sendResendEmail } from '@/lib/resend-fallback';
+import {
+  CHAT_LIMIT_REACHED_REPLY,
+  CHAT_MAX_USER_MESSAGES,
+  CHAT_UNAVAILABLE_REPLY,
+} from '@/lib/chatConstants';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -9,6 +14,26 @@ export const dynamic = 'force-dynamic';
 // Optional email for chat-triggered actions (primary + fallback keys)
 const resendConfigured = hasResendConfigured();
 
+/** In-memory per-session user message count (resets when the process restarts). */
+const sessionUserMessageCount = new Map<string, number>();
+
+function countUserMessagesInHistory(history: unknown): number {
+  if (!Array.isArray(history)) return 0;
+  return history.filter(
+    (m) => m && typeof m === 'object' && (m as { role?: string }).role === 'user'
+  ).length;
+}
+
+function getSessionLimitKey(sessionPublicId: unknown, request: NextRequest): string {
+  if (typeof sessionPublicId === 'string' && sessionPublicId.trim()) {
+    return `sess:${sessionPublicId.trim()}`;
+  }
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown';
+  return `ip:${ip}`;
+}
 type ClientDetails = {
   name?: string;
   phone?: string;
@@ -210,179 +235,175 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Use Groq if available (faster and more reliable free tier), otherwise use Gemini
-    if (groqApiKey) {
-      // Build conversation messages for Groq API (OpenAI-compatible format)
-      const messages = [
+    // Soft limit: 4 user messages per chat session
+    // Widget sends conversationHistory including the current user message.
+    const limitKey = getSessionLimitKey(sessionPublicId, request);
+    const historyUserCount = countUserMessagesInHistory(conversationHistory);
+    const priorTracked = sessionUserMessageCount.get(limitKey) ?? 0;
+    const userMessageNumber =
+      historyUserCount > 0
+        ? Math.max(priorTracked, historyUserCount)
+        : priorTracked + 1;
+
+    if (userMessageNumber > CHAT_MAX_USER_MESSAGES) {
+      return NextResponse.json(
         {
-          role: 'system',
-          content: FRANK_SYSTEM_INSTRUCTION,
+          response: CHAT_LIMIT_REACHED_REPLY,
+          limitReached: true,
+          error: CHAT_LIMIT_REACHED_REPLY,
         },
-        // Add conversation history (last 10 messages to avoid token limits)
-        ...(conversationHistory || [])
-          .slice(-10)
-          .map((msg: { role: string; content: string }) => ({
+        { status: 429 }
+      );
+    }
+
+    sessionUserMessageCount.set(limitKey, userMessageNumber);
+
+    // Prefer Groq when key is present; if Groq fails, fall back to Gemini when configured
+    if (groqApiKey) {
+      try {
+        const messages = [
+          { role: 'system', content: FRANK_SYSTEM_INSTRUCTION },
+          ...(conversationHistory || []).slice(-10).map((msg: { role: string; content: string }) => ({
             role: msg.role === 'user' ? 'user' : 'assistant',
             content: msg.content,
           })),
-        {
-          role: 'user',
-          content: message,
-        },
-      ];
+          { role: 'user', content: message },
+        ];
 
-      // Call Groq API (OpenAI-compatible)
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${groqApiKey}`,
-        },
-        body: JSON.stringify({
-          model: 'llama-3.1-8b-instant', // Fast and free model
-          messages: messages,
-          temperature: 0.7,
-          max_tokens: 380,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.text();
-        console.error('Groq API error:', errorData);
-        return NextResponse.json(
-          { error: 'Failed to get AI response from Groq' },
-          { status: response.status }
-        );
-      }
-
-      const data = await response.json();
-
-      if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-        console.error('Invalid Groq response:', data);
-        return NextResponse.json(
-          { error: 'Invalid response from AI' },
-          { status: 500 }
-        );
-      }
-
-      const assistantText = data.choices[0].message.content as string;
-      const parsed = parseAssistantContent(assistantText);
-      await persistChatMessages(sessionPublicId, message, parsed.reply);
-      await executeActions(parsed.actions, {
-        clientDetails,
-        latestUserMessage: message,
-        conversationHistory: (conversationHistory || []) as ChatMessage[],
-      });
-
-      return NextResponse.json({
-        response: parsed.reply,
-      });
-    } else {
-      // Fallback to Gemini API
-      // Build conversation contents for Gemini API
-      const contents = [];
-      const history = (conversationHistory || []).slice(-10);
-      
-      for (let i = 0; i < history.length; i++) {
-        const msg = history[i];
-        contents.push({
-          role: msg.role === 'user' ? 'user' : 'model',
-          parts: [{ text: msg.content }],
-        });
-      }
-
-      contents.push({
-        role: 'user',
-        parts: [{ text: message }],
-      });
-
-      const model = 'gemini-2.0-flash';
-      const requestBody: any = {
-        contents: contents,
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 380,
-        },
-        systemInstruction: {
-          parts: [{ text: FRANK_SYSTEM_INSTRUCTION }],
-        },
-      };
-
-      if (!geminiApiKey) {
-        return NextResponse.json(
-          { error: 'Gemini API key not configured' },
-          { status: 500 }
-        );
-      }
-
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-        {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-goog-api-key': geminiApiKey,
+            Authorization: `Bearer ${groqApiKey}`,
           },
-          body: JSON.stringify(requestBody),
-        }
-      );
+          body: JSON.stringify({
+            model: 'llama-3.1-8b-instant',
+            messages,
+            temperature: 0.7,
+            max_tokens: 380,
+          }),
+        });
 
-      if (!response.ok) {
-        const errorData = await response.text();
-        console.error('Gemini API error:', errorData);
-        
-        let errorMessage = 'Failed to get AI response';
-        try {
-          const errorJson = JSON.parse(errorData);
-          if (errorJson.error?.message) {
-            errorMessage = errorJson.error.message;
-            if (errorJson.error.code === 429 || errorMessage.includes('quota')) {
-              errorMessage = 'API quota exceeded. Please try again later or contact support.';
-            }
+        if (response.ok) {
+          const data = await response.json();
+          if (data.choices?.[0]?.message?.content) {
+            const assistantText = data.choices[0].message.content as string;
+            const parsed = parseAssistantContent(assistantText);
+            await persistChatMessages(sessionPublicId, message, parsed.reply);
+            await executeActions(parsed.actions, {
+              clientDetails,
+              latestUserMessage: message,
+              conversationHistory: (conversationHistory || []) as ChatMessage[],
+            });
+            return NextResponse.json({
+              response: parsed.reply,
+              messagesRemaining: Math.max(0, CHAT_MAX_USER_MESSAGES - userMessageNumber),
+            });
           }
-        } catch (e) {
-          // Keep default error message
+          console.error('Invalid Groq response:', data);
+        } else {
+          const errorData = await response.text();
+          console.error('Groq API error (will try Gemini if configured):', errorData);
         }
-        
-        return NextResponse.json(
-          { error: errorMessage },
-          { status: response.status }
-        );
+      } catch (e) {
+        console.error('Groq request failed (will try Gemini if configured):', e);
       }
+    }
 
-      const data = await response.json();
+    // Gemini (primary when no Groq key, or fallback when Groq fails)
+    if (!geminiApiKey) {
+      return NextResponse.json(
+        {
+          response: CHAT_UNAVAILABLE_REPLY,
+          error: CHAT_UNAVAILABLE_REPLY,
+        },
+        { status: 503 }
+      );
+    }
 
-      if (
-        !data.candidates ||
-        !data.candidates[0] ||
-        !data.candidates[0].content ||
-        !data.candidates[0].content.parts ||
-        !data.candidates[0].content.parts[0]
-      ) {
-        console.error('Invalid Gemini response:', data);
-        return NextResponse.json(
-          { error: 'Invalid response from AI' },
-          { status: 500 }
-        );
-      }
-
-      const assistantText = data.candidates[0].content.parts[0].text as string;
-      const parsed = parseAssistantContent(assistantText);
-      await persistChatMessages(sessionPublicId, message, parsed.reply);
-      await executeActions(parsed.actions, {
-        clientDetails,
-        latestUserMessage: message,
-        conversationHistory: (conversationHistory || []) as ChatMessage[],
-      });
-
-      return NextResponse.json({
-        response: parsed.reply,
+    const contents = [];
+    const history = (conversationHistory || []).slice(-10);
+    for (let i = 0; i < history.length; i++) {
+      const msg = history[i];
+      contents.push({
+        role: msg.role === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.content }],
       });
     }
+    contents.push({
+      role: 'user',
+      parts: [{ text: message }],
+    });
+
+    const model = 'gemini-2.0-flash';
+    const requestBody = {
+      contents,
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 380,
+      },
+      systemInstruction: {
+        parts: [{ text: FRANK_SYSTEM_INSTRUCTION }],
+      },
+    };
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-goog-api-key': geminiApiKey,
+        },
+        body: JSON.stringify(requestBody),
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('Gemini API error:', errorData);
+      return NextResponse.json(
+        {
+          response: CHAT_UNAVAILABLE_REPLY,
+          error: CHAT_UNAVAILABLE_REPLY,
+        },
+        { status: 503 }
+      );
+    }
+
+    const data = await response.json();
+
+    if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
+      console.error('Invalid Gemini response:', data);
+      return NextResponse.json(
+        {
+          response: CHAT_UNAVAILABLE_REPLY,
+          error: CHAT_UNAVAILABLE_REPLY,
+        },
+        { status: 503 }
+      );
+    }
+
+    const assistantText = data.candidates[0].content.parts[0].text as string;
+    const parsed = parseAssistantContent(assistantText);
+    await persistChatMessages(sessionPublicId, message, parsed.reply);
+    await executeActions(parsed.actions, {
+      clientDetails,
+      latestUserMessage: message,
+      conversationHistory: (conversationHistory || []) as ChatMessage[],
+    });
+
+    return NextResponse.json({
+      response: parsed.reply,
+      messagesRemaining: Math.max(0, CHAT_MAX_USER_MESSAGES - userMessageNumber),
+    });
   } catch (error) {
     console.error('Chat API error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      {
+        response: CHAT_UNAVAILABLE_REPLY,
+        error: CHAT_UNAVAILABLE_REPLY,
+      },
       { status: 500 }
     );
   }

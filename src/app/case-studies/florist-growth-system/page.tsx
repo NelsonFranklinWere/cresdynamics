@@ -22,7 +22,7 @@ export default function FloristCaseStudyPage() {
           <CaseStudyHeadline
             {...CASE_STUDY_HEADLINES['florist-growth-system']}
             centered
-            className="mb-8 md:mb-12 max-w-4xl"
+            className="mb-6 max-w-2xl"
           />
         </div>
       </section>
@@ -32,11 +32,11 @@ export default function FloristCaseStudyPage() {
         <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-[var(--cres-white)] mb-6 md:mb-8">
+            <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-[var(--cres-white)] mb-6 md:mb-8">
               Different industries. The same hidden problems.
             </h2>
 
-            <p className="text-base md:text-xl text-white mb-8 md:mb-12 max-w-3xl mx-auto">
+            <p className="text-base md:text-sm md:text-base text-white mb-8 md:mb-12 max-w-3xl mx-auto">
             Most businesses face structural problems, not effort problems. Growth becomes tied to the owner, opportunities slip away after hours, visibility depends entirely on paid advertising, and there's no predictability in the business model.
           </p>
 
@@ -64,36 +64,36 @@ export default function FloristCaseStudyPage() {
 
           {/* Problem (Reality-Based) */}
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-8 rounded-lg shadow-sm mb-6 md:mb-8">
-            <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-orange-primary)] mb-4 md:mb-6">The Situation</h3>
+            <h3 className="text-sm md:text-base font-bold text-[var(--cres-orange-primary)] mb-4 md:mb-6">The Situation</h3>
             <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed mb-4 md:mb-6">
               The business operated successfully within its local market, with consistent orders and satisfied customers. However, expansion efforts consistently stalled at the point where growth would require additional staff or new locations.
             </p>
-            <p className="text-white text-lg leading-relaxed">
+            <p className="text-white text-sm leading-relaxed">
               Customer acquisition remained entirely dependent on word-of-mouth referrals and occasional paid advertising bursts. There was no systematic approach to capturing demand or converting website visitors into paying customers.
             </p>
           </div>
 
           {/* What Was Actually Holding Growth Back */}
           <div className="bg-[var(--cres-deep-navy)] text-white p-8 rounded-lg mb-8">
-            <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-electric-teal)] mb-4 md:mb-6">The Constraint</h3>
+            <h3 className="text-sm md:text-base font-bold text-[var(--cres-electric-teal)] mb-4 md:mb-6">The Constraint</h3>
             <p className="text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed mb-4 md:mb-6">
               The issue wasn't insufficient demand or poor service quality. The constraint was systemic dependence on the owner's direct involvement in every transaction and customer interaction.
             </p>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-gray-300 text-sm leading-relaxed">
               Growth relied entirely on personal relationships, manual order processing, and reactive customer service. This created a ceiling where expansion would either dilute service quality or overwhelm the existing operational capacity.
             </p>
           </div>
 
           {/* Our Approach (Architectural) */}
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-8 rounded-lg shadow-sm mb-6 md:mb-8">
-            <h3 className="text-lg md:text-2xl font-bold text-[var(--cres-orange-primary)] mb-4 md:mb-6">The Business Operations System Built</h3>
+            <h3 className="text-sm md:text-base font-bold text-[var(--cres-orange-primary)] mb-4 md:mb-6">The Business Operations System Built</h3>
             <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed mb-6 md:mb-8">
               We built a Business Operations System that allowed customer acquisition and order processing to operate independently of direct owner involvement, while maintaining the personal service quality that drove customer loyalty.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h4 className="text-base md:text-lg font-semibold text-[var(--cres-electric-teal)]">Customer Acquisition Module</h4>
+                <h4 className="text-base md:text-sm font-semibold text-[var(--cres-electric-teal)]">Customer Acquisition Module</h4>
                 <ul className="text-xs md:text-sm text-white space-y-2">
                   <li>• 24/7 customer acquisition channel</li>
                   <li>• SEO-driven visibility for organic search traffic</li>
@@ -103,7 +103,7 @@ export default function FloristCaseStudyPage() {
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Operations & Workflow Module</h4>
+                <h4 className="text-sm font-semibold text-[var(--cres-electric-teal)]">Operations & Workflow Module</h4>
                 <ul className="text-white space-y-2">
                   <li>• Standardized order processing workflows</li>
                   <li>• Customer data collection and segmentation</li>
@@ -116,11 +116,11 @@ export default function FloristCaseStudyPage() {
 
           {/* Production System Metrics */}
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-white mb-6">Production System Metrics</h3>
-            <p className="text-white text-lg leading-relaxed mb-6">
+            <h3 className="text-base md:text-sm font-bold text-white mb-6">Production System Metrics</h3>
+            <p className="text-white text-sm leading-relaxed mb-6">
               The Business Operations System is now in production, providing clear visibility into customer demand patterns and operational processes that scale beyond a single location or owner involvement.
             </p>
-            <p className="text-white text-lg leading-relaxed mb-4">
+            <p className="text-white text-sm leading-relaxed mb-4">
               Customer acquisition became predictable and measurable, with systems in place to handle increased order volume without compromising service quality or requiring immediate staff expansion.
             </p>
             <div className="bg-[var(--cres-deep-navy)] p-4 rounded-lg mt-4">
@@ -131,11 +131,11 @@ export default function FloristCaseStudyPage() {
 
           {/* Reflection Prompt */}
           <div className="bg-[var(--cres-electric-teal)] text-white p-8 rounded-lg mb-8">
-            <h3 className="text-lg md:text-2xl font-bold mb-4 md:mb-6">Reflection Point</h3>
-            <p className="text-sm md:text-base lg:text-lg leading-relaxed mb-4 md:mb-6">
+            <h3 className="text-sm md:text-base font-bold mb-4 md:mb-6">Reflection Point</h3>
+            <p className="text-sm md:text-base lg:text-sm leading-relaxed mb-4 md:mb-6">
               If your business operations stopped depending on your direct involvement today, would growth continue, or would everything grind to a halt?
             </p>
-            <p className="text-lg leading-relaxed">
+            <p className="text-sm leading-relaxed">
               What systems would need to be in place for your business to handle a 3x increase in demand without you personally managing every interaction?
             </p>
           </div>
@@ -165,12 +165,12 @@ export default function FloristCaseStudyPage() {
         <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
         <div className="relative z-10">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-6 md:mb-8">
+            <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-6 md:mb-8">
               Growth doesn't break businesses.<br />
               <span className="text-[var(--cres-electric-teal)]">Weak systems do.</span>
             </h2>
 
-            <p className="text-base md:text-xl text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto">
+            <p className="text-base md:text-sm md:text-base text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto">
             The difference between businesses that scale and those that stall is rarely effort. It's whether the systems can support the next level of growth without breaking under the strain.
           </p>
 

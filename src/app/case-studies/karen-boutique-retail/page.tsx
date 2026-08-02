@@ -21,7 +21,7 @@ export default function BoutiqueCaseStudyPage() {
           <CaseStudyHeadline
             {...CASE_STUDY_HEADLINES['karen-boutique-retail']}
             centered
-            className="mb-12 max-w-4xl"
+            className="mb-8 max-w-2xl"
           />
         </div>
       </section>
@@ -29,16 +29,16 @@ export default function BoutiqueCaseStudyPage() {
       {/* SECTION 2: Pattern Recognition */}
       <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             Different industries. The same hidden problems.
           </h2>
 
-          <p className="text-xl text-white mb-12 max-w-3xl mx-auto">
+          <p className="text-sm md:text-base text-white mb-12 max-w-3xl mx-auto">
             Most businesses face structural problems, not effort problems. Growth becomes tied to the owner, opportunities slip away after hours, visibility depends entirely on paid advertising, and there's no predictability in the business model.
           </p>
 
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg">
-            <p className="text-lg text-white font-medium">
+            <p className="text-sm text-white font-medium">
               This creates a ceiling effect. The business can grow to a certain point through effort and hustle, but then stalls because the foundational systems can't support further expansion.
             </p>
           </div>
@@ -58,36 +58,36 @@ export default function BoutiqueCaseStudyPage() {
 
           {/* The Situation (Reality-Based) */}
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-white mb-6">The Situation</h3>
-            <p className="text-white text-lg leading-relaxed mb-6">
+            <h3 className="text-base md:text-sm font-bold text-white mb-6">The Situation</h3>
+            <p className="text-white text-sm leading-relaxed mb-6">
               The boutique depended on occasional Instagram ads, inconsistent traffic patterns, and had no predictable lead flow. Sales fluctuated significantly, and growth felt uncertain despite quality products and a desirable location.
             </p>
-            <p className="text-white text-lg leading-relaxed">
+            <p className="text-white text-sm leading-relaxed">
               The business had loyal walk-in customers but lacked the online infrastructure to capture the broader Nairobi fashion market. Marketing efforts were temporary and reactive rather than strategic and compounding.
             </p>
           </div>
 
           {/* The Core Issue */}
           <div className="bg-[var(--cres-deep-navy)] text-white p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-electric-teal)] mb-6">The Core Issue</h3>
-            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+            <h3 className="text-base md:text-sm font-bold text-[var(--cres-electric-teal)] mb-6">The Core Issue</h3>
+            <p className="text-gray-300 text-sm leading-relaxed mb-6">
               The problem wasn't advertising effectiveness or product quality. It was discoverability. Ads brought temporary attention but created no lasting authority or trust signals.
             </p>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-gray-300 text-sm leading-relaxed">
               Once advertising stopped, traffic disappeared completely. There was no system to capture long-term demand or build organic visibility. Marketing was treated as an expense rather than an investment in sustainable growth.
             </p>
           </div>
 
           {/* The Strategic Rethink */}
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-white mb-6">The Strategic Rethink</h3>
-            <p className="text-white text-lg leading-relaxed mb-8">
+            <h3 className="text-base md:text-sm font-bold text-white mb-6">The Strategic Rethink</h3>
+            <p className="text-white text-sm leading-relaxed mb-8">
               Instead of chasing attention through ads, the focus shifted to building a system that attracts customers before they're ready to buy. Visibility needed to compound over time rather than reset with each advertising campaign.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Visibility & Discovery Module</h4>
+                <h4 className="text-sm font-semibold text-[var(--cres-electric-teal)]">Visibility & Discovery Module</h4>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Long-term discovery through organic search</li>
                   <li>• Fashion-specific keyword targeting</li>
@@ -97,7 +97,7 @@ export default function BoutiqueCaseStudyPage() {
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Conversion & Analytics Module</h4>
+                <h4 className="text-sm font-semibold text-[var(--cres-electric-teal)]">Conversion & Analytics Module</h4>
                 <ul className="text-white text-sm space-y-1">
                   <li>• Webinar-style educational content</li>
                   <li>• Local search dominance for fashion</li>
@@ -110,11 +110,11 @@ export default function BoutiqueCaseStudyPage() {
 
           {/* Production System Metrics */}
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-white mb-6">Production System Metrics</h3>
-            <p className="text-white text-lg leading-relaxed mb-6">
+            <h3 className="text-base md:text-sm font-bold text-white mb-6">Production System Metrics</h3>
+            <p className="text-white text-sm leading-relaxed mb-6">
               The Business Operations System is now in production, providing predictable monthly lead flow with reduced dependency on paid advertising. Customer behavior became visible and measurable, with clear insights into shopping patterns and preferences.
             </p>
-            <p className="text-white text-lg leading-relaxed mb-4">
+            <p className="text-white text-sm leading-relaxed mb-4">
               Brand trust strengthened through consistent online presence, and growth became repeatable rather than accidental. The business developed a foundation for sustainable expansion beyond the initial location.
             </p>
             <div className="bg-[var(--cres-deep-navy)] p-4 rounded-lg mt-4">
@@ -125,11 +125,11 @@ export default function BoutiqueCaseStudyPage() {
 
           {/* Reflection Prompt */}
           <div className="bg-[var(--cres-electric-teal)] text-white p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold mb-6">Reflection Point</h3>
-            <p className="text-lg leading-relaxed mb-6">
+            <h3 className="text-base md:text-sm font-bold mb-6">Reflection Point</h3>
+            <p className="text-sm leading-relaxed mb-6">
               If your advertising stopped today, would customers still find you? Do you have systems in place that capture demand beyond paid campaigns?
             </p>
-            <p className="text-lg leading-relaxed">
+            <p className="text-sm leading-relaxed">
               In a market where attention is temporary, how are you building the permanent visibility your business needs to thrive?
             </p>
           </div>
@@ -137,7 +137,7 @@ export default function BoutiqueCaseStudyPage() {
           {/* Low-Pressure CTA */}
           <div className="text-center">
             <div className="space-y-4">
-              <p className="text-white text-lg">
+              <p className="text-white text-sm">
                 Interested in building visibility that lasts beyond advertising campaigns?
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -156,20 +156,20 @@ export default function BoutiqueCaseStudyPage() {
       {/* FINAL SECTION: Silent Urgency Close */}
       <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)]">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             Growth doesn't break businesses.<br />
             <span className="text-[var(--cres-electric-teal)]">Weak systems do.</span>
           </h2>
 
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+          <p className="text-sm md:text-base text-gray-300 mb-12 max-w-3xl mx-auto">
             The difference between businesses that scale and those that stall is rarely effort. It's whether the systems can support the next level of growth without breaking under the strain.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-lg py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-xs py-2 px-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Discuss your growth constraints
             </a>
-            <a href="/insights" className="border-2 border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/insights" className="border-2 border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-xs py-2 px-4 rounded-lg transition-all duration-300">
               Read more insights
             </a>
           </div>

@@ -20,3 +20,12 @@ export const CHAT_FRANK_LEAD_SUB =
 /** Header subtitles */
 export const CHAT_FRANK_HEADER_LEAD = 'Quick intro · then we chat';
 export const CHAT_FRANK_HEADER_ACTIVE = 'CRES Dynamics · Growth advisor';
+
+/** Soft limit — free chat window before steering to contact form */
+export const CHAT_MAX_USER_MESSAGES = 4;
+
+export const CHAT_LIMIT_REACHED_REPLY =
+  "You've used your free chat messages for now. Please try again later, or reach us on the contact form — we'll get back to you.";
+
+export const CHAT_UNAVAILABLE_REPLY =
+  "I'm currently held — I'll get back to you. In the meantime, try again later or message us on the contact form.";

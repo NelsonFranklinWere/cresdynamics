@@ -13,10 +13,10 @@ export type CaseStudyHeadline = {
 };
 
 export const CASE_STUDY_H1_CLASS =
-  'text-3xl md:text-4xl lg:text-[2.65rem] font-black text-white leading-[1.12] tracking-tight';
+  'text-lg md:text-xl lg:text-2xl font-black text-white leading-snug tracking-tight max-w-3xl';
 
 export const CASE_STUDY_SUBTITLE_CLASS =
-  'mt-3 text-base md:text-lg font-semibold text-[var(--cres-electric-teal)] max-w-3xl';
+  'mt-2 text-xs md:text-sm font-semibold text-[var(--cres-electric-teal)] max-w-2xl';
 
 export const CASE_STUDY_HEADLINES: Record<string, CaseStudyHeadline> = {
   'the-stems-flowers': {

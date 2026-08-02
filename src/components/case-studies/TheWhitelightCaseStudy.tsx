@@ -63,8 +63,7 @@ export default function TheWhitelightCaseStudy() {
             </div>
             <CaseStudyHeadline
               {...CASE_STUDY_HEADLINES['whitelight-store']}
-              className="mb-11 max-w-[720px]"
-              titleClassName="!text-[clamp(1.75rem,4.5vw,2.65rem)]"
+              className="mb-6 max-w-[560px]"
             />
             <div className="flex flex-col gap-5 border-t border-[rgba(248,249,251,0.1)] pt-8 md:flex-row md:flex-wrap md:gap-0">
               {[
@@ -147,7 +146,7 @@ export default function TheWhitelightCaseStudy() {
                 <div key={card.tf} className="relative overflow-hidden rounded-xl border p-6" style={{ borderColor: border, background: CASE_STUDY_CARD_BG }}>
                   <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ background: card.pending ? orange : electric }} />
                   <div className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.08em]" style={{ color: card.pending ? orange : electric }}>{card.tf}</div>
-                  <div className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#c45c10]' : 'text-4xl text-[#1a3fb5]'}`}>{card.num}</div>
+                  <div className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#c45c10]' : 'text-2xl text-[#1a3fb5]'}`}>{card.num}</div>
                   <div className="text-[13px] leading-relaxed" style={{ color: muted }}>{card.label}</div>
                 </div>
               ))}

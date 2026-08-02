@@ -72,8 +72,7 @@ export default function TheFloralWhispersCaseStudy() {
             </div>
             <CaseStudyHeadline
               {...CASE_STUDY_HEADLINES['floral-whispers-gifts']}
-              className="mb-11 max-w-[720px]"
-              titleClassName="!text-[clamp(1.75rem,4.5vw,2.65rem)]"
+              className="mb-6 max-w-[560px]"
             />
             <div className="flex flex-col gap-5 border-t border-[rgba(250,247,242,0.1)] pt-8 md:flex-row md:flex-wrap md:gap-0">
               {[
@@ -255,7 +254,7 @@ export default function TheFloralWhispersCaseStudy() {
                     {card.tf}
                   </div>
                   <div
-                    className={`${playfair.className} mb-2 leading-none ${card.gold ? 'text-lg text-[#b8935a]' : 'text-4xl text-[#6b3d7a]'}`}
+                    className={`${playfair.className} mb-2 leading-none ${card.gold ? 'text-lg text-[#b8935a]' : 'text-2xl text-[#6b3d7a]'}`}
                   >
                     {card.num}
                   </div>

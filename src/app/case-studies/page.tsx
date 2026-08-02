@@ -12,7 +12,7 @@ export default function CaseStudiesPage() {
       problem: 'Successful locally but unable to scale beyond owner capacity',
       solution: 'Digital infrastructure for independent customer acquisition',
       outcome: 'Predictable growth systems without owner dependency',
-      slug: 'florist-growth-system'
+      slug: 'florist-growth-system',
     },
     {
       id: 'sacco-financial',
@@ -20,7 +20,7 @@ export default function CaseStudiesPage() {
       problem: 'Lost opportunities after hours due to manual responses',
       solution: '24/7 WhatsApp automation and lead management',
       outcome: 'Always-on availability with reduced staff workload',
-      slug: 'sacco-financial-services'
+      slug: 'sacco-financial-services',
     },
     {
       id: 'karen-boutique',
@@ -28,7 +28,7 @@ export default function CaseStudiesPage() {
       problem: 'Quality products but no online discoverability',
       solution: 'SEO-optimized website with conversion systems',
       outcome: 'Predictable leads beyond advertising campaigns',
-      slug: 'karen-boutique-retail'
+      slug: 'karen-boutique-retail',
     },
     {
       id: 'car-rental-growth',
@@ -36,7 +36,7 @@ export default function CaseStudiesPage() {
       problem: 'Fully booked but no scalable growth system',
       solution: 'Website + SEO + brand authority system',
       outcome: 'Ready for second showroom expansion',
-      slug: 'car-rental-growth-system'
+      slug: 'car-rental-growth-system',
     },
     {
       id: 'restaurant-automation',
@@ -44,7 +44,7 @@ export default function CaseStudiesPage() {
       problem: 'Manual order processing killing efficiency',
       solution: 'AI ordering system + customer management',
       outcome: 'Reduced processing time by 70%',
-      slug: 'restaurant-automation-system'
+      slug: 'restaurant-automation-system',
     },
     {
       id: 'consulting-seo-growth',
@@ -52,7 +52,7 @@ export default function CaseStudiesPage() {
       problem: 'Invisible online despite quality services',
       solution: 'Local SEO + authority content system',
       outcome: 'Consistent qualified leads without ads',
-      slug: 'consulting-seo-growth'
+      slug: 'consulting-seo-growth',
     },
     {
       id: 'retail-sales-system',
@@ -60,7 +60,7 @@ export default function CaseStudiesPage() {
       problem: 'High foot traffic, low conversion',
       solution: 'Sales funnel + customer tracking system',
       outcome: 'Predictable monthly sales growth',
-      slug: 'retail-sales-system'
+      slug: 'retail-sales-system',
     },
     {
       id: 'real-estate-branding',
@@ -68,7 +68,7 @@ export default function CaseStudiesPage() {
       problem: 'No trust or authority in market',
       solution: 'Brand positioning + content authority system',
       outcome: 'Premium pricing and client retention',
-      slug: 'real-estate-brand-authority'
+      slug: 'real-estate-brand-authority',
     },
     {
       id: 'manufacturing-digital',
@@ -76,57 +76,61 @@ export default function CaseStudiesPage() {
       problem: 'Traditional business with no digital presence',
       solution: 'Complete digital transformation system',
       outcome: 'New market opportunities unlocked',
-      slug: 'manufacturing-digital-transformation'
-    }
+      slug: 'manufacturing-digital-transformation',
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--cres-primary-bg)] text-white">
+    <div className="min-h-screen bg-white text-[var(--navy-primary)]">
       <Header />
 
-      {/* 1️⃣ HERO SECTION – AUTHORITY FIRST */}
-      <section className="pt-12 md:pt-16 pb-0 flex flex-col justify-end bg-gradient-to-br from-[var(--cres-deep-navy)] via-[#0D1B2A] to-[#1B263B] relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-3/4 bg-texture bg-cover opacity-20"></div>
-        <div className="absolute inset-0 bg-black/60"></div>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
-          <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-[var(--cres-electric-teal)] to-transparent"></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10 pb-0">
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-3 md:mb-4 underline-custom">
+      {/* 1️⃣ HERO */}
+      <section className="pt-24 md:pt-28 pb-8 md:pb-12 bg-white relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10 text-black">
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-black text-black leading-tight mb-2.5 md:mb-3">
             Real Systems. Real Production. Real Businesses.
           </h1>
 
-          <p className="text-sm md:text-lg lg:text-xl text-gray-300 mb-3 md:mb-4 max-w-3xl mx-auto">
+          <p className="text-xs md:text-sm lg:text-base text-black/80 mb-2.5 md:mb-3 max-w-3xl mx-auto">
             How we build business systems—ERPs, finance platforms, and automation—that companies actually run on.
           </p>
 
-          <p className="text-xs md:text-sm text-gray-400 mb-4 md:mb-6">
+          <p className="text-[11px] md:text-xs text-black/70 mb-3 md:mb-4">
             Production proof: active users, revenue tracked, roles, deployment stack, uptime. Numbers over testimonials.
           </p>
 
-          <div className="mb-4 md:mb-6">
-            <p className="mb-2 text-xs md:text-sm text-[var(--cres-text-secondary)]">
+          <div className="mb-3 md:mb-5">
+            <p className="mb-2 text-[11px] md:text-xs text-black/70">
               See systems Cres Dynamics recently deployed and the business outcomes they are driving.
             </p>
             <a
               href="/proof-of-work/"
-              className="inline-flex items-center gap-2 rounded-lg bg-[var(--cres-orange-primary)] px-4 py-2 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-[var(--cres-orange-hover)]"
+              className="inline-flex items-center gap-1.5 rounded-md bg-black px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-black/85"
             >
               See Recent Results & Deployed Projects
               <span aria-hidden="true">→</span>
             </a>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
-            <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+          <div className="flex flex-col sm:flex-row gap-2 md:gap-2.5 justify-center items-center">
+            <a
+              href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black hover:bg-black/85 text-white font-bold text-[11px] md:text-xs py-1.5 md:py-2 px-3 md:px-4 rounded-md transition-all duration-300 hover:shadow-md"
+            >
               Book a Systems Discovery Session
             </a>
-            <a href="tel:+254708805496" className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-black text-lg py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 ml-3">
+            <a
+              href="tel:+254708805496"
+              className="border border-black text-black hover:bg-black hover:text-white font-bold text-[11px] md:text-xs py-1.5 md:py-2 px-3 md:px-4 rounded-md transition-all duration-300"
+            >
               Call 0708 805 496
             </a>
-            <a href="/how-we-build" className="border-2 border-[var(--cres-electric-teal)] text-[var(--cres-electric-teal)] hover:bg-[var(--cres-electric-teal)] hover:text-white font-bold text-base py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
+            <a
+              href="/how-we-build"
+              className="border border-black text-black hover:bg-black hover:text-white font-semibold text-[11px] md:text-xs py-1.5 md:py-2 px-3 md:px-4 rounded-md transition-all duration-300"
+            >
               See How We Build Systems
             </a>
           </div>
@@ -134,140 +138,152 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* 2️⃣ HOW TO READ OUR CASE STUDIES */}
-      <section className="pt-0 pb-12 md:pb-20 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
-        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
-        <div className="relative z-10">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-[var(--cres-white)] mb-6 md:mb-8 underline-custom">
-              This Is Not a Portfolio. It's Proof of Systems Built.
-            </h2>
+      <section className="py-10 md:py-14 bg-white border-t border-[#E8ECF2]">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-lg md:text-2xl lg:text-3xl font-black text-[var(--navy-primary)] mb-3 md:mb-4">
+            This Is Not a Portfolio. It&apos;s Proof of Systems Built.
+          </h2>
 
-            <p className="text-base md:text-xl text-white mb-8 md:mb-12 max-w-3xl mx-auto">
-            We don't show screenshots to impress. We show problems → systems built → production outcomes. Each case focuses on the systems we built—ERPs, finance platforms, automation—that companies actually run on.
+          <p className="text-xs md:text-sm text-[var(--navy-primary)]/75 mb-6 md:mb-8 max-w-3xl mx-auto">
+            We don&apos;t show screenshots to impress. We show problems → systems built → production outcomes. Each
+            case focuses on the systems we built—ERPs, finance platforms, automation—that companies actually run on.
           </p>
 
-            <div className="grid grid-cols-3 gap-6 md:gap-8 text-left">
-              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
-                <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Business Context</h3>
-                <p className="text-xs md:text-sm text-white">Understanding the industry, market situation, and growth stage before any recommendations.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 text-left">
+            {[
+              {
+                title: 'Business Context',
+                body: 'Understanding the industry, market situation, and growth stage before any recommendations.',
+              },
+              {
+                title: 'Growth Challenge',
+                body: 'Identifying the real bottleneck preventing sustainable growth, not just surface symptoms.',
+              },
+              {
+                title: 'System Built',
+                body: 'The business system we built—ERP, finance platform, or automation—with architecture, modules, and production metrics.',
+              },
+              {
+                title: 'Measurable Impact',
+                body: "Real business outcomes that prove the system's effectiveness beyond vanity metrics.",
+              },
+              {
+                title: 'Lessons Learned',
+                body: 'Key insights that apply to similar businesses facing the same challenges.',
+              },
+              {
+                title: 'Decision Framework',
+                body: 'How we made strategic choices and what factors influenced our recommendations.',
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-lg border border-white/10 bg-black p-3 md:p-4 text-white shadow-sm"
+              >
+                <h3 className="text-xs md:text-sm font-bold text-white mb-1.5">{item.title}</h3>
+                <p className="text-[11px] md:text-xs text-white/75">{item.body}</p>
               </div>
-
-              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
-                <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Growth Challenge</h3>
-                <p className="text-xs md:text-sm text-white">Identifying the real bottleneck preventing sustainable growth, not just surface symptoms.</p>
-              </div>
-
-              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
-                <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">System Built</h3>
-                <p className="text-xs md:text-sm text-white">The business system we built—ERP, finance platform, or automation—with architecture, modules, and production metrics.</p>
-              </div>
-
-              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
-                <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Measurable Impact</h3>
-                <p className="text-xs md:text-sm text-white">Real business outcomes that prove the system's effectiveness beyond vanity metrics.</p>
-              </div>
-
-              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
-                <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Lessons Learned</h3>
-                <p className="text-xs md:text-sm text-white">Key insights that apply to similar businesses facing the same challenges.</p>
-              </div>
-
-              <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
-                <h3 className="text-sm md:text-base font-bold text-white mb-2 md:mb-3">Decision Framework</h3>
-                <p className="text-xs md:text-sm text-white">How we made strategic choices and what factors influenced our recommendations.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 3️⃣ CASE STUDY GRID / LIST VIEW */}
-      <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20 relative">
-        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
-        <div className="relative z-10">
-          <div className="max-w-6xl mx-auto px-4 md:px-6">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-[var(--cres-white)] text-center mb-8 md:mb-12 underline-custom">
-              Case Studies
-            </h2>
+      {/* 3️⃣ CASE STUDY GRID */}
+      <section className="py-10 md:py-14 bg-white border-t border-[#E8ECF2]">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <h2 className="text-lg md:text-2xl lg:text-3xl font-black text-[var(--navy-primary)] text-center mb-6 md:mb-8">
+            Case Studies
+          </h2>
 
-            <div className="grid grid-cols-3 gap-6 md:gap-8">
-              {caseStudies.map((study) => (
-                <div key={study.id} className="bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg shadow-lg p-4 md:p-6 hover:shadow-xl transition-all duration-300">
-                  <div className="mb-3 md:mb-4">
-                    <span className="inline-block bg-[var(--cres-electric-teal)] text-white text-xs md:text-sm font-semibold px-2 md:px-3 py-1 rounded-full">
-                      {study.industry}
-                    </span>
-                  </div>
-
-                  <h3 className="text-sm md:text-base font-black text-white leading-snug mb-2">
-                    {CASE_STUDY_HEADLINES[study.slug].title}
-                  </h3>
-                  <p className="text-xs text-[var(--cres-electric-teal)] font-semibold mb-3 md:mb-4">
-                    {CASE_STUDY_HEADLINES[study.slug].subtitle}
-                  </p>
-
-                  <div className="mb-3 md:mb-4">
-                    <h4 className="text-xs md:text-sm font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">Problem</h4>
-                    <p className="text-xs md:text-sm text-white">{study.problem}</p>
-                  </div>
-
-                  <div className="mb-3 md:mb-4">
-                    <h4 className="text-xs md:text-sm font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">Solution</h4>
-                    <p className="text-xs md:text-sm text-white">{study.solution}</p>
-                  </div>
-
-                  <div className="mb-4 md:mb-6">
-                    <h3 className="text-xs md:text-sm font-bold text-[var(--cres-orange-primary)] mb-1 md:mb-2">Outcome</h3>
-                    <p className="text-xs md:text-sm text-white">{study.outcome}</p>
-                  </div>
-
-                  <a
-                    href={`/case-studies/${study.slug}`}
-                    className="inline-block bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-semibold py-2 px-3 md:px-4 rounded transition-colors duration-200 text-xs md:text-sm"
-                  >
-                    View Case Study
-                  </a>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+            {caseStudies.map((study) => (
+              <div
+                key={study.id}
+                className="rounded-lg border border-white/10 bg-black p-3.5 md:p-4 text-white shadow-sm transition-shadow duration-300 hover:shadow-md hover:border-white/20"
+              >
+                <div className="mb-2">
+                  <span className="inline-block rounded-full bg-[var(--cres-electric-teal)]/20 px-2 py-0.5 text-[10px] font-semibold text-[var(--cres-electric-teal)]">
+                    {study.industry}
+                  </span>
                 </div>
-              ))}
-            </div>
+
+                <h3 className="text-[11px] md:text-xs font-black text-white leading-snug mb-0.5">
+                  {CASE_STUDY_HEADLINES[study.slug].title}
+                </h3>
+                <p className="text-[9px] md:text-[10px] text-[var(--cres-electric-teal)] font-semibold mb-2">
+                  {CASE_STUDY_HEADLINES[study.slug].subtitle}
+                </p>
+
+                <div className="mb-2">
+                  <h4 className="text-[10px] font-bold text-[var(--cres-orange-primary)] mb-0.5">Problem</h4>
+                  <p className="text-[11px] md:text-xs text-white/80">{study.problem}</p>
+                </div>
+
+                <div className="mb-2">
+                  <h4 className="text-[10px] font-bold text-[var(--cres-orange-primary)] mb-0.5">Solution</h4>
+                  <p className="text-[11px] md:text-xs text-white/80">{study.solution}</p>
+                </div>
+
+                <div className="mb-3">
+                  <h4 className="text-[10px] font-bold text-[var(--cres-orange-primary)] mb-0.5">Outcome</h4>
+                  <p className="text-[11px] md:text-xs text-white/80">{study.outcome}</p>
+                </div>
+
+                <a
+                  href={`/case-studies/${study.slug}`}
+                  className="inline-block rounded-md bg-white hover:bg-white/90 px-2.5 py-1.5 text-[11px] font-semibold text-black transition-colors duration-200"
+                >
+                  View Case Study
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 6️⃣ FINAL CTA – STRATEGIC, NOT PUSHY */}
-      <section className="py-12 md:py-20 bg-[var(--cres-electric-teal)] relative">
-        <div className="absolute inset-0 bg-texture bg-cover opacity-20"></div>
-        <div className="relative z-10">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-6 md:mb-8 underline-custom">
-              Your Business Doesn't Need More Tools.
-              <br />
-              It Needs Systems That Run Companies.
-            </h2>
+      {/* 4️⃣ FINAL CTA */}
+      <section className="py-10 md:py-14 bg-[var(--cres-electric-teal)] relative">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-lg md:text-2xl lg:text-3xl font-black text-white mb-4 md:mb-5">
+            Your Business Doesn&apos;t Need More Tools.
+            <br />
+            It Needs Systems That Run Companies.
+          </h2>
 
-            <p className="text-base md:text-xl text-white mb-8 md:mb-12 max-w-2xl mx-auto">
-            If any of these case studies feel familiar, it's not by accident. Most growing businesses hit the same ceiling — until we build ERPs, finance platforms, and automation systems that companies actually run on.
+          <p className="text-xs md:text-sm text-white/95 mb-5 md:mb-6 max-w-2xl mx-auto">
+            If any of these case studies feel familiar, it&apos;s not by accident. Most growing businesses hit the same
+            ceiling — until we build ERPs, finance platforms, and automation systems that companies actually run on.
           </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center mb-6 md:mb-8">
-              <a href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics." target="_blank" rel="noopener noreferrer" className="bg-[var(--cres-secondary-bg)] border border-white/20 text-[var(--cres-electric-teal)] hover:bg-black/80 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                Book a Systems Discovery Session
-              </a>
-              <a href="tel:+254708805496" className="border-2 border-white/40 text-white hover:bg-[var(--cres-secondary-bg)]/10 font-black text-base md:text-xl py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 ml-3">
-                Call 0708 805 496
-              </a>
-              <a href="/how-we-build" className="border-2 border-white text-white hover:bg-[var(--cres-secondary-bg)] hover:text-[var(--cres-electric-teal)] font-bold text-sm md:text-lg py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300">
-                See How We Build Systems
-              </a>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-2 md:gap-2.5 justify-center items-center mb-5">
+            <a
+              href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20systems%20discovery%20session%20with%20CRES%20Dynamics."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-[var(--cres-electric-teal)] hover:bg-[#0B0F14] hover:text-white font-bold text-[11px] md:text-xs py-1.5 md:py-2 px-3 md:px-4 rounded-md transition-all duration-300"
+            >
+              Book a Systems Discovery Session
+            </a>
+            <a
+              href="tel:+254708805496"
+              className="border border-white/50 text-white hover:bg-white/10 font-bold text-[11px] md:text-xs py-1.5 md:py-2 px-3 md:px-4 rounded-md transition-all duration-300"
+            >
+              Call 0708 805 496
+            </a>
+            <a
+              href="/how-we-build"
+              className="border border-white text-white hover:bg-[#0B0F14] hover:border-[#0B0F14] font-semibold text-[11px] md:text-xs py-1.5 md:py-2 px-3 md:px-4 rounded-md transition-all duration-300"
+            >
+              See How We Build Systems
+            </a>
+          </div>
 
-            <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-4 md:p-6 rounded-lg">
-              <p className="text-sm md:text-base text-white font-semibold">
-                CRES Dynamics builds business systems for companies that are serious about scale, visibility, and control.
-                <br />
-                We don't build websites — we build systems that companies run on.
-              </p>
-            </div>
+          <div className="rounded-lg border border-white/20 bg-[#0B0F14]/40 p-3 md:p-4">
+            <p className="text-[11px] md:text-xs text-white font-semibold">
+              CRES Dynamics builds business systems for companies that are serious about scale, visibility, and control.
+              <br />
+              We don&apos;t build websites — we build systems that companies run on.
+            </p>
           </div>
         </div>
       </section>

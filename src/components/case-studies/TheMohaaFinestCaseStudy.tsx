@@ -64,8 +64,7 @@ export default function TheMohaaFinestCaseStudy() {
             </div>
             <CaseStudyHeadline
               {...CASE_STUDY_HEADLINES['mohaa-finest']}
-              className="mb-11 max-w-[720px]"
-              titleClassName="!text-[clamp(1.75rem,4.5vw,2.65rem)]"
+              className="mb-6 max-w-[560px]"
             />
             <div className="flex flex-col gap-5 border-t border-[rgba(250,248,243,0.1)] pt-8 md:flex-row md:flex-wrap md:gap-0">
               {[
@@ -168,7 +167,7 @@ export default function TheMohaaFinestCaseStudy() {
                   <div className="mb-2.5 text-[11px] font-medium uppercase tracking-[0.08em]" style={{ color: gold }}>
                     {card.tf}
                   </div>
-                  <div className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#b8880a]' : 'text-4xl text-[#1a5c52]'}`}>{card.num}</div>
+                  <div className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#b8880a]' : 'text-2xl text-[#1a5c52]'}`}>{card.num}</div>
                   <div className="text-[13px] leading-relaxed" style={{ color: muted }}>
                     {card.label}
                   </div>

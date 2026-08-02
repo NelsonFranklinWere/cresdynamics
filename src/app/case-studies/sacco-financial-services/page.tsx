@@ -21,7 +21,7 @@ export default function SaccoCaseStudyPage() {
           <CaseStudyHeadline
             {...CASE_STUDY_HEADLINES['sacco-financial-services']}
             centered
-            className="mb-12 max-w-4xl"
+            className="mb-6 max-w-2xl"
           />
         </div>
       </section>
@@ -29,16 +29,16 @@ export default function SaccoCaseStudyPage() {
       {/* SECTION 2: Pattern Recognition */}
       <section className="py-12 md:py-20 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             Different industries. The same hidden problems.
           </h2>
 
-          <p className="text-xl text-white mb-12 max-w-3xl mx-auto">
+          <p className="text-sm md:text-base text-white mb-12 max-w-3xl mx-auto">
             Most businesses face structural problems, not effort problems. Growth becomes tied to the owner, opportunities slip away after hours, visibility depends entirely on paid advertising, and there's no predictability in the business model.
           </p>
 
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg">
-            <p className="text-lg text-white font-medium">
+            <p className="text-sm text-white font-medium">
               This creates a ceiling effect. The business can grow to a certain point through effort and hustle, but then stalls because the foundational systems can't support further expansion.
             </p>
           </div>
@@ -58,36 +58,36 @@ export default function SaccoCaseStudyPage() {
 
           {/* The Situation (Reality-Based) */}
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-white mb-6">The Situation</h3>
-            <p className="text-white text-lg leading-relaxed mb-6">
+            <h3 className="text-base md:text-sm font-bold text-white mb-6">The Situation</h3>
+            <p className="text-white text-sm leading-relaxed mb-6">
               The SACCO relied on manual WhatsApp responses, office-hour follow-ups, and staff-dependent engagement. Leads came in consistently, but many went cold before any response could be provided.
             </p>
-            <p className="text-white text-lg leading-relaxed">
+            <p className="text-white text-sm leading-relaxed">
               The operational model worked during business hours but created significant gaps in customer engagement outside those windows. Financial decisions are time-sensitive, and delayed responses created friction in the application process.
             </p>
           </div>
 
           {/* The Real Problem */}
           <div className="bg-[var(--cres-deep-navy)] text-white p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-[var(--cres-electric-teal)] mb-6">The Real Problem</h3>
-            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+            <h3 className="text-base md:text-sm font-bold text-[var(--cres-electric-teal)] mb-6">The Real Problem</h3>
+            <p className="text-gray-300 text-sm leading-relaxed mb-6">
               The challenge wasn't marketing or product appeal. It was availability. Customers expect instant responses for financial services, and financial decisions are inherently time-sensitive.
             </p>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-gray-300 text-sm leading-relaxed">
               Delayed replies reduced trust and momentum. Human-only systems could not match modern customer behavior expectations. Every missed response represented a lost opportunity that competitors with better systems could capture.
             </p>
           </div>
 
           {/* The System Built */}
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-white mb-6">The System Built</h3>
-            <p className="text-white text-lg leading-relaxed mb-8">
+            <h3 className="text-base md:text-sm font-bold text-white mb-6">The System Built</h3>
+            <p className="text-white text-sm leading-relaxed mb-8">
               We built an AI & Automation System that never sleeps, never forgets, and never delays. This wasn't about replacing people — it was about building a system that protects opportunity and ensures consistent service quality.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Automation System Module</h4>
+                <h4 className="text-sm font-semibold text-[var(--cres-electric-teal)]">Automation System Module</h4>
                 <ul className="text-white space-y-2">
                   <li>• Instant responses to common inquiries</li>
                   <li>• Lead qualification and information gathering</li>
@@ -97,7 +97,7 @@ export default function SaccoCaseStudyPage() {
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-[var(--cres-electric-teal)]">Workflow & Analytics Module</h4>
+                <h4 className="text-sm font-semibold text-[var(--cres-electric-teal)]">Workflow & Analytics Module</h4>
                 <ul className="text-white space-y-2">
                   <li>• Automated engagement sequences</li>
                   <li>• Usage tracking and member activity monitoring</li>
@@ -110,11 +110,11 @@ export default function SaccoCaseStudyPage() {
 
           {/* Production Metrics */}
           <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold text-white mb-6">Production System Metrics</h3>
-            <p className="text-white text-lg leading-relaxed mb-6">
+            <h3 className="text-base md:text-sm font-bold text-white mb-6">Production System Metrics</h3>
+            <p className="text-white text-sm leading-relaxed mb-6">
               The automation system is now in production, providing 24/7 lead engagement with consistent application flow processing. The system runs in the background without disrupting existing operations or requiring additional staffing.
             </p>
-            <p className="text-white text-lg leading-relaxed mb-4">
+            <p className="text-white text-sm leading-relaxed mb-4">
               Member acquisition became more predictable, with reduced workload on existing staff and no missed opportunities after hours. The SACCO moved from reactive customer service to always-on availability.
             </p>
             <div className="bg-[var(--cres-deep-navy)] p-4 rounded-lg mt-4">
@@ -125,11 +125,11 @@ export default function SaccoCaseStudyPage() {
 
           {/* Reflection Prompt */}
           <div className="bg-[var(--cres-electric-teal)] text-white p-8 rounded-lg mb-8">
-            <h3 className="text-2xl font-bold mb-6">Reflection Point</h3>
-            <p className="text-lg leading-relaxed mb-6">
+            <h3 className="text-base md:text-sm font-bold mb-6">Reflection Point</h3>
+            <p className="text-sm leading-relaxed mb-6">
               How many serious inquiries does your business miss when you're offline? What opportunities slip away because your systems can't respond instantly?
             </p>
-            <p className="text-lg leading-relaxed">
+            <p className="text-sm leading-relaxed">
               In a world where customers expect immediate responses, how does your current availability limit your growth potential?
             </p>
           </div>
@@ -137,7 +137,7 @@ export default function SaccoCaseStudyPage() {
           {/* Low-Pressure CTA */}
           <div className="text-center">
             <div className="space-y-4">
-              <p className="text-white text-lg">
+              <p className="text-white text-sm">
                 Interested in understanding how 24/7 availability could transform your customer engagement?
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -156,20 +156,20 @@ export default function SaccoCaseStudyPage() {
       {/* FINAL SECTION: Silent Urgency Close */}
       <section className="py-12 md:py-20 bg-[var(--cres-deep-navy)]">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">
             Growth doesn't break businesses.<br />
             <span className="text-[var(--cres-electric-teal)]">Missing systems do.</span>
           </h2>
 
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+          <p className="text-sm md:text-base text-gray-300 mb-12 max-w-3xl mx-auto">
             The difference between businesses that scale and those that stall is rarely effort. It's whether you have systems—ERPs, finance platforms, automation—that can support the next level of growth without breaking under the strain.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-black text-lg py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-xs py-2 px-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Book ERP Discovery Session
             </a>
-            <a href="/how-we-build" className="border-2 border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/how-we-build" className="border-2 border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-xs py-2 px-4 rounded-lg transition-all duration-300">
               See How We Build Systems
             </a>
           </div>

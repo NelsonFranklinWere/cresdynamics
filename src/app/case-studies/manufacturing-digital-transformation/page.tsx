@@ -20,13 +20,13 @@ export default function ManufacturingCaseStudyPage() {
           <CaseStudyHeadline
             {...CASE_STUDY_HEADLINES['manufacturing-digital-transformation']}
             centered
-            className="mb-8 max-w-4xl"
+            className="mb-6 max-w-2xl"
           />
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
+            <a href="/contact" className="bg-[var(--cres-electric-teal)] hover:bg-[#00B894] text-white font-bold text-xs py-1.5 px-3 md:px-6 rounded-lg transition-all duration-300">
               Request a Growth Audit
             </a>
-            <a href="/case-studies" className="border border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-lg py-3 px-4 md:px-6 rounded-lg transition-all duration-300">
+            <a href="/case-studies" className="border border-gray-400 text-gray-300 hover:text-white hover:border-white font-semibold text-xs py-1.5 px-3 md:px-6 rounded-lg transition-all duration-300">
               ← Back to Case Studies
             </a>
           </div>
@@ -35,7 +35,7 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The Business</h2>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">The Business</h2>
           <div className="space-y-6 text-white">
             <div className="grid md:grid-cols-2 gap-8">
               <div><h3 className="font-bold text-white mb-2">Industry</h3><p>Manufacturing company producing industrial equipment</p></div>
@@ -52,11 +52,11 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The Challenge</h2>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">The Challenge</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-[var(--cres-electric-teal)]">What Was Broken</h3>
+                <h3 className="text-sm font-bold text-[var(--cres-electric-teal)]">What Was Broken</h3>
                 <ul className="space-y-2 text-white">
                   <li>• No digital presence for B2B customers</li>
                   <li>• Manual sales and inquiry processes</li>
@@ -65,7 +65,7 @@ export default function ManufacturingCaseStudyPage() {
                 </ul>
               </div>
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-[var(--cres-electric-teal)]">What Was Costing Growth</h3>
+                <h3 className="text-sm font-bold text-[var(--cres-electric-teal)]">What Was Costing Growth</h3>
                 <ul className="space-y-2 text-white">
                   <li>• Missing digital sales opportunities</li>
                   <li>• Limited market reach beyond local networks</li>
@@ -84,21 +84,21 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">Why Previous Solutions Didn't Work</h2>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">Why Previous Solutions Didn't Work</h2>
           <div className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
-                <div className="text-4xl mb-4">📞</div>
+                <div className="text-2xl mb-3">📞</div>
                 <h3 className="font-bold text-white mb-3">Trade Show Focus</h3>
                 <p className="text-white text-sm">Excellent at industry events but missing the digital buyers who research online first.</p>
               </div>
               <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
-                <div className="text-4xl mb-4">🤝</div>
+                <div className="text-2xl mb-3">🤝</div>
                 <h3 className="font-bold text-white mb-3">Relationship Selling</h3>
                 <p className="text-white text-sm">Strong network but couldn't scale beyond personal relationships in a growing market.</p>
               </div>
               <div className="text-center p-6 bg-[var(--cres-secondary-bg)] border border-white/20 rounded-lg">
-                <div className="text-4xl mb-4">📋</div>
+                <div className="text-2xl mb-3">📋</div>
                 <h3 className="font-bold text-white mb-3">Basic Website</h3>
                 <p className="text-white text-sm">Had a "brochure website" but it didn't convert inquiries or showcase their manufacturing expertise.</p>
               </div>
@@ -113,7 +113,7 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-deep-navy)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">Our Thinking & Strategy</h2>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">Our Thinking & Strategy</h2>
           <div className="space-y-6 text-gray-300">
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -136,7 +136,7 @@ export default function ManufacturingCaseStudyPage() {
               </div>
             </div>
             <div className="mt-8 p-6 bg-gray-800/50 rounded-lg">
-              <p className="text-lg text-white font-semibold mb-3">Our Strategic Decision</p>
+              <p className="text-sm text-white font-semibold mb-3">Our Strategic Decision</p>
               <p className="text-gray-300">Instead of forcing digital tactics onto traditional operations, we created a comprehensive digital ecosystem that enhanced their manufacturing strengths while opening new markets.</p>
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The System We Implemented</h2>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">The System We Implemented</h2>
           <div className="space-y-8">
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">1</div>
@@ -195,22 +195,22 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">The Impact</h2>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">The Impact</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">New Market Opportunities</h3>
+              <h3 className="text-sm font-bold text-[var(--cres-electric-teal)] mb-3">New Market Opportunities</h3>
               <p className="text-white">Access to digital-native industrial buyers and new geographic markets beyond traditional networks.</p>
             </div>
             <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Lead Quality Improvement</h3>
+              <h3 className="text-sm font-bold text-[var(--cres-electric-teal)] mb-3">Lead Quality Improvement</h3>
               <p className="text-white">Digital inquiries are more qualified and ready to purchase, reducing sales cycle time.</p>
             </div>
             <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Operational Efficiency</h3>
+              <h3 className="text-sm font-bold text-[var(--cres-electric-teal)] mb-3">Operational Efficiency</h3>
               <p className="text-white">Automated processes handle routine inquiries, allowing technical staff to focus on complex customer needs.</p>
             </div>
             <div className="bg-[var(--cres-secondary-bg)] border border-white/20 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-bold text-[var(--cres-electric-teal)] mb-3">Market Position</h3>
+              <h3 className="text-sm font-bold text-[var(--cres-electric-teal)] mb-3">Market Position</h3>
               <p className="text-white">Established as a forward-thinking manufacturer that understands modern industrial buying processes.</p>
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-secondary-bg)] border border-white/20 bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">What This Case Teaches</h2>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">What This Case Teaches</h2>
           <div className="space-y-4">
             <div className="flex items-start space-x-4">
               <div className="w-8 h-8 bg-[var(--cres-electric-teal)] rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">1</div>
@@ -255,7 +255,7 @@ export default function ManufacturingCaseStudyPage() {
 
       <section className="py-16 bg-[var(--cres-electric-teal)] bg-texture bg-cover">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black underline-custom text-white mb-8">Is This Similar to Your Business?</h2>
+          <h2 className="text-lg md:text-xl lg:text-2xl font-black underline-custom text-white mb-8">Is This Similar to Your Business?</h2>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="bg-[var(--cres-secondary-bg)] border border-white/20/10 p-6 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">This applies to you if:</h3>
@@ -282,7 +282,7 @@ export default function ManufacturingCaseStudyPage() {
             <a href="/contact" className="bg-[var(--cres-secondary-bg)] border border-white/20 text-[var(--cres-electric-teal)] hover:bg-white/10 font-black text-xl py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               Let's Map Your Growth System
             </a>
-            <a href="/case-studies" className="border-2 border-white text-white hover:bg-white/10 hover:text-[var(--cres-electric-teal)] font-bold text-lg py-4 px-8 rounded-lg transition-all duration-300">
+            <a href="/case-studies" className="border-2 border-white text-white hover:bg-white/10 hover:text-[var(--cres-electric-teal)] font-bold text-xs py-2 px-4 rounded-lg transition-all duration-300">
               View More Case Studies
             </a>
           </div>

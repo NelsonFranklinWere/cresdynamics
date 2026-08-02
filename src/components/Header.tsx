@@ -30,10 +30,6 @@ function eventsNavActive(pathname: string) {
   return pathname === '/events' || pathname.startsWith('/events/');
 }
 
-function blogNavActive(pathname: string) {
-  return pathname === '/blog' || pathname.startsWith('/blog/');
-}
-
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -122,25 +118,32 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 w-full z-50 ${headerSurface}`}>
-      <nav className="max-w-7xl mx-auto px-4 lg:px-6 py-3 flex items-center justify-between">
-        {/* LOGO: Cres Dynamics */}
-        <div className="flex items-center space-x-1 md:space-x-2">
+      <nav className="max-w-7xl mx-auto px-4 lg:px-6 py-3 flex items-center justify-between gap-4 lg:gap-8">
+        {/* Brand = home (no separate Home link) */}
+        <Link
+          href="/"
+          prefetch={false}
+          className="flex items-center gap-2.5 md:gap-3 shrink-0 min-w-0 mr-2 lg:mr-4 hover:opacity-90 transition-opacity"
+          aria-label="CRES Dynamics home"
+        >
           <Image
             src="/logo.png"
-            alt="Cres Dynamics Logo"
-            className="h-6 w-6 md:h-8 md:w-8 rounded-full object-cover"
+            alt=""
+            className="h-7 w-7 md:h-9 md:w-9 rounded-full object-cover shrink-0"
             priority
             unoptimized
-            width={32}
-            height={32}
+            width={36}
+            height={36}
           />
-          <span className={`${brandTextClass} font-bold text-xs md:text-sm uppercase tracking-wide transition-colors duration-300`}>
+          <span
+            className={`${brandTextClass} font-bold text-sm md:text-base uppercase tracking-wide transition-colors duration-300 whitespace-nowrap`}
+          >
             <span className="font-black">CRES</span> Dynamics
           </span>
-        </div>
+        </Link>
 
         <button
-          className={`lg:hidden ${menuIconClass} p-2 rounded-lg hover:bg-white/10 transition-colors`}
+          className={`lg:hidden ${menuIconClass} p-2 rounded-lg hover:bg-white/10 transition-colors ml-auto`}
           onClick={() => {
             setIsMobileMenuOpen(!isMobileMenuOpen);
             if (isMobileMenuOpen) {
@@ -148,23 +151,14 @@ export default function Header() {
               setIsMobileWhoWeAreOpen(false);
             }
           }}
+          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
 
-        <ul className="hidden lg:flex items-center gap-2 xl:gap-3">
-          <li>
-            <Link href="/" prefetch={false} className={navLinkClass( pathname === '/')}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/events" prefetch={false} className={navLinkClass( eventsNavActive(pathname))}>
-              Events
-            </Link>
-          </li>
+        <ul className="hidden lg:flex items-center gap-1.5 xl:gap-2 flex-1 justify-center min-w-0">
           <li
             className="relative"
             onMouseEnter={openWhoWeAreDropdown}
@@ -235,23 +229,23 @@ export default function Header() {
               </svg>
             </button>
           </li>
-          <li className="flex items-center gap-1 shrink-0">
-            <Link
-              href="/blog"
-              prefetch={false}
-              className={`${navLinkClass( blogNavActive(pathname))} text-[11px] whitespace-nowrap`}
-            >
-              Blog
-            </Link>
+          <li>
             <Link
               href="/case-studies"
               prefetch={false}
-              className={`${navLinkClass( pathname.startsWith('/case-studies'))} text-[11px] whitespace-nowrap`}
+              className={navLinkClass(pathname.startsWith('/case-studies'))}
             >
               Case Proof
             </Link>
-            <Link href="/projects" prefetch={false} className={navLinkClass( pathname === '/projects')}>
+          </li>
+          <li>
+            <Link href="/projects" prefetch={false} className={navLinkClass(pathname === '/projects')}>
               Projects
+            </Link>
+          </li>
+          <li>
+            <Link href="/events" prefetch={false} className={navLinkClass( eventsNavActive(pathname))}>
+              Events
             </Link>
           </li>
         </ul>
@@ -260,7 +254,7 @@ export default function Header() {
           href="https://wa.me/254708805496?text=Hi%2C%20I'd%20like%20to%20book%20a%20strategy%20session%20with%20CRES%20Dynamics."
           target="_blank"
           rel="noopener noreferrer"
-          className={`hidden lg:inline-flex nav-cta-glass whitespace-nowrap`}
+          className="hidden lg:inline-flex nav-cta-glass whitespace-nowrap shrink-0"
         >
           Book Session
         </a>
@@ -420,14 +414,6 @@ export default function Header() {
       {/* Mobile Menu Overlay – brand: light bg, navy text, teal hover */}
       {isMobileMenuOpen && (
         <div className="mobile-menu open lg:hidden">
-          <Link href="/" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
-            Home
-          </Link>
-
-          <Link href="/events" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
-            Events
-          </Link>
-
           <div>
             <button
               type="button"
@@ -536,14 +522,14 @@ export default function Header() {
             )}
           </div>
 
-          <Link href="/blog" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
-            Blog
-          </Link>
           <Link href="/case-studies" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Case Proof
           </Link>
           <Link href="/projects" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
             Projects
+          </Link>
+          <Link href="/events" prefetch={false} className="text-white/90 text-base font-medium uppercase hover:text-white hover:bg-white/10 rounded-lg px-2 py-1 transition-all duration-200 block w-full text-left" onClick={() => setIsMobileMenuOpen(false)}>
+            Events
           </Link>
         </div>
       )}

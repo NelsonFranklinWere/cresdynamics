@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import HeroTesla from '@/components/HeroTesla';
 import Footer from '@/components/Footer';
+import HomepageBlogSection from '@/components/HomepageBlogSection';
 import type { Metadata } from 'next';
 
 const HomepageProblemSection = dynamic(() => import('@/components/HomepageProblemSection'));
@@ -67,6 +68,7 @@ export default function Home() {
         <LiveSystemsProof />
         <HomepageHowWeBuild />
         <HomepageWhoThisIsFor />
+        <HomepageBlogSection />
         <FinalCTA />
       </main>
       <Footer />

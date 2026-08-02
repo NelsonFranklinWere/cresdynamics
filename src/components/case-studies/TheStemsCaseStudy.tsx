@@ -69,8 +69,7 @@ export default function TheStemsCaseStudy() {
             </div>
             <CaseStudyHeadline
               {...CASE_STUDY_HEADLINES['the-stems-flowers']}
-              className="mb-11 max-w-[720px]"
-              titleClassName="!text-[clamp(1.75rem,4.5vw,2.65rem)]"
+              className="mb-6 max-w-[560px]"
             />
             <div className="flex flex-col gap-5 border-t border-[rgba(250,247,242,0.12)] pt-8 md:flex-row md:flex-wrap md:gap-0">
               {[
@@ -234,7 +233,7 @@ export default function TheStemsCaseStudy() {
                     {card.tf}
                   </div>
                   <div
-                    className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#b8935a]' : 'text-4xl text-[var(--cres-electric-teal)]'}`}
+                    className={`${playfair.className} mb-2 leading-none ${card.pending ? 'text-lg text-[#b8935a]' : 'text-2xl text-[var(--cres-electric-teal)]'}`}
                   >
                     {card.num}
                   </div>

@@ -232,68 +232,75 @@ export default function ProjectsPage() {
             const detailIsExternal = !project.caseStudySlug;
 
             return (
-              <Link
+              <article
                 key={project.id}
-                href={detailHref}
-                {...(detailIsExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                className="group block overflow-hidden rounded-2xl border border-white/12 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--teal-accent)]/45 hover:bg-white/[0.07] hover:shadow-[0_20px_50px_-20px_rgba(47,166,179,0.35)]"
+                className="group overflow-hidden rounded-2xl border border-white/12 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--teal-accent)]/45 hover:bg-white/[0.07] hover:shadow-[0_20px_50px_-20px_rgba(47,166,179,0.35)]"
               >
-                <div className="p-4 pb-0 sm:p-5 sm:pb-0">
-                  <ImageCarousel images={project.images} alt={project.title} />
-                </div>
+                <Link
+                  href={detailHref}
+                  {...(detailIsExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  className="block"
+                >
+                  <div className="p-4 pb-0 sm:p-5 sm:pb-0">
+                    <ImageCarousel images={project.images} alt={project.title} />
+                  </div>
 
-                <div className="p-5 sm:p-6">
-                  <div className="mb-4 flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--orange-energy)]">
-                        {project.industry}
+                  <div className="p-5 sm:p-6 pb-3 sm:pb-3">
+                    <div className="mb-4 flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--orange-energy)]">
+                          {project.industry}
+                        </p>
+                        <h3 className="text-xl font-black leading-snug text-white transition-colors group-hover:text-[var(--teal-accent)] sm:text-2xl">
+                          {project.title}
+                        </h3>
+                      </div>
+                      <div className="shrink-0 text-right">
+                        <span className="inline-flex rounded-full border border-emerald-400/35 bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-300">
+                          Live
+                        </span>
+                        <p className="mt-1 max-w-[120px] truncate font-mono text-[10px] text-[var(--teal-accent)]/90">
+                          {project.liveUrl.replace(/^https?:\/\//, '')}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 text-sm leading-relaxed">
+                      <p>
+                        <span className="font-semibold text-[var(--teal-accent)]">Problem: </span>
+                        <span className="text-white/75">{project.problem}</span>
                       </p>
-                      <h3 className="text-xl font-black leading-snug text-white transition-colors group-hover:text-[var(--teal-accent)] sm:text-2xl">
-                        {project.title}
-                      </h3>
-                    </div>
-                    <div className="shrink-0 text-right">
-                      <span className="inline-flex rounded-full border border-emerald-400/35 bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-300">
-                        Live
-                      </span>
-                      <p className="mt-1 max-w-[120px] truncate font-mono text-[10px] text-[var(--teal-accent)]/90">
-                        {project.liveUrl.replace(/^https?:\/\//, '')}
+                      <p>
+                        <span className="font-semibold text-[var(--teal-accent)]">Solution: </span>
+                        <span className="text-white/75">{project.solution}</span>
+                      </p>
+                      <p>
+                        <span className="font-semibold text-[var(--orange-energy)]">Outcome: </span>
+                        <span className="text-white/85">{project.outcome}</span>
                       </p>
                     </div>
                   </div>
+                </Link>
 
-                  <div className="space-y-3 text-sm leading-relaxed">
-                    <p>
-                      <span className="font-semibold text-[var(--teal-accent)]">Problem: </span>
-                      <span className="text-white/75">{project.problem}</span>
-                    </p>
-                    <p>
-                      <span className="font-semibold text-[var(--teal-accent)]">Solution: </span>
-                      <span className="text-white/75">{project.solution}</span>
-                    </p>
-                    <p>
-                      <span className="font-semibold text-[var(--orange-energy)]">Outcome: </span>
-                      <span className="text-white/85">{project.outcome}</span>
-                    </p>
-                  </div>
-
-                  <div className="mt-6 flex flex-wrap items-center gap-3">
-                    <div className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-[var(--orange-energy)] px-5 py-2.5 text-sm font-bold text-[var(--navy-dark)] transition group-hover:bg-[var(--orange-energy-hover)] min-w-[10rem]">
-                      {project.caseStudySlug ? 'View case study' : 'Open platform'}
-                      <span aria-hidden>→</span>
-                    </div>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/[0.04] px-4 py-2.5 text-xs font-semibold text-white/85 transition hover:border-[var(--teal-accent)]/50 hover:bg-white/[0.08] hover:text-white"
-                    >
-                      Visit live site
-                    </a>
-                  </div>
+                <div className="flex flex-wrap items-center gap-3 px-5 pb-5 sm:px-6 sm:pb-6">
+                  <Link
+                    href={detailHref}
+                    {...(detailIsExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-[var(--orange-energy)] px-5 py-2.5 text-sm font-bold text-[var(--navy-dark)] transition hover:bg-[var(--orange-energy-hover)] min-w-[10rem]"
+                  >
+                    {project.caseStudySlug ? 'View case study' : 'Open platform'}
+                    <span aria-hidden>→</span>
+                  </Link>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/[0.04] px-4 py-2.5 text-xs font-semibold text-white/85 transition hover:border-[var(--teal-accent)]/50 hover:bg-white/[0.08] hover:text-white"
+                  >
+                    Visit live site
+                  </a>
                 </div>
-              </Link>
+              </article>
             );
           })}
         </div>
